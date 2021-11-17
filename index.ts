@@ -1,0 +1,1 @@
+export {puzToXD} from "./lib/puzToXD"
