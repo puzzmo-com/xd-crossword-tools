@@ -106,3 +106,4 @@ dist
 # Build file
 index.js
 .DS_Store
+*.log

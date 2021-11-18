@@ -5,7 +5,8 @@ import { getWordTilesForCursor } from "./getWordTilesForCursor";
 import { getCluePositionsForBoard } from "./clueNumbersFromBoard";
 import { getTile } from "./getTile";
 
-export function puzToXD(buffer: any) {
+/** Takes a .puz Buffer and converts it to an xd file */
+export function puzToXD(buffer: Buffer) {
   const cap = (word: string) => word[0].toUpperCase() + word.substr(1);
 
   const file = decode(buffer);
@@ -13,8 +14,7 @@ export function puzToXD(buffer: any) {
   const board = file.grid.map((line) => line.join(""));
 
   // We need to re-create the clues section, which isn't fully fleshed
-  // out in a puz file, and the game makes expectations that all data
-  // is set up
+  // out in a easy way inside the puz file
   const tileGrid = stringGridToTiles(file.grid);
   const boardClues = getCluePositionsForBoard(tileGrid);
   const getClues = (clues: Array<null | string>, direction: CursorDirection) =>

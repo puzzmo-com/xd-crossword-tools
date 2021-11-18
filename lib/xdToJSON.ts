@@ -2,6 +2,7 @@ import { XDParser } from "./vendor/xdparser"
 import type { CrosswordJSON, Tile } from ".."
 import { getCluePositionsForBoard } from "./clueNumbersFromBoard"
 
+/** Takes an xd string and converts it into JSON */
 export const xdToJSON = (xd: string): CrosswordJSON => {
   const res = XDParser(xd)
 
