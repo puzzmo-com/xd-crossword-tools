@@ -1,80 +1,3 @@
-# xd-crossword-tools
-
-Tools for taking different crossword file formats and converting them to xd. Consolidates a few older JS libraries into a single repo with no dependencies, converts them all to TypeScript, ensures they run in a browser and Node, then adds some tests for them.
-
-[xd](https://github.com/century-arcade/xd) is a text-based crossword format which is easy for humans to read and reason about.
-
-### xd to JSON
-
-Builds on [xd-crossword-parser](https://github.com/j-norwood-young/xd-crossword-parser) (MIT license).
-
-
-```ts
-const xd = '...'
-import {xdToJSON} from "xd-crossword-tools"
-
-const crossword = xdToJSON(xd)
-```
-
-### .puz to .xd
-
-Builds on [puzjs](https://www.npmjs.com/package/puzjs) (ISC license).
-
-```ts
-import {puzToXd} from "xd-crossword-tools"
-
-const puzResponse = await fetch(url)
-const puzBuffer = await res.arrayBuffer()
-const xd = puzToXd(puzBuffer)
-```
-
-### Example
-
-Let's take this free .puz: https://dehodson.github.io/crossword-puzzles/crosswords/alpha-bits/
-
-Their .puz file turns into this xd:
-
-```s
-Title: Alpha-Bits
-Author: Drew Hodson
-Copyright: © 2021
-Description: N/A
-
-
-AHAB..CUD.SERIF
-MADAM.ANY.ABODE
-PLANE.DIE.NOTON
-....TODO.EGO...
-GASH.NINJA.KEEL
-ARTICLE.ORU.DOE
-YEARLY.MISPRINT
-..NEI.MAN.SOT..
-CALENDAR.RETIES
-ICE.TAR.POTHOLE
-OTEP.HQTRS.SNIT
-...ALL.HEAL....
-SPIRO.NET.ATLAS
-TARTS.ETA.DOONE
-UWAVE.WAX..YUTZ
-
-
-A1. Captain of the Pequod ~ AHAB
-A5. Food for second chance chewing ~ CUD
-A8. Font feature ~ SERIF
-A13. Palindromic address to a female ~ MADAM
-...
-
-D1. Pc. of concert gear ~ AMP
-D2. AI antagonist of 2001 ~ HAL
-D3. Programming pioneer Lovelace ~ ADA
-D4. Prohibit ~ BAN
-...
-
-```
-
-And then turned into this JSON:
-
-```json
 {
   "game": "crossword:props",
   "meta": {
@@ -1195,6 +1118,330 @@ And then turned into this JSON:
           "index": 1
         }
       },
+      {
+        "main": "Place often described as humble",
+        "answer": "ABODE",
+        "number": 16,
+        "position": {
+          "col": 10,
+          "index": 1
+        }
+      },
+      {
+        "main": "Flat two dimensional surface in geometry",
+        "answer": "PLANE",
+        "number": 17,
+        "position": {
+          "col": 0,
+          "index": 2
+        }
+      },
+      {
+        "main": "Grim homophone of 7D",
+        "answer": "DIE",
+        "number": 18,
+        "position": {
+          "col": 6,
+          "index": 2
+        }
+      },
+      {
+        "main": "Off",
+        "answer": "NOTON",
+        "number": 19,
+        "position": {
+          "col": 10,
+          "index": 2
+        }
+      },
+      {
+        "main": "Heading for some lists",
+        "answer": "TODO",
+        "number": 20,
+        "position": {
+          "col": 4,
+          "index": 3
+        }
+      },
+      {
+        "main": "Kanye West is famous for his",
+        "answer": "EGO",
+        "number": 22,
+        "position": {
+          "col": 9,
+          "index": 3
+        }
+      },
+      {
+        "main": "Laceration",
+        "answer": "GASH",
+        "number": 23,
+        "position": {
+          "col": 0,
+          "index": 4
+        }
+      },
+      {
+        "main": "Alias of Twitch star Richard Tyler Blevins",
+        "answer": "NINJA",
+        "number": 27,
+        "position": {
+          "col": 5,
+          "index": 4
+        }
+      },
+      {
+        "main": "Capsize",
+        "answer": "KEEL",
+        "number": 29,
+        "position": {
+          "col": 11,
+          "index": 4
+        }
+      },
+      {
+        "main": "Piece of clothing or print",
+        "answer": "ARTICLE",
+        "number": 33,
+        "position": {
+          "col": 0,
+          "index": 5
+        }
+      },
+      {
+        "main": "Evangelical school in Tulsa, OK",
+        "answer": "ORU",
+        "number": 35,
+        "position": {
+          "col": 8,
+          "index": 5
+        }
+      },
+      {
+        "main": "___-eyed",
+        "answer": "DOE",
+        "number": 37,
+        "position": {
+          "col": 12,
+          "index": 5
+        }
+      },
+      {
+        "main": "Annual",
+        "answer": "YEARLY",
+        "number": 38,
+        "position": {
+          "col": 0,
+          "index": 6
+        }
+      },
+      {
+        "main": "The stamp with the upside down airplane is a famous one",
+        "answer": "MISPRINT",
+        "number": 39,
+        "position": {
+          "col": 7,
+          "index": 6
+        }
+      },
+      {
+        "main": "With 42A and Marcus, a luxury department store chain",
+        "answer": "NEI",
+        "number": 41,
+        "position": {
+          "col": 2,
+          "index": 7
+        }
+      },
+      {
+        "main": "41A continued",
+        "answer": "MAN",
+        "number": 42,
+        "position": {
+          "col": 6,
+          "index": 7
+        }
+      },
+      {
+        "main": "Lush",
+        "answer": "SOT",
+        "number": 43,
+        "position": {
+          "col": 10,
+          "index": 7
+        }
+      },
+      {
+        "main": "The Mayan one ended in 2012",
+        "answer": "CALENDAR",
+        "number": 44,
+        "position": {
+          "col": 0,
+          "index": 8
+        }
+      },
+      {
+        "main": "What a child often does to their shoes",
+        "answer": "RETIES",
+        "number": 47,
+        "position": {
+          "col": 9,
+          "index": 8
+        }
+      },
+      {
+        "main": "Vanilla ___",
+        "answer": "ICE",
+        "number": 50,
+        "position": {
+          "col": 0,
+          "index": 9
+        }
+      },
+      {
+        "main": "Maligned cigarette ingredient",
+        "answer": "TAR",
+        "number": 51,
+        "position": {
+          "col": 4,
+          "index": 9
+        }
+      },
+      {
+        "main": "Frequent cause for a new tire",
+        "answer": "POTHOLE",
+        "number": 52,
+        "position": {
+          "col": 8,
+          "index": 9
+        }
+      },
+      {
+        "main": "Los Angeles heavy metal act",
+        "answer": "OTEP",
+        "number": 53,
+        "position": {
+          "col": 0,
+          "index": 10
+        }
+      },
+      {
+        "main": "Bldgs. such as the Googleplex",
+        "answer": "HQTRS",
+        "number": 55,
+        "position": {
+          "col": 5,
+          "index": 10
+        }
+      },
+      {
+        "main": "A fit of irritation",
+        "answer": "SNIT",
+        "number": 57,
+        "position": {
+          "col": 11,
+          "index": 10
+        }
+      },
+      {
+        "main": "Lead-in to American or day",
+        "answer": "ALL",
+        "number": 58,
+        "position": {
+          "col": 3,
+          "index": 11
+        }
+      },
+      {
+        "main": "What Pokémon do at a Pokémon Center",
+        "answer": "HEAL",
+        "number": 60,
+        "position": {
+          "col": 7,
+          "index": 11
+        }
+      },
+      {
+        "main": "Nixon's vice",
+        "answer": "SPIRO",
+        "number": 62,
+        "position": {
+          "col": 0,
+          "index": 12
+        }
+      },
+      {
+        "main": "Nothing but ___",
+        "answer": "NET",
+        "number": 65,
+        "position": {
+          "col": 6,
+          "index": 12
+        }
+      },
+      {
+        "main": "One with the world on his shoulders",
+        "answer": "ATLAS",
+        "number": 66,
+        "position": {
+          "col": 10,
+          "index": 12
+        }
+      },
+      {
+        "main": "Filled pastries",
+        "answer": "TARTS",
+        "number": 71,
+        "position": {
+          "col": 0,
+          "index": 13
+        }
+      },
+      {
+        "main": "Age, in Milan",
+        "answer": "ETA",
+        "number": 72,
+        "position": {
+          "col": 6,
+          "index": 13
+        }
+      },
+      {
+        "main": "Lorna ___, novel or cookie",
+        "answer": "DOONE",
+        "number": 73,
+        "position": {
+          "col": 10,
+          "index": 13
+        }
+      },
+      {
+        "main": "Electrocardiogram readout feature",
+        "answer": "UWAVE",
+        "number": 74,
+        "position": {
+          "col": 0,
+          "index": 14
+        }
+      },
+      {
+        "main": "Hip slang for records",
+        "answer": "WAX",
+        "number": 75,
+        "position": {
+          "col": 6,
+          "index": 14
+        }
+      },
+      {
+        "main": "Yiddish for a foolish person",
+        "answer": "YUTZ",
+        "number": 76,
+        "position": {
+          "col": 11,
+          "index": 14
+        }
+      }
     ],
     "down": [
       {
@@ -1286,15 +1533,340 @@ And then turned into this JSON:
           "col": 12,
           "index": 0
         }
+      },
+      {
+        "main": "Type of response you hope to get at the altar",
+        "answer": "IDO",
+        "number": 11,
+        "position": {
+          "col": 13,
+          "index": 0
+        }
+      },
+      {
+        "main": "Peat-accumulating wetland",
+        "answer": "FEN",
+        "number": 12,
+        "position": {
+          "col": 14,
+          "index": 0
+        }
+      },
+      {
+        "main": "The ___, NY art museum",
+        "answer": "MET",
+        "number": 14,
+        "position": {
+          "col": 4,
+          "index": 1
+        }
+      },
+      {
+        "main": "___Fans",
+        "answer": "ONLY",
+        "number": 21,
+        "position": {
+          "col": 5,
+          "index": 3
+        }
+      },
+      {
+        "main": "Friends, Romans, countrymen, lend me your...",
+        "answer": "EARS",
+        "number": 22,
+        "position": {
+          "col": 9,
+          "index": 3
+        }
+      },
+      {
+        "main": "\"Friend of Dorothy\"",
+        "answer": "GAY",
+        "number": 23,
+        "position": {
+          "col": 0,
+          "index": 4
+        }
+      },
+      {
+        "main": "We ___ the Champions",
+        "answer": "ARE",
+        "number": 24,
+        "position": {
+          "col": 1,
+          "index": 4
+        }
+      },
+      {
+        "main": "Father of Spider-Man",
+        "answer": "STANLEE",
+        "number": 25,
+        "position": {
+          "col": 2,
+          "index": 4
+        }
+      },
+      {
+        "main": "What a certain applicant becomes",
+        "answer": "HIREE",
+        "number": 26,
+        "position": {
+          "col": 3,
+          "index": 4
+        }
+      },
+      {
+        "main": "Connect",
+        "answer": "JOIN",
+        "number": 28,
+        "position": {
+          "col": 8,
+          "index": 4
+        }
+      },
+      {
+        "main": "Particular form of a published text",
+        "answer": "EDITION",
+        "number": 30,
+        "position": {
+          "col": 12,
+          "index": 4
+        }
+      },
+      {
+        "main": "Suffix at the end of all of Eevee's evolutions",
+        "answer": "EON",
+        "number": 31,
+        "position": {
+          "col": 13,
+          "index": 4
+        }
+      },
+      {
+        "main": "Live and ___ Die",
+        "answer": "LET",
+        "number": 32,
+        "position": {
+          "col": 14,
+          "index": 4
+        }
+      },
+      {
+        "main": "Famous Eastwood whose name became a famous Gorillaz song",
+        "answer": "CLINT",
+        "number": 34,
+        "position": {
+          "col": 4,
+          "index": 5
+        }
+      },
+      {
+        "main": "Unexpected result in a sporting competition",
+        "answer": "UPSET",
+        "number": 36,
+        "position": {
+          "col": 10,
+          "index": 5
+        }
+      },
+      {
+        "main": "Disfigure",
+        "answer": "MAR",
+        "number": 39,
+        "position": {
+          "col": 7,
+          "index": 6
+        }
+      },
+      {
+        "main": "David Lee and Tim",
+        "answer": "ROTHS",
+        "number": 40,
+        "position": {
+          "col": 11,
+          "index": 6
+        }
+      },
+      {
+        "main": "Luxury watch collection by Garmin",
+        "answer": "MARQ",
+        "number": 42,
+        "position": {
+          "col": 6,
+          "index": 7
+        }
+      },
+      {
+        "main": "Top dog in an IT org",
+        "answer": "CIO",
+        "number": 44,
+        "position": {
+          "col": 0,
+          "index": 8
+        }
+      },
+      {
+        "main": "Sister ___",
+        "answer": "ACT",
+        "number": 45,
+        "position": {
+          "col": 1,
+          "index": 8
+        }
+      },
+      {
+        "main": "Author Roald",
+        "answer": "DAHL",
+        "number": 46,
+        "position": {
+          "col": 5,
+          "index": 8
+        }
+      },
+      {
+        "main": "Civil rights activist Parks",
+        "answer": "ROSA",
+        "number": 47,
+        "position": {
+          "col": 9,
+          "index": 8
+        }
+      },
+      {
+        "main": "An additional name that could be part of 40D's clue",
+        "answer": "ELI",
+        "number": 48,
+        "position": {
+          "col": 13,
+          "index": 8
+        }
+      },
+      {
+        "main": "Director's domain",
+        "answer": "SET",
+        "number": 49,
+        "position": {
+          "col": 14,
+          "index": 8
+        }
+      },
+      {
+        "main": "Type of income to go in a 401k",
+        "answer": "PRETAX",
+        "number": 52,
+        "position": {
+          "col": 8,
+          "index": 9
+        }
+      },
+      {
+        "main": "The Empire Strikes Back, to the Star Wars saga",
+        "answer": "PARTV",
+        "number": 54,
+        "position": {
+          "col": 3,
+          "index": 10
+        }
+      },
+      {
+        "main": "Greek letter following 72A",
+        "answer": "THETA",
+        "number": 56,
+        "position": {
+          "col": 7,
+          "index": 10
+        }
+      },
+      {
+        "main": "Misplace",
+        "answer": "LOSE",
+        "number": 59,
+        "position": {
+          "col": 4,
+          "index": 11
+        }
+      },
+      {
+        "main": "Wee boy",
+        "answer": "LAD",
+        "number": 61,
+        "position": {
+          "col": 10,
+          "index": 11
+        }
+      },
+      {
+        "main": "Dad to Tommy Pickles",
+        "answer": "STU",
+        "number": 62,
+        "position": {
+          "col": 0,
+          "index": 12
+        }
+      },
+      {
+        "main": "The only Patrol I trust",
+        "answer": "PAW",
+        "number": 63,
+        "position": {
+          "col": 1,
+          "index": 12
+        }
+      },
+      {
+        "main": "Smart savings plan, briefly",
+        "answer": "IRA",
+        "number": 64,
+        "position": {
+          "col": 2,
+          "index": 12
+        }
+      },
+      {
+        "main": "Fresh",
+        "answer": "NEW",
+        "number": 65,
+        "position": {
+          "col": 6,
+          "index": 12
+        }
+      },
+      {
+        "main": "Breeds such as Chihuahua or Pomeranian",
+        "answer": "TOY",
+        "number": 67,
+        "position": {
+          "col": 11,
+          "index": 12
+        }
+      },
+      {
+        "main": "Bega behind \"Mambo No. 5\"",
+        "answer": "LOU",
+        "number": 68,
+        "position": {
+          "col": 12,
+          "index": 12
+        }
+      },
+      {
+        "main": "Aardvark breakfast",
+        "answer": "ANT",
+        "number": 69,
+        "position": {
+          "col": 13,
+          "index": 12
+        }
+      },
+      {
+        "main": "Sonic ___",
+        "answer": "SEZ",
+        "number": 70,
+        "position": {
+          "col": 14,
+          "index": 12
+        }
       }
     ]
   }
 }
-
-```
-
-
-### Filetypes this lib is open to adding
-
-- http://www.ipuz.org
-- https://www.xwordinfo.com/XPF/ / https://www.xwordinfo.com/JSON/

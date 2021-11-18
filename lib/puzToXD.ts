@@ -9,7 +9,7 @@ export function puzToXD(buffer: any) {
   const cap = (word: string) => word[0].toUpperCase() + word.substr(1);
 
   const file = decode(buffer);
-  const meta = Object.keys(file.meta).map((key) => `${cap(key)}: ${file.meta[key] || "N/A"}`);
+  const meta = Object.keys(file.meta).map((key) => `${cap(key)}: ${(file.meta[key] || "N/A").trim()}`);
   const board = file.grid.map((line) => line.join(""));
 
   // We need to re-create the clues section, which isn't fully fleshed
@@ -37,16 +37,16 @@ export function puzToXD(buffer: any) {
   const down = getClues(file.clues.down, "down");
 
   return `
-  ${meta.join("\n")}
-  
-  
-  ${board.join("\n")}
-  
-  
-  ${across}
-  
-  ${down}
-  `;
+${meta.join("\n")}
+
+
+${board.join("\n")}
+
+
+${across}
+
+${down}
+`;
 }
 
 export const stringGridToTiles = (strArr: string[][]): CrosswordProps["tiles"] => {

@@ -342,8 +342,8 @@ var _slicedToArray = (function () {
 })();
 
 function getExtension(bytes: Uint8Array, code: string) {
-  console.log("getExtension", code);
-  console.log("=", code.charCodeAt(0), code.charCodeAt(1), code.charCodeAt(2), code.charCodeAt(3));
+  // console.log("getExtension", code);
+  // console.log("=", code.charCodeAt(0), code.charCodeAt(1), code.charCodeAt(2), code.charCodeAt(3));
   // struct byte format is 4S H H
   var i = 0,
     j = 0;
@@ -404,7 +404,7 @@ function getCircles(bytes: Uint8Array) {
   if (markups) {
     markups.forEach(function (byte, i) {
       if (byte & 128) {
-        console.log(byte, i);
+        // console.log(byte, i);
         circles.push(i);
       }
     });
