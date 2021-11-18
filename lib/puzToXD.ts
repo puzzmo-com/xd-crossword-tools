@@ -1,5 +1,5 @@
 import {decode} from "./vendor/puzjs"
-import { CrosswordProps, CursorDirection, Tile } from "./types";
+import { CrosswordJSON, CursorDirection, Tile } from "./types";
 
 import { getWordTilesForCursor } from "./getWordTilesForCursor";
 import { getCluePositionsForBoard } from "./clueNumbersFromBoard";
@@ -49,8 +49,8 @@ ${down}
 `;
 }
 
-export const stringGridToTiles = (strArr: string[][]): CrosswordProps["tiles"] => {
-  const tiles: CrosswordProps["tiles"] = strArr.map((_) => []);
+export const stringGridToTiles = (strArr: string[][]): CrosswordJSON["tiles"] => {
+  const tiles: CrosswordJSON["tiles"] = strArr.map((_) => []);
 
   strArr.forEach((row, rowI) => {
     row.forEach((char) => {

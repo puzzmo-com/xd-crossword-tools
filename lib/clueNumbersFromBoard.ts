@@ -1,20 +1,20 @@
-import type { CrosswordProps, Position } from "./types"
+import type { CrosswordJSON, Position } from "./types"
 
-export const getCluePositionsForBoard = (tiles: CrosswordProps["tiles"]): Position[] => {
+export const getCluePositionsForBoard = (tiles: CrosswordJSON["tiles"]): Position[] => {
   const spots = _getPossibleTiles(tiles)
   const across = _acrossCluePositions(spots)
   const down = _downCluePositions(spots)
   return _getOrderedPositionsForSpots(spots, across, down)
 }
 
-export const _getCluePositionsForBoard = (tiles: CrosswordProps["tiles"]) => {
+export const _getCluePositionsForBoard = (tiles: CrosswordJSON["tiles"]) => {
   const spots = _getPossibleTiles(tiles)
   const across = _acrossCluePositions(spots)
   const down = _downCluePositions(spots)
   return { across, down }
 }
 
-export function _getPossibleTiles(tiles: CrosswordProps["tiles"]): boolean[][] {
+export function _getPossibleTiles(tiles: CrosswordJSON["tiles"]): boolean[][] {
   return tiles.map(row => row.map(tile => tile.type !== "blank"))
 }
 

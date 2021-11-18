@@ -82,7 +82,6 @@ And then turned into this JSON:
 
 ```json
 {
-  "game": "crossword:props",
   "meta": {
     "title": "Alpha-Bits",
     "author": "Drew Hodson",

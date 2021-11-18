@@ -1,5 +1,4 @@
-export type CrosswordProps = {
-  game: "crossword:props"
+export type CrosswordJSON = {
   /** Info to display about the Crossword  */
   meta: {
     title: string

@@ -1,15 +1,14 @@
 import { XDParser } from "./vendor/xdparser"
-import type { CrosswordProps, Tile } from ".."
+import type { CrosswordJSON, Tile } from ".."
 import { getCluePositionsForBoard } from "./clueNumbersFromBoard"
 
-export const xdToJSON = (xd: string): CrosswordProps => {
+export const xdToJSON = (xd: string): CrosswordJSON => {
   const res = XDParser(xd)
 
   const tiles = stringGridToTiles(res.grid)
   const positions = getCluePositionsForBoard(tiles)
 
-  const props: CrosswordProps = {
-    game: "crossword:props",
+  const props: CrosswordJSON = {
     meta: res.meta as any,
     tiles,
     clues: {
@@ -30,8 +29,8 @@ export const xdToJSON = (xd: string): CrosswordProps => {
   return props
 }
 
-export const stringGridToTiles = (strArr: string[][]): CrosswordProps["tiles"] => {
-  const tiles: CrosswordProps["tiles"] = strArr.map(_ => [])
+export const stringGridToTiles = (strArr: string[][]): CrosswordJSON["tiles"] => {
+  const tiles: CrosswordJSON["tiles"] = strArr.map(_ => [])
 
   strArr.forEach((row, rowI) => {
     row.forEach(char => {

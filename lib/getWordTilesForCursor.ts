@@ -1,8 +1,8 @@
-import { CrosswordProps, Cursor, Position } from "./types"
+import { CrosswordJSON, Cursor, Position } from "./types"
 import {  getTile } from "./getTile"
 
 /** Gets all the related tiles for the cursor, may contain dupes */
-export const getWordTilesForCursor = (tiles: CrosswordProps["tiles"], cursor: Cursor) => {
+export const getWordTilesForCursor = (tiles: CrosswordJSON["tiles"], cursor: Cursor) => {
   if (!cursor) return []
 
   const positions = [cursor.position]
@@ -43,11 +43,11 @@ export const getWordTilesForCursor = (tiles: CrosswordProps["tiles"], cursor: Cu
   return positions
 }
 
-export const getAllUserInputTilePositions = (tiles: CrosswordProps["tiles"]) => {
+export const getAllUserInputTilePositions = (tiles: CrosswordJSON["tiles"]) => {
   return []
 }
 
-export const getSortedTilesForCursor = (tiles: CrosswordProps["tiles"], cursor: Cursor) => {
+export const getSortedTilesForCursor = (tiles: CrosswordJSON["tiles"], cursor: Cursor) => {
   const unOrderedTiles = getWordTilesForCursor(tiles, cursor)
   const sort = cursor.direction === "across" ? (l: Position, r: Position) => l.col - r.col : (l: Position, r: Position) => l.index - r.index
   const newTiles = unOrderedTiles.sort(sort)
