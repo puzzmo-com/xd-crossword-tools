@@ -21,7 +21,7 @@ in order to save lookups later at runtime. You can see the type definitions here
 
 ### .puz to .xd
 
-Builds on [puzjs](https://www.npmjs.com/package/puzjs) (ISC license).
+Builds on [puzjs](https://www.npmjs.com/package/puzjs) (ISC license). The puz format is generally what tools and websites will give you as an output format.
 
 ```ts
 import {puzToXd} from "xd-crossword-tools"
@@ -30,6 +30,9 @@ const puzResponse = await fetch(url)
 const puzBuffer = await res.arrayBuffer()
 const xd = puzToXd(puzBuffer)
 ```
+
+Converting from puz to xd _is lossy_ like in the example below, the crossword has a fun play with the circles marks (e.g. highlighted tiles) which isn't supported
+metadata inside the xd file format. This is a trade-off, and it's quite possible that xd-crossword-tools will be extending the xd format to handle some of the differences eventually.
 
 ### Example
 
