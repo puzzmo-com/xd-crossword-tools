@@ -10,11 +10,14 @@ Builds on [xd-crossword-parser](https://github.com/j-norwood-young/xd-crossword-
 
 
 ```ts
-const xd = '...'
 import {xdToJSON} from "xd-crossword-tools"
 
+const xd = '[...]'
 const crossword = xdToJSON(xd)
 ```
+
+The JSON format is a bit more verbose than you might expect (see below for an example), but the goal is to have as much information pre-computed at parse time
+in order to save lookups later at runtime. You can see the type definitions here: [`./lib/types.ts`](./lib/types.ts)
 
 ### .puz to .xd
 
