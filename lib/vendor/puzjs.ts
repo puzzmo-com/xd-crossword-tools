@@ -133,6 +133,8 @@ function BoardProgress(puzzle: Puzzle) {
   var progressString = "";
   puzzle.grid.forEach(function (row) {
     row.forEach(function (cell) {
+      // In line 430ish we extend the string with a .solution if it is rebus
+      // @ts-ignore
       var sol = cell.solution;
       if (sol === ".") {
         // black square, append a '.'
@@ -302,6 +304,7 @@ var _extends =
     return target;
   };
 
+  // This looks like C&P'd minified code, so I'm jamming some tsignores
 var _slicedToArray = (function () {
   function sliceIterator(arr: any[], i: number) {
     var _arr = [];
@@ -309,6 +312,7 @@ var _slicedToArray = (function () {
     var _d = false;
     var _e = undefined;
     try {
+      // @ts-ignore
       for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
         _arr.push(_s.value);
         if (i && _arr.length === i) break;
@@ -318,6 +322,7 @@ var _slicedToArray = (function () {
       _e = err;
     } finally {
       try {
+        // @ts-ignore
         if (!_n && _i["return"]) _i["return"]();
       } finally {
         if (_d) throw _e;
@@ -427,6 +432,9 @@ function addRebusToGrid(grid: Puzzle["grid"], rebus: NonNullable<ReturnType<type
     return row.map(function (cell, j) {
       var idx = i * row.length + j;
       if (rebus.table[idx]) {
+        // TODO: this is a string being extended with a solution when it is rebus,
+        // this is tricky to type and hard to discover. Once we have more tests
+        // this can be refactored ot
         return _extends({}, cell, {
           solution: rebus.sols[rebus.table[idx] - 1],
         });

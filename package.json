@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "esbuild index.ts --bundle --outfile=index.js --platform=node "
+    "build": "esbuild index.ts --bundle --outfile=index.js --platform=node",
+    "type-check": "tsc"
   },
   "repository": {
     "type": "git",

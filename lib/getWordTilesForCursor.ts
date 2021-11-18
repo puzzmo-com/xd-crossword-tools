@@ -1,8 +1,8 @@
-import { CrosswordState, Cursor, Position } from "./types"
+import { CrosswordProps, Cursor, Position } from "./types"
 import {  getTile } from "./getTile"
 
 /** Gets all the related tiles for the cursor, may contain dupes */
-export const getWordTilesForCursor = (tiles: CrosswordState["props"]["tiles"], cursor: CrosswordState["cursor"]) => {
+export const getWordTilesForCursor = (tiles: CrosswordProps["tiles"], cursor: Cursor) => {
   if (!cursor) return []
 
   const positions = [cursor.position]
@@ -43,13 +43,13 @@ export const getWordTilesForCursor = (tiles: CrosswordState["props"]["tiles"], c
   return positions
 }
 
-export const getAllUserInputTilePositions = (tiles: CrosswordState["props"]["tiles"]) => {
+export const getAllUserInputTilePositions = (tiles: CrosswordProps["tiles"]) => {
   return []
 }
 
-export const getSortedTilesForCursor = (state: CrosswordState, cursor: Cursor) => {
-  const unOrderedTiles = getWordTilesForCursor(state.props.tiles, cursor)
+export const getSortedTilesForCursor = (tiles: CrosswordProps["tiles"], cursor: Cursor) => {
+  const unOrderedTiles = getWordTilesForCursor(tiles, cursor)
   const sort = cursor.direction === "across" ? (l: Position, r: Position) => l.col - r.col : (l: Position, r: Position) => l.index - r.index
-  const tiles = unOrderedTiles.sort(sort)
-  return { first: tiles[0], last: tiles[tiles.length - 1], tiles }
+  const newTiles = unOrderedTiles.sort(sort)
+  return { first: newTiles[0], last: newTiles[tiles.length - 1], tiles:newTiles }
 }

@@ -81,51 +81,51 @@ export type CrosswordProps = {
 export type CursorDirection = "down" | "across"
 export type ClueState = "empty" | "partial" | "incorrect" | "correct"
 
-export type CrosswordState = {
-  /** An implementation detail */
-  game: "crossword:state"
-  /** API does not need to return this, so could also be considered an implementation detail */
-  props: CrosswordProps
-  /** The user's current interaction model */
-  cursor?: Cursor
-  /** Cursors to show for other players */
-  additionalCursors?: Array<Cursor & { id: string }>
-  /** A sparse array of the right column length for user input.
-   * There is always needs to be at least as many arrays as there are columns, so it can safely write to an arbitrary x, y */
-  userInput: UserInput[][]
+// export type CrosswordState = {
+//   /** An implementation detail */
+//   game: "crossword:state"
+//   /** API does not need to return this, so could also be considered an implementation detail */
+//   props: CrosswordProps
+//   /** The user's current interaction model */
+//   cursor?: Cursor
+//   /** Cursors to show for other players */
+//   additionalCursors?: Array<Cursor & { id: string }>
+//   /** A sparse array of the right column length for user input.
+//    * There is always needs to be at least as many arrays as there are columns, so it can safely write to an arbitrary x, y */
+//   userInput: UserInput[][]
 
-  /** What state is each individual clue in? */
-  clueState: {
-    across: ClueState[]
-    down: ClueState[]
-  }
+//   /** What state is each individual clue in? */
+//   clueState: {
+//     across: ClueState[]
+//     down: ClueState[]
+//   }
 
-  /** User input which is layered on top of the crossword at x,y */
-  ui: UIChanges[]
+//   /** User input which is layered on top of the crossword at x,y */
+//   ui: UIChanges[]
 
-  /** Should committing a letter be classed as a draft */
-  draft?: true
+//   /** Should committing a letter be classed as a draft */
+//   draft?: true
 
-  /** The current game settings */
-  settings: {
-    /** Do we show incorrect inputs? */
-    highlightWrongLetters: "always" | "after-completion" | "never"
-    /** How should the inputs be recognized */
-    controlScheme: "ours" | "nytimes"
-  }
+//   /** The current game settings */
+//   settings: {
+//     /** Do we show incorrect inputs? */
+//     highlightWrongLetters: "always" | "after-completion" | "never"
+//     /** How should the inputs be recognized */
+//     controlScheme: "ours" | "nytimes"
+//   }
 
-  /** Session state which is never stored */
-  session: {
-    /** Should we turn on cheats? */
-    hasAskedAboutShowingFails?: true
-    /** Can you edit the crossword? */
-    readonly?: true
-    /** Should we be showing the on-screen keyboard? */
-    showOnscreenKeyboard?: boolean,
-    /** Game completion info */
-    gameCompleted?: {
-      timerTime?: number
-      date: Date
-    }
-  }
-}
+//   /** Session state which is never stored */
+//   session: {
+//     /** Should we turn on cheats? */
+//     hasAskedAboutShowingFails?: true
+//     /** Can you edit the crossword? */
+//     readonly?: true
+//     /** Should we be showing the on-screen keyboard? */
+//     showOnscreenKeyboard?: boolean,
+//     /** Game completion info */
+//     gameCompleted?: {
+//       timerTime?: number
+//       date: Date
+//     }
+//   }
+// }
