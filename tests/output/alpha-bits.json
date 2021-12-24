@@ -3,7 +3,8 @@
     "title": "Alpha-Bits",
     "author": "Drew Hodson",
     "copyright": "© 2021",
-    "description": "N/A"
+    "description": "N/A",
+    "design": "O={ bg"
   },
   "tiles": [
     [

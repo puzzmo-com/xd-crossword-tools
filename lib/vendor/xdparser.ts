@@ -29,16 +29,20 @@ export function XDParser(xd: string) {
     function processData(data: string) {
       // Split into parts
       const parts = data.split(/^$^$/gm).filter(s => s !== "\n")
-      if (parts.length !== 4) throw `Too many parts - expected 4, found ${parts.length}`
+      if (parts.length < 4) throw `Too few parts - expected 4+`
       const rawMeta = parts[0]
       const rawGrid = parts[1]
       const rawAcross = parts[2]
       const rawDown = parts[3]
+      let notes = ""
+      for (let index = 4; index < parts.length - 3; index++) {
+        notes += parts[index];
+      } 
       const meta = processMeta(rawMeta)
       const grid = processGrid(rawGrid)
       const across = processClues(rawAcross)
       const down = processClues(rawDown)
-      return { meta, grid, across, down, rawGrid, rawAcross, rawDown, rawMeta }
+      return { meta, grid, across, down, rawGrid, rawAcross, rawDown, rawMeta, notes }
     }
   
     function processMeta(rawMeta: string) {

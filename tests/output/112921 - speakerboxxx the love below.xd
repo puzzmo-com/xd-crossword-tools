@@ -1,14 +1,16 @@
-
 Title: Speakerboxxx/The Love Below
 Author: Will Nediger
 Copyright: 
 Description: N/A
+Rebus: 0=BOSE 1=SONY
+Design: O={ bg: circle }
+Design: S={ bg: shade }
 
 
 BLTS...PVC.POGO
 LARA..PEEL.OUID
 OPEN.LUCRE.URGE
-CHADWICK[object Object]MAN...
+CHADWICK0MAN...
 KIT.REES..IDLE.
 SLYNOD.AIRSPACE
 ..OUT.ATOZ.UDON
@@ -16,7 +18,7 @@ PASTEUR.NAPPING
 ACER.SIPS.APE..
 SALADBAR.ALYSSA
 .IFSO..ISLE.FED
-...WHAT[object Object]OURMIND
+...WHAT1OURMIND
 ROBE.CHASM.ARSE
 OWIE.HERO..USER
 BLOT.END...ITIS
@@ -31,7 +33,7 @@ A14. Faux-French slang for pot ~ OUID
 A15. Emotionally honest ~ OPEN
 A16. "Filthy" money ~ LUCRE
 A17. The feminine ___ to write clues referencing memes ~ URGE
-A18. "Black Panther" star ~ CHADWICK[object Object]MAN
+A18. "Black Panther" star ~ CHADWICKBOSEMAN
 A21. Collection of drums ~ KIT
 A22. "Pariah" director Dee ~ REES
 A23. Like small talk ~ IDLE
@@ -50,7 +52,7 @@ A46. Milano who was also in last week's grid ~ ALYSSA
 A49. "Assuming that's the case..." ~ IFSO
 A50. ___ of Mull ~ ISLE
 A52. Put money into ~ FED
-A53. "Something bothering you?" ~ WHAT[object Object]OURMIND
+A53. "Something bothering you?" ~ WHATSONYOURMIND
 A57. Academic regalia component ~ ROBE
 A60. Seemingly unbridgeable gap ~ CHASM
 A61. Down-under part, Down Under ~ ARSE
@@ -66,7 +68,7 @@ D2. Walt Disney Concert Hall orchestra, casually ~ LAPHIL
 D3. Catchphrase for Donna and Tom on "Parks and Rec" ~ TREATYOSELF
 D4. Plentiful substance in 2021's "Dune" ~ SAND
 D5. Eats like a bird ~ PECKSAT
-D6. Talkative ~ VER[object Object]
+D6. Talkative ~ VERBOSE
 D7. Nickname that omits "ent" ~ CLEM
 D8. Classic canine plush toy ~ POUNDPUPPY
 D9. "___ American Cousin" ("Other than that, Mrs. Lincoln, did you enjoy the play?" play) ~ OUR
@@ -87,7 +89,7 @@ D35. Faux ___ ~ PAS
 D36. Berry promoted as a health food ~ ACAI
 D37. Holder of backup files, often ~ USB
 D39. Not as ruddy ~ PALER
-D42. Place for convicts to exercise ~ PRI[object Object]ARD
+D42. Place for convicts to exercise ~ PRISONYARD
 D45. Facepalming exclamation ~ DOH
 D46. Grad ~ ALUM
 D47. Dojo teacher ~ SENSEI
@@ -99,3 +101,22 @@ D56. Island whose Big Bog is one of the world's wettest places ~ MAUI
 D57. Way overcharge ~ ROB
 D58. "Guardians of Ga'Hoole" bird ~ OWL
 D59. Link in ___ ~ BIO
+
+
+## DESIGN
+
+....###...#....
+....##....#....
+....#.....#....
+............###
+...#....##....#
+......#....O...
+##...#....#O...
+..O....#...O...
+..O.#....#.O.##
+..O.....#..O...
+#.OO.##....#O..
+###O........O..
+...O#.....#.O..
+...O#....##.O..
+...O#...###.O..

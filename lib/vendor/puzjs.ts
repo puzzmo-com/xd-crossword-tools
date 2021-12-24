@@ -434,7 +434,7 @@ function addRebusToGrid(grid: Puzzle["grid"], rebus: NonNullable<ReturnType<type
       if (rebus.table[idx]) {
         // TODO: this is a string being extended with a solution when it is rebus,
         // this is tricky to type and hard to discover. Once we have more tests
-        // this can be refactored ot
+        // this can be refactored
         return _extends({}, cell, {
           solution: rebus.sols[rebus.table[idx] - 1],
         });
@@ -538,3 +538,5 @@ export function encode(puzzle: Puzzle) {
 export function decode(bytes: ArrayBuffer) {
   return PUZtoJSON(bytes);
 }
+
+export type Puz2JSONResult = ReturnType<typeof decode>
