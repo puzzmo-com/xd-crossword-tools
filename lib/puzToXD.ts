@@ -6,7 +6,7 @@ import { getCluePositionsForBoard } from "./clueNumbersFromBoard";
 import { getTile } from "./getTile";
 
 /** Takes a .puz Buffer and converts it to an xd file */
-export function puzToXD(buffer: Buffer) {
+export function puzToXD(buffer: ArrayBuffer) {
   const cap = (word: string) => word[0].toUpperCase() + word.substr(1);
 
   const file = decode(buffer);

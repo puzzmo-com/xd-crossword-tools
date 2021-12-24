@@ -446,7 +446,7 @@ function addRebusToGrid(grid: Puzzle["grid"], rebus: NonNullable<ReturnType<type
 
 type Puzzle = ReturnType<typeof PUZtoJSON>;
 
-function PUZtoJSON(buffer: Buffer) {
+function PUZtoJSON(buffer: ArrayBuffer) {
   var grid: string[][] = [];
   var info: Record<string, string> = {};
   var across = [];
@@ -535,6 +535,6 @@ export function encode(puzzle: Puzzle) {
   );
 }
 
-export function decode(bytes: Buffer) {
+export function decode(bytes: ArrayBuffer) {
   return PUZtoJSON(bytes);
 }

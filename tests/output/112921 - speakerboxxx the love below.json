@@ -1,0 +1,1901 @@
+{
+  "meta": {
+    "title": "Speakerboxxx/The Love Below",
+    "author": "Will Nediger",
+    "copyright": "",
+    "description": "N/A"
+  },
+  "tiles": [
+    [
+      {
+        "type": "letter",
+        "letter": "B",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "L",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "T",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "S",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "P",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "V",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "C",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "P",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "O",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "G",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "O",
+        "state": "normal"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "L",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "R",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "P",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "L",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "O",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "U",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "I",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "D",
+        "state": "normal"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "O",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "P",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "N",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "L",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "U",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "C",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "R",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "U",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "R",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "G",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "C",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "H",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "D",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "W",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "I",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "C",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "K",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "[",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "o",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "b",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "j",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "e",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "c",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "t",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": " ",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "O",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "b",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "j",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "e",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "c",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "t",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "]",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "M",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "N",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "K",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "I",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "T",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "R",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "S",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "I",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "D",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "L",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "S",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "L",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "Y",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "N",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "O",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "D",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "I",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "R",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "S",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "P",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "C",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      }
+    ],
+    [
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "O",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "U",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "T",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "T",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "O",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "Z",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "U",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "D",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "O",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "N",
+        "state": "normal"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "P",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "S",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "T",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "U",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "R",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "N",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "P",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "P",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "I",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "N",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "G",
+        "state": "normal"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "C",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "R",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "S",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "I",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "P",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "S",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "P",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "S",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "L",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "D",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "B",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "R",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "L",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "Y",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "S",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "S",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      }
+    ],
+    [
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "I",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "F",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "S",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "O",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "I",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "S",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "L",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "F",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "D",
+        "state": "normal"
+      }
+    ],
+    [
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "W",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "H",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "T",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "[",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "o",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "b",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "j",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "e",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "c",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "t",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": " ",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "O",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "b",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "j",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "e",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "c",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "t",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "]",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "O",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "U",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "R",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "M",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "I",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "N",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "D",
+        "state": "normal"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "R",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "O",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "B",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "C",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "H",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "S",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "M",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "A",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "R",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "S",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "O",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "W",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "I",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "H",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "R",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "O",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "U",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "S",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "R",
+        "state": "normal"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "B",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "L",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "O",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "T",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "E",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "N",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "D",
+        "state": "normal"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "I",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "T",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "I",
+        "state": "normal"
+      },
+      {
+        "type": "letter",
+        "letter": "S",
+        "state": "normal"
+      }
+    ]
+  ],
+  "clues": {
+    "across": [
+      {
+        "main": "Sandwiches often made with iceberg",
+        "answer": "BLTS",
+        "number": 1,
+        "position": {
+          "col": 0,
+          "index": 0
+        }
+      },
+      {
+        "main": "Polymer in pipes",
+        "answer": "PVC",
+        "number": 5,
+        "position": {
+          "col": 7,
+          "index": 0
+        }
+      },
+      {
+        "main": "Extreme ___ (high-bouncing action sport)",
+        "answer": "POGO",
+        "number": 8,
+        "position": {
+          "col": 11,
+          "index": 0
+        }
+      },
+      {
+        "main": "Big name in tomb raiding",
+        "answer": "LARA",
+        "number": 12,
+        "position": {
+          "col": 0,
+          "index": 1
+        }
+      },
+      {
+        "main": "\"Time to draw more Bananagrams tiles!\"",
+        "answer": "PEEL",
+        "number": 13,
+        "position": {
+          "col": 6,
+          "index": 1
+        }
+      },
+      {
+        "main": "Faux-French slang for pot",
+        "answer": "OUID",
+        "number": 14,
+        "position": {
+          "col": 11,
+          "index": 1
+        }
+      },
+      {
+        "main": "Emotionally honest",
+        "answer": "OPEN",
+        "number": 15,
+        "position": {
+          "col": 0,
+          "index": 2
+        }
+      },
+      {
+        "main": "\"Filthy\" money",
+        "answer": "LUCRE",
+        "number": 16,
+        "position": {
+          "col": 5,
+          "index": 2
+        }
+      },
+      {
+        "main": "The feminine ___ to write clues referencing memes",
+        "answer": "URGE",
+        "number": 17,
+        "position": {
+          "col": 11,
+          "index": 2
+        }
+      },
+      {
+        "main": "\"Black Panther\" star",
+        "answer": "CHADWICK[object Object]MAN",
+        "number": 18,
+        "position": {
+          "col": 0,
+          "index": 3
+        }
+      },
+      {
+        "main": "Collection of drums",
+        "answer": "KIT",
+        "number": 21,
+        "position": {
+          "col": 0,
+          "index": 4
+        }
+      },
+      {
+        "main": "\"Pariah\" director Dee",
+        "answer": "REES",
+        "number": 22,
+        "position": {
+          "col": 4,
+          "index": 4
+        }
+      },
+      {
+        "main": "Like small talk",
+        "answer": "IDLE",
+        "number": 23,
+        "position": {
+          "col": 10,
+          "index": 4
+        }
+      },
+      {
+        "main": "Mischievous acknowledgment from across the room",
+        "answer": "SLYNOD",
+        "number": 26,
+        "position": {
+          "col": 7,
+          "index": 5
+        }
+      },
+      {
+        "main": "It goes over your head",
+        "answer": "AIRSPACE",
+        "number": 28,
+        "position": {
+          "col": 9,
+          "index": 5
+        }
+      },
+      {
+        "main": "\"Shoo!\"",
+        "answer": "OUT",
+        "number": 32,
+        "position": {
+          "col": 11,
+          "index": 6
+        }
+      },
+      {
+        "main": "Comprehensive range",
+        "answer": "ATOZ",
+        "number": 33,
+        "position": {
+          "col": 0,
+          "index": 7
+        }
+      },
+      {
+        "main": "Shabu-shabu noodles",
+        "answer": "UDON",
+        "number": 34,
+        "position": {
+          "col": 1,
+          "index": 7
+        }
+      },
+      {
+        "main": "Father of bacteriology",
+        "answer": "PASTEUR",
+        "number": 35,
+        "position": {
+          "col": 5,
+          "index": 7
+        }
+      },
+      {
+        "main": "Like a delinquent sentry, maybe",
+        "answer": "NAPPING",
+        "number": 38,
+        "position": {
+          "col": 0,
+          "index": 8
+        }
+      },
+      {
+        "main": "Maker of Swift laptops",
+        "answer": "ACER",
+        "number": 40,
+        "position": {
+          "col": 7,
+          "index": 8
+        }
+      },
+      {
+        "main": "Scotch samples",
+        "answer": "SIPS",
+        "number": 41,
+        "position": {
+          "col": 10,
+          "index": 8
+        }
+      },
+      {
+        "main": "Animal in that one graphic showing the evolution of humans",
+        "answer": "APE",
+        "number": 43,
+        "position": {
+          "col": 4,
+          "index": 9
+        }
+      },
+      {
+        "main": "Dressing station",
+        "answer": "SALADBAR",
+        "number": 44,
+        "position": {
+          "col": 9,
+          "index": 9
+        }
+      },
+      {
+        "main": "Milano who was also in last week's grid",
+        "answer": "ALYSSA",
+        "number": 46,
+        "position": {
+          "col": 14,
+          "index": 9
+        }
+      },
+      {
+        "main": "\"Assuming that's the case...\"",
+        "answer": "IFSO",
+        "number": 49,
+        "position": {
+          "col": 8,
+          "index": 10
+        }
+      },
+      {
+        "main": "___ of Mull",
+        "answer": "ISLE",
+        "number": 50,
+        "position": {
+          "col": 12,
+          "index": 10
+        }
+      },
+      {
+        "main": "Put money into",
+        "answer": "FED",
+        "number": 52,
+        "position": {
+          "col": 5,
+          "index": 11
+        }
+      },
+      {
+        "main": "\"Something bothering you?\"",
+        "answer": "WHAT[object Object]OURMIND",
+        "number": 53,
+        "position": {
+          "col": 6,
+          "index": 11
+        }
+      },
+      {
+        "main": "Academic regalia component",
+        "answer": "ROBE",
+        "number": 57,
+        "position": {
+          "col": 2,
+          "index": 12
+        }
+      },
+      {
+        "main": "Seemingly unbridgeable gap",
+        "answer": "CHASM",
+        "number": 60,
+        "position": {
+          "col": 0,
+          "index": 13
+        }
+      },
+      {
+        "main": "Down-under part, Down Under",
+        "answer": "ARSE",
+        "number": 61,
+        "position": {
+          "col": 5,
+          "index": 13
+        }
+      },
+      {
+        "main": "Baby boo-boo",
+        "answer": "OWIE",
+        "number": 62,
+        "position": {
+          "col": 11,
+          "index": 13
+        }
+      },
+      {
+        "main": "Someone you should never meet",
+        "answer": "HERO",
+        "number": 63,
+        "position": {
+          "col": 0,
+          "index": 14
+        }
+      },
+      {
+        "main": "App downloader",
+        "answer": "USER",
+        "number": 64,
+        "position": {
+          "col": 5,
+          "index": 14
+        }
+      },
+      {
+        "main": "Stain on a reputation",
+        "answer": "BLOT",
+        "number": 65,
+        "position": {
+          "col": 11,
+          "index": 14
+        }
+      },
+      {
+        "main": "Terminus",
+        "answer": "END",
+        "number": 66
+      },
+      {
+        "main": "\"That's true\"",
+        "answer": "ITIS",
+        "number": 67
+      }
+    ],
+    "down": [
+      {
+        "main": "This puzzle has 43 of them",
+        "answer": "BLOCKS",
+        "number": 1,
+        "position": {
+          "col": 0,
+          "index": 0
+        }
+      },
+      {
+        "main": "Walt Disney Concert Hall orchestra, casually",
+        "answer": "LAPHIL",
+        "number": 2,
+        "position": {
+          "col": 1,
+          "index": 0
+        }
+      },
+      {
+        "main": "Catchphrase for Donna and Tom on \"Parks and Rec\"",
+        "answer": "TREATYOSELF",
+        "number": 3,
+        "position": {
+          "col": 2,
+          "index": 0
+        }
+      },
+      {
+        "main": "Plentiful substance in 2021's \"Dune\"",
+        "answer": "SAND",
+        "number": 4,
+        "position": {
+          "col": 3,
+          "index": 0
+        }
+      },
+      {
+        "main": "Eats like a bird",
+        "answer": "PECKSAT",
+        "number": 5,
+        "position": {
+          "col": 7,
+          "index": 0
+        }
+      },
+      {
+        "main": "Talkative",
+        "answer": "VER[object Object]",
+        "number": 6,
+        "position": {
+          "col": 8,
+          "index": 0
+        }
+      },
+      {
+        "main": "Nickname that omits \"ent\"",
+        "answer": "CLEM",
+        "number": 7,
+        "position": {
+          "col": 9,
+          "index": 0
+        }
+      },
+      {
+        "main": "Classic canine plush toy",
+        "answer": "POUNDPUPPY",
+        "number": 8,
+        "position": {
+          "col": 11,
+          "index": 0
+        }
+      },
+      {
+        "main": "\"___ American Cousin\" (\"Other than that, Mrs. Lincoln, did you enjoy the play?\" play)",
+        "answer": "OUR",
+        "number": 9,
+        "position": {
+          "col": 12,
+          "index": 0
+        }
+      },
+      {
+        "main": "Part of a tour",
+        "answer": "GIG",
+        "number": 10,
+        "position": {
+          "col": 13,
+          "index": 0
+        }
+      },
+      {
+        "main": "\"___ to Freedom\" (2021 ABBA song)",
+        "answer": "ODE",
+        "number": 11,
+        "position": {
+          "col": 14,
+          "index": 0
+        }
+      },
+      {
+        "main": "Purplish color",
+        "answer": "PUCE",
+        "number": 13,
+        "position": {
+          "col": 6,
+          "index": 1
+        }
+      },
+      {
+        "main": "Stretched the truth",
+        "answer": "LIED",
+        "number": 16,
+        "position": {
+          "col": 5,
+          "index": 2
+        }
+      },
+      {
+        "main": "Did some calligraphy",
+        "answer": "WROTE",
+        "number": 19,
+        "position": {
+          "col": 4,
+          "index": 3
+        }
+      },
+      {
+        "main": "Systems that many Silicon Valley types are obsessed with",
+        "answer": "AIS",
+        "number": 20,
+        "position": {
+          "col": 10,
+          "index": 3
+        }
+      },
+      {
+        "main": "Quaint rule of chivalry",
+        "answer": "LADIESFIRST",
+        "number": 24,
+        "position": {
+          "col": 0,
+          "index": 5
+        }
+      },
+      {
+        "main": "Certain social sci",
+        "answer": "ECON",
+        "number": 25,
+        "position": {
+          "col": 3,
+          "index": 5
+        }
+      },
+      {
+        "main": "Splenda alternative",
+        "answer": "NUTRASWEET",
+        "number": 27,
+        "position": {
+          "col": 8,
+          "index": 5
+        }
+      },
+      {
+        "main": "Particles that get exchanged",
+        "answer": "IONS",
+        "number": 29,
+        "position": {
+          "col": 14,
+          "index": 5
+        }
+      },
+      {
+        "main": "Wu-Tang Clan member",
+        "answer": "RZA",
+        "number": 30,
+        "position": {
+          "col": 2,
+          "index": 6
+        }
+      },
+      {
+        "main": "An official language of the EU",
+        "answer": "ENG",
+        "number": 31,
+        "position": {
+          "col": 6,
+          "index": 6
+        }
+      },
+      {
+        "main": "\"Carmen\" carmen (for this clue you have to know that \"carmen\" is Latin for \"song\" and roll with the random bit of Latin)",
+        "answer": "ARIA",
+        "number": 33,
+        "position": {
+          "col": 0,
+          "index": 7
+        }
+      },
+      {
+        "main": "Faux ___",
+        "answer": "PAS",
+        "number": 35,
+        "position": {
+          "col": 5,
+          "index": 7
+        }
+      },
+      {
+        "main": "Berry promoted as a health food",
+        "answer": "ACAI",
+        "number": 36,
+        "position": {
+          "col": 8,
+          "index": 7
+        }
+      },
+      {
+        "main": "Holder of backup files, often",
+        "answer": "USB",
+        "number": 37,
+        "position": {
+          "col": 10,
+          "index": 7
+        }
+      },
+      {
+        "main": "Not as ruddy",
+        "answer": "PALER",
+        "number": 39,
+        "position": {
+          "col": 5,
+          "index": 8
+        }
+      },
+      {
+        "main": "Place for convicts to exercise",
+        "answer": "PRI[object Object]ARD",
+        "number": 42,
+        "position": {
+          "col": 0,
+          "index": 9
+        }
+      },
+      {
+        "main": "Facepalming exclamation",
+        "answer": "DOH",
+        "number": 45,
+        "position": {
+          "col": 13,
+          "index": 9
+        }
+      },
+      {
+        "main": "Grad",
+        "answer": "ALUM",
+        "number": 46,
+        "position": {
+          "col": 14,
+          "index": 9
+        }
+      },
+      {
+        "main": "Dojo teacher",
+        "answer": "SENSEI",
+        "number": 47,
+        "position": {
+          "col": 1,
+          "index": 10
+        }
+      },
+      {
+        "main": "Venomous serpents",
+        "answer": "ADDERS",
+        "number": 48,
+        "position": {
+          "col": 7,
+          "index": 10
+        }
+      },
+      {
+        "main": "Not great, not terrible",
+        "answer": "SOSO",
+        "number": 51,
+        "position": {
+          "col": 3,
+          "index": 11
+        }
+      },
+      {
+        "main": "Unrequited love feeling",
+        "answer": "ACHE",
+        "number": 54,
+        "position": {
+          "col": 11,
+          "index": 11
+        }
+      },
+      {
+        "main": "\"What happened next was...\"",
+        "answer": "THEN",
+        "number": 55,
+        "position": {
+          "col": 0,
+          "index": 12
+        }
+      },
+      {
+        "main": "Island whose Big Bog is one of the world's wettest places",
+        "answer": "MAUI",
+        "number": 56,
+        "position": {
+          "col": 1,
+          "index": 12
+        }
+      },
+      {
+        "main": "Way overcharge",
+        "answer": "ROB",
+        "number": 57,
+        "position": {
+          "col": 2,
+          "index": 12
+        }
+      },
+      {
+        "main": "\"Guardians of Ga'Hoole\" bird",
+        "answer": "OWL",
+        "number": 58,
+        "position": {
+          "col": 5,
+          "index": 12
+        }
+      },
+      {
+        "main": "Link in ___",
+        "answer": "BIO",
+        "number": 59,
+        "position": {
+          "col": 11,
+          "index": 12
+        }
+      }
+    ]
+  }
+}
