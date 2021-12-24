@@ -2075,7 +2075,15 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   Rebus: 1=M|F
   ```
 
-  Could indicate to the game engine that the rebus for `1` on the grid can be _either_ `M` or `F`.
+  Indicates to the game engine that the rebus for `1` on the grid can be _either_ `M` or `F`. 
+
+  ```
+  Rebus: 1=M&F
+  Rebus: 2=L&T
+  ```
+  
+  Indicates to the game engine that the rebus for `1` on the grid can be _either_ `M` or `F`, but that the side needs to be respected across all possible rebuses in the clue. So for `M1L2` you could have "MALE` and `FATE` but not `FALE` or `MATE`.
+
 
 - TODO: `Related: A4=A3=D6 D17=D12`
    
