@@ -2097,7 +2097,7 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
 
 - `## Start`
 
-  Instead of starting with an board, create a board with letters pre-filled. For example this crossword would start with "GO" "FOR" and "IT" already in:
+  TODO: Instead of starting with an board, create a board with letters pre-filled. For example this crossword would start with "GO" "FOR" and "IT" already in:
 
   ```
   ## Start
