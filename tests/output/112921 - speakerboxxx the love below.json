@@ -5,29 +5,29 @@
     "copyright": "",
     "description": "N/A",
     "rebus": "0=BOSE 1=SONY",
-    "design": "S={ bg"
+    "design": "O={ background: circle } S={ background: shade }"
+  },
+  "rebuses": {
+    "0": "BOSE",
+    "1": "SONY"
   },
   "tiles": [
     [
       {
         "type": "letter",
-        "letter": "B",
-        "state": "normal"
+        "letter": "B"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "blank"
@@ -40,63 +40,52 @@
       },
       {
         "type": "letter",
-        "letter": "P",
-        "state": "normal"
+        "letter": "P"
       },
       {
         "type": "letter",
-        "letter": "V",
-        "state": "normal"
+        "letter": "V"
       },
       {
         "type": "letter",
-        "letter": "C",
-        "state": "normal"
+        "letter": "C"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "P",
-        "state": "normal"
+        "letter": "P"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "G",
-        "state": "normal"
+        "letter": "G"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       }
     ],
     [
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "blank"
@@ -106,181 +95,149 @@
       },
       {
         "type": "letter",
-        "letter": "P",
-        "state": "normal"
+        "letter": "P"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "U",
-        "state": "normal"
+        "letter": "U"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "D",
-        "state": "normal"
+        "letter": "D"
       }
     ],
     [
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "P",
-        "state": "normal"
+        "letter": "P"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "letter",
-        "letter": "U",
-        "state": "normal"
+        "letter": "U"
       },
       {
         "type": "letter",
-        "letter": "C",
-        "state": "normal"
+        "letter": "C"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "U",
-        "state": "normal"
+        "letter": "U"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "letter",
-        "letter": "G",
-        "state": "normal"
+        "letter": "G"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       }
     ],
     [
       {
         "type": "letter",
-        "letter": "C",
-        "state": "normal"
+        "letter": "C"
       },
       {
         "type": "letter",
-        "letter": "H",
-        "state": "normal"
+        "letter": "H"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "D",
-        "state": "normal"
+        "letter": "D"
       },
       {
         "type": "letter",
-        "letter": "W",
-        "state": "normal"
+        "letter": "W"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "C",
-        "state": "normal"
+        "letter": "C"
       },
       {
         "type": "letter",
-        "letter": "K",
-        "state": "normal"
+        "letter": "K"
+      },
+      {
+        "type": "rebus",
+        "symbol": "0",
+        "word": "BOSE"
       },
       {
         "type": "letter",
-        "letter": "0",
-        "state": "normal"
+        "letter": "M"
       },
       {
         "type": "letter",
-        "letter": "M",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
-      },
-      {
-        "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "blank"
@@ -295,41 +252,34 @@
     [
       {
         "type": "letter",
-        "letter": "K",
-        "state": "normal"
+        "letter": "K"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "blank"
@@ -339,23 +289,19 @@
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "D",
-        "state": "normal"
+        "letter": "D"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "blank"
@@ -364,76 +310,62 @@
     [
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "letter",
-        "letter": "Y",
-        "state": "normal"
+        "letter": "Y"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "D",
-        "state": "normal"
+        "letter": "D"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "letter",
-        "letter": "P",
-        "state": "normal"
+        "letter": "P"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "C",
-        "state": "normal"
+        "letter": "C"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       }
     ],
     [
@@ -445,202 +377,166 @@
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "U",
-        "state": "normal"
+        "letter": "U"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "Z",
-        "state": "normal"
+        "letter": "Z"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "U",
-        "state": "normal"
+        "letter": "U"
       },
       {
         "type": "letter",
-        "letter": "D",
-        "state": "normal"
+        "letter": "D"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       }
     ],
     [
       {
         "type": "letter",
-        "letter": "P",
-        "state": "normal"
+        "letter": "P"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "U",
-        "state": "normal"
+        "letter": "U"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "P",
-        "state": "normal"
+        "letter": "P"
       },
       {
         "type": "letter",
-        "letter": "P",
-        "state": "normal"
+        "letter": "P"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "letter",
-        "letter": "G",
-        "state": "normal"
+        "letter": "G"
       }
     ],
     [
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "C",
-        "state": "normal"
+        "letter": "C"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "P",
-        "state": "normal"
+        "letter": "P"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "P",
-        "state": "normal"
+        "letter": "P"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "blank"
@@ -652,76 +548,62 @@
     [
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "D",
-        "state": "normal"
+        "letter": "D"
       },
       {
         "type": "letter",
-        "letter": "B",
-        "state": "normal"
+        "letter": "B"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "letter",
-        "letter": "Y",
-        "state": "normal"
+        "letter": "Y"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       }
     ],
     [
@@ -730,23 +612,19 @@
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "F",
-        "state": "normal"
+        "letter": "F"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "blank"
@@ -756,41 +634,34 @@
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "F",
-        "state": "normal"
+        "letter": "F"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "D",
-        "state": "normal"
+        "letter": "D"
       }
     ],
     [
@@ -805,181 +676,149 @@
       },
       {
         "type": "letter",
-        "letter": "W",
-        "state": "normal"
+        "letter": "W"
       },
       {
         "type": "letter",
-        "letter": "H",
-        "state": "normal"
+        "letter": "H"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
+      },
+      {
+        "type": "rebus",
+        "symbol": "1",
+        "word": "SONY"
       },
       {
         "type": "letter",
-        "letter": "1",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "U"
       },
       {
         "type": "letter",
-        "letter": "U",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "M"
       },
       {
         "type": "letter",
-        "letter": "M",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
-      },
-      {
-        "type": "letter",
-        "letter": "D",
-        "state": "normal"
+        "letter": "D"
       }
     ],
     [
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "B",
-        "state": "normal"
+        "letter": "B"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "C",
-        "state": "normal"
+        "letter": "C"
       },
       {
         "type": "letter",
-        "letter": "H",
-        "state": "normal"
+        "letter": "H"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "letter",
-        "letter": "M",
-        "state": "normal"
+        "letter": "M"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       }
     ],
     [
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "W",
-        "state": "normal"
+        "letter": "W"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "H",
-        "state": "normal"
+        "letter": "H"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "blank"
@@ -989,63 +828,52 @@
       },
       {
         "type": "letter",
-        "letter": "U",
-        "state": "normal"
+        "letter": "U"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       }
     ],
     [
       {
         "type": "letter",
-        "letter": "B",
-        "state": "normal"
+        "letter": "B"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "letter",
-        "letter": "D",
-        "state": "normal"
+        "letter": "D"
       },
       {
         "type": "blank"
@@ -1058,23 +886,19 @@
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       }
     ]
   ],
@@ -1082,7 +906,9 @@
     "across": [
       {
         "main": "Sandwiches often made with iceberg",
-        "answer": "BLTS",
+        "answer": [
+          "BLTS"
+        ],
         "number": 1,
         "position": {
           "col": 0,
@@ -1091,7 +917,9 @@
       },
       {
         "main": "Polymer in pipes",
-        "answer": "PVC",
+        "answer": [
+          "PVC"
+        ],
         "number": 5,
         "position": {
           "col": 7,
@@ -1100,7 +928,9 @@
       },
       {
         "main": "Extreme ___ (high-bouncing action sport)",
-        "answer": "POGO",
+        "answer": [
+          "POGO"
+        ],
         "number": 8,
         "position": {
           "col": 11,
@@ -1109,7 +939,9 @@
       },
       {
         "main": "Big name in tomb raiding",
-        "answer": "LARA",
+        "answer": [
+          "LARA"
+        ],
         "number": 12,
         "position": {
           "col": 0,
@@ -1118,7 +950,9 @@
       },
       {
         "main": "\"Time to draw more Bananagrams tiles!\"",
-        "answer": "PEEL",
+        "answer": [
+          "PEEL"
+        ],
         "number": 13,
         "position": {
           "col": 6,
@@ -1127,7 +961,9 @@
       },
       {
         "main": "Faux-French slang for pot",
-        "answer": "OUID",
+        "answer": [
+          "OUID"
+        ],
         "number": 14,
         "position": {
           "col": 11,
@@ -1136,7 +972,9 @@
       },
       {
         "main": "Emotionally honest",
-        "answer": "OPEN",
+        "answer": [
+          "OPEN"
+        ],
         "number": 15,
         "position": {
           "col": 0,
@@ -1145,7 +983,9 @@
       },
       {
         "main": "\"Filthy\" money",
-        "answer": "LUCRE",
+        "answer": [
+          "LUCRE"
+        ],
         "number": 16,
         "position": {
           "col": 5,
@@ -1154,7 +994,9 @@
       },
       {
         "main": "The feminine ___ to write clues referencing memes",
-        "answer": "URGE",
+        "answer": [
+          "URGE"
+        ],
         "number": 17,
         "position": {
           "col": 11,
@@ -1163,7 +1005,9 @@
       },
       {
         "main": "\"Black Panther\" star",
-        "answer": "CHADWICKBOSEMAN",
+        "answer": [
+          "CHADWICKBOSEMAN"
+        ],
         "number": 18,
         "position": {
           "col": 0,
@@ -1172,7 +1016,9 @@
       },
       {
         "main": "Collection of drums",
-        "answer": "KIT",
+        "answer": [
+          "KIT"
+        ],
         "number": 21,
         "position": {
           "col": 0,
@@ -1181,7 +1027,9 @@
       },
       {
         "main": "\"Pariah\" director Dee",
-        "answer": "REES",
+        "answer": [
+          "REES"
+        ],
         "number": 22,
         "position": {
           "col": 4,
@@ -1190,7 +1038,9 @@
       },
       {
         "main": "Like small talk",
-        "answer": "IDLE",
+        "answer": [
+          "IDLE"
+        ],
         "number": 23,
         "position": {
           "col": 10,
@@ -1199,7 +1049,9 @@
       },
       {
         "main": "Mischievous acknowledgment from across the room",
-        "answer": "SLYNOD",
+        "answer": [
+          "SLYNOD"
+        ],
         "number": 26,
         "position": {
           "col": 0,
@@ -1208,7 +1060,9 @@
       },
       {
         "main": "It goes over your head",
-        "answer": "AIRSPACE",
+        "answer": [
+          "AIRSPACE"
+        ],
         "number": 28,
         "position": {
           "col": 7,
@@ -1217,7 +1071,9 @@
       },
       {
         "main": "\"Shoo!\"",
-        "answer": "OUT",
+        "answer": [
+          "OUT"
+        ],
         "number": 32,
         "position": {
           "col": 2,
@@ -1226,7 +1082,9 @@
       },
       {
         "main": "Comprehensive range",
-        "answer": "ATOZ",
+        "answer": [
+          "ATOZ"
+        ],
         "number": 33,
         "position": {
           "col": 6,
@@ -1235,7 +1093,9 @@
       },
       {
         "main": "Shabu-shabu noodles",
-        "answer": "UDON",
+        "answer": [
+          "UDON"
+        ],
         "number": 34,
         "position": {
           "col": 11,
@@ -1244,7 +1104,9 @@
       },
       {
         "main": "Father of bacteriology",
-        "answer": "PASTEUR",
+        "answer": [
+          "PASTEUR"
+        ],
         "number": 35,
         "position": {
           "col": 0,
@@ -1253,7 +1115,9 @@
       },
       {
         "main": "Like a delinquent sentry, maybe",
-        "answer": "NAPPING",
+        "answer": [
+          "NAPPING"
+        ],
         "number": 38,
         "position": {
           "col": 8,
@@ -1262,7 +1126,9 @@
       },
       {
         "main": "Maker of Swift laptops",
-        "answer": "ACER",
+        "answer": [
+          "ACER"
+        ],
         "number": 40,
         "position": {
           "col": 0,
@@ -1271,7 +1137,9 @@
       },
       {
         "main": "Scotch samples",
-        "answer": "SIPS",
+        "answer": [
+          "SIPS"
+        ],
         "number": 41,
         "position": {
           "col": 5,
@@ -1280,7 +1148,9 @@
       },
       {
         "main": "Animal in that one graphic showing the evolution of humans",
-        "answer": "APE",
+        "answer": [
+          "APE"
+        ],
         "number": 43,
         "position": {
           "col": 10,
@@ -1289,7 +1159,9 @@
       },
       {
         "main": "Dressing station",
-        "answer": "SALADBAR",
+        "answer": [
+          "SALADBAR"
+        ],
         "number": 44,
         "position": {
           "col": 0,
@@ -1298,7 +1170,9 @@
       },
       {
         "main": "Milano who was also in last week's grid",
-        "answer": "ALYSSA",
+        "answer": [
+          "ALYSSA"
+        ],
         "number": 46,
         "position": {
           "col": 9,
@@ -1307,7 +1181,9 @@
       },
       {
         "main": "\"Assuming that's the case...\"",
-        "answer": "IFSO",
+        "answer": [
+          "IFSO"
+        ],
         "number": 49,
         "position": {
           "col": 1,
@@ -1316,7 +1192,9 @@
       },
       {
         "main": "___ of Mull",
-        "answer": "ISLE",
+        "answer": [
+          "ISLE"
+        ],
         "number": 50,
         "position": {
           "col": 7,
@@ -1325,7 +1203,9 @@
       },
       {
         "main": "Put money into",
-        "answer": "FED",
+        "answer": [
+          "FED"
+        ],
         "number": 52,
         "position": {
           "col": 12,
@@ -1334,7 +1214,9 @@
       },
       {
         "main": "\"Something bothering you?\"",
-        "answer": "WHATSONYOURMIND",
+        "answer": [
+          "WHATSONYOURMIND"
+        ],
         "number": 53,
         "position": {
           "col": 3,
@@ -1343,7 +1225,9 @@
       },
       {
         "main": "Academic regalia component",
-        "answer": "ROBE",
+        "answer": [
+          "ROBE"
+        ],
         "number": 57,
         "position": {
           "col": 0,
@@ -1352,7 +1236,9 @@
       },
       {
         "main": "Seemingly unbridgeable gap",
-        "answer": "CHASM",
+        "answer": [
+          "CHASM"
+        ],
         "number": 60,
         "position": {
           "col": 5,
@@ -1361,7 +1247,9 @@
       },
       {
         "main": "Down-under part, Down Under",
-        "answer": "ARSE",
+        "answer": [
+          "ARSE"
+        ],
         "number": 61,
         "position": {
           "col": 11,
@@ -1370,7 +1258,9 @@
       },
       {
         "main": "Baby boo-boo",
-        "answer": "OWIE",
+        "answer": [
+          "OWIE"
+        ],
         "number": 62,
         "position": {
           "col": 0,
@@ -1379,7 +1269,9 @@
       },
       {
         "main": "Someone you should never meet",
-        "answer": "HERO",
+        "answer": [
+          "HERO"
+        ],
         "number": 63,
         "position": {
           "col": 5,
@@ -1388,7 +1280,9 @@
       },
       {
         "main": "App downloader",
-        "answer": "USER",
+        "answer": [
+          "USER"
+        ],
         "number": 64,
         "position": {
           "col": 11,
@@ -1397,7 +1291,9 @@
       },
       {
         "main": "Stain on a reputation",
-        "answer": "BLOT",
+        "answer": [
+          "BLOT"
+        ],
         "number": 65,
         "position": {
           "col": 0,
@@ -1406,7 +1302,9 @@
       },
       {
         "main": "Terminus",
-        "answer": "END",
+        "answer": [
+          "END"
+        ],
         "number": 66,
         "position": {
           "col": 5,
@@ -1415,7 +1313,9 @@
       },
       {
         "main": "\"That's true\"",
-        "answer": "ITIS",
+        "answer": [
+          "ITIS"
+        ],
         "number": 67,
         "position": {
           "col": 11,
@@ -1426,7 +1326,9 @@
     "down": [
       {
         "main": "This puzzle has 43 of them",
-        "answer": "BLOCKS",
+        "answer": [
+          "BLOCKS"
+        ],
         "number": 1,
         "position": {
           "col": 0,
@@ -1435,7 +1337,9 @@
       },
       {
         "main": "Walt Disney Concert Hall orchestra, casually",
-        "answer": "LAPHIL",
+        "answer": [
+          "LAPHIL"
+        ],
         "number": 2,
         "position": {
           "col": 1,
@@ -1444,7 +1348,9 @@
       },
       {
         "main": "Catchphrase for Donna and Tom on \"Parks and Rec\"",
-        "answer": "TREATYOSELF",
+        "answer": [
+          "TREATYOSELF"
+        ],
         "number": 3,
         "position": {
           "col": 2,
@@ -1453,7 +1359,9 @@
       },
       {
         "main": "Plentiful substance in 2021's \"Dune\"",
-        "answer": "SAND",
+        "answer": [
+          "SAND"
+        ],
         "number": 4,
         "position": {
           "col": 3,
@@ -1462,7 +1370,9 @@
       },
       {
         "main": "Eats like a bird",
-        "answer": "PECKSAT",
+        "answer": [
+          "PECKSAT"
+        ],
         "number": 5,
         "position": {
           "col": 7,
@@ -1471,7 +1381,9 @@
       },
       {
         "main": "Talkative",
-        "answer": "VERBOSE",
+        "answer": [
+          "VERBOSE"
+        ],
         "number": 6,
         "position": {
           "col": 8,
@@ -1480,7 +1392,9 @@
       },
       {
         "main": "Nickname that omits \"ent\"",
-        "answer": "CLEM",
+        "answer": [
+          "CLEM"
+        ],
         "number": 7,
         "position": {
           "col": 9,
@@ -1489,7 +1403,9 @@
       },
       {
         "main": "Classic canine plush toy",
-        "answer": "POUNDPUPPY",
+        "answer": [
+          "POUNDPUPPY"
+        ],
         "number": 8,
         "position": {
           "col": 11,
@@ -1498,7 +1414,9 @@
       },
       {
         "main": "\"___ American Cousin\" (\"Other than that, Mrs. Lincoln, did you enjoy the play?\" play)",
-        "answer": "OUR",
+        "answer": [
+          "OUR"
+        ],
         "number": 9,
         "position": {
           "col": 12,
@@ -1507,7 +1425,9 @@
       },
       {
         "main": "Part of a tour",
-        "answer": "GIG",
+        "answer": [
+          "GIG"
+        ],
         "number": 10,
         "position": {
           "col": 13,
@@ -1516,7 +1436,9 @@
       },
       {
         "main": "\"___ to Freedom\" (2021 ABBA song)",
-        "answer": "ODE",
+        "answer": [
+          "ODE"
+        ],
         "number": 11,
         "position": {
           "col": 14,
@@ -1525,7 +1447,9 @@
       },
       {
         "main": "Purplish color",
-        "answer": "PUCE",
+        "answer": [
+          "PUCE"
+        ],
         "number": 13,
         "position": {
           "col": 6,
@@ -1534,7 +1458,9 @@
       },
       {
         "main": "Stretched the truth",
-        "answer": "LIED",
+        "answer": [
+          "LIED"
+        ],
         "number": 16,
         "position": {
           "col": 5,
@@ -1543,7 +1469,9 @@
       },
       {
         "main": "Did some calligraphy",
-        "answer": "WROTE",
+        "answer": [
+          "WROTE"
+        ],
         "number": 19,
         "position": {
           "col": 4,
@@ -1552,7 +1480,9 @@
       },
       {
         "main": "Systems that many Silicon Valley types are obsessed with",
-        "answer": "AIS",
+        "answer": [
+          "AIS"
+        ],
         "number": 20,
         "position": {
           "col": 10,
@@ -1561,7 +1491,9 @@
       },
       {
         "main": "Quaint rule of chivalry",
-        "answer": "LADIESFIRST",
+        "answer": [
+          "LADIESFIRST"
+        ],
         "number": 24,
         "position": {
           "col": 12,
@@ -1570,7 +1502,9 @@
       },
       {
         "main": "Certain social sci",
-        "answer": "ECON",
+        "answer": [
+          "ECON"
+        ],
         "number": 25,
         "position": {
           "col": 13,
@@ -1579,7 +1513,9 @@
       },
       {
         "main": "Splenda alternative",
-        "answer": "NUTRASWEET",
+        "answer": [
+          "NUTRASWEET"
+        ],
         "number": 27,
         "position": {
           "col": 3,
@@ -1588,7 +1524,9 @@
       },
       {
         "main": "Particles that get exchanged",
-        "answer": "IONS",
+        "answer": [
+          "IONS"
+        ],
         "number": 29,
         "position": {
           "col": 8,
@@ -1597,7 +1535,9 @@
       },
       {
         "main": "Wu-Tang Clan member",
-        "answer": "RZA",
+        "answer": [
+          "RZA"
+        ],
         "number": 30,
         "position": {
           "col": 9,
@@ -1606,7 +1546,9 @@
       },
       {
         "main": "An official language of the EU",
-        "answer": "ENG",
+        "answer": [
+          "ENG"
+        ],
         "number": 31,
         "position": {
           "col": 14,
@@ -1615,7 +1557,9 @@
       },
       {
         "main": "\"Carmen\" carmen (for this clue you have to know that \"carmen\" is Latin for \"song\" and roll with the random bit of Latin)",
-        "answer": "ARIA",
+        "answer": [
+          "ARIA"
+        ],
         "number": 33,
         "position": {
           "col": 6,
@@ -1624,7 +1568,9 @@
       },
       {
         "main": "Faux ___",
-        "answer": "PAS",
+        "answer": [
+          "PAS"
+        ],
         "number": 35,
         "position": {
           "col": 0,
@@ -1633,7 +1579,9 @@
       },
       {
         "main": "Berry promoted as a health food",
-        "answer": "ACAI",
+        "answer": [
+          "ACAI"
+        ],
         "number": 36,
         "position": {
           "col": 1,
@@ -1642,7 +1590,9 @@
       },
       {
         "main": "Holder of backup files, often",
-        "answer": "USB",
+        "answer": [
+          "USB"
+        ],
         "number": 37,
         "position": {
           "col": 5,
@@ -1651,7 +1601,9 @@
       },
       {
         "main": "Not as ruddy",
-        "answer": "PALER",
+        "answer": [
+          "PALER"
+        ],
         "number": 39,
         "position": {
           "col": 10,
@@ -1660,7 +1612,9 @@
       },
       {
         "main": "Place for convicts to exercise",
-        "answer": "PRISONYARD",
+        "answer": [
+          "PRISONYARD"
+        ],
         "number": 42,
         "position": {
           "col": 7,
@@ -1669,7 +1623,9 @@
       },
       {
         "main": "Facepalming exclamation",
-        "answer": "DOH",
+        "answer": [
+          "DOH"
+        ],
         "number": 45,
         "position": {
           "col": 4,
@@ -1678,7 +1634,9 @@
       },
       {
         "main": "Grad",
-        "answer": "ALUM",
+        "answer": [
+          "ALUM"
+        ],
         "number": 46,
         "position": {
           "col": 9,
@@ -1687,7 +1645,9 @@
       },
       {
         "main": "Dojo teacher",
-        "answer": "SENSEI",
+        "answer": [
+          "SENSEI"
+        ],
         "number": 47,
         "position": {
           "col": 13,
@@ -1696,7 +1656,9 @@
       },
       {
         "main": "Venomous serpents",
-        "answer": "ADDERS",
+        "answer": [
+          "ADDERS"
+        ],
         "number": 48,
         "position": {
           "col": 14,
@@ -1705,7 +1667,9 @@
       },
       {
         "main": "Not great, not terrible",
-        "answer": "SOSO",
+        "answer": [
+          "SOSO"
+        ],
         "number": 51,
         "position": {
           "col": 8,
@@ -1714,7 +1678,9 @@
       },
       {
         "main": "Unrequited love feeling",
-        "answer": "ACHE",
+        "answer": [
+          "ACHE"
+        ],
         "number": 54,
         "position": {
           "col": 5,
@@ -1723,7 +1689,9 @@
       },
       {
         "main": "\"What happened next was...\"",
-        "answer": "THEN",
+        "answer": [
+          "THEN"
+        ],
         "number": 55,
         "position": {
           "col": 6,
@@ -1732,7 +1700,9 @@
       },
       {
         "main": "Island whose Big Bog is one of the world's wettest places",
-        "answer": "MAUI",
+        "answer": [
+          "MAUI"
+        ],
         "number": 56,
         "position": {
           "col": 11,
@@ -1741,7 +1711,9 @@
       },
       {
         "main": "Way overcharge",
-        "answer": "ROB",
+        "answer": [
+          "ROB"
+        ],
         "number": 57,
         "position": {
           "col": 0,
@@ -1750,7 +1722,9 @@
       },
       {
         "main": "\"Guardians of Ga'Hoole\" bird",
-        "answer": "OWL",
+        "answer": [
+          "OWL"
+        ],
         "number": 58,
         "position": {
           "col": 1,
@@ -1759,7 +1733,9 @@
       },
       {
         "main": "Link in ___",
-        "answer": "BIO",
+        "answer": [
+          "BIO"
+        ],
         "number": 59,
         "position": {
           "col": 2,
@@ -1767,5 +1743,6 @@
         }
       }
     ]
-  }
+  },
+  "notes": ""
 }

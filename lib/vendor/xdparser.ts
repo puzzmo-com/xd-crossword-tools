@@ -48,9 +48,11 @@ export function XDParser(xd: string) {
     function processMeta(rawMeta: string) {
       const metaLines = rawMeta.split("\n").filter(s => s && s !== "\n")
       let meta: Record<string, string> = {}
-      metaLines.forEach(metaLine => {
+      metaLines.forEach((metaLine, i) => {
         const lineParts = metaLine.split(": ")
-        meta[lineParts[0].toLowerCase()] = lineParts[1]
+        const key = lineParts.shift()
+        if (!key) throw new Error(`Could not find a : in the meta on line ${i} - '${metaLine}'`)
+        meta[key.toLowerCase()] = lineParts.join(": ")
       })
       return meta
     }

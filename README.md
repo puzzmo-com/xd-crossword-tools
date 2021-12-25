@@ -8,11 +8,10 @@ Tools for taking different crossword file formats and converting them to xd. Con
 
 Builds on [xd-crossword-parser](https://github.com/j-norwood-young/xd-crossword-parser) (MIT license).
 
-
 ```ts
-import {xdToJSON} from "xd-crossword-tools"
+import { xdToJSON } from "xd-crossword-tools"
 
-const xd = '[...]'
+const xd = "[...]"
 const crossword = xdToJSON(xd)
 ```
 
@@ -24,7 +23,7 @@ in order to save lookups later at runtime. You can see the type definitions here
 Builds on [puzjs](https://www.npmjs.com/package/puzjs) (ISC license). The puz format is generally what tools and websites will give you as an output format.
 
 ```ts
-import {puzToXd} from "xd-crossword-tools"
+import { puzToXd } from "xd-crossword-tools"
 
 const puzResponse = await fetch(url)
 const puzBuffer = await res.arrayBuffer()
@@ -41,6 +40,7 @@ Their .puz file turns into this xd:
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.xd) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.xd -->
+
 ```xd
 Title: Alpha-Bits
 Author: Drew Hodson
@@ -175,15 +175,15 @@ O..O#.O.O.#O..O
 .....#...#.....
 O..O.#O.O##O..O
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
-
-
 
  <details>
           <summary>And then turned into this JSON</summary>
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.json) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.json -->
+
 ```json
 {
   "meta": {
@@ -2058,6 +2058,7 @@ O..O.#O.O##O..O
   }
 }
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 </details>
@@ -2066,28 +2067,25 @@ O..O.#O.O##O..O
 
 This lib creates `xd` compatible files, but also extends the format in a way that allows for thinking of `xd` as a human-editor format.
 
-
 #### Meta
 
-- TODO: [Shrodinger's Squares](https://www.xwordinfo.com/Quantum).  It's likely that a special form of Rebus will work here, for example:
+- TODO: [Shrodinger's Squares](https://www.xwordinfo.com/Quantum). It's likely that a special form of Rebus will work here, for example:
 
   ```
   Rebus: 1=M|F
   ```
 
-  Indicates to the game engine that the rebus for `1` on the grid can be _either_ `M` or `F`. 
+  Indicates to the game engine that the rebus for `1` on the grid can be _either_ `M` or `F`.
 
   ```
   Rebus: 1=M&F
   Rebus: 2=L&T
   ```
-  
-  Indicates to the game engine that the rebus for `1` on the grid can be _either_ `M` or `F`, but that the side needs to be respected across all possible rebuses in the clue. So for `M1L2` you could have "MALE` and `FATE` but not `FALE` or `MATE`.
 
+  Indicates to the game engine that the rebus for `1` on the grid can be _either_ `M` or `F`, but that the side needs to be respected across all possible rebuses in the clue. So for `M1L2` you could have "MALE`and`FATE`but not`FALE`or`MATE`.
 
 - TODO: `Related: A4=A3=D6 D17=D12`
-   
-   Provide a way to tell the crossword engine that a particular set of answers relate to each other and should be highlighted somehow.
+  Provide a way to tell the crossword engine that a particular set of answers relate to each other and should be highlighted somehow.
 
 #### Notes
 
@@ -2097,11 +2095,43 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
 
   We'd like to support options for:
 
-   - border colors
-   - border removal
-   - background colors
+  - border colors
+  - border removal
+  - background colors
 
   You can see an example of this in alpha-bits above.
+
+  Perhaps we really embrace markdown and use a style tag? This keeps the style info next to the design itself.
+
+  ```md
+  ## DESIGN
+
+  <style>
+  O { background: circle }
+  </style>
+
+  ....###...#....
+  ....##....#....
+  ....#.....#....
+  ............###
+  ...#....##....#
+  ......#....O...
+  ##...#....#O...
+  ..O....#...O...
+  ..O.#....#.O.##
+  ..O.....#..O...
+  #.OO.##....#O..
+  ###O........O..
+  ...O#.....#.O..
+  ...O#....##.O..
+  ...O#...###.O..
+  ```
+
+  or use a meta tag, but that keeps the distance between definitions and usage pretty far in the file:
+
+  ```
+  Design: S={ background: circle } O={ border-left:none }
+  ```
 
 - `## Start`
 
@@ -2140,7 +2170,6 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   ```
 
   Case in the answer should be ignored by engines.
-
 
 ### Filetypes this lib is open to adding
 

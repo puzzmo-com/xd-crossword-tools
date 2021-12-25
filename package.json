@@ -32,7 +32,8 @@
     ]
   },
   "prettier": {
-    "printWidth": 140
+    "printWidth": 140,
+    "semi": false
   },
   "devDependencies": {
     "@swc/cli": "^0.1.51",

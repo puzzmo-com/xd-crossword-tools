@@ -23,7 +23,6 @@ export type UserInput = LetterInput | RebusInput
 export interface LetterTile {
   letter: string
   type: "letter"
-  state: "speculative" | "normal" | "locked"
 }
 
 export interface LetterInput extends LetterTile {
@@ -39,7 +38,6 @@ export interface RebusTile {
   word: string
   symbol: string
   type: "rebus"
-  state: "speculative" | "normal" | "locked"
 }
 
 export interface RebusInput extends RebusTile {

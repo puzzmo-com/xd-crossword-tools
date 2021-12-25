@@ -3,8 +3,7 @@ Author: Will Nediger
 Copyright: 
 Description: N/A
 Rebus: 0=BOSE 1=SONY
-Design: O={ bg: circle }
-Design: S={ bg: shade }
+Design: O={ background: circle } S={ background: shade }
 
 
 BLTS...PVC.POGO
