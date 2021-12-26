@@ -15,8 +15,7 @@ const xd = "[...]"
 const crossword = xdToJSON(xd)
 ```
 
-The JSON format is a bit more verbose than you might expect (see below for an example), but the goal is to have as much information pre-computed at parse time
-in order to save lookups later at runtime. You can see the type definitions here: [`./lib/types.ts`](./lib/types.ts)
+The JSON format is a bit more verbose than you might expect (see below for an example), but the goal is to have as much information pre-computed at parse time in order to save lookups later at runtime. You can see the type definitions here: [`./lib/types.ts`](./lib/types.ts)
 
 ### .puz to .xd
 
@@ -30,7 +29,7 @@ const puzBuffer = await res.arrayBuffer()
 const xd = puzToXd(puzBuffer)
 ```
 
-ATM there's not a 1-1 set of puz syntax to xd syntax, but we think it can be made to work within the spec with some elbow grease.
+This should cover most features in puz and xd now.
 
 ### Example
 

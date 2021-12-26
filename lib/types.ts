@@ -13,24 +13,20 @@ export type CrosswordJSON = {
     across: Clue[]
     down: Clue[]
   }
+  rebuses: Record<string, string>
+  notes: string
 }
 
 export type Direction = "UP" | "DOWN" | "LEFT" | "RIGHT"
 
 export type Tile = LetterTile | BlankTile | RebusTile
-export type UserInput = LetterInput | RebusInput
 
 export interface LetterTile {
   letter: string
   type: "letter"
-}
-
-export interface LetterInput extends LetterTile {
-  correct: boolean
-  revealed?: true
-  correctWord?: {
-    across: boolean
-    down: boolean
+  clues?: {
+    across?: number
+    down?: number
   }
 }
 
@@ -38,15 +34,9 @@ export interface RebusTile {
   word: string
   symbol: string
   type: "rebus"
-}
-
-export interface RebusInput extends RebusTile {
-  correct: boolean
-  revealed?: true
-  speculative?: true
-  correctWord?: {
-    across: boolean
-    down: boolean
+  clues?: {
+    across?: number
+    down?: number
   }
 }
 

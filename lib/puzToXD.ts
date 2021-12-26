@@ -73,13 +73,13 @@ export const stringGridToTiles = (strArr: string[][]): CrosswordJSON["tiles"] =>
 
 export const puzJSLetterToTile = (letter: string): Tile => {
   // A rebus is a strange one
-  if (typeof letter === "object" && "solution" in letter) return { type: "rebus", symbol: letter, word: letter["solution"] }
+  if (typeof letter === "object" && "solution" in letter) return { type: "rebus", symbol: letter, word: letter["solution"], clues: {} }
 
   if (letter === "#") return { type: "blank" }
   // Puz support
   if (letter === ".") return { type: "blank" }
 
-  return { type: "letter", letter }
+  return { type: "letter", letter, clues: {} }
 }
 
 let rebusCounter = -1

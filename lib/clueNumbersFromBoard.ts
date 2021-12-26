@@ -1,3 +1,4 @@
+import { getTile } from "./getTile"
 import type { CrosswordJSON, Position } from "./types"
 
 export const getCluePositionsForBoard = (tiles: CrosswordJSON["tiles"]): Position[] => {
@@ -15,7 +16,7 @@ export const _getCluePositionsForBoard = (tiles: CrosswordJSON["tiles"]) => {
 }
 
 export function _getPossibleTiles(tiles: CrosswordJSON["tiles"]): boolean[][] {
-  return tiles.map(row => row.map(tile => tile.type !== "blank"))
+  return tiles.map((row) => row.map((tile) => tile.type !== "blank"))
 }
 
 export function _acrossCluePositions(spots: boolean[][]): Position[] {
@@ -64,7 +65,7 @@ export function _getOrderedPositionsForSpots(spots: boolean[][], across: Positio
   spots.forEach((row, y) => {
     row.forEach((_, x) => {
       const thisSpot = { col: x, index: y }
-      const found = allFound.find(p => positionSame(p, thisSpot))
+      const found = allFound.find((p) => positionSame(p, thisSpot))
       if (found) positions.push(thisSpot)
     })
   })
@@ -72,7 +73,28 @@ export function _getOrderedPositionsForSpots(spots: boolean[][], across: Positio
 }
 
 export const positionSame = (pos1: Position | undefined, pos2: Position | undefined) => {
-    if (!pos1) return
-    if (!pos2) return
-    return pos1.col === pos2.col && pos1.index === pos2.index
+  if (!pos1) return
+  if (!pos2) return
+  return pos1.col === pos2.col && pos1.index === pos2.index
+}
+
+export const clueInfosForPosition = (clues: CrosswordJSON["clues"], position: Position) => {
+  // Start with the across clues, they should match the same index
+  const vClue = clues.down.find((c) => {
+    const sameColumn = c.position.col === position.col
+    if (!sameColumn) return
+    return c.position.index <= position.index && c.position.index + c.answer.length > position.index
+  })
+
+  const hClue = clues.across.find((c) => {
+    const sameIndex = c.position.index === position.index
+    if (!sameIndex) return
+
+    return c.position.col <= position.col && c.position.col + c.answer.length > position.col
+  })
+
+  return {
+    down: !vClue ? undefined : { index: clues.down.indexOf(vClue) },
+    across: !hClue ? undefined : { index: clues.across.indexOf(hClue) },
   }
+}

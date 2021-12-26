@@ -1,5 +1,5 @@
 import { XDParser } from "./vendor/xdparser"
-import type { CrosswordJSON, Tile } from ".."
+import type { CrosswordJSON, Tile } from "./types"
 import { getCluePositionsForBoard } from "./clueNumbersFromBoard"
 
 /** Takes an xd string and converts it into JSON */
@@ -17,13 +17,13 @@ export const xdToJSON = (xd: string): CrosswordJSON => {
     clues: {
       across: res.across.map((clue) => ({
         main: clue.question,
-        answer: [clue.answer],
+        answer: clue.answer,
         number: Number(clue.num.slice(1)),
         position: positions[Number(clue.num.slice(1))],
       })),
       down: res.down.map((clue) => ({
         main: clue.question,
-        answer: [clue.answer],
+        answer: clue.answer,
         number: Number(clue.num.slice(1)),
         position: positions[Number(clue.num.slice(1))],
       })),
