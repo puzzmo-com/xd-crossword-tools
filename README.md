@@ -39,13 +39,12 @@ Their .puz file turns into this xd:
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.xd) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.xd -->
-
 ```xd
 Title: Alpha-Bits
 Author: Drew Hodson
 Copyright: © 2021
 Description: N/A
-Design: O={ bg: circle }
+Design: O={ background: circle }
 
 
 AHAB..CUD.SERIF
@@ -174,7 +173,6 @@ O..O#.O.O.#O..O
 .....#...#.....
 O..O.#O.O##O..O
 ```
-
 <!-- AUTO-GENERATED-CONTENT:END -->
 
  <details>
@@ -182,7 +180,6 @@ O..O.#O.O##O..O
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.json) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.json -->
-
 ```json
 {
   "meta": {
@@ -190,29 +187,26 @@ O..O.#O.O##O..O
     "author": "Drew Hodson",
     "copyright": "© 2021",
     "description": "N/A",
-    "design": "O={ bg"
+    "design": "O={ background: circle }"
   },
+  "rebuses": {},
   "tiles": [
     [
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "H",
-        "state": "normal"
+        "letter": "H"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "B",
-        "state": "normal"
+        "letter": "B"
       },
       {
         "type": "blank"
@@ -222,192 +216,158 @@ O..O.#O.O##O..O
       },
       {
         "type": "letter",
-        "letter": "C",
-        "state": "normal"
+        "letter": "C"
       },
       {
         "type": "letter",
-        "letter": "U",
-        "state": "normal"
+        "letter": "U"
       },
       {
         "type": "letter",
-        "letter": "D",
-        "state": "normal"
+        "letter": "D"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "F",
-        "state": "normal"
+        "letter": "F"
       }
     ],
     [
       {
         "type": "letter",
-        "letter": "M",
-        "state": "normal"
+        "letter": "M"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "D",
-        "state": "normal"
+        "letter": "D"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "M",
-        "state": "normal"
+        "letter": "M"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "letter",
-        "letter": "Y",
-        "state": "normal"
+        "letter": "Y"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "B",
-        "state": "normal"
+        "letter": "B"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "D",
-        "state": "normal"
+        "letter": "D"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       }
     ],
     [
       {
         "type": "letter",
-        "letter": "P",
-        "state": "normal"
+        "letter": "P"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "D",
-        "state": "normal"
+        "letter": "D"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       }
     ],
     [
@@ -425,41 +385,34 @@ O..O.#O.O##O..O
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "D",
-        "state": "normal"
+        "letter": "D"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "G",
-        "state": "normal"
+        "letter": "G"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "blank"
@@ -474,222 +427,182 @@ O..O.#O.O##O..O
     [
       {
         "type": "letter",
-        "letter": "G",
-        "state": "normal"
+        "letter": "G"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "letter",
-        "letter": "H",
-        "state": "normal"
+        "letter": "H"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "letter",
-        "letter": "J",
-        "state": "normal"
+        "letter": "J"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "K",
-        "state": "normal"
+        "letter": "K"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       }
     ],
     [
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "C",
-        "state": "normal"
+        "letter": "C"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "letter",
-        "letter": "U",
-        "state": "normal"
+        "letter": "U"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "D",
-        "state": "normal"
+        "letter": "D"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       }
     ],
     [
       {
         "type": "letter",
-        "letter": "Y",
-        "state": "normal"
+        "letter": "Y"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "letter",
-        "letter": "Y",
-        "state": "normal"
+        "letter": "Y"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "M",
-        "state": "normal"
+        "letter": "M"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "letter",
-        "letter": "P",
-        "state": "normal"
+        "letter": "P"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       }
     ],
     [
@@ -701,54 +614,45 @@ O..O.#O.O##O..O
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "M",
-        "state": "normal"
+        "letter": "M"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "blank"
@@ -760,222 +664,182 @@ O..O.#O.O##O..O
     [
       {
         "type": "letter",
-        "letter": "C",
-        "state": "normal"
+        "letter": "C"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "letter",
-        "letter": "D",
-        "state": "normal"
+        "letter": "D"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       }
     ],
     [
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "C",
-        "state": "normal"
+        "letter": "C"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "P",
-        "state": "normal"
+        "letter": "P"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "letter",
-        "letter": "H",
-        "state": "normal"
+        "letter": "H"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       }
     ],
     [
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "P",
-        "state": "normal"
+        "letter": "P"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "H",
-        "state": "normal"
+        "letter": "H"
       },
       {
         "type": "letter",
-        "letter": "Q",
-        "state": "normal"
+        "letter": "Q"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       }
     ],
     [
@@ -990,41 +854,34 @@ O..O.#O.O##O..O
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "H",
-        "state": "normal"
+        "letter": "H"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "blank"
@@ -1042,192 +899,158 @@ O..O.#O.O##O..O
     [
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "letter",
-        "letter": "P",
-        "state": "normal"
+        "letter": "P"
       },
       {
         "type": "letter",
-        "letter": "I",
-        "state": "normal"
+        "letter": "I"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "letter",
-        "letter": "L",
-        "state": "normal"
+        "letter": "L"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       }
     ],
     [
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "R",
-        "state": "normal"
+        "letter": "R"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "letter",
-        "letter": "S",
-        "state": "normal"
+        "letter": "S"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "D",
-        "state": "normal"
+        "letter": "D"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "O",
-        "state": "normal"
+        "letter": "O"
       },
       {
         "type": "letter",
-        "letter": "N",
-        "state": "normal"
+        "letter": "N"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       }
     ],
     [
       {
         "type": "letter",
-        "letter": "U",
-        "state": "normal"
+        "letter": "U"
       },
       {
         "type": "letter",
-        "letter": "W",
-        "state": "normal"
+        "letter": "W"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "V",
-        "state": "normal"
+        "letter": "V"
       },
       {
         "type": "letter",
-        "letter": "E",
-        "state": "normal"
+        "letter": "E"
       },
       {
         "type": "blank"
       },
       {
         "type": "letter",
-        "letter": "W",
-        "state": "normal"
+        "letter": "W"
       },
       {
         "type": "letter",
-        "letter": "A",
-        "state": "normal"
+        "letter": "A"
       },
       {
         "type": "letter",
-        "letter": "X",
-        "state": "normal"
+        "letter": "X"
       },
       {
         "type": "blank"
@@ -1237,23 +1060,19 @@ O..O.#O.O##O..O
       },
       {
         "type": "letter",
-        "letter": "Y",
-        "state": "normal"
+        "letter": "Y"
       },
       {
         "type": "letter",
-        "letter": "U",
-        "state": "normal"
+        "letter": "U"
       },
       {
         "type": "letter",
-        "letter": "T",
-        "state": "normal"
+        "letter": "T"
       },
       {
         "type": "letter",
-        "letter": "Z",
-        "state": "normal"
+        "letter": "Z"
       }
     ]
   ],
@@ -2054,10 +1873,10 @@ O..O.#O.O##O..O
         }
       }
     ]
-  }
+  },
+  "notes": ""
 }
 ```
-
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 </details>
