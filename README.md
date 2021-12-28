@@ -39,6 +39,7 @@ Their .puz file turns into this xd:
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.xd) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.xd -->
+
 ```xd
 Title: Alpha-Bits
 Author: Drew Hodson
@@ -173,6 +174,7 @@ O..O#.O.O.#O..O
 .....#...#.....
 O..O.#O.O##O..O
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
  <details>
@@ -180,6 +182,7 @@ O..O.#O.O##O..O
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.json) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.json -->
+
 ```json
 {
   "meta": {
@@ -1877,6 +1880,7 @@ O..O.#O.O##O..O
   "notes": ""
 }
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 </details>
@@ -1975,12 +1979,12 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   .....#...##....
   ```
 
-- `## Summary`
+- `## Metapuzzle`
 
   TODO: We'd like a way to describe a final question and a final answer for a puzzle. For example, in alpha-bits above the circles indicate a letter pattern and there could be a way to respond that you got the theme. For example:
 
   ```md
-  ## Summary
+  ## Metapuzzle
 
   How are the words sorted?
 
