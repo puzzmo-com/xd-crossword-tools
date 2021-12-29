@@ -4,7 +4,7 @@ Tools for taking different crossword file formats and converting them to xd. Con
 
 [xd](https://github.com/century-arcade/xd) is a text-based crossword format which is easy for humans to read and reason about.
 
-### xd to JSON
+### .xd to .JSON
 
 Builds on [xd-crossword-parser](https://github.com/j-norwood-young/xd-crossword-parser) (MIT license).
 
@@ -30,6 +30,16 @@ const xd = puzToXd(puzBuffer)
 ```
 
 This should cover most features in puz and xd now.
+
+### UClick .xml to .xd
+
+```ts
+import { uclickXMLToXd } from "xd-crossword-tools"
+
+const xmlResponse = await fetch(url)
+const xmlString = await res.body()
+const xd = puzToXd(xmlString)
+```
 
 ### Example
 
