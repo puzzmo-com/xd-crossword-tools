@@ -1,7 +1,7 @@
 import { getCluePositionsForBoard } from "./clueNumbersFromBoard"
 import { EditorError } from "./EditorError"
 import type { Tile, CrosswordJSON } from "./types"
-import { implicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "./xdparser2.compat"
+import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "./xdparser2.compat"
 
 // These are all the sections supported by this parser
 const knownHeaders = ["grid", "clues", "notes", "meta", "design", "metapuzzle", "start"] as const
@@ -14,7 +14,7 @@ export function xdParser(xd: string): CrosswordJSON {
 
   if (!xd) throw new EditorError("Not got anything to work with yet", 0)
   if (shouldConvertToExplicitHeaders(xd)) {
-    xd = implicitOrderedXDToExplicitHeaders(xd)
+    xd = convertImplicitOrderedXDToExplicitHeaders(xd)
   }
 
   let rawInput: {

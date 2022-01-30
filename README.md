@@ -1936,7 +1936,7 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   D3. A conscious tree. ~ BOOK
   ```
 
-  This makes the sections a bit more explicit (and conceptually more user-friendly if you have not read the xd documentation ahead of seeing the file) and frees the order in which someone could write a document.
+  This makes the sections a bit more explicit (and conceptually more user-friendly if you have not read the xd documentation ahead of seeing the file) and frees the order in which someone could write a document. Capitalization is ignored.
 
 - `Multiple clues` - You can add a secondary clue by repeating an answer:
 
@@ -1958,14 +1958,14 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
 
 - `Markdown style comments`: In markdown you can write `<!--` and `-->` to comment out a section of your code. Our implementation is not _super_ smart:
 
-  ```md
+  <!-- prettier-ignore -->
+  ```html
   ## Meta
 
-  <!--  WIP: Maybe it should be rectangle? -->
+  <!--  WIP: Maybe it should be called rectangle? -->
 
-  Title: Square
-
-  Author: Orta
+  Title: Square 
+  Author: Orta 
   Editor: Orta Therox
 
   <!--
@@ -2011,7 +2011,7 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   Perhaps we really embrace markdown and use a style tag? This keeps the style info next to the design itself.
 
   ```md
-  ## DESIGN
+  ## Design
 
   <style>
   O { background: circle }

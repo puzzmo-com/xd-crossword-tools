@@ -2,7 +2,7 @@ import { EditorError } from "./EditorError"
 
 export const shouldConvertToExplicitHeaders = (xd: string) => !xd.toLowerCase().includes("## meta")
 
-export const implicitOrderedXDToExplicitHeaders = (xd: string) => {
+export const convertImplicitOrderedXDToExplicitHeaders = (xd: string) => {
   const parts = xd.split(/^$^$/gm).filter((s) => s !== "\n")
 
   if (parts.length < 4)
