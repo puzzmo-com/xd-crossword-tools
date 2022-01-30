@@ -5,7 +5,7 @@ export type CrosswordJSON = {
     author: string
     editor: string
     date: string
-  }
+  } & Record<string, string>
   /** 2 dimensional array of tile representations */
   tiles: Tile[][]
   /** Derived clue info  */

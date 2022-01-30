@@ -2,11 +2,12 @@
   "meta": {
     "title": "Alpha-Bits",
     "author": "Drew Hodson",
+    "date": "Not set",
+    "editor": "Not set",
     "copyright": "© 2021",
     "description": "N/A",
     "design": "O={ background: circle }"
   },
-  "rebuses": {},
   "tiles": [
     [
       {
@@ -1691,5 +1692,6 @@
       }
     ]
   },
+  "rebuses": {},
   "notes": ""
 }

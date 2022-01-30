@@ -6,8 +6,6 @@ Tools for taking different crossword file formats and converting them to xd. Con
 
 ### .xd to .JSON
 
-Builds on [xd-crossword-parser](https://github.com/j-norwood-young/xd-crossword-parser) (MIT license).
-
 ```ts
 import { xdToJSON } from "xd-crossword-tools"
 
@@ -15,7 +13,7 @@ const xd = "[...]"
 const crossword = xdToJSON(xd)
 ```
 
-The JSON format is a bit more verbose than you might expect (see below for an example), but the goal is to have as much information pre-computed at parse time in order to save lookups later at runtime. You can see the type definitions here: [`./lib/types.ts`](./lib/types.ts)
+The JSON format is a bit more verbose than you might expect (see below for an example), but the goal is to have as much information pre-computed at parse time in order to save lookups later at runtime. You can see the type definitions here: [`./lib/types.ts`](./lib/types.ts).
 
 ### .puz to .xd
 
@@ -198,11 +196,12 @@ O..O.#O.O##O..O
   "meta": {
     "title": "Alpha-Bits",
     "author": "Drew Hodson",
+    "date": "Not set",
+    "editor": "Not set",
     "copyright": "© 2021",
     "description": "N/A",
     "design": "O={ background: circle }"
   },
-  "rebuses": {},
   "tiles": [
     [
       {
@@ -1887,6 +1886,7 @@ O..O.#O.O##O..O
       }
     ]
   },
+  "rebuses": {},
   "notes": ""
 }
 ```
