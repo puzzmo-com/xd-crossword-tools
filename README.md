@@ -1899,9 +1899,66 @@ O..O.#O.O##O..O
 
 This lib creates `xd` compatible files, but also extends the format in a way that allows for thinking of `xd` as a human-editor format.
 
+#### Structural
+
+- Headers - `xd` out of the box has an implicit order:
+
+  - Meta
+  - Grid
+  - Clues
+  - Notes (optional)
+
+  This library implements that behavior, but also supports a markdown header format whereby you could write an `xd` document like:
+
+  ```md
+  ## Meta
+
+  Title: Square
+  Author: Orta
+  Editor: Orta Therox
+  Date: 2021-03-16
+
+  ## Grid
+
+  BULB
+  OK#O
+  L##O
+  DESK
+
+  ## Clues
+
+  A1. Gardener's concern. ~ BULB
+  A4. A reasonable statement. ~ OK
+  A5. Not chipped. ~ CRISP
+
+  D1. To \_ly go. ~ BOLD
+  D2. Bigger than britain. ~ UK
+  D3. A conscious tree. ~ BOOK
+  ```
+
+  This makes the sections a bit more explicit (and conceptually more user-friendly if you have not read the xd documentation ahead of seeing the file) and frees the order in which someone could write a document.
+
+- `Multiple clues` - You can add a secondary clue by repeating an answer:
+
+  ```
+  A1. Gardener's concern. ~ BULB
+  A1. Turned on with a flick. ~ BULB
+  A4. A reasonable statement. ~ OK
+  A4. All __. ~ OK
+  A5. Not chipped. ~ CRISP
+  A5. Fried. ~ CRISP
+
+  D1. To _ly go. ~ BOLD
+  D1. When you want to make some text stronger. ~ BOLD
+  D2. Bigger than britain. ~ UK
+  D2. A union which left europe. ~ UK
+  D3. A conscious tree. ~ BOOK
+  D3. Registering with a restaurant. ~ BOOK
+  ```
+
 #### Meta
 
-- TODO: [Shrodinger's Squares](https://www.xwordinfo.com/Quantum). It's likely that a special form of Rebus will work here, for example:
+- [Shrodinger's Squares](https://www.xwordinfo.com/Quantum). It's likely that a special form of Rebus will work here, for example:
 
   ```
   Rebus: 1=M|F
@@ -1915,7 +1972,7 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
 
   Indicates to the game engine that the rebus for `1` on the grid can be _either_ `M` or `F`, but that the side needs to be respected across all possible rebuses in the clue. So for `M1L2` you could have `MALE` and `FATE`but not `FALE` or `MATE`.
 
-- TODO: `Related: A4=A3=D6 D17=D12`
+- `Related: A4=A3=D6 D17=D12`
   Provide a way to tell the crossword engine that a particular set of answers relate to each other and should be highlighted somehow. There's a good argument that this can be parsed out of the clue's string instead, which is probably what others do.
 
 #### Notes
@@ -1966,7 +2023,7 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
 
 - `## Start`
 
-  TODO: Instead of starting with an board, create a board with letters pre-filled. For example this crossword would start with "GO" "FOR" and "IT" already in:
+  Instead of starting with an board, create a board with letters pre-filled. For example this crossword would start with "GO" "FOR" and "IT" already in:
 
   ```
   ## Start
@@ -1990,7 +2047,7 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
 
 - `## Metapuzzle`
 
-  TODO: We'd like a way to describe a final question and a final answer for a puzzle. For example, in alpha-bits above the circles indicate a letter pattern and there could be a way to respond that you got the theme. For example:
+  We'd like a way to describe a final question and a final answer for a puzzle. For example, in alpha-bits above the circles indicate a letter pattern and there could be a way to respond that you got the theme. For example:
 
   ```md
   ## Metapuzzle
