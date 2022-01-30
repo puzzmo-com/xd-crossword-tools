@@ -193,7 +193,7 @@ DESK
 
 A1. Gardener's concern. ~ BULB
 A4. A reasonable statement. ~ OK
-A5. Not chipped. ~ CRISP
+A5. The office centerpiece. ~ DESK
 
 D1. To _ly go. ~ BOLD
 D2. Bigger than britain. ~ UK
@@ -225,8 +225,8 @@ D3. A conscious tree. ~ BOOK
       "second": undefined,
     },
     {
-      "answer": "CRISP",
-      "main": "Not chipped.",
+      "answer": "DESK",
+      "main": "The office centerpiece.",
       "number": 5,
       "position": {
         "col": 0,
@@ -289,7 +289,7 @@ A1. Gardener's concern. ~ BULB
 A1. Turned on with a flick. ~ BULB
 A4. A reasonable statement. ~ OK
 A4. All __. ~ OK
-A5. Not chipped. ~ CRISP
+A5. The office centerpiece. ~ DESK
 A5. Fried. ~ CRISP
 
 D1. To _ly go. ~ BOLD
@@ -314,7 +314,7 @@ D3. Registering with a restaurant. ~ BOOK
     "second": "OK",
   },
   {
-    "first": "Not chipped.",
+    "first": "The office centerpiece.",
     "second": "CRISP",
   },
   {
@@ -350,7 +350,7 @@ DESK
 
 A1. Gardener's concern. ~ BULB
 A4. A reasonable statement. ~ OK
-A5. Not chipped. ~ CRISP
+A5. The office centerpiece. ~ DESK
 
 D1. To _ly go. ~ BOLD
 D2. Bigger than britain. ~ UK
@@ -371,12 +371,12 @@ DESK
 
 A1. Gardener's concern. ~ BULB
 A4. A reasonable statement. ~ OK
-A5. Not chipped. ~ CRISP
+A5. The office centerpiece. ~ DESK
 
 <!-- A multiline comment 
 A1. Gardener's concern. ~ BULB
 A4. A reasonable statement. ~ OK
-A5. Not chipped. ~ CRISP
+A5. The office centerpiece. ~ DESK
 -->
 D1. To _ly go. ~ BOLD
 D2. Bigger than britain. ~ UK

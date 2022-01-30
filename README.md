@@ -1908,7 +1908,7 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   - Clues
   - Notes (optional)
 
-  This library implements that behavior, but also supports a markdown header format whereby you could write an `xd` document like:
+  This library respects that behavior, but also supports a markdown header format whereby you could write an `xd` document like:
 
   ```md
   ## Meta
@@ -1929,7 +1929,7 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
 
   A1. Gardener's concern. ~ BULB
   A4. A reasonable statement. ~ OK
-  A5. Not chipped. ~ CRISP
+  A5. The office centerpiece. ~ DESK
 
   D1. To \_ly go. ~ BOLD
   D2. Bigger than britain. ~ UK
@@ -1945,7 +1945,7 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   A1. Turned on with a flick. ~ BULB
   A4. A reasonable statement. ~ OK
   A4. All __. ~ OK
-  A5. Not chipped. ~ CRISP
+  A5. The office centerpiece. ~ DESK
   A5. Fried. ~ CRISP
 
   D1. To _ly go. ~ BOLD
@@ -1956,7 +1956,7 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   D3. Registering with a restaurant. ~ BOOK
   ```
 
-- `Markdown style comments`: In markdown you can write `<!--` and `-->` to comment out a section of your code. Our implementation is not _super_ smart:
+- `Markdown/HTML style comments`: In markdown you can write `<!--` and `-->` to comment out a section of your code. Our implementation is not _super_ smart:
 
   <!-- prettier-ignore -->
   ```html
