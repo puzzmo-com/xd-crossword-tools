@@ -1956,6 +1956,25 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   D3. Registering with a restaurant. ~ BOOK
   ```
 
+- `Markdown style comments`: In markdown you can write `<!--` and `-->` to comment out a section of your code. Our implementation is not _super_ smart:
+
+  ```md
+  ## Meta
+
+  <!--  WIP: Maybe it should be rectangle? -->
+
+  Title: Square
+
+  Author: Orta
+  Editor: Orta Therox
+
+  <!--
+  Date: 2021-03-16
+  -->
+  ```
+
+  The key is that a line has to start with `<!--` and eventually the same or another line has to end with `-->`.
+
 #### Meta
 
 - [Shrodinger's Squares](https://www.xwordinfo.com/Quantum). It's likely that a special form of Rebus will work here, for example:

@@ -333,3 +333,56 @@ D3. Registering with a restaurant. ~ BOOK
 `)
   })
 })
+
+describe("comments", () => {
+  it("ignores comments", () => {
+    const original = `Title: Square
+Author: Orta
+Editor: Orta Therox
+Date: 2021-03-16
+
+
+BULB
+OK#O
+L##O
+DESK
+
+
+A1. Gardener's concern. ~ BULB
+A4. A reasonable statement. ~ OK
+A5. Not chipped. ~ CRISP
+
+D1. To _ly go. ~ BOLD
+D2. Bigger than britain. ~ UK
+D3. A conscious tree. ~ BOOK`
+
+    const comments = `Title: Square
+Author: Orta
+Editor: Orta Therox
+Date: 2021-03-16
+
+
+<!-- A comment -->
+BULB
+OK#O
+L##O
+DESK
+
+
+A1. Gardener's concern. ~ BULB
+A4. A reasonable statement. ~ OK
+A5. Not chipped. ~ CRISP
+
+<!-- A multiline comment 
+A1. Gardener's concern. ~ BULB
+A4. A reasonable statement. ~ OK
+A5. Not chipped. ~ CRISP
+-->
+D1. To _ly go. ~ BOLD
+D2. Bigger than britain. ~ UK
+D3. A conscious tree. ~ BOOK
+`
+
+    expect(xdParser(original)).toEqual(xdParser(comments))
+  })
+})

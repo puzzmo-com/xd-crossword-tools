@@ -10,6 +10,7 @@ type ParseMode = typeof knownHeaders[number] | "comment" | "unknown"
 
 export function xdParser(xd: string): CrosswordJSON {
   let seenSections: string[] = []
+  let preCommentState: ParseMode = "unknown"
 
   if (!xd) throw new EditorError("Not got anything to work with yet", 0)
   if (shouldConvertToExplicitHeaders(xd)) {
@@ -44,6 +45,28 @@ export function xdParser(xd: string): CrosswordJSON {
   let lines = xd.split("\n")
   for (let line = 0; line < lines.length; line++) {
     const content = lines[line]
+    const trimmed = content.trim()
+
+    // Start looking for comments first
+    if (trimmed.startsWith("<!--")) {
+      // Fast one-liner comments
+      if (trimmed.endsWith("-->")) continue
+
+      // For multi-line we need to re-start the loop
+      preCommentState = mode
+      mode = "comment"
+      continue
+    }
+
+    // If we're in a multi-line comment then we need to keep
+    // looking through for the end of the comment
+    if (mode === "comment") {
+      if (trimmed.endsWith("-->")) {
+        mode = preCommentState
+      }
+      continue
+    }
+
     if (content.startsWith("## ")) {
       mode = parseModeForString(content, line)
       seenSections.push(mode)
@@ -53,7 +76,6 @@ export function xdParser(xd: string): CrosswordJSON {
     // Allow for prefix whitespaces, no _real_ reason but it can't hurt the parser
     if (mode === "unknown") continue
 
-    const trimmed = content.trim()
     switch (mode) {
       // NOOP
       case "notes":
@@ -153,7 +175,7 @@ const clueRegex = /(^.\d*)\.\s(.*)\s\~\s(.*)/
 const clueFromLine = (line: string, num: number) => {
   const expectedPrefix = line.slice(0, 1).toUpperCase()
   if (!["A", "D"].includes(expectedPrefix)) {
-    throw new EditorError(`This clue doesn't start with A or D`, num)
+    throw new EditorError(`This clue doesn't start with A or D: '${line}'`, num)
   }
 
   const parts = line.match(clueRegex)
