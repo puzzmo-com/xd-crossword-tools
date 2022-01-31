@@ -1,12 +1,13 @@
 {
   "name": "xd-crossword-tools",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Tools for taking different crossword file formats and converting them to xd, and for converting an xd file to useful JSON",
   "main": "dist/index.js",
+  "module": "./dist/index.mjs",
   "scripts": {
     "test": "jest",
     "docs": "md-magic",
-    "build": "tsup index.ts --dts",
+    "build": "tsup index.ts --dts  --format esm,cjs,iife",
     "prepublishOnly": "yarn docs && yarn build",
     "type-check": "tsc"
   },
