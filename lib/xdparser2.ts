@@ -253,7 +253,7 @@ function getLine(body: string, substr: string) {
   const subBody = body.substring(0, char)
   if (subBody === "") return false
   const match = subBody.match(/\n/gi)
-  if (match) return match.length + 1
+  if (match) return match.length
   return 1
 }
 

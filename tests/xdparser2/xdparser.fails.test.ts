@@ -84,7 +84,7 @@ it("checks that the grid is set up", () => {
 
   expect(throwsWithError(xd)).toMatchInlineSnapshot(`
 {
-  "line": 3,
+  "line": 2,
   "name": "XDError",
   "rawMessage": "This grid section does not have a working grid",
 }

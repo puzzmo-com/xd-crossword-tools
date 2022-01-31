@@ -114,7 +114,7 @@ it("throws when empty", () => {
 
   expect(throwsWithError(xd)).toMatchInlineSnapshot(`
 {
-  "line": 4,
+  "line": 3,
   "name": "XDError",
   "rawMessage": "The style tag is missing from this design section",
 }
@@ -130,7 +130,7 @@ OO { background: circle }
 
   expect(throwsWithError(xd)).toMatchInlineSnapshot(`
 {
-  "line": 4,
+  "line": 3,
   "name": "XDError",
   "rawMessage": "Cannot have a style rule which is longer than one character: got 'OO'",
 }
