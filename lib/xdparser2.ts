@@ -8,7 +8,14 @@ const knownHeaders = ["grid", "clues", "notes", "meta", "design", "metapuzzle", 
 const mustHave = ["grid", "clues", "meta"] as const
 type ParseMode = typeof knownHeaders[number] | "comment" | "unknown"
 
-export function xdParser(xd: string): CrosswordJSON {
+/**
+ * Converts an xd file into a JSON representation, the JSON aims to be
+ * a bit of an overkill to ensure that less work is needed inside an app.
+ *
+ * @param xd the xd string
+ * @param strict whether extra exceptions should be thrown with are useful for editor support
+ */
+export function xdParser(xd: string, strict = true): CrosswordJSON {
   let seenSections: string[] = []
   let preCommentState: ParseMode = "unknown"
 
@@ -25,6 +32,7 @@ export function xdParser(xd: string): CrosswordJSON {
     clues: new Map(),
   }
 
+  // This object gets filled out by the parser, and is eventually returned
   const json: CrosswordJSON = {
     meta: {
       title: "Not set",
@@ -68,17 +76,18 @@ export function xdParser(xd: string): CrosswordJSON {
     }
 
     if (content.startsWith("## ")) {
-      mode = parseModeForString(content, line)
+      mode = parseModeForString(content, line, strict)
       seenSections.push(mode)
       continue
     }
 
-    // Allow for prefix whitespaces, no _real_ reason but it can't hurt the parser
+    // Allow for prefix whitespaces, mainly to make the tests more readable but it can't hurt the parser
     if (mode === "unknown") continue
 
     switch (mode) {
       // NOOP
       case "notes":
+        json.notes += content
         continue
 
       // Store it for later parsing once we have rebuses
@@ -160,13 +169,32 @@ export function xdParser(xd: string): CrosswordJSON {
     })
   }
 
-  // A check that all of the essential data has been set
-  const needed = mustHave.filter((needs) => !seenSections.includes(needs))
-  if (needed.length) {
-    throw new EditorError(`This crossword has missing sections: '${toTitleSentence(needed)}`, 0)
+  // Checks that all of the essential data has been set in a useful way
+  if (strict) {
+    const needed = mustHave.filter((needs) => !seenSections.includes(needs))
+    if (needed.length) {
+      throw new EditorError(`This crossword has missing sections: '${toTitleSentence(needed)}' - saw ${toTitleSentence(seenSections)}`, 0)
+    }
+
+    if (json.tiles.length === 0) {
+      const lineOfGrid = getLine(xd.toLowerCase(), "## grid")
+      if (lineOfGrid === false) throw new EditorError(`This crossword has a missing grid content`, 0)
+      else throw new EditorError(`This grid section does not have a working grid`, lineOfGrid)
+    }
   }
 
   return json
+}
+
+function getLine(body: string, substr: string) {
+  if (!body) return false
+  if (!substr) return false
+  const char = typeof substr === "string" ? body.indexOf(substr) : substr
+  const subBody = body.substring(0, char)
+  if (subBody === "") return false
+  const match = subBody.match(/\n/gi)
+  if (match) return match.length + 1
+  return 1
 }
 
 // This came from the original, I think it's pretty OK but maybe it could be a bit looser
@@ -200,9 +228,9 @@ const clueFromLine = (line: string, num: number) => {
   }
 }
 
-const parseModeForString = (lineText: string, num: number): ParseMode => {
+const parseModeForString = (lineText: string, num: number, strict: boolean): ParseMode => {
   const content = lineText.split("## ").pop()
-  if (!content) throw new EditorError("This header needs some content", num)
+  if (!content) throw new EditorError("This header needs a title", num)
 
   const title = content.toLowerCase()
   if (title.startsWith("grid")) {
@@ -219,7 +247,7 @@ const parseModeForString = (lineText: string, num: number): ParseMode => {
     return "meta"
   }
 
-  if (!knownHeaders.includes(content.trim() as any)) {
+  if (strict && !knownHeaders.includes(content.trim() as any)) {
     const headers = toTitleSentence(knownHeaders as any)
     throw new EditorError(
       `Two # headers are reserved for the system, they can only be: ${headers}. Got '${content.trim()}'. You can use ### headers for inside notes.`,
@@ -266,7 +294,7 @@ const getRebuses = (str: string) => {
 
 const toTitleSentence = (strs: string[]) => {
   if (strs.length === 0) throw new Error("Somehow showing an empty sentence")
-  if (strs.length == 1) return strs[0]
+  if (strs.length == 1) return strs[0][0].toUpperCase() + strs[0].slice(1)
 
   const capNeeded = strs.map((h) => h[0].toUpperCase() + h.slice(1))
   return capNeeded.slice(0, -1).join(", ") + " & " + capNeeded[capNeeded.length - 1]

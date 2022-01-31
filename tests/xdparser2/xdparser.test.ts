@@ -8,7 +8,7 @@ it("Smallest, legal but totally illogical example", () => {
 ## Clues
 `
 
-  xdParser(xd)
+  xdParser(xd, false)
 })
 
 describe("meta", () => {
@@ -28,7 +28,7 @@ SomethingWithColon: here's an example: of something
 ## Clues
 `
 
-    const { meta } = xdParser(xd)
+    const { meta } = xdParser(xd, false)
     expect(meta).toMatchInlineSnapshot(`
 {
   "author": "Drew Hodson",
@@ -62,7 +62,7 @@ SomethingWithColon: here's an example: of something
 ## Clues
 `
 
-    const { meta } = xdParser(xd)
+    const { meta } = xdParser(xd, false)
     expect(meta).toMatchInlineSnapshot(`
 {
   "author": "Drew Hodson",
@@ -94,7 +94,7 @@ sure thing. This is legal in markdown,
 > The answer
   `
 
-    const { metapuzzle } = xdParser(xd)
+    const { metapuzzle } = xdParser(xd, false)
     expect(metapuzzle).toMatchInlineSnapshot(`
 {
   "answer": "Hello world, multiline
@@ -132,7 +132,7 @@ I......#...#...
 
   `
 
-    const { start } = xdParser(xd)
+    const { start } = xdParser(xd, false)
     expect(start).toMatchInlineSnapshot(`
 [
   [
@@ -385,4 +385,21 @@ D3. A conscious tree. ~ BOOK
 
     expect(xdParser(original)).toEqual(xdParser(comments))
   })
+})
+
+it("notes are a NOOP", () => {
+  const xd = `
+## Meta
+## Notes
+Asdasdfasfdsgdsg
+df
+gfdgdfgdfg
+
+67568756yd
+fgdfgd
+f
+## Grid
+## Clues`
+
+  expect(xdParser(xd, false).notes).toContain("67568756yd")
 })

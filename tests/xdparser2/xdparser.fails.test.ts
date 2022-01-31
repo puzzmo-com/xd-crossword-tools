@@ -13,79 +13,105 @@ describe("errors", () => {
 
   it("meta needs the colon", () => {
     const xd = `
-  ## Meta
+## Meta
+asda asdasda
   `
 
     expect(throwsWithError(xd)).toMatchInlineSnapshot(`
 {
-  "line": 0,
+  "line": 2,
   "name": "XDError",
-  "rawMessage": "This crossword has missing sections: 'Grid, Clues & Meta",
+  "rawMessage": "Could not find a ':' separating the meta item's name from its value",
 }
 `)
   })
 
-  it("notes are a NOOP", () => {
+  it("Throws when you have an unknown subheading", () => {
     const xd = `
-  ## Meta
-  ## Notes
-  Asdasdfasfdsgdsg
-  df
-  gfdgdfgdfg
-  
-  67568756yd
-  fgdfgd
-  f
-  ## Grid
-  ## Clues
-    `
+## Meta
+## Orta's extension
+## Notes
+## Grid
+## Clues
+  `
 
-    expect(throwsWithError(xd)).toMatchInlineSnapshot(`
+    expect(throwsWithError(xd, true)).toMatchInlineSnapshot(`
 {
-  "line": 0,
+  "line": 2,
   "name": "XDError",
-  "rawMessage": "This crossword has missing sections: 'Grid, Clues & Meta",
-}
-`)
-  })
-
-  it("notes are a NOOP", () => {
-    const xd = `
-  ## Meta
-  ## Orta's extension
-  ## Notes
-  ## Grid
-  ## Clues
-      `
-
-    expect(throwsWithError(xd)).toMatchInlineSnapshot(`
-{
-  "line": 0,
-  "name": "XDError",
-  "rawMessage": "This crossword has missing sections: 'Grid, Clues & Meta",
+  "rawMessage": "Two # headers are reserved for the system, they can only be: Grid, Clues, Notes, Meta, Design, Metapuzzle & Start. Got 'Orta's extension'. You can use ### headers for inside notes.",
 }
 `)
   })
 
   it("handles bad meta", () => {
     const xd = `
-  ## Meta
-  
-  this line needs a colon`
+## Meta
+
+this line needs a colon`
 
     expect(throwsWithError(xd)).toMatchInlineSnapshot(`
 {
-  "line": 0,
+  "line": 3,
   "name": "XDError",
-  "rawMessage": "This crossword has missing sections: 'Grid, Clues & Meta",
+  "rawMessage": "Could not find a ':' separating the meta item's name from its value",
 }
 `)
   })
 })
 
-const throwsWithError = (xd: string) => {
+it("checks that the grid is set up", () => {
+  const xd = `
+## Meta
+## Grid
+## Clues
+`
+
+  expect(throwsWithError(xd)).toMatchInlineSnapshot(`
+{
+  "line": 3,
+  "name": "XDError",
+  "rawMessage": "This grid section does not have a working grid",
+}
+`)
+})
+
+it("checks that all the sections are there", () => {
+  const xd = `
+## Meta
+## Grid
+`
+
+  expect(throwsWithError(xd)).toMatchInlineSnapshot(`
+{
+  "line": 0,
+  "name": "XDError",
+  "rawMessage": "This crossword has missing sections: 'Clues' - saw Meta & Grid",
+}
+`)
+})
+
+it("checks that all the sections are there", () => {
+  const xd = `
+## Meta
+## Grid
+## Clues
+
+a2. asda
+`
+
+  expect(throwsWithError(xd)).toMatchInlineSnapshot(`
+{
+  "line": 5,
+  "name": "XDError",
+  "rawMessage": "This clue does not match the format of 'A[num]. [clue] ~ [answer]'",
+}
+`)
+})
+
+const throwsWithError = (xd: string, strict = true) => {
   try {
-    xdParser(xd)
+    xdParser(xd, strict)
   } catch (error) {
     return JSON.parse(JSON.stringify(error))
   }
