@@ -47,14 +47,15 @@ Their .puz file turns into this xd:
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.xd) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.xd -->
-
 ```xd
+## Meta
+
 Title: Alpha-Bits
 Author: Drew Hodson
 Copyright: © 2021
 Description: N/A
-Design: O={ background: circle }
 
+## Grid
 
 AHAB..CUD.SERIF
 MADAM.ANY.ABODE
@@ -72,6 +73,8 @@ SPIRO.NET.ATLAS
 TARTS.ETA.DOONE
 UWAVE.WAX..YUTZ
 
+
+## Clues
 
 A1. Captain of the Pequod ~ AHAB
 A5. Food for second chance chewing ~ CUD
@@ -163,8 +166,11 @@ D68. Bega behind "Mambo No. 5" ~ LOU
 D69. Aardvark breakfast ~ ANT
 D70. Sonic ___ ~ SEZ
 
+## Notes
 
-## DESIGN
+## Design
+
+<style>O { background: circle }</style>
 
 O..O##O.O#.O..O
 .....#...#.....
@@ -182,7 +188,6 @@ O..O#.O.O.#O..O
 .....#...#.....
 O..O.#O.O##O..O
 ```
-
 <!-- AUTO-GENERATED-CONTENT:END -->
 
  <details>
@@ -190,7 +195,6 @@ O..O.#O.O##O..O
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.json) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.json -->
-
 ```json
 {
   "meta": {
@@ -199,8 +203,7 @@ O..O.#O.O##O..O
     "date": "Not set",
     "editor": "Not set",
     "copyright": "© 2021",
-    "description": "N/A",
-    "design": "O={ background: circle }"
+    "description": "N/A"
   },
   "tiles": [
     [
@@ -1887,10 +1890,107 @@ O..O.#O.O##O..O
     ]
   },
   "rebuses": {},
-  "notes": ""
+  "notes": "",
+  "design": {
+    "styles": {
+      "O": {
+        "background": "circle"
+      }
+    },
+    "positions": [
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ],
+      [],
+      [],
+      [],
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ],
+      [],
+      [],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O",
+        null,
+        "O"
+      ],
+      [],
+      [],
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ],
+      [],
+      [],
+      [],
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ]
+    ]
+  }
 }
 ```
-
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 </details>
