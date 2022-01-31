@@ -1,10 +1,12 @@
+## Meta
+
 Title: Speakerboxxx/The Love Below
 Author: Will Nediger
 Copyright: 
 Description: N/A
 Rebus: 0=BOSE 1=SONY
-Design: O={ background: circle } S={ background: shade }
 
+## Grid
 
 BLTS...PVC.POGO
 LARA..PEEL.OUID
@@ -22,6 +24,8 @@ ROBE.CHASM.ARSE
 OWIE.HERO..USER
 BLOT.END...ITIS
 
+
+## Clues
 
 A1. Sandwiches often made with iceberg ~ BLTS
 A5. Polymer in pipes ~ PVC
@@ -101,8 +105,11 @@ D57. Way overcharge ~ ROB
 D58. "Guardians of Ga'Hoole" bird ~ OWL
 D59. Link in ___ ~ BIO
 
+## Notes
 
-## DESIGN
+## Design
+
+<style>O { background: circle } S { background: shade }</style>
 
 ....###...#....
 ....##....#....

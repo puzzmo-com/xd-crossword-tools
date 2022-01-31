@@ -1,11 +1,9 @@
-## Meta
-
 Title: Alpha-Bits
 Author: Drew Hodson
 Copyright: © 2021
 Description: N/A
+Design: O={ background: circle }
 
-## Grid
 
 AHAB..CUD.SERIF
 MADAM.ANY.ABODE
@@ -23,8 +21,6 @@ SPIRO.NET.ATLAS
 TARTS.ETA.DOONE
 UWAVE.WAX..YUTZ
 
-
-## Clues
 
 A1. Captain of the Pequod ~ AHAB
 A5. Food for second chance chewing ~ CUD
@@ -75,7 +71,7 @@ D4. Prohibit ~ BAN
 D5. Type of person to routinely carry a club ~ CADDIE
 D6. State of the ___ Address ~ UNION
 D7. Colorful homophone of 18A ~ DYE
-D8. Snitched ~ SANG
+D8NG
 D9. Kindle fare ~ EBOOK
 D10. Decayed matter ~ ROT
 D11. Type of response you hope to get at the altar ~ IDO
@@ -116,11 +112,8 @@ D68. Bega behind "Mambo No. 5" ~ LOU
 D69. Aardvark breakfast ~ ANT
 D70. Sonic ___ ~ SEZ
 
-## Notes
 
-## Design
-
-<style>O { background: circle }</style>
+## DESIGN
 
 O..O##O.O#.O..O
 .....#...#.....

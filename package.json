@@ -1,6 +1,6 @@
 {
   "name": "xd-crossword-tools",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "Tools for taking different crossword file formats and converting them to xd",
   "main": "dist/index.js",
   "scripts": {
@@ -29,22 +29,25 @@
     },
     "watchPathIgnorePatterns": [
       "__file_snapshots__"
-    ]
+    ],
+    "snapshotFormat": {
+      "printBasicPrototype": false
+    }
   },
   "prettier": {
     "printWidth": 140,
     "semi": false
   },
   "devDependencies": {
-    "@swc/cli": "^0.1.51",
-    "@swc/core": "^1.2.109",
-    "@swc/jest": "^0.2.5",
-    "@types/jest": "^27.0.2",
-    "@types/node": "^16.11.7",
-    "jest": "^27.3.1",
+    "@swc/cli": "^0.1.55",
+    "@swc/core": "^1.2.135",
+    "@swc/jest": "^0.2.17",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^16.11.21",
+    "jest": "^27.4.7",
     "jest-file-snapshot": "^0.5.0",
-    "tsup": "^5.7.4",
-    "typescript": "^4.4.4",
-    "markdown-magic": "^2.5.2"
+    "markdown-magic": "^2.6.0",
+    "tsup": "^5.11.13",
+    "typescript": "^4.5.5"
   }
 }

@@ -5,16 +5,31 @@ export type CrosswordJSON = {
     author: string
     editor: string
     date: string
-  }
-  /** 2 dimensional array of tile representations */
+  } & Record<string, string>
+  /** 2 dimensional array of tiles */
   tiles: Tile[][]
-  /** Derived clue info  */
+  /** Derived clue info with positioning for the xword */
   clues: {
     across: Clue[]
     down: Clue[]
   }
-  rebuses: Record<string, string>
   notes: string
+
+  /** A sparse array of pre-filled letters */
+  start?: string[][]
+
+  /** A Key : Value list of rebus tiles */
+  rebuses: Record<string, string>
+  /** An after the puzzle is done question */
+  metapuzzle?: {
+    clue: string
+    answer: string
+  }
+  /** Aesthetics */
+  design?: {
+    styles: Record<string, any>
+    positions: string[][]
+  }
 }
 
 export type Direction = "UP" | "DOWN" | "LEFT" | "RIGHT"

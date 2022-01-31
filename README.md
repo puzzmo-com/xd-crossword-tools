@@ -6,8 +6,6 @@ Tools for taking different crossword file formats and converting them to xd. Con
 
 ### .xd to .JSON
 
-Builds on [xd-crossword-parser](https://github.com/j-norwood-young/xd-crossword-parser) (MIT license).
-
 ```ts
 import { xdToJSON } from "xd-crossword-tools"
 
@@ -15,7 +13,7 @@ const xd = "[...]"
 const crossword = xdToJSON(xd)
 ```
 
-The JSON format is a bit more verbose than you might expect (see below for an example), but the goal is to have as much information pre-computed at parse time in order to save lookups later at runtime. You can see the type definitions here: [`./lib/types.ts`](./lib/types.ts)
+The JSON format is a bit more verbose than you might expect (see below for an example), but the goal is to have as much information pre-computed at parse time in order to save lookups later at runtime. You can see the type definitions here: [`./lib/types.ts`](./lib/types.ts).
 
 ### .puz to .xd
 
@@ -198,11 +196,12 @@ O..O.#O.O##O..O
   "meta": {
     "title": "Alpha-Bits",
     "author": "Drew Hodson",
+    "date": "Not set",
+    "editor": "Not set",
     "copyright": "© 2021",
     "description": "N/A",
     "design": "O={ background: circle }"
   },
-  "rebuses": {},
   "tiles": [
     [
       {
@@ -1887,6 +1886,7 @@ O..O.#O.O##O..O
       }
     ]
   },
+  "rebuses": {},
   "notes": ""
 }
 ```
@@ -1899,9 +1899,85 @@ O..O.#O.O##O..O
 
 This lib creates `xd` compatible files, but also extends the format in a way that allows for thinking of `xd` as a human-editor format.
 
+#### Structural
+
+- Headers - `xd` out of the box has an implicit order:
+
+  - Meta
+  - Grid
+  - Clues
+  - Notes (optional)
+
+  This library respects that behavior, but also supports a markdown header format whereby you could write an `xd` document like:
+
+  ```md
+  ## Meta
+
+  Title: Square
+  Author: Orta
+  Editor: Orta Therox
+  Date: 2021-03-16
+
+  ## Grid
+
+  BULB
+  OK#O
+  L##O
+  DESK
+
+  ## Clues
+
+  A1. Gardener's concern. ~ BULB
+  A4. A reasonable statement. ~ OK
+  A5. The office centerpiece. ~ DESK
+
+  D1. To \_ly go. ~ BOLD
+  D2. Bigger than britain. ~ UK
+  D3. A conscious tree. ~ BOOK
+  ```
+
+  This makes the sections a bit more explicit (and conceptually more user-friendly if you have not read the xd documentation ahead of seeing the file) and frees the order in which someone could write a document. Capitalization is ignored.
+
+- `Multiple clues` - You can add a secondary clue by repeating an answer:
+
+  ```
+  A1. Gardener's concern. ~ BULB
+  A1. Turned on with a flick. ~ BULB
+  A4. A reasonable statement. ~ OK
+  A4. All __. ~ OK
+  A5. The office centerpiece. ~ DESK
+  A5. Fried. ~ CRISP
+
+  D1. To _ly go. ~ BOLD
+  D1. When you want to make some text stronger. ~ BOLD
+  D2. Bigger than britain. ~ UK
+  D2. A union which left europe. ~ UK
+  D3. A conscious tree. ~ BOOK
+  D3. Registering with a restaurant. ~ BOOK
+  ```
+
+- `Markdown/HTML style comments`: In markdown you can write `<!--` and `-->` to comment out a section of your code. Our implementation is not _super_ smart:
+
+  <!-- prettier-ignore -->
+  ```html
+  ## Meta
+
+  <!--  WIP: Maybe it should be called rectangle? -->
+
+  Title: Square 
+  Author: Orta 
+  Editor: Orta Therox
+
+  <!--
+  Date: 2021-03-16
+  -->
+  ```
+
+  The key is that a line has to start with `<!--` and eventually the same or another line has to end with `-->`.
+
 #### Meta
 
-- TODO: [Shrodinger's Squares](https://www.xwordinfo.com/Quantum). It's likely that a special form of Rebus will work here, for example:
+- [Shrodinger's Squares](https://www.xwordinfo.com/Quantum). It's likely that a special form of Rebus will work here, for example:
 
   ```
   Rebus: 1=M|F
@@ -1915,27 +1991,17 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
 
   Indicates to the game engine that the rebus for `1` on the grid can be _either_ `M` or `F`, but that the side needs to be respected across all possible rebuses in the clue. So for `M1L2` you could have `MALE` and `FATE`but not `FALE` or `MATE`.
 
-- TODO: `Related: A4=A3=D6 D17=D12`
+- `Related: A4=A3=D6 D17=D12`
   Provide a way to tell the crossword engine that a particular set of answers relate to each other and should be highlighted somehow. There's a good argument that this can be parsed out of the clue's string instead, which is probably what others do.
 
 #### Notes
 
 - `## Design`
 
-  TODO: This is a WIP extension to describe the visual aspects of individual cells. The `xd` format uses lowercase letters in the grid to indicate a particular special trait (for example having a circle background.) We are looking at describing a more complex set of visual attributes, and so the puz -> xd parser uses the notes section to indicate the design attributes in a manner similar to how rebuses are handled.
-
-  We'd like to support options for:
-
-  - border colors
-  - border removal
-  - background colors
-
-  You can see an example of this in alpha-bits above.
-
-  Perhaps we really embrace markdown and use a style tag? This keeps the style info next to the design itself.
+  This is our WIP extension to describe the visual aspects of individual cells. The `xd` format uses lowercase letters in the grid to indicate a particular special trait (for example having a circle background.) We are looking at describing a more complex set of visual attributes, and so the puz -> xd parser uses a new section to indicate the design attributes in a manner similar to how rebuses are handled.
 
   ```md
-  ## DESIGN
+  ## Design
 
   <style>
   O { background: circle }
@@ -1958,15 +2024,9 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   ...O#...###.O..
   ```
 
-  or use a meta tag, but that keeps the distance between definitions and usage pretty far in the file:
-
-  ```
-  Design: S={ background: circle } O={ border-left:none }
-  ```
-
 - `## Start`
 
-  TODO: Instead of starting with an board, create a board with letters pre-filled. For example this crossword would start with "GO" "FOR" and "IT" already in:
+  Instead of starting with an board, create a board with letters pre-filled. For example this crossword would start with "GO" "FOR" and "IT" already in:
 
   ```
   ## Start
@@ -1990,7 +2050,7 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
 
 - `## Metapuzzle`
 
-  TODO: We'd like a way to describe a final question and a final answer for a puzzle. For example, in alpha-bits above the circles indicate a letter pattern and there could be a way to respond that you got the theme. For example:
+  We'd like a way to describe a final question and a final answer for a puzzle. For example, in alpha-bits above the circles indicate a letter pattern and there could be a way to respond that you got the theme. For example:
 
   ```md
   ## Metapuzzle

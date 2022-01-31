@@ -2,14 +2,11 @@
   "meta": {
     "title": "Speakerboxxx/The Love Below",
     "author": "Will Nediger",
-    "copyright": "",
+    "date": "Not set",
+    "editor": "Not set",
+    "copyright:": "",
     "description": "N/A",
-    "rebus": "0=BOSE 1=SONY",
-    "design": "O={ background: circle } S={ background: shade }"
-  },
-  "rebuses": {
-    "0": "BOSE",
-    "1": "SONY"
+    "rebus": "0=BOSE 1=SONY"
   },
   "tiles": [
     [
@@ -1592,5 +1589,171 @@
       }
     ]
   },
-  "notes": ""
+  "rebuses": {
+    "0": "BOSE",
+    "1": "SONY"
+  },
+  "notes": "",
+  "design": {
+    "styles": {
+      "O": {
+        "background": "circle"
+      },
+      "S": {
+        "background": "shade"
+      }
+    },
+    "positions": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ],
+      [
+        null,
+        null,
+        "O",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ],
+      [
+        null,
+        null,
+        "O",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ],
+      [
+        null,
+        null,
+        "O",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ],
+      [
+        null,
+        null,
+        "O",
+        "O",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ],
+      [
+        null,
+        null,
+        null,
+        "O",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ],
+      [
+        null,
+        null,
+        null,
+        "O",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ],
+      [
+        null,
+        null,
+        null,
+        "O",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ],
+      [
+        null,
+        null,
+        null,
+        "O",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ]
+    ]
+  }
 }

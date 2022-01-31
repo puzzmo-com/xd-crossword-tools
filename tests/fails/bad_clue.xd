@@ -1,11 +1,9 @@
-## Meta
-
 Title: Alpha-Bits
 Author: Drew Hodson
 Copyright: © 2021
 Description: N/A
+Design: O={ background: circle }
 
-## Grid
 
 AHAB..CUD.SERIF
 MADAM.ANY.ABODE
@@ -24,12 +22,11 @@ TARTS.ETA.DOONE
 UWAVE.WAX..YUTZ
 
 
-## Clues
 
 A1. Captain of the Pequod ~ AHAB
 A5. Food for second chance chewing ~ CUD
 A8. Font feature ~ SERIF
-A13. Palindromic address to a female ~ MADAM
+A13. 
 A15. ___ Way You Want It ~ ANY
 A16. Place often described as humble ~ ABODE
 A17. Flat two dimensional surface in geometry ~ PLANE
@@ -115,25 +112,3 @@ D67. Breeds such as Chihuahua or Pomeranian ~ TOY
 D68. Bega behind "Mambo No. 5" ~ LOU
 D69. Aardvark breakfast ~ ANT
 D70. Sonic ___ ~ SEZ
-
-## Notes
-
-## Design
-
-<style>O { background: circle }</style>
-
-O..O##O.O#.O..O
-.....#...#.....
-.....#...#.....
-####....#...###
-O..O#.O.O.#O..O
-.......#...#...
-......#........
-##...#O.O#...##
-........#......
-...#...#.......
-O..O#.O.O.#O..O
-###...#....####
-.....#...#.....
-.....#...#.....
-O..O.#O.O##O..O
