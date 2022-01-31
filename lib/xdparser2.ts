@@ -4,7 +4,7 @@ import type { Tile, CrosswordJSON } from "./types"
 import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "./xdparser2.compat"
 
 // These are all the sections supported by this parser
-const knownHeaders = ["grid", "clues", "notes", "meta", "design", "metapuzzle", "start"] as const
+const knownHeaders = ["grid", "clues", "notes", "meta", "metapuzzle", "start", "design", "design-style"] as const
 const mustHave = ["grid", "clues", "meta"] as const
 type ParseMode = typeof knownHeaders[number] | "comment" | "unknown"
 
@@ -18,6 +18,7 @@ type ParseMode = typeof knownHeaders[number] | "comment" | "unknown"
 export function xdParser(xd: string, strict = true): CrosswordJSON {
   let seenSections: string[] = []
   let preCommentState: ParseMode = "unknown"
+  let styleTagContent: undefined | string = undefined
 
   if (!xd) throw new EditorError("Not got anything to work with yet", 0)
   if (shouldConvertToExplicitHeaders(xd)) {
@@ -79,6 +80,10 @@ export function xdParser(xd: string, strict = true): CrosswordJSON {
       mode = parseModeForString(content, line, strict)
       seenSections.push(mode)
       continue
+    }
+
+    if (strict && trimmed.startsWith("## ")) {
+      throw new EditorError(`This header has spaces before it, this is likely an accidental indentation`, line)
     }
 
     // Allow for prefix whitespaces, mainly to make the tests more readable but it can't hurt the parser
@@ -145,15 +150,68 @@ export function xdParser(xd: string, strict = true): CrosswordJSON {
         })
         json.start.push(newLine)
       }
+
+      case "design": {
+        if (trimmed === "") continue
+        if (trimmed.startsWith("<style>")) {
+          // Single line
+          if (trimmed.endsWith("</style>")) {
+            styleTagContent = trimmed.split("<style>")[1].split("</style>")[0]
+            continue
+          }
+          // Multiline
+          styleTagContent = trimmed.split("<style>")[1] || ""
+          mode = "design-style"
+          continue
+        }
+
+        // Must be the grid, create a sparse array of the locations similar to
+        // the start section above
+        if (!json.design) json.design = { styles: {}, positions: [] }
+        const newLine: string[] = []
+        trimmed.split("").forEach((f, i) => {
+          if (f === " ") return
+          if (f === ".") return
+          if (f === "#") return
+          newLine[i] = f
+        })
+        json.design.positions.push(newLine)
+        continue
+      }
+
+      case "design-style": {
+        if (trimmed === "") continue
+        if (styleTagContent) {
+          styleTagContent += content.split("</style>")[0]
+        } else {
+          styleTagContent = content
+        }
+
+        if (content.includes("</style>")) {
+          mode = "design"
+        }
+      }
     }
   }
+
+  // Now that we have a mostly fleshed out file parse, do extra work to bring it all together
 
   // We can't reliably set the tiles until we have the rebus info, but we can't guarantee the order
   json.rebuses = getRebuses(json.meta.rebus || "")
   json.tiles = stringGridToTiles(json.rebuses, rawInput.tiles)
 
-  // The process above will make pretty white-spacey answers.
-  if (json.metapuzzle) json.metapuzzle.answer = json.metapuzzle.answer.trim()
+  if (json.design) {
+    if (!styleTagContent) {
+      const lineOfGrid = getLine(xd.toLowerCase(), "## design") as number
+      throw new EditorError(`The style tag is missing from this design section`, lineOfGrid)
+    }
+
+    json.design.styles = parseStyleCSSLike(styleTagContent, xd)
+  }
+
+  if (json.metapuzzle)
+    // The process above will make pretty white-spacey answers.
+    json.metapuzzle.answer = json.metapuzzle.answer.trim()
 
   // Update the clues with position info and the right meta
   const positions = getCluePositionsForBoard(json.tiles)
@@ -245,6 +303,8 @@ const parseModeForString = (lineText: string, num: number, strict: boolean): Par
     return "metapuzzle"
   } else if (title.startsWith("meta")) {
     return "meta"
+  } else if (title.startsWith("design")) {
+    return "design"
   }
 
   if (strict && !knownHeaders.includes(content.trim() as any)) {
@@ -315,4 +375,65 @@ function updateMetaPuzzleForLine(
   }
 
   return metapuzzle
+}
+
+// A mini character parser that jumps between an inner and outer state to
+// produce a lite version of the CSS syntax. Lots of tests in
+// xdparser.design.test.ts
+
+function parseStyleCSSLike(str: string, xd: string) {
+  const lineOfGrid = getLine(xd.toLowerCase(), "## design") as number
+
+  const styleSheet: Record<string, Record<string, string>> = {}
+
+  const parseMode = ["outer", "inner"] as const
+  let mode: typeof parseMode[number] = "outer"
+
+  let token = ""
+  let currentRuleName: undefined | string = undefined
+  let currentKeyName: undefined | string = undefined
+
+  for (let index = 0; index < str.length; index++) {
+    const letter = str.slice(index, index + 1)
+    if (mode === "outer") {
+      // Keep adding letters to the token until we hit a }
+      if (letter === "{") {
+        mode = "inner"
+        currentRuleName = token.trim()
+        token = ""
+        currentKeyName = undefined
+        if (currentRuleName.length > 1) {
+          throw new EditorError(`Cannot have a style rule which is longer than one character: got '${currentRuleName}'`, lineOfGrid)
+        }
+        continue
+      }
+    } else if (mode === "inner") {
+      if (letter === "}") {
+        mode = "outer"
+        if (!styleSheet[currentRuleName!]) styleSheet[currentRuleName!] = {}
+        // Handle a missing semi colon at the end of the inner style section
+        if (!styleSheet[currentRuleName!][currentKeyName!]) styleSheet[currentRuleName!][currentKeyName!.trim()] = token.trim()
+
+        token = ""
+        continue
+      } else if (letter === ":") {
+        currentKeyName = token.trim()
+        token = ""
+        continue
+      } else if (letter === ";") {
+        if (!styleSheet[currentRuleName!]) styleSheet[currentRuleName!] = {}
+        styleSheet[currentRuleName!][currentKeyName!.trim()] = token.trim()
+
+        token = ""
+        continue
+      }
+    }
+    token += letter
+  }
+
+  if (mode === "inner") {
+    throw new EditorError(`The style content likely does not have a closing '}'`, lineOfGrid)
+  }
+
+  return styleSheet
 }

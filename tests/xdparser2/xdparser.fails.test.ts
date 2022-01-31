@@ -11,6 +11,21 @@ describe("errors", () => {
   `)
   })
 
+  it("headers with indentation get a specific error", () => {
+    const xd = `
+  ## Meta
+asda asdasda
+  `
+
+    expect(throwsWithError(xd)).toMatchInlineSnapshot(`
+{
+  "line": 1,
+  "name": "XDError",
+  "rawMessage": "This header has spaces before it, this is likely an accidental indentation",
+}
+`)
+  })
+
   it("meta needs the colon", () => {
     const xd = `
 ## Meta

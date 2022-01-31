@@ -20,9 +20,15 @@ export type CrosswordJSON = {
 
   /** A Key : Value list of rebus tiles */
   rebuses: Record<string, string>
+  /** An after the puzzle is done question */
   metapuzzle?: {
     clue: string
     answer: string
+  }
+  /** Aesthetics */
+  design?: {
+    styles: Record<string, any>
+    positions: string[][]
   }
 }
 
