@@ -46,17 +46,21 @@ export function puzToXD(buffer: ArrayBuffer) {
   }
 
   const visuals = generatePuzVisualsInfo(file)
-  meta.push(...visuals.meta)
   notes.push(...visuals.notes)
 
-  return `${meta.join("\n")}
+  return `## Meta
 
+${meta.join("\n")}
+
+## Grid
 
 ${board}
 
+## Clues
+
 ${across}
 
-${down}${notes.length ? "\n\n\n" + notes.join("\n") : ""}`
+${down}${notes.length ? "\n\n## Notes\n\n" + notes.join("\n") : ""}`
 }
 
 export const stringGridToTiles = (strArr: string[][]): CrosswordJSON["tiles"] => {
@@ -124,18 +128,18 @@ const generatePuzVisualsInfo = (file: Puz2JSONResult) => {
   const meta: string[] = []
   const notes: string[] = []
 
-  let metaBuiltIn = ""
+  let styleContent = ""
   if (file.circles.length) {
-    metaBuiltIn = "Design: O={ background: circle }"
+    styleContent = "O { background: circle }"
     if (file.shades.length) {
-      metaBuiltIn += " S={ background: shade }"
+      styleContent += " S { background: shade }"
     }
   } else if (file.shades.length) {
-    metaBuiltIn = "Design: S={ background: shade }"
+    styleContent = "S { background: shade }"
   }
 
-  if (metaBuiltIn.length) {
-    meta.push(metaBuiltIn)
+  if (styleContent.length) {
+    meta.push(styleContent)
     let design = ""
     let i = -1
     file.grid.forEach((line) => {
@@ -154,12 +158,12 @@ const generatePuzVisualsInfo = (file: Puz2JSONResult) => {
       })
       design += "\n"
     })
-    notes.push("## DESIGN\n")
+    notes.push("## Design\n")
+    notes.push(`<style>${styleContent}</style>\n`)
     notes.push(design)
   }
 
   return {
-    meta,
     notes,
   }
 }

@@ -5,8 +5,7 @@
     "date": "Not set",
     "editor": "Not set",
     "copyright": "© 2021",
-    "description": "N/A",
-    "design": "O={ background: circle }"
+    "description": "N/A"
   },
   "tiles": [
     [
@@ -1693,5 +1692,103 @@
     ]
   },
   "rebuses": {},
-  "notes": ""
+  "notes": "",
+  "design": {
+    "styles": {
+      "O": {
+        "background": "circle"
+      }
+    },
+    "positions": [
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ],
+      [],
+      [],
+      [],
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ],
+      [],
+      [],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O",
+        null,
+        "O"
+      ],
+      [],
+      [],
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ],
+      [],
+      [],
+      [],
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ]
+    ]
+  }
 }

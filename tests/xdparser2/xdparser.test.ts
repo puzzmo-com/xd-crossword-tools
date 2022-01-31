@@ -106,7 +106,7 @@ sure thing. This is legal in markdown,",
 })
 
 describe("start", () => {
-  it("can handle the start design", () => {
+  it("can handle the start", () => {
     const xd = `
 ## Meta
 ## Notes

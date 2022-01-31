@@ -149,6 +149,7 @@ export function xdParser(xd: string, strict = true): CrosswordJSON {
           newLine[i] = f
         })
         json.start.push(newLine)
+        continue
       }
 
       case "design": {
@@ -190,6 +191,7 @@ export function xdParser(xd: string, strict = true): CrosswordJSON {
         if (content.includes("</style>")) {
           mode = "design"
         }
+        continue
       }
     }
   }

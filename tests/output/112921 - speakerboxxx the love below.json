@@ -6,8 +6,7 @@
     "editor": "Not set",
     "copyright:": "",
     "description": "N/A",
-    "rebus": "0=BOSE 1=SONY",
-    "design": "O={ background: circle } S={ background: shade }"
+    "rebus": "0=BOSE 1=SONY"
   },
   "tiles": [
     [
@@ -1594,5 +1593,167 @@
     "0": "BOSE",
     "1": "SONY"
   },
-  "notes": ""
+  "notes": "",
+  "design": {
+    "styles": {
+      "O": {
+        "background": "circle"
+      },
+      "S": {
+        "background": "shade"
+      }
+    },
+    "positions": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ],
+      [
+        null,
+        null,
+        "O",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ],
+      [
+        null,
+        null,
+        "O",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ],
+      [
+        null,
+        null,
+        "O",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ],
+      [
+        null,
+        null,
+        "O",
+        "O",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ],
+      [
+        null,
+        null,
+        null,
+        "O",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ],
+      [
+        null,
+        null,
+        null,
+        "O",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ],
+      [
+        null,
+        null,
+        null,
+        "O",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ],
+      [
+        null,
+        null,
+        null,
+        "O",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O"
+      ]
+    ]
+  }
 }

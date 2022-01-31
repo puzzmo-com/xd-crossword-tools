@@ -54,7 +54,7 @@ asda asdasda
 {
   "line": 2,
   "name": "XDError",
-  "rawMessage": "Two # headers are reserved for the system, they can only be: Grid, Clues, Notes, Meta, Design, Metapuzzle & Start. Got 'Orta's extension'. You can use ### headers for inside notes.",
+  "rawMessage": "Two # headers are reserved for the system, they can only be: Grid, Clues, Notes, Meta, Metapuzzle, Start, Design & Design-style. Got 'Orta's extension'. You can use ### headers for inside notes.",
 }
 `)
   })

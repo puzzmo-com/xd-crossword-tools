@@ -1998,17 +1998,7 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
 
 - `## Design`
 
-  TODO: This is a WIP extension to describe the visual aspects of individual cells. The `xd` format uses lowercase letters in the grid to indicate a particular special trait (for example having a circle background.) We are looking at describing a more complex set of visual attributes, and so the puz -> xd parser uses the notes section to indicate the design attributes in a manner similar to how rebuses are handled.
-
-  We'd like to support options for:
-
-  - border colors
-  - border removal
-  - background colors
-
-  You can see an example of this in alpha-bits above.
-
-  Perhaps we really embrace markdown and use a style tag? This keeps the style info next to the design itself.
+  This is our WIP extension to describe the visual aspects of individual cells. The `xd` format uses lowercase letters in the grid to indicate a particular special trait (for example having a circle background.) We are looking at describing a more complex set of visual attributes, and so the puz -> xd parser uses a new section to indicate the design attributes in a manner similar to how rebuses are handled.
 
   ```md
   ## Design
@@ -2032,12 +2022,6 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   ...O#.....#.O..
   ...O#....##.O..
   ...O#...###.O..
-  ```
-
-  or use a meta tag, but that keeps the distance between definitions and usage pretty far in the file:
-
-  ```
-  Design: S={ background: circle } O={ border-left:none }
   ```
 
 - `## Start`
