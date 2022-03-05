@@ -48,7 +48,7 @@ export function puzToXD(buffer: ArrayBuffer) {
   const visuals = generatePuzVisualsInfo(file)
   notes.push(...visuals.notes)
 
-  return `## Meta
+  return `## Metadata
 
 ${meta.join("\n")}
 

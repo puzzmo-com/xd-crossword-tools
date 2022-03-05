@@ -4,8 +4,8 @@ import type { Tile, CrosswordJSON } from "./types"
 import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "./xdparser2.compat"
 
 // These are all the sections supported by this parser
-const knownHeaders = ["grid", "clues", "notes", "meta", "metapuzzle", "start", "design", "design-style"] as const
-const mustHave = ["grid", "clues", "meta"] as const
+const knownHeaders = ["grid", "clues", "notes", "metadata", "metapuzzle", "start", "design", "design-style"] as const
+const mustHave = ["grid", "clues", "metadata"] as const
 type ParseMode = typeof knownHeaders[number] | "comment" | "unknown"
 
 /**
@@ -119,7 +119,8 @@ export function xdParser(xd: string, strict = true): CrosswordJSON {
       }
 
       // Trivial key map
-      case "meta": {
+      // @ts-ignore backwards compat
+      case "metadata": {
         if (trimmed === "") continue
         if (!trimmed.includes(":")) throw new EditorError(`Could not find a ':' separating the meta item's name from its value`, line)
 
@@ -303,8 +304,8 @@ const parseModeForString = (lineText: string, num: number, strict: boolean): Par
     return "start"
   } else if (title.startsWith("metapuzzle")) {
     return "metapuzzle"
-  } else if (title.startsWith("meta")) {
-    return "meta"
+  } else if (title.startsWith("metadata")) {
+    return "metadata"
   } else if (title.startsWith("design")) {
     return "design"
   }

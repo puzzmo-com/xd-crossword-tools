@@ -1,8 +1,8 @@
 # xd-crossword-tools
 
-Tools for taking different crossword file formats and converting them to xd. Consolidates a few older JS libraries into a single repo with no dependencies, converts them all to TypeScript, ensures they run in a browser and Node, then adds some tests for them.
-
 [xd](https://github.com/century-arcade/xd) is a text-based crossword format which is easy for humans to read and reason about.
+
+This repo provides tools for taking different crossword file formats and converting them to xd. Conforms to the v2 xd spec, and then has a few editor-experience extensions. Consolidates a few older JS libraries into a single repo with no dependencies, converts them all to TypeScript, ensures they run in a browser and Node, then adds some tests for them.
 
 ### .xd to .JSON
 
@@ -48,7 +48,7 @@ Their .puz file turns into this xd:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.xd) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.xd -->
 ```xd
-## Meta
+## Metadata
 
 Title: Alpha-Bits
 Author: Drew Hodson
@@ -2011,7 +2011,7 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   This library respects that behavior, but also supports a markdown header format whereby you could write an `xd` document like:
 
   ```md
-  ## Meta
+  ## Metadata
 
   Title: Square
   Author: Orta
@@ -2060,7 +2060,7 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
 
   <!-- prettier-ignore -->
   ```html
-  ## Meta
+  ## Metadata
 
   <!--  WIP: Maybe it should be called rectangle? -->
 
@@ -2075,7 +2075,7 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
 
   The key is that a line has to start with `<!--` and eventually the same or another line has to end with `-->`.
 
-#### Meta
+#### Metadata
 
 - [Shrodinger's Squares](https://www.xwordinfo.com/Quantum). It's likely that a special form of Rebus will work here, for example:
 

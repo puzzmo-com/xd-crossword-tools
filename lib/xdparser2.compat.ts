@@ -1,6 +1,6 @@
 import { EditorError } from "./EditorError"
 
-export const shouldConvertToExplicitHeaders = (xd: string) => !xd.toLowerCase().includes("## meta")
+export const shouldConvertToExplicitHeaders = (xd: string) => !xd.toLowerCase().includes("## metadata")
 
 export const convertImplicitOrderedXDToExplicitHeaders = (xd: string) => {
   const parts = xd.split(/^$^$/gm).filter((s) => s !== "\n")
@@ -24,7 +24,7 @@ export const convertImplicitOrderedXDToExplicitHeaders = (xd: string) => {
     
 ${notes.trim()}`
 
-  return `## Meta
+  return `## Metadata
 
 ${parts[0].trim()}
 
