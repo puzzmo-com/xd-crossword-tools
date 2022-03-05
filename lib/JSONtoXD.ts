@@ -31,7 +31,7 @@ export const JSONToXD = (json: CrosswordJSON): string => {
     .map((clue) => {
       let line = `A${clue.number}. ${clue.main} ~ ${clue.answer}`
       if (clue.second) {
-        line += `A${clue.number}. ${clue.second} ~ ${clue.second}`
+        line += `\nA${clue.number}. ${clue.second} ~ ${clue.answer}`
       }
       return line
     })
@@ -42,7 +42,7 @@ export const JSONToXD = (json: CrosswordJSON): string => {
     .map((clue) => {
       let line = `D${clue.number}. ${clue.main} ~ ${clue.answer}`
       if (clue.second) {
-        line += `D${clue.number}. ${clue.second} ~ ${clue.second}`
+        line += `\nD${clue.number}. ${clue.second} ~ ${clue.answer}`
       }
       return line
     })

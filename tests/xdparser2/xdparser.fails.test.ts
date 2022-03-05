@@ -19,9 +19,9 @@ asda asdasda
 
     expect(throwsWithError(xd)).toMatchInlineSnapshot(`
 {
-  "line": 0,
+  "line": 1,
   "name": "XDError",
-  "rawMessage": "Too few un-titled sections - expected 4 or more sections, got 1. Sections are separated by two lines.",
+  "rawMessage": "This header has spaces before it, this is likely an accidental indentation",
 }
 `)
   })
@@ -34,9 +34,9 @@ asda asdasda
 
     expect(throwsWithError(xd)).toMatchInlineSnapshot(`
 {
-  "line": 0,
+  "line": 2,
   "name": "XDError",
-  "rawMessage": "Too few un-titled sections - expected 4 or more sections, got 1. Sections are separated by two lines.",
+  "rawMessage": "Could not find a ':' separating the meta item's name from its value",
 }
 `)
   })
@@ -52,9 +52,9 @@ asda asdasda
 
     expect(throwsWithError(xd, true)).toMatchInlineSnapshot(`
 {
-  "line": 0,
+  "line": 2,
   "name": "XDError",
-  "rawMessage": "Too few un-titled sections - expected 4 or more sections, got 1. Sections are separated by two lines.",
+  "rawMessage": "Two # headers are reserved for the system, they can only be: Grid, Clues, Notes, Metadata, Metapuzzle, Start, Design & Design-style. Got 'Orta's extension'. You can use ### headers for inside notes.",
 }
 `)
   })
@@ -67,9 +67,9 @@ this line needs a colon`
 
     expect(throwsWithError(xd)).toMatchInlineSnapshot(`
 {
-  "line": 0,
+  "line": 3,
   "name": "XDError",
-  "rawMessage": "Too few un-titled sections - expected 4 or more sections, got 2. Sections are separated by two lines.",
+  "rawMessage": "Could not find a ':' separating the meta item's name from its value",
 }
 `)
   })
@@ -84,9 +84,9 @@ it("checks that the grid is set up", () => {
 
   expect(throwsWithError(xd)).toMatchInlineSnapshot(`
 {
-  "line": 0,
+  "line": 2,
   "name": "XDError",
-  "rawMessage": "Too few un-titled sections - expected 4 or more sections, got 1. Sections are separated by two lines.",
+  "rawMessage": "This grid section does not have a working grid",
 }
 `)
 })
@@ -101,7 +101,7 @@ it("checks that all the sections are there", () => {
 {
   "line": 0,
   "name": "XDError",
-  "rawMessage": "Too few un-titled sections - expected 4 or more sections, got 1. Sections are separated by two lines.",
+  "rawMessage": "This crossword has missing sections: 'Clues' - saw Metadata & Grid",
 }
 `)
 })
@@ -117,9 +117,9 @@ a2. asda
 
   expect(throwsWithError(xd)).toMatchInlineSnapshot(`
 {
-  "line": 0,
+  "line": 5,
   "name": "XDError",
-  "rawMessage": "Too few un-titled sections - expected 4 or more sections, got 2. Sections are separated by two lines.",
+  "rawMessage": "This clue does not match the format of 'A[num]. [clue] ~ [answer]'",
 }
 `)
 })

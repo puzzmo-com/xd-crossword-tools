@@ -1,3 +1,4 @@
+import { readdirSync, readFileSync } from "fs"
 import { xdParser } from "../../lib/xdparser2"
 
 it("Smallest, legal but totally illogical example", () => {
@@ -403,3 +404,13 @@ f
 
   expect(xdParser(xd, false).notes).toContain("67568756yd")
 })
+
+// it("notes are a NOOP", () => {
+//   const xd = readFileSync("./tests/xdparser2/inputs/example.xd", "utf8")
+//   const json = xdParser(xd, false)
+
+//   const length = json.tiles[0].length
+//   for (const tiles of json.tiles) {
+//     expect(tiles.length).toEqual(length)
+//   }
+// })

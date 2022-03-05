@@ -306,6 +306,9 @@ const parseModeForString = (lineText: string, num: number, strict: boolean): Par
     return "metapuzzle"
   } else if (title.startsWith("metadata")) {
     return "metadata"
+  } else if (title.trim() === "meta") {
+    console.log("xd-crossword-tools: Shimmed '### meta' to '### metadata' - this will be removed in the future")
+    return "metadata"
   } else if (title.startsWith("design")) {
     return "design"
   }
