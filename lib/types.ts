@@ -13,6 +13,7 @@ export type CrosswordJSON = {
     across: Clue[]
     down: Clue[]
   }
+  /** Anything which lives in the notes section */
   notes: string
 
   /** A sparse array of pre-filled letters */
@@ -27,7 +28,9 @@ export type CrosswordJSON = {
   }
   /** Aesthetics */
   design?: {
+    /** CSS-like selectors */
     styles: Record<string, any>
+    /** A sparse array of strings for where the design elements should exist */
     positions: string[][]
   }
 }
