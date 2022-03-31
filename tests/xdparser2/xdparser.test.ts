@@ -307,27 +307,27 @@ D3. Registering with a restaurant. ~ BOOK
 [
   {
     "first": "Gardener's concern.",
-    "second": "BULB",
+    "second": "Turned on with a flick.",
   },
   {
     "first": "A reasonable statement.",
-    "second": "OK",
+    "second": "All __.",
   },
   {
     "first": "The office centerpiece.",
-    "second": "CRISP",
+    "second": "Fried.",
   },
   {
     "first": "To _ly go.",
-    "second": "BOLD",
+    "second": "When you want to make some text stronger.",
   },
   {
     "first": "Bigger than britain.",
-    "second": "UK",
+    "second": "A union which left europe.",
   },
   {
     "first": "A conscious tree.",
-    "second": "BOOK",
+    "second": "Registering with a restaurant.",
   },
 ]
 `)

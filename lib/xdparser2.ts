@@ -111,7 +111,7 @@ export function xdParser(xd: string, strict = true): CrosswordJSON {
         const key = `${clue.dir}${clue.num}`
         const existing = rawInput.clues.get(key)
         if (existing) {
-          existing.question2 = clue.answer
+          existing.question2 = clue.question
         } else {
           rawInput.clues.set(key, clue)
         }
@@ -267,7 +267,8 @@ const clueFromLine = (line: string, num: number) => {
   }
 
   const parts = line.match(clueRegex)
-  if (!parts) throw new EditorError(`This clue does not match the format of '${expectedPrefix}[num]. [clue] ~ [answer]'`, num)
+  if (!parts)
+    throw new EditorError(`The clue '${line.trim()}' does not match the format of '${expectedPrefix}[num]. [clue] ~ [answer]'`, num)
 
   if (parts.length !== 4)
     throw new EditorError(
