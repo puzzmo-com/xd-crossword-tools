@@ -1,5 +1,5 @@
 {
-  "line": 77,
-  "rawMessage": "The clue 'D8NG' does not match the format of 'D[num]. [clue] ~ [answer]'",
+  "line": 115,
+  "rawMessage": "The style tag is missing from this design section",
   "name": "XDError"
 }

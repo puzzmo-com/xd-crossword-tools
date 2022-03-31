@@ -1,9 +1,23 @@
-## Metadata
+// Careful of this resolving to the .js version!
+import { puzToXD, xdToJSON } from "../index"
 
-Title: Alpha-Bits
-Author: Drew Hodson
-Copyright: © 2021
-Description: N/A
+import { readFileSync } from "fs"
+import { JSONToXD } from "../lib/JSONtoXD"
+
+it("can handle going back to an xd file", () => {
+  const puz = readFileSync(`./tests/puz/alpha-bits.puz`)
+  const xd = puzToXD(puz)
+  const json = xdToJSON(xd)
+  const newXD = JSONToXD(json)
+  expect(newXD).toMatchInlineSnapshot(`
+"## Metadata
+
+title: Alpha-Bits
+author: Drew Hodson
+date: Not set
+editor: Not set
+copyright: © 2021
+description: N/A
 
 ## Grid
 
@@ -82,7 +96,7 @@ D12. Peat-accumulating wetland ~ FEN
 D14. The ___, NY art museum ~ MET
 D21. ___Fans ~ ONLY
 D22. Friends, Romans, countrymen, lend me your... ~ EARS
-D23. "Friend of Dorothy" ~ GAY
+D23. \\"Friend of Dorothy\\" ~ GAY
 D24. We ___ the Champions ~ ARE
 D25. Father of Spider-Man ~ STANLEE
 D26. What a certain applicant becomes ~ HIREE
@@ -111,6 +125,31 @@ D63. The only Patrol I trust ~ PAW
 D64. Smart savings plan, briefly ~ IRA
 D65. Fresh ~ NEW
 D67. Breeds such as Chihuahua or Pomeranian ~ TOY
-D68. Bega behind "Mambo No. 5" ~ LOU
+D68. Bega behind \\"Mambo No. 5\\" ~ LOU
 D69. Aardvark breakfast ~ ANT
 D70. Sonic ___ ~ SEZ
+
+## Design
+
+<style>
+O { background: circle } 
+</style>
+
+O..O##O.O#.O..O
+.....#...#.....
+.....#...#.....
+####....#...###
+O..O#.O.O.#O..O
+.......#...#...
+......#........
+##...#O.O#...##
+........#......
+...#...#.......
+O..O#.O.O.#O..O
+###...#....####
+.....#...#.....
+.....#...#.....
+O..O.#O.O##O..O
+"
+`)
+})

@@ -1,8 +1,9 @@
+import { readdirSync, readFileSync } from "fs"
 import { xdParser } from "../../lib/xdparser2"
 
 it("Smallest, legal but totally illogical example", () => {
   const xd = `
-## Meta
+## Metadata
 ## Notes
 ## Grid
 ## Clues
@@ -14,7 +15,7 @@ it("Smallest, legal but totally illogical example", () => {
 describe("meta", () => {
   it("grabs the details from the meta", () => {
     const xd = `
-## Meta
+## Metadata
 Rebus: 1=M&F 2=L&T 3=M|F
 Title: Alpha-Bits
 Author: Drew Hodson
@@ -48,7 +49,7 @@ SomethingWithColon: here's an example: of something
 describe("meta", () => {
   it("grabs the details from the meta", () => {
     const xd = `
-## Meta
+## Metadata
 Rebus: 1=M&F 2=L&T 3=M|F
 Title: Alpha-Bits
 Author: Drew Hodson
@@ -82,7 +83,7 @@ SomethingWithColon: here's an example: of something
 describe("metapuzzle", () => {
   it("can handle the metapuzzle", () => {
     const xd = `
-## Meta
+## Metadata
 ## Notes
 ## Grid
 ## Clues
@@ -108,7 +109,7 @@ sure thing. This is legal in markdown,",
 describe("start", () => {
   it("can handle the start", () => {
     const xd = `
-## Meta
+## Metadata
 ## Notes
 ## Grid
 ## Clues
@@ -389,7 +390,7 @@ D3. A conscious tree. ~ BOOK
 
 it("notes are a NOOP", () => {
   const xd = `
-## Meta
+## Metadata
 ## Notes
 Asdasdfasfdsgdsg
 df
@@ -403,3 +404,13 @@ f
 
   expect(xdParser(xd, false).notes).toContain("67568756yd")
 })
+
+// it("notes are a NOOP", () => {
+//   const xd = readFileSync("./tests/xdparser2/inputs/example.xd", "utf8")
+//   const json = xdParser(xd, false)
+
+//   const length = json.tiles[0].length
+//   for (const tiles of json.tiles) {
+//     expect(tiles.length).toEqual(length)
+//   }
+// })

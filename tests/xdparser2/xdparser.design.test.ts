@@ -138,7 +138,7 @@ OO { background: circle }
 })
 
 const wrapStyle = (style: string) => `
-## Meta
+## Metadata
 ## Grid
 ## Design
 
