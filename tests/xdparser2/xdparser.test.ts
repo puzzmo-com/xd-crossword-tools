@@ -214,6 +214,7 @@ D3. A conscious tree. ~ BOOK
         "index": 0,
       },
       "second": undefined,
+      "splits": [],
     },
     {
       "answer": "OK",
@@ -224,6 +225,7 @@ D3. A conscious tree. ~ BOOK
         "index": 1,
       },
       "second": undefined,
+      "splits": [],
     },
     {
       "answer": "DESK",
@@ -234,6 +236,7 @@ D3. A conscious tree. ~ BOOK
         "index": 3,
       },
       "second": undefined,
+      "splits": [],
     },
   ],
   "down": [
@@ -246,6 +249,7 @@ D3. A conscious tree. ~ BOOK
         "index": 0,
       },
       "second": undefined,
+      "splits": [],
     },
     {
       "answer": "UK",
@@ -256,6 +260,7 @@ D3. A conscious tree. ~ BOOK
         "index": 0,
       },
       "second": undefined,
+      "splits": [],
     },
     {
       "answer": "BOOK",
@@ -266,6 +271,7 @@ D3. A conscious tree. ~ BOOK
         "index": 0,
       },
       "second": undefined,
+      "splits": [],
     },
   ],
 }
