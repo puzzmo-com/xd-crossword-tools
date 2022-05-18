@@ -214,6 +214,7 @@ D3. A conscious tree. ~ BOOK
         "index": 0,
       },
       "second": undefined,
+      "splits": [],
     },
     {
       "answer": "OK",
@@ -224,6 +225,7 @@ D3. A conscious tree. ~ BOOK
         "index": 1,
       },
       "second": undefined,
+      "splits": [],
     },
     {
       "answer": "DESK",
@@ -234,6 +236,7 @@ D3. A conscious tree. ~ BOOK
         "index": 3,
       },
       "second": undefined,
+      "splits": [],
     },
   ],
   "down": [
@@ -246,6 +249,7 @@ D3. A conscious tree. ~ BOOK
         "index": 0,
       },
       "second": undefined,
+      "splits": [],
     },
     {
       "answer": "UK",
@@ -256,6 +260,7 @@ D3. A conscious tree. ~ BOOK
         "index": 0,
       },
       "second": undefined,
+      "splits": [],
     },
     {
       "answer": "BOOK",
@@ -266,6 +271,7 @@ D3. A conscious tree. ~ BOOK
         "index": 0,
       },
       "second": undefined,
+      "splits": [],
     },
   ],
 }
@@ -333,6 +339,78 @@ D3. Registering with a restaurant. ~ BOOK
 ]
 `)
   })
+
+  it("parses splitCharacter correctly", () => {
+    const xd = `
+Title: Square
+Author: Orta
+Editor: Orta Therox
+Date: 2021-03-16
+SplitCharacter: |
+
+
+OKGO
+H##B
+O##J
+H##E
+O##C
+H##T
+
+
+A1. Band with two words. ~ OK|GO
+
+D1. Reverse santa. ~ OH|OH|OH
+D2. A thing. ~ OBJECT
+`
+
+    const { clues } = xdParser(xd)
+    expect(clues).toMatchInlineSnapshot(`
+{
+  "across": [
+    {
+      "answer": "OKGO",
+      "main": "Band with two words.",
+      "number": 1,
+      "position": {
+        "col": 0,
+        "index": 0,
+      },
+      "second": undefined,
+      "splits": [
+        1,
+      ],
+    },
+  ],
+  "down": [
+    {
+      "answer": "OHOHOH",
+      "main": "Reverse santa.",
+      "number": 1,
+      "position": {
+        "col": 0,
+        "index": 0,
+      },
+      "second": undefined,
+      "splits": [
+        1,
+        4,
+      ],
+    },
+    {
+      "answer": "OBJECT",
+      "main": "A thing.",
+      "number": 2,
+      "position": {
+        "col": 3,
+        "index": 0,
+      },
+      "second": undefined,
+      "splits": [],
+    },
+  ],
+}
+`)
+  })
 })
 
 describe("comments", () => {
@@ -374,7 +452,7 @@ A1. Gardener's concern. ~ BULB
 A4. A reasonable statement. ~ OK
 A5. The office centerpiece. ~ DESK
 
-<!-- A multiline comment 
+<!-- A multiline comment
 A1. Gardener's concern. ~ BULB
 A4. A reasonable statement. ~ OK
 A5. The office centerpiece. ~ DESK

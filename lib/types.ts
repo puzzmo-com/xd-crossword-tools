@@ -5,7 +5,9 @@ export type CrosswordJSON = {
     author: string
     editor: string
     date: string
+    splitCharacter?: string
   } & Record<string, string>
+
   /** 2 dimensional array of tiles */
   tiles: Tile[][]
   /** Derived clue info with positioning for the xword */
@@ -73,6 +75,7 @@ export interface Clue {
   number: number
   answer: string
   position: Position
+  splits?: number[]
 }
 
 export interface Cursor {

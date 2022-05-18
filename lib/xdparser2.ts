@@ -3,6 +3,30 @@ import { EditorError } from "./EditorError"
 import type { Tile, CrosswordJSON } from "./types"
 import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "./xdparser2.compat"
 
+/**
+ * Given an answer that might contain splits, and a split character, return
+ * an array of all the split locations (where the split is to the right of the array value),
+ * as well as the answer without the splits..
+ *
+ * @param answerWithSplits unparsed answer string
+ * @param splitCharacter character to split on
+ * @returns an array of split locations, and the answer without splits
+ */
+function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string): { answer: string; splits?: number[] } {
+  if (!splitCharacter) return { answer: answerWithSplits, splits: [] }
+  const splits = []
+  let answer = ""
+  for (var i = 0; i < answerWithSplits.length; i++) {
+    if (answerWithSplits.charAt(i) === splitCharacter) {
+      splits.push(i - 1)
+      continue
+    }
+    answer += answerWithSplits.charAt(i)
+  }
+
+  return { answer, splits }
+}
+
 // These are all the sections supported by this parser
 const knownHeaders = ["grid", "clues", "notes", "metadata", "metapuzzle", "start", "design", "design-style"] as const
 const mustHave = ["grid", "clues", "metadata"] as const
@@ -126,7 +150,8 @@ export function xdParser(xd: string, strict = true): CrosswordJSON {
 
         const lineParts = trimmed.split(": ")
         const key = lineParts.shift()!
-        json.meta[key.toLowerCase()] = lineParts.join(": ")
+        const value = lineParts.join(": ")
+        json.meta[key.toLowerCase()] = value
         continue
       }
 
@@ -221,12 +246,15 @@ export function xdParser(xd: string, strict = true): CrosswordJSON {
   for (const keyClue of rawInput.clues) {
     const [_, clue] = keyClue
     const arr = clue.dir === "A" ? json.clues.across : json.clues.down
+
+    const { answer, splits } = parseSplitsFromAnswer(clue.answer, json.meta.splitcharacter)
     arr.push({
       main: clue.question,
       second: clue.question2,
-      answer: clue.answer,
+      answer: answer,
       number: clue.num,
       position: positions[clue.num],
+      splits: splits,
     })
   }
 

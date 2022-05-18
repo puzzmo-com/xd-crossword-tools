@@ -902,7 +902,8 @@
         "position": {
           "col": 0,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Food for second chance chewing",
@@ -911,7 +912,8 @@
         "position": {
           "col": 6,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Font feature",
@@ -920,7 +922,8 @@
         "position": {
           "col": 10,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Palindromic address to a female",
@@ -929,7 +932,8 @@
         "position": {
           "col": 0,
           "index": 1
-        }
+        },
+        "splits": []
       },
       {
         "main": "___ Way You Want It",
@@ -938,7 +942,8 @@
         "position": {
           "col": 6,
           "index": 1
-        }
+        },
+        "splits": []
       },
       {
         "main": "Place often described as humble",
@@ -947,7 +952,8 @@
         "position": {
           "col": 10,
           "index": 1
-        }
+        },
+        "splits": []
       },
       {
         "main": "Flat two dimensional surface in geometry",
@@ -956,7 +962,8 @@
         "position": {
           "col": 0,
           "index": 2
-        }
+        },
+        "splits": []
       },
       {
         "main": "Grim homophone of 7D",
@@ -965,7 +972,8 @@
         "position": {
           "col": 6,
           "index": 2
-        }
+        },
+        "splits": []
       },
       {
         "main": "Off",
@@ -974,7 +982,8 @@
         "position": {
           "col": 10,
           "index": 2
-        }
+        },
+        "splits": []
       },
       {
         "main": "Heading for some lists",
@@ -983,7 +992,8 @@
         "position": {
           "col": 4,
           "index": 3
-        }
+        },
+        "splits": []
       },
       {
         "main": "Kanye West is famous for his",
@@ -992,7 +1002,8 @@
         "position": {
           "col": 9,
           "index": 3
-        }
+        },
+        "splits": []
       },
       {
         "main": "Laceration",
@@ -1001,7 +1012,8 @@
         "position": {
           "col": 0,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "Alias of Twitch star Richard Tyler Blevins",
@@ -1010,7 +1022,8 @@
         "position": {
           "col": 5,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "Capsize",
@@ -1019,7 +1032,8 @@
         "position": {
           "col": 11,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "Piece of clothing or print",
@@ -1028,7 +1042,8 @@
         "position": {
           "col": 0,
           "index": 5
-        }
+        },
+        "splits": []
       },
       {
         "main": "Evangelical school in Tulsa, OK",
@@ -1037,7 +1052,8 @@
         "position": {
           "col": 8,
           "index": 5
-        }
+        },
+        "splits": []
       },
       {
         "main": "___-eyed",
@@ -1046,7 +1062,8 @@
         "position": {
           "col": 12,
           "index": 5
-        }
+        },
+        "splits": []
       },
       {
         "main": "Annual",
@@ -1055,7 +1072,8 @@
         "position": {
           "col": 0,
           "index": 6
-        }
+        },
+        "splits": []
       },
       {
         "main": "The stamp with the upside down airplane is a famous one",
@@ -1064,7 +1082,8 @@
         "position": {
           "col": 7,
           "index": 6
-        }
+        },
+        "splits": []
       },
       {
         "main": "With 42A and Marcus, a luxury department store chain",
@@ -1073,7 +1092,8 @@
         "position": {
           "col": 2,
           "index": 7
-        }
+        },
+        "splits": []
       },
       {
         "main": "41A continued",
@@ -1082,7 +1102,8 @@
         "position": {
           "col": 6,
           "index": 7
-        }
+        },
+        "splits": []
       },
       {
         "main": "Lush",
@@ -1091,7 +1112,8 @@
         "position": {
           "col": 10,
           "index": 7
-        }
+        },
+        "splits": []
       },
       {
         "main": "The Mayan one ended in 2012",
@@ -1100,7 +1122,8 @@
         "position": {
           "col": 0,
           "index": 8
-        }
+        },
+        "splits": []
       },
       {
         "main": "What a child often does to their shoes",
@@ -1109,7 +1132,8 @@
         "position": {
           "col": 9,
           "index": 8
-        }
+        },
+        "splits": []
       },
       {
         "main": "Vanilla ___",
@@ -1118,7 +1142,8 @@
         "position": {
           "col": 0,
           "index": 9
-        }
+        },
+        "splits": []
       },
       {
         "main": "Maligned cigarette ingredient",
@@ -1127,7 +1152,8 @@
         "position": {
           "col": 4,
           "index": 9
-        }
+        },
+        "splits": []
       },
       {
         "main": "Frequent cause for a new tire",
@@ -1136,7 +1162,8 @@
         "position": {
           "col": 8,
           "index": 9
-        }
+        },
+        "splits": []
       },
       {
         "main": "Los Angeles heavy metal act",
@@ -1145,7 +1172,8 @@
         "position": {
           "col": 0,
           "index": 10
-        }
+        },
+        "splits": []
       },
       {
         "main": "Bldgs. such as the Googleplex",
@@ -1154,7 +1182,8 @@
         "position": {
           "col": 5,
           "index": 10
-        }
+        },
+        "splits": []
       },
       {
         "main": "A fit of irritation",
@@ -1163,7 +1192,8 @@
         "position": {
           "col": 11,
           "index": 10
-        }
+        },
+        "splits": []
       },
       {
         "main": "Lead-in to American or day",
@@ -1172,7 +1202,8 @@
         "position": {
           "col": 3,
           "index": 11
-        }
+        },
+        "splits": []
       },
       {
         "main": "What Pokémon do at a Pokémon Center",
@@ -1181,7 +1212,8 @@
         "position": {
           "col": 7,
           "index": 11
-        }
+        },
+        "splits": []
       },
       {
         "main": "Nixon's vice",
@@ -1190,7 +1222,8 @@
         "position": {
           "col": 0,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "Nothing but ___",
@@ -1199,7 +1232,8 @@
         "position": {
           "col": 6,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "One with the world on his shoulders",
@@ -1208,7 +1242,8 @@
         "position": {
           "col": 10,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "Filled pastries",
@@ -1217,7 +1252,8 @@
         "position": {
           "col": 0,
           "index": 13
-        }
+        },
+        "splits": []
       },
       {
         "main": "Age, in Milan",
@@ -1226,7 +1262,8 @@
         "position": {
           "col": 6,
           "index": 13
-        }
+        },
+        "splits": []
       },
       {
         "main": "Lorna ___, novel or cookie",
@@ -1235,7 +1272,8 @@
         "position": {
           "col": 10,
           "index": 13
-        }
+        },
+        "splits": []
       },
       {
         "main": "Electrocardiogram readout feature",
@@ -1244,7 +1282,8 @@
         "position": {
           "col": 0,
           "index": 14
-        }
+        },
+        "splits": []
       },
       {
         "main": "Hip slang for records",
@@ -1253,7 +1292,8 @@
         "position": {
           "col": 6,
           "index": 14
-        }
+        },
+        "splits": []
       },
       {
         "main": "Yiddish for a foolish person",
@@ -1262,7 +1302,8 @@
         "position": {
           "col": 11,
           "index": 14
-        }
+        },
+        "splits": []
       }
     ],
     "down": [
@@ -1273,7 +1314,8 @@
         "position": {
           "col": 0,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "AI antagonist of 2001",
@@ -1282,7 +1324,8 @@
         "position": {
           "col": 1,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Programming pioneer Lovelace",
@@ -1291,7 +1334,8 @@
         "position": {
           "col": 2,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Prohibit",
@@ -1300,7 +1344,8 @@
         "position": {
           "col": 3,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Type of person to routinely carry a club",
@@ -1309,7 +1354,8 @@
         "position": {
           "col": 6,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "State of the ___ Address",
@@ -1318,7 +1364,8 @@
         "position": {
           "col": 7,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Colorful homophone of 18A",
@@ -1327,7 +1374,8 @@
         "position": {
           "col": 8,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Snitched",
@@ -1336,7 +1384,8 @@
         "position": {
           "col": 10,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Kindle fare",
@@ -1345,7 +1394,8 @@
         "position": {
           "col": 11,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Decayed matter",
@@ -1354,7 +1404,8 @@
         "position": {
           "col": 12,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Type of response you hope to get at the altar",
@@ -1363,7 +1414,8 @@
         "position": {
           "col": 13,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Peat-accumulating wetland",
@@ -1372,7 +1424,8 @@
         "position": {
           "col": 14,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "The ___, NY art museum",
@@ -1381,7 +1434,8 @@
         "position": {
           "col": 4,
           "index": 1
-        }
+        },
+        "splits": []
       },
       {
         "main": "___Fans",
@@ -1390,7 +1444,8 @@
         "position": {
           "col": 5,
           "index": 3
-        }
+        },
+        "splits": []
       },
       {
         "main": "Friends, Romans, countrymen, lend me your...",
@@ -1399,7 +1454,8 @@
         "position": {
           "col": 9,
           "index": 3
-        }
+        },
+        "splits": []
       },
       {
         "main": "\"Friend of Dorothy\"",
@@ -1408,7 +1464,8 @@
         "position": {
           "col": 0,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "We ___ the Champions",
@@ -1417,7 +1474,8 @@
         "position": {
           "col": 1,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "Father of Spider-Man",
@@ -1426,7 +1484,8 @@
         "position": {
           "col": 2,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "What a certain applicant becomes",
@@ -1435,7 +1494,8 @@
         "position": {
           "col": 3,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "Connect",
@@ -1444,7 +1504,8 @@
         "position": {
           "col": 8,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "Particular form of a published text",
@@ -1453,7 +1514,8 @@
         "position": {
           "col": 12,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "Suffix at the end of all of Eevee's evolutions",
@@ -1462,7 +1524,8 @@
         "position": {
           "col": 13,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "Live and ___ Die",
@@ -1471,7 +1534,8 @@
         "position": {
           "col": 14,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "Famous Eastwood whose name became a famous Gorillaz song",
@@ -1480,7 +1544,8 @@
         "position": {
           "col": 4,
           "index": 5
-        }
+        },
+        "splits": []
       },
       {
         "main": "Unexpected result in a sporting competition",
@@ -1489,7 +1554,8 @@
         "position": {
           "col": 10,
           "index": 5
-        }
+        },
+        "splits": []
       },
       {
         "main": "Disfigure",
@@ -1498,7 +1564,8 @@
         "position": {
           "col": 7,
           "index": 6
-        }
+        },
+        "splits": []
       },
       {
         "main": "David Lee and Tim",
@@ -1507,7 +1574,8 @@
         "position": {
           "col": 11,
           "index": 6
-        }
+        },
+        "splits": []
       },
       {
         "main": "Luxury watch collection by Garmin",
@@ -1516,7 +1584,8 @@
         "position": {
           "col": 6,
           "index": 7
-        }
+        },
+        "splits": []
       },
       {
         "main": "Top dog in an IT org",
@@ -1525,7 +1594,8 @@
         "position": {
           "col": 0,
           "index": 8
-        }
+        },
+        "splits": []
       },
       {
         "main": "Sister ___",
@@ -1534,7 +1604,8 @@
         "position": {
           "col": 1,
           "index": 8
-        }
+        },
+        "splits": []
       },
       {
         "main": "Author Roald",
@@ -1543,7 +1614,8 @@
         "position": {
           "col": 5,
           "index": 8
-        }
+        },
+        "splits": []
       },
       {
         "main": "Civil rights activist Parks",
@@ -1552,7 +1624,8 @@
         "position": {
           "col": 9,
           "index": 8
-        }
+        },
+        "splits": []
       },
       {
         "main": "An additional name that could be part of 40D's clue",
@@ -1561,7 +1634,8 @@
         "position": {
           "col": 13,
           "index": 8
-        }
+        },
+        "splits": []
       },
       {
         "main": "Director's domain",
@@ -1570,7 +1644,8 @@
         "position": {
           "col": 14,
           "index": 8
-        }
+        },
+        "splits": []
       },
       {
         "main": "Type of income to go in a 401k",
@@ -1579,7 +1654,8 @@
         "position": {
           "col": 8,
           "index": 9
-        }
+        },
+        "splits": []
       },
       {
         "main": "The Empire Strikes Back, to the Star Wars saga",
@@ -1588,7 +1664,8 @@
         "position": {
           "col": 3,
           "index": 10
-        }
+        },
+        "splits": []
       },
       {
         "main": "Greek letter following 72A",
@@ -1597,7 +1674,8 @@
         "position": {
           "col": 7,
           "index": 10
-        }
+        },
+        "splits": []
       },
       {
         "main": "Misplace",
@@ -1606,7 +1684,8 @@
         "position": {
           "col": 4,
           "index": 11
-        }
+        },
+        "splits": []
       },
       {
         "main": "Wee boy",
@@ -1615,7 +1694,8 @@
         "position": {
           "col": 10,
           "index": 11
-        }
+        },
+        "splits": []
       },
       {
         "main": "Dad to Tommy Pickles",
@@ -1624,7 +1704,8 @@
         "position": {
           "col": 0,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "The only Patrol I trust",
@@ -1633,7 +1714,8 @@
         "position": {
           "col": 1,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "Smart savings plan, briefly",
@@ -1642,7 +1724,8 @@
         "position": {
           "col": 2,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "Fresh",
@@ -1651,7 +1734,8 @@
         "position": {
           "col": 6,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "Breeds such as Chihuahua or Pomeranian",
@@ -1660,7 +1744,8 @@
         "position": {
           "col": 11,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "Bega behind \"Mambo No. 5\"",
@@ -1669,7 +1754,8 @@
         "position": {
           "col": 12,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "Aardvark breakfast",
@@ -1678,7 +1764,8 @@
         "position": {
           "col": 13,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "Sonic ___",
@@ -1687,7 +1774,8 @@
         "position": {
           "col": 14,
           "index": 12
-        }
+        },
+        "splits": []
       }
     ]
   },
