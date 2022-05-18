@@ -52,7 +52,6 @@ export function xdParser(xd: string, strict = true): CrosswordJSON {
   let rawInput: {
     tiles: string[][]
     clues: Map<string, { num: number; question: string; question2?: string; answer: string; dir: "A" | "D" }>
-    splitCharacter?: string
   } = {
     tiles: [],
     clues: new Map(),
@@ -152,11 +151,6 @@ export function xdParser(xd: string, strict = true): CrosswordJSON {
         const lineParts = trimmed.split(": ")
         const key = lineParts.shift()!
         const value = lineParts.join(": ")
-
-        // Store splitCharacter for later, since we need it to parse hints.
-        if (key === "SplitCharacter") {
-          rawInput.splitCharacter = value
-        }
         json.meta[key.toLowerCase()] = value
         continue
       }
@@ -253,7 +247,7 @@ export function xdParser(xd: string, strict = true): CrosswordJSON {
     const [_, clue] = keyClue
     const arr = clue.dir === "A" ? json.clues.across : json.clues.down
 
-    const { answer, splits } = parseSplitsFromAnswer(clue.answer, rawInput.splitCharacter)
+    const { answer, splits } = parseSplitsFromAnswer(clue.answer, json.meta.splitcharacter)
     arr.push({
       main: clue.question,
       second: clue.question2,

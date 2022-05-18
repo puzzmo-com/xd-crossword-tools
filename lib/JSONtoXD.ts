@@ -1,10 +1,27 @@
 import type { CrosswordJSON } from "./types"
 
+function addSplits(answer: string, splitChar: string, splits?: number[]): string {
+  if (!splits) return answer
+
+  let withSplits = ""
+  for (var i = 0; i < answer.length; i++) {
+    withSplits += answer.charAt(i)
+    if (splits.includes(i)) {
+      withSplits += splitChar
+    }
+  }
+  return withSplits
+}
+
 export const JSONToXD = (json: CrosswordJSON): string => {
   let xd = ""
+  let splitChar = ""
 
   xd += `## Metadata\n\n`
   Object.entries(json.meta).forEach(([key, value]) => {
+    if (key === "splitcharacter") {
+      splitChar = value
+    }
     xd += `${key}: ${value}\n`
   })
 
@@ -29,9 +46,10 @@ export const JSONToXD = (json: CrosswordJSON): string => {
   xd += `\n\n## Clues\n\n`
   xd += json.clues.across
     .map((clue) => {
-      let line = `A${clue.number}. ${clue.main} ~ ${clue.answer}`
+      const answer = addSplits(clue.answer, splitChar, clue.splits)
+      let line = `A${clue.number}. ${clue.main} ~ ${answer}`
       if (clue.second) {
-        line += `\nA${clue.number}. ${clue.second} ~ ${clue.answer}`
+        line += `\nA${clue.number}. ${clue.second} ~ ${answer}`
       }
       return line
     })
@@ -40,9 +58,10 @@ export const JSONToXD = (json: CrosswordJSON): string => {
   xd += `\n\n`
   xd += json.clues.down
     .map((clue) => {
-      let line = `D${clue.number}. ${clue.main} ~ ${clue.answer}`
+      const answer = addSplits(clue.answer, splitChar, clue.splits)
+      let line = `D${clue.number}. ${clue.main} ~ ${answer}`
       if (clue.second) {
-        line += `\nD${clue.number}. ${clue.second} ~ ${clue.answer}`
+        line += `\nD${clue.number}. ${clue.second} ~ ${answer}`
       }
       return line
     })
