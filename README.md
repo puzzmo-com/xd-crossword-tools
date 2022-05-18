@@ -2075,16 +2075,14 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
 
   The key is that a line has to start with `<!--` and eventually the same or another line has to end with `-->`.
 
-- `Splits`: Provide hints for where one word terminates and the next begins in a single solution by declaring `SplitCharacter: {character}` in `Metadata`, and adding the chosen SplitCharacter between words in `Clues`.
-
-  Here's an example:
+- `SplitCharacter`: Provide hints for where one word terminates and the next begins in a single solution by declaring `SplitCharacter: {character}` in `Metadata`, and adding the chosen SplitCharacter between words in `Clues`.
 
   ```
   ## Metadata
   SplitCharacter: |
 
   ## Clues
-  ...
+  …
   D25. Father of Spider-Man ~ STAN|LEE
   ```
 
