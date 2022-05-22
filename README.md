@@ -1100,7 +1100,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Food for second chance chewing",
@@ -1109,7 +1110,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Font feature",
@@ -1118,7 +1120,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 10,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Palindromic address to a female",
@@ -1127,7 +1130,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 1
-        }
+        },
+        "splits": []
       },
       {
         "main": "___ Way You Want It",
@@ -1136,7 +1140,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 1
-        }
+        },
+        "splits": []
       },
       {
         "main": "Place often described as humble",
@@ -1145,7 +1150,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 10,
           "index": 1
-        }
+        },
+        "splits": []
       },
       {
         "main": "Flat two dimensional surface in geometry",
@@ -1154,7 +1160,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 2
-        }
+        },
+        "splits": []
       },
       {
         "main": "Grim homophone of 7D",
@@ -1163,7 +1170,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 2
-        }
+        },
+        "splits": []
       },
       {
         "main": "Off",
@@ -1172,7 +1180,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 10,
           "index": 2
-        }
+        },
+        "splits": []
       },
       {
         "main": "Heading for some lists",
@@ -1181,7 +1190,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 4,
           "index": 3
-        }
+        },
+        "splits": []
       },
       {
         "main": "Kanye West is famous for his",
@@ -1190,7 +1200,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 9,
           "index": 3
-        }
+        },
+        "splits": []
       },
       {
         "main": "Laceration",
@@ -1199,7 +1210,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "Alias of Twitch star Richard Tyler Blevins",
@@ -1208,7 +1220,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 5,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "Capsize",
@@ -1217,7 +1230,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 11,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "Piece of clothing or print",
@@ -1226,7 +1240,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 5
-        }
+        },
+        "splits": []
       },
       {
         "main": "Evangelical school in Tulsa, OK",
@@ -1235,7 +1250,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 8,
           "index": 5
-        }
+        },
+        "splits": []
       },
       {
         "main": "___-eyed",
@@ -1244,7 +1260,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 12,
           "index": 5
-        }
+        },
+        "splits": []
       },
       {
         "main": "Annual",
@@ -1253,7 +1270,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 6
-        }
+        },
+        "splits": []
       },
       {
         "main": "The stamp with the upside down airplane is a famous one",
@@ -1262,7 +1280,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 7,
           "index": 6
-        }
+        },
+        "splits": []
       },
       {
         "main": "With 42A and Marcus, a luxury department store chain",
@@ -1271,7 +1290,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 2,
           "index": 7
-        }
+        },
+        "splits": []
       },
       {
         "main": "41A continued",
@@ -1280,7 +1300,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 7
-        }
+        },
+        "splits": []
       },
       {
         "main": "Lush",
@@ -1289,7 +1310,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 10,
           "index": 7
-        }
+        },
+        "splits": []
       },
       {
         "main": "The Mayan one ended in 2012",
@@ -1298,7 +1320,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 8
-        }
+        },
+        "splits": []
       },
       {
         "main": "What a child often does to their shoes",
@@ -1307,7 +1330,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 9,
           "index": 8
-        }
+        },
+        "splits": []
       },
       {
         "main": "Vanilla ___",
@@ -1316,7 +1340,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 9
-        }
+        },
+        "splits": []
       },
       {
         "main": "Maligned cigarette ingredient",
@@ -1325,7 +1350,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 4,
           "index": 9
-        }
+        },
+        "splits": []
       },
       {
         "main": "Frequent cause for a new tire",
@@ -1334,7 +1360,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 8,
           "index": 9
-        }
+        },
+        "splits": []
       },
       {
         "main": "Los Angeles heavy metal act",
@@ -1343,7 +1370,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 10
-        }
+        },
+        "splits": []
       },
       {
         "main": "Bldgs. such as the Googleplex",
@@ -1352,7 +1380,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 5,
           "index": 10
-        }
+        },
+        "splits": []
       },
       {
         "main": "A fit of irritation",
@@ -1361,7 +1390,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 11,
           "index": 10
-        }
+        },
+        "splits": []
       },
       {
         "main": "Lead-in to American or day",
@@ -1370,7 +1400,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 3,
           "index": 11
-        }
+        },
+        "splits": []
       },
       {
         "main": "What Pokémon do at a Pokémon Center",
@@ -1379,7 +1410,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 7,
           "index": 11
-        }
+        },
+        "splits": []
       },
       {
         "main": "Nixon's vice",
@@ -1388,7 +1420,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "Nothing but ___",
@@ -1397,7 +1430,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "One with the world on his shoulders",
@@ -1406,7 +1440,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 10,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "Filled pastries",
@@ -1415,7 +1450,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 13
-        }
+        },
+        "splits": []
       },
       {
         "main": "Age, in Milan",
@@ -1424,7 +1460,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 13
-        }
+        },
+        "splits": []
       },
       {
         "main": "Lorna ___, novel or cookie",
@@ -1433,7 +1470,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 10,
           "index": 13
-        }
+        },
+        "splits": []
       },
       {
         "main": "Electrocardiogram readout feature",
@@ -1442,7 +1480,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 14
-        }
+        },
+        "splits": []
       },
       {
         "main": "Hip slang for records",
@@ -1451,7 +1490,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 14
-        }
+        },
+        "splits": []
       },
       {
         "main": "Yiddish for a foolish person",
@@ -1460,7 +1500,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 11,
           "index": 14
-        }
+        },
+        "splits": []
       }
     ],
     "down": [
@@ -1471,7 +1512,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "AI antagonist of 2001",
@@ -1480,7 +1522,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 1,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Programming pioneer Lovelace",
@@ -1489,7 +1532,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 2,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Prohibit",
@@ -1498,7 +1542,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 3,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Type of person to routinely carry a club",
@@ -1507,7 +1552,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "State of the ___ Address",
@@ -1516,7 +1562,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 7,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Colorful homophone of 18A",
@@ -1525,7 +1572,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 8,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Snitched",
@@ -1534,7 +1582,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 10,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Kindle fare",
@@ -1543,7 +1592,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 11,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Decayed matter",
@@ -1552,7 +1602,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 12,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Type of response you hope to get at the altar",
@@ -1561,7 +1612,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 13,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "Peat-accumulating wetland",
@@ -1570,7 +1622,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 14,
           "index": 0
-        }
+        },
+        "splits": []
       },
       {
         "main": "The ___, NY art museum",
@@ -1579,7 +1632,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 4,
           "index": 1
-        }
+        },
+        "splits": []
       },
       {
         "main": "___Fans",
@@ -1588,7 +1642,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 5,
           "index": 3
-        }
+        },
+        "splits": []
       },
       {
         "main": "Friends, Romans, countrymen, lend me your...",
@@ -1597,7 +1652,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 9,
           "index": 3
-        }
+        },
+        "splits": []
       },
       {
         "main": "\"Friend of Dorothy\"",
@@ -1606,7 +1662,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "We ___ the Champions",
@@ -1615,7 +1672,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 1,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "Father of Spider-Man",
@@ -1624,7 +1682,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 2,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "What a certain applicant becomes",
@@ -1633,7 +1692,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 3,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "Connect",
@@ -1642,7 +1702,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 8,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "Particular form of a published text",
@@ -1651,7 +1712,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 12,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "Suffix at the end of all of Eevee's evolutions",
@@ -1660,7 +1722,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 13,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "Live and ___ Die",
@@ -1669,7 +1732,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 14,
           "index": 4
-        }
+        },
+        "splits": []
       },
       {
         "main": "Famous Eastwood whose name became a famous Gorillaz song",
@@ -1678,7 +1742,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 4,
           "index": 5
-        }
+        },
+        "splits": []
       },
       {
         "main": "Unexpected result in a sporting competition",
@@ -1687,7 +1752,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 10,
           "index": 5
-        }
+        },
+        "splits": []
       },
       {
         "main": "Disfigure",
@@ -1696,7 +1762,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 7,
           "index": 6
-        }
+        },
+        "splits": []
       },
       {
         "main": "David Lee and Tim",
@@ -1705,7 +1772,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 11,
           "index": 6
-        }
+        },
+        "splits": []
       },
       {
         "main": "Luxury watch collection by Garmin",
@@ -1714,7 +1782,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 7
-        }
+        },
+        "splits": []
       },
       {
         "main": "Top dog in an IT org",
@@ -1723,7 +1792,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 8
-        }
+        },
+        "splits": []
       },
       {
         "main": "Sister ___",
@@ -1732,7 +1802,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 1,
           "index": 8
-        }
+        },
+        "splits": []
       },
       {
         "main": "Author Roald",
@@ -1741,7 +1812,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 5,
           "index": 8
-        }
+        },
+        "splits": []
       },
       {
         "main": "Civil rights activist Parks",
@@ -1750,7 +1822,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 9,
           "index": 8
-        }
+        },
+        "splits": []
       },
       {
         "main": "An additional name that could be part of 40D's clue",
@@ -1759,7 +1832,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 13,
           "index": 8
-        }
+        },
+        "splits": []
       },
       {
         "main": "Director's domain",
@@ -1768,7 +1842,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 14,
           "index": 8
-        }
+        },
+        "splits": []
       },
       {
         "main": "Type of income to go in a 401k",
@@ -1777,7 +1852,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 8,
           "index": 9
-        }
+        },
+        "splits": []
       },
       {
         "main": "The Empire Strikes Back, to the Star Wars saga",
@@ -1786,7 +1862,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 3,
           "index": 10
-        }
+        },
+        "splits": []
       },
       {
         "main": "Greek letter following 72A",
@@ -1795,7 +1872,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 7,
           "index": 10
-        }
+        },
+        "splits": []
       },
       {
         "main": "Misplace",
@@ -1804,7 +1882,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 4,
           "index": 11
-        }
+        },
+        "splits": []
       },
       {
         "main": "Wee boy",
@@ -1813,7 +1892,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 10,
           "index": 11
-        }
+        },
+        "splits": []
       },
       {
         "main": "Dad to Tommy Pickles",
@@ -1822,7 +1902,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "The only Patrol I trust",
@@ -1831,7 +1912,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 1,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "Smart savings plan, briefly",
@@ -1840,7 +1922,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 2,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "Fresh",
@@ -1849,7 +1932,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "Breeds such as Chihuahua or Pomeranian",
@@ -1858,7 +1942,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 11,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "Bega behind \"Mambo No. 5\"",
@@ -1867,7 +1952,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 12,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "Aardvark breakfast",
@@ -1876,7 +1962,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 13,
           "index": 12
-        }
+        },
+        "splits": []
       },
       {
         "main": "Sonic ___",
@@ -1885,7 +1972,8 @@ O..O.#O.O##O..O
         "position": {
           "col": 14,
           "index": 12
-        }
+        },
+        "splits": []
       }
     ]
   },
