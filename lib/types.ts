@@ -1,3 +1,5 @@
+import { ParseMode } from "./xdparser2"
+
 export type CrosswordJSON = {
   /** Info to display about the Crossword  */
   meta: {
@@ -35,6 +37,14 @@ export type CrosswordJSON = {
     /** A sparse array of strings for where the design elements should exist */
     positions: string[][]
   }
+
+  /** Info generated during parse which can be passed when
+   *  figuring out what is under the cursor */
+  editorInfo?: EditorInfo
+}
+
+export type EditorInfo = {
+  sections: Array<{ startLine: number; endLine: number; type: ParseMode }>
 }
 
 export type Direction = "UP" | "DOWN" | "LEFT" | "RIGHT"

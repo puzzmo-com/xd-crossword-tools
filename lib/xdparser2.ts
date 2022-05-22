@@ -3,34 +3,10 @@ import { EditorError } from "./EditorError"
 import type { Tile, CrosswordJSON } from "./types"
 import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "./xdparser2.compat"
 
-/**
- * Given an answer that might contain splits, and a split character, return
- * an array of all the split locations (where the split is to the right of the array value),
- * as well as the answer without the splits..
- *
- * @param answerWithSplits unparsed answer string
- * @param splitCharacter character to split on
- * @returns an array of split locations, and the answer without splits
- */
-function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string): { answer: string; splits?: number[] } {
-  if (!splitCharacter) return { answer: answerWithSplits, splits: [] }
-  const splits = []
-  let answer = ""
-  for (var i = 0; i < answerWithSplits.length; i++) {
-    if (answerWithSplits.charAt(i) === splitCharacter) {
-      splits.push(i - 1 - splits.length)
-      continue
-    }
-    answer += answerWithSplits.charAt(i)
-  }
-
-  return { answer, splits }
-}
-
 // These are all the sections supported by this parser
 const knownHeaders = ["grid", "clues", "notes", "metadata", "metapuzzle", "start", "design", "design-style"] as const
 const mustHave = ["grid", "clues", "metadata"] as const
-type ParseMode = typeof knownHeaders[number] | "comment" | "unknown"
+export type ParseMode = typeof knownHeaders[number] | "comment" | "unknown"
 
 /**
  * Converts an xd file into a JSON representation, the JSON aims to be
@@ -39,13 +15,16 @@ type ParseMode = typeof knownHeaders[number] | "comment" | "unknown"
  * @param xd the xd string
  * @param strict whether extra exceptions should be thrown with are useful for editor support
  */
-export function xdParser(xd: string, strict = true): CrosswordJSON {
+export function xdParser(xd: string, strict = true, editorInfo = false): CrosswordJSON {
   let seenSections: string[] = []
   let preCommentState: ParseMode = "unknown"
   let styleTagContent: undefined | string = undefined
 
   if (!xd) throw new EditorError("Not got anything to work with yet", 0)
   if (shouldConvertToExplicitHeaders(xd)) {
+    if (editorInfo)
+      throw new EditorError("xd-crossword-tools: This file is using v1 implicit headers, you can't use the editor with this file", 0)
+
     xd = convertImplicitOrderedXDToExplicitHeaders(xd)
   }
 
@@ -72,6 +51,7 @@ export function xdParser(xd: string, strict = true): CrosswordJSON {
     },
     rebuses: {},
     notes: "",
+    editorInfo: editorInfo ? { sections: [] } : undefined,
   }
 
   let mode: ParseMode = "unknown"
@@ -102,6 +82,20 @@ export function xdParser(xd: string, strict = true): CrosswordJSON {
 
     if (content.startsWith("## ")) {
       mode = parseModeForString(content, line, strict)
+
+      // Provide enough info for another tool to not need to parse the file
+      if (json.editorInfo) {
+        const sections = json.editorInfo.sections
+        if (sections.length) sections[sections.length - 1].endLine = line - 1
+
+        json.editorInfo.sections.push({
+          startLine: line,
+          // Start with it as the last index, then refine when we know it is not
+          endLine: lines.length,
+          type: mode,
+        })
+      }
+
       seenSections.push(mode)
       continue
     }
@@ -471,4 +465,28 @@ function parseStyleCSSLike(str: string, xd: string) {
   }
 
   return styleSheet
+}
+
+/**
+ * Given an answer that might contain splits, and a split character, return
+ * an array of all the split locations (where the split is to the right of the array value),
+ * as well as the answer without the splits..
+ *
+ * @param answerWithSplits unparsed answer string
+ * @param splitCharacter character to split on
+ * @returns an array of split locations, and the answer without splits
+ */
+function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string): { answer: string; splits?: number[] } {
+  if (!splitCharacter) return { answer: answerWithSplits, splits: [] }
+  const splits = []
+  let answer = ""
+  for (var i = 0; i < answerWithSplits.length; i++) {
+    if (answerWithSplits.charAt(i) === splitCharacter) {
+      splits.push(i - 1 - splits.length)
+      continue
+    }
+    answer += answerWithSplits.charAt(i)
+  }
+
+  return { answer, splits }
 }
