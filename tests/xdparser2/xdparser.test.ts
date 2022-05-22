@@ -1,4 +1,3 @@
-import { readdirSync, readFileSync } from "fs"
 import { xdParser } from "../../lib/xdparser2"
 
 it("Smallest, legal but totally illogical example", () => {
@@ -393,7 +392,7 @@ D2. A thing. ~ OBJECT
       "second": undefined,
       "splits": [
         1,
-        4,
+        3,
       ],
     },
     {

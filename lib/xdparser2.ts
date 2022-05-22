@@ -18,7 +18,7 @@ function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string
   let answer = ""
   for (var i = 0; i < answerWithSplits.length; i++) {
     if (answerWithSplits.charAt(i) === splitCharacter) {
-      splits.push(i - 1)
+      splits.push(i - 1 - splits.length)
       continue
     }
     answer += answerWithSplits.charAt(i)

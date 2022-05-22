@@ -1,4 +1,3 @@
-import { readdirSync, readFileSync } from "fs"
 import { JSONToXD } from "../lib/JSONtoXD"
 import { xdToJSON } from "../lib/xdToJSON"
 
@@ -49,7 +48,7 @@ H..T
 
 A1. Band with two words. ~ OK|GO
 
-D1. Reverse santa. ~ OH|OHO|H
+D1. Reverse santa. ~ OH|OH|OH
 D2. A thing. ~ OBJECT"
 `)
 })
