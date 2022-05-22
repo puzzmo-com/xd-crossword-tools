@@ -2,7 +2,7 @@
 
 [xd](https://github.com/century-arcade/xd) is a text-based crossword format which is easy for humans to read and reason about.
 
-This repo provides tools for taking different crossword file formats and converting them to xd. Conforms to the v2 xd spec, and then has a few editor-experience extensions. Consolidates a few older JS libraries into a single repo with no dependencies, converts them all to TypeScript, ensures they run in a browser and Node, then adds some tests for them.
+This repo provides tools for taking different crossword file formats and converting them to xd. Conforms to the v2 xd spec, and then has a few editor-experience extensions. Consolidates a few older JS libraries into a single repo with no dependencies, converts them all to TypeScript, ensures they run in a browser, Node and Deno, then adds some tests for them.
 
 ### .xd to .JSON
 
@@ -27,7 +27,7 @@ const puzBuffer = await res.arrayBuffer()
 const xd = puzToXd(puzBuffer)
 ```
 
-This should cover most features in puz and xd now.
+This should cover most features in puz and xd.
 
 ### UClick .xml to .xd
 
@@ -38,6 +38,32 @@ const xmlResponse = await fetch(url)
 const xmlString = await res.body()
 const xd = puzToXd(xmlString)
 ```
+
+### Cursor position information
+
+You can get some information about what's under the cursor at line, index position
+via `editorInfoAtCursor`
+
+```ts
+import { xdToJSON, editorInfoAtCursor } from "xd-crossword-tools"
+
+const xd = "[...]"
+const crossword = xdToJSON(xd, true, true)
+
+const info = editorInfoAtCursor(crossword)
+const cursorInfo = info(0, 0)
+```
+
+Which returns a union of different results, you can check the types + tests to see what's available, but it's something like this:
+
+```tss
+export type PositionInfo =
+  | { type: "noop" }
+  | { type: "grid"; position: Position }
+  | { type: "clue"; direction: CursorDirection; number: number }
+  | ...
+```
+
 
 ### Example
 

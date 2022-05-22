@@ -45,6 +45,7 @@ export type CrosswordJSON = {
 
 export type EditorInfo = {
   sections: Array<{ startLine: number; endLine: number; type: ParseMode }>
+  lines: string[]
 }
 
 export type Direction = "UP" | "DOWN" | "LEFT" | "RIGHT"

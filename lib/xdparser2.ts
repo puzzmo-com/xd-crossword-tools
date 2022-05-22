@@ -36,6 +36,8 @@ export function xdParser(xd: string, strict = true, editorInfo = false): Crosswo
     clues: new Map(),
   }
 
+  let lines = xd.split("\n")
+
   // This object gets filled out by the parser, and is eventually returned
   const json: CrosswordJSON = {
     meta: {
@@ -51,11 +53,10 @@ export function xdParser(xd: string, strict = true, editorInfo = false): Crosswo
     },
     rebuses: {},
     notes: "",
-    editorInfo: editorInfo ? { sections: [] } : undefined,
+    editorInfo: editorInfo ? { sections: [], lines } : undefined,
   }
 
   let mode: ParseMode = "unknown"
-  let lines = xd.split("\n")
   for (let line = 0; line < lines.length; line++) {
     const content = lines[line]
     const trimmed = content.trim()
@@ -330,7 +331,8 @@ const parseModeForString = (lineText: string, num: number, strict: boolean): Par
   } else if (title.startsWith("metadata")) {
     return "metadata"
   } else if (title.trim() === "meta") {
-    console.log("xd-crossword-tools: Shimmed '### meta' to '### metadata' - this will be removed in the future")
+    if (typeof jest === "undefined")
+      console.log("xd-crossword-tools: Shimmed '### meta' to '### metadata' - this will be removed in the future")
     return "metadata"
   } else if (title.startsWith("design")) {
     return "design"
