@@ -206,70 +206,70 @@ D3. A conscious tree. ~ BOOK
   "across": [
     {
       "answer": "BULB",
-      "main": "Gardener's concern.",
+      "body": "Gardener's concern.",
+      "metadata": undefined,
       "number": 1,
       "position": {
         "col": 0,
         "index": 0,
       },
-      "second": undefined,
       "splits": [],
     },
     {
       "answer": "OK",
-      "main": "A reasonable statement.",
+      "body": "A reasonable statement.",
+      "metadata": undefined,
       "number": 4,
       "position": {
         "col": 0,
         "index": 1,
       },
-      "second": undefined,
       "splits": [],
     },
     {
       "answer": "DESK",
-      "main": "The office centerpiece.",
+      "body": "The office centerpiece.",
+      "metadata": undefined,
       "number": 5,
       "position": {
         "col": 0,
         "index": 3,
       },
-      "second": undefined,
       "splits": [],
     },
   ],
   "down": [
     {
       "answer": "BOLD",
-      "main": "To _ly go.",
+      "body": "To _ly go.",
+      "metadata": undefined,
       "number": 1,
       "position": {
         "col": 0,
         "index": 0,
       },
-      "second": undefined,
       "splits": [],
     },
     {
       "answer": "UK",
-      "main": "Bigger than britain.",
+      "body": "Bigger than britain.",
+      "metadata": undefined,
       "number": 2,
       "position": {
         "col": 1,
         "index": 0,
       },
-      "second": undefined,
       "splits": [],
     },
     {
       "answer": "BOOK",
-      "main": "A conscious tree.",
+      "body": "A conscious tree.",
+      "metadata": undefined,
       "number": 3,
       "position": {
         "col": 3,
         "index": 0,
       },
-      "second": undefined,
       "splits": [],
     },
   ],
@@ -292,49 +292,149 @@ DESK
 
 
 A1. Gardener's concern. ~ BULB
-A1. Turned on with a flick. ~ BULB
+A1~Hint. Turned on with a flick.
+A4. A reasonable statement. ~ OK
+A4~Hint.. All __.
+A5. The office centerpiece. ~ DESK
+A5~Hint. Fried.
+
+D1. To _ly go. ~ BOLD
+D1~Hint. When you want to make some text stronger.
+D2. Bigger than britain. ~ UK
+D2~Hint. A union which left europe.
+D3. A conscious tree. ~ BOOK
+D3~Hint. Registering with a restaurant. 
+`
+
+    const { clues } = xdParser(xd)
+    const allClues = [...clues.across, ...clues.down]
+    const focused = allClues.map((c) => ({ first: c.body, meta: c.metadata }))
+    expect(focused).toMatchInlineSnapshot(`
+[
+  {
+    "first": "Gardener's concern.",
+    "meta": {
+      "hint": "Turned on with a flick.",
+    },
+  },
+  {
+    "first": "A reasonable statement.",
+    "meta": {
+      "hint.": "All __.",
+    },
+  },
+  {
+    "first": "The office centerpiece.",
+    "meta": {
+      "hint": "Fried.",
+    },
+  },
+  {
+    "first": "To _ly go.",
+    "meta": {
+      "hint": "When you want to make some text stronger.",
+    },
+  },
+  {
+    "first": "Bigger than britain.",
+    "meta": {
+      "hint": "A union which left europe.",
+    },
+  },
+  {
+    "first": "A conscious tree.",
+    "meta": {
+      "hint": "Registering with a restaurant.",
+    },
+  },
+]
+`)
+  })
+
+  it.skip("handles whitespace lines in the clues ", () => {
+    const xd = `
+Title: Square
+Author: Orta
+Editor: Orta Therox
+Date: 2021-03-16
+
+
+BULB
+OK#O
+L##O
+DESK
+
+
+A1. Gardener's concern. ~ BULB
+A1~Hint. Turned on with a flick.
+
+A4. A reasonable statement. ~ OK
+A4~Hint.. All __.
+
+A5. The office centerpiece. ~ DESK
+A5~Hint. Fried.
+
+D1. To _ly go. ~ BOLD
+D1~Hint. When you want to make some text stronger.
+
+D2. Bigger than britain. ~ UK
+D2~Hint. A union which left europe.
+
+D3. A conscious tree. ~ BOOK
+D3~Hint. Registering with a restaurant. 
+`
+
+    const { clues } = xdParser(xd)
+    const allClues = [...clues.across, ...clues.down]
+    allClues.forEach((f) => {
+      expect(f.metadata?.hint).toBeTruthy()
+    })
+    expect(allClues.length).toEqual(6)
+  })
+
+  it("handles automatically converting double clues to hint syntax when not in strict mode", () => {
+    const old = `
+Title: Square
+Author: Orta
+Editor: Orta Therox
+Date: 2021-03-16
+
+
+BULB
+OK#O
+L##O
+DESK
+
+
+A1. Gardener's concern. ~ BULB
+A1. Turned on with a flick. ~ ANSWER
 A4. A reasonable statement. ~ OK
 A4. All __. ~ OK
 A5. The office centerpiece. ~ DESK
-A5. Fried. ~ CRISP
+A5. Fried. ~ DESO
 
 D1. To _ly go. ~ BOLD
 D1. When you want to make some text stronger. ~ BOLD
 D2. Bigger than britain. ~ UK
 D2. A union which left europe. ~ UK
 D3. A conscious tree. ~ BOOK
-D3. Registering with a restaurant. ~ BOOK
-`
+D3. Registering with a restaurant.  ~ BOOK
+    `
 
-    const { clues } = xdParser(xd)
+    const { clues } = xdParser(old, false)
     const allClues = [...clues.across, ...clues.down]
-    const focused = allClues.map((c) => ({ first: c.main, second: c.second }))
-    expect(focused).toMatchInlineSnapshot(`
+    allClues.forEach((f) => {
+      expect(f.metadata?.hint).toBeTruthy()
+    })
+
+    expect(allClues.map((c) => c.metadata?.hint)).toMatchInlineSnapshot(`
 [
-  {
-    "first": "Gardener's concern.",
-    "second": "Turned on with a flick.",
-  },
-  {
-    "first": "A reasonable statement.",
-    "second": "All __.",
-  },
-  {
-    "first": "The office centerpiece.",
-    "second": "Fried.",
-  },
-  {
-    "first": "To _ly go.",
-    "second": "When you want to make some text stronger.",
-  },
-  {
-    "first": "Bigger than britain.",
-    "second": "A union which left europe.",
-  },
-  {
-    "first": "A conscious tree.",
-    "second": "Registering with a restaurant.",
-  },
+  "Turned on with a flick.",
+  "All __.",
+  "Fried.",
+  "When you want to make some text stronger.",
+  "A union which left europe.",
+  "Registering with a restaurant. ",
 ]
 `)
   })
@@ -368,13 +468,13 @@ D2. A thing. ~ OBJECT
   "across": [
     {
       "answer": "OKGO",
-      "main": "Band with two words.",
+      "body": "Band with two words.",
+      "metadata": undefined,
       "number": 1,
       "position": {
         "col": 0,
         "index": 0,
       },
-      "second": undefined,
       "splits": [
         1,
       ],
@@ -383,13 +483,13 @@ D2. A thing. ~ OBJECT
   "down": [
     {
       "answer": "OHOHOH",
-      "main": "Reverse santa.",
+      "body": "Reverse santa.",
+      "metadata": undefined,
       "number": 1,
       "position": {
         "col": 0,
         "index": 0,
       },
-      "second": undefined,
       "splits": [
         1,
         3,
@@ -397,14 +497,14 @@ D2. A thing. ~ OBJECT
     },
     {
       "answer": "OBJECT",
-      "main": "A thing.",
+      "body": "A thing.",
+      "metadata": undefined,
       "number": 2,
       "position": {
         "col": 3,
         "index": 0,
       },
-      "second": undefined,
-      "splits": [],
+      "splits": undefined,
     },
   ],
 }

@@ -47,9 +47,11 @@ export const JSONToXD = (json: CrosswordJSON): string => {
   xd += json.clues.across
     .map((clue) => {
       const answer = addSplits(clue.answer, splitChar, clue.splits)
-      let line = `A${clue.number}. ${clue.main} ~ ${answer}`
-      if (clue.second) {
-        line += `\nA${clue.number}. ${clue.second} ~ ${answer}`
+      let line = `A${clue.number}. ${clue.body} ~ ${answer}`
+      if (clue.metadata) {
+        for (const key of Object.keys(clue.metadata)) {
+          line += `\nA${clue.number}~${key}. ${clue.metadata[key]}`
+        }
       }
       return line
     })
@@ -59,9 +61,11 @@ export const JSONToXD = (json: CrosswordJSON): string => {
   xd += json.clues.down
     .map((clue) => {
       const answer = addSplits(clue.answer, splitChar, clue.splits)
-      let line = `D${clue.number}. ${clue.main} ~ ${answer}`
-      if (clue.second) {
-        line += `\nD${clue.number}. ${clue.second} ~ ${answer}`
+      let line = `D${clue.number}. ${clue.body} ~ ${answer}`
+      if (clue.metadata) {
+        for (const key of Object.keys(clue.metadata)) {
+          line += `\nA${clue.number}~${key}. ${clue.metadata[key]}`
+        }
       }
       return line
     })

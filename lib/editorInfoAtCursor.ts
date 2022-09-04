@@ -34,9 +34,10 @@ export const editorInfoAtCursor =
         const trimmed = content.toLowerCase().trim()
         if (!trimmed.startsWith("a") && !trimmed.endsWith("d")) return noop
         if (!trimmed.includes(".")) return noop
+        if (trimmed === "") return noop
 
         const direction = trimmed.startsWith("a") ? "across" : "down"
-        const number = parseInt(trimmed.slice(1).split(".")[0])
+        const number = parseInt(trimmed.slice(1).split(".")[0].split("~")[0])
         return { type: "clue", direction, number }
       }
 
