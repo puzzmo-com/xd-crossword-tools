@@ -3,12 +3,12 @@ import { xdParser } from "../../lib/xdparser2"
 describe("errors", () => {
   it("blanks give errors", () => {
     expect(throwsWithError("")).toMatchInlineSnapshot(`
-  {
-    "line": 0,
-    "name": "XDError",
-    "rawMessage": "Not got anything to work with yet",
-  }
-  `)
+{
+  "line": 0,
+  "name": "XDError",
+  "rawMessage": "xd file is empty",
+}
+`)
   })
 
   it("headers with indentation get a specific error", () => {
