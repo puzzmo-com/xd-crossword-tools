@@ -213,7 +213,7 @@ D3. A conscious tree. ~ BOOK
         "col": 0,
         "index": 0,
       },
-      "splits": [],
+      "splits": undefined,
     },
     {
       "answer": "OK",
@@ -224,7 +224,7 @@ D3. A conscious tree. ~ BOOK
         "col": 0,
         "index": 1,
       },
-      "splits": [],
+      "splits": undefined,
     },
     {
       "answer": "DESK",
@@ -235,7 +235,7 @@ D3. A conscious tree. ~ BOOK
         "col": 0,
         "index": 3,
       },
-      "splits": [],
+      "splits": undefined,
     },
   ],
   "down": [
@@ -248,7 +248,7 @@ D3. A conscious tree. ~ BOOK
         "col": 0,
         "index": 0,
       },
-      "splits": [],
+      "splits": undefined,
     },
     {
       "answer": "UK",
@@ -259,7 +259,7 @@ D3. A conscious tree. ~ BOOK
         "col": 1,
         "index": 0,
       },
-      "splits": [],
+      "splits": undefined,
     },
     {
       "answer": "BOOK",
@@ -270,7 +270,7 @@ D3. A conscious tree. ~ BOOK
         "col": 3,
         "index": 0,
       },
-      "splits": [],
+      "splits": undefined,
     },
   ],
 }
@@ -351,13 +351,16 @@ D3~Hint. Registering with a restaurant.
 `)
   })
 
-  it.skip("handles whitespace lines in the clues ", () => {
-    const xd = `
+  it("handles whitespace lines in the clues ", () => {
+    const xd = `## Meta
+
 Title: Square
 Author: Orta
 Editor: Orta Therox
 Date: 2021-03-16
 
+
+## Grid
 
 BULB
 OK#O
@@ -365,11 +368,13 @@ L##O
 DESK
 
 
+## Clues
+
 A1. Gardener's concern. ~ BULB
 A1~Hint. Turned on with a flick.
 
 A4. A reasonable statement. ~ OK
-A4~Hint.. All __.
+A4~Hint. All __.
 
 A5. The office centerpiece. ~ DESK
 A5~Hint. Fried.
@@ -386,10 +391,35 @@ D3~Hint. Registering with a restaurant.
 
     const { clues } = xdParser(xd)
     const allClues = [...clues.across, ...clues.down]
-    allClues.forEach((f) => {
-      expect(f.metadata?.hint).toBeTruthy()
-    })
-    expect(allClues.length).toEqual(6)
+
+    expect(allClues.map((c) => ({ clue: c.body, hint: c.metadata?.hint }))).toMatchInlineSnapshot(`
+[
+  {
+    "clue": "Gardener's concern.",
+    "hint": "Turned on with a flick.",
+  },
+  {
+    "clue": "A reasonable statement.",
+    "hint": "All __.",
+  },
+  {
+    "clue": "The office centerpiece.",
+    "hint": "Fried.",
+  },
+  {
+    "clue": "To _ly go.",
+    "hint": "When you want to make some text stronger.",
+  },
+  {
+    "clue": "Bigger than britain.",
+    "hint": "A union which left europe.",
+  },
+  {
+    "clue": "A conscious tree.",
+    "hint": "Registering with a restaurant.",
+  },
+]
+`)
   })
 
   it("handles automatically converting double clues to hint syntax when not in strict mode", () => {
@@ -581,13 +611,3 @@ f
 
   expect(xdParser(xd, false).notes).toContain("67568756yd")
 })
-
-// it("notes are a NOOP", () => {
-//   const xd = readFileSync("./tests/xdparser2/inputs/example.xd", "utf8")
-//   const json = xdParser(xd, false)
-
-//   const length = json.tiles[0].length
-//   for (const tiles of json.tiles) {
-//     expect(tiles.length).toEqual(length)
-//   }
-// })

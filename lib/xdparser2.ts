@@ -525,7 +525,7 @@ function parseStyleCSSLike(str: string, xd: string) {
  * @returns an array of split locations, and the answer without splits
  */
 function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string): { answer: string; splits?: number[] } {
-  if (!splitCharacter) return { answer: answerWithSplits, splits: [] }
+  if (!splitCharacter) return { answer: answerWithSplits, splits: undefined }
   const splits = []
   let answer = ""
   for (var i = 0; i < answerWithSplits.length; i++) {
