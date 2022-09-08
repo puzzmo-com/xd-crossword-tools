@@ -10,7 +10,7 @@ A1. Gardener's concerns with A2 and D4. ~ BULB
 A1. Turned on to illuminate a room. ~ BULB
 ```
 
-now get errors, and instead they look like:
+throw an error. The new format is:
 
 ```
 A1. Gardener's concerns with A2 and D4. ~ BULB
@@ -22,7 +22,7 @@ Includes an auto-migration to a 'hint' which wll be removed with v5 when not in 
 
 - Strict mode parsing is also switched to default as 'off' if you don't pass that parameter to `xdToJSON`.
 
-- Converts license from ISC to MIT. ISC is the defaults in npm projects, but I'm an old school and I like MIT.
+- Converts license from ISC to MIT. ISC is the default for npm projects, but I'm old school and I like MIT.
   Adds a license file to the root of the project, so that automated tooling can get it. 
 
 ### 2 -> 3

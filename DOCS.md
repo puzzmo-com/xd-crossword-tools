@@ -2,7 +2,7 @@
 
 [This doc is a work in progress]
 
-xd is a file format for describing a crossword in text, built to look like a very common file format called markdown. You might have seen markdown format in Reddit/Slack/Discord and other modern formatting for example: `*bold*` or `_italics_`. Oddly enough, this document is written in markdown.
+xd is a file format for describing a crossword in text, inspired by the comment text format called markdown. You might have seen markdown in Reddit/Slack/Discord comment boxes. For example: `*bold*` or `_italics_`. Oddly enough, this document is written in markdown.
 
 #### Sections
 
