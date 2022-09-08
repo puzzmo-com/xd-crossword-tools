@@ -2,7 +2,11 @@
 
 [xd](https://github.com/century-arcade/xd) is a text-based crossword format which is easy for humans to read and reason about.
 
-This repo provides tools for taking different crossword file formats and converting them to xd. Conforms to the v2 xd spec, and then has a few editor-experience extensions. Consolidates a few older JS libraries into a single repo with no dependencies, converts them all to TypeScript, ensures they run in a browser, Node and Deno, then adds some tests for them.
+This repo provides tools for taking different crossword file formats and converting them to xd. Then has a comprehensive xd to JSON function. Mostly conforms to the v2 xd spec, and comes with a few editor-experience extensions for a REPL-like environment. Uses a [vendored](./lib//vendor/) copy of 'puzjs' which was ported to TypeScript.
+
+### Documentation for authoring in xd
+
+[User Guide](./DOCS.md).
 
 ### .xd to .JSON
 
@@ -64,15 +68,15 @@ export type PositionInfo =
   | ...
 ```
 
-
 ### Example
 
-Let's take this free .puz: https://dehodson.github.io/crossword-puzzles/crosswords/alpha-bits/
+Let's take this free `.puz`: https://dehodson.github.io/crossword-puzzles/crosswords/alpha-bits/
 
 Their .puz file turns into this xd:
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.xd) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.xd -->
+
 ```xd
 ## Metadata
 
@@ -214,6 +218,7 @@ O..O#.O.O.#O..O
 .....#...#.....
 O..O.#O.O##O..O
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
  <details>
@@ -221,6 +226,7 @@ O..O.#O.O##O..O
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.json) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.json -->
+
 ```json
 {
   "meta": {
@@ -2012,99 +2018,26 @@ O..O.#O.O##O..O
       }
     },
     "positions": [
-      [
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O"
-      ],
+      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
       [],
       [],
       [],
-      [
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O"
-      ],
+      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
       [],
       [],
-      [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "O",
-        null,
-        "O"
-      ],
+      [null, null, null, null, null, null, "O", null, "O"],
       [],
       [],
-      [
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O"
-      ],
+      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
       [],
       [],
       [],
-      [
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O"
-      ]
+      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"]
     ]
   }
 }
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 </details>
@@ -2152,25 +2085,32 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
 
   This makes the sections a bit more explicit (and conceptually more user-friendly if you have not read the xd documentation ahead of seeing the file) and frees the order in which someone could write a document. Capitalization is ignored.
 
-- `Multiple clues` - You can add a secondary clue by repeating an answer:
+- ##### Clue Metadata
 
-  ```
-  A1. Gardener's concern. ~ BULB
-  A1. Turned on with a flick. ~ BULB
+  You can add arbtrary metadata to clues by repeating the clue with a custom suffix:
+
+  ```md
+  A1. Gardener's concerns with A2 and D4. ~ BULB
+  A1 ^Hint: Turned on to illuminate a room.
+  A1~Refs. A2 D4
   A4. A reasonable statement. ~ OK
-  A4. All __. ~ OK
+  A4 ^Hint: All \_\_.
   A5. The office centerpiece. ~ DESK
-  A5. Fried. ~ CRISP
+  A5 ^Hint: Fried.
 
-  D1. To _ly go. ~ BOLD
-  D1. When you want to make some text stronger. ~ BOLD
+  D1. To \_ly go. ~ BOLD
+  D1 ^Hint: When you want to make some text stronger.
   D2. Bigger than britain. ~ UK
-  D2. A union which left europe. ~ UK
+  D2 ^Hint: A union which left europe.
   D3. A conscious tree. ~ BOOK
-  D3. Registering with a restaurant. ~ BOOK
+  D3 ^Hint: Registering with a restaurant. ~ BOOK
   ```
 
-- `Markdown/HTML style comments`: In markdown you can write `<!--` and `-->` to comment out a section of your code. Our implementation is not _super_ smart:
+  Capitalization is ignore, the metadata prefix will always be given as lowercase.
+
+- ##### Markdown/HTML style comments
+
+  In markdown you can write `<!--` and `-->` to comment out a section of your code. Our implementation is not _super_ smart:
 
   <!-- prettier-ignore -->
   ```html
@@ -2187,9 +2127,11 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   -->
   ```
 
-  The key is that a line has to start with `<!--` and eventually the same or another line has to end with `-->`.
+  The key is that a line has to start with `<!--` and eventually the same or another line has to **end** with `-->`.
 
-- `SplitCharacter`: Provide hints for where one word terminates and the next begins in a single solution by declaring `SplitCharacter: {character}` in `Metadata`, and adding the chosen SplitCharacter between words in `Clues`.
+- ##### Split character
+
+  Provide hints for where one word terminates and the next begins in a single solution by declaring `SplitCharacter: {character}` in `Metadata`, and adding the chosen SplitCharacter between words in `Clues`.
 
   ```
   ## Metadata
@@ -2199,6 +2141,14 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   …
   D25. Father of Spider-Man ~ STAN|LEE
   ```
+
+  The 'answer' given from the parser here will be 'STANLEE', but the indexes will be noted in the clue.
+
+### Spec-Breaking Differences
+
+We want to highlight that 'Clue Metadata', 'Comments' and 'Split Characters' are all spec-breaking extensions. E.g. a parser which conforms exactly to the xd spec would likely choke when seeing these features.
+
+We'd be open to a variant of our `JSONToXD` function which produces spec-compliant versions of the xd files instead of just our extensions.
 
 #### Metadata
 
@@ -2215,9 +2165,6 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   ```
 
   Indicates to the game engine that the rebus for `1` on the grid can be _either_ `M` or `F`, but that the side needs to be respected across all possible rebuses in the clue. So for `M1L2` you could have `MALE` and `FATE`but not `FALE` or `MATE`.
-
-- `Related: A4=A3=D6 D17=D12`
-  Provide a way to tell the crossword engine that a particular set of answers relate to each other and should be highlighted somehow. There's a good argument that this can be parsed out of the clue's string instead, which is probably what others do.
 
 #### Notes
 

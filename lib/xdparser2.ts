@@ -15,22 +15,22 @@ export type ParseMode = typeof knownHeaders[number] | "comment" | "unknown"
  * @param xd the xd string
  * @param strict whether extra exceptions should be thrown with are useful for editor support
  */
-export function xdParser(xd: string, strict = true, editorInfo = false): CrosswordJSON {
+export function xdParser(xd: string, strict = false, editorInfo = false): CrosswordJSON {
   let seenSections: string[] = []
   let preCommentState: ParseMode = "unknown"
   let styleTagContent: undefined | string = undefined
 
-  if (!xd) throw new EditorError("Not got anything to work with yet", 0)
+  if (!xd) throw new EditorError("xd file is empty", 0)
   if (shouldConvertToExplicitHeaders(xd)) {
     if (editorInfo)
-      throw new EditorError("xd-crossword-tools: This file is using v1 implicit headers, you can't use the editor with this file", 0)
+      throw new EditorError("xd-crossword-tools: This file is using v1 implicit headers, you can't use an editor with this file", 0)
 
     xd = convertImplicitOrderedXDToExplicitHeaders(xd)
   }
 
   let rawInput: {
     tiles: string[][]
-    clues: Map<string, { num: number; question: string; question2?: string; answer: string; dir: "A" | "D" }>
+    clues: Map<string, { num: number; question: string; metadata?: Record<string, string>; answer: string; dir: "A" | "D" }>
   } = {
     tiles: [],
     clues: new Map(),
@@ -129,10 +129,23 @@ export function xdParser(xd: string, strict = true, editorInfo = false): Crosswo
         const clue = clueFromLine(trimmed, line)
         const key = `${clue.dir}${clue.num}`
         const existing = rawInput.clues.get(key)
-        if (existing) {
-          existing.question2 = clue.question
+        if ("answer" in clue) {
+          if (existing && strict) {
+            const hintVersion = `${clue.dir}${clue.num}~Hint. ${clue.question} ~ ${clue.answer}`
+            throw new EditorError(`Duplicate clue detected, if this is for a hint, please convert it to: '${hintVersion}'`, line)
+          } else if (existing) {
+            // Shim for v4 migration
+            if (!existing.metadata) existing.metadata = {}
+            existing.metadata["hint"] = clue.question.split(" ~ ")[0]
+          } else {
+            rawInput.clues.set(key, clue)
+          }
         } else {
-          rawInput.clues.set(key, clue)
+          if (!existing) {
+            throw new EditorError(`Could not find the clues which this hint refers to above it`, line)
+          }
+          if (!existing.metadata) existing.metadata = {}
+          existing.metadata[clue.metaKey.toLowerCase()] = clue.metaValue
         }
         continue
       }
@@ -244,12 +257,12 @@ export function xdParser(xd: string, strict = true, editorInfo = false): Crosswo
 
     const { answer, splits } = parseSplitsFromAnswer(clue.answer, json.meta.splitcharacter)
     arr.push({
-      main: clue.question,
-      second: clue.question2,
+      body: clue.question,
       answer: answer,
       number: clue.num,
       position: positions[clue.num],
       splits: splits,
+      metadata: clue.metadata,
     })
   }
 
@@ -283,33 +296,66 @@ function getLine(body: string, substr: string) {
 
 // This came from the original, I think it's pretty OK but maybe it could be a bit looser
 const clueRegex = /(^.\d*)\.\s(.*)\s\~\s(.*)/
+const clueMetaRegex = /(^.\d*)\s\^(.*):\s(.*)/
 
-const clueFromLine = (line: string, num: number) => {
+type ClueParserResponse =
+  | { dir: "D" | "A"; num: number; question: string; answer: string }
+  | { dir: "D" | "A"; num: number; metaKey: string; metaValue: string }
+
+/** Returns either a clue reference, a clue metadata reference, or throws an editor error */
+const clueFromLine = (line: string, num: number): ClueParserResponse => {
   const expectedPrefix = line.slice(0, 1).toUpperCase()
   if (!["A", "D"].includes(expectedPrefix)) {
     throw new EditorError(`This clue doesn't start with A or D: '${line}'`, num)
   }
 
   const parts = line.match(clueRegex)
-  if (!parts)
-    throw new EditorError(`The clue '${line.trim()}' does not match the format of '${expectedPrefix}[num]. [clue] ~ [answer]'`, num)
+  if (parts) {
+    const num = isLegitNumber(parts[1])
 
-  if (parts.length !== 4)
-    throw new EditorError(
-      `Could not get the right amount of parts from this clue, expected 4 items here but got ${parts.length} - ${parts}`,
-      num
-    )
+    if (parts.length !== 4)
+      throw new EditorError(
+        `This clue is not properly formatted, expected ${expectedPrefix}[num]. [clue] ~ [answer] but only found ${parts.length} parts: ${parts}`,
+        num
+      )
 
-  const legitNumber = parseInt(parts[1].slice(1))
-  if (isNaN(legitNumber)) {
-    throw new EditorError(`This clue number isn't an integer: got '${parts[1]}'`, num)
+    return {
+      dir: expectedPrefix as "D" | "A",
+      num,
+      question: parts[2]!,
+      answer: parts[3]!,
+    }
   }
 
-  return {
-    dir: expectedPrefix as "D" | "A",
-    num: legitNumber,
-    question: parts[2],
-    answer: parts[3],
+  // The 'clue' regex did not pass, lets check for a clue meta
+  const metaParts = line.match(clueMetaRegex)
+  if (metaParts) {
+    const num = isLegitNumber(metaParts[1])
+    if (metaParts.length !== 4)
+      throw new EditorError(
+        `Could not get the right amount of parts from this clue, expected  ${expectedPrefix}[num]~[hint]. [clue] but got ${metaParts.length} - ${metaParts}`,
+        num
+      )
+
+    return {
+      dir: expectedPrefix as "D" | "A",
+      num,
+      metaKey: metaParts[2],
+      metaValue: metaParts[3],
+    }
+  }
+
+  throw new EditorError(
+    `The clue '${line.trim()}' does not match either the format of '${expectedPrefix}[num]. [clue] ~ [answer]' for a clue, or '${expectedPrefix}[num]~[hint]. [clue]' for a clue's metadata.`,
+    num
+  )
+
+  function isLegitNumber(str: string) {
+    const legitNumber = parseInt(str.slice(1).split("~")[0])
+    if (isNaN(legitNumber)) {
+      throw new EditorError(`This clue number isn't an whole number: got '${str}'`, num)
+    }
+    return legitNumber
   }
 }
 
@@ -479,7 +525,7 @@ function parseStyleCSSLike(str: string, xd: string) {
  * @returns an array of split locations, and the answer without splits
  */
 function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string): { answer: string; splits?: number[] } {
-  if (!splitCharacter) return { answer: answerWithSplits, splits: [] }
+  if (!splitCharacter) return { answer: answerWithSplits, splits: undefined }
   const splits = []
   let answer = ""
   for (var i = 0; i < answerWithSplits.length; i++) {
@@ -489,6 +535,9 @@ function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string
     }
     answer += answerWithSplits.charAt(i)
   }
+
+  // Only include the splits when it is used
+  if (splits.length === 0) return { answer, splits: undefined }
 
   return { answer, splits }
 }

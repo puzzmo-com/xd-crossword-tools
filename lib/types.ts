@@ -39,7 +39,8 @@ export type CrosswordJSON = {
   }
 
   /** Info generated during parse which can be passed when
-   *  figuring out what is under the cursor */
+   *  figuring out what is under the cursor. There is an argument in xdToJSON
+   * which will have this info included in the results. */
   editorInfo?: EditorInfo
 }
 
@@ -81,12 +82,20 @@ export interface Position {
 }
 
 export interface Clue {
-  main: string
-  second?: string
+  /** The "clue" as it were */
+  body: string
+  /** The number, whether it is across or down is handled back at 'clues' */
   number: number
+  /** The string after the "~"" - if the clue has a split character than this will not be included */
   answer: string
+  /** Filled in metadata giving the location of the first char on the grid */
   position: Position
+  /** If an answer contains a split character, then this would include the indexes  */
   splits?: number[]
+  /** Duplicating a clue and using a meta suffix (e.g. "A23~Hint. A shot to the heart" )
+   * would add to { "hint": " A shot to the heart" } to the metadata.
+   */
+  metadata?: Record<string, string>
 }
 
 export interface Cursor {

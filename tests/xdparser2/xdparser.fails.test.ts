@@ -3,12 +3,12 @@ import { xdParser } from "../../lib/xdparser2"
 describe("errors", () => {
   it("blanks give errors", () => {
     expect(throwsWithError("")).toMatchInlineSnapshot(`
-  {
-    "line": 0,
-    "name": "XDError",
-    "rawMessage": "Not got anything to work with yet",
-  }
-  `)
+{
+  "line": 0,
+  "name": "XDError",
+  "rawMessage": "xd file is empty",
+}
+`)
   })
 
   it("headers with indentation get a specific error", () => {
@@ -119,7 +119,7 @@ a2. asda
 {
   "line": 5,
   "name": "XDError",
-  "rawMessage": "The clue 'a2. asda' does not match the format of 'A[num]. [clue] ~ [answer]'",
+  "rawMessage": "The clue 'a2. asda' does not match either the format of 'A[num]. [clue] ~ [answer]' for a clue, or 'A[num]~[hint]. [clue]' for a clue's metadata.",
 }
 `)
 })
