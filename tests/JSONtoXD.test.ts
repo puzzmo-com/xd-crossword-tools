@@ -1,5 +1,5 @@
 import { JSONToXD } from "../lib/JSONtoXD"
-import { xdToJSON } from "../lib/xdToJSON"
+import { xdToJSON } from "../"
 
 it("parses splitCharacter correctly", () => {
   const xd = `
