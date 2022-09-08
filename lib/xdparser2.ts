@@ -296,7 +296,7 @@ function getLine(body: string, substr: string) {
 
 // This came from the original, I think it's pretty OK but maybe it could be a bit looser
 const clueRegex = /(^.\d*)\.\s(.*)\s\~\s(.*)/
-const clueMetaRegex = /(^.\d*)~(.*)\.\s(.*)/
+const clueMetaRegex = /(^.\d*)\s\^(.*):\s(.*)/
 
 type ClueParserResponse =
   | { dir: "D" | "A"; num: number; question: string; answer: string }

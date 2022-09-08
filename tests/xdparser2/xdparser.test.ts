@@ -292,18 +292,18 @@ DESK
 
 
 A1. Gardener's concern. ~ BULB
-A1~Hint. Turned on with a flick.
+A1 ^Hint: Turned on with a flick.
 A4. A reasonable statement. ~ OK
-A4~Hint.. All __.
+A4 ^Hint: All __.
 A5. The office centerpiece. ~ DESK
-A5~Hint. Fried.
+A5 ^Hint: Fried.
 
 D1. To _ly go. ~ BOLD
-D1~Hint. When you want to make some text stronger.
+D1 ^Hint: When you want to make some text stronger.
 D2. Bigger than britain. ~ UK
-D2~Hint. A union which left europe.
+D2 ^Hint: A union which left europe.
 D3. A conscious tree. ~ BOOK
-D3~Hint. Registering with a restaurant. 
+D3 ^Hint: Registering with a restaurant. 
 `
 
     const { clues } = xdParser(xd)
@@ -320,7 +320,7 @@ D3~Hint. Registering with a restaurant.
   {
     "first": "A reasonable statement.",
     "meta": {
-      "hint.": "All __.",
+      "hint": "All __.",
     },
   },
   {
@@ -371,22 +371,22 @@ DESK
 ## Clues
 
 A1. Gardener's concern. ~ BULB
-A1~Hint. Turned on with a flick.
+A1 ^Hint: Turned on with a flick.
 
 A4. A reasonable statement. ~ OK
-A4~Hint. All __.
+A4 ^Hint: All __.
 
 A5. The office centerpiece. ~ DESK
-A5~Hint. Fried.
+A5 ^Hint: Fried.
 
 D1. To _ly go. ~ BOLD
-D1~Hint. When you want to make some text stronger.
+D1 ^Hint: When you want to make some text stronger.
 
 D2. Bigger than britain. ~ UK
-D2~Hint. A union which left europe.
+D2 ^Hint: A union which left europe.
 
 D3. A conscious tree. ~ BOOK
-D3~Hint. Registering with a restaurant. 
+D3 ^Hint: Registering with a restaurant. 
 `
 
     const { clues } = xdParser(xd)

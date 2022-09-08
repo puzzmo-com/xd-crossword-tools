@@ -13,11 +13,11 @@ This isn't a comprehensive doc because to our knowledge there are no OSS consume
 
   ```
   A1. Gardener's concerns with A2 and D4. ~ BULB
-  A1~Hint. Turned on to illuminate a room.
-  A1~Refs. A2 D4
+  A1 ^Hint: Turned on to illuminate a room.
+  A1 ^Refs: A2 D4
   ```
 
-Includes an auto-migration to a 'hint' which wll be removed with v5 when not in strict mode.
+  Includes an auto-migration to a 'hint' which wll be removed with v5 when not in strict mode.
 
 - Strict mode parsing is also switched to default as 'off' if you don't pass that parameter to `xdToJSON`.
 
