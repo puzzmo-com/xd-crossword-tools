@@ -117,10 +117,10 @@ A5. The office centerpiece. ~ DESK
 A5 ^hint: Fried.
 
 D1. To _ly go. ~ BOLD
-A1 ^hint: When you want to make some text stronger.
+D1 ^hint: When you want to make some text stronger.
 D2. Bigger than britain. ~ UK
-A2 ^hint: A union which left europe.
+D2 ^hint: A union which left europe.
 D3. A conscious tree. ~ BOOK
-A3 ^hint: Registering with a restaurant."
+D3 ^hint: Registering with a restaurant."
 `)
 })
