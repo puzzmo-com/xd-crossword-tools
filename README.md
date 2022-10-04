@@ -2069,12 +2069,12 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
 
 - ##### Clue Metadata
 
-  You can add arbtrary metadata to clues by repeating the clue with a custom suffix:
+  You can add arbitrary metadata to clues by repeating the clue with a custom suffix:
 
   ```md
   A1. Gardener's concerns with A2 and D4. ~ BULB
   A1 ^Hint: Turned on to illuminate a room.
-  A1~Refs. A2 D4
+  A1 ^Refs. A2 D4
   A4. A reasonable statement. ~ OK
   A4 ^Hint: All \_\_.
   A5. The office centerpiece. ~ DESK
@@ -2088,7 +2088,7 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   D3 ^Hint: Registering with a restaurant. ~ BOOK
   ```
 
-  Capitalization is ignore, the metadata prefix will always be given as lowercase.
+  Capitalization is ignoreds, the metadata prefix will always be given as lowercase.
 
 - ##### Markdown/HTML style comments
 
