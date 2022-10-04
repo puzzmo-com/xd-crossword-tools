@@ -2088,7 +2088,7 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   D3 ^Hint: Registering with a restaurant. ~ BOOK
   ```
 
-  Capitalization is ignoreds, the metadata prefix will always be given as lowercase.
+  Capitalization is ignored, the metadata prefix will always be given as lowercase inside the JSON representation.
 
 - ##### Markdown/HTML style comments
 
@@ -2124,7 +2124,7 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   D25. Father of Spider-Man ~ STAN|LEE
   ```
 
-  The 'answer' given from the parser here will be 'STANLEE', but the indexes will be noted in the clue.
+  The 'answer' given from the parser here will be 'STANLEE', but the indexes for each bar will be noted in the clue.
 
 ### Spec-Breaking Differences
 
