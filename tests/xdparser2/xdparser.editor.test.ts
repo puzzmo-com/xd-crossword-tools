@@ -46,6 +46,38 @@ it("shows info", () => {
 `)
 })
 
+it("shows info for more", () => {
+  const xd = readFileSync("tests/xdparser2/outputs/explicit-alpha-bits-with-hints.xd", "utf8")
+  const json = xdParser(xd, false, true)
+
+  expect(json.editorInfo!.lines.length).toBeGreaterThan(1)
+  json.editorInfo!.lines = ["..."]
+  expect(json.editorInfo).toMatchInlineSnapshot(`
+{
+  "lines": [
+    "...",
+  ],
+  "sections": [
+    {
+      "endLine": 6,
+      "startLine": 0,
+      "type": "metadata",
+    },
+    {
+      "endLine": 24,
+      "startLine": 7,
+      "type": "grid",
+    },
+    {
+      "endLine": 124,
+      "startLine": 25,
+      "type": "clues",
+    },
+  ],
+}
+`)
+})
+
 it("gets results I'd like to see thanks", () => {
   const xd = readFileSync("tests/xdparser2/outputs/explicit-alpha-bits.xd", "utf8")
   const json = xdParser(xd, false, true)
@@ -71,4 +103,40 @@ it("gets results I'd like to see thanks", () => {
   expect(get(27, 3)).toEqual({ type: "clue", direction: "across", number: 1 })
   // First across clue
   expect(get(28, 1)).toEqual({ type: "clue", direction: "across", number: 5 })
+})
+
+it("gives the right clue positions for hints etc", () => {
+  const xd = readFileSync("tests/xdparser2/outputs/explicit-alpha-bits-with-hints.xd", "utf8")
+  const json = xdParser(xd, false, true)
+
+  const get = editorInfoAtCursor(json)
+  expect([get(27, 0), get(28, 0), get(29, 0)]).toMatchInlineSnapshot(`
+[
+  {
+    "direction": "across",
+    "number": 1,
+    "type": "clue",
+  },
+  {
+    "direction": "across",
+    "number": 1,
+    "type": "clue",
+  },
+  {
+    "direction": "across",
+    "number": 1,
+    "type": "clue",
+  },
+]
+`)
+
+  // Line after is blank
+  expect(get(34, 0)).toEqual({ type: "noop" })
+
+  // Line after
+  expect(get(35, 0)).toEqual({
+    direction: "across",
+    number: 13,
+    type: "clue",
+  })
 })
