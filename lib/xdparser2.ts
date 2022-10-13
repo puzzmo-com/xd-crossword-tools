@@ -296,7 +296,9 @@ function getLine(body: string, substr: string) {
 
 // This came from the original, I think it's pretty OK but maybe it could be a bit looser
 const clueRegex = /(^.\d*)\.\s(.*)\s\~\s(.*)/
-const clueMetaRegex = /(^.\d*)\s\^(.*):\s(.*)/
+
+// This regex is greedy, and multiple :s get captured, so don't trust the matches after the number!
+const clueMetaRegex = /(^.\d*)\s\^(.*):\s(.*?)/
 
 type ClueParserResponse =
   | { dir: "D" | "A"; num: number; question: string; answer: string }
@@ -333,20 +335,20 @@ const clueFromLine = (line: string, num: number): ClueParserResponse => {
     const num = isLegitNumber(metaParts[1])
     if (metaParts.length !== 4)
       throw new EditorError(
-        `Could not get the right amount of parts from this clue, expected  ${expectedPrefix}[num]~[hint]. [clue] but got ${metaParts.length} - ${metaParts}`,
+        `Could not get the right amount of parts from this clue, expected  ${expectedPrefix}[num] ^[hint]: [clue] but got ${metaParts.length} - ${metaParts}`,
         num
       )
 
     return {
       dir: expectedPrefix as "D" | "A",
       num,
-      metaKey: metaParts[2],
-      metaValue: metaParts[3],
+      metaKey: line.split("^")[1].split(":")[0].toLowerCase(),
+      metaValue: line.split(":").slice(1).join(":").trimStart(),
     }
   }
 
   throw new EditorError(
-    `The clue '${line.trim()}' does not match either the format of '${expectedPrefix}[num]. [clue] ~ [answer]' for a clue, or '${expectedPrefix}[num]~[hint]. [clue]' for a clue's metadata.`,
+    `The clue '${line.trim()}' does not match either the format of '${expectedPrefix}[num]. [clue] ~ [answer]' for a clue, or '${expectedPrefix}[num] ^[hint]: [clue]' for a clue's metadata.`,
     num
   )
 

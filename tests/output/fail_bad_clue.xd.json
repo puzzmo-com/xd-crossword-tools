@@ -1,5 +1,5 @@
 {
   "line": 31,
-  "rawMessage": "The clue 'A13.' does not match either the format of 'A[num]. [clue] ~ [answer]' for a clue, or 'A[num]~[hint]. [clue]' for a clue's metadata.",
+  "rawMessage": "The clue 'A13.' does not match either the format of 'A[num]. [clue] ~ [answer]' for a clue, or 'A[num] ^[hint]: [clue]' for a clue's metadata.",
   "name": "XDError"
 }

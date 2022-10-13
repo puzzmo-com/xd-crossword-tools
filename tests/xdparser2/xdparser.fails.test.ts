@@ -119,7 +119,7 @@ a2. asda
 {
   "line": 5,
   "name": "XDError",
-  "rawMessage": "The clue 'a2. asda' does not match either the format of 'A[num]. [clue] ~ [answer]' for a clue, or 'A[num]~[hint]. [clue]' for a clue's metadata.",
+  "rawMessage": "The clue 'a2. asda' does not match either the format of 'A[num]. [clue] ~ [answer]' for a clue, or 'A[num] ^[hint]: [clue]' for a clue's metadata.",
 }
 `)
 })
