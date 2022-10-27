@@ -107,3 +107,5 @@ dist
 index.js
 .DS_Store
 *.log
+
+tests/gitignored
