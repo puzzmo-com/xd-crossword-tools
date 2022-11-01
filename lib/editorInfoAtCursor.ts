@@ -1,8 +1,9 @@
-import { CrosswordJSON, CursorDirection, Position } from "./types"
+import { clueInfosForPosition } from "./clueNumbersFromBoard"
+import { Clue, CrosswordJSON, CursorDirection, Position } from "./types"
 
 export type PositionInfo =
   | { type: "noop" }
-  | { type: "grid"; position: Position }
+  | { type: "grid"; position: Position; clues: { across: Clue | undefined; down: Clue | undefined } }
   | { type: "clue"; direction: CursorDirection; number: number }
 
 export const editorInfoAtCursor =
@@ -49,6 +50,11 @@ export const editorInfoAtCursor =
         const yIndex = line - section.startLine - startLine
         if (yIndex < 0) return noop
 
-        return { type: "grid", position: { col: index, index: yIndex } }
+        const clueIndexes = clueInfosForPosition(data.clues, { col: index, index: yIndex })
+        const clues = {
+          across: clueIndexes.across && data.clues.across[clueIndexes.across.index],
+          down: clueIndexes.down && data.clues.down[clueIndexes.down.index],
+        }
+        return { type: "grid", position: { col: index, index: yIndex }, clues }
     }
   }

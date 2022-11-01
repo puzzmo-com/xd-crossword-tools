@@ -91,11 +91,21 @@ it("gets results I'd like to see thanks", () => {
   expect(get(8, 0)).toEqual({ type: "noop" })
 
   // The grid starts at line 9
-  expect(get(9, 0)).toEqual({ type: "grid", position: { col: 0, index: 0 } })
+  expect(get(9, 0)).toEqual({ type: "grid", position: { col: 0, index: 0 }, clues: { down: expect.anything(), across: expect.anything() } })
+
   // Down 1. across 2
-  expect(get(10, 2)).toEqual({ type: "grid", position: { col: 2, index: 1 } })
+  expect(get(10, 2)).toEqual({
+    type: "grid",
+    position: { col: 2, index: 1 },
+    clues: { down: expect.anything(), across: expect.anything() },
+  })
+
   // Down a while, across 1
-  expect(get(23, 3)).toEqual({ type: "grid", position: { col: 3, index: 14 } })
+  expect(get(23, 3)).toEqual({
+    type: "grid",
+    position: { col: 3, index: 14 },
+    clues: { down: expect.anything(), across: expect.anything() },
+  })
 
   // The clues section header
   expect(get(25, 3)).toEqual({ type: "noop" })
