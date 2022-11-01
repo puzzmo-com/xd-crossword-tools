@@ -111,16 +111,22 @@ DESK
 
 A1. Gardener's concern. ~ BULB
 A1 ^hint: Turned on with a flick.
+
 A4. A reasonable statement. ~ OK
 A4 ^hint: All __.
+
 A5. The office centerpiece. ~ DESK
 A5 ^hint: Fried.
 
+
 D1. To _ly go. ~ BOLD
 D1 ^hint: When you want to make some text stronger.
+
 D2. Bigger than britain. ~ UK
 D2 ^hint: A union which left europe.
+
 D3. A conscious tree. ~ BOOK
-D3 ^hint: Registering with a restaurant."
+D3 ^hint: Registering with a restaurant.
+"
 `)
 })

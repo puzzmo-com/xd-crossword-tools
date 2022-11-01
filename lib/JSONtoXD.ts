@@ -52,6 +52,7 @@ export const JSONToXD = (json: CrosswordJSON): string => {
         for (const key of Object.keys(clue.metadata)) {
           line += `\nA${clue.number} ^${key}: ${clue.metadata[key]}`
         }
+        line += "\n"
       }
       return line
     })
@@ -66,6 +67,7 @@ export const JSONToXD = (json: CrosswordJSON): string => {
         for (const key of Object.keys(clue.metadata)) {
           line += `\nD${clue.number} ^${key}: ${clue.metadata[key]}`
         }
+        line += "\n"
       }
       return line
     })
