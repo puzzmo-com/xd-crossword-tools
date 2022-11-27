@@ -7,12 +7,10 @@ import { getTile } from "./getTile"
 
 /** Takes a .puz Buffer and converts it to an xd file */
 export function puzToXD(buffer: ArrayBuffer) {
-  const cap = (word: string) => word[0].toUpperCase() + word.slice(1)
-
   const rebuses = new Map<string, string>()
 
   const file = decode(buffer)
-  const meta = Object.keys(file.meta).map((key) => `${cap(key)}: ${(file.meta[key] || "N/A").trim()}`)
+  const meta = Object.keys(file.meta).map((key) => `${key.toLowerCase()}: ${(file.meta[key] || "N/A").trim()}`)
   const board = setupBoard(file.grid, rebuses)
   const notes: string[] = []
 
@@ -42,7 +40,7 @@ export function puzToXD(buffer: ArrayBuffer) {
   if (rebuses.size) {
     let entries = ""
     rebuses.forEach((v, k) => (entries += ` ${k}=${v}`))
-    meta.push("Rebus:" + entries)
+    meta.push("rebus:" + entries)
   }
 
   const visuals = generatePuzVisualsInfo(file)

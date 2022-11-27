@@ -1,5 +1,9 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 4 -> 5
+
+- The output for the xd from the app now always uses lowercase keys for the meta section
+
 ### 3 -> 4
 
 - Makes the older hint format of:
