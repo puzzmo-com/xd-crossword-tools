@@ -1,5 +1,11 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 5.1
+
+- Adds support taking an `.xd` and getting it into a format so it can be used with `@confuzzle/writepuz` to generate a `.puz` file
+
+- Fixes the editor info for the down clues!
+
 ### 4 -> 5
 
 - The output for the xd from the app now always uses lowercase keys for the meta section
