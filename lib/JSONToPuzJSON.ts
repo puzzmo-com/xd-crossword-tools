@@ -90,6 +90,7 @@ export const JSONToPuzJSON = (json: CrosswordJSON, config?: { filled?: true }): 
 }
 
 // Taken from https://github.com/rjkat/confuzzle/blob/d57433d7f514bc012d78a09b25531778976dc04e/%40confuzzle/writepuz/writepuz.js#L4
+// MIT License: https://github.com/rjkat/confuzzle/blob/master/LICENSE
 //
 function checksum(base: Uint8Array, c?: number, len?: number) {
   if (c === undefined) c = 0x0000
