@@ -1,6 +1,6 @@
 {
   "name": "xd-crossword-tools",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "description": "Tools for taking different crossword file formats and converting them to xd, and for converting an xd file to useful JSON",
   "main": "dist/index.js",
   "module": "./dist/index.mjs",
@@ -49,6 +49,8 @@
     "jest-file-snapshot": "^0.5.0",
     "markdown-magic": "^2.6.0",
     "tsup": "^5.11.13",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "@confuzzle/writepuz": "^1.2.3",
+    "@confuzzle/readpuz": "^1.2.3"
   }
 }

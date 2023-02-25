@@ -1,6 +1,8 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@confuzzle/readpuz': ^1.2.3
+  '@confuzzle/writepuz': ^1.2.3
   '@swc/cli': ^0.1.55
   '@swc/core': ^1.2.135
   '@swc/jest': ^0.2.17
@@ -13,6 +15,8 @@ specifiers:
   typescript: ^4.5.5
 
 devDependencies:
+  '@confuzzle/readpuz': 1.2.3
+  '@confuzzle/writepuz': 1.2.3
   '@swc/cli': 0.1.55_@swc+core@1.2.135
   '@swc/core': 1.2.135
   '@swc/jest': 0.2.17_@swc+core@1.2.135
@@ -349,6 +353,26 @@ packages:
 
   /@bcoe/v8-coverage/0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
+    dev: true
+
+  /@confuzzle/puz-common/1.2.3:
+    resolution: {integrity: sha512-jLnaVanNYiLe068KDsqxuDeVVzRrTtuo85IPzIvoCfH0WJjwbxTe4yF/YAN5yAyEHieMwgLF3ADk0J94zoj9cw==}
+    dependencies:
+      iconv-lite: 0.5.2
+    dev: true
+
+  /@confuzzle/readpuz/1.2.3:
+    resolution: {integrity: sha512-IWS8g02YPuKvd5ncBqWT5aHkAURzcTttaZ/OLKD/Yux58H8Oxi5Dcjy/lBhXCV9FF+35mqkF+dItfCvdIlro8A==}
+    dependencies:
+      '@confuzzle/puz-common': 1.2.3
+      iconv-lite: 0.5.2
+    dev: true
+
+  /@confuzzle/writepuz/1.2.3:
+    resolution: {integrity: sha512-DV76qrOy7bV7o1m8LVdudw5x2yuKx7XGfAczX6RwBfLSa2D+dYI201lecWECHAMiq//2zVYPPU8U9DhLs+K/0g==}
+    dependencies:
+      '@confuzzle/puz-common': 1.2.3
+      iconv-lite: 0.5.2
     dev: true
 
   /@istanbuljs/load-nyc-config/1.1.0:
@@ -2052,6 +2076,13 @@ packages:
 
   /iconv-lite/0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      safer-buffer: 2.1.2
+    dev: true
+
+  /iconv-lite/0.5.2:
+    resolution: {integrity: sha512-kERHXvpSaB4aU3eANwidg79K8FlrN77m8G9V+0vOR3HYaRifrlwMEpT7ZBJqLSEIHnEgJTHcWK82wwLwwKwtag==}
     engines: {node: '>=0.10.0'}
     dependencies:
       safer-buffer: 2.1.2

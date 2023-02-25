@@ -17,8 +17,6 @@ export const editorInfoAtCursor =
     const section = sections.find(({ startLine, endLine }) => startLine <= line && endLine >= line)
     if (!section) return noop
 
-    // console.log({ section })
-
     switch (section.type) {
       case "design":
       case "design-style":
@@ -34,7 +32,7 @@ export const editorInfoAtCursor =
         const content = data.editorInfo.lines[line]
         const trimmed = content.toLowerCase().trim()
 
-        if (!trimmed.startsWith("a") && !trimmed.endsWith("d")) return noop
+        if (!trimmed.startsWith("a") && !trimmed.startsWith("d")) return noop
         if (!trimmed.includes(".") && !trimmed.includes("^")) return noop
         if (trimmed === "") return noop
 
