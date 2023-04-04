@@ -27,10 +27,12 @@ export function puzToXD(buffer: ArrayBuffer) {
           position: boardClues[i],
           direction,
         })
+        // Replace all newlines, as they're not supported in xd
+        const clueBody = c.replace(/\n/g, "")
         if (clueInfos.length === 0) return
         const prefix = direction === "across" ? "A" : "D"
         const clueText = clueInfos.map((p) => answerStringForTile(getTile(tileGrid, p))).join("")
-        return `${prefix}${i}. ${c} ~ ${clueText}`
+        return `${prefix}${i}. ${clueBody} ~ ${clueText}`
       })
       .filter(Boolean)
       .join("\n")
