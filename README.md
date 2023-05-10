@@ -2073,7 +2073,7 @@ Which will add the optional `"bodyMD"` to the clue:
 ```json
 {
   "answer": "AHAB",
-  "body": "[Captain](https://github.com/orta) *of* /the/ ship _Pequod_",
+  "body": "[Captain](https://github.com/orta) *of* /the/ ship Pequod",
   "bodyMD": [
     ["link", "Captain", "https://github.com/orta"],
     ["text", " "],
