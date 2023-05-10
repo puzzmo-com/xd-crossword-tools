@@ -265,8 +265,8 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
       answer: answer,
       number: clue.num,
       position: positions[clue.num],
-      splits: splits,
       metadata: clue.metadata,
+      ...(splits ? { splits } : {}),
       ...(clue.bodyMD ? { bodyMD: clue.bodyMD } : {}),
     })
   }

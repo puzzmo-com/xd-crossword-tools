@@ -28,7 +28,6 @@ it("handles bolding", () => {
     "col": 0,
     "index": 0,
   },
-  "splits": undefined,
 }
 `)
 })
@@ -66,7 +65,6 @@ it("handles italics and bolds", () => {
     "col": 0,
     "index": 0,
   },
-  "splits": undefined,
 }
 `)
 })
@@ -109,7 +107,6 @@ it("handles URLs", () => {
     "col": 0,
     "index": 0,
   },
-  "splits": undefined,
 }
 `)
 })
@@ -139,7 +136,6 @@ it("handles strikes", () => {
     "col": 0,
     "index": 0,
   },
-  "splits": undefined,
 }
 `)
 })
