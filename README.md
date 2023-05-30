@@ -2020,15 +2020,19 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   A1. Gardener's concerns with A2 and D4. ~ BULB
   A1 ^Hint: Turned on to illuminate a room.
   A1 ^Refs: A2 D4
+
   A4. A reasonable statement. ~ OK
   A4 ^Hint: All \_\_.
+
   A5. The office centerpiece. ~ DESK
   A5 ^Hint: Fried.
 
   D1. To \_ly go. ~ BOLD
   D1 ^Hint: When you want to make some text stronger.
+
   D2. Bigger than britain. ~ UK
   D2 ^Hint: A union which left europe.
+
   D3. A conscious tree. ~ BOOK
   D3 ^Hint: Registering with a restaurant. ~ BOOK
   ```
@@ -2055,6 +2059,36 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
   ```
 
   The key is that a line has to start with `<!--` and eventually the same or another line has to **end** with `-->`.
+
+- ##### Markdown clue syntax
+
+When a clue is written in markdown, it will be parsed into a JSON representation that can be used to render the clue in a UI. The markdown syntax is limited, but should be enough to cover most cases. The syntax is:
+
+```md
+A1. [Captain](https://github.com/orta) _of_ /the/ ship Pequod ~ AHAB
+```
+
+Which will add the optional `"bodyMD"` to the clue:
+
+```json
+{
+  "answer": "AHAB",
+  "body": "[Captain](https://github.com/orta) *of* /the/ ship Pequod",
+  "bodyMD": [
+    ["link", "Captain", "https://github.com/orta"],
+    ["text", " "],
+    ["bold", "of"],
+    ["text", " "],
+    ["italics", "the"],
+    ["text", " ship Pequod"]
+  ]
+}
+```
+
+- Italics `/word/` or `/a phrase/` (not `_word_` because `_` is often used as a "gap" in the clue text)
+- Bold: `*word*` or `*a phrase*`
+- Strike through: `~word~` or `~a phrase~`
+- Link: `[text](url)`
 
 - ##### Split character
 

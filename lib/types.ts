@@ -81,9 +81,19 @@ export interface Position {
   index: number
 }
 
+// Inline elements to handle when rendering clues
+export type MDClueComponent =
+  | [type: "text", text: string]
+  | [type: "italics", text: string]
+  | [type: "bold", text: string]
+  | [type: "strike", text: string]
+  | [type: "link", text: string, to: string]
+
 export interface Clue {
   /** The "clue" as it were */
   body: string
+  /** The body as a set of inline markdown components, not a full markdown processor, but a simple enough heuristic */
+  bodyMD?: MDClueComponent[]
   /** The number, whether it is across or down is handled back at 'clues' */
   number: number
   /** The string after the "~"" - if the clue has a split character than this will not be included */
