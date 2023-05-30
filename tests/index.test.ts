@@ -17,7 +17,7 @@ puzs.forEach((file) => {
 
     it("generates json from the xd", () => {
       const puz = readFileSync(`./tests/output/${file}.xd`, "utf8")
-      const json = xdToJSON(puz)
+      const json = xdToJSON(puz, false, true)
       expect(JSON.stringify(json, null, "  ")).toMatchFile(`./tests/output/${file}.json`)
     })
   })

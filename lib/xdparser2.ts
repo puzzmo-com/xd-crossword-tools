@@ -6,7 +6,7 @@ import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeade
 // These are all the sections supported by this parser
 const knownHeaders = ["grid", "clues", "notes", "metadata", "metapuzzle", "start", "design", "design-style"] as const
 const mustHave = ["grid", "clues", "metadata"] as const
-export type ParseMode = typeof knownHeaders[number] | "comment" | "unknown"
+export type ParseMode = (typeof knownHeaders)[number] | "comment" | "unknown"
 
 /**
  * Converts an xd file into a JSON representation, the JSON aims to be
@@ -53,6 +53,11 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
     },
     rebuses: {},
     notes: "",
+    report: {
+      success: false,
+      errors: [],
+      warnings: [],
+    },
     editorInfo: editorInfo ? { sections: [], lines } : undefined,
   }
 
@@ -466,7 +471,7 @@ function parseStyleCSSLike(str: string, xd: string) {
   const styleSheet: Record<string, Record<string, string>> = {}
 
   const parseMode = ["outer", "inner"] as const
-  let mode: typeof parseMode[number] = "outer"
+  let mode: (typeof parseMode)[number] = "outer"
 
   let token = ""
   let currentRuleName: undefined | string = undefined
