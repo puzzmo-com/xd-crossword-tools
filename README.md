@@ -17,7 +17,7 @@ const xd = "[...]"
 const crossword = xdToJSON(xd)
 ```
 
-The JSON format is a bit more verbose than you might expect (see below for an example), but the goal is to have as much information pre-computed at parse time in order to save lookups later at runtime. You can see the type definitions here: [`./lib/types.ts`](./lib/types.ts).
+The JSON format is a bit more verbose than you might expect (see below for an example), but the goal is to have as much information pre-computed at parse time in order to save lookups later at runtime. You should use `crossword.report` to determine the parsing's success. You can see the type definitions here: [`./lib/types.ts`](./lib/types.ts).
 
 ### .puz to .xd
 
@@ -31,7 +31,7 @@ const puzBuffer = await res.arrayBuffer()
 const xd = puzToXd(puzBuffer)
 ```
 
-This should cover most features in puz and xd.
+This API should cover most features in puz and xd.
 
 ### UClick .xml to .xd
 
@@ -80,6 +80,12 @@ export type PositionInfo =
   | { type: "clue"; direction: CursorDirection; number: number }
   | ...
 ```
+
+### Warnings
+
+We have some simple heuristics over the crossword which end up in the warnings section of the JSON output. These are things like:
+
+- If there are any clues with a metadata of hint
 
 ### Example
 

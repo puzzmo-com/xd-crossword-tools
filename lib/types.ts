@@ -54,7 +54,16 @@ export type CrosswordJSON = {
   }
 }
 
-type Reports = { type: "clue_msg"; position: Position; length: number; clueIndex: number; clueType: "across" | "down"; message: string }
+type Reports =
+  | { type: "syntax"; position: Position; length: number; message: string }
+  | {
+      type: "clue_msg"
+      position: Position
+      length: number
+      clueNum: number | unknown
+      clueType: "across" | "down" | unknown
+      message: string
+    }
 
 export type EditorInfo = {
   /** Positioning for the blocks of xd content */

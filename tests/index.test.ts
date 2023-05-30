@@ -28,13 +28,9 @@ describe("Failing tests", () => {
   fails.forEach((file) => {
     it(`creates the right fail for ${file}`, () => {
       const xd = readFileSync(`./tests/fails/${file}`, "utf8")
-      try {
-        xdToJSON(xd)
-      } catch (error: any) {
-        expect(JSON.stringify(error, null, "  ")).toMatchFile(`./tests/output/fail_${file}.json`)
-        return
-      }
-      expect(`${file} did not fail`).toBeUndefined()
+      const json = xdToJSON(xd)
+      expect(JSON.stringify(json, null, 2)).toMatchFile(`./tests/output/fail_${file}.json`)
+      expect(json.report.success).toBeFalsy()
     })
   })
 })

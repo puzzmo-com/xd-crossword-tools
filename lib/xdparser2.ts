@@ -20,11 +20,8 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
   let preCommentState: ParseMode = "unknown"
   let styleTagContent: undefined | string = undefined
 
-  if (!xd) throw new EditorError("xd file is empty", 0)
-  if (shouldConvertToExplicitHeaders(xd)) {
-    if (editorInfo)
-      throw new EditorError("xd-crossword-tools: This file is using v1 implicit headers, you can't use an editor with this file", 0)
-
+  if (xd && shouldConvertToExplicitHeaders(xd)) {
+    if (editorInfo) throw new Error("xd-crossword-tools: This file is using v1 implicit headers, you can't use an editor with this file")
     xd = convertImplicitOrderedXDToExplicitHeaders(xd)
   }
 
@@ -59,6 +56,21 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
       warnings: [],
     },
     editorInfo: editorInfo ? { sections: [], lines } : undefined,
+  }
+
+  const addSyntaxError = (msg: string, line: number) => {
+    // const lineText = lines[line]
+    json.report.errors.push({
+      type: "syntax",
+      position: { col: 0, index: line },
+      length: 1, // lineText.length,
+      message: msg,
+    })
+  }
+
+  if (!xd) {
+    addSyntaxError("xd is an empty file", 0)
+    return json
   }
 
   let mode: ParseMode = "unknown"
@@ -106,9 +118,8 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
       continue
     }
 
-    if (strict && trimmed.startsWith("## ")) {
-      throw new EditorError(`This header has spaces before it, this is likely an accidental indentation`, line)
-    }
+    if (strict && trimmed.startsWith("## "))
+      addSyntaxError("This header has spaces before it, this is likely an accidental indentation", line)
 
     // Allow for prefix whitespaces, mainly to make the tests more readable but it can't hurt the parser
     if (mode === "unknown") continue
@@ -132,12 +143,24 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
         if (trimmed === "") continue
 
         const clue = clueFromLine(trimmed, line)
+        if ("errorMessage" in clue) {
+          json.report.errors.push({
+            type: "clue_msg",
+            clueType: clue.dir,
+            clueNum: clue.num,
+            position: { col: 0, index: line },
+            length: 1, // lineText.length,
+            message: clue.errorMessage,
+          })
+          continue
+        }
+
         const key = `${clue.dir}${clue.num}`
         const existing = rawInput.clues.get(key)
         if ("answer" in clue) {
           if (existing && strict) {
             const hintVersion = `${clue.dir}${clue.num}~Hint. ${clue.question} ~ ${clue.answer}`
-            throw new EditorError(`Duplicate clue detected, if this is for a hint, please convert it to: '${hintVersion}'`, line)
+            addSyntaxError(`Duplicate clue detected, if this is for a hint, please convert it to: '${hintVersion}'`, line)
           } else if (existing) {
             // Shim for v4 migration
             if (!existing.metadata) existing.metadata = {}
@@ -147,10 +170,11 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
           }
         } else {
           if (!existing) {
-            throw new EditorError(`Could not find the clues which this hint refers to above it`, line)
+            addSyntaxError(`Could not find the clue which this hint refers to above it`, line)
+          } else {
+            if (!existing.metadata) existing.metadata = {}
+            existing.metadata[clue.metaKey.toLowerCase()] = clue.metaValue
           }
-          if (!existing.metadata) existing.metadata = {}
-          existing.metadata[clue.metaKey.toLowerCase()] = clue.metaValue
         }
         continue
       }
@@ -159,7 +183,9 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
       // @ts-ignore backwards compat
       case "metadata": {
         if (trimmed === "") continue
-        if (!trimmed.includes(":")) throw new EditorError(`Could not find a ':' separating the meta item's name from its value`, line)
+        if (!trimmed.includes(":")) {
+          addSyntaxError(`Could not find a ':' separating the meta item's name from its value`, line)
+        }
 
         const lineParts = trimmed.split(": ")
         const key = lineParts.shift()!
@@ -244,10 +270,10 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
   if (json.design) {
     if (!styleTagContent) {
       const lineOfGrid = getLine(xd.toLowerCase(), "## design") as number
-      throw new EditorError(`The style tag is missing from this design section`, lineOfGrid)
+      addSyntaxError(`The style tag is missing from this design section`, lineOfGrid)
+    } else {
+      json.design.styles = parseStyleCSSLike(styleTagContent, xd, addSyntaxError)
     }
-
-    json.design.styles = parseStyleCSSLike(styleTagContent, xd)
   }
 
   if (json.metapuzzle)
@@ -274,18 +300,61 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
   // Checks that all of the essential data has been set in a useful way
   if (strict) {
     const needed = mustHave.filter((needs) => !seenSections.includes(needs))
-    if (needed.length) {
-      throw new EditorError(`This crossword has missing sections: '${toTitleSentence(needed)}' - saw ${toTitleSentence(seenSections)}`, 0)
+    if (xd && needed.length) {
+      const seen = seenSections.length === 0 ? "no section" : toTitleSentence(seenSections)
+      addSyntaxError(`This crossword has missing sections: '${toTitleSentence(needed)}' - saw ${seen}`, lines.length)
     }
 
     if (json.tiles.length === 0) {
       const lineOfGrid = getLine(xd.toLowerCase(), "## grid")
-      if (lineOfGrid === false) throw new EditorError(`This crossword has a missing grid content`, 0)
-      else throw new EditorError(`This grid section does not have a working grid`, lineOfGrid)
+      if (lineOfGrid === false) {
+        true // addSyntaxError(`This crossword has a missing grid section`, lines.length)
+      } else addSyntaxError(`This crossword does not have a working grid`, lineOfGrid)
     }
   }
 
+  json.report.success = json.report.errors.length === 0
   return json
+
+  function parseModeForString(lineText: string, num: number, strict: boolean): ParseMode {
+    const content = lineText.split("## ").pop()
+    if (!content) {
+      addSyntaxError("This header needs a title", num)
+      return "unknown"
+    }
+
+    const title = content.toLowerCase()
+    if (title.startsWith("grid")) {
+      return "grid"
+    } else if (title.startsWith("clues")) {
+      return "clues"
+    } else if (title.startsWith("notes")) {
+      return "notes"
+    } else if (title.startsWith("start")) {
+      return "start"
+    } else if (title.startsWith("metapuzzle")) {
+      return "metapuzzle"
+    } else if (title.startsWith("metadata")) {
+      return "metadata"
+    } else if (title.trim() === "meta") {
+      if (typeof jest === "undefined")
+        console.log("xd-crossword-tools: Shimmed '### meta' to '### metadata' - this will be removed in the future")
+      return "metadata"
+    } else if (title.startsWith("design")) {
+      return "design"
+    }
+
+    if (strict && !knownHeaders.includes(content.trim() as any)) {
+      const headers = toTitleSentence(knownHeaders as any)
+
+      addSyntaxError(
+        `Two # headers are reserved for the system, they can only be: ${headers}. Got '${content.trim()}'. You can use ### headers for inside notes.`,
+        num
+      )
+    }
+
+    return "unknown"
+  }
 }
 
 function getLine(body: string, substr: string) {
@@ -308,23 +377,27 @@ const clueMetaRegex = /(^.\d*)\s\^(.*):\s(.*?)/
 type ClueParserResponse =
   | { dir: "D" | "A"; num: number; question: string; answer: string }
   | { dir: "D" | "A"; num: number; metaKey: string; metaValue: string }
+  | { dir: "D" | "A" | undefined; num: number | undefined; errorMessage: string }
 
 /** Returns either a clue reference, a clue metadata reference, or throws an editor error */
 const clueFromLine = (line: string, num: number): ClueParserResponse => {
-  const expectedPrefix = line.slice(0, 1).toUpperCase()
+  const expectedPrefix = line.slice(0, 1).toUpperCase() as "D" | "A"
   if (!["A", "D"].includes(expectedPrefix)) {
-    throw new EditorError(`This clue doesn't start with A or D: '${line}'`, num)
+    return { dir: undefined, num: undefined, errorMessage: `This clue doesn't start with A or D: '${line}'` }
   }
 
   const parts = line.match(clueRegex)
   if (parts) {
     const num = isLegitNumber(parts[1])
+    if (num === false) {
+      const message = `This clue is not properly formatted, expected ${expectedPrefix}[num]. [clue] ~ [answer] but could not parse the number: ${parts[1]}`
+      return { dir: expectedPrefix, num: undefined, errorMessage: message }
+    }
 
-    if (parts.length !== 4)
-      throw new EditorError(
-        `This clue is not properly formatted, expected ${expectedPrefix}[num]. [clue] ~ [answer] but only found ${parts.length} parts: ${parts}`,
-        num
-      )
+    if (parts.length !== 4) {
+      const message = `This clue is not properly formatted, expected ${expectedPrefix}[num]. [clue] ~ [answer] but only found ${parts.length} parts: ${parts}`
+      return { dir: expectedPrefix, num, errorMessage: message }
+    }
 
     return {
       dir: expectedPrefix as "D" | "A",
@@ -338,11 +411,15 @@ const clueFromLine = (line: string, num: number): ClueParserResponse => {
   const metaParts = line.match(clueMetaRegex)
   if (metaParts) {
     const num = isLegitNumber(metaParts[1])
-    if (metaParts.length !== 4)
-      throw new EditorError(
-        `Could not get the right amount of parts from this clue, expected  ${expectedPrefix}[num] ^[hint]: [clue] but got ${metaParts.length} - ${metaParts}`,
-        num
-      )
+    if (num === false) {
+      const message = `This clue is not properly formatted, expected ${expectedPrefix}[num]. [clue] ~ [answer] but could not parse the number from '${metaParts[1]}'`
+      return { dir: expectedPrefix, num: undefined, errorMessage: message }
+    }
+
+    if (metaParts.length !== 4) {
+      const message = `Could not get the right amount of parts from this clue, expected  ${expectedPrefix}[num] ^[hint]: [clue] but got ${metaParts.length} - ${metaParts}`
+      return { dir: expectedPrefix, num, errorMessage: message }
+    }
 
     return {
       dir: expectedPrefix as "D" | "A",
@@ -352,54 +429,16 @@ const clueFromLine = (line: string, num: number): ClueParserResponse => {
     }
   }
 
-  throw new EditorError(
-    `The clue '${line.trim()}' does not match either the format of '${expectedPrefix}[num]. [clue] ~ [answer]' for a clue, or '${expectedPrefix}[num] ^[hint]: [clue]' for a clue's metadata.`,
-    num
-  )
+  const message = `The clue '${line.trim()}' does not match either the format of '${expectedPrefix}[num]. [clue] ~ [answer]' for a clue, or '${expectedPrefix}[num] ^[hint]: [clue]' for a clue's metadata.`
+  return { dir: expectedPrefix, num, errorMessage: message }
 
   function isLegitNumber(str: string) {
     const legitNumber = parseInt(str.slice(1).split("~")[0])
     if (isNaN(legitNumber)) {
-      throw new EditorError(`This clue number isn't an whole number: got '${str}'`, num)
+      return false
     }
     return legitNumber
   }
-}
-
-const parseModeForString = (lineText: string, num: number, strict: boolean): ParseMode => {
-  const content = lineText.split("## ").pop()
-  if (!content) throw new EditorError("This header needs a title", num)
-
-  const title = content.toLowerCase()
-  if (title.startsWith("grid")) {
-    return "grid"
-  } else if (title.startsWith("clues")) {
-    return "clues"
-  } else if (title.startsWith("notes")) {
-    return "notes"
-  } else if (title.startsWith("start")) {
-    return "start"
-  } else if (title.startsWith("metapuzzle")) {
-    return "metapuzzle"
-  } else if (title.startsWith("metadata")) {
-    return "metadata"
-  } else if (title.trim() === "meta") {
-    if (typeof jest === "undefined")
-      console.log("xd-crossword-tools: Shimmed '### meta' to '### metadata' - this will be removed in the future")
-    return "metadata"
-  } else if (title.startsWith("design")) {
-    return "design"
-  }
-
-  if (strict && !knownHeaders.includes(content.trim() as any)) {
-    const headers = toTitleSentence(knownHeaders as any)
-    throw new EditorError(
-      `Two # headers are reserved for the system, they can only be: ${headers}. Got '${content.trim()}'. You can use ### headers for inside notes.`,
-      num
-    )
-  }
-
-  return "unknown"
 }
 
 export const stringGridToTiles = (rebuses: CrosswordJSON["rebuses"], strArr: string[][]): CrosswordJSON["tiles"] => {
@@ -465,7 +504,7 @@ function updateMetaPuzzleForLine(
 // produce a lite version of the CSS syntax. Lots of tests in
 // xdparser.design.test.ts
 
-function parseStyleCSSLike(str: string, xd: string) {
+function parseStyleCSSLike(str: string, xd: string, errorReporter: (msg: string, line: number) => void) {
   const lineOfGrid = getLine(xd.toLowerCase(), "## design") as number
 
   const styleSheet: Record<string, Record<string, string>> = {}
@@ -487,7 +526,7 @@ function parseStyleCSSLike(str: string, xd: string) {
         token = ""
         currentKeyName = undefined
         if (currentRuleName.length > 1) {
-          throw new EditorError(`Cannot have a style rule which is longer than one character: got '${currentRuleName}'`, lineOfGrid)
+          errorReporter(`Cannot have a style rule which is longer than one character: got '${currentRuleName}'`, lineOfGrid)
         }
         continue
       }
@@ -516,7 +555,7 @@ function parseStyleCSSLike(str: string, xd: string) {
   }
 
   if (mode === "inner") {
-    throw new EditorError(`The style content likely does not have a closing '}'`, lineOfGrid)
+    errorReporter(`A style tag above likely does not have a closing '}'`, lineOfGrid)
   }
 
   return styleSheet
