@@ -213,7 +213,6 @@ D3. A conscious tree. ~ BOOK
         "col": 0,
         "index": 0,
       },
-      "splits": undefined,
     },
     {
       "answer": "OK",
@@ -224,7 +223,6 @@ D3. A conscious tree. ~ BOOK
         "col": 0,
         "index": 1,
       },
-      "splits": undefined,
     },
     {
       "answer": "DESK",
@@ -235,7 +233,6 @@ D3. A conscious tree. ~ BOOK
         "col": 0,
         "index": 3,
       },
-      "splits": undefined,
     },
   ],
   "down": [
@@ -248,7 +245,6 @@ D3. A conscious tree. ~ BOOK
         "col": 0,
         "index": 0,
       },
-      "splits": undefined,
     },
     {
       "answer": "UK",
@@ -259,7 +255,6 @@ D3. A conscious tree. ~ BOOK
         "col": 1,
         "index": 0,
       },
-      "splits": undefined,
     },
     {
       "answer": "BOOK",
@@ -270,7 +265,6 @@ D3. A conscious tree. ~ BOOK
         "col": 3,
         "index": 0,
       },
-      "splits": undefined,
     },
   ],
 }
@@ -460,7 +454,6 @@ D2. A thing. ~ OBJECT
         "col": 3,
         "index": 0,
       },
-      "splits": undefined,
     },
   ],
 }

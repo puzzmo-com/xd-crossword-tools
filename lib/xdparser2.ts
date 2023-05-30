@@ -1,6 +1,6 @@
 import { getCluePositionsForBoard } from "./clueNumbersFromBoard"
 import { EditorError } from "./EditorError"
-import type { Tile, CrosswordJSON } from "./types"
+import type { Tile, CrosswordJSON, MDClueComponent } from "./types"
 import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "./xdparser2.compat"
 
 // These are all the sections supported by this parser
@@ -27,7 +27,10 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
 
   let rawInput: {
     tiles: string[][]
-    clues: Map<string, { num: number; question: string; metadata?: Record<string, string>; answer: string; dir: "A" | "D" }>
+    clues: Map<
+      string,
+      { num: number; question: string; metadata?: Record<string, string>; answer: string; dir: "A" | "D"; bodyMD?: MDClueComponent[] }
+    >
   } = {
     tiles: [],
     clues: new Map(),
@@ -157,6 +160,7 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
 
         const key = `${clue.dir}${clue.num}`
         const existing = rawInput.clues.get(key)
+
         if ("answer" in clue) {
           if (existing && strict) {
             const hintVersion = `${clue.dir}${clue.num}~Hint. ${clue.question} ~ ${clue.answer}`
@@ -292,8 +296,9 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
       answer: answer,
       number: clue.num,
       position: positions[clue.num],
-      splits: splits,
       metadata: clue.metadata,
+      ...(splits ? { splits } : {}),
+      ...(clue.bodyMD ? { bodyMD: clue.bodyMD } : {}),
     })
   }
 
@@ -375,7 +380,7 @@ const clueRegex = /(^.\d*)\.\s(.*)\s\~\s(.*)/
 const clueMetaRegex = /(^.\d*)\s\^(.*):\s(.*?)/
 
 type ClueParserResponse =
-  | { dir: "D" | "A"; num: number; question: string; answer: string }
+  | { dir: "D" | "A"; num: number; question: string; answer: string; bodyMD?: MDClueComponent[] }
   | { dir: "D" | "A"; num: number; metaKey: string; metaValue: string }
   | { dir: "D" | "A" | undefined; num: number | undefined; errorMessage: string }
 
@@ -399,12 +404,28 @@ const clueFromLine = (line: string, num: number): ClueParserResponse => {
       return { dir: expectedPrefix, num, errorMessage: message }
     }
 
-    return {
+    const res: ClueParserResponse = {
       dir: expectedPrefix as "D" | "A",
       num,
       question: parts[2]!,
       answer: parts[3]!,
     }
+
+    if (
+      res.question.includes("[") ||
+      res.question.includes("*") ||
+      // res.question.includes("_") ||
+      res.question.includes("/") ||
+      res.question.includes("~")
+    ) {
+      const components = inlineMarkdownParser(res.question)
+      // Don't set if it's just one text (because it had something like `___` in the clue)
+      if (!(components.length === 1 && components[0][0] === "text")) {
+        res.bodyMD = components
+      }
+    }
+
+    return res
   }
 
   // The 'clue' regex did not pass, lets check for a clue meta
@@ -586,4 +607,98 @@ function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string
   if (splits.length === 0) return { answer, splits: undefined }
 
   return { answer, splits }
+}
+
+function inlineMarkdownParser(str: string): MDClueComponent[] {
+  const components: MDClueComponent[] = []
+  let token = ""
+  let mode: MDClueComponent[0] = "text"
+  let linkText = ""
+
+  const pushText = () => {
+    if (token.length > 0) {
+      components.push(["text", token])
+      token = ""
+    }
+  }
+
+  for (let index = 0; index < str.length; index++) {
+    const letter = str.slice(index, index + 1)
+    if (mode === "text") {
+      if (letter === "[") {
+        mode = "link"
+        pushText()
+        continue
+      }
+
+      if (letter === "*") {
+        mode = "bold"
+        pushText()
+        continue
+      }
+
+      // if (letter === "_") {
+      //   let innerI = index + 1
+      //   while (str.slice(innerI + 1, innerI + 2) === "_") {
+      //     innerI++
+      //   }
+      //   const numberOfUnderScoresAfter = innerI - index
+      //   if (numberOfUnderScoresAfter === 1) {
+      //     mode = "italics"
+      //     pushText()
+      //     continue
+      //   }
+      // }
+
+      if (letter === "/") {
+        mode = "italics"
+        pushText()
+        continue
+      }
+
+      if (letter === "~") {
+        mode = "strike"
+        pushText()
+        continue
+      }
+    } else if (mode === "link") {
+      if (letter === "]") {
+        linkText = token
+        token = ""
+        continue
+      } else if (letter === ")") {
+        components.push(["link", linkText, token.slice(1)])
+        token = ""
+        mode = "text"
+        continue
+      }
+    } else if (mode === "bold") {
+      if (letter === "*") {
+        mode = "text"
+        components.push(["bold", token])
+        token = ""
+        continue
+      }
+    } else if (mode === "italics") {
+      // if (letter === "_" || letter === "/") {
+      if (letter === "/" || !letter) {
+        mode = "text"
+        components.push(["italics", token])
+        token = ""
+        continue
+      }
+    } else if (mode === "strike") {
+      if (letter === "~") {
+        mode = "text"
+        components.push(["strike", token])
+        token = ""
+        continue
+      }
+    }
+    token += letter
+  }
+
+  pushText()
+
+  return components
 }
