@@ -85,9 +85,7 @@ export type PositionInfo =
 
 ### Warnings
 
-We have some simple heuristics over the crossword which end up in the warnings section of the JSON output. These are things like:
-
-- If there are any clues with a metadata of hint
+We have the infrastructure to give warnings on a crossword, but we don't have any warnings yet. If you have ideas for warnings, please open an issue!
 
 ### Example
 
