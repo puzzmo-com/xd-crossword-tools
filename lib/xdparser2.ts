@@ -63,11 +63,10 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
   }
 
   const addSyntaxError = (msg: string, line: number) => {
-    // const lineText = lines[line]
     json.report.errors.push({
       type: "syntax",
       position: { col: 0, index: line },
-      length: 1, // lineText.length,
+      length: -1,
       message: msg,
     })
   }

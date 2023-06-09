@@ -91,10 +91,6 @@ export type PositionInfo =
   | ...
 ```
 
-### Warnings
-
-We have the infrastructure to give warnings on a crossword, but we don't have any warnings yet. If you have ideas for warnings, please open an issue!
-
 ### Example
 
 Let's take this free `.puz`: https://dehodson.github.io/crossword-puzzles/crosswords/alpha-bits/
