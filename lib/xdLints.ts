@@ -1,11 +1,11 @@
 import { Clue, Report } from "./types"
 
-export const runLinterForClue = async (clue: Clue, ordinal: "across" | "down", clueLine: number, hintLine?: number) => {
+export const runLinterForClue = (clue: Clue, ordinal: "across" | "down") => {
   const reports: Report[] = []
 
   const lowerClueBody = clue.body.toLocaleLowerCase()
-  const lowerHint = clue.metadata?.hint.toLocaleLowerCase() || ""
-  const ref = `${ordinal.slice(0, 1).toUpperCase}${clue.number}`
+  const lowerHint = clue.metadata?.hint?.toLocaleLowerCase() || ""
+  const ref = `${ordinal.slice(0, 1).toUpperCase()}${clue.number}`
 
   const wordsForClue = lowerClueBody.split(" ")
   const wordsFromHint = lowerHint.split(" ")
@@ -14,15 +14,18 @@ export const runLinterForClue = async (clue: Clue, ordinal: "across" | "down", c
   const wordsFromAnswerSet = new Set(wordsForClue)
   const wordsFromHintSet = new Set(wordsFromHint ?? [])
 
+  const clueLine = parseInt(clue.metadata?.["body:line"] || "-1")
+  const hintLine = parseInt(clue.metadata?.["hint:line"] || "-1")
+
   const addReport = (message: string, isHint?: boolean) =>
     reports.push({
       type: "clue_msg",
       message,
       position: {
         col: 0,
-        index: isHint ? clueLine : hintLine ?? clueLine,
+        index: isHint ? hintLine ?? clueLine : clueLine,
       },
-      length: 1,
+      length: -1,
       clueNum: clue.number,
       clueType: ordinal,
     })
@@ -33,7 +36,7 @@ export const runLinterForClue = async (clue: Clue, ordinal: "across" | "down", c
     const isWordInClue = wordsFromAnswerSet.has(word)
     if (isWordInClue || isWordInHint) {
       const place = isWordInHint ? "hint" : "clue"
-      addReport(`${ref} has an answer word '${word}' that is in the ${place}`, isWordInHint)
+      addReport(`${ref} has an answer word '${word}' which is in the ${place}`, isWordInHint)
     }
   }
 

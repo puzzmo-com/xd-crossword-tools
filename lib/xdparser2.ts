@@ -1,6 +1,7 @@
 import { getCluePositionsForBoard } from "./clueNumbersFromBoard"
 import { EditorError } from "./EditorError"
 import type { Tile, CrosswordJSON, MDClueComponent } from "./types"
+import { runLinterForClue } from "./xdLints"
 import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "./xdparser2.compat"
 
 // These are all the sections supported by this parser
@@ -319,6 +320,18 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
         true // addSyntaxError(`This crossword has a missing grid section`, lines.length)
       } else addSyntaxError(`This crossword does not have a working grid`, lineOfGrid)
     }
+  }
+
+  if (editorInfo) {
+    json.clues.across.forEach((clue) => {
+      const warnings = runLinterForClue(clue, "across")
+      if (warnings.length) json.report.warnings.push(...warnings)
+    })
+
+    json.clues.down.forEach((clue) => {
+      const warnings = runLinterForClue(clue, "down")
+      if (warnings.length) json.report.warnings.push(...warnings)
+    })
   }
 
   json.report.success = json.report.errors.length === 0
