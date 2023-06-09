@@ -1,5 +1,1705 @@
 {
-  "line": 31,
-  "rawMessage": "The clue 'A13.' does not match either the format of 'A[num]. [clue] ~ [answer]' for a clue, or 'A[num] ^[hint]: [clue]' for a clue's metadata.",
-  "name": "XDError"
+  "meta": {
+    "title": "Alpha-Bits",
+    "author": "Drew Hodson",
+    "date": "Not set",
+    "editor": "Not set",
+    "copyright": "© 2021",
+    "description": "N/A",
+    "design": "O={ background: circle }"
+  },
+  "tiles": [
+    [
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "H"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "B"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "C"
+      },
+      {
+        "type": "letter",
+        "letter": "U"
+      },
+      {
+        "type": "letter",
+        "letter": "D"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "S"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      },
+      {
+        "type": "letter",
+        "letter": "R"
+      },
+      {
+        "type": "letter",
+        "letter": "I"
+      },
+      {
+        "type": "letter",
+        "letter": "F"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "M"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "D"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "M"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "N"
+      },
+      {
+        "type": "letter",
+        "letter": "Y"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "B"
+      },
+      {
+        "type": "letter",
+        "letter": "O"
+      },
+      {
+        "type": "letter",
+        "letter": "D"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "P"
+      },
+      {
+        "type": "letter",
+        "letter": "L"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "N"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "D"
+      },
+      {
+        "type": "letter",
+        "letter": "I"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "N"
+      },
+      {
+        "type": "letter",
+        "letter": "O"
+      },
+      {
+        "type": "letter",
+        "letter": "T"
+      },
+      {
+        "type": "letter",
+        "letter": "O"
+      },
+      {
+        "type": "letter",
+        "letter": "N"
+      }
+    ],
+    [
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "T"
+      },
+      {
+        "type": "letter",
+        "letter": "O"
+      },
+      {
+        "type": "letter",
+        "letter": "D"
+      },
+      {
+        "type": "letter",
+        "letter": "O"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      },
+      {
+        "type": "letter",
+        "letter": "G"
+      },
+      {
+        "type": "letter",
+        "letter": "O"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "G"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "S"
+      },
+      {
+        "type": "letter",
+        "letter": "H"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "N"
+      },
+      {
+        "type": "letter",
+        "letter": "I"
+      },
+      {
+        "type": "letter",
+        "letter": "N"
+      },
+      {
+        "type": "letter",
+        "letter": "J"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "K"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      },
+      {
+        "type": "letter",
+        "letter": "L"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "R"
+      },
+      {
+        "type": "letter",
+        "letter": "T"
+      },
+      {
+        "type": "letter",
+        "letter": "I"
+      },
+      {
+        "type": "letter",
+        "letter": "C"
+      },
+      {
+        "type": "letter",
+        "letter": "L"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "O"
+      },
+      {
+        "type": "letter",
+        "letter": "R"
+      },
+      {
+        "type": "letter",
+        "letter": "U"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "D"
+      },
+      {
+        "type": "letter",
+        "letter": "O"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "Y"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "R"
+      },
+      {
+        "type": "letter",
+        "letter": "L"
+      },
+      {
+        "type": "letter",
+        "letter": "Y"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "M"
+      },
+      {
+        "type": "letter",
+        "letter": "I"
+      },
+      {
+        "type": "letter",
+        "letter": "S"
+      },
+      {
+        "type": "letter",
+        "letter": "P"
+      },
+      {
+        "type": "letter",
+        "letter": "R"
+      },
+      {
+        "type": "letter",
+        "letter": "I"
+      },
+      {
+        "type": "letter",
+        "letter": "N"
+      },
+      {
+        "type": "letter",
+        "letter": "T"
+      }
+    ],
+    [
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "N"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      },
+      {
+        "type": "letter",
+        "letter": "I"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "M"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "N"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "S"
+      },
+      {
+        "type": "letter",
+        "letter": "O"
+      },
+      {
+        "type": "letter",
+        "letter": "T"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "C"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "L"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      },
+      {
+        "type": "letter",
+        "letter": "N"
+      },
+      {
+        "type": "letter",
+        "letter": "D"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "R"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "R"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      },
+      {
+        "type": "letter",
+        "letter": "T"
+      },
+      {
+        "type": "letter",
+        "letter": "I"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      },
+      {
+        "type": "letter",
+        "letter": "S"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "I"
+      },
+      {
+        "type": "letter",
+        "letter": "C"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "T"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "R"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "P"
+      },
+      {
+        "type": "letter",
+        "letter": "O"
+      },
+      {
+        "type": "letter",
+        "letter": "T"
+      },
+      {
+        "type": "letter",
+        "letter": "H"
+      },
+      {
+        "type": "letter",
+        "letter": "O"
+      },
+      {
+        "type": "letter",
+        "letter": "L"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "O"
+      },
+      {
+        "type": "letter",
+        "letter": "T"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      },
+      {
+        "type": "letter",
+        "letter": "P"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "H"
+      },
+      {
+        "type": "letter",
+        "letter": "Q"
+      },
+      {
+        "type": "letter",
+        "letter": "T"
+      },
+      {
+        "type": "letter",
+        "letter": "R"
+      },
+      {
+        "type": "letter",
+        "letter": "S"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "S"
+      },
+      {
+        "type": "letter",
+        "letter": "N"
+      },
+      {
+        "type": "letter",
+        "letter": "I"
+      },
+      {
+        "type": "letter",
+        "letter": "T"
+      }
+    ],
+    [
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "L"
+      },
+      {
+        "type": "letter",
+        "letter": "L"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "H"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "L"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "S"
+      },
+      {
+        "type": "letter",
+        "letter": "P"
+      },
+      {
+        "type": "letter",
+        "letter": "I"
+      },
+      {
+        "type": "letter",
+        "letter": "R"
+      },
+      {
+        "type": "letter",
+        "letter": "O"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "N"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      },
+      {
+        "type": "letter",
+        "letter": "T"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "T"
+      },
+      {
+        "type": "letter",
+        "letter": "L"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "S"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "T"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "R"
+      },
+      {
+        "type": "letter",
+        "letter": "T"
+      },
+      {
+        "type": "letter",
+        "letter": "S"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      },
+      {
+        "type": "letter",
+        "letter": "T"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "D"
+      },
+      {
+        "type": "letter",
+        "letter": "O"
+      },
+      {
+        "type": "letter",
+        "letter": "O"
+      },
+      {
+        "type": "letter",
+        "letter": "N"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      }
+    ],
+    [
+      {
+        "type": "letter",
+        "letter": "U"
+      },
+      {
+        "type": "letter",
+        "letter": "W"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "V"
+      },
+      {
+        "type": "letter",
+        "letter": "E"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "W"
+      },
+      {
+        "type": "letter",
+        "letter": "A"
+      },
+      {
+        "type": "letter",
+        "letter": "X"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "blank"
+      },
+      {
+        "type": "letter",
+        "letter": "Y"
+      },
+      {
+        "type": "letter",
+        "letter": "U"
+      },
+      {
+        "type": "letter",
+        "letter": "T"
+      },
+      {
+        "type": "letter",
+        "letter": "Z"
+      }
+    ]
+  ],
+  "clues": {
+    "across": [
+      {
+        "body": "Captain of the Pequod",
+        "answer": "AHAB",
+        "number": 1,
+        "position": {
+          "col": 0,
+          "index": 0
+        }
+      },
+      {
+        "body": "Food for second chance chewing",
+        "answer": "CUD",
+        "number": 5,
+        "position": {
+          "col": 6,
+          "index": 0
+        }
+      },
+      {
+        "body": "Font feature",
+        "answer": "SERIF",
+        "number": 8,
+        "position": {
+          "col": 10,
+          "index": 0
+        }
+      },
+      {
+        "body": "___ Way You Want It",
+        "answer": "ANY",
+        "number": 15,
+        "position": {
+          "col": 6,
+          "index": 1
+        }
+      },
+      {
+        "body": "Place often described as humble",
+        "answer": "ABODE",
+        "number": 16,
+        "position": {
+          "col": 10,
+          "index": 1
+        }
+      },
+      {
+        "body": "Flat two dimensional surface in geometry",
+        "answer": "PLANE",
+        "number": 17,
+        "position": {
+          "col": 0,
+          "index": 2
+        }
+      },
+      {
+        "body": "Grim homophone of 7D",
+        "answer": "DIE",
+        "number": 18,
+        "position": {
+          "col": 6,
+          "index": 2
+        }
+      },
+      {
+        "body": "Off",
+        "answer": "NOTON",
+        "number": 19,
+        "position": {
+          "col": 10,
+          "index": 2
+        }
+      },
+      {
+        "body": "Heading for some lists",
+        "answer": "TODO",
+        "number": 20,
+        "position": {
+          "col": 4,
+          "index": 3
+        }
+      },
+      {
+        "body": "Kanye West is famous for his",
+        "answer": "EGO",
+        "number": 22,
+        "position": {
+          "col": 9,
+          "index": 3
+        }
+      },
+      {
+        "body": "Laceration",
+        "answer": "GASH",
+        "number": 23,
+        "position": {
+          "col": 0,
+          "index": 4
+        }
+      },
+      {
+        "body": "Alias of Twitch star Richard Tyler Blevins",
+        "answer": "NINJA",
+        "number": 27,
+        "position": {
+          "col": 5,
+          "index": 4
+        }
+      },
+      {
+        "body": "Capsize",
+        "answer": "KEEL",
+        "number": 29,
+        "position": {
+          "col": 11,
+          "index": 4
+        }
+      },
+      {
+        "body": "Piece of clothing or print",
+        "answer": "ARTICLE",
+        "number": 33,
+        "position": {
+          "col": 0,
+          "index": 5
+        }
+      },
+      {
+        "body": "Evangelical school in Tulsa, OK",
+        "answer": "ORU",
+        "number": 35,
+        "position": {
+          "col": 8,
+          "index": 5
+        }
+      },
+      {
+        "body": "___-eyed",
+        "answer": "DOE",
+        "number": 37,
+        "position": {
+          "col": 12,
+          "index": 5
+        }
+      },
+      {
+        "body": "Annual",
+        "answer": "YEARLY",
+        "number": 38,
+        "position": {
+          "col": 0,
+          "index": 6
+        }
+      },
+      {
+        "body": "The stamp with the upside down airplane is a famous one",
+        "answer": "MISPRINT",
+        "number": 39,
+        "position": {
+          "col": 7,
+          "index": 6
+        }
+      },
+      {
+        "body": "With 42A and Marcus, a luxury department store chain",
+        "answer": "NEI",
+        "number": 41,
+        "position": {
+          "col": 2,
+          "index": 7
+        }
+      },
+      {
+        "body": "41A continued",
+        "answer": "MAN",
+        "number": 42,
+        "position": {
+          "col": 6,
+          "index": 7
+        }
+      },
+      {
+        "body": "Lush",
+        "answer": "SOT",
+        "number": 43,
+        "position": {
+          "col": 10,
+          "index": 7
+        }
+      },
+      {
+        "body": "The Mayan one ended in 2012",
+        "answer": "CALENDAR",
+        "number": 44,
+        "position": {
+          "col": 0,
+          "index": 8
+        }
+      },
+      {
+        "body": "What a child often does to their shoes",
+        "answer": "RETIES",
+        "number": 47,
+        "position": {
+          "col": 9,
+          "index": 8
+        }
+      },
+      {
+        "body": "Vanilla ___",
+        "answer": "ICE",
+        "number": 50,
+        "position": {
+          "col": 0,
+          "index": 9
+        }
+      },
+      {
+        "body": "Maligned cigarette ingredient",
+        "answer": "TAR",
+        "number": 51,
+        "position": {
+          "col": 4,
+          "index": 9
+        }
+      },
+      {
+        "body": "Frequent cause for a new tire",
+        "answer": "POTHOLE",
+        "number": 52,
+        "position": {
+          "col": 8,
+          "index": 9
+        }
+      },
+      {
+        "body": "Los Angeles heavy metal act",
+        "answer": "OTEP",
+        "number": 53,
+        "position": {
+          "col": 0,
+          "index": 10
+        }
+      },
+      {
+        "body": "Bldgs. such as the Googleplex",
+        "answer": "HQTRS",
+        "number": 55,
+        "position": {
+          "col": 5,
+          "index": 10
+        }
+      },
+      {
+        "body": "A fit of irritation",
+        "answer": "SNIT",
+        "number": 57,
+        "position": {
+          "col": 11,
+          "index": 10
+        }
+      },
+      {
+        "body": "Lead-in to American or day",
+        "answer": "ALL",
+        "number": 58,
+        "position": {
+          "col": 3,
+          "index": 11
+        }
+      },
+      {
+        "body": "What Pokémon do at a Pokémon Center",
+        "answer": "HEAL",
+        "number": 60,
+        "position": {
+          "col": 7,
+          "index": 11
+        }
+      },
+      {
+        "body": "Nixon's vice",
+        "answer": "SPIRO",
+        "number": 62,
+        "position": {
+          "col": 0,
+          "index": 12
+        }
+      },
+      {
+        "body": "Nothing but ___",
+        "answer": "NET",
+        "number": 65,
+        "position": {
+          "col": 6,
+          "index": 12
+        }
+      },
+      {
+        "body": "One with the world on his shoulders",
+        "answer": "ATLAS",
+        "number": 66,
+        "position": {
+          "col": 10,
+          "index": 12
+        }
+      },
+      {
+        "body": "Filled pastries",
+        "answer": "TARTS",
+        "number": 71,
+        "position": {
+          "col": 0,
+          "index": 13
+        }
+      },
+      {
+        "body": "Age, in Milan",
+        "answer": "ETA",
+        "number": 72,
+        "position": {
+          "col": 6,
+          "index": 13
+        }
+      },
+      {
+        "body": "Lorna ___, novel or cookie",
+        "answer": "DOONE",
+        "number": 73,
+        "position": {
+          "col": 10,
+          "index": 13
+        }
+      },
+      {
+        "body": "Electrocardiogram readout feature",
+        "answer": "UWAVE",
+        "number": 74,
+        "position": {
+          "col": 0,
+          "index": 14
+        }
+      },
+      {
+        "body": "Hip slang for records",
+        "answer": "WAX",
+        "number": 75,
+        "position": {
+          "col": 6,
+          "index": 14
+        }
+      },
+      {
+        "body": "Yiddish for a foolish person",
+        "answer": "YUTZ",
+        "number": 76,
+        "position": {
+          "col": 11,
+          "index": 14
+        }
+      }
+    ],
+    "down": [
+      {
+        "body": "Pc. of concert gear",
+        "answer": "AMP",
+        "number": 1,
+        "position": {
+          "col": 0,
+          "index": 0
+        }
+      },
+      {
+        "body": "AI antagonist of 2001",
+        "answer": "HAL",
+        "number": 2,
+        "position": {
+          "col": 1,
+          "index": 0
+        }
+      },
+      {
+        "body": "Programming pioneer Lovelace",
+        "answer": "ADA",
+        "number": 3,
+        "position": {
+          "col": 2,
+          "index": 0
+        }
+      },
+      {
+        "body": "Prohibit",
+        "answer": "BAN",
+        "number": 4,
+        "position": {
+          "col": 3,
+          "index": 0
+        }
+      },
+      {
+        "body": "Type of person to routinely carry a club",
+        "answer": "CADDIE",
+        "number": 5,
+        "position": {
+          "col": 6,
+          "index": 0
+        }
+      },
+      {
+        "body": "State of the ___ Address",
+        "answer": "UNION",
+        "number": 6,
+        "position": {
+          "col": 7,
+          "index": 0
+        }
+      },
+      {
+        "body": "Colorful homophone of 18A",
+        "answer": "DYE",
+        "number": 7,
+        "position": {
+          "col": 8,
+          "index": 0
+        }
+      },
+      {
+        "body": "Snitched",
+        "answer": "SANG",
+        "number": 8,
+        "position": {
+          "col": 10,
+          "index": 0
+        }
+      },
+      {
+        "body": "Kindle fare",
+        "answer": "EBOOK",
+        "number": 9,
+        "position": {
+          "col": 11,
+          "index": 0
+        }
+      },
+      {
+        "body": "Decayed matter",
+        "answer": "ROT",
+        "number": 10,
+        "position": {
+          "col": 12,
+          "index": 0
+        }
+      },
+      {
+        "body": "Type of response you hope to get at the altar",
+        "answer": "IDO",
+        "number": 11,
+        "position": {
+          "col": 13,
+          "index": 0
+        }
+      },
+      {
+        "body": "Peat-accumulating wetland",
+        "answer": "FEN",
+        "number": 12,
+        "position": {
+          "col": 14,
+          "index": 0
+        }
+      },
+      {
+        "body": "The ___, NY art museum",
+        "answer": "MET",
+        "number": 14,
+        "position": {
+          "col": 4,
+          "index": 1
+        }
+      },
+      {
+        "body": "___Fans",
+        "answer": "ONLY",
+        "number": 21,
+        "position": {
+          "col": 5,
+          "index": 3
+        }
+      },
+      {
+        "body": "Friends, Romans, countrymen, lend me your...",
+        "answer": "EARS",
+        "number": 22,
+        "position": {
+          "col": 9,
+          "index": 3
+        }
+      },
+      {
+        "body": "\"Friend of Dorothy\"",
+        "answer": "GAY",
+        "number": 23,
+        "position": {
+          "col": 0,
+          "index": 4
+        }
+      },
+      {
+        "body": "We ___ the Champions",
+        "answer": "ARE",
+        "number": 24,
+        "position": {
+          "col": 1,
+          "index": 4
+        }
+      },
+      {
+        "body": "Father of Spider-Man",
+        "answer": "STANLEE",
+        "number": 25,
+        "position": {
+          "col": 2,
+          "index": 4
+        }
+      },
+      {
+        "body": "What a certain applicant becomes",
+        "answer": "HIREE",
+        "number": 26,
+        "position": {
+          "col": 3,
+          "index": 4
+        }
+      },
+      {
+        "body": "Connect",
+        "answer": "JOIN",
+        "number": 28,
+        "position": {
+          "col": 8,
+          "index": 4
+        }
+      },
+      {
+        "body": "Particular form of a published text",
+        "answer": "EDITION",
+        "number": 30,
+        "position": {
+          "col": 12,
+          "index": 4
+        }
+      },
+      {
+        "body": "Suffix at the end of all of Eevee's evolutions",
+        "answer": "EON",
+        "number": 31,
+        "position": {
+          "col": 13,
+          "index": 4
+        }
+      },
+      {
+        "body": "Live and ___ Die",
+        "answer": "LET",
+        "number": 32,
+        "position": {
+          "col": 14,
+          "index": 4
+        }
+      },
+      {
+        "body": "Famous Eastwood whose name became a famous Gorillaz song",
+        "answer": "CLINT",
+        "number": 34,
+        "position": {
+          "col": 4,
+          "index": 5
+        }
+      },
+      {
+        "body": "Unexpected result in a sporting competition",
+        "answer": "UPSET",
+        "number": 36,
+        "position": {
+          "col": 10,
+          "index": 5
+        }
+      },
+      {
+        "body": "Disfigure",
+        "answer": "MAR",
+        "number": 39,
+        "position": {
+          "col": 7,
+          "index": 6
+        }
+      },
+      {
+        "body": "David Lee and Tim",
+        "answer": "ROTHS",
+        "number": 40,
+        "position": {
+          "col": 11,
+          "index": 6
+        }
+      },
+      {
+        "body": "Luxury watch collection by Garmin",
+        "answer": "MARQ",
+        "number": 42,
+        "position": {
+          "col": 6,
+          "index": 7
+        }
+      },
+      {
+        "body": "Top dog in an IT org",
+        "answer": "CIO",
+        "number": 44,
+        "position": {
+          "col": 0,
+          "index": 8
+        }
+      },
+      {
+        "body": "Sister ___",
+        "answer": "ACT",
+        "number": 45,
+        "position": {
+          "col": 1,
+          "index": 8
+        }
+      },
+      {
+        "body": "Author Roald",
+        "answer": "DAHL",
+        "number": 46,
+        "position": {
+          "col": 5,
+          "index": 8
+        }
+      },
+      {
+        "body": "Civil rights activist Parks",
+        "answer": "ROSA",
+        "number": 47,
+        "position": {
+          "col": 9,
+          "index": 8
+        }
+      },
+      {
+        "body": "An additional name that could be part of 40D's clue",
+        "answer": "ELI",
+        "number": 48,
+        "position": {
+          "col": 13,
+          "index": 8
+        }
+      },
+      {
+        "body": "Director's domain",
+        "answer": "SET",
+        "number": 49,
+        "position": {
+          "col": 14,
+          "index": 8
+        }
+      },
+      {
+        "body": "Type of income to go in a 401k",
+        "answer": "PRETAX",
+        "number": 52,
+        "position": {
+          "col": 8,
+          "index": 9
+        }
+      },
+      {
+        "body": "The Empire Strikes Back, to the Star Wars saga",
+        "answer": "PARTV",
+        "number": 54,
+        "position": {
+          "col": 3,
+          "index": 10
+        }
+      },
+      {
+        "body": "Greek letter following 72A",
+        "answer": "THETA",
+        "number": 56,
+        "position": {
+          "col": 7,
+          "index": 10
+        }
+      },
+      {
+        "body": "Misplace",
+        "answer": "LOSE",
+        "number": 59,
+        "position": {
+          "col": 4,
+          "index": 11
+        }
+      },
+      {
+        "body": "Wee boy",
+        "answer": "LAD",
+        "number": 61,
+        "position": {
+          "col": 10,
+          "index": 11
+        }
+      },
+      {
+        "body": "Dad to Tommy Pickles",
+        "answer": "STU",
+        "number": 62,
+        "position": {
+          "col": 0,
+          "index": 12
+        }
+      },
+      {
+        "body": "The only Patrol I trust",
+        "answer": "PAW",
+        "number": 63,
+        "position": {
+          "col": 1,
+          "index": 12
+        }
+      },
+      {
+        "body": "Smart savings plan, briefly",
+        "answer": "IRA",
+        "number": 64,
+        "position": {
+          "col": 2,
+          "index": 12
+        }
+      },
+      {
+        "body": "Fresh",
+        "answer": "NEW",
+        "number": 65,
+        "position": {
+          "col": 6,
+          "index": 12
+        }
+      },
+      {
+        "body": "Breeds such as Chihuahua or Pomeranian",
+        "answer": "TOY",
+        "number": 67,
+        "position": {
+          "col": 11,
+          "index": 12
+        }
+      },
+      {
+        "body": "Bega behind \"Mambo No. 5\"",
+        "answer": "LOU",
+        "number": 68,
+        "position": {
+          "col": 12,
+          "index": 12
+        }
+      },
+      {
+        "body": "Aardvark breakfast",
+        "answer": "ANT",
+        "number": 69,
+        "position": {
+          "col": 13,
+          "index": 12
+        }
+      },
+      {
+        "body": "Sonic ___",
+        "answer": "SEZ",
+        "number": 70,
+        "position": {
+          "col": 14,
+          "index": 12
+        }
+      }
+    ]
+  },
+  "rebuses": {},
+  "notes": "",
+  "report": {
+    "success": false,
+    "errors": [
+      {
+        "type": "clue_msg",
+        "clueType": "A",
+        "clueNum": 31,
+        "position": {
+          "col": 0,
+          "index": 31
+        },
+        "length": 1,
+        "message": "The clue 'A13.' does not match either the format of 'A[num]. [clue] ~ [answer]' for a clue, or 'A[num] ^[hint]: [clue]' for a clue's metadata."
+      }
+    ],
+    "warnings": []
+  }
 }

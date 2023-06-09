@@ -42,10 +42,34 @@ export type CrosswordJSON = {
    *  figuring out what is under the cursor. There is an argument in xdToJSON
    * which will have this info included in the results. */
   editorInfo?: EditorInfo
+
+  /** A summary of the parse  */
+  report: {
+    /** Did we parse successfully */
+    success: boolean
+    /** Errors are 'this syntax is wrong' */
+    errors: Report[]
+    /** Lint warnings which are general 'hey should you be doing this?' */
+    warnings: Report[]
+  }
 }
 
+export type Report =
+  | { type: "syntax"; position: Position; length: number; message: string }
+  | {
+      type: "clue_msg"
+      position: Position
+      length: number
+      clueNum: number | unknown
+      clueType: "across" | "down" | unknown
+      message: string
+    }
+
 export type EditorInfo = {
+  /** Positioning for the blocks of xd content */
   sections: Array<{ startLine: number; endLine: number; type: ParseMode }>
+  /** The original lines which were separated by '/n' so you can work directly
+   * against the input instead of keeping a potentially outdated reference to the text */
   lines: string[]
 }
 

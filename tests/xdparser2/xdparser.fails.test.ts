@@ -3,11 +3,17 @@ import { xdParser } from "../../lib/xdparser2"
 describe("errors", () => {
   it("blanks give errors", () => {
     expect(throwsWithError("")).toMatchInlineSnapshot(`
-{
-  "line": 0,
-  "name": "XDError",
-  "rawMessage": "xd file is empty",
-}
+[
+  {
+    "length": -1,
+    "message": "xd is an empty file",
+    "position": {
+      "col": 0,
+      "index": 0,
+    },
+    "type": "syntax",
+  },
+]
 `)
   })
 
@@ -18,11 +24,26 @@ asda asdasda
   `
 
     expect(throwsWithError(xd)).toMatchInlineSnapshot(`
-{
-  "line": 1,
-  "name": "XDError",
-  "rawMessage": "This header has spaces before it, this is likely an accidental indentation",
-}
+[
+  {
+    "length": -1,
+    "message": "This header has spaces before it, this is likely an accidental indentation",
+    "position": {
+      "col": 0,
+      "index": 1,
+    },
+    "type": "syntax",
+  },
+  {
+    "length": -1,
+    "message": "This crossword has missing sections: 'Grid, Clues & Metadata' - saw no section",
+    "position": {
+      "col": 0,
+      "index": 4,
+    },
+    "type": "syntax",
+  },
+]
 `)
   })
 
@@ -33,11 +54,26 @@ asda asdasda
   `
 
     expect(throwsWithError(xd)).toMatchInlineSnapshot(`
-{
-  "line": 2,
-  "name": "XDError",
-  "rawMessage": "Could not find a ':' separating the meta item's name from its value",
-}
+[
+  {
+    "length": -1,
+    "message": "Could not find a ':' separating the meta item's name from its value",
+    "position": {
+      "col": 0,
+      "index": 2,
+    },
+    "type": "syntax",
+  },
+  {
+    "length": -1,
+    "message": "This crossword has missing sections: 'Grid & Clues' - saw Metadata",
+    "position": {
+      "col": 0,
+      "index": 4,
+    },
+    "type": "syntax",
+  },
+]
 `)
   })
 
@@ -51,11 +87,26 @@ asda asdasda
   `
 
     expect(throwsWithError(xd, true)).toMatchInlineSnapshot(`
-{
-  "line": 2,
-  "name": "XDError",
-  "rawMessage": "Two # headers are reserved for the system, they can only be: Grid, Clues, Notes, Metadata, Metapuzzle, Start, Design & Design-style. Got 'Orta's extension'. You can use ### headers for inside notes.",
-}
+[
+  {
+    "length": -1,
+    "message": "Two # headers are reserved for the system, they can only be: Grid, Clues, Notes, Metadata, Metapuzzle, Start, Design & Design-style. Got 'Orta's extension'. You can use ### headers for inside notes.",
+    "position": {
+      "col": 0,
+      "index": 2,
+    },
+    "type": "syntax",
+  },
+  {
+    "length": -1,
+    "message": "This crossword does not have a working grid",
+    "position": {
+      "col": 0,
+      "index": 4,
+    },
+    "type": "syntax",
+  },
+]
 `)
   })
 
@@ -66,11 +117,26 @@ asda asdasda
 this line needs a colon`
 
     expect(throwsWithError(xd)).toMatchInlineSnapshot(`
-{
-  "line": 3,
-  "name": "XDError",
-  "rawMessage": "Could not find a ':' separating the meta item's name from its value",
-}
+[
+  {
+    "length": -1,
+    "message": "Could not find a ':' separating the meta item's name from its value",
+    "position": {
+      "col": 0,
+      "index": 3,
+    },
+    "type": "syntax",
+  },
+  {
+    "length": -1,
+    "message": "This crossword has missing sections: 'Grid & Clues' - saw Metadata",
+    "position": {
+      "col": 0,
+      "index": 4,
+    },
+    "type": "syntax",
+  },
+]
 `)
   })
 })
@@ -83,11 +149,17 @@ it("checks that the grid is set up", () => {
 `
 
   expect(throwsWithError(xd)).toMatchInlineSnapshot(`
-{
-  "line": 2,
-  "name": "XDError",
-  "rawMessage": "This grid section does not have a working grid",
-}
+[
+  {
+    "length": -1,
+    "message": "This crossword does not have a working grid",
+    "position": {
+      "col": 0,
+      "index": 2,
+    },
+    "type": "syntax",
+  },
+]
 `)
 })
 
@@ -98,11 +170,26 @@ it("checks that all the sections are there", () => {
 `
 
   expect(throwsWithError(xd)).toMatchInlineSnapshot(`
-{
-  "line": 0,
-  "name": "XDError",
-  "rawMessage": "This crossword has missing sections: 'Clues' - saw Metadata & Grid",
-}
+[
+  {
+    "length": -1,
+    "message": "This crossword has missing sections: 'Clues' - saw Metadata & Grid",
+    "position": {
+      "col": 0,
+      "index": 4,
+    },
+    "type": "syntax",
+  },
+  {
+    "length": -1,
+    "message": "This crossword does not have a working grid",
+    "position": {
+      "col": 0,
+      "index": 2,
+    },
+    "type": "syntax",
+  },
+]
 `)
 })
 
@@ -116,19 +203,29 @@ a2. asda
 `
 
   expect(throwsWithError(xd)).toMatchInlineSnapshot(`
-{
-  "line": 5,
-  "name": "XDError",
-  "rawMessage": "The clue 'a2. asda' does not match either the format of 'A[num]. [clue] ~ [answer]' for a clue, or 'A[num] ^[hint]: [clue]' for a clue's metadata.",
-}
+[
+  {
+    "clueNum": 5,
+    "clueType": "A",
+    "length": 1,
+    "message": "The clue 'a2. asda' does not match either the format of 'A[num]. [clue] ~ [answer]' for a clue, or 'A[num] ^[hint]: [clue]' for a clue's metadata.",
+    "position": {
+      "col": 0,
+      "index": 5,
+    },
+    "type": "clue_msg",
+  },
+  {
+    "length": -1,
+    "message": "This crossword does not have a working grid",
+    "position": {
+      "col": 0,
+      "index": 2,
+    },
+    "type": "syntax",
+  },
+]
 `)
 })
 
-const throwsWithError = (xd: string, strict = true) => {
-  try {
-    xdParser(xd, strict)
-  } catch (error) {
-    return JSON.parse(JSON.stringify(error))
-  }
-  expect("This should have failed")
-}
+const throwsWithError = (xd: string, strict = true) => xdParser(xd, strict).report.errors

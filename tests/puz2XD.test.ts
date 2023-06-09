@@ -9,10 +9,10 @@ it("handles greyd backgrounds", () => {
   expect(xd).toMatchInlineSnapshot(`
 "## Metadata
 
-Title: June 8, 2022 - \\"Rhythm Parts\\" - Ben Tausig, edited by Francis Heaney
-Author: Ben Tausig
-Copyright: N/A
-Description: N/A
+title: June 8, 2022 - \\"Rhythm Parts\\" - Ben Tausig, edited by Francis Heaney
+author: Ben Tausig
+copyright: N/A
+description: N/A
 
 ## Grid
 

@@ -908,6 +908,9 @@
         "position": {
           "col": 0,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "29"
         }
       },
       {
@@ -917,6 +920,9 @@
         "position": {
           "col": 7,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "30"
         }
       },
       {
@@ -926,6 +932,9 @@
         "position": {
           "col": 11,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "31"
         }
       },
       {
@@ -935,6 +944,9 @@
         "position": {
           "col": 0,
           "index": 1
+        },
+        "metadata": {
+          "body:line": "32"
         }
       },
       {
@@ -944,6 +956,9 @@
         "position": {
           "col": 6,
           "index": 1
+        },
+        "metadata": {
+          "body:line": "33"
         }
       },
       {
@@ -953,6 +968,9 @@
         "position": {
           "col": 11,
           "index": 1
+        },
+        "metadata": {
+          "body:line": "34"
         }
       },
       {
@@ -962,6 +980,9 @@
         "position": {
           "col": 0,
           "index": 2
+        },
+        "metadata": {
+          "body:line": "35"
         }
       },
       {
@@ -971,6 +992,9 @@
         "position": {
           "col": 5,
           "index": 2
+        },
+        "metadata": {
+          "body:line": "36"
         }
       },
       {
@@ -980,6 +1004,9 @@
         "position": {
           "col": 11,
           "index": 2
+        },
+        "metadata": {
+          "body:line": "37"
         }
       },
       {
@@ -989,6 +1016,9 @@
         "position": {
           "col": 0,
           "index": 3
+        },
+        "metadata": {
+          "body:line": "38"
         }
       },
       {
@@ -998,6 +1028,9 @@
         "position": {
           "col": 0,
           "index": 4
+        },
+        "metadata": {
+          "body:line": "39"
         }
       },
       {
@@ -1007,6 +1040,9 @@
         "position": {
           "col": 4,
           "index": 4
+        },
+        "metadata": {
+          "body:line": "40"
         }
       },
       {
@@ -1016,6 +1052,9 @@
         "position": {
           "col": 10,
           "index": 4
+        },
+        "metadata": {
+          "body:line": "41"
         }
       },
       {
@@ -1025,6 +1064,9 @@
         "position": {
           "col": 0,
           "index": 5
+        },
+        "metadata": {
+          "body:line": "42"
         }
       },
       {
@@ -1034,6 +1076,9 @@
         "position": {
           "col": 7,
           "index": 5
+        },
+        "metadata": {
+          "body:line": "43"
         }
       },
       {
@@ -1043,6 +1088,9 @@
         "position": {
           "col": 2,
           "index": 6
+        },
+        "metadata": {
+          "body:line": "44"
         }
       },
       {
@@ -1052,6 +1100,9 @@
         "position": {
           "col": 6,
           "index": 6
+        },
+        "metadata": {
+          "body:line": "45"
         }
       },
       {
@@ -1061,6 +1112,9 @@
         "position": {
           "col": 11,
           "index": 6
+        },
+        "metadata": {
+          "body:line": "46"
         }
       },
       {
@@ -1070,6 +1124,9 @@
         "position": {
           "col": 0,
           "index": 7
+        },
+        "metadata": {
+          "body:line": "47"
         }
       },
       {
@@ -1079,6 +1136,9 @@
         "position": {
           "col": 8,
           "index": 7
+        },
+        "metadata": {
+          "body:line": "48"
         }
       },
       {
@@ -1088,6 +1148,9 @@
         "position": {
           "col": 0,
           "index": 8
+        },
+        "metadata": {
+          "body:line": "49"
         }
       },
       {
@@ -1097,6 +1160,9 @@
         "position": {
           "col": 5,
           "index": 8
+        },
+        "metadata": {
+          "body:line": "50"
         }
       },
       {
@@ -1106,6 +1172,9 @@
         "position": {
           "col": 10,
           "index": 8
+        },
+        "metadata": {
+          "body:line": "51"
         }
       },
       {
@@ -1115,6 +1184,9 @@
         "position": {
           "col": 0,
           "index": 9
+        },
+        "metadata": {
+          "body:line": "52"
         }
       },
       {
@@ -1124,6 +1196,9 @@
         "position": {
           "col": 9,
           "index": 9
+        },
+        "metadata": {
+          "body:line": "53"
         }
       },
       {
@@ -1133,6 +1208,9 @@
         "position": {
           "col": 1,
           "index": 10
+        },
+        "metadata": {
+          "body:line": "54"
         }
       },
       {
@@ -1142,6 +1220,9 @@
         "position": {
           "col": 7,
           "index": 10
+        },
+        "metadata": {
+          "body:line": "55"
         }
       },
       {
@@ -1151,6 +1232,9 @@
         "position": {
           "col": 12,
           "index": 10
+        },
+        "metadata": {
+          "body:line": "56"
         }
       },
       {
@@ -1160,6 +1244,9 @@
         "position": {
           "col": 3,
           "index": 11
+        },
+        "metadata": {
+          "body:line": "57"
         }
       },
       {
@@ -1169,6 +1256,9 @@
         "position": {
           "col": 0,
           "index": 12
+        },
+        "metadata": {
+          "body:line": "58"
         }
       },
       {
@@ -1178,6 +1268,9 @@
         "position": {
           "col": 5,
           "index": 12
+        },
+        "metadata": {
+          "body:line": "59"
         }
       },
       {
@@ -1187,6 +1280,9 @@
         "position": {
           "col": 11,
           "index": 12
+        },
+        "metadata": {
+          "body:line": "60"
         }
       },
       {
@@ -1196,6 +1292,9 @@
         "position": {
           "col": 0,
           "index": 13
+        },
+        "metadata": {
+          "body:line": "61"
         }
       },
       {
@@ -1205,6 +1304,9 @@
         "position": {
           "col": 5,
           "index": 13
+        },
+        "metadata": {
+          "body:line": "62"
         }
       },
       {
@@ -1214,6 +1316,9 @@
         "position": {
           "col": 11,
           "index": 13
+        },
+        "metadata": {
+          "body:line": "63"
         }
       },
       {
@@ -1223,6 +1328,9 @@
         "position": {
           "col": 0,
           "index": 14
+        },
+        "metadata": {
+          "body:line": "64"
         }
       },
       {
@@ -1232,6 +1340,9 @@
         "position": {
           "col": 5,
           "index": 14
+        },
+        "metadata": {
+          "body:line": "65"
         }
       },
       {
@@ -1241,6 +1352,9 @@
         "position": {
           "col": 11,
           "index": 14
+        },
+        "metadata": {
+          "body:line": "66"
         }
       }
     ],
@@ -1252,6 +1366,9 @@
         "position": {
           "col": 0,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "68"
         }
       },
       {
@@ -1261,6 +1378,9 @@
         "position": {
           "col": 1,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "69"
         }
       },
       {
@@ -1270,6 +1390,9 @@
         "position": {
           "col": 2,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "70"
         }
       },
       {
@@ -1279,6 +1402,9 @@
         "position": {
           "col": 3,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "71"
         }
       },
       {
@@ -1288,6 +1414,9 @@
         "position": {
           "col": 7,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "72"
         }
       },
       {
@@ -1297,6 +1426,9 @@
         "position": {
           "col": 8,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "73"
         }
       },
       {
@@ -1306,6 +1438,9 @@
         "position": {
           "col": 9,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "74"
         }
       },
       {
@@ -1315,6 +1450,9 @@
         "position": {
           "col": 11,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "75"
         }
       },
       {
@@ -1324,6 +1462,9 @@
         "position": {
           "col": 12,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "76"
         }
       },
       {
@@ -1333,6 +1474,9 @@
         "position": {
           "col": 13,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "77"
         }
       },
       {
@@ -1342,6 +1486,9 @@
         "position": {
           "col": 14,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "78"
         }
       },
       {
@@ -1351,6 +1498,9 @@
         "position": {
           "col": 6,
           "index": 1
+        },
+        "metadata": {
+          "body:line": "79"
         }
       },
       {
@@ -1360,6 +1510,9 @@
         "position": {
           "col": 5,
           "index": 2
+        },
+        "metadata": {
+          "body:line": "80"
         }
       },
       {
@@ -1369,6 +1522,9 @@
         "position": {
           "col": 4,
           "index": 3
+        },
+        "metadata": {
+          "body:line": "81"
         }
       },
       {
@@ -1378,6 +1534,9 @@
         "position": {
           "col": 10,
           "index": 3
+        },
+        "metadata": {
+          "body:line": "82"
         }
       },
       {
@@ -1387,6 +1546,9 @@
         "position": {
           "col": 12,
           "index": 4
+        },
+        "metadata": {
+          "body:line": "83"
         }
       },
       {
@@ -1396,6 +1558,9 @@
         "position": {
           "col": 13,
           "index": 4
+        },
+        "metadata": {
+          "body:line": "84"
         }
       },
       {
@@ -1405,6 +1570,9 @@
         "position": {
           "col": 3,
           "index": 5
+        },
+        "metadata": {
+          "body:line": "85"
         }
       },
       {
@@ -1414,6 +1582,9 @@
         "position": {
           "col": 8,
           "index": 5
+        },
+        "metadata": {
+          "body:line": "86"
         }
       },
       {
@@ -1423,6 +1594,9 @@
         "position": {
           "col": 9,
           "index": 5
+        },
+        "metadata": {
+          "body:line": "87"
         }
       },
       {
@@ -1432,6 +1606,9 @@
         "position": {
           "col": 14,
           "index": 5
+        },
+        "metadata": {
+          "body:line": "88"
         }
       },
       {
@@ -1441,6 +1618,9 @@
         "position": {
           "col": 6,
           "index": 6
+        },
+        "metadata": {
+          "body:line": "89"
         }
       },
       {
@@ -1450,6 +1630,9 @@
         "position": {
           "col": 0,
           "index": 7
+        },
+        "metadata": {
+          "body:line": "90"
         }
       },
       {
@@ -1459,6 +1642,9 @@
         "position": {
           "col": 1,
           "index": 7
+        },
+        "metadata": {
+          "body:line": "91"
         }
       },
       {
@@ -1468,6 +1654,9 @@
         "position": {
           "col": 5,
           "index": 7
+        },
+        "metadata": {
+          "body:line": "92"
         }
       },
       {
@@ -1477,6 +1666,9 @@
         "position": {
           "col": 10,
           "index": 7
+        },
+        "metadata": {
+          "body:line": "93"
         }
       },
       {
@@ -1486,6 +1678,9 @@
         "position": {
           "col": 7,
           "index": 8
+        },
+        "metadata": {
+          "body:line": "94"
         }
       },
       {
@@ -1495,6 +1690,9 @@
         "position": {
           "col": 4,
           "index": 9
+        },
+        "metadata": {
+          "body:line": "95"
         }
       },
       {
@@ -1504,6 +1702,9 @@
         "position": {
           "col": 9,
           "index": 9
+        },
+        "metadata": {
+          "body:line": "96"
         }
       },
       {
@@ -1513,6 +1714,9 @@
         "position": {
           "col": 13,
           "index": 9
+        },
+        "metadata": {
+          "body:line": "97"
         }
       },
       {
@@ -1522,6 +1726,9 @@
         "position": {
           "col": 14,
           "index": 9
+        },
+        "metadata": {
+          "body:line": "98"
         }
       },
       {
@@ -1531,6 +1738,9 @@
         "position": {
           "col": 8,
           "index": 10
+        },
+        "metadata": {
+          "body:line": "99"
         }
       },
       {
@@ -1540,6 +1750,9 @@
         "position": {
           "col": 5,
           "index": 11
+        },
+        "metadata": {
+          "body:line": "100"
         }
       },
       {
@@ -1549,6 +1762,9 @@
         "position": {
           "col": 6,
           "index": 11
+        },
+        "metadata": {
+          "body:line": "101"
         }
       },
       {
@@ -1558,6 +1774,9 @@
         "position": {
           "col": 11,
           "index": 11
+        },
+        "metadata": {
+          "body:line": "102"
         }
       },
       {
@@ -1567,6 +1786,9 @@
         "position": {
           "col": 0,
           "index": 12
+        },
+        "metadata": {
+          "body:line": "103"
         }
       },
       {
@@ -1576,6 +1798,9 @@
         "position": {
           "col": 1,
           "index": 12
+        },
+        "metadata": {
+          "body:line": "104"
         }
       },
       {
@@ -1585,6 +1810,9 @@
         "position": {
           "col": 2,
           "index": 12
+        },
+        "metadata": {
+          "body:line": "105"
         }
       }
     ]
@@ -1594,6 +1822,171 @@
     "1": "SONY"
   },
   "notes": "",
+  "report": {
+    "success": true,
+    "errors": [],
+    "warnings": []
+  },
+  "editorInfo": {
+    "sections": [
+      {
+        "startLine": 0,
+        "endLine": 7,
+        "type": "metadata"
+      },
+      {
+        "startLine": 8,
+        "endLine": 26,
+        "type": "grid"
+      },
+      {
+        "startLine": 27,
+        "endLine": 106,
+        "type": "clues"
+      },
+      {
+        "startLine": 107,
+        "endLine": 108,
+        "type": "notes"
+      },
+      {
+        "startLine": 109,
+        "endLine": 129,
+        "type": "design"
+      }
+    ],
+    "lines": [
+      "## Metadata",
+      "",
+      "title: Speakerboxxx/The Love Below",
+      "author: Will Nediger",
+      "copyright: ",
+      "description: N/A",
+      "rebus: 0=BOSE 1=SONY",
+      "",
+      "## Grid",
+      "",
+      "BLTS...PVC.POGO",
+      "LARA..PEEL.OUID",
+      "OPEN.LUCRE.URGE",
+      "CHADWICK0MAN...",
+      "KIT.REES..IDLE.",
+      "SLYNOD.AIRSPACE",
+      "..OUT.ATOZ.UDON",
+      "PASTEUR.NAPPING",
+      "ACER.SIPS.APE..",
+      "SALADBAR.ALYSSA",
+      ".IFSO..ISLE.FED",
+      "...WHAT1OURMIND",
+      "ROBE.CHASM.ARSE",
+      "OWIE.HERO..USER",
+      "BLOT.END...ITIS",
+      "",
+      "",
+      "## Clues",
+      "",
+      "A1. Sandwiches often made with iceberg ~ BLTS",
+      "A5. Polymer in pipes ~ PVC",
+      "A8. Extreme ___ (high-bouncing action sport) ~ POGO",
+      "A12. Big name in tomb raiding ~ LARA",
+      "A13. \"Time to draw more Bananagrams tiles!\" ~ PEEL",
+      "A14. Faux-French slang for pot ~ OUID",
+      "A15. Emotionally honest ~ OPEN",
+      "A16. \"Filthy\" money ~ LUCRE",
+      "A17. The feminine ___ to write clues referencing memes ~ URGE",
+      "A18. \"Black Panther\" star ~ CHADWICKBOSEMAN",
+      "A21. Collection of drums ~ KIT",
+      "A22. \"Pariah\" director Dee ~ REES",
+      "A23. Like small talk ~ IDLE",
+      "A26. Mischievous acknowledgment from across the room ~ SLYNOD",
+      "A28. It goes over your head ~ AIRSPACE",
+      "A32. \"Shoo!\" ~ OUT",
+      "A33. Comprehensive range ~ ATOZ",
+      "A34. Shabu-shabu noodles ~ UDON",
+      "A35. Father of bacteriology ~ PASTEUR",
+      "A38. Like a delinquent sentry, maybe ~ NAPPING",
+      "A40. Maker of Swift laptops ~ ACER",
+      "A41. Scotch samples ~ SIPS",
+      "A43. Animal in that one graphic showing the evolution of humans ~ APE",
+      "A44. Dressing station ~ SALADBAR",
+      "A46. Milano who was also in last week's grid ~ ALYSSA",
+      "A49. \"Assuming that's the case...\" ~ IFSO",
+      "A50. ___ of Mull ~ ISLE",
+      "A52. Put money into ~ FED",
+      "A53. \"Something bothering you?\" ~ WHATSONYOURMIND",
+      "A57. Academic regalia component ~ ROBE",
+      "A60. Seemingly unbridgeable gap ~ CHASM",
+      "A61. Down-under part, Down Under ~ ARSE",
+      "A62. Baby boo-boo ~ OWIE",
+      "A63. Someone you should never meet ~ HERO",
+      "A64. App downloader ~ USER",
+      "A65. Stain on a reputation ~ BLOT",
+      "A66. Terminus ~ END",
+      "A67. \"That's true\" ~ ITIS",
+      "",
+      "D1. This puzzle has 43 of them ~ BLOCKS",
+      "D2. Walt Disney Concert Hall orchestra, casually ~ LAPHIL",
+      "D3. Catchphrase for Donna and Tom on \"Parks and Rec\" ~ TREATYOSELF",
+      "D4. Plentiful substance in 2021's \"Dune\" ~ SAND",
+      "D5. Eats like a bird ~ PECKSAT",
+      "D6. Talkative ~ VERBOSE",
+      "D7. Nickname that omits \"ent\" ~ CLEM",
+      "D8. Classic canine plush toy ~ POUNDPUPPY",
+      "D9. \"___ American Cousin\" (\"Other than that, Mrs. Lincoln, did you enjoy the play?\" play) ~ OUR",
+      "D10. Part of a tour ~ GIG",
+      "D11. \"___ to Freedom\" (2021 ABBA song) ~ ODE",
+      "D13. Purplish color ~ PUCE",
+      "D16. Stretched the truth ~ LIED",
+      "D19. Did some calligraphy ~ WROTE",
+      "D20. Systems that many Silicon Valley types are obsessed with ~ AIS",
+      "D24. Quaint rule of chivalry ~ LADIESFIRST",
+      "D25. Certain social sci ~ ECON",
+      "D27. Splenda alternative ~ NUTRASWEET",
+      "D29. Particles that get exchanged ~ IONS",
+      "D30. Wu-Tang Clan member ~ RZA",
+      "D31. An official language of the EU ~ ENG",
+      "D33. \"Carmen\" carmen (for this clue you have to know that \"carmen\" is Latin for \"song\" and roll with the random bit of Latin) ~ ARIA",
+      "D35. Faux ___ ~ PAS",
+      "D36. Berry promoted as a health food ~ ACAI",
+      "D37. Holder of backup files, often ~ USB",
+      "D39. Not as ruddy ~ PALER",
+      "D42. Place for convicts to exercise ~ PRISONYARD",
+      "D45. Facepalming exclamation ~ DOH",
+      "D46. Grad ~ ALUM",
+      "D47. Dojo teacher ~ SENSEI",
+      "D48. Venomous serpents ~ ADDERS",
+      "D51. Not great, not terrible ~ SOSO",
+      "D54. Unrequited love feeling ~ ACHE",
+      "D55. \"What happened next was...\" ~ THEN",
+      "D56. Island whose Big Bog is one of the world's wettest places ~ MAUI",
+      "D57. Way overcharge ~ ROB",
+      "D58. \"Guardians of Ga'Hoole\" bird ~ OWL",
+      "D59. Link in ___ ~ BIO",
+      "",
+      "## Notes",
+      "",
+      "## Design",
+      "",
+      "<style>O { background: circle } S { background: shade }</style>",
+      "",
+      "....###...#....",
+      "....##....#....",
+      "....#.....#....",
+      "............###",
+      "...#....##....#",
+      "......#....O...",
+      "##...#....#O...",
+      "..O....#...O...",
+      "..O.#....#.O.##",
+      "..O.....#..O...",
+      "#.OO.##....#O..",
+      "###O........O..",
+      "...O#.....#.O..",
+      "...O#....##.O..",
+      "...O#...###.O..",
+      ""
+    ]
+  },
   "design": {
     "styles": {
       "O": {

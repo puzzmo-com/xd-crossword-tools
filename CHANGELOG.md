@@ -1,5 +1,16 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 6.0.0
+
+- The xdparser is now a recoverable parser, what this means is that it will not throw at the first sign of some unexpected input.
+  This means you can't rely on `try {}` to determine if you have a successful parse. Thus: a breaking semver change.
+
+- Added a new `report` object on the JSON response from `xdToJSON`. This will contain any errors or warnings that were encountered during parsing and a `success` boolean.
+
+- Added the concept of warnings. These are generalized messages which you probably want to act on, but really shouldn't be blocking builds.
+
+- Added a markdown parser to the clue - we don't make assumptions about the rendering engine and so have a mini-markdown parser in the code base, which gives you a JSON array of the clue's text and formatting. See the README for more.
+
 ### 5.1.1
 
 - Clues from .puz files have newlines stripped out of them

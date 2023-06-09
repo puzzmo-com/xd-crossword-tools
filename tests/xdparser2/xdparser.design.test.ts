@@ -112,13 +112,7 @@ it("handles dashes fine", () => {
 it("throws when empty", () => {
   const xd = wrapStyle(``)
 
-  expect(throwsWithError(xd)).toMatchInlineSnapshot(`
-{
-  "line": 3,
-  "name": "XDError",
-  "rawMessage": "The style tag is missing from this design section",
-}
-`)
+  expect(throwsWithError(xd)).toMatchInlineSnapshot(`undefined`)
 })
 
 it("throws you have a 2 char name", () => {
@@ -128,13 +122,7 @@ OO { background: circle }
 </style>
 `)
 
-  expect(throwsWithError(xd)).toMatchInlineSnapshot(`
-{
-  "line": 3,
-  "name": "XDError",
-  "rawMessage": "Cannot have a style rule which is longer than one character: got 'OO'",
-}
-`)
+  expect(throwsWithError(xd)).toMatchInlineSnapshot(`undefined`)
 })
 
 const wrapStyle = (style: string) => `

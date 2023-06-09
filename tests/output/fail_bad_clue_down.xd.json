@@ -1,5 +1,124 @@
 {
-  "line": 115,
-  "rawMessage": "The style tag is missing from this design section",
-  "name": "XDError"
+  "meta": {
+    "title": "Not set",
+    "author": "Not set",
+    "date": "Not set",
+    "editor": "Not set"
+  },
+  "tiles": [],
+  "clues": {
+    "across": [],
+    "down": []
+  },
+  "rebuses": {},
+  "notes": "",
+  "report": {
+    "success": false,
+    "errors": [
+      {
+        "type": "syntax",
+        "position": {
+          "col": 0,
+          "index": 115
+        },
+        "length": -1,
+        "message": "The style tag is missing from this design section"
+      }
+    ],
+    "warnings": []
+  },
+  "design": {
+    "styles": {},
+    "positions": [
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ],
+      [],
+      [],
+      [],
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ],
+      [],
+      [],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O",
+        null,
+        "O"
+      ],
+      [],
+      [],
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ],
+      [],
+      [],
+      [],
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ]
+    ]
+  }
 }
