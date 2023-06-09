@@ -58,16 +58,24 @@ const writeJSON = JSONToPuzJSON(xd)
 const puzBuffer = writepuz(writeJSON)
 ```
 
-### Cursor position information
+### Editor Support
 
-You can get some information about what's under the cursor at line, index position
-via `editorInfoAtCursor`
+You can opt-in to more information from the parser, and lint warnings, by passing `true` as the third argument to `xdToJSON`.
+
+Triggering this will:
+
+- Turn on the linter for your code editor, which will give you warnings about your crossword based on pretty universally useful rules.
+- Add section metadata in the return value's `editorInfo` property
+- Add line numbers to clues/hints/other in the metadata section of each clue
+
+This library includes `editorInfoAtCursor` which can get some information about what's under the cursor at `{ line, index }`.
 
 ```ts
 import { xdToJSON, editorInfoAtCursor } from "xd-crossword-tools"
 
 const xd = "[...]"
-const crossword = xdToJSON(xd, true, true)
+const editorSupport = true
+const crossword = xdToJSON(xd, true, editorSupport)
 
 const info = editorInfoAtCursor(crossword)
 const cursorInfo = info(0, 0)

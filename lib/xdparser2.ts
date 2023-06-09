@@ -170,6 +170,8 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
             if (!existing.metadata) existing.metadata = {}
             existing.metadata["hint"] = clue.question.split(" ~ ")[0]
           } else {
+            // @ts-ignore This is fine, the next type expects this
+            if (editorInfo) clue.metadata = { "body:line": line.toString() }
             rawInput.clues.set(key, clue)
           }
         } else {
@@ -178,6 +180,7 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
           } else {
             if (!existing.metadata) existing.metadata = {}
             existing.metadata[clue.metaKey.toLowerCase()] = clue.metaValue
+            if (editorInfo) existing.metadata[clue.metaKey.toLowerCase() + ":line"] = line.toString()
           }
         }
         continue

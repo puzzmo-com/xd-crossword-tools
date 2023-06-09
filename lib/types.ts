@@ -48,13 +48,13 @@ export type CrosswordJSON = {
     /** Did we parse successfully */
     success: boolean
     /** Errors are 'this syntax is wrong' */
-    errors: Reports[]
+    errors: Report[]
     /** Lint warnings which are general 'hey should you be doing this?' */
-    warnings: Reports[]
+    warnings: Report[]
   }
 }
 
-type Reports =
+export type Report =
   | { type: "syntax"; position: Position; length: number; message: string }
   | {
       type: "clue_msg"
