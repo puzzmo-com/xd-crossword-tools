@@ -1703,7 +1703,7 @@
           "col": 0,
           "index": 4
         },
-        "length": 1,
+        "length": -1,
         "message": "Could not find a ':' separating the meta item's name from its value"
       }
     ],

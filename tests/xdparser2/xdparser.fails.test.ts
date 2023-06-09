@@ -5,7 +5,7 @@ describe("errors", () => {
     expect(throwsWithError("")).toMatchInlineSnapshot(`
 [
   {
-    "length": 1,
+    "length": -1,
     "message": "xd is an empty file",
     "position": {
       "col": 0,
@@ -26,7 +26,7 @@ asda asdasda
     expect(throwsWithError(xd)).toMatchInlineSnapshot(`
 [
   {
-    "length": 1,
+    "length": -1,
     "message": "This header has spaces before it, this is likely an accidental indentation",
     "position": {
       "col": 0,
@@ -35,7 +35,7 @@ asda asdasda
     "type": "syntax",
   },
   {
-    "length": 1,
+    "length": -1,
     "message": "This crossword has missing sections: 'Grid, Clues & Metadata' - saw no section",
     "position": {
       "col": 0,
@@ -56,7 +56,7 @@ asda asdasda
     expect(throwsWithError(xd)).toMatchInlineSnapshot(`
 [
   {
-    "length": 1,
+    "length": -1,
     "message": "Could not find a ':' separating the meta item's name from its value",
     "position": {
       "col": 0,
@@ -65,7 +65,7 @@ asda asdasda
     "type": "syntax",
   },
   {
-    "length": 1,
+    "length": -1,
     "message": "This crossword has missing sections: 'Grid & Clues' - saw Metadata",
     "position": {
       "col": 0,
@@ -89,7 +89,7 @@ asda asdasda
     expect(throwsWithError(xd, true)).toMatchInlineSnapshot(`
 [
   {
-    "length": 1,
+    "length": -1,
     "message": "Two # headers are reserved for the system, they can only be: Grid, Clues, Notes, Metadata, Metapuzzle, Start, Design & Design-style. Got 'Orta's extension'. You can use ### headers for inside notes.",
     "position": {
       "col": 0,
@@ -98,7 +98,7 @@ asda asdasda
     "type": "syntax",
   },
   {
-    "length": 1,
+    "length": -1,
     "message": "This crossword does not have a working grid",
     "position": {
       "col": 0,
@@ -119,7 +119,7 @@ this line needs a colon`
     expect(throwsWithError(xd)).toMatchInlineSnapshot(`
 [
   {
-    "length": 1,
+    "length": -1,
     "message": "Could not find a ':' separating the meta item's name from its value",
     "position": {
       "col": 0,
@@ -128,7 +128,7 @@ this line needs a colon`
     "type": "syntax",
   },
   {
-    "length": 1,
+    "length": -1,
     "message": "This crossword has missing sections: 'Grid & Clues' - saw Metadata",
     "position": {
       "col": 0,
@@ -151,7 +151,7 @@ it("checks that the grid is set up", () => {
   expect(throwsWithError(xd)).toMatchInlineSnapshot(`
 [
   {
-    "length": 1,
+    "length": -1,
     "message": "This crossword does not have a working grid",
     "position": {
       "col": 0,
@@ -172,7 +172,7 @@ it("checks that all the sections are there", () => {
   expect(throwsWithError(xd)).toMatchInlineSnapshot(`
 [
   {
-    "length": 1,
+    "length": -1,
     "message": "This crossword has missing sections: 'Clues' - saw Metadata & Grid",
     "position": {
       "col": 0,
@@ -181,7 +181,7 @@ it("checks that all the sections are there", () => {
     "type": "syntax",
   },
   {
-    "length": 1,
+    "length": -1,
     "message": "This crossword does not have a working grid",
     "position": {
       "col": 0,
@@ -216,7 +216,7 @@ a2. asda
     "type": "clue_msg",
   },
   {
-    "length": 1,
+    "length": -1,
     "message": "This crossword does not have a working grid",
     "position": {
       "col": 0,
@@ -228,11 +228,4 @@ a2. asda
 `)
 })
 
-const throwsWithError = (xd: string, strict = true) => {
-  // try {
-  return xdParser(xd, strict).report.errors
-  // } catch (error) {
-  //   return JSON.parse(JSON.stringify(error))
-  // }
-  // expect("This should have failed")
-}
+const throwsWithError = (xd: string, strict = true) => xdParser(xd, strict).report.errors
