@@ -7,6 +7,8 @@
   "scripts": {
     "test": "jest",
     "docs": "md-magic",
+    "web": "vite web",
+    "build:web": "tsc && vite build web",
     "build": "tsup index.ts --dts  --format esm,cjs,iife",
     "prepublishOnly": "yarn docs && yarn build",
     "type-check": "tsc"
@@ -40,17 +42,31 @@
     "semi": false
   },
   "devDependencies": {
+    "@confuzzle/readpuz": "^1.2.3",
+    "@confuzzle/writepuz": "^1.2.3",
     "@swc/cli": "^0.1.55",
     "@swc/core": "^1.2.135",
     "@swc/jest": "^0.2.17",
     "@types/jest": "^27.4.0",
     "@types/node": "^16.11.21",
-    "jest": "^27.4.7",
+    "@types/react-dom": "^18.0.11",
+    "@types/react": "^18.0.37",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
+    "@vitejs/plugin-react-swc": "^3.0.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "eslint": "^8.38.0",
     "jest-file-snapshot": "^0.5.0",
+    "jest": "^27.4.7",
     "markdown-magic": "^2.6.0",
-    "tsup": "^5.11.13",
-    "typescript": "^4.5.5",
-    "@confuzzle/writepuz": "^1.2.3",
-    "@confuzzle/readpuz": "^1.2.3"
+    "monaco-editor": "^0.36.1",
+    "react-split-it": "^2.0.0",
+    "react-monaco-editor": "^0.52.0",
+    "react-dom": "^18.2.0",
+    "react": "^18.2.0",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.9"
   }
 }
