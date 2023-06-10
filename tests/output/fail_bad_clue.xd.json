@@ -1697,7 +1697,7 @@
           "index": 31
         },
         "length": -1,
-        "message": "The clue 'A13.' does not match either the format of 'A[num]. [clue] ~ [answer]' for a clue, or 'A[num] ^[hint]: [clue]' for a clue's metadata."
+        "message": "This clue does not match either the 'A[num]. [clue] ~ [answer]' for a clue, or 'A[num] ^[hint]: [clue]' for a clue's metadata."
       }
     ],
     "warnings": []

@@ -90,7 +90,7 @@ asda asdasda
 [
   {
     "length": -1,
-    "message": "Two # headers are reserved for the system, they can only be: Grid, Clues, Notes, Metadata, Metapuzzle, Start, Design & Design-style. Got 'Orta's extension'. You can use ### headers for inside notes.",
+    "message": "Two # headers are reserved for the system, we accept: Grid, Clues, Notes, Metadata, Metapuzzle, Start, Design & Design-style. Got 'Orta's extension'. You can use ### headers for inside notes.",
     "position": {
       "col": 0,
       "index": 2,
@@ -208,7 +208,7 @@ a2. asda
     "clueNum": 5,
     "clueType": "A",
     "length": -1,
-    "message": "The clue 'a2. asda' does not match either the format of 'A[num]. [clue] ~ [answer]' for a clue, or 'A[num] ^[hint]: [clue]' for a clue's metadata.",
+    "message": "This clue does not match either the 'A[num]. [clue] ~ [answer]' for a clue, or 'A[num] ^[hint]: [clue]' for a clue's metadata.",
     "position": {
       "col": 0,
       "index": 5,
