@@ -99,7 +99,6 @@ Their .puz file turns into this xd:
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.xd) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.xd -->
-
 ```xd
 ## Metadata
 
@@ -241,7 +240,6 @@ O..O#.O.O.#O..O
 .....#...#.....
 O..O.#O.O##O..O
 ```
-
 <!-- AUTO-GENERATED-CONTENT:END -->
 
  <details>
@@ -249,7 +247,6 @@ O..O.#O.O##O..O
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.json) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.json -->
-
 ```json
 {
   "meta": {
@@ -1155,6 +1152,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "28"
         }
       },
       {
@@ -1164,6 +1164,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "29"
         }
       },
       {
@@ -1173,6 +1176,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 10,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "30"
         }
       },
       {
@@ -1182,6 +1188,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 1
+        },
+        "metadata": {
+          "body:line": "31"
         }
       },
       {
@@ -1191,6 +1200,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 1
+        },
+        "metadata": {
+          "body:line": "32"
         }
       },
       {
@@ -1200,6 +1212,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 10,
           "index": 1
+        },
+        "metadata": {
+          "body:line": "33"
         }
       },
       {
@@ -1209,6 +1224,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 2
+        },
+        "metadata": {
+          "body:line": "34"
         }
       },
       {
@@ -1218,6 +1236,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 2
+        },
+        "metadata": {
+          "body:line": "35"
         }
       },
       {
@@ -1227,6 +1248,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 10,
           "index": 2
+        },
+        "metadata": {
+          "body:line": "36"
         }
       },
       {
@@ -1236,6 +1260,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 4,
           "index": 3
+        },
+        "metadata": {
+          "body:line": "37"
         }
       },
       {
@@ -1245,6 +1272,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 9,
           "index": 3
+        },
+        "metadata": {
+          "body:line": "38"
         }
       },
       {
@@ -1254,6 +1284,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 4
+        },
+        "metadata": {
+          "body:line": "39"
         }
       },
       {
@@ -1263,6 +1296,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 5,
           "index": 4
+        },
+        "metadata": {
+          "body:line": "40"
         }
       },
       {
@@ -1272,6 +1308,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 11,
           "index": 4
+        },
+        "metadata": {
+          "body:line": "41"
         }
       },
       {
@@ -1281,6 +1320,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 5
+        },
+        "metadata": {
+          "body:line": "42"
         }
       },
       {
@@ -1290,6 +1332,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 8,
           "index": 5
+        },
+        "metadata": {
+          "body:line": "43"
         }
       },
       {
@@ -1299,6 +1344,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 12,
           "index": 5
+        },
+        "metadata": {
+          "body:line": "44"
         }
       },
       {
@@ -1308,6 +1356,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 6
+        },
+        "metadata": {
+          "body:line": "45"
         }
       },
       {
@@ -1317,6 +1368,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 7,
           "index": 6
+        },
+        "metadata": {
+          "body:line": "46"
         }
       },
       {
@@ -1326,6 +1380,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 2,
           "index": 7
+        },
+        "metadata": {
+          "body:line": "47"
         }
       },
       {
@@ -1335,6 +1392,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 7
+        },
+        "metadata": {
+          "body:line": "48"
         }
       },
       {
@@ -1344,6 +1404,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 10,
           "index": 7
+        },
+        "metadata": {
+          "body:line": "49"
         }
       },
       {
@@ -1353,6 +1416,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 8
+        },
+        "metadata": {
+          "body:line": "50"
         }
       },
       {
@@ -1362,6 +1428,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 9,
           "index": 8
+        },
+        "metadata": {
+          "body:line": "51"
         }
       },
       {
@@ -1371,6 +1440,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 9
+        },
+        "metadata": {
+          "body:line": "52"
         }
       },
       {
@@ -1380,6 +1452,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 4,
           "index": 9
+        },
+        "metadata": {
+          "body:line": "53"
         }
       },
       {
@@ -1389,6 +1464,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 8,
           "index": 9
+        },
+        "metadata": {
+          "body:line": "54"
         }
       },
       {
@@ -1398,6 +1476,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 10
+        },
+        "metadata": {
+          "body:line": "55"
         }
       },
       {
@@ -1407,6 +1488,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 5,
           "index": 10
+        },
+        "metadata": {
+          "body:line": "56"
         }
       },
       {
@@ -1416,6 +1500,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 11,
           "index": 10
+        },
+        "metadata": {
+          "body:line": "57"
         }
       },
       {
@@ -1425,6 +1512,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 3,
           "index": 11
+        },
+        "metadata": {
+          "body:line": "58"
         }
       },
       {
@@ -1434,6 +1524,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 7,
           "index": 11
+        },
+        "metadata": {
+          "body:line": "59"
         }
       },
       {
@@ -1443,6 +1536,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 12
+        },
+        "metadata": {
+          "body:line": "60"
         }
       },
       {
@@ -1452,6 +1548,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 12
+        },
+        "metadata": {
+          "body:line": "61"
         }
       },
       {
@@ -1461,6 +1560,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 10,
           "index": 12
+        },
+        "metadata": {
+          "body:line": "62"
         }
       },
       {
@@ -1470,6 +1572,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 13
+        },
+        "metadata": {
+          "body:line": "63"
         }
       },
       {
@@ -1479,6 +1584,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 13
+        },
+        "metadata": {
+          "body:line": "64"
         }
       },
       {
@@ -1488,6 +1596,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 10,
           "index": 13
+        },
+        "metadata": {
+          "body:line": "65"
         }
       },
       {
@@ -1497,6 +1608,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 14
+        },
+        "metadata": {
+          "body:line": "66"
         }
       },
       {
@@ -1506,6 +1620,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 14
+        },
+        "metadata": {
+          "body:line": "67"
         }
       },
       {
@@ -1515,6 +1632,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 11,
           "index": 14
+        },
+        "metadata": {
+          "body:line": "68"
         }
       }
     ],
@@ -1526,6 +1646,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "70"
         }
       },
       {
@@ -1535,6 +1658,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 1,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "71"
         }
       },
       {
@@ -1544,6 +1670,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 2,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "72"
         }
       },
       {
@@ -1553,6 +1682,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 3,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "73"
         }
       },
       {
@@ -1562,6 +1694,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "74"
         }
       },
       {
@@ -1571,6 +1706,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 7,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "75"
         }
       },
       {
@@ -1580,6 +1718,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 8,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "76"
         }
       },
       {
@@ -1589,6 +1730,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 10,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "77"
         }
       },
       {
@@ -1598,6 +1742,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 11,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "78"
         }
       },
       {
@@ -1607,6 +1754,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 12,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "79"
         }
       },
       {
@@ -1616,6 +1766,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 13,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "80"
         }
       },
       {
@@ -1625,6 +1778,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 14,
           "index": 0
+        },
+        "metadata": {
+          "body:line": "81"
         }
       },
       {
@@ -1634,6 +1790,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 4,
           "index": 1
+        },
+        "metadata": {
+          "body:line": "82"
         }
       },
       {
@@ -1643,6 +1802,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 5,
           "index": 3
+        },
+        "metadata": {
+          "body:line": "83"
         }
       },
       {
@@ -1652,6 +1814,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 9,
           "index": 3
+        },
+        "metadata": {
+          "body:line": "84"
         }
       },
       {
@@ -1661,6 +1826,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 4
+        },
+        "metadata": {
+          "body:line": "85"
         }
       },
       {
@@ -1670,6 +1838,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 1,
           "index": 4
+        },
+        "metadata": {
+          "body:line": "86"
         }
       },
       {
@@ -1679,6 +1850,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 2,
           "index": 4
+        },
+        "metadata": {
+          "body:line": "87"
         }
       },
       {
@@ -1688,6 +1862,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 3,
           "index": 4
+        },
+        "metadata": {
+          "body:line": "88"
         }
       },
       {
@@ -1697,6 +1874,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 8,
           "index": 4
+        },
+        "metadata": {
+          "body:line": "89"
         }
       },
       {
@@ -1706,6 +1886,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 12,
           "index": 4
+        },
+        "metadata": {
+          "body:line": "90"
         }
       },
       {
@@ -1715,6 +1898,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 13,
           "index": 4
+        },
+        "metadata": {
+          "body:line": "91"
         }
       },
       {
@@ -1724,6 +1910,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 14,
           "index": 4
+        },
+        "metadata": {
+          "body:line": "92"
         }
       },
       {
@@ -1733,6 +1922,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 4,
           "index": 5
+        },
+        "metadata": {
+          "body:line": "93"
         }
       },
       {
@@ -1742,6 +1934,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 10,
           "index": 5
+        },
+        "metadata": {
+          "body:line": "94"
         }
       },
       {
@@ -1751,6 +1946,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 7,
           "index": 6
+        },
+        "metadata": {
+          "body:line": "95"
         }
       },
       {
@@ -1760,6 +1958,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 11,
           "index": 6
+        },
+        "metadata": {
+          "body:line": "96"
         }
       },
       {
@@ -1769,6 +1970,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 7
+        },
+        "metadata": {
+          "body:line": "97"
         }
       },
       {
@@ -1778,6 +1982,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 8
+        },
+        "metadata": {
+          "body:line": "98"
         }
       },
       {
@@ -1787,6 +1994,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 1,
           "index": 8
+        },
+        "metadata": {
+          "body:line": "99"
         }
       },
       {
@@ -1796,6 +2006,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 5,
           "index": 8
+        },
+        "metadata": {
+          "body:line": "100"
         }
       },
       {
@@ -1805,6 +2018,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 9,
           "index": 8
+        },
+        "metadata": {
+          "body:line": "101"
         }
       },
       {
@@ -1814,6 +2030,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 13,
           "index": 8
+        },
+        "metadata": {
+          "body:line": "102"
         }
       },
       {
@@ -1823,6 +2042,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 14,
           "index": 8
+        },
+        "metadata": {
+          "body:line": "103"
         }
       },
       {
@@ -1832,6 +2054,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 8,
           "index": 9
+        },
+        "metadata": {
+          "body:line": "104"
         }
       },
       {
@@ -1841,6 +2066,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 3,
           "index": 10
+        },
+        "metadata": {
+          "body:line": "105"
         }
       },
       {
@@ -1850,6 +2078,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 7,
           "index": 10
+        },
+        "metadata": {
+          "body:line": "106"
         }
       },
       {
@@ -1859,6 +2090,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 4,
           "index": 11
+        },
+        "metadata": {
+          "body:line": "107"
         }
       },
       {
@@ -1868,6 +2102,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 10,
           "index": 11
+        },
+        "metadata": {
+          "body:line": "108"
         }
       },
       {
@@ -1877,6 +2114,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 0,
           "index": 12
+        },
+        "metadata": {
+          "body:line": "109"
         }
       },
       {
@@ -1886,6 +2126,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 1,
           "index": 12
+        },
+        "metadata": {
+          "body:line": "110"
         }
       },
       {
@@ -1895,6 +2138,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 2,
           "index": 12
+        },
+        "metadata": {
+          "body:line": "111"
         }
       },
       {
@@ -1904,6 +2150,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 6,
           "index": 12
+        },
+        "metadata": {
+          "body:line": "112"
         }
       },
       {
@@ -1913,6 +2162,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 11,
           "index": 12
+        },
+        "metadata": {
+          "body:line": "113"
         }
       },
       {
@@ -1922,6 +2174,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 12,
           "index": 12
+        },
+        "metadata": {
+          "body:line": "114"
         }
       },
       {
@@ -1931,6 +2186,9 @@ O..O.#O.O##O..O
         "position": {
           "col": 13,
           "index": 12
+        },
+        "metadata": {
+          "body:line": "115"
         }
       },
       {
@@ -1940,12 +2198,191 @@ O..O.#O.O##O..O
         "position": {
           "col": 14,
           "index": 12
+        },
+        "metadata": {
+          "body:line": "116"
         }
       }
     ]
   },
   "rebuses": {},
   "notes": "",
+  "report": {
+    "success": true,
+    "errors": [],
+    "warnings": []
+  },
+  "editorInfo": {
+    "sections": [
+      {
+        "startLine": 0,
+        "endLine": 6,
+        "type": "metadata"
+      },
+      {
+        "startLine": 7,
+        "endLine": 25,
+        "type": "grid"
+      },
+      {
+        "startLine": 26,
+        "endLine": 117,
+        "type": "clues"
+      },
+      {
+        "startLine": 118,
+        "endLine": 119,
+        "type": "notes"
+      },
+      {
+        "startLine": 120,
+        "endLine": 140,
+        "type": "design"
+      }
+    ],
+    "lines": [
+      "## Metadata",
+      "",
+      "title: Alpha-Bits",
+      "author: Drew Hodson",
+      "copyright: © 2021",
+      "description: N/A",
+      "",
+      "## Grid",
+      "",
+      "AHAB..CUD.SERIF",
+      "MADAM.ANY.ABODE",
+      "PLANE.DIE.NOTON",
+      "....TODO.EGO...",
+      "GASH.NINJA.KEEL",
+      "ARTICLE.ORU.DOE",
+      "YEARLY.MISPRINT",
+      "..NEI.MAN.SOT..",
+      "CALENDAR.RETIES",
+      "ICE.TAR.POTHOLE",
+      "OTEP.HQTRS.SNIT",
+      "...ALL.HEAL....",
+      "SPIRO.NET.ATLAS",
+      "TARTS.ETA.DOONE",
+      "UWAVE.WAX..YUTZ",
+      "",
+      "",
+      "## Clues",
+      "",
+      "A1. Captain of the Pequod ~ AHAB",
+      "A5. Food for second chance chewing ~ CUD",
+      "A8. Font feature ~ SERIF",
+      "A13. Palindromic address to a female ~ MADAM",
+      "A15. ___ Way You Want It ~ ANY",
+      "A16. Place often described as humble ~ ABODE",
+      "A17. Flat two dimensional surface in geometry ~ PLANE",
+      "A18. Grim homophone of 7D ~ DIE",
+      "A19. Off ~ NOTON",
+      "A20. Heading for some lists ~ TODO",
+      "A22. Kanye West is famous for his ~ EGO",
+      "A23. Laceration ~ GASH",
+      "A27. Alias of Twitch star Richard Tyler Blevins ~ NINJA",
+      "A29. Capsize ~ KEEL",
+      "A33. Piece of clothing or print ~ ARTICLE",
+      "A35. Evangelical school in Tulsa, OK ~ ORU",
+      "A37. ___-eyed ~ DOE",
+      "A38. Annual ~ YEARLY",
+      "A39. The stamp with the upside down airplane is a famous one ~ MISPRINT",
+      "A41. With 42A and Marcus, a luxury department store chain ~ NEI",
+      "A42. 41A continued ~ MAN",
+      "A43. Lush ~ SOT",
+      "A44. The Mayan one ended in 2012 ~ CALENDAR",
+      "A47. What a child often does to their shoes ~ RETIES",
+      "A50. Vanilla ___ ~ ICE",
+      "A51. Maligned cigarette ingredient ~ TAR",
+      "A52. Frequent cause for a new tire ~ POTHOLE",
+      "A53. Los Angeles heavy metal act ~ OTEP",
+      "A55. Bldgs. such as the Googleplex ~ HQTRS",
+      "A57. A fit of irritation ~ SNIT",
+      "A58. Lead-in to American or day ~ ALL",
+      "A60. What Pokémon do at a Pokémon Center ~ HEAL",
+      "A62. Nixon's vice ~ SPIRO",
+      "A65. Nothing but ___ ~ NET",
+      "A66. One with the world on his shoulders ~ ATLAS",
+      "A71. Filled pastries ~ TARTS",
+      "A72. Age, in Milan ~ ETA",
+      "A73. Lorna ___, novel or cookie ~ DOONE",
+      "A74. Electrocardiogram readout feature ~ UWAVE",
+      "A75. Hip slang for records ~ WAX",
+      "A76. Yiddish for a foolish person ~ YUTZ",
+      "",
+      "D1. Pc. of concert gear ~ AMP",
+      "D2. AI antagonist of 2001 ~ HAL",
+      "D3. Programming pioneer Lovelace ~ ADA",
+      "D4. Prohibit ~ BAN",
+      "D5. Type of person to routinely carry a club ~ CADDIE",
+      "D6. State of the ___ Address ~ UNION",
+      "D7. Colorful homophone of 18A ~ DYE",
+      "D8. Snitched ~ SANG",
+      "D9. Kindle fare ~ EBOOK",
+      "D10. Decayed matter ~ ROT",
+      "D11. Type of response you hope to get at the altar ~ IDO",
+      "D12. Peat-accumulating wetland ~ FEN",
+      "D14. The ___, NY art museum ~ MET",
+      "D21. ___Fans ~ ONLY",
+      "D22. Friends, Romans, countrymen, lend me your... ~ EARS",
+      "D23. \"Friend of Dorothy\" ~ GAY",
+      "D24. We ___ the Champions ~ ARE",
+      "D25. Father of Spider-Man ~ STANLEE",
+      "D26. What a certain applicant becomes ~ HIREE",
+      "D28. Connect ~ JOIN",
+      "D30. Particular form of a published text ~ EDITION",
+      "D31. Suffix at the end of all of Eevee's evolutions ~ EON",
+      "D32. Live and ___ Die ~ LET",
+      "D34. Famous Eastwood whose name became a famous Gorillaz song ~ CLINT",
+      "D36. Unexpected result in a sporting competition ~ UPSET",
+      "D39. Disfigure ~ MAR",
+      "D40. David Lee and Tim ~ ROTHS",
+      "D42. Luxury watch collection by Garmin ~ MARQ",
+      "D44. Top dog in an IT org ~ CIO",
+      "D45. Sister ___ ~ ACT",
+      "D46. Author Roald ~ DAHL",
+      "D47. Civil rights activist Parks ~ ROSA",
+      "D48. An additional name that could be part of 40D's clue ~ ELI",
+      "D49. Director's domain ~ SET",
+      "D52. Type of income to go in a 401k ~ PRETAX",
+      "D54. The Empire Strikes Back, to the Star Wars saga ~ PARTV",
+      "D56. Greek letter following 72A ~ THETA",
+      "D59. Misplace ~ LOSE",
+      "D61. Wee boy ~ LAD",
+      "D62. Dad to Tommy Pickles ~ STU",
+      "D63. The only Patrol I trust ~ PAW",
+      "D64. Smart savings plan, briefly ~ IRA",
+      "D65. Fresh ~ NEW",
+      "D67. Breeds such as Chihuahua or Pomeranian ~ TOY",
+      "D68. Bega behind \"Mambo No. 5\" ~ LOU",
+      "D69. Aardvark breakfast ~ ANT",
+      "D70. Sonic ___ ~ SEZ",
+      "",
+      "## Notes",
+      "",
+      "## Design",
+      "",
+      "<style>O { background: circle }</style>",
+      "",
+      "O..O##O.O#.O..O",
+      ".....#...#.....",
+      ".....#...#.....",
+      "####....#...###",
+      "O..O#.O.O.#O..O",
+      ".......#...#...",
+      "......#........",
+      "##...#O.O#...##",
+      "........#......",
+      "...#...#.......",
+      "O..O#.O.O.#O..O",
+      "###...#....####",
+      ".....#...#.....",
+      ".....#...#.....",
+      "O..O.#O.O##O..O",
+      ""
+    ]
+  },
   "design": {
     "styles": {
       "O": {
@@ -1953,26 +2390,99 @@ O..O.#O.O##O..O
       }
     },
     "positions": [
-      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ],
       [],
       [],
       [],
-      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ],
       [],
       [],
-      [null, null, null, null, null, null, "O", null, "O"],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O",
+        null,
+        "O"
+      ],
       [],
       [],
-      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ],
       [],
       [],
       [],
-      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"]
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ]
     ]
   }
 }
 ```
-
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 </details>

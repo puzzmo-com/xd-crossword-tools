@@ -152,7 +152,7 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
             clueType: clue.dir,
             clueNum: clue.num,
             position: { col: 0, index: line },
-            length: 1, // lineText.length,
+            length: -1, // lineText.length,
             message: clue.errorMessage,
           })
           continue

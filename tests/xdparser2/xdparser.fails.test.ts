@@ -207,7 +207,7 @@ a2. asda
   {
     "clueNum": 5,
     "clueType": "A",
-    "length": 1,
+    "length": -1,
     "message": "The clue 'a2. asda' does not match either the format of 'A[num]. [clue] ~ [answer]' for a clue, or 'A[num] ^[hint]: [clue]' for a clue's metadata.",
     "position": {
       "col": 0,
