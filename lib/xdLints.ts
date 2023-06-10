@@ -9,7 +9,7 @@ export const runLinterForClue = (clue: Clue, ordinal: "across" | "down") => {
 
   const wordsForClue = lowerClueBody.split(" ")
   const wordsFromHint = lowerHint.split(" ")
-  const wordsFromAnswer = clue.answer.toLocaleLowerCase().split("|") // TODO: We support custom separators, but this is a good start
+  const wordsFromAnswer = answerWithSplits(clue).toLocaleLowerCase().split("|")
 
   const wordsFromAnswerSet = new Set(wordsForClue)
   const wordsFromHintSet = new Set(wordsFromHint ?? [])
@@ -51,4 +51,13 @@ export const runLinterForClue = (clue: Clue, ordinal: "across" | "down") => {
   }
 
   return reports
+}
+
+const answerWithSplits = (clue: Clue) => {
+  if (!clue.splits) return clue.answer
+  const answer = clue.answer.split("")
+  ;[...clue.splits.reverse()].forEach((idx) => {
+    answer.splice(idx + 1, 0, "|")
+  })
+  return answer.join("")
 }

@@ -7,6 +7,7 @@ import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeade
 // These are all the sections supported by this parser
 const knownHeaders = ["grid", "clues", "notes", "metadata", "metapuzzle", "start", "design", "design-style"] as const
 const mustHave = ["grid", "clues", "metadata"] as const
+
 export type ParseMode = (typeof knownHeaders)[number] | "comment" | "unknown"
 
 /**
@@ -176,7 +177,7 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
           }
         } else {
           if (!existing) {
-            addSyntaxError(`Could not find the clue which this hint refers to above it`, line)
+            addSyntaxError(`Could not find the clue which this hint refers to above in the file`, line)
           } else {
             if (!existing.metadata) existing.metadata = {}
             existing.metadata[clue.metaKey.toLowerCase()] = clue.metaValue
@@ -283,9 +284,8 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
     }
   }
 
-  if (json.metapuzzle)
-    // The process above will make pretty white-spacey answers.
-    json.metapuzzle.answer = json.metapuzzle.answer.trim()
+  // The process above will make pretty white-spacey answers.
+  if (json.metapuzzle) json.metapuzzle.answer = json.metapuzzle.answer.trim()
 
   // Update the clues with position info and the right meta
   const positions = getCluePositionsForBoard(json.tiles)
@@ -368,7 +368,7 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
       const headers = toTitleSentence(knownHeaders as any)
 
       addSyntaxError(
-        `Two # headers are reserved for the system, they can only be: ${headers}. Got '${content.trim()}'. You can use ### headers for inside notes.`,
+        `Two # headers are reserved for the system, we accept: ${headers}. Got '${content.trim()}'. You can use ### headers for inside notes.`,
         num
       )
     }
@@ -465,7 +465,7 @@ const clueFromLine = (line: string, num: number): ClueParserResponse => {
     }
   }
 
-  const message = `The clue '${line.trim()}' does not match either the format of '${expectedPrefix}[num]. [clue] ~ [answer]' for a clue, or '${expectedPrefix}[num] ^[hint]: [clue]' for a clue's metadata.`
+  const message = `This clue does not match either the '${expectedPrefix}[num]. [clue] ~ [answer]' for a clue, or '${expectedPrefix}[num] ^[hint]: [clue]' for a clue's metadata.`
   return { dir: expectedPrefix, num, errorMessage: message }
 
   function isLegitNumber(str: string) {

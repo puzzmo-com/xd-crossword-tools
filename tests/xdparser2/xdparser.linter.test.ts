@@ -8,6 +8,7 @@ it("lints for words being included in the answer", () => {
 
   const json = xdParser(xd.replace(originalClue, newMDClue), true, true)
 
+  expect(json.report.success).toBeTruthy()
   expect(json.report.warnings).toMatchInlineSnapshot(`
 [
   {
