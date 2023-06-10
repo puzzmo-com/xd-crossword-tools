@@ -124,7 +124,7 @@ export interface Clue {
   answer: string
   /** Filled in metadata giving the location of the first char on the grid */
   position: Position
-  /** If an answer contains a split character, then this would include the indexes  */
+  /** If an answer contains a split character, then this would include the indexes where it was used */
   splits?: number[]
   /** Duplicating a clue and using a meta suffix (e.g. "A23~Hint. A shot to the heart" )
    * would add to { "hint": " A shot to the heart" } to the metadata.

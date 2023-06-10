@@ -50,6 +50,7 @@ export const JSONToXD = (json: CrosswordJSON): string => {
       let line = `A${clue.number}. ${clue.body} ~ ${answer}`
       if (clue.metadata) {
         for (const key of Object.keys(clue.metadata)) {
+          if (key.includes(":")) continue
           line += `\nA${clue.number} ^${key}: ${clue.metadata[key]}`
         }
         line += "\n"

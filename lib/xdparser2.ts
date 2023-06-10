@@ -1,5 +1,4 @@
 import { getCluePositionsForBoard } from "./clueNumbersFromBoard"
-import { EditorError } from "./EditorError"
 import type { Tile, CrosswordJSON, MDClueComponent } from "./types"
 import { runLinterForClue } from "./xdLints"
 import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "./xdparser2.compat"

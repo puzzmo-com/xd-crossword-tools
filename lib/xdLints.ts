@@ -46,7 +46,7 @@ export const runLinterForClue = (clue: Clue, ordinal: "across" | "down") => {
   }
 
   // If the answer has a | in it, there should be a flag if the clue doesn't have a : in it, since a | should often indicate : Abbr., : Hyph., : 2 wds. , etc
-  if (clue.answer.includes("|") && lowerHint && !lowerHint.includes(":")) {
+  if (clue.splits?.length && lowerHint && !lowerHint.includes(":")) {
     addReport(`Clue ${ref} has multiple words, but the hint doesn't have a : in it (e.g. : Abbr., : Hyph., : 2 wds. , etc)`)
   }
 
@@ -55,6 +55,7 @@ export const runLinterForClue = (clue: Clue, ordinal: "across" | "down") => {
 
 const answerWithSplits = (clue: Clue) => {
   if (!clue.splits) return clue.answer
+
   const answer = clue.answer.split("")
   ;[...clue.splits.reverse()].forEach((idx) => {
     answer.splice(idx + 1, 0, "|")

@@ -28,11 +28,16 @@ it("lints for words being included in the answer", () => {
 
 it("lints to note that you should have a colon in the hint for multi-word answers", () => {
   const xd = readFileSync("tests/xdparser2/outputs/explicit-alpha-bits.xd", "utf8")
+
   const originalClue = "A1. Captain of the Pequod ~ AHAB"
   const newMDClue = "A1. Captain of the Pequod ~ AH|AB\nA1 ^Hint: Turned on to illuminate a room."
 
-  const json = xdParser(xd.replace(originalClue, newMDClue), true, true)
+  const originalMeta = "Description: N/A"
+  const newMeta = "Description: N/A\nsplitcharacter: |"
 
+  const json = xdParser(xd.replace(originalClue, newMDClue).replace(originalMeta, newMeta), true, true)
+
+  expect(json.report.success).toBeTruthy()
   expect(json.report.warnings).toMatchInlineSnapshot(`
 [
   {
@@ -42,7 +47,7 @@ it("lints to note that you should have a colon in the hint for multi-word answer
     "message": "Clue A1 has multiple words, but the hint doesn't have a : in it (e.g. : Abbr., : Hyph., : 2 wds. , etc)",
     "position": {
       "col": 0,
-      "index": 27,
+      "index": 28,
     },
     "type": "clue_msg",
   },
