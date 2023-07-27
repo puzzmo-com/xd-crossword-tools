@@ -1,4 +1,4 @@
-import type { CrosswordJSON } from "./types"
+import type { Clue, CrosswordJSON } from "./types"
 
 function addSplits(answer: string, splitChar: string, splits?: number[]): string {
   if (!splits) return answer
@@ -43,36 +43,30 @@ export const JSONToXD = (json: CrosswordJSON): string => {
     )
     .join("\n")
 
-  xd += `\n\n## Clues\n\n`
-  xd += json.clues.across
-    .map((clue) => {
-      const answer = addSplits(clue.answer, splitChar, clue.splits)
-      let line = `A${clue.number}. ${clue.body} ~ ${answer}`
-      if (clue.metadata) {
-        for (const key of Object.keys(clue.metadata)) {
-          if (key.includes(":")) continue
-          line += `\nA${clue.number} ^${key}: ${clue.metadata[key]}`
+  const getCluesXD = (clues: Clue[], direction: "A" | "D") => {
+    return clues
+      .map((clue) => {
+        const answer = addSplits(clue.answer, splitChar, clue.splits)
+        let line = `${direction}${clue.number}. ${clue.body} ~ ${answer}`
+        if (clue.metadata) {
+          let printed = false
+          for (const key of Object.keys(clue.metadata)) {
+            if (key.includes(":")) continue
+            printed = true
+            line += `\n${direction}${clue.number} ^${key}: ${clue.metadata[key]}`
+          }
+          if (printed) line += "\n"
         }
-        line += "\n"
-      }
-      return line
-    })
-    .join("\n")
+        return line
+      })
+      .join("\n")
+  }
+
+  xd += `\n\n## Clues\n\n`
+  xd += getCluesXD(json.clues.across, "A")
 
   xd += `\n\n`
-  xd += json.clues.down
-    .map((clue) => {
-      const answer = addSplits(clue.answer, splitChar, clue.splits)
-      let line = `D${clue.number}. ${clue.body} ~ ${answer}`
-      if (clue.metadata) {
-        for (const key of Object.keys(clue.metadata)) {
-          line += `\nD${clue.number} ^${key}: ${clue.metadata[key]}`
-        }
-        line += "\n"
-      }
-      return line
-    })
-    .join("\n")
+  xd += getCluesXD(json.clues.down, "D")
 
   if (json.metapuzzle) {
     xd += `\n\n## Metapuzzle\n\n`
