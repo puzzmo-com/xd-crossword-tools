@@ -77,12 +77,16 @@ export const JSONToXD = (json: CrosswordJSON): string => {
     xd += `\n\n## Design\n\n`
 
     xd += "<style>\n"
-    xd += Object.entries(json.design.styles).map((key) => {
-      const content = Object.entries(key[1])
-        .map(([key, value]) => `${key}: ${value}`)
-        .join("; ")
-      return `${key[0]} { ${content} } `
-    })
+    xd += Object.entries(json.design.styles)
+      .map((key) => {
+        const content = Object.entries(key[1])
+          .map(([key, value]) => `${key}: ${value}`)
+          .join(";")
+
+        return `${key[0]} { ${content} } `
+      })
+      .join("\n")
+
     xd += "\n</style>\n\n"
 
     xd += `${json.design.positions

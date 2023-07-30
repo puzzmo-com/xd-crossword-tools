@@ -1,8 +1,7 @@
 import { JSONToXD } from "../lib/JSONtoXD"
 import { xdToJSON } from "../"
 
-it("parses splitCharacter correctly", () => {
-  const xd = `
+const xd = `
 ## Metadata\n\n
 Title: Square
 Author: Orta
@@ -24,6 +23,8 @@ A1. Band with two words. ~ OK|GO
 D1. Reverse santa. ~ OH|OH|OH
 D2. A thing. ~ OBJECT
 `
+
+it("parses splitCharacter correctly", () => {
   const json = xdToJSON(xd)
   const newXD = JSONToXD(json)
   expect(newXD).toMatchInlineSnapshot(`
@@ -128,5 +129,27 @@ D2 ^hint: A union which left europe.
 D3. A conscious tree. ~ BOOK
 D3 ^hint: Registering with a restaurant.
 "
+`)
+})
+
+it("handles design section with more than one element", () => {
+  const json = xdToJSON(xd)
+  json.design = {
+    styles: {
+      A: {
+        background: "circle",
+      },
+      B: {
+        background: "dot",
+      },
+    },
+    positions: [],
+  }
+  const newXD = JSONToXD(json)
+  expect(newXD.split("## Design")[1].trim()).toMatchInlineSnapshot(`
+"<style>
+A { background: circle } 
+B { background: dot } 
+</style>"
 `)
 })
