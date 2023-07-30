@@ -293,6 +293,8 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
     const arr = clue.dir === "A" ? json.clues.across : json.clues.down
 
     const { answer, splits } = parseSplitsFromAnswer(clue.answer, json.meta.splitcharacter)
+    if (editorInfo && clue.metadata) clue.metadata["answer:unprocessed"] = clue.answer
+
     arr.push({
       body: clue.question,
       answer: answer,

@@ -397,6 +397,7 @@ Editor: Orta Therox
 Date: 2021-03-16
 SplitCharacter: |
 
+## Grid
 
 OKGO
 H##B
@@ -405,6 +406,7 @@ H##E
 O##C
 H##T
 
+## Clues
 
 A1. Band with two words. ~ OK|GO
 
@@ -412,43 +414,45 @@ D1. Reverse santa. ~ OH|OH|OH
 D2. A thing. ~ OBJECT
 `
 
-    const { clues } = xdParser(xd)
+    const { clues } = xdParser(xd, false, true)
     expect(clues).toMatchInlineSnapshot(`
 {
   "across": [
     {
-      "answer": "OKGO",
+      "answer": "OK|GO",
       "body": "Band with two words.",
-      "metadata": undefined,
+      "metadata": {
+        "answer:unprocessed": "OK|GO",
+        "body:line": "18",
+      },
       "number": 1,
       "position": {
         "col": 0,
         "index": 0,
       },
-      "splits": [
-        1,
-      ],
     },
   ],
   "down": [
     {
-      "answer": "OHOHOH",
+      "answer": "OH|OH|OH",
       "body": "Reverse santa.",
-      "metadata": undefined,
+      "metadata": {
+        "answer:unprocessed": "OH|OH|OH",
+        "body:line": "20",
+      },
       "number": 1,
       "position": {
         "col": 0,
         "index": 0,
       },
-      "splits": [
-        1,
-        3,
-      ],
     },
     {
       "answer": "OBJECT",
       "body": "A thing.",
-      "metadata": undefined,
+      "metadata": {
+        "answer:unprocessed": "OBJECT",
+        "body:line": "21",
+      },
       "number": 2,
       "position": {
         "col": 3,

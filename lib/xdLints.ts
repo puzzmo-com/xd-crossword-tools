@@ -35,6 +35,8 @@ export const runLinterForClue = (clue: Clue, ordinal: "across" | "down") => {
     const isWordInHint = wordsFromHintSet.has(word)
     const isWordInClue = wordsFromAnswerSet.has(word)
     if (isWordInClue || isWordInHint) {
+      // No "I" or "am"s for example
+      if (word.length < 3) continue
       const place = isWordInHint ? "hint" : "clue"
       addReport(`${ref} has an answer word '${word}' which is in the ${place}`, isWordInHint)
     }

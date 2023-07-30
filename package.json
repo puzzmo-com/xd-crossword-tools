@@ -1,6 +1,6 @@
 {
   "name": "xd-crossword-tools",
-  "version": "6.1.2",
+  "version": "6.2.0",
   "description": "Tools for taking different crossword file formats and converting them to xd, and for converting an xd file to useful JSON",
   "main": "dist/index.js",
   "module": "./dist/index.mjs",
