@@ -1,7 +1,5 @@
 ## Authoring an xd Crossword
 
-[This doc is a work in progress]
-
 xd is a file format for describing a crossword in text, inspired by the comment text format called markdown. You might have seen markdown in Reddit/Slack/Discord comment boxes. For example: `*bold*` or `_italics_`. Oddly enough, this document is written in markdown.
 
 #### Sections
@@ -21,7 +19,7 @@ The order of sections does not matter, but it is convention to be ordered in: me
 
 #### Metadata
 
-Within the grid section, text is treated as a 'look up' table separated by the first colon: on the right we have the name and on the left we have the content. 
+Within the grid section, text is treated as a 'look up' table separated by the first colon: on the right we have the name and on the left we have the content.
 
 ```md
 ## Metadata
@@ -32,4 +30,4 @@ Copyright: © 2021
 Description: N/A
 ```
 
-This tells the crossword app 4 different types of information about the puzzle. Some crossword apps may support more bits of info and use it for more 
+This tells the crossword app 4 different types of information about the puzzle. Some crossword apps may support more bits of info and use it for more

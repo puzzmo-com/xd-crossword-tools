@@ -1,5 +1,9 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 6.3.0
+
+Adds a fn for generating semantic diffs between xd crossword files: `xdDiff`.
+
 ### 6.0.0
 
 - The xdparser is now a recoverable parser, what this means is that it will not throw at the first sign of some unexpected input.

@@ -4,9 +4,14 @@
     "author": "Will Nediger",
     "date": "Not set",
     "editor": "Not set",
+    "title:line": "2",
+    "author:line": "3",
     "copyright:": "",
+    "copyright::line": "4",
     "description": "N/A",
-    "rebus": "0=BOSE 1=SONY"
+    "description:line": "5",
+    "rebus": "0=BOSE 1=SONY",
+    "rebus:line": "6"
   },
   "tiles": [
     [

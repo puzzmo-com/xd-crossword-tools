@@ -19,6 +19,7 @@ export const JSONToXD = (json: CrosswordJSON): string => {
 
   xd += `## Metadata\n\n`
   Object.entries(json.meta).forEach(([key, value]) => {
+    if (key.includes(":")) return
     if (key === "splitcharacter") {
       splitChar = value
     }

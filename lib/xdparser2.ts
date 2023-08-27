@@ -198,6 +198,9 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
         const key = lineParts.shift()!
         const value = lineParts.join(": ")
         json.meta[key.toLowerCase()] = value
+        if (editorInfo) {
+          json.meta[key.toLowerCase() + ":line"] = line.toString()
+        }
         continue
       }
 

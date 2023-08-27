@@ -4,8 +4,12 @@
     "author": "Drew Hodson",
     "date": "Not set",
     "editor": "Not set",
+    "title:line": "2",
+    "author:line": "3",
     "copyright": "© 2021",
-    "description": "N/A"
+    "copyright:line": "4",
+    "description": "N/A",
+    "description:line": "5"
   },
   "tiles": [
     [

@@ -35,8 +35,6 @@ export const runLinterForClue = (clue: Clue, ordinal: "across" | "down") => {
     const isWordInHint = wordsFromHintSet.has(word)
     const isWordInClue = wordsFromAnswerSet.has(word)
     if (isWordInClue || isWordInHint) {
-      // No "I" or "am"s for example
-      if (word.length < 3) continue
       const place = isWordInHint ? "hint" : "clue"
       addReport(`${ref} has an answer word '${word}' which is in the ${place}`, isWordInHint)
     }
@@ -48,8 +46,11 @@ export const runLinterForClue = (clue: Clue, ordinal: "across" | "down") => {
   }
 
   // If the answer has a | in it, there should be a flag if the clue doesn't have a : in it, since a | should often indicate : Abbr., : Hyph., : 2 wds. , etc
-  if (clue.splits?.length && lowerHint && !lowerHint.includes(":")) {
-    addReport(`Clue ${ref} has multiple words, but the hint doesn't have a : in it (e.g. : Abbr., : Hyph., : 2 wds. , etc)`)
+  if (clue.splits?.length && lowerHint) {
+    if (!lowerHint.includes(":"))
+      addReport(`Clue ${ref} has multiple words, but the hint doesn't have a : in it (e.g. : Abbr., : Hyph., : 2 wds. , etc)`)
+    if (!clue.body.includes(":"))
+      addReport(`Clue ${ref} has multiple words, but the clue doesn't have a : in it (e.g. : Abbr., : Hyph., : 2 wds. , etc)`)
   }
 
   return reports

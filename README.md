@@ -66,6 +66,7 @@ Triggering this will:
 
 - Turn on the linter for your code editor, which will give you warnings about your crossword based on pretty universally useful rules.
 - Add section metadata in the return value's `editorInfo` property
+- Add line numbers to the metadata section of the puzzle
 - Add line numbers to clues/hints/other in the metadata section of each clue
 
 This library includes `editorInfoAtCursor` which can get some information about what's under the cursor at `{ line, index }`.
@@ -91,6 +92,16 @@ export type PositionInfo =
   | ...
 ```
 
+### xd Diffing
+
+This library includes a diffing function which can take two xd strings and return a list of changes. This is useful for version control, and for building a diffing UI.
+
+```ts
+import { diffXD } from "xd-crossword-tools"
+
+const diff = diffXD(xd1, xd2)
+```
+
 ### Example
 
 Let's take this free `.puz`: https://dehodson.github.io/crossword-puzzles/crosswords/alpha-bits/
@@ -99,6 +110,7 @@ Their .puz file turns into this xd:
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.xd) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.xd -->
+
 ```xd
 ## Metadata
 
@@ -240,6 +252,7 @@ O..O#.O.O.#O..O
 .....#...#.....
 O..O.#O.O##O..O
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
  <details>
@@ -247,6 +260,7 @@ O..O.#O.O##O..O
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.json) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.json -->
+
 ```json
 {
   "meta": {
@@ -2478,99 +2492,26 @@ O..O.#O.O##O..O
       }
     },
     "positions": [
-      [
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O"
-      ],
+      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
       [],
       [],
       [],
-      [
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O"
-      ],
+      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
       [],
       [],
-      [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "O",
-        null,
-        "O"
-      ],
+      [null, null, null, null, null, null, "O", null, "O"],
       [],
       [],
-      [
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O"
-      ],
+      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
       [],
       [],
       [],
-      [
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O"
-      ]
+      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"]
     ]
   }
 }
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 </details>
