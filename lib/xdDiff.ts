@@ -1,18 +1,19 @@
 import { Clue, CrosswordJSON } from "./types"
 import { xdParser } from "./xdparser2"
 
+export type DiffHunk =
+  | { type: "same"; content: string; beforeLine: number; afterLine: number }
+  | { type: "change"; before: string; after: string; beforeLine: number; afterLine: number }
+  | { type: "add"; after: string; afterLine: number }
+  | { type: "remove"; before: string; beforeLine: number }
+
 export type DiffResults =
   | {
       error: true
       message: string
     }
   | {
-      diff: Array<
-        | { type: "same"; content: string }
-        | { type: "change"; before: string; after: string; beforeLine: number; afterLine: number }
-        | { type: "add"; after: string; afterLine: number }
-        | { type: "remove"; before: string; beforeLine: number }
-      >
+      diff: DiffHunk[]
       notes: any
     }
 
@@ -39,15 +40,21 @@ export const xdDiff = (beforeXD: string, afterXD: string) => {
   const removedMetaKeys = beforeMetaKeys.filter((x) => !afterMetaKeys.includes(x))
   const sameMetaKeys = beforeMetaKeys.filter((x) => afterMetaKeys.includes(x))
 
-  const afterMetaIndex = after.editorInfo?.sections?.find((x) => x.type === "metadata")?.startLine ?? 0
+  const afterMetaIndex = after.editorInfo?.sections?.find((x) => x.type === "metadata")!
+  const beforeMetaIndex = before.editorInfo?.sections?.find((x) => x.type === "metadata")!
 
-  diff.push({ type: "same", content: "## Metadata" })
-  diff.push({ type: "same", content: "" })
+  diff.push({ type: "same", content: "## Metadata", beforeLine: beforeMetaIndex.startLine, afterLine: afterMetaIndex.startLine })
+  diff.push({ type: "same", content: "", beforeLine: beforeMetaIndex.startLine + 1, afterLine: afterMetaIndex.startLine + 1 })
 
   sameMetaKeys.forEach((key) => {
     const sameContent = before.meta[key] === after.meta[key]
     if (sameContent) {
-      diff.push({ type: "same", content: `${key}: ${before.meta[key]}` })
+      diff.push({
+        type: "same",
+        content: `${key}: ${before.meta[key]}`,
+        beforeLine: Number(before.meta[key + ":line"]),
+        afterLine: Number(after.meta[key + ":line"]),
+      })
     } else {
       diff.push({
         type: "change",
@@ -65,7 +72,7 @@ export const xdDiff = (beforeXD: string, afterXD: string) => {
     diff.push({ type: "remove", before: `${key}: ${before.meta[key]}`, beforeLine: Number(before.meta[key + ":line"]) })
   })
 
-  diff.push({ type: "same", content: "" })
+  diff.push({ type: "same", content: "", beforeLine: beforeMetaIndex.endLine, afterLine: afterMetaIndex.endLine })
 
   // Grid, do a simpler string diff here ----------------------------
   const textOptions = { before, after, beforeLines: beforeXDLines, afterLines: afterXDLines }
@@ -76,14 +83,22 @@ export const xdDiff = (beforeXD: string, afterXD: string) => {
   const afterCluesSection = after.editorInfo?.sections?.find((x) => x.type === "clues")
 
   if (beforeCluesSection && afterCluesSection) {
-    diff.push({ type: "same", content: "## Clues" })
-    diff.push({ type: "same", content: "" })
+    diff.push({ type: "same", content: "## Clues", beforeLine: beforeCluesSection.startLine, afterLine: afterCluesSection.startLine })
+    diff.push({ type: "same", content: "", beforeLine: beforeCluesSection.startLine, afterLine: afterCluesSection.startLine })
 
     for (const clue of after.clues.across) {
       const beforeClue = before.clues.across.find((x) => x.number === clue.number)
       printClue(beforeClue, clue, "A")
     }
-    diff.push({ type: "same", content: "" })
+
+    // Add a new line between the across and down clues
+    const lastAcross = after.clues.across[after.clues.across.length - 1]
+    const lineReferences = Object.entries(lastAcross.metadata ?? {})
+      .filter(([k]) => k.includes(":"))
+      .map(([, v]) => Number(v) || -1)
+    const lastAcrossLine = Math.max(...lineReferences)
+
+    diff.push({ type: "same", content: "", beforeLine: lastAcrossLine, afterLine: lastAcrossLine })
 
     for (const clue of after.clues.down) {
       const beforeClue = before.clues.down.find((x) => x.number === clue.number)
@@ -110,7 +125,12 @@ export const xdDiff = (beforeXD: string, afterXD: string) => {
       diff.push({ type: "remove", before: line, beforeLine: Number(before.metadata?.["body:line"]) })
     } else if (before && after && before.body === after.body) {
       const line = `${prefix}${before.number}. ${before.body} ~ ${before.metadata?.["answer:unprocessed"]!}`
-      diff.push({ type: "same", content: line })
+      diff.push({
+        type: "same",
+        content: line,
+        beforeLine: Number(before.metadata?.["body:line"]),
+        afterLine: Number(after.metadata?.["body:line"]),
+      })
     } else if (before && after && before.body !== after.body) {
       const afterLine = `${prefix}${after.number}. ${after.body} ~ ${after.metadata?.["answer:unprocessed"]!}`
       const beforeLine = `${prefix}${before.number}. ${before.body} ~ ${before.metadata?.["answer:unprocessed"]!}`
@@ -140,7 +160,12 @@ export const xdDiff = (beforeXD: string, afterXD: string) => {
       for (const key of sameMetaKeys) {
         const sameContent = before.metadata[key] === after.metadata[key]
         if (sameContent) {
-          diff.push({ type: "same", content: `${prefix}${before.number} ^${key}: ${before.metadata[key]}` })
+          diff.push({
+            type: "same",
+            content: `${prefix}${before.number} ^${key}: ${before.metadata[key]}`,
+            beforeLine: Number(before.metadata[key + ":line"]),
+            afterLine: Number(after.metadata[key + ":line"]),
+          })
         } else {
           diff.push({
             type: "change",
@@ -156,7 +181,7 @@ export const xdDiff = (beforeXD: string, afterXD: string) => {
         diff.push({
           type: "add",
           after: `${prefix}${after.number} ^${key}: ${after.metadata[key]}`,
-          afterLine: afterMetaIndex + diff.length,
+          afterLine: afterMetaIndex.startLine + diff.length,
         })
       }
 
@@ -164,11 +189,22 @@ export const xdDiff = (beforeXD: string, afterXD: string) => {
         diff.push({
           type: "remove",
           before: `${prefix}${before.number} ^${key}: ${before.metadata[key]}`,
-          beforeLine: afterMetaIndex + diff.length,
+          beforeLine: afterMetaIndex.startLine + diff.length,
         })
       }
     }
-    diff.push({ type: "same", content: "" })
+
+    const lineReferences = Object.entries(after?.metadata ?? before?.metadata ?? {})
+      .filter(([k]) => k.includes(":"))
+      .map(([, v]) => Number(v) || -1)
+    const lastAcrossLine = Math.max(...lineReferences)
+
+    diff.push({
+      type: "same",
+      content: "",
+      beforeLine: lastAcrossLine + 1,
+      afterLine: lastAcrossLine + 1,
+    })
   }
 
   function printTextSection(
@@ -188,7 +224,7 @@ export const xdDiff = (beforeXD: string, afterXD: string) => {
         const beforeLine = sectionBeforeLines[i]
         const afterLine = sectionAfterLines[i]
         if (beforeLine === afterLine) {
-          diff.push({ type: "same", content: beforeLine })
+          diff.push({ type: "same", content: beforeLine, beforeLine: beforeSection.startLine + i, afterLine: afterSection.startLine + i })
         } else {
           diff.push({
             type: "change",
@@ -199,7 +235,7 @@ export const xdDiff = (beforeXD: string, afterXD: string) => {
           })
         }
         if (i === 0) {
-          diff.push({ type: "same", content: "" })
+          diff.push({ type: "same", content: "", beforeLine: beforeSection.startLine + 1, afterLine: afterSection.startLine + 1 })
         }
       }
     }
