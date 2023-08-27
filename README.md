@@ -110,7 +110,6 @@ Their .puz file turns into this xd:
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.xd) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.xd -->
-
 ```xd
 ## Metadata
 
@@ -252,7 +251,6 @@ O..O#.O.O.#O..O
 .....#...#.....
 O..O.#O.O##O..O
 ```
-
 <!-- AUTO-GENERATED-CONTENT:END -->
 
  <details>
@@ -260,7 +258,6 @@ O..O.#O.O##O..O
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.json) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.json -->
-
 ```json
 {
   "meta": {
@@ -268,8 +265,12 @@ O..O.#O.O##O..O
     "author": "Drew Hodson",
     "date": "Not set",
     "editor": "Not set",
+    "title:line": "2",
+    "author:line": "3",
     "copyright": "© 2021",
-    "description": "N/A"
+    "copyright:line": "4",
+    "description": "N/A",
+    "description:line": "5"
   },
   "tiles": [
     [
@@ -2492,26 +2493,99 @@ O..O.#O.O##O..O
       }
     },
     "positions": [
-      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ],
       [],
       [],
       [],
-      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ],
       [],
       [],
-      [null, null, null, null, null, null, "O", null, "O"],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O",
+        null,
+        "O"
+      ],
       [],
       [],
-      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ],
       [],
       [],
       [],
-      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"]
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ]
     ]
   }
 }
 ```
-
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 </details>
