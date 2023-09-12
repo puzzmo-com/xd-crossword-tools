@@ -44,18 +44,7 @@ it("lints to note that you should have a colon in the hint for multi-word answer
     "clueNum": 1,
     "clueType": "across",
     "length": -1,
-    "message": "Clue A1 has multiple words, but the hint doesn't have a : in it (e.g. : Abbr., : Hyph., : 2 wds. , etc)",
-    "position": {
-      "col": 0,
-      "index": 28,
-    },
-    "type": "clue_msg",
-  },
-  {
-    "clueNum": 1,
-    "clueType": "across",
-    "length": -1,
-    "message": "Clue A1 has multiple words, but the clue doesn't have a : in it (e.g. : Abbr., : Hyph., : 2 wds. , etc)",
+    "message": "A1 answer has multiple words, but the hint doesn't have a : in it (e.g. : Abbr., : Hyph., : 2 wds. , etc)",
     "position": {
       "col": 0,
       "index": 28,
