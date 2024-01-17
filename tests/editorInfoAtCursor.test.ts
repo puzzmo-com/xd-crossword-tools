@@ -1,8 +1,9 @@
 import { readFileSync } from "fs"
-import { CrosswordJSON, xdToJSON } from "../dist"
+import { CrosswordJSON } from "../lib/types"
 import { puzToXD } from "../lib/puzToXD"
 import { editorInfoAtCursor } from "../lib/editorInfoAtCursor"
 import { JSONToXD } from "../lib/JSONtoXD"
+import { xdToJSON } from ".."
 
 describe(editorInfoAtCursor.name, () => {
   let xd: string

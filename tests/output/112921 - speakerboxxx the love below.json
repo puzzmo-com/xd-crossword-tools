@@ -10,7 +10,7 @@
     "copyright::line": "4",
     "description": "N/A",
     "description:line": "5",
-    "rebus": "0=BOSE 1=SONY",
+    "rebus": "❶=BOSE ❷=SONY",
     "rebus:line": "6"
   },
   "tiles": [
@@ -226,7 +226,7 @@
       },
       {
         "type": "rebus",
-        "symbol": "0",
+        "symbol": "❶",
         "word": "BOSE"
       },
       {
@@ -694,7 +694,7 @@
       },
       {
         "type": "rebus",
-        "symbol": "1",
+        "symbol": "❷",
         "word": "SONY"
       },
       {
@@ -1899,8 +1899,8 @@
     ]
   },
   "rebuses": {
-    "0": "BOSE",
-    "1": "SONY"
+    "❶": "BOSE",
+    "❷": "SONY"
   },
   "notes": "",
   "report": {
@@ -1943,14 +1943,14 @@
       "author: Will Nediger",
       "copyright: ",
       "description: N/A",
-      "rebus: 0=BOSE 1=SONY",
+      "rebus: ❶=BOSE ❷=SONY",
       "",
       "## Grid",
       "",
       "BLTS...PVC.POGO",
       "LARA..PEEL.OUID",
       "OPEN.LUCRE.URGE",
-      "CHADWICK0MAN...",
+      "CHADWICK❶MAN...",
       "KIT.REES..IDLE.",
       "SLYNOD.AIRSPACE",
       "..OUT.ATOZ.UDON",
@@ -1958,7 +1958,7 @@
       "ACER.SIPS.APE..",
       "SALADBAR.ALYSSA",
       ".IFSO..ISLE.FED",
-      "...WHAT1OURMIND",
+      "...WHAT❷OURMIND",
       "ROBE.CHASM.ARSE",
       "OWIE.HERO..USER",
       "BLOT.END...ITIS",

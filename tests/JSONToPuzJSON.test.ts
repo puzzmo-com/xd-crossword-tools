@@ -1,6 +1,5 @@
 import { readFileSync, writeFileSync } from "fs"
-import { xdToJSON } from ".."
-import { puzToXD } from "../dist"
+import { puzToXD, xdToJSON } from ".."
 import { JSONToPuzJSON } from "../lib/JSONToPuzJSON"
 // @ts-ignore
 import { readpuz } from "@confuzzle/readpuz"
