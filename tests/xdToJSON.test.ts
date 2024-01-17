@@ -132,7 +132,7 @@ D70. Sonic ___ ~ SEZ
 ## Design
 
 <style>
-O { background: circle } 
+O { background: circle }
 </style>
 
 O..O##O.O#.O..O
@@ -282,7 +282,7 @@ D70. Sonic ___ ~ SEZ
 ## Design
 
 <style>
-O { background: circle } 
+O { background: circle }
 </style>
 
 O..O##O.O#.O..O
@@ -435,7 +435,7 @@ D70. Sonic ___ ~ SEZ
 ## Design
 
 <style>
-O { background: circle } 
+O { background: circle }
 </style>
 
 O..O##O.O#.O..O
@@ -455,4 +455,31 @@ O..O#.O.O.#O..O
 O..O.#O.O##O..O
 "
 `)
+})
+
+it("handles splits and substitutions correctly in rebuses", () => {
+  const xd = `## Metadata
+
+title: Rebus split test
+author: Penelope Rudow
+date: Not set
+editor: Not set
+copyright: © 2021
+description: N/A
+rebus: 0=AB
+splitcharacter: |
+
+## Grid
+
+0CD.ABC
+
+## Clues
+
+A1. Example ~ A|B|CD
+A2. Alphabet ~ A|B|C
+`
+
+  const json = xdToJSON(xd, true, true)
+  expect(json.clues.across[0].splits).toEqual([0])
+  expect(json.clues.across[1].splits).toEqual([1, 0])
 })

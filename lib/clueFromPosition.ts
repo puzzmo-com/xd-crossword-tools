@@ -26,6 +26,7 @@ export const clueInfosForPosition = (tiles: CrosswordJSON["tiles"], clues: Cross
   }
 }
 
+// TODO: Doesn't handle rebuses
 export const tilePositionsForClue = (clue: Clue, direction: CursorDirection): Position[] => {
   const start = clue.position
   return Array.from({ length: clue.answer.length }).map((_, i) => {

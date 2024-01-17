@@ -372,7 +372,7 @@ CL D70 | D70 ^hint: Second clue70
        | ## Design
        | 
        | <style>
-       | O { background: circle } 
+       | O { background: circle }
        | </style>
        | 
        | O..O##O.O#.O..O

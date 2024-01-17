@@ -294,9 +294,9 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
   for (const keyClue of rawInput.clues) {
     const [_, clue] = keyClue
     const arr = clue.dir === "A" ? json.clues.across : json.clues.down
-
     const { answer, splits } = parseSplitsFromAnswer(clue.answer, json.meta.splitcharacter)
     if (editorInfo && clue.metadata) clue.metadata["answer:unprocessed"] = clue.answer
+    // console.log(positions[clue.num], json.tiles, json.rebuses)
 
     arr.push({
       body: clue.question,

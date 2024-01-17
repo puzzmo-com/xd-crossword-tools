@@ -1,4 +1,3 @@
-import { getTile } from "./getTile"
 import type { CrosswordJSON, Position } from "./types"
 
 export const getCluePositionsForBoard = (tiles: CrosswordJSON["tiles"]): Position[] => {
@@ -47,7 +46,7 @@ export function _downCluePositions(spots: boolean[][]): Position[] {
       if (!spot) return
       const above = spots[y - 1] && spots[y - 1][x]
       if (!above) {
-        // A word canno`t be 1 character long
+        // A word cannot be 1 character long
         const hasNextVerticalLetter = spots[y + 1] && spots[y + 1][x]
         if (hasNextVerticalLetter) positions.push({ col: x, index: y })
       }
