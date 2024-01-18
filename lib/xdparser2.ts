@@ -292,7 +292,6 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
   // Update the clues with position info and the right meta
 
   const positions = getCluePositionsForBoard(json.tiles)
-  // console.log(JSON.stringify(positions, null, 2))
   for (const keyClue of rawInput.clues) {
     const [_, clue] = keyClue
     const dirKey = clue.dir === "A" ? "across" : "down"
