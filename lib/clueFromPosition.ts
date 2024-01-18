@@ -11,13 +11,13 @@ export const clueInfosForPosition = (tiles: CrosswordJSON["tiles"], clues: Cross
   const downClue = clues.down.find((c) => {
     const sameColumn = c.position.col === position.col
     if (!sameColumn) return
-    return c.position.index <= position.index && c.position.index + c.answer.length > position.index
+    return c.position.index <= position.index && c.position.index + c.tiles.length > position.index
   })
 
   const acrossClue = clues.across.find((clue) => {
     const sameIndex = clue.position.index === position.index
     if (!sameIndex) return
-    return clue.position.col <= position.col && clue.position.col + clue.answer.length > position.col
+    return clue.position.col <= position.col && clue.position.col + clue.tiles.length > position.col
   })
 
   return {
@@ -26,10 +26,9 @@ export const clueInfosForPosition = (tiles: CrosswordJSON["tiles"], clues: Cross
   }
 }
 
-// TODO: Doesn't handle rebuses
 export const tilePositionsForClue = (clue: Clue, direction: CursorDirection): Position[] => {
   const start = clue.position
-  return Array.from({ length: clue.answer.length }).map((_, i) => {
+  return Array.from({ length: clue.tiles.length }).map((_, i) => {
     const isAcross = direction === "across"
     return {
       col: isAcross ? start.col + i : start.col,

@@ -24,7 +24,7 @@ export function puzToXD(buffer: ArrayBuffer) {
         if (!c) return
 
         const clueInfos = getWordTilesForCursor(tileGrid, {
-          position: boardClues[i],
+          position: boardClues[i].position,
           direction,
         })
         // Replace all newlines, as they're not supported in xd

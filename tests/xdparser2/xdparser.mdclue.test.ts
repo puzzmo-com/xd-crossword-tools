@@ -28,6 +28,24 @@ it("handles bolding", () => {
     "col": 0,
     "index": 0,
   },
+  "tiles": [
+    {
+      "letter": "A",
+      "type": "letter",
+    },
+    {
+      "letter": "H",
+      "type": "letter",
+    },
+    {
+      "letter": "A",
+      "type": "letter",
+    },
+    {
+      "letter": "B",
+      "type": "letter",
+    },
+  ],
 }
 `)
 })
@@ -65,6 +83,24 @@ it("handles italics and bolds", () => {
     "col": 0,
     "index": 0,
   },
+  "tiles": [
+    {
+      "letter": "A",
+      "type": "letter",
+    },
+    {
+      "letter": "H",
+      "type": "letter",
+    },
+    {
+      "letter": "A",
+      "type": "letter",
+    },
+    {
+      "letter": "B",
+      "type": "letter",
+    },
+  ],
 }
 `)
 })
@@ -107,6 +143,24 @@ it("handles URLs", () => {
     "col": 0,
     "index": 0,
   },
+  "tiles": [
+    {
+      "letter": "A",
+      "type": "letter",
+    },
+    {
+      "letter": "H",
+      "type": "letter",
+    },
+    {
+      "letter": "A",
+      "type": "letter",
+    },
+    {
+      "letter": "B",
+      "type": "letter",
+    },
+  ],
 }
 `)
 })
@@ -136,6 +190,24 @@ it("handles strikes", () => {
     "col": 0,
     "index": 0,
   },
+  "tiles": [
+    {
+      "letter": "A",
+      "type": "letter",
+    },
+    {
+      "letter": "H",
+      "type": "letter",
+    },
+    {
+      "letter": "A",
+      "type": "letter",
+    },
+    {
+      "letter": "B",
+      "type": "letter",
+    },
+  ],
 }
 `)
 })
