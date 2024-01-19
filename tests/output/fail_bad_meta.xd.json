@@ -903,7 +903,25 @@
         "position": {
           "col": 0,
           "index": 0
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "B"
+          }
+        ]
       },
       {
         "body": "Food for second chance chewing",
@@ -912,7 +930,21 @@
         "position": {
           "col": 6,
           "index": 0
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "U"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          }
+        ]
       },
       {
         "body": "Font feature",
@@ -921,7 +953,29 @@
         "position": {
           "col": 10,
           "index": 0
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "F"
+          }
+        ]
       },
       {
         "body": "Palindromic address to a female",
@@ -930,7 +984,29 @@
         "position": {
           "col": 0,
           "index": 1
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "M"
+          }
+        ]
       },
       {
         "body": "___ Way You Want It",
@@ -939,7 +1015,21 @@
         "position": {
           "col": 6,
           "index": 1
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "Y"
+          }
+        ]
       },
       {
         "body": "Place often described as humble",
@@ -948,7 +1038,29 @@
         "position": {
           "col": 10,
           "index": 1
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "B"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ]
       },
       {
         "body": "Flat two dimensional surface in geometry",
@@ -957,7 +1069,29 @@
         "position": {
           "col": 0,
           "index": 2
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ]
       },
       {
         "body": "Grim homophone of 7D",
@@ -966,7 +1100,21 @@
         "position": {
           "col": 6,
           "index": 2
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ]
       },
       {
         "body": "Off",
@@ -975,7 +1123,29 @@
         "position": {
           "col": 10,
           "index": 2
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ]
       },
       {
         "body": "Heading for some lists",
@@ -984,7 +1154,25 @@
         "position": {
           "col": 4,
           "index": 3
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          }
+        ]
       },
       {
         "body": "Kanye West is famous for his",
@@ -993,7 +1181,21 @@
         "position": {
           "col": 9,
           "index": 3
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "G"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          }
+        ]
       },
       {
         "body": "Laceration",
@@ -1002,7 +1204,25 @@
         "position": {
           "col": 0,
           "index": 4
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "G"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "H"
+          }
+        ]
       },
       {
         "body": "Alias of Twitch star Richard Tyler Blevins",
@@ -1011,7 +1231,29 @@
         "position": {
           "col": 5,
           "index": 4
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "J"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          }
+        ]
       },
       {
         "body": "Capsize",
@@ -1020,7 +1262,25 @@
         "position": {
           "col": 11,
           "index": 4
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "K"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          }
+        ]
       },
       {
         "body": "Piece of clothing or print",
@@ -1029,7 +1289,37 @@
         "position": {
           "col": 0,
           "index": 5
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ]
       },
       {
         "body": "Evangelical school in Tulsa, OK",
@@ -1038,7 +1328,21 @@
         "position": {
           "col": 8,
           "index": 5
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "U"
+          }
+        ]
       },
       {
         "body": "___-eyed",
@@ -1047,7 +1351,21 @@
         "position": {
           "col": 12,
           "index": 5
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ]
       },
       {
         "body": "Annual",
@@ -1056,7 +1374,33 @@
         "position": {
           "col": 0,
           "index": 6
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "Y"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "Y"
+          }
+        ]
       },
       {
         "body": "The stamp with the upside down airplane is a famous one",
@@ -1065,7 +1409,41 @@
         "position": {
           "col": 7,
           "index": 6
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ]
       },
       {
         "body": "With 42A and Marcus, a luxury department store chain",
@@ -1074,7 +1452,21 @@
         "position": {
           "col": 2,
           "index": 7
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          }
+        ]
       },
       {
         "body": "41A continued",
@@ -1083,7 +1475,21 @@
         "position": {
           "col": 6,
           "index": 7
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ]
       },
       {
         "body": "Lush",
@@ -1092,7 +1498,21 @@
         "position": {
           "col": 10,
           "index": 7
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ]
       },
       {
         "body": "The Mayan one ended in 2012",
@@ -1101,7 +1521,41 @@
         "position": {
           "col": 0,
           "index": 8
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          }
+        ]
       },
       {
         "body": "What a child often does to their shoes",
@@ -1110,7 +1564,33 @@
         "position": {
           "col": 9,
           "index": 8
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          }
+        ]
       },
       {
         "body": "Vanilla ___",
@@ -1119,7 +1599,21 @@
         "position": {
           "col": 0,
           "index": 9
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ]
       },
       {
         "body": "Maligned cigarette ingredient",
@@ -1128,7 +1622,21 @@
         "position": {
           "col": 4,
           "index": 9
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          }
+        ]
       },
       {
         "body": "Frequent cause for a new tire",
@@ -1137,7 +1645,37 @@
         "position": {
           "col": 8,
           "index": 9
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ]
       },
       {
         "body": "Los Angeles heavy metal act",
@@ -1146,7 +1684,25 @@
         "position": {
           "col": 0,
           "index": 10
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "P"
+          }
+        ]
       },
       {
         "body": "Bldgs. such as the Googleplex",
@@ -1155,7 +1711,29 @@
         "position": {
           "col": 5,
           "index": 10
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "Q"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          }
+        ]
       },
       {
         "body": "A fit of irritation",
@@ -1164,7 +1742,25 @@
         "position": {
           "col": 11,
           "index": 10
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ]
       },
       {
         "body": "Lead-in to American or day",
@@ -1173,7 +1769,21 @@
         "position": {
           "col": 3,
           "index": 11
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          }
+        ]
       },
       {
         "body": "What Pokémon do at a Pokémon Center",
@@ -1182,7 +1792,25 @@
         "position": {
           "col": 7,
           "index": 11
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          }
+        ]
       },
       {
         "body": "Nixon's vice",
@@ -1191,7 +1819,29 @@
         "position": {
           "col": 0,
           "index": 12
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          }
+        ]
       },
       {
         "body": "Nothing but ___",
@@ -1200,7 +1850,21 @@
         "position": {
           "col": 6,
           "index": 12
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ]
       },
       {
         "body": "One with the world on his shoulders",
@@ -1209,7 +1873,29 @@
         "position": {
           "col": 10,
           "index": 12
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          }
+        ]
       },
       {
         "body": "Filled pastries",
@@ -1218,7 +1904,29 @@
         "position": {
           "col": 0,
           "index": 13
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          }
+        ]
       },
       {
         "body": "Age, in Milan",
@@ -1227,7 +1935,21 @@
         "position": {
           "col": 6,
           "index": 13
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          }
+        ]
       },
       {
         "body": "Lorna ___, novel or cookie",
@@ -1236,7 +1958,29 @@
         "position": {
           "col": 10,
           "index": 13
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ]
       },
       {
         "body": "Electrocardiogram readout feature",
@@ -1245,7 +1989,29 @@
         "position": {
           "col": 0,
           "index": 14
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "U"
+          },
+          {
+            "type": "letter",
+            "letter": "W"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "V"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ]
       },
       {
         "body": "Hip slang for records",
@@ -1254,7 +2020,21 @@
         "position": {
           "col": 6,
           "index": 14
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "W"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "X"
+          }
+        ]
       },
       {
         "body": "Yiddish for a foolish person",
@@ -1263,7 +2043,25 @@
         "position": {
           "col": 11,
           "index": 14
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "Y"
+          },
+          {
+            "type": "letter",
+            "letter": "U"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "Z"
+          }
+        ]
       }
     ],
     "down": [
@@ -1274,7 +2072,21 @@
         "position": {
           "col": 0,
           "index": 0
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "P"
+          }
+        ]
       },
       {
         "body": "AI antagonist of 2001",
@@ -1283,7 +2095,21 @@
         "position": {
           "col": 1,
           "index": 0
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          }
+        ]
       },
       {
         "body": "Programming pioneer Lovelace",
@@ -1292,7 +2118,21 @@
         "position": {
           "col": 2,
           "index": 0
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          }
+        ]
       },
       {
         "body": "Prohibit",
@@ -1301,7 +2141,21 @@
         "position": {
           "col": 3,
           "index": 0
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "B"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ]
       },
       {
         "body": "Type of person to routinely carry a club",
@@ -1310,7 +2164,33 @@
         "position": {
           "col": 6,
           "index": 0
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ]
       },
       {
         "body": "State of the ___ Address",
@@ -1319,7 +2199,29 @@
         "position": {
           "col": 7,
           "index": 0
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "U"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ]
       },
       {
         "body": "Colorful homophone of 18A",
@@ -1328,7 +2230,21 @@
         "position": {
           "col": 8,
           "index": 0
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "Y"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ]
       },
       {
         "body": "Snitched",
@@ -1337,7 +2253,25 @@
         "position": {
           "col": 10,
           "index": 0
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "G"
+          }
+        ]
       },
       {
         "body": "Kindle fare",
@@ -1346,7 +2280,29 @@
         "position": {
           "col": 11,
           "index": 0
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "B"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "K"
+          }
+        ]
       },
       {
         "body": "Decayed matter",
@@ -1355,7 +2311,21 @@
         "position": {
           "col": 12,
           "index": 0
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ]
       },
       {
         "body": "Type of response you hope to get at the altar",
@@ -1364,7 +2334,21 @@
         "position": {
           "col": 13,
           "index": 0
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          }
+        ]
       },
       {
         "body": "Peat-accumulating wetland",
@@ -1373,7 +2357,21 @@
         "position": {
           "col": 14,
           "index": 0
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "F"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ]
       },
       {
         "body": "The ___, NY art museum",
@@ -1382,7 +2380,21 @@
         "position": {
           "col": 4,
           "index": 1
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ]
       },
       {
         "body": "___Fans",
@@ -1391,7 +2403,25 @@
         "position": {
           "col": 5,
           "index": 3
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "Y"
+          }
+        ]
       },
       {
         "body": "Friends, Romans, countrymen, lend me your...",
@@ -1400,7 +2430,25 @@
         "position": {
           "col": 9,
           "index": 3
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          }
+        ]
       },
       {
         "body": "\"Friend of Dorothy\"",
@@ -1409,7 +2457,21 @@
         "position": {
           "col": 0,
           "index": 4
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "G"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "Y"
+          }
+        ]
       },
       {
         "body": "We ___ the Champions",
@@ -1418,7 +2480,21 @@
         "position": {
           "col": 1,
           "index": 4
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ]
       },
       {
         "body": "Father of Spider-Man",
@@ -1427,7 +2503,37 @@
         "position": {
           "col": 2,
           "index": 4
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ]
       },
       {
         "body": "What a certain applicant becomes",
@@ -1436,7 +2542,29 @@
         "position": {
           "col": 3,
           "index": 4
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ]
       },
       {
         "body": "Connect",
@@ -1445,7 +2573,25 @@
         "position": {
           "col": 8,
           "index": 4
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "J"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ]
       },
       {
         "body": "Particular form of a published text",
@@ -1454,7 +2600,37 @@
         "position": {
           "col": 12,
           "index": 4
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ]
       },
       {
         "body": "Suffix at the end of all of Eevee's evolutions",
@@ -1463,7 +2639,21 @@
         "position": {
           "col": 13,
           "index": 4
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ]
       },
       {
         "body": "Live and ___ Die",
@@ -1472,7 +2662,21 @@
         "position": {
           "col": 14,
           "index": 4
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ]
       },
       {
         "body": "Famous Eastwood whose name became a famous Gorillaz song",
@@ -1481,7 +2685,29 @@
         "position": {
           "col": 4,
           "index": 5
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ]
       },
       {
         "body": "Unexpected result in a sporting competition",
@@ -1490,7 +2716,29 @@
         "position": {
           "col": 10,
           "index": 5
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "U"
+          },
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ]
       },
       {
         "body": "Disfigure",
@@ -1499,7 +2747,21 @@
         "position": {
           "col": 7,
           "index": 6
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          }
+        ]
       },
       {
         "body": "David Lee and Tim",
@@ -1508,7 +2770,29 @@
         "position": {
           "col": 11,
           "index": 6
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          }
+        ]
       },
       {
         "body": "Luxury watch collection by Garmin",
@@ -1517,7 +2801,25 @@
         "position": {
           "col": 6,
           "index": 7
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "Q"
+          }
+        ]
       },
       {
         "body": "Top dog in an IT org",
@@ -1526,7 +2828,21 @@
         "position": {
           "col": 0,
           "index": 8
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          }
+        ]
       },
       {
         "body": "Sister ___",
@@ -1535,7 +2851,21 @@
         "position": {
           "col": 1,
           "index": 8
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ]
       },
       {
         "body": "Author Roald",
@@ -1544,7 +2874,25 @@
         "position": {
           "col": 5,
           "index": 8
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          }
+        ]
       },
       {
         "body": "Civil rights activist Parks",
@@ -1553,7 +2901,25 @@
         "position": {
           "col": 9,
           "index": 8
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          }
+        ]
       },
       {
         "body": "An additional name that could be part of 40D's clue",
@@ -1562,7 +2928,21 @@
         "position": {
           "col": 13,
           "index": 8
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          }
+        ]
       },
       {
         "body": "Director's domain",
@@ -1571,7 +2951,21 @@
         "position": {
           "col": 14,
           "index": 8
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ]
       },
       {
         "body": "Type of income to go in a 401k",
@@ -1580,7 +2974,33 @@
         "position": {
           "col": 8,
           "index": 9
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "X"
+          }
+        ]
       },
       {
         "body": "The Empire Strikes Back, to the Star Wars saga",
@@ -1589,7 +3009,29 @@
         "position": {
           "col": 3,
           "index": 10
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "V"
+          }
+        ]
       },
       {
         "body": "Greek letter following 72A",
@@ -1598,7 +3040,29 @@
         "position": {
           "col": 7,
           "index": 10
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          }
+        ]
       },
       {
         "body": "Misplace",
@@ -1607,7 +3071,25 @@
         "position": {
           "col": 4,
           "index": 11
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ]
       },
       {
         "body": "Wee boy",
@@ -1616,7 +3098,21 @@
         "position": {
           "col": 10,
           "index": 11
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          }
+        ]
       },
       {
         "body": "Dad to Tommy Pickles",
@@ -1625,7 +3121,21 @@
         "position": {
           "col": 0,
           "index": 12
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "U"
+          }
+        ]
       },
       {
         "body": "The only Patrol I trust",
@@ -1634,7 +3144,21 @@
         "position": {
           "col": 1,
           "index": 12
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "W"
+          }
+        ]
       },
       {
         "body": "Smart savings plan, briefly",
@@ -1643,7 +3167,21 @@
         "position": {
           "col": 2,
           "index": 12
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          }
+        ]
       },
       {
         "body": "Fresh",
@@ -1652,7 +3190,21 @@
         "position": {
           "col": 6,
           "index": 12
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "W"
+          }
+        ]
       },
       {
         "body": "Breeds such as Chihuahua or Pomeranian",
@@ -1661,7 +3213,21 @@
         "position": {
           "col": 11,
           "index": 12
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "Y"
+          }
+        ]
       },
       {
         "body": "Bega behind \"Mambo No. 5\"",
@@ -1670,7 +3236,21 @@
         "position": {
           "col": 12,
           "index": 12
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "U"
+          }
+        ]
       },
       {
         "body": "Aardvark breakfast",
@@ -1679,7 +3259,21 @@
         "position": {
           "col": 13,
           "index": 12
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ]
       },
       {
         "body": "Sonic ___",
@@ -1688,7 +3282,21 @@
         "position": {
           "col": 14,
           "index": 12
-        }
+        },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "Z"
+          }
+        ]
       }
     ]
   },

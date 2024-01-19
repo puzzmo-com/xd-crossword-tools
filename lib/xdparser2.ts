@@ -290,19 +290,25 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
   if (json.metapuzzle) json.metapuzzle.answer = json.metapuzzle.answer.trim()
 
   // Update the clues with position info and the right meta
+
   const positions = getCluePositionsForBoard(json.tiles)
   for (const keyClue of rawInput.clues) {
     const [_, clue] = keyClue
-    const arr = clue.dir === "A" ? json.clues.across : json.clues.down
+    const dirKey = clue.dir === "A" ? "across" : "down"
+    const arr = json.clues[dirKey]
+    const positionData = positions[clue.num]
+    const tiles = positionData.tiles[dirKey]!
 
-    const { answer, splits } = parseSplitsFromAnswer(clue.answer, json.meta.splitcharacter)
+    const answerWithRebusSymbols = replaceWordWithSymbol(clue.answer, tiles, json.meta.splitcharacter)
+    const splits = parseSplitsFromAnswer(answerWithRebusSymbols, json.meta.splitcharacter)
+
     if (editorInfo && clue.metadata) clue.metadata["answer:unprocessed"] = clue.answer
-
     arr.push({
       body: clue.question,
-      answer: answer,
+      answer: clue.answer.split(json.meta.splitcharacter).join(""),
       number: clue.num,
-      position: positions[clue.num],
+      position: positionData.position,
+      tiles,
       metadata: clue.metadata,
       ...(splits ? { splits } : {}),
       ...(clue.bodyMD ? { bodyMD: clue.bodyMD } : {}),
@@ -379,6 +385,39 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
 
     return "unknown"
   }
+}
+
+function replaceWordWithSymbol(word: string, tiles: Tile[], splitChar: string) {
+  let newWord = ""
+
+  let tileIdx = 0
+  let offset = 0
+  for (let i = 0; i < word.length; i++) {
+    const cur = word[i + offset]
+
+    // don't increment tileIdx when adding splits
+    if (cur === splitChar) {
+      newWord += cur
+      continue
+    }
+
+    const tile = tiles[tileIdx]
+
+    if (tile.type === "rebus") {
+      newWord += tile.symbol
+      offset = tile.word.length
+    } else {
+      newWord += cur
+    }
+
+    tileIdx++
+
+    if (tileIdx >= tiles.length) {
+      break
+    }
+  }
+
+  return newWord
 }
 
 function getLine(body: string, substr: string) {
@@ -608,10 +647,10 @@ function parseStyleCSSLike(str: string, xd: string, errorReporter: (msg: string,
  *
  * @param answerWithSplits unparsed answer string
  * @param splitCharacter character to split on
- * @returns an array of split locations, and the answer without splits
+ * @returns an array of split locations, and the answer without splits and with rebus replacements
  */
-function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string): { answer: string; splits?: number[] } {
-  if (!splitCharacter) return { answer: answerWithSplits, splits: undefined }
+function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string): number[] | undefined {
+  if (!splitCharacter) return undefined
   const splits = []
   let answer = ""
   for (var i = 0; i < answerWithSplits.length; i++) {
@@ -623,9 +662,9 @@ function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string
   }
 
   // Only include the splits when it is used
-  if (splits.length === 0) return { answer, splits: undefined }
+  if (splits.length === 0) return undefined
 
-  return { answer, splits }
+  return splits
 }
 
 function inlineMarkdownParser(str: string): MDClueComponent[] {

@@ -84,7 +84,7 @@ export const JSONToXD = (json: CrosswordJSON): string => {
           .map(([key, value]) => `${key}: ${value}`)
           .join(";")
 
-        return `${key[0]} { ${content} } `
+        return `${key[0]} { ${content} }`
       })
       .join("\n")
 

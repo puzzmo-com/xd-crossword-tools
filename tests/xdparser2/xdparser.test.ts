@@ -213,6 +213,24 @@ D3. A conscious tree. ~ BOOK
         "col": 0,
         "index": 0,
       },
+      "tiles": [
+        {
+          "letter": "B",
+          "type": "letter",
+        },
+        {
+          "letter": "U",
+          "type": "letter",
+        },
+        {
+          "letter": "L",
+          "type": "letter",
+        },
+        {
+          "letter": "B",
+          "type": "letter",
+        },
+      ],
     },
     {
       "answer": "OK",
@@ -223,6 +241,16 @@ D3. A conscious tree. ~ BOOK
         "col": 0,
         "index": 1,
       },
+      "tiles": [
+        {
+          "letter": "O",
+          "type": "letter",
+        },
+        {
+          "letter": "K",
+          "type": "letter",
+        },
+      ],
     },
     {
       "answer": "DESK",
@@ -233,6 +261,24 @@ D3. A conscious tree. ~ BOOK
         "col": 0,
         "index": 3,
       },
+      "tiles": [
+        {
+          "letter": "D",
+          "type": "letter",
+        },
+        {
+          "letter": "E",
+          "type": "letter",
+        },
+        {
+          "letter": "S",
+          "type": "letter",
+        },
+        {
+          "letter": "K",
+          "type": "letter",
+        },
+      ],
     },
   ],
   "down": [
@@ -245,6 +291,24 @@ D3. A conscious tree. ~ BOOK
         "col": 0,
         "index": 0,
       },
+      "tiles": [
+        {
+          "letter": "B",
+          "type": "letter",
+        },
+        {
+          "letter": "O",
+          "type": "letter",
+        },
+        {
+          "letter": "L",
+          "type": "letter",
+        },
+        {
+          "letter": "D",
+          "type": "letter",
+        },
+      ],
     },
     {
       "answer": "UK",
@@ -255,6 +319,16 @@ D3. A conscious tree. ~ BOOK
         "col": 1,
         "index": 0,
       },
+      "tiles": [
+        {
+          "letter": "U",
+          "type": "letter",
+        },
+        {
+          "letter": "K",
+          "type": "letter",
+        },
+      ],
     },
     {
       "answer": "BOOK",
@@ -265,6 +339,24 @@ D3. A conscious tree. ~ BOOK
         "col": 3,
         "index": 0,
       },
+      "tiles": [
+        {
+          "letter": "B",
+          "type": "letter",
+        },
+        {
+          "letter": "O",
+          "type": "letter",
+        },
+        {
+          "letter": "O",
+          "type": "letter",
+        },
+        {
+          "letter": "K",
+          "type": "letter",
+        },
+      ],
     },
   ],
 }
@@ -306,7 +398,7 @@ D2. Bigger than britain. ~ UK
 D2 ^Hint: A union which left europe.
 
 D3. A conscious tree. ~ BOOK
-D3 ^Hint: Registering with a restaurant. 
+D3 ^Hint: Registering with a restaurant.
 `
 
     const { clues } = xdParser(xd)
@@ -430,6 +522,24 @@ D2. A thing. ~ OBJECT
         "col": 0,
         "index": 0,
       },
+      "tiles": [
+        {
+          "letter": "O",
+          "type": "letter",
+        },
+        {
+          "letter": "K",
+          "type": "letter",
+        },
+        {
+          "letter": "G",
+          "type": "letter",
+        },
+        {
+          "letter": "O",
+          "type": "letter",
+        },
+      ],
     },
   ],
   "down": [
@@ -445,6 +555,32 @@ D2. A thing. ~ OBJECT
         "col": 0,
         "index": 0,
       },
+      "tiles": [
+        {
+          "letter": "O",
+          "type": "letter",
+        },
+        {
+          "letter": "H",
+          "type": "letter",
+        },
+        {
+          "letter": "O",
+          "type": "letter",
+        },
+        {
+          "letter": "H",
+          "type": "letter",
+        },
+        {
+          "letter": "O",
+          "type": "letter",
+        },
+        {
+          "letter": "H",
+          "type": "letter",
+        },
+      ],
     },
     {
       "answer": "OBJECT",
@@ -458,6 +594,32 @@ D2. A thing. ~ OBJECT
         "col": 3,
         "index": 0,
       },
+      "tiles": [
+        {
+          "letter": "O",
+          "type": "letter",
+        },
+        {
+          "letter": "B",
+          "type": "letter",
+        },
+        {
+          "letter": "J",
+          "type": "letter",
+        },
+        {
+          "letter": "E",
+          "type": "letter",
+        },
+        {
+          "letter": "C",
+          "type": "letter",
+        },
+        {
+          "letter": "T",
+          "type": "letter",
+        },
+      ],
     },
   ],
 }
@@ -533,4 +695,31 @@ f
 ## Clues`
 
   expect(xdParser(xd, false).notes).toContain("67568756yd")
+})
+
+it("handles splits and substitutions correctly in rebuses", () => {
+  const xd = `## Metadata
+
+title: Rebus split test
+author: Penelope Rudow
+date: Not set
+editor: Not set
+copyright: © 2021
+description: N/A
+rebus: 0=AB
+splitcharacter: |
+
+## Grid
+
+0CD.ABC
+
+## Clues
+
+A1. Example ~ A|B|CD
+A2. Alphabet ~ A|B|C
+`
+
+  const json = xdParser(xd)
+  expect(json.clues.across[0].splits).toEqual([0])
+  expect(json.clues.across[1].splits).toEqual([0, 1])
 })

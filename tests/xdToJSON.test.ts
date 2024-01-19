@@ -132,7 +132,7 @@ D70. Sonic ___ ~ SEZ
 ## Design
 
 <style>
-O { background: circle } 
+O { background: circle }
 </style>
 
 O..O##O.O#.O..O
@@ -282,7 +282,7 @@ D70. Sonic ___ ~ SEZ
 ## Design
 
 <style>
-O { background: circle } 
+O { background: circle }
 </style>
 
 O..O##O.O#.O..O
@@ -435,7 +435,7 @@ D70. Sonic ___ ~ SEZ
 ## Design
 
 <style>
-O { background: circle } 
+O { background: circle }
 </style>
 
 O..O##O.O#.O..O

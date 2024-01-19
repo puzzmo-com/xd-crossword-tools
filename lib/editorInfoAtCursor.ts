@@ -1,4 +1,4 @@
-import { clueInfosForPosition } from "./clueNumbersFromBoard"
+import { clueInfosForPosition } from "./clueFromPosition"
 import { Clue, CrosswordJSON, CursorDirection, Position } from "./types"
 
 export type PositionInfo =
@@ -48,7 +48,13 @@ export const editorInfoAtCursor =
         const yIndex = line - section.startLine - startLine
         if (yIndex < 0) return noop
 
-        const clueIndexes = clueInfosForPosition(data.clues, { col: index, index: yIndex })
+        let clueIndexes = {} as any
+        try {
+          clueIndexes = clueInfosForPosition(data.tiles, data.clues, { col: index, index: yIndex })
+        } catch (e) {
+          // tile not found
+        }
+
         const clues = {
           across: clueIndexes.across && data.clues.across[clueIndexes.across.index],
           down: clueIndexes.down && data.clues.down[clueIndexes.down.index],

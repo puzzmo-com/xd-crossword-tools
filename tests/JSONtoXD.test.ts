@@ -148,8 +148,8 @@ it("handles design section with more than one element", () => {
   const newXD = JSONToXD(json)
   expect(newXD.split("## Design")[1].trim()).toMatchInlineSnapshot(`
 "<style>
-A { background: circle } 
-B { background: dot } 
+A { background: circle }
+B { background: dot }
 </style>"
 `)
 })

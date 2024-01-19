@@ -907,6 +907,24 @@
           "col": 0,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "B"
+          }
+        ],
         "metadata": {
           "body:line": "28",
           "answer:unprocessed": "AHAB"
@@ -920,6 +938,20 @@
           "col": 6,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "U"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          }
+        ],
         "metadata": {
           "body:line": "29",
           "answer:unprocessed": "CUD"
@@ -933,6 +965,28 @@
           "col": 10,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "F"
+          }
+        ],
         "metadata": {
           "body:line": "30",
           "answer:unprocessed": "SERIF"
@@ -946,6 +1000,28 @@
           "col": 0,
           "index": 1
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "M"
+          }
+        ],
         "metadata": {
           "body:line": "31",
           "answer:unprocessed": "MADAM"
@@ -959,6 +1035,20 @@
           "col": 6,
           "index": 1
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "Y"
+          }
+        ],
         "metadata": {
           "body:line": "32",
           "answer:unprocessed": "ANY"
@@ -972,6 +1062,28 @@
           "col": 10,
           "index": 1
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "B"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "33",
           "answer:unprocessed": "ABODE"
@@ -985,6 +1097,28 @@
           "col": 0,
           "index": 2
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "34",
           "answer:unprocessed": "PLANE"
@@ -998,6 +1132,20 @@
           "col": 6,
           "index": 2
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "35",
           "answer:unprocessed": "DIE"
@@ -1011,6 +1159,28 @@
           "col": 10,
           "index": 2
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ],
         "metadata": {
           "body:line": "36",
           "answer:unprocessed": "NOTON"
@@ -1024,6 +1194,24 @@
           "col": 4,
           "index": 3
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          }
+        ],
         "metadata": {
           "body:line": "37",
           "answer:unprocessed": "TODO"
@@ -1037,6 +1225,20 @@
           "col": 9,
           "index": 3
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "G"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          }
+        ],
         "metadata": {
           "body:line": "38",
           "answer:unprocessed": "EGO"
@@ -1050,6 +1252,24 @@
           "col": 0,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "G"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "H"
+          }
+        ],
         "metadata": {
           "body:line": "39",
           "answer:unprocessed": "GASH"
@@ -1063,6 +1283,28 @@
           "col": 5,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "J"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          }
+        ],
         "metadata": {
           "body:line": "40",
           "answer:unprocessed": "NINJA"
@@ -1076,6 +1318,24 @@
           "col": 11,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "K"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          }
+        ],
         "metadata": {
           "body:line": "41",
           "answer:unprocessed": "KEEL"
@@ -1089,6 +1349,36 @@
           "col": 0,
           "index": 5
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "42",
           "answer:unprocessed": "ARTICLE"
@@ -1102,6 +1392,20 @@
           "col": 8,
           "index": 5
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "U"
+          }
+        ],
         "metadata": {
           "body:line": "43",
           "answer:unprocessed": "ORU"
@@ -1115,6 +1419,20 @@
           "col": 12,
           "index": 5
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "44",
           "answer:unprocessed": "DOE"
@@ -1128,6 +1446,32 @@
           "col": 0,
           "index": 6
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "Y"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "Y"
+          }
+        ],
         "metadata": {
           "body:line": "45",
           "answer:unprocessed": "YEARLY"
@@ -1141,6 +1485,40 @@
           "col": 7,
           "index": 6
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "46",
           "answer:unprocessed": "MISPRINT"
@@ -1154,6 +1532,20 @@
           "col": 2,
           "index": 7
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          }
+        ],
         "metadata": {
           "body:line": "47",
           "answer:unprocessed": "NEI"
@@ -1167,6 +1559,20 @@
           "col": 6,
           "index": 7
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ],
         "metadata": {
           "body:line": "48",
           "answer:unprocessed": "MAN"
@@ -1180,6 +1586,20 @@
           "col": 10,
           "index": 7
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "49",
           "answer:unprocessed": "SOT"
@@ -1193,6 +1613,40 @@
           "col": 0,
           "index": 8
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          }
+        ],
         "metadata": {
           "body:line": "50",
           "answer:unprocessed": "CALENDAR"
@@ -1206,6 +1660,32 @@
           "col": 9,
           "index": 8
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          }
+        ],
         "metadata": {
           "body:line": "51",
           "answer:unprocessed": "RETIES"
@@ -1219,6 +1699,20 @@
           "col": 0,
           "index": 9
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "52",
           "answer:unprocessed": "ICE"
@@ -1232,6 +1726,20 @@
           "col": 4,
           "index": 9
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          }
+        ],
         "metadata": {
           "body:line": "53",
           "answer:unprocessed": "TAR"
@@ -1245,6 +1753,36 @@
           "col": 8,
           "index": 9
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "54",
           "answer:unprocessed": "POTHOLE"
@@ -1258,6 +1796,24 @@
           "col": 0,
           "index": 10
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "P"
+          }
+        ],
         "metadata": {
           "body:line": "55",
           "answer:unprocessed": "OTEP"
@@ -1271,6 +1827,28 @@
           "col": 5,
           "index": 10
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "Q"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          }
+        ],
         "metadata": {
           "body:line": "56",
           "answer:unprocessed": "HQTRS"
@@ -1284,6 +1862,24 @@
           "col": 11,
           "index": 10
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "57",
           "answer:unprocessed": "SNIT"
@@ -1297,6 +1893,20 @@
           "col": 3,
           "index": 11
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          }
+        ],
         "metadata": {
           "body:line": "58",
           "answer:unprocessed": "ALL"
@@ -1310,6 +1920,24 @@
           "col": 7,
           "index": 11
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          }
+        ],
         "metadata": {
           "body:line": "59",
           "answer:unprocessed": "HEAL"
@@ -1323,6 +1951,28 @@
           "col": 0,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          }
+        ],
         "metadata": {
           "body:line": "60",
           "answer:unprocessed": "SPIRO"
@@ -1336,6 +1986,20 @@
           "col": 6,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "61",
           "answer:unprocessed": "NET"
@@ -1349,6 +2013,28 @@
           "col": 10,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          }
+        ],
         "metadata": {
           "body:line": "62",
           "answer:unprocessed": "ATLAS"
@@ -1362,6 +2048,28 @@
           "col": 0,
           "index": 13
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          }
+        ],
         "metadata": {
           "body:line": "63",
           "answer:unprocessed": "TARTS"
@@ -1375,6 +2083,20 @@
           "col": 6,
           "index": 13
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          }
+        ],
         "metadata": {
           "body:line": "64",
           "answer:unprocessed": "ETA"
@@ -1388,6 +2110,28 @@
           "col": 10,
           "index": 13
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "65",
           "answer:unprocessed": "DOONE"
@@ -1401,6 +2145,28 @@
           "col": 0,
           "index": 14
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "U"
+          },
+          {
+            "type": "letter",
+            "letter": "W"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "V"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "66",
           "answer:unprocessed": "UWAVE"
@@ -1414,6 +2180,20 @@
           "col": 6,
           "index": 14
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "W"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "X"
+          }
+        ],
         "metadata": {
           "body:line": "67",
           "answer:unprocessed": "WAX"
@@ -1427,6 +2207,24 @@
           "col": 11,
           "index": 14
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "Y"
+          },
+          {
+            "type": "letter",
+            "letter": "U"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "Z"
+          }
+        ],
         "metadata": {
           "body:line": "68",
           "answer:unprocessed": "YUTZ"
@@ -1442,6 +2240,20 @@
           "col": 0,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "P"
+          }
+        ],
         "metadata": {
           "body:line": "70",
           "answer:unprocessed": "AMP"
@@ -1455,6 +2267,20 @@
           "col": 1,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          }
+        ],
         "metadata": {
           "body:line": "71",
           "answer:unprocessed": "HAL"
@@ -1468,6 +2294,20 @@
           "col": 2,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          }
+        ],
         "metadata": {
           "body:line": "72",
           "answer:unprocessed": "ADA"
@@ -1481,6 +2321,20 @@
           "col": 3,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "B"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ],
         "metadata": {
           "body:line": "73",
           "answer:unprocessed": "BAN"
@@ -1494,6 +2348,32 @@
           "col": 6,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "74",
           "answer:unprocessed": "CADDIE"
@@ -1507,6 +2387,28 @@
           "col": 7,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "U"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ],
         "metadata": {
           "body:line": "75",
           "answer:unprocessed": "UNION"
@@ -1520,6 +2422,20 @@
           "col": 8,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "Y"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "76",
           "answer:unprocessed": "DYE"
@@ -1533,6 +2449,24 @@
           "col": 10,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "G"
+          }
+        ],
         "metadata": {
           "body:line": "77",
           "answer:unprocessed": "SANG"
@@ -1546,6 +2480,28 @@
           "col": 11,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "B"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "K"
+          }
+        ],
         "metadata": {
           "body:line": "78",
           "answer:unprocessed": "EBOOK"
@@ -1559,6 +2515,20 @@
           "col": 12,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "79",
           "answer:unprocessed": "ROT"
@@ -1572,6 +2542,20 @@
           "col": 13,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          }
+        ],
         "metadata": {
           "body:line": "80",
           "answer:unprocessed": "IDO"
@@ -1585,6 +2569,20 @@
           "col": 14,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "F"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ],
         "metadata": {
           "body:line": "81",
           "answer:unprocessed": "FEN"
@@ -1598,6 +2596,20 @@
           "col": 4,
           "index": 1
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "82",
           "answer:unprocessed": "MET"
@@ -1611,6 +2623,24 @@
           "col": 5,
           "index": 3
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "Y"
+          }
+        ],
         "metadata": {
           "body:line": "83",
           "answer:unprocessed": "ONLY"
@@ -1624,6 +2654,24 @@
           "col": 9,
           "index": 3
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          }
+        ],
         "metadata": {
           "body:line": "84",
           "answer:unprocessed": "EARS"
@@ -1637,6 +2685,20 @@
           "col": 0,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "G"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "Y"
+          }
+        ],
         "metadata": {
           "body:line": "85",
           "answer:unprocessed": "GAY"
@@ -1650,6 +2712,20 @@
           "col": 1,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "86",
           "answer:unprocessed": "ARE"
@@ -1663,6 +2739,36 @@
           "col": 2,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "87",
           "answer:unprocessed": "STANLEE"
@@ -1676,6 +2782,28 @@
           "col": 3,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "88",
           "answer:unprocessed": "HIREE"
@@ -1689,6 +2817,24 @@
           "col": 8,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "J"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ],
         "metadata": {
           "body:line": "89",
           "answer:unprocessed": "JOIN"
@@ -1702,6 +2848,36 @@
           "col": 12,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ],
         "metadata": {
           "body:line": "90",
           "answer:unprocessed": "EDITION"
@@ -1715,6 +2891,20 @@
           "col": 13,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ],
         "metadata": {
           "body:line": "91",
           "answer:unprocessed": "EON"
@@ -1728,6 +2918,20 @@
           "col": 14,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "92",
           "answer:unprocessed": "LET"
@@ -1741,6 +2945,28 @@
           "col": 4,
           "index": 5
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "93",
           "answer:unprocessed": "CLINT"
@@ -1754,6 +2980,28 @@
           "col": 10,
           "index": 5
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "U"
+          },
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "94",
           "answer:unprocessed": "UPSET"
@@ -1767,6 +3015,20 @@
           "col": 7,
           "index": 6
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          }
+        ],
         "metadata": {
           "body:line": "95",
           "answer:unprocessed": "MAR"
@@ -1780,6 +3042,28 @@
           "col": 11,
           "index": 6
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          }
+        ],
         "metadata": {
           "body:line": "96",
           "answer:unprocessed": "ROTHS"
@@ -1793,6 +3077,24 @@
           "col": 6,
           "index": 7
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "Q"
+          }
+        ],
         "metadata": {
           "body:line": "97",
           "answer:unprocessed": "MARQ"
@@ -1806,6 +3108,20 @@
           "col": 0,
           "index": 8
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          }
+        ],
         "metadata": {
           "body:line": "98",
           "answer:unprocessed": "CIO"
@@ -1819,6 +3135,20 @@
           "col": 1,
           "index": 8
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "99",
           "answer:unprocessed": "ACT"
@@ -1832,6 +3162,24 @@
           "col": 5,
           "index": 8
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          }
+        ],
         "metadata": {
           "body:line": "100",
           "answer:unprocessed": "DAHL"
@@ -1845,6 +3193,24 @@
           "col": 9,
           "index": 8
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          }
+        ],
         "metadata": {
           "body:line": "101",
           "answer:unprocessed": "ROSA"
@@ -1858,6 +3224,20 @@
           "col": 13,
           "index": 8
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          }
+        ],
         "metadata": {
           "body:line": "102",
           "answer:unprocessed": "ELI"
@@ -1871,6 +3251,20 @@
           "col": 14,
           "index": 8
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "103",
           "answer:unprocessed": "SET"
@@ -1884,6 +3278,32 @@
           "col": 8,
           "index": 9
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "X"
+          }
+        ],
         "metadata": {
           "body:line": "104",
           "answer:unprocessed": "PRETAX"
@@ -1897,6 +3317,28 @@
           "col": 3,
           "index": 10
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "V"
+          }
+        ],
         "metadata": {
           "body:line": "105",
           "answer:unprocessed": "PARTV"
@@ -1910,6 +3352,28 @@
           "col": 7,
           "index": 10
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          }
+        ],
         "metadata": {
           "body:line": "106",
           "answer:unprocessed": "THETA"
@@ -1923,6 +3387,24 @@
           "col": 4,
           "index": 11
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "107",
           "answer:unprocessed": "LOSE"
@@ -1936,6 +3418,20 @@
           "col": 10,
           "index": 11
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          }
+        ],
         "metadata": {
           "body:line": "108",
           "answer:unprocessed": "LAD"
@@ -1949,6 +3445,20 @@
           "col": 0,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "U"
+          }
+        ],
         "metadata": {
           "body:line": "109",
           "answer:unprocessed": "STU"
@@ -1962,6 +3472,20 @@
           "col": 1,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "W"
+          }
+        ],
         "metadata": {
           "body:line": "110",
           "answer:unprocessed": "PAW"
@@ -1975,6 +3499,20 @@
           "col": 2,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          }
+        ],
         "metadata": {
           "body:line": "111",
           "answer:unprocessed": "IRA"
@@ -1988,6 +3526,20 @@
           "col": 6,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "W"
+          }
+        ],
         "metadata": {
           "body:line": "112",
           "answer:unprocessed": "NEW"
@@ -2001,6 +3553,20 @@
           "col": 11,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "Y"
+          }
+        ],
         "metadata": {
           "body:line": "113",
           "answer:unprocessed": "TOY"
@@ -2014,6 +3580,20 @@
           "col": 12,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "U"
+          }
+        ],
         "metadata": {
           "body:line": "114",
           "answer:unprocessed": "LOU"
@@ -2027,6 +3607,20 @@
           "col": 13,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "115",
           "answer:unprocessed": "ANT"
@@ -2040,6 +3634,20 @@
           "col": 14,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "Z"
+          }
+        ],
         "metadata": {
           "body:line": "116",
           "answer:unprocessed": "SEZ"
