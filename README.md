@@ -42,7 +42,7 @@ import { uclickXMLToXd } from "xd-crossword-tools"
 
 const xmlResponse = await fetch(url)
 const xmlString = await res.body()
-const xd = puzToXD(xmlString)
+const xd = uclickXMLToXd(xmlString)
 ```
 
 ### .xd to .puz
