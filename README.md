@@ -26,11 +26,11 @@ The JSON format is a bit more verbose than you might expect (see below for an ex
 Builds on [puzjs](https://www.npmjs.com/package/puzjs) (ISC license). The puz format is generally what tools and websites will give you as an output format.
 
 ```ts
-import { puzToXd } from "xd-crossword-tools"
+import { puzToXD } from "xd-crossword-tools"
 
 const puzResponse = await fetch(url)
 const puzBuffer = await res.arrayBuffer()
-const xd = puzToXd(puzBuffer)
+const xd = puzToXD(puzBuffer)
 ```
 
 This API should cover most features in puz and xd.
@@ -42,7 +42,7 @@ import { uclickXMLToXd } from "xd-crossword-tools"
 
 const xmlResponse = await fetch(url)
 const xmlString = await res.body()
-const xd = puzToXd(xmlString)
+const xd = uclickXMLToXd(xmlString)
 ```
 
 ### .xd to .puz
