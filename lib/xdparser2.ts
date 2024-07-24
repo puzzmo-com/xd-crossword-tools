@@ -391,7 +391,8 @@ export function replaceWordWithSymbol(word: string, tiles: Tile[], splitChar: st
   let newWord = ""
 
   let tileIdx = 0
-  for (let i = 0; i < word.length && tileIdx < tiles.length;) {
+  let i = 0;
+  while (i < word.length && tileIdx < tiles.length) {
     const cur = word[i]
 
     const tile = tiles[tileIdx]

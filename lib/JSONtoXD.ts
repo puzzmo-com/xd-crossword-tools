@@ -56,7 +56,8 @@ export const JSONToXD = (json: CrosswordJSON): string => {
   const getCluesXD = (clues: Clue[], direction: "A" | "D") => {
     return clues
       .map((clue) => {
-        // not totally sure if meta having a "rebus" key 100% means that there are rebuses in the crossword
+        // if rebus exists in meta, then that means that there is going to be a rebus
+        // if no rebus then no rebus puzzle
         const [symbol, word] = json.meta.rebus ? json.meta.rebus.split("=") : ["", ""]
         const replacedWithSymbol = replaceWordWithSymbol(clue.answer, clue.tiles, symbol)
         const splitsIn = addSplits(replacedWithSymbol, splitChar, clue.splits)
