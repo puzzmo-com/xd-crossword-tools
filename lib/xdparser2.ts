@@ -387,33 +387,34 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
   }
 }
 
-function replaceWordWithSymbol(word: string, tiles: Tile[], splitChar: string) {
+export function replaceWordWithSymbol(word: string, tiles: Tile[], splitChar: string) {
   let newWord = ""
 
   let tileIdx = 0
-  let offset = 0
-  for (let i = 0; i < word.length; i++) {
-    const cur = word[i + offset]
-
-    // don't increment tileIdx when adding splits
-    if (cur === splitChar) {
-      newWord += cur
-      continue
-    }
+  for (let i = 0; i < word.length && tileIdx < tiles.length;) {
+    const cur = word[i]
 
     const tile = tiles[tileIdx]
+    const rebusAndNotSplitChar = tile.type === "rebus" && cur !== splitChar
 
-    if (tile.type === "rebus") {
+    if (rebusAndNotSplitChar) {
       newWord += tile.symbol
-      offset = tile.word.length
     } else {
       newWord += cur
     }
 
-    tileIdx++
 
-    if (tileIdx >= tiles.length) {
-      break
+    if (cur !== splitChar) {
+      tileIdx++
+    }
+
+    if (rebusAndNotSplitChar) {
+      // adding in the number of split characters to `i` as well because those dont count as tile characters
+      // and tile.word.length is a length not including splitChars
+      const numSplitChars = word.slice(i, i + tile.word.length).split("").filter(c => c === splitChar).length
+      i += tile.word.length + numSplitChars
+    } else {
+      i++
     }
   }
 
@@ -642,23 +643,26 @@ function parseStyleCSSLike(str: string, xd: string, errorReporter: (msg: string,
 
 /**
  * Given an answer that might contain splits, and a split character, return
- * an array of all the split locations (where the split is to the right of the array value),
- * as well as the answer without the splits..
+ * an array of all the split locations
+ *
+ * Split location/index starts right after the first letter/character
+ * Example:
+ *  answerWithSplits: "abc"
+ *  The first split index would be between "a" and "b".
+ *  The index there would be 0
  *
  * @param answerWithSplits unparsed answer string
  * @param splitCharacter character to split on
- * @returns an array of split locations, and the answer without splits and with rebus replacements
+ * @returns an array of split locations
  */
 function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string): number[] | undefined {
   if (!splitCharacter) return undefined
   const splits = []
-  let answer = ""
-  for (var i = 0; i < answerWithSplits.length; i++) {
-    if (answerWithSplits.charAt(i) === splitCharacter) {
-      splits.push(i - 1 - splits.length)
-      continue
+  const characters = [...answerWithSplits] // account for unicode characters like emojis that could take up more than one utf-16 unit
+  for (var i = 0; i < characters.length; i++) {
+    if (characters[i] === splitCharacter) {
+      splits.push(characters.slice(0, i).filter(c => c !== splitCharacter).length - 1)
     }
-    answer += answerWithSplits.charAt(i)
   }
 
   // Only include the splits when it is used

@@ -456,3 +456,31 @@ O..O.#O.O##O..O
 "
 `)
 })
+
+it("can handle going back to an xd file WITH pipes in the original xd file", () => {
+  const xd = readFileSync(`./tests/puz/twitch-tv-with-pipes.xd`)
+  const json = xdToJSON(xd.toString())
+  const newXD = JSONToXD(json)
+  expect(newXD).toMatchInlineSnapshot(`
+"## Metadata
+
+title: Rebus split test
+author: Penelope Rudow
+date: Not set
+editor: Not set
+copyright: © 2021
+description: N/A
+rebus: ❶=DOT
+splitcharacter: |
+
+## Grid
+
+TWITCH❶TV
+
+## Clues
+
+A1. Example ~ TWITCH|DOT|T|V
+
+"
+`)
+})
