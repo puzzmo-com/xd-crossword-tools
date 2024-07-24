@@ -1,13 +1,22 @@
 import type { Clue, CrosswordJSON } from "./types"
+import { replaceWordWithSymbol } from "./xdparser2"
+
+function replaceSymbolWithWord(strWithSymbol: string, symbol: string, word: string) {
+  const characters = [...strWithSymbol]
+  const mapped = characters.map(c => c === symbol ? word : c)
+  return mapped.join("")
+}
 
 function addSplits(answer: string, splitChar: string, splits?: number[]): string {
   if (!splits) return answer
 
   let withSplits = ""
-  for (var i = 0; i < answer.length; i++) {
-    withSplits += answer.charAt(i)
+  for (let i = 0; i < answer.length; i++) {
     if (splits.includes(i)) {
+      withSplits += answer[i]
       withSplits += splitChar
+    } else {
+      withSplits += answer[i]
     }
   }
   return withSplits
@@ -47,8 +56,13 @@ export const JSONToXD = (json: CrosswordJSON): string => {
   const getCluesXD = (clues: Clue[], direction: "A" | "D") => {
     return clues
       .map((clue) => {
-        const answer = addSplits(clue.answer, splitChar, clue.splits)
-        let line = `${direction}${clue.number}. ${clue.body} ~ ${answer}`
+        // if rebus exists in meta, then that means that there is going to be a rebus
+        // if no rebus then no rebus puzzle
+        const [symbol, word] = json.meta.rebus ? json.meta.rebus.split("=") : ["", ""]
+        const replacedWithSymbol = replaceWordWithSymbol(clue.answer, clue.tiles, symbol)
+        const splitsIn = addSplits(replacedWithSymbol, splitChar, clue.splits)
+        const final = replaceSymbolWithWord(splitsIn, symbol, word)
+        let line = `${direction}${clue.number}. ${clue.body} ~ ${final}`
         if (clue.metadata) {
           let printed = false
           for (const key of Object.keys(clue.metadata)) {
