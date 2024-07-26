@@ -14,13 +14,12 @@ import { replaceWordWithSymbol } from "./xdparser2"
  * inserts the rebus symbol where it needs to be, adds the splits in the proper locations, then replaces the
  * rebus symbol with the word
  *
- * @param {Object} getXDClueAnswerProps - has CrosswordJSON, clue and splitChar
- * @property {CrosswordJSON} getXDClueAnswerObject.json - CrosswordJSON information that includes meta.rebus
- * @property {Clue} getXDClueAnswerObject.clue - Clue that includes split locations
- * @property {string} getXDClueAnswerObject.splitChar - split character to insert
+ * @param {CrosswordJSON} json - CrosswordJSON information that includes meta.rebus
+ * @param {Clue} clue - Clue that includes split locations and the clue answer
+ * @param {string} splitChar - split character to insert
  * @returns {string} clue answer in it's xd format form
  */
-export function getXDClueAnswer({ json, clue, splitChar }: { json: CrosswordJSON, clue: Clue, splitChar: string }) {
+export function resolveFullClueAnswer(json: CrosswordJSON, clue: Clue, splitChar: string) {
   // if rebus exists in meta, then that means that there is going to be a rebus
   // if no rebus then no rebus puzzle
   const [symbol, word] = json.meta.rebus ? json.meta.rebus.split("=") : ["", ""]
@@ -85,7 +84,7 @@ export const JSONToXD = (json: CrosswordJSON): string => {
   const getCluesXD = (clues: Clue[], direction: "A" | "D") => {
     return clues
       .map((clue) => {
-        const final = getXDClueAnswer({ json, clue, splitChar })
+        const final = resolveFullClueAnswer(json, clue, splitChar)
         let line = `${direction}${clue.number}. ${clue.body} ~ ${final}`
         if (clue.metadata) {
           let printed = false
