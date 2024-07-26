@@ -1,6 +1,34 @@
 import type { Clue, CrosswordJSON } from "./types"
 import { replaceWordWithSymbol } from "./xdparser2"
 
+/**
+ *
+ * Takes CrosswordJSON's meta.rebus property, a Clue, and a split character to properly
+ * rebuild a clue answer.
+ *
+ * The clue is needed for the answer and the split locations (in case there are splits)
+ *
+ * The meta.rebus is needed because sometimes the split locations aren't mapped correctly if the rebus causes
+ * the clue answer to be of a different length
+ *
+ * inserts the rebus symbol where it needs to be, adds the splits in the proper locations, then replaces the
+ * rebus symbol with the word
+ *
+ * @param {CrosswordJSON} json - CrosswordJSON information that includes meta.rebus
+ * @param {Clue} clue - Clue that includes split locations and the clue answer
+ * @param {string} splitChar - split character to insert
+ * @returns {string} clue answer in it's xd format form
+ */
+export function resolveFullClueAnswer(json: CrosswordJSON, clue: Clue, splitChar: string) {
+  // if rebus exists in meta, then that means that there is going to be a rebus
+  // if no rebus then no rebus puzzle
+  const [symbol, word] = json.meta.rebus ? json.meta.rebus.split("=") : ["", ""]
+  const replacedWithSymbol = replaceWordWithSymbol(clue.answer, clue.tiles, symbol)
+  const splitsIn = addSplits(replacedWithSymbol, splitChar, clue.splits)
+  const final = replaceSymbolWithWord(splitsIn, symbol, word)
+  return final
+}
+
 function replaceSymbolWithWord(strWithSymbol: string, symbol: string, word: string) {
   const characters = [...strWithSymbol]
   const mapped = characters.map(c => c === symbol ? word : c)
@@ -56,12 +84,7 @@ export const JSONToXD = (json: CrosswordJSON): string => {
   const getCluesXD = (clues: Clue[], direction: "A" | "D") => {
     return clues
       .map((clue) => {
-        // if rebus exists in meta, then that means that there is going to be a rebus
-        // if no rebus then no rebus puzzle
-        const [symbol, word] = json.meta.rebus ? json.meta.rebus.split("=") : ["", ""]
-        const replacedWithSymbol = replaceWordWithSymbol(clue.answer, clue.tiles, symbol)
-        const splitsIn = addSplits(replacedWithSymbol, splitChar, clue.splits)
-        const final = replaceSymbolWithWord(splitsIn, symbol, word)
+        const final = resolveFullClueAnswer(json, clue, splitChar)
         let line = `${direction}${clue.number}. ${clue.body} ~ ${final}`
         if (clue.metadata) {
           let printed = false
