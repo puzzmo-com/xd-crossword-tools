@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  typescript: ^5.6.3
+
 importers:
 
   .:
@@ -40,10 +43,10 @@ importers:
         version: 2.6.0
       tsup:
         specifier: ^5.11.13
-        version: 5.11.13(typescript@4.5.5)
+        version: 5.11.13(typescript@5.6.3)
       typescript:
-        specifier: ^4.5.5
-        version: 4.5.5
+        specifier: ^5.6.3
+        version: 5.6.3
 
 packages:
 
@@ -1964,7 +1967,7 @@ packages:
     resolution: {integrity: sha512-NVMK01gVmojZn7+iZwxRK1CzW2BIabaVMyEjs7Nm9lm4DrSf7IAqs2F3fg0vT7rH72x1cIBsW9U/TlWrCvHVQQ==}
     hasBin: true
     peerDependencies:
-      typescript: ^4.1.0
+      typescript: ^5.6.3
     peerDependenciesMeta:
       typescript:
         optional: true
@@ -1987,9 +1990,9 @@ packages:
   typedarray@0.0.6:
     resolution: {integrity: sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=}
 
-  typescript@4.5.5:
-    resolution: {integrity: sha512-TCTIul70LyWe6IJWT8QSYeA54WQe8EjQFU4wY52Fasj5UKx88LNYKCgBEHcOMOrFF1rKGbD8v/xcNWVUq9SymA==}
-    engines: {node: '>=4.2.0'}
+  typescript@5.6.3:
+    resolution: {integrity: sha512-hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw==}
+    engines: {node: '>=14.17'}
     hasBin: true
 
   unified@9.2.2:
@@ -4442,7 +4445,7 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  tsup@5.11.13(typescript@4.5.5):
+  tsup@5.11.13(typescript@5.6.3):
     dependencies:
       bundle-require: 3.0.4(esbuild@0.14.14)
       cac: 6.7.12
@@ -4459,7 +4462,7 @@ snapshots:
       sucrase: 3.20.3
       tree-kill: 1.2.2
     optionalDependencies:
-      typescript: 4.5.5
+      typescript: 5.6.3
     transitivePeerDependencies:
       - supports-color
       - ts-node
@@ -4478,7 +4481,7 @@ snapshots:
 
   typedarray@0.0.6: {}
 
-  typescript@4.5.5: {}
+  typescript@5.6.3: {}
 
   unified@9.2.2:
     dependencies:
