@@ -672,7 +672,7 @@ function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string
   return splits
 }
 
-function inlineMarkdownParser(str: string): MDClueComponent[] {
+export function inlineMarkdownParser(str: string): MDClueComponent[] {
   const components: MDClueComponent[] = []
   let token = ""
   let mode: MDClueComponent[0] = "text"
@@ -686,34 +686,33 @@ function inlineMarkdownParser(str: string): MDClueComponent[] {
   }
 
   for (let index = 0; index < str.length; index++) {
+    const prevLetter = index > 0 ? str.slice(index - 1, index) : ""
     const letter = str.slice(index, index + 1)
-    if (mode === "text") {
+    const nextLetter = str.slice(index+1, index + 2)
+
+    const otherMDKeys = ["*", "/", "~", "[", ]
+    if (letter === "\\" && otherMDKeys.includes(nextLetter)) {
+        index++
+        token += nextLetter
+        continue
+    } 
+    else if (mode === "text" && prevLetter !== "\\") {
       if (letter === "[") {
         mode = "link"
         pushText()
         continue
       }
 
-      if (letter === "*") {
+      // Bold is started by two asterisks
+      if (letter === "*" && nextLetter === "*") {
         mode = "bold"
+        // Jump a letter
+        index++
         pushText()
         continue
       }
 
-      // if (letter === "_") {
-      //   let innerI = index + 1
-      //   while (str.slice(innerI + 1, innerI + 2) === "_") {
-      //     innerI++
-      //   }
-      //   const numberOfUnderScoresAfter = innerI - index
-      //   if (numberOfUnderScoresAfter === 1) {
-      //     mode = "italics"
-      //     pushText()
-      //     continue
-      //   }
-      // }
-
-      if (letter === "/") {
+      if (letter === "/" && prevLetter === " ") {
         mode = "italics"
         pushText()
         continue
@@ -736,14 +735,14 @@ function inlineMarkdownParser(str: string): MDClueComponent[] {
         continue
       }
     } else if (mode === "bold") {
-      if (letter === "*") {
+      if (letter === "*" && nextLetter === "*") {
         mode = "text"
         components.push(["bold", token])
+        index++
         token = ""
         continue
       }
     } else if (mode === "italics") {
-      // if (letter === "_" || letter === "/") {
       if (letter === "/" || !letter) {
         mode = "text"
         components.push(["italics", token])

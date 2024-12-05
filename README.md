@@ -110,6 +110,7 @@ Their .puz file turns into this xd:
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.xd) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.xd -->
+
 ```xd
 ## Metadata
 
@@ -251,6 +252,7 @@ O..O#.O.O.#O..O
 .....#...#.....
 O..O.#O.O##O..O
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
  <details>
@@ -258,6 +260,7 @@ O..O.#O.O##O..O
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.json) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.json -->
+
 ```json
 {
   "meta": {
@@ -2493,99 +2496,26 @@ O..O.#O.O##O..O
       }
     },
     "positions": [
-      [
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O"
-      ],
+      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
       [],
       [],
       [],
-      [
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O"
-      ],
+      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
       [],
       [],
-      [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "O",
-        null,
-        "O"
-      ],
+      [null, null, null, null, null, null, "O", null, "O"],
       [],
       [],
-      [
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O"
-      ],
+      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
       [],
       [],
       [],
-      [
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O"
-      ]
+      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"]
     ]
   }
 }
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 </details>
@@ -2683,10 +2613,10 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
 
 - ##### Markdown clue syntax
 
-When a clue is written in markdown, it will be parsed into a JSON representation that can be used to render the clue in a UI. The markdown syntax is limited, but should be enough to cover most cases. The syntax is:
+When a clue is written in markdown, it will be parsed into a JSON representation that can be used to render the clue in a UI. The markdown syntax is limited and not strictly markdown, this should be enough to cover most cases though. The syntax is:
 
 ```md
-A1. [Captain](https://github.com/orta) _of_ /the/ ship Pequod ~ AHAB
+A1. [Captain](https://github.com/orta) **of** /the/ ship Pequod ~ AHAB
 ```
 
 Which will add the optional `"bodyMD"` to the clue:
@@ -2694,7 +2624,7 @@ Which will add the optional `"bodyMD"` to the clue:
 ```json
 {
   "answer": "AHAB",
-  "body": "[Captain](https://github.com/orta) *of* /the/ ship Pequod",
+  "body": "[Captain](https://github.com/orta) **of** /the/ ship Pequod",
   "bodyMD": [
     ["link", "Captain", "https://github.com/orta"],
     ["text", " "],
@@ -2706,10 +2636,12 @@ Which will add the optional `"bodyMD"` to the clue:
 }
 ```
 
-- Italics `/word/` or `/a phrase/` (not `_word_` because `_` is often used as a "gap" in the clue text)
-- Bold: `*word*` or `*a phrase*`
+- Italics `/word/` or `/a phrase/` - these have to be at the start of a word to trigger
+- Bold: `**word**` or `**a phrase**`
 - Strike through: `~word~` or `~a phrase~`
 - Link: `[text](url)`
+
+You can escape the markdown characters by using a backslash `\`.
 
 - ##### Split character
 
