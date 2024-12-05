@@ -484,3 +484,61 @@ A1. Example ~ TWITCH|DOT|T|V
 "
 `)
 })
+
+it("can handle converting to json, then back, with rebuses", () => {
+  const puzzle = `## Metadata
+
+title: Rebus Example
+author: Penelope Rudow
+date: 2024-01-01
+editor: Steve The Cat
+rebus: ❶=AT
+
+## Grid
+
+AT
+R❶
+
+## Clues
+
+A1. to ~ AT
+A3. rodent ~ RAT
+
+D1. the letter r ~ AR
+D2. skin ink ~ TAT`
+
+  const json = xdToJSON(puzzle)
+  const newXD = JSONToXD(json)
+  expect(newXD).toEqual(puzzle)
+})
+
+it("can handle converting to json, then back, with rebuses (duplicate rebus)", () => {
+  const puzzle = `## Metadata
+
+title: Rebus Example
+author: Penelope Rudow
+date: 2024-01-01
+editor: Steve The Cat
+rebus: ❶=AT ❷=AT
+
+## Grid
+
+AT.CO
+R❶.❷E
+
+## Clues
+
+A1. to ~ AT
+A3. company ~ CO
+A5. rodent ~ RAT
+A6. to live ~ EAT
+
+D1. the letter r ~ AR
+D2. skin ink ~ TAT
+D3. nice animal ~ CAT
+D4. two vowels ~ OE`
+
+  const json = xdToJSON(puzzle)
+  const newXD = JSONToXD(json)
+  expect(newXD).toEqual(puzzle)
+})
