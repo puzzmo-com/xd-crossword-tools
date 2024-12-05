@@ -1,5 +1,9 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 6.6.0
+
+A chunky re-write of the markdown parser now that it's actually in use at Puzzmo, see the README for an up-to-date look at what we think it should do.
+
 ### 6.3.3
 
 Fixes xd -> JSON -> xd process by converting clue answer to an answer that includes the rebus (if there is one), adding back in pipes/splits (if there are any) and then replacing the rebus symbols back to their word mappings.
