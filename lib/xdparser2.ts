@@ -391,7 +391,7 @@ export function replaceWordWithSymbol(word: string, tiles: Tile[], splitChar: st
   let newWord = ""
 
   let tileIdx = 0
-  let i = 0;
+  let i = 0
   while (i < word.length && tileIdx < tiles.length) {
     const cur = word[i]
 
@@ -404,15 +404,17 @@ export function replaceWordWithSymbol(word: string, tiles: Tile[], splitChar: st
       newWord += cur
     }
 
-
     if (cur !== splitChar) {
       tileIdx++
     }
 
     if (rebusAndNotSplitChar) {
-      // adding in the number of split characters to `i` as well because those dont count as tile characters
+      // adding in the number of split characters to `i` as well because those don't count as tile characters
       // and tile.word.length is a length not including splitChars
-      const numSplitChars = word.slice(i, i + tile.word.length).split("").filter(c => c === splitChar).length
+      const numSplitChars = word
+        .slice(i, i + tile.word.length)
+        .split("")
+        .filter((c) => c === splitChar).length
       i += tile.word.length + numSplitChars
     } else {
       i++
@@ -662,7 +664,7 @@ function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string
   const characters = [...answerWithSplits] // account for unicode characters like emojis that could take up more than one utf-16 unit
   for (var i = 0; i < characters.length; i++) {
     if (characters[i] === splitCharacter) {
-      splits.push(characters.slice(0, i).filter(c => c !== splitCharacter).length - 1)
+      splits.push(characters.slice(0, i).filter((c) => c !== splitCharacter).length - 1)
     }
   }
 
@@ -688,15 +690,14 @@ export function inlineMarkdownParser(str: string): MDClueComponent[] {
   for (let index = 0; index < str.length; index++) {
     const prevLetter = index > 0 ? str.slice(index - 1, index) : ""
     const letter = str.slice(index, index + 1)
-    const nextLetter = str.slice(index+1, index + 2)
+    const nextLetter = str.slice(index + 1, index + 2)
 
-    const otherMDKeys = ["*", "/", "~", "[", ]
+    const otherMDKeys = ["*", "/", "~", "["]
     if (letter === "\\" && otherMDKeys.includes(nextLetter)) {
-        index++
-        token += nextLetter
-        continue
-    } 
-    else if (mode === "text" && prevLetter !== "\\") {
+      index++
+      token += nextLetter
+      continue
+    } else if (mode === "text" && prevLetter !== "\\") {
       if (letter === "[") {
         mode = "link"
         pushText()
