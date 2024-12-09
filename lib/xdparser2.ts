@@ -744,30 +744,30 @@ export function inlineMarkdownParser(str: string): MDClueComponent[] {
     components.push(["text", textSlice])
   }
 
-  const urlRegex = new RegExp(/\[([a-zA-Z ]*)\]\(([a-zA-Z0-9//:\.\?\& ]*)\)/g)
+  const urlRegex = new RegExp(/\[([a-zA-Z ]*)\]\(([a-zA-Z0-9\/:\.\?\&\%\$\!\@\#\-\+\~\,\= ]*)\)/g)
   let i = 0
-  urlMatchLoop: while (i < components.length) {
+  while (i < components.length) {
     const component = components[i]
     if (component[0] === "text") {
       const matches = component[1].matchAll(urlRegex)
       const length = component[1].length
       component[1].replace(urlRegex, '')
-      for (const match of matches) {
-        if (match[0].length > 0) {
-          components.splice(i, 1)
-          if (match.index > 0) {
-            components.splice(i, 0, ["text", component[1].slice(0, match.index)])
-            components.splice(i + 1, 0, ["link", match[1], match[2]])
-            if (match.index + match[0].length < length) {
-              components.splice(i + 2, 0, ["text", component[1].slice(match.index + match[0].length)])
-            }
-          } else {
-            components.splice(i, 0, ["link", match[1], match[2]])
-            if (match.index + match[0].length < length) {
-              components.splice(i + 1, 0, ["text", component[1].slice(match.index + match[0].length)])
-            }
+      let baseIndex = i
+      let actual = [...matches].filter(m => m.input.length > 0)
+      if (actual.length > 0) {
+        components.splice(i, 1)
+        let indexInInput = 0
+        for (const match of actual) {
+          if (match.index > indexInInput) {
+            components.splice(baseIndex, 0, ["text", component[1].slice(indexInInput, match.index)])
+            baseIndex++
           }
-          continue urlMatchLoop
+          components.splice(baseIndex, 0, ["link", match[1], match[2]])
+          baseIndex++
+          indexInInput = match.index + match[0].length
+        }
+        if (indexInInput < length) {
+          components.splice(baseIndex, 0, ["text", component[1].slice(indexInInput)])
         }
       }
     }

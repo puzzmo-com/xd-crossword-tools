@@ -202,7 +202,7 @@ it("handles a date", () => {
 })
 
 it("handles links, bolds, italics, strikes", () => {
-  const newMDClue = "A1. The date of 2024/11/12.``MEOW``**MOO****HAHA**~~WOOHOO~~https://github.com/cod1r.[hi](https://google.com)**INBETWEEN**[hhehe](https://google.com) ~~HEHE~~ \\``MEOWMEOW\\``"
+  const newMDClue = "A1. The date of 2024/11/12.``MEOW``**MOO****HAHA**~~WOOHOO~~https://github.com/cod1r.[hi](https://google.com) [hehe](https://puzzmo.com/bongo/submit?date=JASONHO)**INBETWEEN**[hhehe](https://google.com) ~~HEHE~~ \\``MEOWMEOW\\``"
   const parsed = inlineMarkdownParser(newMDClue)
   expect(parsed).toMatchInlineSnapshot(`
 [
@@ -234,6 +234,15 @@ it("handles links, bolds, italics, strikes", () => {
     "link",
     "hi",
     "https://google.com",
+  ],
+  [
+    "text",
+    " ",
+  ],
+  [
+    "link",
+    "hehe",
+    "https://puzzmo.com/bongo/submit?date=JASONHO",
   ],
   [
     "bold",
