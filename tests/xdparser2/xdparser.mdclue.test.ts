@@ -53,12 +53,12 @@ it("handles bolding", () => {
 it("handles italics and bolds", () => {
   const xd = readFileSync("tests/xdparser2/inputs/alpha-bits.xd", "utf8")
   const originalClue = "A1. Captain of the Pequod ~ AHAB"
-  const newMDClue = "A1. ``Captain`` **of** the Pequod ~ AHAB"
+  const newMDClue = "A1. \\\\Captain\\\\ **of** the Pequod ~ AHAB"
 
   expect(xdParser(xd.replace(originalClue, newMDClue)).clues.across[0]).toMatchInlineSnapshot(`
 {
   "answer": "AHAB",
-  "body": "\`\`Captain\`\` **of** the Pequod",
+  "body": "\\\\\\\\Captain\\\\\\\\ **of** the Pequod",
   "bodyMD": [
     [
       "italics",
@@ -108,7 +108,7 @@ it("handles italics and bolds", () => {
 it("handles URLs", () => {
   const xd = readFileSync("tests/xdparser2/inputs/alpha-bits.xd", "utf8")
   const originalClue = "A1. Captain of the Pequod ~ AHAB"
-  const newMDClue = "A1. [Captain](https://github.com/orta) **of** the ship ``Pequod`` ~ AHAB"
+  const newMDClue = "A1. [Captain](https://github.com/orta) **of** the ship \\\\Pequod\\\\ ~ AHAB"
 
   expect(xdParser(xd.replace(originalClue, newMDClue)).clues.across[0].bodyMD).toMatchInlineSnapshot(`
 [
@@ -185,7 +185,11 @@ it("handles a backslash", () => {
 [
   [
     "text",
-    "hi **JSON**",
+    "hi \\\\",
+  ],
+  [
+    "bold",
+    "JSON\\\\",
   ],
 ]
 `)
@@ -206,7 +210,7 @@ it("handles a date", () => {
 })
 
 it("handles links, bolds, italics, strikes", () => {
-  const newMDClue = "A1. The date of 2024/11/12. [index]arr is good in C WHAT? (SIKE BOIIIIIIIIIIIII MAYBE MAYBE) ``MEOW``**MOO****HAHA**~~WOOHOO~~https://github.com/cod1r.[hi](https://google.com) [hehe](https://puzzmo.com/bongo/submit?date=JASONHO)**INBETWEEN**[hhehe](https://google.com) ~~HEHE~~ \\``MEOWMEOW\\``"
+  const newMDClue = "A1. The date of 2024/11/12. [index]arr is good in C WHAT? (SIKE BOIIIIIIIIIIIII MAYBE MAYBE) \\\\MEOW\\\\**MOO****HAHA**~~WOOHOO~~https://github.com/cod1r.[hi](https://google.com) [hehe](https://puzzmo.com/bongo/submit?date=JASONHO)**INBETWEEN**[hhehe](https://google.com) ~~HEHE~~ \\\\MEOWMEOW\\\\"
   const parsed = inlineMarkdownParser(newMDClue)
   expect(parsed).toMatchInlineSnapshot(`
 [
@@ -267,7 +271,11 @@ it("handles links, bolds, italics, strikes", () => {
   ],
   [
     "text",
-    " \`\`MEOWMEOW\`\`",
+    " ",
+  ],
+  [
+    "italics",
+    "MEOWMEOW",
   ],
 ]
 `)

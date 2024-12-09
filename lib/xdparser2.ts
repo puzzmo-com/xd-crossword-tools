@@ -676,24 +676,25 @@ function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string
 
 export function inlineMarkdownParser(str: string): MDClueComponent[] {
   const components: MDClueComponent[] = []
-  const mdTokens = ["**", "``", "~~", "[", "]", "(", ")"]
+  const mdTokens = ["**", "\\\\", "~~", "[", "]", "(", ")"]
   const getMDType = (operator: string) => {
     switch (operator) {
       case "**": return "bold"
-      case "``": return "italics"
+      case "\\\\": return "italics"
       case "~~": return "strike"
     }
     throw Error("Operator: " + operator + " not handled")
   }
 
+  const escapeCharacter = "^"
   let textSlice = ''
   // stack of [index, md operators like "**" etc]
   const stack: Array<[number, string]> = []
   for (let index = 1; index < str.length; index++) {
     const slice = str.slice(index - 1, index + 1)
     // handles the case of escapes
-    if (str[index - 2] === '\\' && mdTokens.includes(slice)) {
-      const mostRecentBackslashIdx = textSlice.lastIndexOf('\\')
+    if (str[index - 2] === escapeCharacter && mdTokens.includes(slice)) {
+      const mostRecentBackslashIdx = textSlice.lastIndexOf(escapeCharacter)
       if (mostRecentBackslashIdx !== -1) {
         textSlice = textSlice.slice(0, mostRecentBackslashIdx)
         textSlice += str[index - 1]
