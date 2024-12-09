@@ -744,7 +744,7 @@ export function inlineMarkdownParser(str: string): MDClueComponent[] {
     components.push(["text", textSlice])
   }
 
-  const urlRegex = new RegExp(/\[([a-zA-Z ]*)\]\(([a-zA-Z//:\. ]*)\)/g)
+  const urlRegex = new RegExp(/\[([a-zA-Z ]*)\]\(([a-zA-Z0-9//:\.\?\& ]*)\)/g)
   let i = 0
   urlMatchLoop: while (i < components.length) {
     const component = components[i]
