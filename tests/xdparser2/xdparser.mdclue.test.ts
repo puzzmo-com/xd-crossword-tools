@@ -4,14 +4,24 @@ import { readFileSync } from "fs"
 it("handles bolding", () => {
   const xd = readFileSync("tests/xdparser2/inputs/alpha-bits.xd", "utf8")
   const originalClue = "A1. Captain of the Pequod ~ AHAB"
-  const newMDClue = "A1. *Captain* of the Pequod ~ AHAB"
+  const newMDClue = "A1. **Captain** of the Pequod ~ AHAB"
 
   const json = xdParser(xd.replace(originalClue, newMDClue))
   const clue = json.clues.across[0]
   expect(clue).toMatchInlineSnapshot(`
 {
   "answer": "AHAB",
-  "body": "*Captain* of the Pequod",
+  "body": "**Captain** of the Pequod",
+  "bodyMD": [
+    [
+      "bold",
+      "Captain",
+    ],
+    [
+      "text",
+      "of the Pequod",
+    ],
+  ],
   "metadata": undefined,
   "number": 1,
   "position": {
@@ -43,12 +53,26 @@ it("handles bolding", () => {
 it("handles italics and bolds", () => {
   const xd = readFileSync("tests/xdparser2/inputs/alpha-bits.xd", "utf8")
   const originalClue = "A1. Captain of the Pequod ~ AHAB"
-  const newMDClue = "A1. /Captain/ *of* the Pequod ~ AHAB"
+  const newMDClue = "A1. ``Captain`` **of** the Pequod ~ AHAB"
 
   expect(xdParser(xd.replace(originalClue, newMDClue)).clues.across[0]).toMatchInlineSnapshot(`
 {
   "answer": "AHAB",
-  "body": "/Captain/ *of* the Pequod",
+  "body": "\`\`Captain\`\` **of** the Pequod",
+  "bodyMD": [
+    [
+      "italics",
+      "Captain",
+    ],
+    [
+      "bold",
+      "of",
+    ],
+    [
+      "text",
+      "the Pequod",
+    ],
+  ],
   "metadata": undefined,
   "number": 1,
   "position": {
@@ -80,7 +104,7 @@ it("handles italics and bolds", () => {
 it("handles URLs", () => {
   const xd = readFileSync("tests/xdparser2/inputs/alpha-bits.xd", "utf8")
   const originalClue = "A1. Captain of the Pequod ~ AHAB"
-  const newMDClue = "A1. [Captain](https://github.com/orta) **of** the ship /Pequod/ ~ AHAB"
+  const newMDClue = "A1. [Captain](https://github.com/orta) **of** the ship ``Pequod`` ~ AHAB"
 
   expect(xdParser(xd.replace(originalClue, newMDClue)).clues.across[0].bodyMD).toMatchInlineSnapshot(`
 [
@@ -99,7 +123,7 @@ it("handles URLs", () => {
   ],
   [
     "text",
-    " the ship ",
+    "the ship ",
   ],
   [
     "italics",
@@ -121,7 +145,7 @@ it("handles having a date with italics", () => {
 it("handles strikes", () => {
   const xd = readFileSync("tests/xdparser2/inputs/alpha-bits.xd", "utf8")
   const originalClue = "A1. Captain of the Pequod ~ AHAB"
-  const newMDClue = "A1. ~Captain~ of the Pequod ~ AHAB"
+  const newMDClue = "A1. ~~Captain~~ of the Pequod ~ AHAB"
 
   expect(xdParser(xd.replace(originalClue, newMDClue)).clues.across[0].bodyMD).toMatchInlineSnapshot(`
 [
@@ -131,7 +155,7 @@ it("handles strikes", () => {
   ],
   [
     "text",
-    " of the Pequod",
+    "of the Pequod",
   ],
 ]
 `)
@@ -175,4 +199,58 @@ it("handles a date", () => {
 ]
 `)
 
+})
+
+it("handles links, bolds, italics, strikes", () => {
+  const newMDClue = "A1. The date of 2024/11/12.``MEOW``**MOO****HAHA**~~WOOHOO~~https://github.com/cod1r.[hi](https://google.com)**INBETWEEN**[hhehe](https://google.com) ~~HEHE~~ \\``MEOWMEOW\\``"
+  const parsed = inlineMarkdownParser(newMDClue)
+  expect(parsed).toMatchInlineSnapshot(`
+[
+  [
+    "text",
+    "A1. The date of 2024/11/12.",
+  ],
+  [
+    "italics",
+    "MEOW",
+  ],
+  [
+    "bold",
+    "MOO",
+  ],
+  [
+    "bold",
+    "HAHA",
+  ],
+  [
+    "strike",
+    "WOOHOO",
+  ],
+  [
+    "text",
+    "ttps://github.com/cod1r.",
+  ],
+  [
+    "link",
+    "hi",
+    "https://google.com",
+  ],
+  [
+    "bold",
+    "INBETWEEN",
+  ],
+  [
+    "text",
+    "hhehe](https://google.com) ",
+  ],
+  [
+    "strike",
+    "HEHE",
+  ],
+  [
+    "text",
+    "\`\`MEOWMEOW\`\`",
+  ],
+]
+`)
 })
