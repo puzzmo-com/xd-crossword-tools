@@ -179,17 +179,13 @@ it("does the bolding", () => {
 })
 
 
-it("handles a backslash", () => {
-  const parsed = inlineMarkdownParser("hi \\**JSON\\**")
+it("handles a (^) escape character", () => {
+  const parsed = inlineMarkdownParser("hi ^**JSON^**")
   expect(parsed).toMatchInlineSnapshot(`
 [
   [
     "text",
-    "hi \\\\",
-  ],
-  [
-    "bold",
-    "JSON\\\\",
+    "hi **JSON**",
   ],
 ]
 `)
