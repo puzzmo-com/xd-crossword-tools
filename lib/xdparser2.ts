@@ -687,18 +687,20 @@ export function inlineMarkdownParser(str: string): MDClueComponent[] {
   }
 
   let textSlice = ''
-  let startIdxOfText: number | undefined = undefined
   // stack of [index, md operators like "**" etc]
   const stack: Array<[number, string]> = []
-  for (let index = 0; index < str.length; index++) {
+  for (let index = 1; index < str.length; index++) {
     const slice = str.slice(index - 1, index + 1)
     // handles the case of escapes
     if (str[index - 2] === '\\' && mdTokens.includes(slice)) {
       const mostRecentBackslashIdx = textSlice.lastIndexOf('\\')
       if (mostRecentBackslashIdx !== -1) {
         textSlice = textSlice.slice(0, mostRecentBackslashIdx)
+        textSlice += str[index - 1]
+        if (index === str.length - 1) {
+          textSlice += str[index]
+        }
       }
-      textSlice += slice
       continue
     }
 
@@ -713,30 +715,28 @@ export function inlineMarkdownParser(str: string): MDClueComponent[] {
 
       // if there is no matching operator, then this will be the starting operator
       if (stack.length === 0) {
-        if (textSlice.slice(0, -1).length > 0) {
+        if (textSlice.length > 0) {
           let recent = components[components.length - 1]
           if (recent?.[0] === "text") {
-            recent[1] += textSlice.slice(0, -1)
+            recent[1] += textSlice
           } else {
-            components.push(["text", textSlice.slice(0, -1)])
+            components.push(["text", textSlice])
           }
         }
         textSlice = ''
-        startIdxOfText = undefined
         stack.push([index - 1, slice])
       } else {
         // there is one so pop stack and push to components
         components.push([getMDType(slice), str.slice(stack[stack.length - 1][0] + 2, index - 1)])
         stack.pop()
         textSlice = ''
-        startIdxOfText = undefined
       }
       index++
       continue
     }
-    textSlice += str[index]
-    if (!startIdxOfText) {
-      startIdxOfText = index
+    textSlice += str[index - 1]
+    if (index === str.length - 1) {
+      textSlice += str[index]
     }
   }
 

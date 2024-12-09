@@ -19,7 +19,7 @@ it("handles bolding", () => {
     ],
     [
       "text",
-      "of the Pequod",
+      " of the Pequod",
     ],
   ],
   "metadata": undefined,
@@ -65,12 +65,16 @@ it("handles italics and bolds", () => {
       "Captain",
     ],
     [
+      "text",
+      " ",
+    ],
+    [
       "bold",
       "of",
     ],
     [
       "text",
-      "the Pequod",
+      " the Pequod",
     ],
   ],
   "metadata": undefined,
@@ -123,7 +127,7 @@ it("handles URLs", () => {
   ],
   [
     "text",
-    "the ship ",
+    " the ship ",
   ],
   [
     "italics",
@@ -155,7 +159,7 @@ it("handles strikes", () => {
   ],
   [
     "text",
-    "of the Pequod",
+    " of the Pequod",
   ],
 ]
 `)
@@ -202,13 +206,13 @@ it("handles a date", () => {
 })
 
 it("handles links, bolds, italics, strikes", () => {
-  const newMDClue = "A1. The date of 2024/11/12.``MEOW``**MOO****HAHA**~~WOOHOO~~https://github.com/cod1r.[hi](https://google.com) [hehe](https://puzzmo.com/bongo/submit?date=JASONHO)**INBETWEEN**[hhehe](https://google.com) ~~HEHE~~ \\``MEOWMEOW\\``"
+  const newMDClue = "A1. The date of 2024/11/12. [index]arr is good in C WHAT? (SIKE BOIIIIIIIIIIIII MAYBE MAYBE) ``MEOW``**MOO****HAHA**~~WOOHOO~~https://github.com/cod1r.[hi](https://google.com) [hehe](https://puzzmo.com/bongo/submit?date=JASONHO)**INBETWEEN**[hhehe](https://google.com) ~~HEHE~~ \\``MEOWMEOW\\``"
   const parsed = inlineMarkdownParser(newMDClue)
   expect(parsed).toMatchInlineSnapshot(`
 [
   [
     "text",
-    "A1. The date of 2024/11/12.",
+    "A1. The date of 2024/11/12. [index]arr is good in C WHAT? (SIKE BOIIIIIIIIIIIII MAYBE MAYBE) ",
   ],
   [
     "italics",
@@ -228,7 +232,7 @@ it("handles links, bolds, italics, strikes", () => {
   ],
   [
     "text",
-    "ttps://github.com/cod1r.",
+    "https://github.com/cod1r.",
   ],
   [
     "link",
@@ -249,8 +253,13 @@ it("handles links, bolds, italics, strikes", () => {
     "INBETWEEN",
   ],
   [
+    "link",
+    "hhehe",
+    "https://google.com",
+  ],
+  [
     "text",
-    "hhehe](https://google.com) ",
+    " ",
   ],
   [
     "strike",
@@ -258,7 +267,7 @@ it("handles links, bolds, italics, strikes", () => {
   ],
   [
     "text",
-    "\`\`MEOWMEOW\`\`",
+    " \`\`MEOWMEOW\`\`",
   ],
 ]
 `)
