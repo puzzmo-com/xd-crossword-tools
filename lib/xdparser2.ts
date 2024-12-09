@@ -676,92 +676,104 @@ function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string
 
 export function inlineMarkdownParser(str: string): MDClueComponent[] {
   const components: MDClueComponent[] = []
-  let token = ""
-  let mode: MDClueComponent[0] = "text"
-  let linkText = ""
-
-  const pushText = () => {
-    if (token.length > 0) {
-      components.push(["text", token])
-      token = ""
+  const mdTokens = ["**", "\\\\", "~~", "[", "]", "(", ")"]
+  const getMDType = (operator: string) => {
+    switch (operator) {
+      case "**": return "bold"
+      case "\\\\": return "italics"
+      case "~~": return "strike"
     }
+    throw Error("Operator: " + operator + " not handled")
   }
 
-  for (let index = 0; index < str.length; index++) {
-    const prevLetter = index > 0 ? str.slice(index - 1, index) : ""
-    const letter = str.slice(index, index + 1)
-    const nextLetter = str.slice(index + 1, index + 2)
-
-    const otherMDKeys = ["*", "/", "~", "["]
-    if (letter === "\\" && otherMDKeys.includes(nextLetter)) {
-      index++
-      token += nextLetter
+  const escapeCharacter = "^"
+  let textSlice = ''
+  // stack of [index, md operators like "**" etc]
+  const stack: Array<[number, string]> = []
+  for (let index = 1; index < str.length; index++) {
+    const slice = str.slice(index - 1, index + 1)
+    // handles the case of escapes
+    if (str[index - 2] === escapeCharacter && mdTokens.includes(slice)) {
+      const mostRecentBackslashIdx = textSlice.lastIndexOf(escapeCharacter)
+      if (mostRecentBackslashIdx !== -1) {
+        textSlice = textSlice.slice(0, mostRecentBackslashIdx)
+        textSlice += str[index - 1]
+        if (index === str.length - 1) {
+          textSlice += str[index]
+        }
+      }
       continue
-    } else if (mode === "text" && prevLetter !== "\\") {
-      if (letter === "[") {
-        mode = "link"
-        pushText()
-        continue
-      }
-
-      // Bold is started by two asterisks
-      if (letter === "*" && nextLetter === "*") {
-        mode = "bold"
-        // Jump a letter
-        index++
-        pushText()
-        continue
-      }
-
-      if (letter === "/" && prevLetter === " ") {
-        mode = "italics"
-        pushText()
-        continue
-      }
-
-      if (letter === "~") {
-        mode = "strike"
-        pushText()
-        continue
-      }
-    } else if (mode === "link") {
-      if (letter === "]") {
-        linkText = token
-        token = ""
-        continue
-      } else if (letter === ")") {
-        components.push(["link", linkText, token.slice(1)])
-        token = ""
-        mode = "text"
-        continue
-      }
-    } else if (mode === "bold") {
-      if (letter === "*" && nextLetter === "*") {
-        mode = "text"
-        components.push(["bold", token])
-        index++
-        token = ""
-        continue
-      }
-    } else if (mode === "italics") {
-      if (letter === "/" || !letter) {
-        mode = "text"
-        components.push(["italics", token])
-        token = ""
-        continue
-      }
-    } else if (mode === "strike") {
-      if (letter === "~") {
-        mode = "text"
-        components.push(["strike", token])
-        token = ""
-        continue
-      }
     }
-    token += letter
+
+    if (mdTokens.includes(slice)) {
+      // tries the find the most recent operator that matches the current one
+      while (stack.length > 0 && stack[stack.length - 1]?.[1] !== slice) {
+        let top = stack.pop()
+        if (top) {
+          textSlice = top[1] + textSlice
+        }
+      }
+
+      // if there is no matching operator, then this will be the starting operator
+      if (stack.length === 0) {
+        if (textSlice.length > 0) {
+          let recent = components[components.length - 1]
+          if (recent?.[0] === "text") {
+            recent[1] += textSlice
+          } else {
+            components.push(["text", textSlice])
+          }
+        }
+        textSlice = ''
+        stack.push([index - 1, slice])
+      } else {
+        // there is one so pop stack and push to components
+        components.push([getMDType(slice), str.slice(stack[stack.length - 1][0] + 2, index - 1)])
+        stack.pop()
+        textSlice = ''
+      }
+      index++
+      continue
+    }
+    textSlice += str[index - 1]
+    if (index === str.length - 1) {
+      textSlice += str[index]
+    }
   }
 
-  pushText()
+  if (textSlice.length > 0) {
+    components.push(["text", textSlice])
+  }
+
+  const urlRegex = new RegExp(/\[([a-zA-Z ]*)\]\(([a-zA-Z0-9\/:\.\?\&\%\$\!\@\#\-\+\~\,\= ]*)\)/g)
+  let i = 0
+  while (i < components.length) {
+    const component = components[i]
+    if (component[0] === "text") {
+      const matches = component[1].matchAll(urlRegex)
+      const length = component[1].length
+      component[1].replace(urlRegex, '')
+      let baseIndex = i
+      let actual = [...matches].filter(m => m.input.length > 0)
+      if (actual.length > 0) {
+        components.splice(i, 1)
+        let indexInInput = 0
+        for (const match of actual) {
+          if (match.index > indexInInput) {
+            components.splice(baseIndex, 0, ["text", component[1].slice(indexInInput, match.index)])
+            baseIndex++
+          }
+          components.splice(baseIndex, 0, ["link", match[1], match[2]])
+          baseIndex++
+          indexInInput = match.index + match[0].length
+        }
+        if (indexInInput < length) {
+          components.splice(baseIndex, 0, ["text", component[1].slice(indexInInput)])
+        }
+      }
+    }
+    i++
+  }
 
   return components
 }
