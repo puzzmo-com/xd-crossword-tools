@@ -2611,12 +2611,12 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
 
   The key is that a line has to start with `<!--` and eventually the same or another line has to **end** with `-->`.
 
-- ##### Markdown clue syntax
+- ##### BBCode clue syntax
 
-When a clue is written in markdown, it will be parsed into a JSON representation that can be used to render the clue in a UI. The markdown syntax is limited and not strictly markdown, this should be enough to cover most cases though. The syntax is:
+When a clue is written in BBCode, it will be parsed into a JSON representation that can be used to render the clue in a UI. The BBCode syntax is limited and not strictly BBCode, this should be enough to cover most cases though. The syntax is:
 
-```md
-A1. [Captain](https://github.com/orta) **of** /the/ ship Pequod ~ AHAB
+```
+A1. [url=https://github.com/orta]Captain[/url] [b]of[/b] [i]the[/i] ship Pequod ~ AHAB
 ```
 
 Which will add the optional `"bodyMD"` to the clue:
@@ -2640,8 +2640,6 @@ Which will add the optional `"bodyMD"` to the clue:
 - Bold: `**word**` or `**a phrase**`
 - Strike through: `~word~` or `~a phrase~`
 - Link: `[text](url)`
-
-You can escape the markdown characters by using a backslash `\`.
 
 - ##### Split character
 

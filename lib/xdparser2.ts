@@ -379,7 +379,7 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
 
       addSyntaxError(
         `Two # headers are reserved for the system, we accept: ${headers}. Got '${content.trim()}'. You can use ### headers for inside notes.`,
-        num
+        num,
       )
     }
 
@@ -480,7 +480,7 @@ const clueFromLine = (line: string, num: number): ClueParserResponse => {
       res.question.includes("/") ||
       res.question.includes("~")
     ) {
-      const components = inlineMarkdownParser(res.question)
+      const components = inlineBBCodeParser(res.question)
       // Don't set if it's just one text (because it had something like `___` in the clue)
       if (!(components.length === 1 && components[0][0] === "text")) {
         res.bodyMD = components
@@ -568,7 +568,7 @@ const toTitleSentence = (strs: string[]) => {
 
 function updateMetaPuzzleForLine(
   input: string,
-  metapuzzle: { clue: string; answer: string } | undefined
+  metapuzzle: { clue: string; answer: string } | undefined,
 ): { clue: string; answer: string } {
   if (!metapuzzle) {
     metapuzzle = { clue: "", answer: "" }
@@ -674,94 +674,129 @@ function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string
   return splits
 }
 
-export function inlineMarkdownParser(str: string): MDClueComponent[] {
+function isFirstCharAlphabetic(str: string): boolean {
+  return str.charCodeAt(0) >= 97 && str.charCodeAt(0) <= 122
+}
+
+function parseBBTagType(str: string): string {
+  let index = 0
+  let tagType = ""
+  while (index < str.length && isFirstCharAlphabetic(str[index])) {
+    tagType += str[index]
+    ++index
+  }
+  return tagType
+}
+
+// parses the inner url starting tags
+function parseURL(str: string): string {
+  let index = 0
+  // whitespace is allowed between [url and =
+  while (index < str.length && str[index] === " ") {
+    ++index
+  }
+  // checks to see if the token is '='
+  if (str[index] !== "=") {
+    return ""
+  }
+  ++index
+
+  // whitespace is allowed between '=' and the actual url
+  while (index < str.length && str[index] === " ") {
+    ++index
+  }
+
+  let url = ""
+  while (index < str.length && str[index] !== "]") {
+    url += str[index]
+    ++index
+  }
+  return url
+}
+
+function parseBBInnerContents(str: string) {
+  let index = 0;
+  while (index < str.length && str[index] !== "[") {
+    ++index
+  }
+  return str.slice(0, index)
+}
+
+function parseBB(str: string): { mdComponent: MDClueComponent; str: string } | undefined {
+  let index = 1 // starting at one because [ is the start
+  let starting = 0 // used for keeping the start of the entire bb tag/group
+  let tagType = parseBBTagType(str.slice(index))
+  if (tagType === "b" || tagType === "url" || tagType === "i" || tagType === "s") {
+    index += tagType.length
+    let url;
+    if (tagType === "url") {
+      url = parseURL(str.slice(index))
+      if (url.length === 0) {
+        // no url so invalid tag
+        return
+      }
+      index += url.length + 1 // adds 1 because of the '='
+    }
+    // whitespace is allowed before the ']'
+    while (index < str.length && str[index] === " ") {
+      ++index
+    }
+    if (str[index] === "]") {
+      ++index
+    } else {
+      return
+    }
+
+    let contents = parseBBInnerContents(str.slice(index))
+
+    index += contents.length
+
+    if (str[index] === "[") {
+      ++index
+      let ending = str.slice(index, index + 1 + tagType.length + 1)
+      if (ending === `/${tagType}]`) {
+        index += `/${tagType}]`.length
+        let mdComponent: MDClueComponent = (() => {
+          switch (tagType) {
+            case "b": return ["bold", contents]
+            case "url": {
+              if (url) {
+                return ["link", url, contents]
+              }
+            }
+            case "i": return ["italics", contents]
+            case "s": return ["strike", contents]
+          }
+        })()
+        return { mdComponent, str: str.slice(starting, index) }
+      }
+    }
+  }
+}
+
+export function inlineBBCodeParser(str: string): MDClueComponent[] {
   const components: MDClueComponent[] = []
-  let token = ""
-  let mode: MDClueComponent[0] = "text"
-  let linkText = ""
-
-  const pushText = () => {
-    if (token.length > 0) {
-      components.push(["text", token])
-      token = ""
-    }
-  }
-
-  for (let index = 0; index < str.length; index++) {
-    const prevLetter = index > 0 ? str.slice(index - 1, index) : ""
-    const letter = str.slice(index, index + 1)
-    const nextLetter = str.slice(index + 1, index + 2)
-
-    const otherMDKeys = ["*", "/", "~", "["]
-    if (letter === "\\" && otherMDKeys.includes(nextLetter)) {
-      index++
-      token += nextLetter
-      continue
-    } else if (mode === "text" && prevLetter !== "\\") {
-      if (letter === "[") {
-        mode = "link"
-        pushText()
-        continue
-      }
-
-      // Bold is started by two asterisks
-      if (letter === "*" && nextLetter === "*") {
-        mode = "bold"
-        // Jump a letter
-        index++
-        pushText()
-        continue
-      }
-
-      if (letter === "/" && prevLetter === " ") {
-        mode = "italics"
-        pushText()
-        continue
-      }
-
-      if (letter === "~") {
-        mode = "strike"
-        pushText()
-        continue
-      }
-    } else if (mode === "link") {
-      if (letter === "]") {
-        linkText = token
-        token = ""
-        continue
-      } else if (letter === ")") {
-        components.push(["link", linkText, token.slice(1)])
-        token = ""
-        mode = "text"
-        continue
-      }
-    } else if (mode === "bold") {
-      if (letter === "*" && nextLetter === "*") {
-        mode = "text"
-        components.push(["bold", token])
-        index++
-        token = ""
-        continue
-      }
-    } else if (mode === "italics") {
-      if (letter === "/" || !letter) {
-        mode = "text"
-        components.push(["italics", token])
-        token = ""
-        continue
-      }
-    } else if (mode === "strike") {
-      if (letter === "~") {
-        mode = "text"
-        components.push(["strike", token])
-        token = ""
+  let index = 0
+  let bareText = ''
+  while (index < str.length) {
+    // BB tags have to be contiguous like [b or [i or [url, [s
+    if (str[index] === "[" && isFirstCharAlphabetic(str[index + 1])) {
+      let { mdComponent, str: text } = parseBB(str.slice(index)) ?? {}
+      if (mdComponent && text) {
+        if (bareText.length > 0) {
+          components.push(["text", bareText])
+        }
+        components.push(mdComponent)
+        bareText = ''
+        index += text.length
         continue
       }
     }
-    token += letter
+    bareText += str[index]
+    ++index
   }
-
-  pushText()
-
+  if (bareText.length > 0) {
+    components.push(["text", bareText])
+  }
   return components
 }
