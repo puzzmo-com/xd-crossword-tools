@@ -761,7 +761,7 @@ function parseBB(str: string): { mdComponent: MDClueComponent; str: string } | u
             case "b": return ["bold", contents]
             case "url": {
               if (url) {
-                return ["link", url, contents]
+                return ["link", contents, url]
               }
             }
             case "i": return ["italics", contents]
