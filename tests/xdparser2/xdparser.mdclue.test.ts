@@ -4,14 +4,14 @@ import { readFileSync } from "fs"
 it("handles bolding", () => {
   const xd = readFileSync("tests/xdparser2/inputs/alpha-bits.xd", "utf8")
   const originalClue = "A1. Captain of the Pequod ~ AHAB"
-  const newMDClue = "A1. **Captain** of the Pequod ~ AHAB"
+  const newMDClue = "A1. [b]Captain[/b] of the Pequod ~ AHAB"
 
   const json = xdParser(xd.replace(originalClue, newMDClue))
   const clue = json.clues.across[0]
   expect(clue).toMatchInlineSnapshot(`
 {
   "answer": "AHAB",
-  "body": "**Captain** of the Pequod",
+  "body": "[b]Captain[/b] of the Pequod",
   "bodyMD": [
     [
       "bold",
@@ -50,163 +50,8 @@ it("handles bolding", () => {
 `)
 })
 
-it("handles italics and bolds", () => {
-  const xd = readFileSync("tests/xdparser2/inputs/alpha-bits.xd", "utf8")
-  const originalClue = "A1. Captain of the Pequod ~ AHAB"
-  const newMDClue = "A1. \\\\Captain\\\\ **of** the Pequod ~ AHAB"
-
-  expect(xdParser(xd.replace(originalClue, newMDClue)).clues.across[0]).toMatchInlineSnapshot(`
-{
-  "answer": "AHAB",
-  "body": "\\\\\\\\Captain\\\\\\\\ **of** the Pequod",
-  "bodyMD": [
-    [
-      "italics",
-      "Captain",
-    ],
-    [
-      "text",
-      " ",
-    ],
-    [
-      "bold",
-      "of",
-    ],
-    [
-      "text",
-      " the Pequod",
-    ],
-  ],
-  "metadata": undefined,
-  "number": 1,
-  "position": {
-    "col": 0,
-    "index": 0,
-  },
-  "tiles": [
-    {
-      "letter": "A",
-      "type": "letter",
-    },
-    {
-      "letter": "H",
-      "type": "letter",
-    },
-    {
-      "letter": "A",
-      "type": "letter",
-    },
-    {
-      "letter": "B",
-      "type": "letter",
-    },
-  ],
-}
-`)
-})
-
-it("handles URLs", () => {
-  const xd = readFileSync("tests/xdparser2/inputs/alpha-bits.xd", "utf8")
-  const originalClue = "A1. Captain of the Pequod ~ AHAB"
-  const newMDClue = "A1. [Captain](https://github.com/orta) **of** the ship \\\\Pequod\\\\ ~ AHAB"
-
-  expect(xdParser(xd.replace(originalClue, newMDClue)).clues.across[0].bodyMD).toMatchInlineSnapshot(`
-[
-  [
-    "link",
-    "Captain",
-    "https://github.com/orta",
-  ],
-  [
-    "text",
-    " ",
-  ],
-  [
-    "bold",
-    "of",
-  ],
-  [
-    "text",
-    " the ship ",
-  ],
-  [
-    "italics",
-    "Pequod",
-  ],
-]
-`)
-})
-
-it("handles having a date with italics", () => {
-  const xd = readFileSync("tests/xdparser2/inputs/alpha-bits.xd", "utf8")
-  const originalClue = "A1. Captain of the Pequod ~ AHAB"
-  // Should NOT be italics
-  const newMDClue = "A1. The date of 2024/11/12 ~ AHAB"
-  const md= xdParser( xd.replace(originalClue, newMDClue)).clues.across[0].bodyMD
-  expect(md).toMatchInlineSnapshot(`undefined`)
-})
-
-it("handles strikes", () => {
-  const xd = readFileSync("tests/xdparser2/inputs/alpha-bits.xd", "utf8")
-  const originalClue = "A1. Captain of the Pequod ~ AHAB"
-  const newMDClue = "A1. ~~Captain~~ of the Pequod ~ AHAB"
-
-  expect(xdParser(xd.replace(originalClue, newMDClue)).clues.across[0].bodyMD).toMatchInlineSnapshot(`
-[
-  [
-    "strike",
-    "Captain",
-  ],
-  [
-    "text",
-    " of the Pequod",
-  ],
-]
-`)
-})
-
-
-it("does the bolding", () => {
-  const parsed = inlineMarkdownParser("**ORTA**")
-  expect(parsed).toMatchInlineSnapshot(`
-[
-  [
-    "bold",
-    "ORTA",
-  ],
-]
-`)
-})
-
-
-it("handles a (^) escape character", () => {
-  const parsed = inlineMarkdownParser("hi ^**JSON^**")
-  expect(parsed).toMatchInlineSnapshot(`
-[
-  [
-    "text",
-    "hi **JSON**",
-  ],
-]
-`)
-})
-
-it("handles a date", () => {
-  const newMDClue = "A1. The date of 2024/11/12"
-  const parsed = inlineMarkdownParser(newMDClue)
-  expect(parsed).toMatchInlineSnapshot(`
-[
-  [
-    "text",
-    "A1. The date of 2024/11/12",
-  ],
-]
-`)
-
-})
-
-it("handles links, bolds, italics, strikes", () => {
-  const newMDClue = "A1. The date of 2024/11/12. [index]arr is good in C WHAT? (SIKE BOIIIIIIIIIIIII MAYBE MAYBE) \\\\MEOW\\\\**MOO****HAHA**~~WOOHOO~~https://github.com/cod1r.[hi](https://google.com) [hehe](https://puzzmo.com/bongo/submit?date=JASONHO)**INBETWEEN**[hhehe](https://google.com) ~~HEHE~~ \\\\MEOWMEOW\\\\"
+it("handles links, bolds, italics, strikes, and dates", () => {
+  const newMDClue = "A1. The date of 2024/11/12. [index]arr is good in C WHAT? (SIKE BOIIIIIIIIIIIII MAYBE MAYBE) [i]MEOW[/i][b]MOO[/b][b]HAHA[/b][s]WOOHOO[/s]https://github.com/cod1r.[url=https://google.com]google[/url] [url=https://puzzmo.com/bongo/submit?date=JASONHO]jason's puzzmo[/url][b]INBETWEEN[/b][url=https://google.com]hheh[/url] [s]HEHE[/s] [i]MEOWMEOW[/i] CHICKEN NOODLE SOUP"
   const parsed = inlineMarkdownParser(newMDClue)
   expect(parsed).toMatchInlineSnapshot(`
 [
@@ -236,8 +81,8 @@ it("handles links, bolds, italics, strikes", () => {
   ],
   [
     "link",
-    "hi",
     "https://google.com",
+    "google",
   ],
   [
     "text",
@@ -245,8 +90,8 @@ it("handles links, bolds, italics, strikes", () => {
   ],
   [
     "link",
-    "hehe",
     "https://puzzmo.com/bongo/submit?date=JASONHO",
+    "jason's puzzmo",
   ],
   [
     "bold",
@@ -254,8 +99,8 @@ it("handles links, bolds, italics, strikes", () => {
   ],
   [
     "link",
-    "hhehe",
     "https://google.com",
+    "hheh",
   ],
   [
     "text",
@@ -272,6 +117,10 @@ it("handles links, bolds, italics, strikes", () => {
   [
     "italics",
     "MEOWMEOW",
+  ],
+  [
+    "text",
+    " CHICKEN NOODLE SOUP",
   ],
 ]
 `)

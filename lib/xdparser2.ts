@@ -379,7 +379,7 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
 
       addSyntaxError(
         `Two # headers are reserved for the system, we accept: ${headers}. Got '${content.trim()}'. You can use ### headers for inside notes.`,
-        num
+        num,
       )
     }
 
@@ -568,7 +568,7 @@ const toTitleSentence = (strs: string[]) => {
 
 function updateMetaPuzzleForLine(
   input: string,
-  metapuzzle: { clue: string; answer: string } | undefined
+  metapuzzle: { clue: string; answer: string } | undefined,
 ): { clue: string; answer: string } {
   if (!metapuzzle) {
     metapuzzle = { clue: "", answer: "" }
@@ -674,106 +674,130 @@ function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string
   return splits
 }
 
+function isAlphabetical(str: string): boolean {
+  return str.charCodeAt(0) >= 97 && str.charCodeAt(0) <= 122
+}
+
+function parseBBTagType(str: string): string {
+  let index = 0
+  let tagType = ""
+  while (index < str.length && isAlphabetical(str[index])) {
+    tagType += str[index]
+    ++index
+  }
+  return tagType
+}
+
+// parses the inner url starting tags
+function parseURL(str: string): string {
+  let index = 0
+  // whitespace is allowed between [url and =
+  while (index < str.length && str[index] === " ") {
+    ++index
+  }
+  // checks to see if the token is '='
+  if (str[index] !== "=") {
+    return ""
+  }
+  ++index
+
+  // whitespace is allowed between '=' and the actual url
+  while (index < str.length && str[index] === " ") {
+    ++index
+  }
+
+  let url = ""
+  while (index < str.length && str[index] !== "]") {
+    url += str[index]
+    ++index
+  }
+  return url
+}
+
+function parseBBInnerContents(str: string) {
+  let index = 0;
+  let start = index;
+  while (index < str.length && str[index] !== "[") {
+    ++index
+  }
+  return str.slice(start, index)
+}
+
+function parseBB(str: string): { mdComponent: MDClueComponent; str: string } | undefined {
+  let index = 1 // starting at one because [ is the start
+  let starting = 0 // used for keeping the start of the entire bb tag/group
+  let tagType = parseBBTagType(str.slice(index))
+  if (tagType === "b" || tagType === "url" || tagType === "i" || tagType === "s") {
+    index += tagType.length
+    let url;
+    if (tagType === "url") {
+      url = parseURL(str.slice(index))
+      if (url.length === 0) {
+        // no url so invalid tag
+        return
+      }
+      index += url.length + 1 // because of the '='
+    }
+    // whitespace is allowed before the ']'
+    while (index < str.length && str[index] === " ") {
+      ++index
+    }
+    if (str[index] === "]") {
+      ++index
+    } else {
+      return
+    }
+
+    let contents = parseBBInnerContents(str.slice(index))
+
+    index += contents.length
+
+    if (str[index] === "[") {
+      ++index
+      let ending = str.slice(index, index + 1 + tagType.length + 1)
+      if (ending === `/${tagType}]`) {
+        index += `/${tagType}]`.length
+        let mdComponent: MDClueComponent = (() => {
+          switch (tagType) {
+            case "b": return ["bold", contents]
+            case "url": {
+              if (url) {
+                return ["link", url, contents]
+              }
+            }
+            case "i": return ["italics", contents]
+            case "s": return ["strike", contents]
+          }
+        })()
+        return { mdComponent, str: str.slice(starting, index) }
+      }
+    }
+  }
+}
+
 export function inlineMarkdownParser(str: string): MDClueComponent[] {
   const components: MDClueComponent[] = []
-  const mdTokens = ["**", "\\\\", "~~", "[", "]", "(", ")"]
-  const getMDType = (operator: string) => {
-    switch (operator) {
-      case "**": return "bold"
-      case "\\\\": return "italics"
-      case "~~": return "strike"
-    }
-    throw Error("Operator: " + operator + " not handled")
-  }
-
-  const escapeCharacter = "^"
-  let textSlice = ''
-  // stack of [index, md operators like "**" etc]
-  const stack: Array<[number, string]> = []
-  for (let index = 1; index < str.length; index++) {
-    const slice = str.slice(index - 1, index + 1)
-    // handles the case of escapes
-    if (str[index - 2] === escapeCharacter && mdTokens.includes(slice)) {
-      const mostRecentBackslashIdx = textSlice.lastIndexOf(escapeCharacter)
-      if (mostRecentBackslashIdx !== -1) {
-        textSlice = textSlice.slice(0, mostRecentBackslashIdx)
-        textSlice += str[index - 1]
-        if (index === str.length - 1) {
-          textSlice += str[index]
+  let index = 0
+  let bareText = ''
+  while (index < str.length) {
+    // BB tags have to be contiguous like [b or [i or [url, [s
+    if (str[index] === "[" && isAlphabetical(str[index + 1])) {
+      let { mdComponent, str: text } = parseBB(str.slice(index)) ?? {}
+      if (mdComponent && text) {
+        if (bareText.length > 0) {
+          components.push(["text", bareText])
         }
-      }
-      continue
-    }
-
-    if (mdTokens.includes(slice)) {
-      // tries the find the most recent operator that matches the current one
-      while (stack.length > 0 && stack[stack.length - 1]?.[1] !== slice) {
-        let top = stack.pop()
-        if (top) {
-          textSlice = top[1] + textSlice
-        }
-      }
-
-      // if there is no matching operator, then this will be the starting operator
-      if (stack.length === 0) {
-        if (textSlice.length > 0) {
-          let recent = components[components.length - 1]
-          if (recent?.[0] === "text") {
-            recent[1] += textSlice
-          } else {
-            components.push(["text", textSlice])
-          }
-        }
-        textSlice = ''
-        stack.push([index - 1, slice])
-      } else {
-        // there is one so pop stack and push to components
-        components.push([getMDType(slice), str.slice(stack[stack.length - 1][0] + 2, index - 1)])
-        stack.pop()
-        textSlice = ''
-      }
-      index++
-      continue
-    }
-    textSlice += str[index - 1]
-    if (index === str.length - 1) {
-      textSlice += str[index]
-    }
-  }
-
-  if (textSlice.length > 0) {
-    components.push(["text", textSlice])
-  }
-
-  const urlRegex = new RegExp(/\[([a-zA-Z ]*)\]\(([a-zA-Z0-9\/:\.\?\&\%\$\!\@\#\-\+\~\,\= ]*)\)/g)
-  let i = 0
-  while (i < components.length) {
-    const component = components[i]
-    if (component[0] === "text") {
-      const matches = component[1].matchAll(urlRegex)
-      const length = component[1].length
-      component[1].replace(urlRegex, '')
-      let baseIndex = i
-      let actual = [...matches].filter(m => m.input.length > 0)
-      if (actual.length > 0) {
-        components.splice(i, 1)
-        let indexInInput = 0
-        for (const match of actual) {
-          if (match.index > indexInInput) {
-            components.splice(baseIndex, 0, ["text", component[1].slice(indexInInput, match.index)])
-            baseIndex++
-          }
-          components.splice(baseIndex, 0, ["link", match[1], match[2]])
-          baseIndex++
-          indexInInput = match.index + match[0].length
-        }
-        if (indexInInput < length) {
-          components.splice(baseIndex, 0, ["text", component[1].slice(indexInInput)])
-        }
+        components.push(mdComponent)
+        bareText = ''
+        index += text.length
+        continue
       }
     }
-    i++
+    bareText += str[index]
+    ++index
   }
-
+  if (bareText.length > 0) {
+    components.push(["text", bareText])
+  }
   return components
 }
