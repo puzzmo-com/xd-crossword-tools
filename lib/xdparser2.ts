@@ -736,7 +736,7 @@ function parseBB(str: string): { mdComponent: MDClueComponent; str: string } | u
         // no url so invalid tag
         return
       }
-      index += url.length + 1 // because of the '='
+      index += url.length + 1 // adds 1 because of the '='
     }
     // whitespace is allowed before the ']'
     while (index < str.length && str[index] === " ") {
