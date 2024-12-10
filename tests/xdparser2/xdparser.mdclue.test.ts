@@ -1,4 +1,4 @@
-import { inlineMarkdownParser, xdParser } from "../../lib/xdparser2"
+import { inlineBBCodeParser, xdParser } from "../../lib/xdparser2"
 import { readFileSync } from "fs"
 
 it("handles bolding", () => {
@@ -51,22 +51,91 @@ it("handles bolding", () => {
 })
 
 it("correctly handles non BBCode syntax", () => {
-  const newMDClue = "A1. The date of 2024/11/12. [MUAH]HEHE XD KISSES MEOW HEHE XD[/MUAH]"
-  const parsed = inlineMarkdownParser(newMDClue)
+  const newMDClue = "A1. The date of 2024/11/12. [MUAH]HEHE XD KISSES MEOW HEHE XD[/MUAH] [][/] [URMOM]()[/]"
+  const parsed = inlineBBCodeParser(newMDClue)
   expect(parsed).toMatchInlineSnapshot(`
 [
   [
     "text",
-    "A1. The date of 2024/11/12. [MUAH]HEHE XD KISSES MEOW HEHE XD[/MUAH]",
+    "A1. The date of 2024/11/12. [MUAH]HEHE XD KISSES MEOW HEHE XD[/MUAH] [][/] [URMOM]()[/]",
   ],
 ]
 `)
 
 })
 
+it("parses BBCode italics", () => {
+  const newMDClue = "A1. [i]HI[/i]"
+  const parsed = inlineBBCodeParser(newMDClue)
+  expect(parsed).toMatchInlineSnapshot(`
+[
+  [
+    "text",
+    "A1. ",
+  ],
+  [
+    "italics",
+    "HI",
+  ],
+]
+`)
+})
+
+it("parses BBCode strikes", () => {
+  const newMDClue = "A1. [s]NO[/s]"
+  const parsed = inlineBBCodeParser(newMDClue)
+  expect(parsed).toMatchInlineSnapshot(`
+[
+  [
+    "text",
+    "A1. ",
+  ],
+  [
+    "strike",
+    "NO",
+  ],
+]
+`)
+})
+
+it("parses BBCode bolds", () => {
+  const newMDClue = "A1. [b]NO[/b]"
+  const parsed = inlineBBCodeParser(newMDClue)
+  expect(parsed).toMatchInlineSnapshot(`
+[
+  [
+    "text",
+    "A1. ",
+  ],
+  [
+    "bold",
+    "NO",
+  ],
+]
+`)
+})
+
+it("parses BBCode urls", () => {
+  const newMDClue = "A1. [url=https://lmao.com/chicken]lmao[/url]"
+  const parsed = inlineBBCodeParser(newMDClue)
+  expect(parsed).toMatchInlineSnapshot(`
+[
+  [
+    "text",
+    "A1. ",
+  ],
+  [
+    "link",
+    "https://lmao.com/chicken",
+    "lmao",
+  ],
+]
+`)
+})
+
 it("handles links, bolds, italics, strikes, and dates", () => {
   const newMDClue = "A1. The date of 2024/11/12. [index]arr is good in C WHAT? (SIKE BOIIIIIIIIIIIII MAYBE MAYBE) [i]MEOW[/i][b]MOO[/b][b]HAHA[/b][s]WOOHOO[/s]https://github.com/cod1r.[url=https://google.com]google[/url] [url=https://puzzmo.com/bongo/submit?date=JASONHO]jason's puzzmo[/url][b]INBETWEEN[/b][url=https://google.com]hheh[/url] [s]HEHE[/s] [i]MEOWMEOW[/i] CHICKEN NOODLE SOUP"
-  const parsed = inlineMarkdownParser(newMDClue)
+  const parsed = inlineBBCodeParser(newMDClue)
   expect(parsed).toMatchInlineSnapshot(`
 [
   [

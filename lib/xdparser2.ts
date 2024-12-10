@@ -480,7 +480,7 @@ const clueFromLine = (line: string, num: number): ClueParserResponse => {
       res.question.includes("/") ||
       res.question.includes("~")
     ) {
-      const components = inlineMarkdownParser(res.question)
+      const components = inlineBBCodeParser(res.question)
       // Don't set if it's just one text (because it had something like `___` in the clue)
       if (!(components.length === 1 && components[0][0] === "text")) {
         res.bodyMD = components
@@ -674,14 +674,14 @@ function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string
   return splits
 }
 
-function isAlphabetical(str: string): boolean {
+function isFirstCharAlphabetic(str: string): boolean {
   return str.charCodeAt(0) >= 97 && str.charCodeAt(0) <= 122
 }
 
 function parseBBTagType(str: string): string {
   let index = 0
   let tagType = ""
-  while (index < str.length && isAlphabetical(str[index])) {
+  while (index < str.length && isFirstCharAlphabetic(str[index])) {
     tagType += str[index]
     ++index
   }
@@ -716,11 +716,10 @@ function parseURL(str: string): string {
 
 function parseBBInnerContents(str: string) {
   let index = 0;
-  let start = index;
   while (index < str.length && str[index] !== "[") {
     ++index
   }
-  return str.slice(start, index)
+  return str.slice(0, index)
 }
 
 function parseBB(str: string): { mdComponent: MDClueComponent; str: string } | undefined {
@@ -775,13 +774,13 @@ function parseBB(str: string): { mdComponent: MDClueComponent; str: string } | u
   }
 }
 
-export function inlineMarkdownParser(str: string): MDClueComponent[] {
+export function inlineBBCodeParser(str: string): MDClueComponent[] {
   const components: MDClueComponent[] = []
   let index = 0
   let bareText = ''
   while (index < str.length) {
     // BB tags have to be contiguous like [b or [i or [url, [s
-    if (str[index] === "[" && isAlphabetical(str[index + 1])) {
+    if (str[index] === "[" && isFirstCharAlphabetic(str[index + 1])) {
       let { mdComponent, str: text } = parseBB(str.slice(index)) ?? {}
       if (mdComponent && text) {
         if (bareText.length > 0) {
