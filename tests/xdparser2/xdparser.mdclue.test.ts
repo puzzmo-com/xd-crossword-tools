@@ -50,6 +50,20 @@ it("handles bolding", () => {
 `)
 })
 
+it("correctly handles non BBCode syntax", () => {
+  const newMDClue = "A1. The date of 2024/11/12. [MUAH]HEHE XD KISSES MEOW HEHE XD[/MUAH]"
+  const parsed = inlineMarkdownParser(newMDClue)
+  expect(parsed).toMatchInlineSnapshot(`
+[
+  [
+    "text",
+    "A1. The date of 2024/11/12. [MUAH]HEHE XD KISSES MEOW HEHE XD[/MUAH]",
+  ],
+]
+`)
+
+})
+
 it("handles links, bolds, italics, strikes, and dates", () => {
   const newMDClue = "A1. The date of 2024/11/12. [index]arr is good in C WHAT? (SIKE BOIIIIIIIIIIIII MAYBE MAYBE) [i]MEOW[/i][b]MOO[/b][b]HAHA[/b][s]WOOHOO[/s]https://github.com/cod1r.[url=https://google.com]google[/url] [url=https://puzzmo.com/bongo/submit?date=JASONHO]jason's puzzmo[/url][b]INBETWEEN[/b][url=https://google.com]hheh[/url] [s]HEHE[/s] [i]MEOWMEOW[/i] CHICKEN NOODLE SOUP"
   const parsed = inlineMarkdownParser(newMDClue)
