@@ -4424,11 +4424,11 @@ Which will add the optional `"bodyMD"` to the clue:
 }
 ```
 
-- Italics: `{/`<key>words</key>`/}`
-- Bold: `{*`<key>words</key>`*}`
-- Strike through: `{-`<key>words</key>`-}` - Note: that we also support `{~`<key>words</key>`~}` because that feels more natural
-- Underline: `{_`<key>words</key>`_}`
-- Link: `{@`<key>words</key>`|<key>url</key>@}`
+- Italics: `{/`<kbd>words</kbd>`/}`
+- Bold: `{*`<kbd>words</kbd>`*}`
+- Strike through: `{-`<kbd>words</kbd>`-}` - Note: that we also support `{~`<kbd>words</kbd>`~}` because that feels more natural
+- Underline: `{_`<kbd>words</kbd>`_}`
+- Link: `{@`<kbd>words</kbd>`|`<kbd>url</kbd>`@}`
 
 ##### Split character
 
