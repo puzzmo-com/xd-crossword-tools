@@ -1,5 +1,5 @@
 import { getCluePositionsForBoard } from "./clueNumbersFromBoard"
-import type { Tile, CrosswordJSON, MDClueComponent } from "./types"
+import type { Tile, CrosswordJSON, ClueComponentMarkup } from "./types"
 import { runLinterForClue } from "./xdLints"
 import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "./xdparser2.compat"
 
@@ -30,7 +30,7 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
     tiles: string[][]
     clues: Map<
       string,
-      { num: number; question: string; metadata?: Record<string, string>; answer: string; dir: "A" | "D"; bodyMD?: MDClueComponent[] }
+      { num: number; question: string; metadata?: Record<string, string>; answer: string; dir: "A" | "D"; display: ClueComponentMarkup[] }
     >
   } = {
     tiles: [],
@@ -310,8 +310,9 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
       position: positionData.position,
       tiles,
       metadata: clue.metadata,
+      display: clue.display,
+      direction: dirKey,
       ...(splits ? { splits } : {}),
-      ...(clue.bodyMD ? { bodyMD: clue.bodyMD } : {}),
     })
   }
 
@@ -379,7 +380,7 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
 
       addSyntaxError(
         `Two # headers are reserved for the system, we accept: ${headers}. Got '${content.trim()}'. You can use ### headers for inside notes.`,
-        num,
+        num
       )
     }
 
@@ -442,7 +443,7 @@ const clueRegex = /(^.\d*)\.\s(.*)\s\~\s(.*)/
 const clueMetaRegex = /(^.\d*)\s\^(.*):\s(.*?)/
 
 type ClueParserResponse =
-  | { dir: "D" | "A"; num: number; question: string; answer: string; bodyMD?: MDClueComponent[] }
+  | { dir: "D" | "A"; num: number; question: string; answer: string; display: ClueComponentMarkup[] }
   | { dir: "D" | "A"; num: number; metaKey: string; metaValue: string }
   | { dir: "D" | "A" | undefined; num: number | undefined; errorMessage: string }
 
@@ -471,20 +472,7 @@ const clueFromLine = (line: string, num: number): ClueParserResponse => {
       num,
       question: parts[2]!,
       answer: parts[3]!,
-    }
-
-    if (
-      res.question.includes("[") ||
-      res.question.includes("*") ||
-      // res.question.includes("_") ||
-      res.question.includes("/") ||
-      res.question.includes("~")
-    ) {
-      const components = inlineBBCodeParser(res.question)
-      // Don't set if it's just one text (because it had something like `___` in the clue)
-      if (!(components.length === 1 && components[0][0] === "text")) {
-        res.bodyMD = components
-      }
+      display: xdMarkupProcessor(parts[2]!),
     }
 
     return res
@@ -568,7 +556,7 @@ const toTitleSentence = (strs: string[]) => {
 
 function updateMetaPuzzleForLine(
   input: string,
-  metapuzzle: { clue: string; answer: string } | undefined,
+  metapuzzle: { clue: string; answer: string } | undefined
 ): { clue: string; answer: string } {
   if (!metapuzzle) {
     metapuzzle = { clue: "", answer: "" }
@@ -674,129 +662,50 @@ function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string
   return splits
 }
 
-function isFirstCharAlphabetic(str: string): boolean {
-  return str.charCodeAt(0) >= 97 && str.charCodeAt(0) <= 122
-}
+/** xd spec compliant parser for markup inside a clue */
+export function xdMarkupProcessor(input: string): ClueComponentMarkup[] {
+  if (!input) return [["text", ""]]
+  if (!input.includes("{")) return [["text", input]]
 
-function parseBBTagType(str: string): string {
-  let index = 0
-  let tagType = ""
-  while (index < str.length && isFirstCharAlphabetic(str[index])) {
-    tagType += str[index]
-    ++index
-  }
-  return tagType
-}
+  const components: ClueComponentMarkup[] = []
+  // https://regex101.com/r/JsLIDM/1
+  const regex = /\{([\/\*\_\-\@\~])(.*?)\1\}/g
+  let lastIndex = 0
 
-// parses the inner url starting tags
-function parseURL(str: string): string {
-  let index = 0
-  // whitespace is allowed between [url and =
-  while (index < str.length && str[index] === " ") {
-    ++index
-  }
-  // checks to see if the token is '='
-  if (str[index] !== "=") {
-    return ""
-  }
-  ++index
-
-  // whitespace is allowed between '=' and the actual url
-  while (index < str.length && str[index] === " ") {
-    ++index
-  }
-
-  let url = ""
-  while (index < str.length && str[index] !== "]") {
-    url += str[index]
-    ++index
-  }
-  return url
-}
-
-function parseBBInnerContents(str: string) {
-  let index = 0;
-  while (index < str.length && str[index] !== "[") {
-    ++index
-  }
-  return str.slice(0, index)
-}
-
-function parseBB(str: string): { mdComponent: MDClueComponent; str: string } | undefined {
-  let index = 1 // starting at one because [ is the start
-  let starting = 0 // used for keeping the start of the entire bb tag/group
-  let tagType = parseBBTagType(str.slice(index))
-  if (tagType === "b" || tagType === "url" || tagType === "i" || tagType === "s") {
-    index += tagType.length
-    let url;
-    if (tagType === "url") {
-      url = parseURL(str.slice(index))
-      if (url.length === 0) {
-        // no url so invalid tag
-        return
-      }
-      index += url.length + 1 // adds 1 because of the '='
-    }
-    // whitespace is allowed before the ']'
-    while (index < str.length && str[index] === " ") {
-      ++index
-    }
-    if (str[index] === "]") {
-      ++index
-    } else {
-      return
+  let match
+  while ((match = regex.exec(input)) !== null) {
+    if (match.index > lastIndex) {
+      components.push(["text", input.slice(lastIndex, match.index)])
     }
 
-    let contents = parseBBInnerContents(str.slice(index))
+    const typeChar = match[1]
+    const content = match[2]
 
-    index += contents.length
-
-    if (str[index] === "[") {
-      ++index
-      let ending = str.slice(index, index + 1 + tagType.length + 1)
-      if (ending === `/${tagType}]`) {
-        index += `/${tagType}]`.length
-        let mdComponent: MDClueComponent = (() => {
-          switch (tagType) {
-            case "b": return ["bold", contents]
-            case "url": {
-              if (url) {
-                return ["link", contents, url]
-              }
-            }
-            case "i": return ["italics", contents]
-            case "s": return ["strike", contents]
-          }
-        })()
-        return { mdComponent, str: str.slice(starting, index) }
-      }
+    switch (typeChar) {
+      case "/":
+        components.push(["italics", content])
+        break
+      case "*":
+        components.push(["bold", content])
+        break
+      case "_":
+        components.push(["underscore", content])
+        break
+      case "-":
+      case "~":
+        components.push(["strike", content])
+        break
+      case "@":
+        components.push(["link", content.split("|")[0], content.split("|")[1]])
+        break
     }
-  }
-}
 
-export function inlineBBCodeParser(str: string): MDClueComponent[] {
-  const components: MDClueComponent[] = []
-  let index = 0
-  let bareText = ''
-  while (index < str.length) {
-    // BB tags have to be contiguous like [b or [i or [url, [s
-    if (str[index] === "[" && isFirstCharAlphabetic(str[index + 1])) {
-      let { mdComponent, str: text } = parseBB(str.slice(index)) ?? {}
-      if (mdComponent && text) {
-        if (bareText.length > 0) {
-          components.push(["text", bareText])
-        }
-        components.push(mdComponent)
-        bareText = ''
-        index += text.length
-        continue
-      }
-    }
-    bareText += str[index]
-    ++index
+    lastIndex = regex.lastIndex
   }
-  if (bareText.length > 0) {
-    components.push(["text", bareText])
+
+  if (lastIndex < input.length) {
+    components.push(["text", input.slice(lastIndex)])
   }
+
   return components
 }
