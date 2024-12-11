@@ -921,7 +921,14 @@
             "type": "letter",
             "letter": "B"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Captain of the Pequod"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Food for second chance chewing",
@@ -944,7 +951,14 @@
             "type": "letter",
             "letter": "D"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Food for second chance chewing"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Font feature",
@@ -975,7 +989,14 @@
             "type": "letter",
             "letter": "F"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Font feature"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "___ Way You Want It",
@@ -998,7 +1019,14 @@
             "type": "letter",
             "letter": "Y"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "___ Way You Want It"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Place often described as humble",
@@ -1029,7 +1057,14 @@
             "type": "letter",
             "letter": "E"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Place often described as humble"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Flat two dimensional surface in geometry",
@@ -1060,7 +1095,14 @@
             "type": "letter",
             "letter": "E"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Flat two dimensional surface in geometry"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Grim homophone of 7D",
@@ -1083,7 +1125,14 @@
             "type": "letter",
             "letter": "E"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Grim homophone of 7D"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Off",
@@ -1114,7 +1163,14 @@
             "type": "letter",
             "letter": "N"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Off"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Heading for some lists",
@@ -1141,7 +1197,14 @@
             "type": "letter",
             "letter": "O"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Heading for some lists"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Kanye West is famous for his",
@@ -1164,7 +1227,14 @@
             "type": "letter",
             "letter": "O"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Kanye West is famous for his"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Laceration",
@@ -1191,7 +1261,14 @@
             "type": "letter",
             "letter": "H"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Laceration"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Alias of Twitch star Richard Tyler Blevins",
@@ -1222,7 +1299,14 @@
             "type": "letter",
             "letter": "A"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Alias of Twitch star Richard Tyler Blevins"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Capsize",
@@ -1249,7 +1333,14 @@
             "type": "letter",
             "letter": "L"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Capsize"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Piece of clothing or print",
@@ -1288,7 +1379,14 @@
             "type": "letter",
             "letter": "E"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Piece of clothing or print"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Evangelical school in Tulsa, OK",
@@ -1311,7 +1409,14 @@
             "type": "letter",
             "letter": "U"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Evangelical school in Tulsa, OK"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "___-eyed",
@@ -1334,7 +1439,14 @@
             "type": "letter",
             "letter": "E"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "___-eyed"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Annual",
@@ -1369,7 +1481,14 @@
             "type": "letter",
             "letter": "Y"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Annual"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "The stamp with the upside down airplane is a famous one",
@@ -1412,7 +1531,14 @@
             "type": "letter",
             "letter": "T"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "The stamp with the upside down airplane is a famous one"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "With 42A and Marcus, a luxury department store chain",
@@ -1435,7 +1561,14 @@
             "type": "letter",
             "letter": "I"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "With 42A and Marcus, a luxury department store chain"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "41A continued",
@@ -1458,7 +1591,14 @@
             "type": "letter",
             "letter": "N"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "41A continued"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Lush",
@@ -1481,7 +1621,14 @@
             "type": "letter",
             "letter": "T"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Lush"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "The Mayan one ended in 2012",
@@ -1524,7 +1671,14 @@
             "type": "letter",
             "letter": "R"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "The Mayan one ended in 2012"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "What a child often does to their shoes",
@@ -1559,7 +1713,14 @@
             "type": "letter",
             "letter": "S"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "What a child often does to their shoes"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Vanilla ___",
@@ -1582,7 +1743,14 @@
             "type": "letter",
             "letter": "E"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Vanilla ___"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Maligned cigarette ingredient",
@@ -1605,7 +1773,14 @@
             "type": "letter",
             "letter": "R"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Maligned cigarette ingredient"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Frequent cause for a new tire",
@@ -1644,7 +1819,14 @@
             "type": "letter",
             "letter": "E"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Frequent cause for a new tire"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Los Angeles heavy metal act",
@@ -1671,7 +1853,14 @@
             "type": "letter",
             "letter": "P"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Los Angeles heavy metal act"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Bldgs. such as the Googleplex",
@@ -1702,7 +1891,14 @@
             "type": "letter",
             "letter": "S"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Bldgs. such as the Googleplex"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "A fit of irritation",
@@ -1729,7 +1925,14 @@
             "type": "letter",
             "letter": "T"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "A fit of irritation"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Lead-in to American or day",
@@ -1752,7 +1955,14 @@
             "type": "letter",
             "letter": "L"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Lead-in to American or day"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "What Pokémon do at a Pokémon Center",
@@ -1779,7 +1989,14 @@
             "type": "letter",
             "letter": "L"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "What Pokémon do at a Pokémon Center"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Nixon's vice",
@@ -1810,7 +2027,14 @@
             "type": "letter",
             "letter": "O"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Nixon's vice"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Nothing but ___",
@@ -1833,7 +2057,14 @@
             "type": "letter",
             "letter": "T"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Nothing but ___"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "One with the world on his shoulders",
@@ -1864,7 +2095,14 @@
             "type": "letter",
             "letter": "S"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "One with the world on his shoulders"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Filled pastries",
@@ -1895,7 +2133,14 @@
             "type": "letter",
             "letter": "S"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Filled pastries"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Age, in Milan",
@@ -1918,7 +2163,14 @@
             "type": "letter",
             "letter": "A"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Age, in Milan"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Lorna ___, novel or cookie",
@@ -1949,7 +2201,14 @@
             "type": "letter",
             "letter": "E"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Lorna ___, novel or cookie"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Electrocardiogram readout feature",
@@ -1980,7 +2239,14 @@
             "type": "letter",
             "letter": "E"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Electrocardiogram readout feature"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Hip slang for records",
@@ -2003,7 +2269,14 @@
             "type": "letter",
             "letter": "X"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Hip slang for records"
+          ]
+        ],
+        "direction": "across"
       },
       {
         "body": "Yiddish for a foolish person",
@@ -2030,7 +2303,14 @@
             "type": "letter",
             "letter": "Z"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Yiddish for a foolish person"
+          ]
+        ],
+        "direction": "across"
       }
     ],
     "down": [
@@ -2055,7 +2335,14 @@
             "type": "letter",
             "letter": "P"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Pc. of concert gear"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "AI antagonist of 2001",
@@ -2078,7 +2365,14 @@
             "type": "letter",
             "letter": "L"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "AI antagonist of 2001"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Programming pioneer Lovelace",
@@ -2101,7 +2395,14 @@
             "type": "letter",
             "letter": "A"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Programming pioneer Lovelace"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Prohibit",
@@ -2124,7 +2425,14 @@
             "type": "letter",
             "letter": "N"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Prohibit"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Type of person to routinely carry a club",
@@ -2159,7 +2467,14 @@
             "type": "letter",
             "letter": "E"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Type of person to routinely carry a club"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "State of the ___ Address",
@@ -2190,7 +2505,14 @@
             "type": "letter",
             "letter": "N"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "State of the ___ Address"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Colorful homophone of 18A",
@@ -2213,7 +2535,14 @@
             "type": "letter",
             "letter": "E"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Colorful homophone of 18A"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Snitched",
@@ -2240,7 +2569,14 @@
             "type": "letter",
             "letter": "G"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Snitched"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Kindle fare",
@@ -2271,7 +2607,14 @@
             "type": "letter",
             "letter": "K"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Kindle fare"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Decayed matter",
@@ -2294,7 +2637,14 @@
             "type": "letter",
             "letter": "T"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Decayed matter"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Type of response you hope to get at the altar",
@@ -2317,7 +2667,14 @@
             "type": "letter",
             "letter": "O"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Type of response you hope to get at the altar"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Peat-accumulating wetland",
@@ -2340,7 +2697,14 @@
             "type": "letter",
             "letter": "N"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Peat-accumulating wetland"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "The ___, NY art museum",
@@ -2363,7 +2727,14 @@
             "type": "letter",
             "letter": "T"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "The ___, NY art museum"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "___Fans",
@@ -2390,7 +2761,14 @@
             "type": "letter",
             "letter": "Y"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "___Fans"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Friends, Romans, countrymen, lend me your...",
@@ -2417,7 +2795,14 @@
             "type": "letter",
             "letter": "S"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Friends, Romans, countrymen, lend me your..."
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "\"Friend of Dorothy\"",
@@ -2440,7 +2825,14 @@
             "type": "letter",
             "letter": "Y"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "\"Friend of Dorothy\""
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "We ___ the Champions",
@@ -2463,7 +2855,14 @@
             "type": "letter",
             "letter": "E"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "We ___ the Champions"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Father of Spider-Man",
@@ -2502,7 +2901,14 @@
             "type": "letter",
             "letter": "E"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Father of Spider-Man"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "What a certain applicant becomes",
@@ -2533,7 +2939,14 @@
             "type": "letter",
             "letter": "E"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "What a certain applicant becomes"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Connect",
@@ -2560,7 +2973,14 @@
             "type": "letter",
             "letter": "N"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Connect"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Particular form of a published text",
@@ -2599,7 +3019,14 @@
             "type": "letter",
             "letter": "N"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Particular form of a published text"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Suffix at the end of all of Eevee's evolutions",
@@ -2622,7 +3049,14 @@
             "type": "letter",
             "letter": "N"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Suffix at the end of all of Eevee's evolutions"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Live and ___ Die",
@@ -2645,7 +3079,14 @@
             "type": "letter",
             "letter": "T"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Live and ___ Die"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Famous Eastwood whose name became a famous Gorillaz song",
@@ -2676,7 +3117,14 @@
             "type": "letter",
             "letter": "T"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Famous Eastwood whose name became a famous Gorillaz song"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Unexpected result in a sporting competition",
@@ -2707,7 +3155,14 @@
             "type": "letter",
             "letter": "T"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Unexpected result in a sporting competition"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Disfigure",
@@ -2730,7 +3185,14 @@
             "type": "letter",
             "letter": "R"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Disfigure"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "David Lee and Tim",
@@ -2761,7 +3223,14 @@
             "type": "letter",
             "letter": "S"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "David Lee and Tim"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Luxury watch collection by Garmin",
@@ -2788,7 +3257,14 @@
             "type": "letter",
             "letter": "Q"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Luxury watch collection by Garmin"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Top dog in an IT org",
@@ -2811,7 +3287,14 @@
             "type": "letter",
             "letter": "O"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Top dog in an IT org"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Sister ___",
@@ -2834,7 +3317,14 @@
             "type": "letter",
             "letter": "T"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Sister ___"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Author Roald",
@@ -2861,7 +3351,14 @@
             "type": "letter",
             "letter": "L"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Author Roald"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Civil rights activist Parks",
@@ -2888,7 +3385,14 @@
             "type": "letter",
             "letter": "A"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Civil rights activist Parks"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "An additional name that could be part of 40D's clue",
@@ -2911,7 +3415,14 @@
             "type": "letter",
             "letter": "I"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "An additional name that could be part of 40D's clue"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Director's domain",
@@ -2934,7 +3445,14 @@
             "type": "letter",
             "letter": "T"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Director's domain"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Type of income to go in a 401k",
@@ -2969,7 +3487,14 @@
             "type": "letter",
             "letter": "X"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Type of income to go in a 401k"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "The Empire Strikes Back, to the Star Wars saga",
@@ -3000,7 +3525,14 @@
             "type": "letter",
             "letter": "V"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "The Empire Strikes Back, to the Star Wars saga"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Greek letter following 72A",
@@ -3031,7 +3563,14 @@
             "type": "letter",
             "letter": "A"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Greek letter following 72A"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Misplace",
@@ -3058,7 +3597,14 @@
             "type": "letter",
             "letter": "E"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Misplace"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Wee boy",
@@ -3081,7 +3627,14 @@
             "type": "letter",
             "letter": "D"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Wee boy"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Dad to Tommy Pickles",
@@ -3104,7 +3657,14 @@
             "type": "letter",
             "letter": "U"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Dad to Tommy Pickles"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "The only Patrol I trust",
@@ -3127,7 +3687,14 @@
             "type": "letter",
             "letter": "W"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "The only Patrol I trust"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Smart savings plan, briefly",
@@ -3150,7 +3717,14 @@
             "type": "letter",
             "letter": "A"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Smart savings plan, briefly"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Fresh",
@@ -3173,7 +3747,14 @@
             "type": "letter",
             "letter": "W"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Fresh"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Breeds such as Chihuahua or Pomeranian",
@@ -3196,7 +3777,14 @@
             "type": "letter",
             "letter": "Y"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Breeds such as Chihuahua or Pomeranian"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Bega behind \"Mambo No. 5\"",
@@ -3219,7 +3807,14 @@
             "type": "letter",
             "letter": "U"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Bega behind \"Mambo No. 5\""
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Aardvark breakfast",
@@ -3242,7 +3837,14 @@
             "type": "letter",
             "letter": "T"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Aardvark breakfast"
+          ]
+        ],
+        "direction": "down"
       },
       {
         "body": "Sonic ___",
@@ -3265,7 +3867,14 @@
             "type": "letter",
             "letter": "Z"
           }
-        ]
+        ],
+        "display": [
+          [
+            "text",
+            "Sonic ___"
+          ]
+        ],
+        "direction": "down"
       }
     ]
   },
