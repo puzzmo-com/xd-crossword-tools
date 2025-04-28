@@ -1,5 +1,5 @@
 import { getCluePositionsForBoard } from "./clueNumbersFromBoard"
-import type { Tile, CrosswordJSON, MDClueComponent } from "./types"
+import type { Tile, CrosswordJSON, ClueComponentMarkup } from "./types"
 import { runLinterForClue } from "./xdLints"
 import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "./xdparser2.compat"
 
@@ -30,7 +30,7 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
     tiles: string[][]
     clues: Map<
       string,
-      { num: number; question: string; metadata?: Record<string, string>; answer: string; dir: "A" | "D"; bodyMD?: MDClueComponent[] }
+      { num: number; question: string; metadata?: Record<string, string>; answer: string; dir: "A" | "D"; display: ClueComponentMarkup[] }
     >
   } = {
     tiles: [],
@@ -310,8 +310,9 @@ export function xdParser(xd: string, strict = false, editorInfo = false): Crossw
       position: positionData.position,
       tiles,
       metadata: clue.metadata,
+      display: clue.display,
+      direction: dirKey,
       ...(splits ? { splits } : {}),
-      ...(clue.bodyMD ? { bodyMD: clue.bodyMD } : {}),
     })
   }
 
@@ -391,7 +392,7 @@ export function replaceWordWithSymbol(word: string, tiles: Tile[], splitChar: st
   let newWord = ""
 
   let tileIdx = 0
-  let i = 0;
+  let i = 0
   while (i < word.length && tileIdx < tiles.length) {
     const cur = word[i]
 
@@ -404,15 +405,17 @@ export function replaceWordWithSymbol(word: string, tiles: Tile[], splitChar: st
       newWord += cur
     }
 
-
     if (cur !== splitChar) {
       tileIdx++
     }
 
     if (rebusAndNotSplitChar) {
-      // adding in the number of split characters to `i` as well because those dont count as tile characters
+      // adding in the number of split characters to `i` as well because those don't count as tile characters
       // and tile.word.length is a length not including splitChars
-      const numSplitChars = word.slice(i, i + tile.word.length).split("").filter(c => c === splitChar).length
+      const numSplitChars = word
+        .slice(i, i + tile.word.length)
+        .split("")
+        .filter((c) => c === splitChar).length
       i += tile.word.length + numSplitChars
     } else {
       i++
@@ -440,7 +443,7 @@ const clueRegex = /(^.\d*)\.\s(.*)\s\~\s(.*)/
 const clueMetaRegex = /(^.\d*)\s\^(.*):\s(.*?)/
 
 type ClueParserResponse =
-  | { dir: "D" | "A"; num: number; question: string; answer: string; bodyMD?: MDClueComponent[] }
+  | { dir: "D" | "A"; num: number; question: string; answer: string; display: ClueComponentMarkup[] }
   | { dir: "D" | "A"; num: number; metaKey: string; metaValue: string }
   | { dir: "D" | "A" | undefined; num: number | undefined; errorMessage: string }
 
@@ -469,20 +472,7 @@ const clueFromLine = (line: string, num: number): ClueParserResponse => {
       num,
       question: parts[2]!,
       answer: parts[3]!,
-    }
-
-    if (
-      res.question.includes("[") ||
-      res.question.includes("*") ||
-      // res.question.includes("_") ||
-      res.question.includes("/") ||
-      res.question.includes("~")
-    ) {
-      const components = inlineMarkdownParser(res.question)
-      // Don't set if it's just one text (because it had something like `___` in the clue)
-      if (!(components.length === 1 && components[0][0] === "text")) {
-        res.bodyMD = components
-      }
+      display: xdMarkupProcessor(parts[2]!),
     }
 
     return res
@@ -662,7 +652,7 @@ function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string
   const characters = [...answerWithSplits] // account for unicode characters like emojis that could take up more than one utf-16 unit
   for (var i = 0; i < characters.length; i++) {
     if (characters[i] === splitCharacter) {
-      splits.push(characters.slice(0, i).filter(c => c !== splitCharacter).length - 1)
+      splits.push(characters.slice(0, i).filter((c) => c !== splitCharacter).length - 1)
     }
   }
 
@@ -672,96 +662,50 @@ function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string
   return splits
 }
 
-function inlineMarkdownParser(str: string): MDClueComponent[] {
-  const components: MDClueComponent[] = []
-  let token = ""
-  let mode: MDClueComponent[0] = "text"
-  let linkText = ""
+/** xd spec compliant parser for markup inside a clue */
+export function xdMarkupProcessor(input: string): ClueComponentMarkup[] {
+  if (!input) return [["text", ""]]
+  if (!input.includes("{")) return [["text", input]]
 
-  const pushText = () => {
-    if (token.length > 0) {
-      components.push(["text", token])
-      token = ""
+  const components: ClueComponentMarkup[] = []
+  // https://regex101.com/r/JsLIDM/1
+  const regex = /\{([\/\*\_\-\@\~])(.*?)\1\}/g
+  let lastIndex = 0
+
+  let match
+  while ((match = regex.exec(input)) !== null) {
+    if (match.index > lastIndex) {
+      components.push(["text", input.slice(lastIndex, match.index)])
     }
+
+    const typeChar = match[1]
+    const content = match[2]
+
+    switch (typeChar) {
+      case "/":
+        components.push(["italics", content])
+        break
+      case "*":
+        components.push(["bold", content])
+        break
+      case "_":
+        components.push(["underscore", content])
+        break
+      case "-":
+      case "~":
+        components.push(["strike", content])
+        break
+      case "@":
+        components.push(["link", content.split("|")[0], content.split("|")[1]])
+        break
+    }
+
+    lastIndex = regex.lastIndex
   }
 
-  for (let index = 0; index < str.length; index++) {
-    const letter = str.slice(index, index + 1)
-    if (mode === "text") {
-      if (letter === "[") {
-        mode = "link"
-        pushText()
-        continue
-      }
-
-      if (letter === "*") {
-        mode = "bold"
-        pushText()
-        continue
-      }
-
-      // if (letter === "_") {
-      //   let innerI = index + 1
-      //   while (str.slice(innerI + 1, innerI + 2) === "_") {
-      //     innerI++
-      //   }
-      //   const numberOfUnderScoresAfter = innerI - index
-      //   if (numberOfUnderScoresAfter === 1) {
-      //     mode = "italics"
-      //     pushText()
-      //     continue
-      //   }
-      // }
-
-      if (letter === "/") {
-        mode = "italics"
-        pushText()
-        continue
-      }
-
-      if (letter === "~") {
-        mode = "strike"
-        pushText()
-        continue
-      }
-    } else if (mode === "link") {
-      if (letter === "]") {
-        linkText = token
-        token = ""
-        continue
-      } else if (letter === ")") {
-        components.push(["link", linkText, token.slice(1)])
-        token = ""
-        mode = "text"
-        continue
-      }
-    } else if (mode === "bold") {
-      if (letter === "*") {
-        mode = "text"
-        components.push(["bold", token])
-        token = ""
-        continue
-      }
-    } else if (mode === "italics") {
-      // if (letter === "_" || letter === "/") {
-      if (letter === "/" || !letter) {
-        mode = "text"
-        components.push(["italics", token])
-        token = ""
-        continue
-      }
-    } else if (mode === "strike") {
-      if (letter === "~") {
-        mode = "text"
-        components.push(["strike", token])
-        token = ""
-        continue
-      }
-    }
-    token += letter
+  if (lastIndex < input.length) {
+    components.push(["text", input.slice(lastIndex)])
   }
-
-  pushText()
 
   return components
 }

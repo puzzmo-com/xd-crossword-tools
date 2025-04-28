@@ -207,6 +207,13 @@ D3. A conscious tree. ~ BOOK
     {
       "answer": "BULB",
       "body": "Gardener's concern.",
+      "direction": "across",
+      "display": [
+        [
+          "text",
+          "Gardener's concern.",
+        ],
+      ],
       "metadata": undefined,
       "number": 1,
       "position": {
@@ -235,6 +242,13 @@ D3. A conscious tree. ~ BOOK
     {
       "answer": "OK",
       "body": "A reasonable statement.",
+      "direction": "across",
+      "display": [
+        [
+          "text",
+          "A reasonable statement.",
+        ],
+      ],
       "metadata": undefined,
       "number": 4,
       "position": {
@@ -255,6 +269,13 @@ D3. A conscious tree. ~ BOOK
     {
       "answer": "DESK",
       "body": "The office centerpiece.",
+      "direction": "across",
+      "display": [
+        [
+          "text",
+          "The office centerpiece.",
+        ],
+      ],
       "metadata": undefined,
       "number": 5,
       "position": {
@@ -285,6 +306,13 @@ D3. A conscious tree. ~ BOOK
     {
       "answer": "BOLD",
       "body": "To _ly go.",
+      "direction": "down",
+      "display": [
+        [
+          "text",
+          "To _ly go.",
+        ],
+      ],
       "metadata": undefined,
       "number": 1,
       "position": {
@@ -313,6 +341,13 @@ D3. A conscious tree. ~ BOOK
     {
       "answer": "UK",
       "body": "Bigger than britain.",
+      "direction": "down",
+      "display": [
+        [
+          "text",
+          "Bigger than britain.",
+        ],
+      ],
       "metadata": undefined,
       "number": 2,
       "position": {
@@ -333,6 +368,13 @@ D3. A conscious tree. ~ BOOK
     {
       "answer": "BOOK",
       "body": "A conscious tree.",
+      "direction": "down",
+      "display": [
+        [
+          "text",
+          "A conscious tree.",
+        ],
+      ],
       "metadata": undefined,
       "number": 3,
       "position": {
@@ -513,6 +555,13 @@ D2. A thing. ~ OBJECT
     {
       "answer": "OK|GO",
       "body": "Band with two words.",
+      "direction": "across",
+      "display": [
+        [
+          "text",
+          "Band with two words.",
+        ],
+      ],
       "metadata": {
         "answer:unprocessed": "OK|GO",
         "body:line": "18",
@@ -546,6 +595,13 @@ D2. A thing. ~ OBJECT
     {
       "answer": "OH|OH|OH",
       "body": "Reverse santa.",
+      "direction": "down",
+      "display": [
+        [
+          "text",
+          "Reverse santa.",
+        ],
+      ],
       "metadata": {
         "answer:unprocessed": "OH|OH|OH",
         "body:line": "20",
@@ -585,6 +641,13 @@ D2. A thing. ~ OBJECT
     {
       "answer": "OBJECT",
       "body": "A thing.",
+      "direction": "down",
+      "display": [
+        [
+          "text",
+          "A thing.",
+        ],
+      ],
       "metadata": {
         "answer:unprocessed": "OBJECT",
         "body:line": "21",

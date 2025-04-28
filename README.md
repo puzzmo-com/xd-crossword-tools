@@ -110,6 +110,7 @@ Their .puz file turns into this xd:
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.xd) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.xd -->
+
 ```xd
 ## Metadata
 
@@ -251,6 +252,7 @@ O..O#.O.O.#O..O
 .....#...#.....
 O..O.#O.O##O..O
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
  <details>
@@ -258,6 +260,7 @@ O..O.#O.O##O..O
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.json) -->
 <!-- The below code snippet is automatically added from ./tests/output/alpha-bits.json -->
+
 ```json
 {
   "meta": {
@@ -1168,10 +1171,30 @@ O..O.#O.O##O..O
           "col": 0,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "B"
+          }
+        ],
         "metadata": {
           "body:line": "28",
           "answer:unprocessed": "AHAB"
-        }
+        },
+        "display": [["text", "Captain of the Pequod"]],
+        "direction": "across"
       },
       {
         "body": "Food for second chance chewing",
@@ -1181,10 +1204,26 @@ O..O.#O.O##O..O
           "col": 6,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "U"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          }
+        ],
         "metadata": {
           "body:line": "29",
           "answer:unprocessed": "CUD"
-        }
+        },
+        "display": [["text", "Food for second chance chewing"]],
+        "direction": "across"
       },
       {
         "body": "Font feature",
@@ -1194,10 +1233,34 @@ O..O.#O.O##O..O
           "col": 10,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "F"
+          }
+        ],
         "metadata": {
           "body:line": "30",
           "answer:unprocessed": "SERIF"
-        }
+        },
+        "display": [["text", "Font feature"]],
+        "direction": "across"
       },
       {
         "body": "Palindromic address to a female",
@@ -1207,10 +1270,34 @@ O..O.#O.O##O..O
           "col": 0,
           "index": 1
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "M"
+          }
+        ],
         "metadata": {
           "body:line": "31",
           "answer:unprocessed": "MADAM"
-        }
+        },
+        "display": [["text", "Palindromic address to a female"]],
+        "direction": "across"
       },
       {
         "body": "___ Way You Want It",
@@ -1220,10 +1307,26 @@ O..O.#O.O##O..O
           "col": 6,
           "index": 1
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "Y"
+          }
+        ],
         "metadata": {
           "body:line": "32",
           "answer:unprocessed": "ANY"
-        }
+        },
+        "display": [["text", "___ Way You Want It"]],
+        "direction": "across"
       },
       {
         "body": "Place often described as humble",
@@ -1233,10 +1336,34 @@ O..O.#O.O##O..O
           "col": 10,
           "index": 1
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "B"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "33",
           "answer:unprocessed": "ABODE"
-        }
+        },
+        "display": [["text", "Place often described as humble"]],
+        "direction": "across"
       },
       {
         "body": "Flat two dimensional surface in geometry",
@@ -1246,10 +1373,34 @@ O..O.#O.O##O..O
           "col": 0,
           "index": 2
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "34",
           "answer:unprocessed": "PLANE"
-        }
+        },
+        "display": [["text", "Flat two dimensional surface in geometry"]],
+        "direction": "across"
       },
       {
         "body": "Grim homophone of 7D",
@@ -1259,10 +1410,26 @@ O..O.#O.O##O..O
           "col": 6,
           "index": 2
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "35",
           "answer:unprocessed": "DIE"
-        }
+        },
+        "display": [["text", "Grim homophone of 7D"]],
+        "direction": "across"
       },
       {
         "body": "Off",
@@ -1272,10 +1439,34 @@ O..O.#O.O##O..O
           "col": 10,
           "index": 2
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ],
         "metadata": {
           "body:line": "36",
           "answer:unprocessed": "NOTON"
-        }
+        },
+        "display": [["text", "Off"]],
+        "direction": "across"
       },
       {
         "body": "Heading for some lists",
@@ -1285,10 +1476,30 @@ O..O.#O.O##O..O
           "col": 4,
           "index": 3
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          }
+        ],
         "metadata": {
           "body:line": "37",
           "answer:unprocessed": "TODO"
-        }
+        },
+        "display": [["text", "Heading for some lists"]],
+        "direction": "across"
       },
       {
         "body": "Kanye West is famous for his",
@@ -1298,10 +1509,26 @@ O..O.#O.O##O..O
           "col": 9,
           "index": 3
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "G"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          }
+        ],
         "metadata": {
           "body:line": "38",
           "answer:unprocessed": "EGO"
-        }
+        },
+        "display": [["text", "Kanye West is famous for his"]],
+        "direction": "across"
       },
       {
         "body": "Laceration",
@@ -1311,10 +1538,30 @@ O..O.#O.O##O..O
           "col": 0,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "G"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "H"
+          }
+        ],
         "metadata": {
           "body:line": "39",
           "answer:unprocessed": "GASH"
-        }
+        },
+        "display": [["text", "Laceration"]],
+        "direction": "across"
       },
       {
         "body": "Alias of Twitch star Richard Tyler Blevins",
@@ -1324,10 +1571,34 @@ O..O.#O.O##O..O
           "col": 5,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "J"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          }
+        ],
         "metadata": {
           "body:line": "40",
           "answer:unprocessed": "NINJA"
-        }
+        },
+        "display": [["text", "Alias of Twitch star Richard Tyler Blevins"]],
+        "direction": "across"
       },
       {
         "body": "Capsize",
@@ -1337,10 +1608,30 @@ O..O.#O.O##O..O
           "col": 11,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "K"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          }
+        ],
         "metadata": {
           "body:line": "41",
           "answer:unprocessed": "KEEL"
-        }
+        },
+        "display": [["text", "Capsize"]],
+        "direction": "across"
       },
       {
         "body": "Piece of clothing or print",
@@ -1350,10 +1641,42 @@ O..O.#O.O##O..O
           "col": 0,
           "index": 5
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "42",
           "answer:unprocessed": "ARTICLE"
-        }
+        },
+        "display": [["text", "Piece of clothing or print"]],
+        "direction": "across"
       },
       {
         "body": "Evangelical school in Tulsa, OK",
@@ -1363,10 +1686,26 @@ O..O.#O.O##O..O
           "col": 8,
           "index": 5
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "U"
+          }
+        ],
         "metadata": {
           "body:line": "43",
           "answer:unprocessed": "ORU"
-        }
+        },
+        "display": [["text", "Evangelical school in Tulsa, OK"]],
+        "direction": "across"
       },
       {
         "body": "___-eyed",
@@ -1376,10 +1715,26 @@ O..O.#O.O##O..O
           "col": 12,
           "index": 5
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "44",
           "answer:unprocessed": "DOE"
-        }
+        },
+        "display": [["text", "___-eyed"]],
+        "direction": "across"
       },
       {
         "body": "Annual",
@@ -1389,10 +1744,38 @@ O..O.#O.O##O..O
           "col": 0,
           "index": 6
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "Y"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "Y"
+          }
+        ],
         "metadata": {
           "body:line": "45",
           "answer:unprocessed": "YEARLY"
-        }
+        },
+        "display": [["text", "Annual"]],
+        "direction": "across"
       },
       {
         "body": "The stamp with the upside down airplane is a famous one",
@@ -1402,10 +1785,46 @@ O..O.#O.O##O..O
           "col": 7,
           "index": 6
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "46",
           "answer:unprocessed": "MISPRINT"
-        }
+        },
+        "display": [["text", "The stamp with the upside down airplane is a famous one"]],
+        "direction": "across"
       },
       {
         "body": "With 42A and Marcus, a luxury department store chain",
@@ -1415,10 +1834,26 @@ O..O.#O.O##O..O
           "col": 2,
           "index": 7
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          }
+        ],
         "metadata": {
           "body:line": "47",
           "answer:unprocessed": "NEI"
-        }
+        },
+        "display": [["text", "With 42A and Marcus, a luxury department store chain"]],
+        "direction": "across"
       },
       {
         "body": "41A continued",
@@ -1428,10 +1863,26 @@ O..O.#O.O##O..O
           "col": 6,
           "index": 7
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ],
         "metadata": {
           "body:line": "48",
           "answer:unprocessed": "MAN"
-        }
+        },
+        "display": [["text", "41A continued"]],
+        "direction": "across"
       },
       {
         "body": "Lush",
@@ -1441,10 +1892,26 @@ O..O.#O.O##O..O
           "col": 10,
           "index": 7
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "49",
           "answer:unprocessed": "SOT"
-        }
+        },
+        "display": [["text", "Lush"]],
+        "direction": "across"
       },
       {
         "body": "The Mayan one ended in 2012",
@@ -1454,10 +1921,46 @@ O..O.#O.O##O..O
           "col": 0,
           "index": 8
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          }
+        ],
         "metadata": {
           "body:line": "50",
           "answer:unprocessed": "CALENDAR"
-        }
+        },
+        "display": [["text", "The Mayan one ended in 2012"]],
+        "direction": "across"
       },
       {
         "body": "What a child often does to their shoes",
@@ -1467,10 +1970,38 @@ O..O.#O.O##O..O
           "col": 9,
           "index": 8
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          }
+        ],
         "metadata": {
           "body:line": "51",
           "answer:unprocessed": "RETIES"
-        }
+        },
+        "display": [["text", "What a child often does to their shoes"]],
+        "direction": "across"
       },
       {
         "body": "Vanilla ___",
@@ -1480,10 +2011,26 @@ O..O.#O.O##O..O
           "col": 0,
           "index": 9
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "52",
           "answer:unprocessed": "ICE"
-        }
+        },
+        "display": [["text", "Vanilla ___"]],
+        "direction": "across"
       },
       {
         "body": "Maligned cigarette ingredient",
@@ -1493,10 +2040,26 @@ O..O.#O.O##O..O
           "col": 4,
           "index": 9
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          }
+        ],
         "metadata": {
           "body:line": "53",
           "answer:unprocessed": "TAR"
-        }
+        },
+        "display": [["text", "Maligned cigarette ingredient"]],
+        "direction": "across"
       },
       {
         "body": "Frequent cause for a new tire",
@@ -1506,10 +2069,42 @@ O..O.#O.O##O..O
           "col": 8,
           "index": 9
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "54",
           "answer:unprocessed": "POTHOLE"
-        }
+        },
+        "display": [["text", "Frequent cause for a new tire"]],
+        "direction": "across"
       },
       {
         "body": "Los Angeles heavy metal act",
@@ -1519,10 +2114,30 @@ O..O.#O.O##O..O
           "col": 0,
           "index": 10
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "P"
+          }
+        ],
         "metadata": {
           "body:line": "55",
           "answer:unprocessed": "OTEP"
-        }
+        },
+        "display": [["text", "Los Angeles heavy metal act"]],
+        "direction": "across"
       },
       {
         "body": "Bldgs. such as the Googleplex",
@@ -1532,10 +2147,34 @@ O..O.#O.O##O..O
           "col": 5,
           "index": 10
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "Q"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          }
+        ],
         "metadata": {
           "body:line": "56",
           "answer:unprocessed": "HQTRS"
-        }
+        },
+        "display": [["text", "Bldgs. such as the Googleplex"]],
+        "direction": "across"
       },
       {
         "body": "A fit of irritation",
@@ -1545,10 +2184,30 @@ O..O.#O.O##O..O
           "col": 11,
           "index": 10
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "57",
           "answer:unprocessed": "SNIT"
-        }
+        },
+        "display": [["text", "A fit of irritation"]],
+        "direction": "across"
       },
       {
         "body": "Lead-in to American or day",
@@ -1558,10 +2217,26 @@ O..O.#O.O##O..O
           "col": 3,
           "index": 11
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          }
+        ],
         "metadata": {
           "body:line": "58",
           "answer:unprocessed": "ALL"
-        }
+        },
+        "display": [["text", "Lead-in to American or day"]],
+        "direction": "across"
       },
       {
         "body": "What Pokémon do at a Pokémon Center",
@@ -1571,10 +2246,30 @@ O..O.#O.O##O..O
           "col": 7,
           "index": 11
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          }
+        ],
         "metadata": {
           "body:line": "59",
           "answer:unprocessed": "HEAL"
-        }
+        },
+        "display": [["text", "What Pokémon do at a Pokémon Center"]],
+        "direction": "across"
       },
       {
         "body": "Nixon's vice",
@@ -1584,10 +2279,34 @@ O..O.#O.O##O..O
           "col": 0,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          }
+        ],
         "metadata": {
           "body:line": "60",
           "answer:unprocessed": "SPIRO"
-        }
+        },
+        "display": [["text", "Nixon's vice"]],
+        "direction": "across"
       },
       {
         "body": "Nothing but ___",
@@ -1597,10 +2316,26 @@ O..O.#O.O##O..O
           "col": 6,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "61",
           "answer:unprocessed": "NET"
-        }
+        },
+        "display": [["text", "Nothing but ___"]],
+        "direction": "across"
       },
       {
         "body": "One with the world on his shoulders",
@@ -1610,10 +2345,34 @@ O..O.#O.O##O..O
           "col": 10,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          }
+        ],
         "metadata": {
           "body:line": "62",
           "answer:unprocessed": "ATLAS"
-        }
+        },
+        "display": [["text", "One with the world on his shoulders"]],
+        "direction": "across"
       },
       {
         "body": "Filled pastries",
@@ -1623,10 +2382,34 @@ O..O.#O.O##O..O
           "col": 0,
           "index": 13
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          }
+        ],
         "metadata": {
           "body:line": "63",
           "answer:unprocessed": "TARTS"
-        }
+        },
+        "display": [["text", "Filled pastries"]],
+        "direction": "across"
       },
       {
         "body": "Age, in Milan",
@@ -1636,10 +2419,26 @@ O..O.#O.O##O..O
           "col": 6,
           "index": 13
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          }
+        ],
         "metadata": {
           "body:line": "64",
           "answer:unprocessed": "ETA"
-        }
+        },
+        "display": [["text", "Age, in Milan"]],
+        "direction": "across"
       },
       {
         "body": "Lorna ___, novel or cookie",
@@ -1649,10 +2448,34 @@ O..O.#O.O##O..O
           "col": 10,
           "index": 13
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "65",
           "answer:unprocessed": "DOONE"
-        }
+        },
+        "display": [["text", "Lorna ___, novel or cookie"]],
+        "direction": "across"
       },
       {
         "body": "Electrocardiogram readout feature",
@@ -1662,10 +2485,34 @@ O..O.#O.O##O..O
           "col": 0,
           "index": 14
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "U"
+          },
+          {
+            "type": "letter",
+            "letter": "W"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "V"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "66",
           "answer:unprocessed": "UWAVE"
-        }
+        },
+        "display": [["text", "Electrocardiogram readout feature"]],
+        "direction": "across"
       },
       {
         "body": "Hip slang for records",
@@ -1675,10 +2522,26 @@ O..O.#O.O##O..O
           "col": 6,
           "index": 14
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "W"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "X"
+          }
+        ],
         "metadata": {
           "body:line": "67",
           "answer:unprocessed": "WAX"
-        }
+        },
+        "display": [["text", "Hip slang for records"]],
+        "direction": "across"
       },
       {
         "body": "Yiddish for a foolish person",
@@ -1688,10 +2551,30 @@ O..O.#O.O##O..O
           "col": 11,
           "index": 14
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "Y"
+          },
+          {
+            "type": "letter",
+            "letter": "U"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "Z"
+          }
+        ],
         "metadata": {
           "body:line": "68",
           "answer:unprocessed": "YUTZ"
-        }
+        },
+        "display": [["text", "Yiddish for a foolish person"]],
+        "direction": "across"
       }
     ],
     "down": [
@@ -1703,10 +2586,26 @@ O..O.#O.O##O..O
           "col": 0,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "P"
+          }
+        ],
         "metadata": {
           "body:line": "70",
           "answer:unprocessed": "AMP"
-        }
+        },
+        "display": [["text", "Pc. of concert gear"]],
+        "direction": "down"
       },
       {
         "body": "AI antagonist of 2001",
@@ -1716,10 +2615,26 @@ O..O.#O.O##O..O
           "col": 1,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          }
+        ],
         "metadata": {
           "body:line": "71",
           "answer:unprocessed": "HAL"
-        }
+        },
+        "display": [["text", "AI antagonist of 2001"]],
+        "direction": "down"
       },
       {
         "body": "Programming pioneer Lovelace",
@@ -1729,10 +2644,26 @@ O..O.#O.O##O..O
           "col": 2,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          }
+        ],
         "metadata": {
           "body:line": "72",
           "answer:unprocessed": "ADA"
-        }
+        },
+        "display": [["text", "Programming pioneer Lovelace"]],
+        "direction": "down"
       },
       {
         "body": "Prohibit",
@@ -1742,10 +2673,26 @@ O..O.#O.O##O..O
           "col": 3,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "B"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ],
         "metadata": {
           "body:line": "73",
           "answer:unprocessed": "BAN"
-        }
+        },
+        "display": [["text", "Prohibit"]],
+        "direction": "down"
       },
       {
         "body": "Type of person to routinely carry a club",
@@ -1755,10 +2702,38 @@ O..O.#O.O##O..O
           "col": 6,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "74",
           "answer:unprocessed": "CADDIE"
-        }
+        },
+        "display": [["text", "Type of person to routinely carry a club"]],
+        "direction": "down"
       },
       {
         "body": "State of the ___ Address",
@@ -1768,10 +2743,34 @@ O..O.#O.O##O..O
           "col": 7,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "U"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ],
         "metadata": {
           "body:line": "75",
           "answer:unprocessed": "UNION"
-        }
+        },
+        "display": [["text", "State of the ___ Address"]],
+        "direction": "down"
       },
       {
         "body": "Colorful homophone of 18A",
@@ -1781,10 +2780,26 @@ O..O.#O.O##O..O
           "col": 8,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "Y"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "76",
           "answer:unprocessed": "DYE"
-        }
+        },
+        "display": [["text", "Colorful homophone of 18A"]],
+        "direction": "down"
       },
       {
         "body": "Snitched",
@@ -1794,10 +2809,30 @@ O..O.#O.O##O..O
           "col": 10,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "G"
+          }
+        ],
         "metadata": {
           "body:line": "77",
           "answer:unprocessed": "SANG"
-        }
+        },
+        "display": [["text", "Snitched"]],
+        "direction": "down"
       },
       {
         "body": "Kindle fare",
@@ -1807,10 +2842,34 @@ O..O.#O.O##O..O
           "col": 11,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "B"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "K"
+          }
+        ],
         "metadata": {
           "body:line": "78",
           "answer:unprocessed": "EBOOK"
-        }
+        },
+        "display": [["text", "Kindle fare"]],
+        "direction": "down"
       },
       {
         "body": "Decayed matter",
@@ -1820,10 +2879,26 @@ O..O.#O.O##O..O
           "col": 12,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "79",
           "answer:unprocessed": "ROT"
-        }
+        },
+        "display": [["text", "Decayed matter"]],
+        "direction": "down"
       },
       {
         "body": "Type of response you hope to get at the altar",
@@ -1833,10 +2908,26 @@ O..O.#O.O##O..O
           "col": 13,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          }
+        ],
         "metadata": {
           "body:line": "80",
           "answer:unprocessed": "IDO"
-        }
+        },
+        "display": [["text", "Type of response you hope to get at the altar"]],
+        "direction": "down"
       },
       {
         "body": "Peat-accumulating wetland",
@@ -1846,10 +2937,26 @@ O..O.#O.O##O..O
           "col": 14,
           "index": 0
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "F"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ],
         "metadata": {
           "body:line": "81",
           "answer:unprocessed": "FEN"
-        }
+        },
+        "display": [["text", "Peat-accumulating wetland"]],
+        "direction": "down"
       },
       {
         "body": "The ___, NY art museum",
@@ -1859,10 +2966,26 @@ O..O.#O.O##O..O
           "col": 4,
           "index": 1
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "82",
           "answer:unprocessed": "MET"
-        }
+        },
+        "display": [["text", "The ___, NY art museum"]],
+        "direction": "down"
       },
       {
         "body": "___Fans",
@@ -1872,10 +2995,30 @@ O..O.#O.O##O..O
           "col": 5,
           "index": 3
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "Y"
+          }
+        ],
         "metadata": {
           "body:line": "83",
           "answer:unprocessed": "ONLY"
-        }
+        },
+        "display": [["text", "___Fans"]],
+        "direction": "down"
       },
       {
         "body": "Friends, Romans, countrymen, lend me your...",
@@ -1885,10 +3028,30 @@ O..O.#O.O##O..O
           "col": 9,
           "index": 3
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          }
+        ],
         "metadata": {
           "body:line": "84",
           "answer:unprocessed": "EARS"
-        }
+        },
+        "display": [["text", "Friends, Romans, countrymen, lend me your..."]],
+        "direction": "down"
       },
       {
         "body": "\"Friend of Dorothy\"",
@@ -1898,10 +3061,26 @@ O..O.#O.O##O..O
           "col": 0,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "G"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "Y"
+          }
+        ],
         "metadata": {
           "body:line": "85",
           "answer:unprocessed": "GAY"
-        }
+        },
+        "display": [["text", "\"Friend of Dorothy\""]],
+        "direction": "down"
       },
       {
         "body": "We ___ the Champions",
@@ -1911,10 +3090,26 @@ O..O.#O.O##O..O
           "col": 1,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "86",
           "answer:unprocessed": "ARE"
-        }
+        },
+        "display": [["text", "We ___ the Champions"]],
+        "direction": "down"
       },
       {
         "body": "Father of Spider-Man",
@@ -1924,10 +3119,42 @@ O..O.#O.O##O..O
           "col": 2,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "87",
           "answer:unprocessed": "STANLEE"
-        }
+        },
+        "display": [["text", "Father of Spider-Man"]],
+        "direction": "down"
       },
       {
         "body": "What a certain applicant becomes",
@@ -1937,10 +3164,34 @@ O..O.#O.O##O..O
           "col": 3,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "88",
           "answer:unprocessed": "HIREE"
-        }
+        },
+        "display": [["text", "What a certain applicant becomes"]],
+        "direction": "down"
       },
       {
         "body": "Connect",
@@ -1950,10 +3201,30 @@ O..O.#O.O##O..O
           "col": 8,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "J"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ],
         "metadata": {
           "body:line": "89",
           "answer:unprocessed": "JOIN"
-        }
+        },
+        "display": [["text", "Connect"]],
+        "direction": "down"
       },
       {
         "body": "Particular form of a published text",
@@ -1963,10 +3234,42 @@ O..O.#O.O##O..O
           "col": 12,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ],
         "metadata": {
           "body:line": "90",
           "answer:unprocessed": "EDITION"
-        }
+        },
+        "display": [["text", "Particular form of a published text"]],
+        "direction": "down"
       },
       {
         "body": "Suffix at the end of all of Eevee's evolutions",
@@ -1976,10 +3279,26 @@ O..O.#O.O##O..O
           "col": 13,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          }
+        ],
         "metadata": {
           "body:line": "91",
           "answer:unprocessed": "EON"
-        }
+        },
+        "display": [["text", "Suffix at the end of all of Eevee's evolutions"]],
+        "direction": "down"
       },
       {
         "body": "Live and ___ Die",
@@ -1989,10 +3308,26 @@ O..O.#O.O##O..O
           "col": 14,
           "index": 4
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "92",
           "answer:unprocessed": "LET"
-        }
+        },
+        "display": [["text", "Live and ___ Die"]],
+        "direction": "down"
       },
       {
         "body": "Famous Eastwood whose name became a famous Gorillaz song",
@@ -2002,10 +3337,34 @@ O..O.#O.O##O..O
           "col": 4,
           "index": 5
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "93",
           "answer:unprocessed": "CLINT"
-        }
+        },
+        "display": [["text", "Famous Eastwood whose name became a famous Gorillaz song"]],
+        "direction": "down"
       },
       {
         "body": "Unexpected result in a sporting competition",
@@ -2015,10 +3374,34 @@ O..O.#O.O##O..O
           "col": 10,
           "index": 5
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "U"
+          },
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "94",
           "answer:unprocessed": "UPSET"
-        }
+        },
+        "display": [["text", "Unexpected result in a sporting competition"]],
+        "direction": "down"
       },
       {
         "body": "Disfigure",
@@ -2028,10 +3411,26 @@ O..O.#O.O##O..O
           "col": 7,
           "index": 6
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          }
+        ],
         "metadata": {
           "body:line": "95",
           "answer:unprocessed": "MAR"
-        }
+        },
+        "display": [["text", "Disfigure"]],
+        "direction": "down"
       },
       {
         "body": "David Lee and Tim",
@@ -2041,10 +3440,34 @@ O..O.#O.O##O..O
           "col": 11,
           "index": 6
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          }
+        ],
         "metadata": {
           "body:line": "96",
           "answer:unprocessed": "ROTHS"
-        }
+        },
+        "display": [["text", "David Lee and Tim"]],
+        "direction": "down"
       },
       {
         "body": "Luxury watch collection by Garmin",
@@ -2054,10 +3477,30 @@ O..O.#O.O##O..O
           "col": 6,
           "index": 7
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "M"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "Q"
+          }
+        ],
         "metadata": {
           "body:line": "97",
           "answer:unprocessed": "MARQ"
-        }
+        },
+        "display": [["text", "Luxury watch collection by Garmin"]],
+        "direction": "down"
       },
       {
         "body": "Top dog in an IT org",
@@ -2067,10 +3510,26 @@ O..O.#O.O##O..O
           "col": 0,
           "index": 8
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          }
+        ],
         "metadata": {
           "body:line": "98",
           "answer:unprocessed": "CIO"
-        }
+        },
+        "display": [["text", "Top dog in an IT org"]],
+        "direction": "down"
       },
       {
         "body": "Sister ___",
@@ -2080,10 +3539,26 @@ O..O.#O.O##O..O
           "col": 1,
           "index": 8
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "C"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "99",
           "answer:unprocessed": "ACT"
-        }
+        },
+        "display": [["text", "Sister ___"]],
+        "direction": "down"
       },
       {
         "body": "Author Roald",
@@ -2093,10 +3568,30 @@ O..O.#O.O##O..O
           "col": 5,
           "index": 8
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "D"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          }
+        ],
         "metadata": {
           "body:line": "100",
           "answer:unprocessed": "DAHL"
-        }
+        },
+        "display": [["text", "Author Roald"]],
+        "direction": "down"
       },
       {
         "body": "Civil rights activist Parks",
@@ -2106,10 +3601,30 @@ O..O.#O.O##O..O
           "col": 9,
           "index": 8
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          }
+        ],
         "metadata": {
           "body:line": "101",
           "answer:unprocessed": "ROSA"
-        }
+        },
+        "display": [["text", "Civil rights activist Parks"]],
+        "direction": "down"
       },
       {
         "body": "An additional name that could be part of 40D's clue",
@@ -2119,10 +3634,26 @@ O..O.#O.O##O..O
           "col": 13,
           "index": 8
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "I"
+          }
+        ],
         "metadata": {
           "body:line": "102",
           "answer:unprocessed": "ELI"
-        }
+        },
+        "display": [["text", "An additional name that could be part of 40D's clue"]],
+        "direction": "down"
       },
       {
         "body": "Director's domain",
@@ -2132,10 +3663,26 @@ O..O.#O.O##O..O
           "col": 14,
           "index": 8
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "103",
           "answer:unprocessed": "SET"
-        }
+        },
+        "display": [["text", "Director's domain"]],
+        "direction": "down"
       },
       {
         "body": "Type of income to go in a 401k",
@@ -2145,10 +3692,38 @@ O..O.#O.O##O..O
           "col": 8,
           "index": 9
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "X"
+          }
+        ],
         "metadata": {
           "body:line": "104",
           "answer:unprocessed": "PRETAX"
-        }
+        },
+        "display": [["text", "Type of income to go in a 401k"]],
+        "direction": "down"
       },
       {
         "body": "The Empire Strikes Back, to the Star Wars saga",
@@ -2158,10 +3733,34 @@ O..O.#O.O##O..O
           "col": 3,
           "index": 10
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "V"
+          }
+        ],
         "metadata": {
           "body:line": "105",
           "answer:unprocessed": "PARTV"
-        }
+        },
+        "display": [["text", "The Empire Strikes Back, to the Star Wars saga"]],
+        "direction": "down"
       },
       {
         "body": "Greek letter following 72A",
@@ -2171,10 +3770,34 @@ O..O.#O.O##O..O
           "col": 7,
           "index": 10
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "H"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          }
+        ],
         "metadata": {
           "body:line": "106",
           "answer:unprocessed": "THETA"
-        }
+        },
+        "display": [["text", "Greek letter following 72A"]],
+        "direction": "down"
       },
       {
         "body": "Misplace",
@@ -2184,10 +3807,30 @@ O..O.#O.O##O..O
           "col": 4,
           "index": 11
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          }
+        ],
         "metadata": {
           "body:line": "107",
           "answer:unprocessed": "LOSE"
-        }
+        },
+        "display": [["text", "Misplace"]],
+        "direction": "down"
       },
       {
         "body": "Wee boy",
@@ -2197,10 +3840,26 @@ O..O.#O.O##O..O
           "col": 10,
           "index": 11
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "D"
+          }
+        ],
         "metadata": {
           "body:line": "108",
           "answer:unprocessed": "LAD"
-        }
+        },
+        "display": [["text", "Wee boy"]],
+        "direction": "down"
       },
       {
         "body": "Dad to Tommy Pickles",
@@ -2210,10 +3869,26 @@ O..O.#O.O##O..O
           "col": 0,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "U"
+          }
+        ],
         "metadata": {
           "body:line": "109",
           "answer:unprocessed": "STU"
-        }
+        },
+        "display": [["text", "Dad to Tommy Pickles"]],
+        "direction": "down"
       },
       {
         "body": "The only Patrol I trust",
@@ -2223,10 +3898,26 @@ O..O.#O.O##O..O
           "col": 1,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "P"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "W"
+          }
+        ],
         "metadata": {
           "body:line": "110",
           "answer:unprocessed": "PAW"
-        }
+        },
+        "display": [["text", "The only Patrol I trust"]],
+        "direction": "down"
       },
       {
         "body": "Smart savings plan, briefly",
@@ -2236,10 +3927,26 @@ O..O.#O.O##O..O
           "col": 2,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "I"
+          },
+          {
+            "type": "letter",
+            "letter": "R"
+          },
+          {
+            "type": "letter",
+            "letter": "A"
+          }
+        ],
         "metadata": {
           "body:line": "111",
           "answer:unprocessed": "IRA"
-        }
+        },
+        "display": [["text", "Smart savings plan, briefly"]],
+        "direction": "down"
       },
       {
         "body": "Fresh",
@@ -2249,10 +3956,26 @@ O..O.#O.O##O..O
           "col": 6,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "W"
+          }
+        ],
         "metadata": {
           "body:line": "112",
           "answer:unprocessed": "NEW"
-        }
+        },
+        "display": [["text", "Fresh"]],
+        "direction": "down"
       },
       {
         "body": "Breeds such as Chihuahua or Pomeranian",
@@ -2262,10 +3985,26 @@ O..O.#O.O##O..O
           "col": 11,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "T"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "Y"
+          }
+        ],
         "metadata": {
           "body:line": "113",
           "answer:unprocessed": "TOY"
-        }
+        },
+        "display": [["text", "Breeds such as Chihuahua or Pomeranian"]],
+        "direction": "down"
       },
       {
         "body": "Bega behind \"Mambo No. 5\"",
@@ -2275,10 +4014,26 @@ O..O.#O.O##O..O
           "col": 12,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "L"
+          },
+          {
+            "type": "letter",
+            "letter": "O"
+          },
+          {
+            "type": "letter",
+            "letter": "U"
+          }
+        ],
         "metadata": {
           "body:line": "114",
           "answer:unprocessed": "LOU"
-        }
+        },
+        "display": [["text", "Bega behind \"Mambo No. 5\""]],
+        "direction": "down"
       },
       {
         "body": "Aardvark breakfast",
@@ -2288,10 +4043,26 @@ O..O.#O.O##O..O
           "col": 13,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "A"
+          },
+          {
+            "type": "letter",
+            "letter": "N"
+          },
+          {
+            "type": "letter",
+            "letter": "T"
+          }
+        ],
         "metadata": {
           "body:line": "115",
           "answer:unprocessed": "ANT"
-        }
+        },
+        "display": [["text", "Aardvark breakfast"]],
+        "direction": "down"
       },
       {
         "body": "Sonic ___",
@@ -2301,10 +4072,26 @@ O..O.#O.O##O..O
           "col": 14,
           "index": 12
         },
+        "tiles": [
+          {
+            "type": "letter",
+            "letter": "S"
+          },
+          {
+            "type": "letter",
+            "letter": "E"
+          },
+          {
+            "type": "letter",
+            "letter": "Z"
+          }
+        ],
         "metadata": {
           "body:line": "116",
           "answer:unprocessed": "SEZ"
-        }
+        },
+        "display": [["text", "Sonic ___"]],
+        "direction": "down"
       }
     ]
   },
@@ -2493,99 +4280,26 @@ O..O.#O.O##O..O
       }
     },
     "positions": [
-      [
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O"
-      ],
+      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
       [],
       [],
       [],
-      [
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O"
-      ],
+      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
       [],
       [],
-      [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "O",
-        null,
-        "O"
-      ],
+      [null, null, null, null, null, null, "O", null, "O"],
       [],
       [],
-      [
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O"
-      ],
+      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
       [],
       [],
       [],
-      [
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        "O",
-        null,
-        null,
-        "O",
-        null,
-        null,
-        "O"
-      ]
+      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"]
     ]
   }
 }
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 </details>
@@ -2596,97 +4310,98 @@ This lib creates `xd` compatible files, but also extends the format in a way tha
 
 #### Structural
 
-- Headers - `xd` out of the box has an implicit order:
+Headers - `xd` out of the box has an implicit order:
 
-  - Meta
-  - Grid
-  - Clues
-  - Notes (optional)
+- Meta
+- Grid
+- Clues
+- Notes (optional)
 
-  This library respects that behavior, but also supports a markdown header format whereby you could write an `xd` document like:
-
-  ```md
-  ## Metadata
-
-  Title: Square
-  Author: Orta
-  Editor: Orta Therox
-  Date: 2021-03-16
-
-  ## Grid
-
-  BULB
-  OK#O
-  L##O
-  DESK
-
-  ## Clues
-
-  A1. Gardener's concern. ~ BULB
-  A4. A reasonable statement. ~ OK
-  A5. The office centerpiece. ~ DESK
-
-  D1. To \_ly go. ~ BOLD
-  D2. Bigger than britain. ~ UK
-  D3. A conscious tree. ~ BOOK
-  ```
-
-  This makes the sections a bit more explicit (and conceptually more user-friendly if you have not read the xd documentation ahead of seeing the file) and frees the order in which someone could write a document. Capitalization is ignored.
-
-- ##### Clue Metadata
-
-  You can add arbitrary metadata to clues by repeating the clue with a custom suffix:
-
-  ```md
-  A1. Gardener's concerns with A2 and D4. ~ BULB
-  A1 ^Hint: Turned on to illuminate a room.
-  A1 ^Refs: A2 D4
-
-  A4. A reasonable statement. ~ OK
-  A4 ^Hint: All \_\_.
-
-  A5. The office centerpiece. ~ DESK
-  A5 ^Hint: Fried.
-
-  D1. To \_ly go. ~ BOLD
-  D1 ^Hint: When you want to make some text stronger.
-
-  D2. Bigger than britain. ~ UK
-  D2 ^Hint: A union which left europe.
-
-  D3. A conscious tree. ~ BOOK
-  D3 ^Hint: Registering with a restaurant. ~ BOOK
-  ```
-
-  Capitalization is ignored, the metadata prefix will always be given as lowercase inside the JSON representation.
-
-- ##### Markdown/HTML style comments
-
-  In markdown you can write `<!--` and `-->` to comment out a section of your code. Our implementation is not _super_ smart:
-
-  <!-- prettier-ignore -->
-  ```html
-  ## Metadata
-
-  <!--  WIP: Maybe it should be called rectangle? -->
-
-  Title: Square
-  Author: Orta
-  Editor: Orta Therox
-
-  <!--
-  Date: 2021-03-16
-  -->
-  ```
-
-  The key is that a line has to start with `<!--` and eventually the same or another line has to **end** with `-->`.
-
-- ##### Markdown clue syntax
-
-When a clue is written in markdown, it will be parsed into a JSON representation that can be used to render the clue in a UI. The markdown syntax is limited, but should be enough to cover most cases. The syntax is:
+This library respects that behavior, but also supports a markdown header format whereby you could write an `xd` document like:
 
 ```md
-A1. [Captain](https://github.com/orta) _of_ /the/ ship Pequod ~ AHAB
+## Metadata
+
+Title: Square
+Author: Orta
+Editor: Orta Therox
+Date: 2021-03-16
+
+## Grid
+
+BULB
+OK#O
+L##O
+DESK
+
+## Clues
+
+A1. Gardener's concern. ~ BULB
+A4. A reasonable statement. ~ OK
+A5. The office centerpiece. ~ DESK
+
+D1. To \_ly go. ~ BOLD
+D2. Bigger than britain. ~ UK
+D3. A conscious tree. ~ BOOK
+```
+
+This makes the sections a bit more explicit (and conceptually more user-friendly if you have not read the xd documentation ahead of seeing the file) and frees the order in which someone could write a document. Capitalization is ignored.
+
+##### Clue Metadata
+
+You can add arbitrary metadata to clues by repeating the clue with a custom suffix:
+
+```md
+A1. Gardener's concerns with A2 and D4. ~ BULB
+A1 ^Hint: Turned on to illuminate a room.
+A1 ^Refs: A2 D4
+
+A4. A reasonable statement. ~ OK
+A4 ^Hint: All \_\_.
+
+A5. The office centerpiece. ~ DESK
+A5 ^Hint: Fried.
+
+D1. To \_ly go. ~ BOLD
+D1 ^Hint: When you want to make some text stronger.
+
+D2. Bigger than britain. ~ UK
+D2 ^Hint: A union which left europe.
+
+D3. A conscious tree. ~ BOOK
+D3 ^Hint: Registering with a restaurant. ~ BOOK
+```
+
+Capitalization is ignored, the metadata prefix will always be given as lowercase inside the JSON representation.
+
+##### Markdown/HTML style comments
+
+In markdown you can write `<!--` and `-->` to comment out a section of your code. Our implementation is not _super_ smart:
+
+<!-- prettier-ignore -->
+```html
+## Metadata
+
+<!--  WIP: Maybe it should be called rectangle? -->
+
+Title: Square
+Author: Orta
+Editor: Orta Therox
+
+<!--
+Date: 2021-03-16
+-->
+```
+
+The key is that a line has to start with `<!--` and eventually the same or another line has to **end** with `-->`.
+
+##### Markup in Clues
+
+The [xd spec](https://github.com/century-arcade/xd/blob/master/doc/xd-format.md#clues-section-3) defines markup inside a clue as roughly being "markdown sigil's wrapped in `{` and `}`". We support this format, and will always fill out a key of `markup` which is an array of components. We also add support for links via this syntax: `{@text|url@}`.
+
+<!-- prettier-ignore -->
+```md
+A1. {/Captain/}, {*of*}, {_the_}, ship {-pequod-} {@see here|https://mylink.com@} ~ AHAB
 ```
 
 Which will add the optional `"bodyMD"` to the clue:
@@ -2694,89 +4409,97 @@ Which will add the optional `"bodyMD"` to the clue:
 ```json
 {
   "answer": "AHAB",
-  "body": "[Captain](https://github.com/orta) *of* /the/ ship Pequod",
-  "bodyMD": [
-    ["link", "Captain", "https://github.com/orta"],
-    ["text", " "],
+  "body": "{/Captain/}, {*of*}, {_the_}, ship {-pequod-} {@see here|https://mylink.com@}",
+  "display": [
+    ["italics", "Captain"],
+    ["text", ", "],
     ["bold", "of"],
+    ["text", ", "],
+    ["underscore", "the"],
+    ["text", ", ship "],
+    ["strike", "pequod"],
     ["text", " "],
-    ["italics", "the"],
-    ["text", " ship Pequod"]
+    ["link", "see here", "https://mylink.com"]
   ]
 }
 ```
 
-- Italics `/word/` or `/a phrase/` (not `_word_` because `_` is often used as a "gap" in the clue text)
-- Bold: `*word*` or `*a phrase*`
-- Strike through: `~word~` or `~a phrase~`
-- Link: `[text](url)`
+- Italics: `{/`<kbd>words</kbd>`/}`
+- Bold: `{*`<kbd>words</kbd>`*}`
+- Strike through: `{-`<kbd>words</kbd>`-}` - Note: that we also support `{~`<kbd>words</kbd>`~}` because that feels more natural
+- Underline: `{_`<kbd>words</kbd>`_}`
+- Link: `{@`<kbd>words</kbd>`|`<kbd>url</kbd>`@}`
 
-- ##### Split character
+##### Split character
 
-  Provide hints for where one word terminates and the next begins in a single solution by declaring `SplitCharacter: {character}` in `Metadata`, and adding the chosen SplitCharacter between words in `Clues`.
+Provide hints for where one word terminates and the next begins in a single solution by declaring `SplitCharacter: {character}` in `Metadata`, and adding the chosen SplitCharacter between words in `Clues`.
 
-  ```
-  ## Metadata
-  SplitCharacter: |
+```
+## Metadata
+SplitCharacter: |
 
-  ## Clues
-  …
-  D25. Father of Spider-Man ~ STAN|LEE
-  ```
+## Clues
+…
+D25. Father of Spider-Man ~ STAN|LEE
+```
 
-  The 'answer' given from the parser here will be 'STANLEE', but the indexes for each bar will be noted in the clue.
+The 'answer' given from the parser here will be 'STANLEE', but the indexes for each bar will be noted in the clue.
 
 ### Spec-Breaking Differences
 
-We want to highlight that 'Clue Metadata', 'Comments' and 'Split Characters' are all spec-breaking extensions. E.g. a parser which conforms exactly to the xd spec would likely choke when seeing these features.
+We want to highlight that 'Comments', 'Split Characters' and some markup extensions are all spec-breaking. E.g. a parser which conforms exactly to the xd spec would likely choke when seeing these features.
 
-We'd be open to a variant of our `JSONToXD` function which produces spec-compliant versions of the xd files instead of just our extensions.
+Otherwise, we keep all extensions inside a unique section which another xp parser would know to NOOP on.
 
 #### Metadata
 
-- [Shrodinger's Squares](https://www.xwordinfo.com/Quantum). It's likely that a special form of Rebus will work here, for example:
+**Not yet supported**: This is our guess
 
-  ```
-  Rebus: 1=M|F
-  ```
+[Shrodinger's Squares](https://www.xwordinfo.com/Quantum). It's likely that a special form of Rebus will work here, for example:
 
-  Indicates to the game engine that the rebus for `1` on the grid can be _either_ `M` or `F`.
+```
+Rebus: 1=M|F
+```
 
-  ```
-  Rebus: 1=M&F 2=L&T
-  ```
+Indicates to the game engine that the rebus for `1` on the grid can be _either_ `M` or `F`.
 
-  Indicates to the game engine that the rebus for `1` on the grid can be _either_ `M` or `F`, but that the side needs to be respected across all possible rebuses in the clue. So for `M1L2` you could have `MALE` and `FATE`but not `FALE` or `MATE`.
+```
+Rebus: 1=M&F 2=L&T
+```
 
-#### Notes
+Indicates to the game engine that the rebus for `1` on the grid can be _either_ `M` or `F`, but that the side needs to be respected across all possible rebuses in the clue. So for `M1L2` you could have `MALE` and `FATE`but not `FALE` or `MATE`.
+
+#### Aesthetics
+
+The xd spec is built for isplaying a large corpus of finished Crosswords, we use it for creation of new ones. This means we have a few extensions to the format to make it easier to write puzzles.
 
 - `## Design`
 
-  This is our WIP extension to describe the visual aspects of individual cells. The `xd` format uses lowercase letters in the grid to indicate a particular special trait (for example having a circle background.) We are looking at describing a more complex set of visual attributes, and so the puz -> xd parser uses a new section to indicate the design attributes in a manner similar to how rebuses are handled.
+This is our extension to describe the visual aspects of individual cells. The `xd` format uses lowercase letters in the grid to indicate a particular special trait (for example having a circle background.) We are looking at describing a more complex set of visual attributes, and so the puz -> xd parser uses a new section to indicate the design attributes in a manner similar to how rebuses are handled.
 
-  ```md
-  ## Design
+```md
+## Design
 
-  <style>
-  O { background: circle }
-  </style>
+<style>
+O { background: circle }
+</style>
 
-  ....###...#....
-  ....##....#....
-  ....#.....#....
-  ............###
-  ...#....##....#
-  ......#....O...
-  ##...#....#O...
-  ..O....#...O...
-  ..O.#....#.O.##
-  ..O.....#..O...
-  #.OO.##....#O..
-  ###O........O..
-  ...O#.....#.O..
-  ...O#....##.O..
-  ...O#...###.O..
-  ```
+....###...#....
+....##....#....
+....#.....#....
+............###
+...#....##....#
+......#....O...
+##...#....#O...
+..O....#...O...
+..O.#....#.O.##
+..O.....#..O...
+#.OO.##....#O..
+###O........O..
+...O#.....#.O..
+...O#....##.O..
+...O#...###.O..
+```
 
 - `## Start`
 

@@ -1,5 +1,46 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 8.0.1
+
+After 3 separate attempts to figure out markup support in clues, we've settled on the xd spec compliant version of "markdown with a curly brace."
+
+In the process we've dropped `bodyMD` as an optional field on a clue, and switched over to having a "display" field on the clue which should really always be used when presenting a clue for user-facing cases. It is a tuple array indicating how to present chunks of the clue incrementally.
+
+<!-- prettier-ignore -->
+```md
+A1. {/Captain/}, {*of*}, {_the_}, ship {-pequod-} {@see here|https://mylink.com@} ~ AHAB
+```
+
+Turns into:
+
+```json
+{
+  "answer": "AHAB",
+  "body": "{/Captain/}, {*of*}, {_the_}, ship {-pequod-} {@see here|https://mylink.com@}",
+  "display": [
+    ["italics", "Captain"],
+    ["text", ", "],
+    ["bold", "of"],
+    ["text", ", "],
+    ["underscore", "the"],
+    ["text", ", ship "],
+    ["strike", "pequod"],
+    ["text", " "],
+    ["link", "see here", "https://mylink.com"]
+  ]
+}
+```
+
+Also adds "direction" on the clue, it's a tiny micro-optimization, but when you are writing tools which interact with clues, you're often keeping track of this separately - might as well move it inline properly.
+
+### 7.x.x
+
+A brief sojourn into using BBCode as the markup language for clues.
+
+### 6.6.0
+
+A chunky re-write of the markdown parser now that it's actually in use at Puzzmo, see the README for an up-to-date look at what we think it should do.
+
 ### 6.3.3
 
 Fixes xd -> JSON -> xd process by converting clue answer to an answer that includes the rebus (if there is one), adding back in pipes/splits (if there are any) and then replacing the rebus symbols back to their word mappings.

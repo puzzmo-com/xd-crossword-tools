@@ -106,29 +106,32 @@ export interface Position {
 }
 
 // Inline elements to handle when rendering clues
-export type MDClueComponent =
+export type ClueComponentMarkup =
   | [type: "text", text: string]
   | [type: "italics", text: string]
   | [type: "bold", text: string]
   | [type: "strike", text: string]
+  | [type: "underscore", text: string]
   | [type: "link", text: string, to: string]
 
 export interface Clue {
-  /** The "clue" as it were */
+  /** The "clue" as a raw string, sans markup processing */
   body: string
-  /** The body as a set of inline markdown components, not a full markdown processor, but a simple enough heuristic */
-  bodyMD?: MDClueComponent[]
+  /** The body as a set of inline markup components, based on the xd spec, you always want to use this for displaying clues to a user */
+  display: ClueComponentMarkup[]
   /** The number, whether it is across or down is handled back at 'clues' */
   number: number
   /** The string after the "~"" - if the clue has a split character than this will not be included */
   answer: string
   /** Filled in metadata giving the location of the first char on the grid */
   position: Position
-  /** tiles that the clue is composed of */
+  /** Tiles that the clue is composed of */
   tiles: Tile[]
+  /** Somewhat redundant, but also useful reference to whether this clue is was created when looking at acrosses or downs */
+  direction: "across" | "down"
   /** If an answer contains a split character, then this would include the indexes where it was used */
   splits?: number[]
-  /** Duplicating a clue and using a meta suffix (e.g. "A23~Hint. A shot to the heart" )
+  /** Duplicating a clue and using a meta suffix (e.g. "A23 ^Hint. A shot to the heart" )
    * would add to { "hint": " A shot to the heart" } to the metadata.
    */
   metadata?: Record<string, string>
