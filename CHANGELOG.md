@@ -1,5 +1,11 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 8.1.0
+
+Adds support for parsing jpz files into xd files using the new `jpzToXD` function.
+
+Also adds a function for re-creating the answer metadata on clues (e.g. the `~ ABC` bit) on an existing `CrosswordJSON` object. Needed this for the jpz parser but it's a useful thing to have in general.
+
 ### 8.0.1
 
 After 3 separate attempts to figure out markup support in clues, we've settled on the xd spec compliant version of "markdown with a curly brace."

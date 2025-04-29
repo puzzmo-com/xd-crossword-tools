@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<crossword-compiler-applet xmlns="http://crossword.info/xml/crossword-compiler">
+  <applet-settings cursor-color="#ffff00" selected-cells-color="#00ff00">
+    <actions buttons-layout="left" graphical-buttons="false"/>
+    <completion only-if-correct="true">Congratulations, you’ve solved the puzzle!</completion>
+  </applet-settings>
+  <rectangular-puzzle xmlns="http://crossword.info/xml/rectangular-puzzle">
+    <metadata>
+      <creator>Dob Olino</creator>
+      <completion>Congratulations, you’ve solved the puzzle!</completion>
+      <copyright>2022</copyright>
+      <created_at>2022-11-04</created_at>
+      <title>That's a Bear in a Bee Costume</title>
+      <type>crossword</type>
+    </metadata>
+    <instructions/>
+    <crossword>
+      <grid width="11" height="11">
+        <cell x="1" y="1" type="block"/>
+        <cell x="1" y="2" solution="A" number="8"/>
+        <cell x="1" y="3" solution="B" number="11"/>
+        <cell x="1" y="4" solution="C" number="13"/>
+        <cell x="1" y="5" solution="S" number="15"/>
+        <cell x="1" y="6" type="block"/>
+        <cell x="1" y="7" type="block"/>
+        <cell x="1" y="8" solution="R" number="24"/>
+        <cell x="1" y="9" solution="M" number="27"/>
+        <cell x="1" y="10" solution="S" number="29"/>
+        <cell x="1" y="11" type="block"/>
+        <cell x="2" y="1" solution="S" number="1"/>
+        <cell x="2" y="2" solution="T"/>
+        <cell x="2" y="3" solution="A"/>
+        <cell x="2" y="4" solution="G"/>
+        <cell x="2" y="5" solution="E"/>
+        <cell x="2" y="6" type="block"/>
+        <cell x="2" y="7" solution="M" number="20"/>
+        <cell x="2" y="8" solution="E"/>
+        <cell x="2" y="9" solution="A"/>
+        <cell x="2" y="10" solution="T"/>
+        <cell x="2" y="11" solution="S" number="31"/>
+        <cell x="3" y="1" solution="M" number="2"/>
+        <cell x="3" y="2" solution="A"/>
+        <cell x="3" y="3" solution="N"/>
+        <cell x="3" y="4" solution="I"/>
+        <cell x="3" y="5" solution="C"/>
+        <cell x="3" y="6" solution="M" number="17"/>
+        <cell x="3" y="7" solution="O"/>
+        <cell x="3" y="8" solution="N"/>
+        <cell x="3" y="9" solution="D"/>
+        <cell x="3" y="10" solution="A"/>
+        <cell x="3" y="11" solution="Y"/>
+        <cell x="4" y="1" solution="O" number="3"/>
+        <cell x="4" y="2" solution="R"/>
+        <cell x="4" y="3" solution="G"/>
+        <cell x="4" y="4" type="block"/>
+        <cell x="4" y="5" type="block"/>
+        <cell x="4" y="6" solution="I" number="18"/>
+        <cell x="4" y="7" solution="N"/>
+        <cell x="4" y="8" solution="T"/>
+        <cell x="4" y="9" solution="E"/>
+        <cell x="4" y="10" solution="N"/>
+        <cell x="4" y="11" solution="D"/>
+        <cell x="5" y="1" solution="L" number="4"/>
+        <cell x="5" y="2" solution="I"/>
+        <cell x="5" y="3" solution="E"/>
+        <cell x="5" y="4" solution="D" number="14"/>
+        <cell x="5" y="5" type="block"/>
+        <cell x="5" y="6" solution="S" number="19"/>
+        <cell x="5" y="7" solution="T"/>
+        <cell x="5" y="8" solution="E"/>
+        <cell x="5" y="9" solution="A"/>
+        <cell x="5" y="10" solution="D"/>
+        <cell x="5" y="11" type="block"/>
+        <cell x="6" y="1" type="block"/>
+        <cell x="6" y="2" type="block"/>
+        <cell x="6" y="3" solution="R" number="12"/>
+        <cell x="6" y="4" solution="O"/>
+        <cell x="6" y="5" solution="M" number="16"/>
+        <cell x="6" y="6" solution="P"/>
+        <cell x="6" y="7" solution="E"/>
+        <cell x="6" y="8" solution="R"/>
+        <cell x="6" y="9" solution="S"/>
+        <cell x="6" y="10" type="block"/>
+        <cell x="6" y="11" type="block"/>
+        <cell x="7" y="1" type="block"/>
+        <cell x="7" y="2" solution="S" number="9"/>
+        <cell x="7" y="3" solution="A"/>
+        <cell x="7" y="4" solution="G"/>
+        <cell x="7" y="5" solution="A"/>
+        <cell x="7" y="6" solution="L"/>
+        <cell x="7" y="7" type="block"/>
+        <cell x="7" y="8" solution="S" number="25"/>
+        <cell x="7" y="9" solution="T"/>
+        <cell x="7" y="10" solution="A" number="30"/>
+        <cell x="7" y="11" solution="B" number="32"/>
+        <cell x="8" y="1" solution="S" number="5"/>
+        <cell x="8" y="2" solution="E"/>
+        <cell x="8" y="3" solution="L"/>
+        <cell x="8" y="4" solution="E"/>
+        <cell x="8" y="5" solution="N"/>
+        <cell x="8" y="6" solution="A"/>
+        <cell x="8" y="7" type="block"/>
+        <cell x="8" y="8" type="block"/>
+        <cell x="8" y="9" solution="I" number="28"/>
+        <cell x="8" y="10" solution="O"/>
+        <cell x="8" y="11" solution="U"/>
+        <cell x="9" y="1" solution="S" number="6"/>
+        <cell x="9" y="2" solution="W"/>
+        <cell x="9" y="3" solution="E"/>
+        <cell x="9" y="4" solution="A"/>
+        <cell x="9" y="5" solution="T"/>
+        <cell x="9" y="6" solution="Y"/>
+        <cell x="9" y="7" solution="H" number="21"/>
+        <cell x="9" y="8" solution="A" number="26"/>
+        <cell x="9" y="9" solution="N"/>
+        <cell x="9" y="10" solution="D"/>
+        <cell x="9" y="11" solution="S"/>
+        <cell x="10" y="1" solution="T" number="7"/>
+        <cell x="10" y="2" solution="E"/>
+        <cell x="10" y="3" solution="R"/>
+        <cell x="10" y="4" solution="R"/>
+        <cell x="10" y="5" solution="A"/>
+        <cell x="10" y="6" type="block"/>
+        <cell x="10" y="7" solution="M" number="22"/>
+        <cell x="10" y="8" solution="C"/>
+        <cell x="10" y="9" solution="K"/>
+        <cell x="10" y="10" solution="A"/>
+        <cell x="10" y="11" solution="Y"/>
+        <cell x="11" y="1" type="block"/>
+        <cell x="11" y="2" solution="R" number="10"/>
+        <cell x="11" y="3" solution="T"/>
+        <cell x="11" y="4" solution="S"/>
+        <cell x="11" y="5" type="block"/>
+        <cell x="11" y="6" type="block"/>
+        <cell x="11" y="7" solution="M" number="23"/>
+        <cell x="11" y="8" solution="A"/>
+        <cell x="11" y="9" solution="Y"/>
+        <cell x="11" y="10" solution="I"/>
+        <cell x="11" y="11" type="block"/>
+      </grid>
+      <word id="1">
+        <cells x="2" y="1"/>
+        <cells x="3" y="1"/>
+        <cells x="4" y="1"/>
+        <cells x="5" y="1"/>
+      </word>
+      <word id="2">
+        <cells x="8" y="1"/>
+        <cells x="9" y="1"/>
+        <cells x="10" y="1"/>
+      </word>
+      <word id="3">
+        <cells x="1" y="2"/>
+        <cells x="2" y="2"/>
+        <cells x="3" y="2"/>
+        <cells x="4" y="2"/>
+        <cells x="5" y="2"/>
+      </word>
+      <word id="4">
+        <cells x="7" y="2"/>
+        <cells x="8" y="2"/>
+        <cells x="9" y="2"/>
+        <cells x="10" y="2"/>
+        <cells x="11" y="2"/>
+      </word>
+      <word id="5">
+        <cells x="1" y="3"/>
+        <cells x="2" y="3"/>
+        <cells x="3" y="3"/>
+        <cells x="4" y="3"/>
+        <cells x="5" y="3"/>
+        <cells x="6" y="3"/>
+        <cells x="7" y="3"/>
+        <cells x="8" y="3"/>
+        <cells x="9" y="3"/>
+        <cells x="10" y="3"/>
+        <cells x="11" y="3"/>
+      </word>
+      <word id="6">
+        <cells x="1" y="4"/>
+        <cells x="2" y="4"/>
+        <cells x="3" y="4"/>
+      </word>
+      <word id="7">
+        <cells x="5" y="4"/>
+        <cells x="6" y="4"/>
+        <cells x="7" y="4"/>
+        <cells x="8" y="4"/>
+        <cells x="9" y="4"/>
+        <cells x="10" y="4"/>
+        <cells x="11" y="4"/>
+      </word>
+      <word id="8">
+        <cells x="1" y="5"/>
+        <cells x="2" y="5"/>
+        <cells x="3" y="5"/>
+      </word>
+      <word id="9">
+        <cells x="6" y="5"/>
+        <cells x="7" y="5"/>
+        <cells x="8" y="5"/>
+        <cells x="9" y="5"/>
+        <cells x="10" y="5"/>
+      </word>
+      <word id="10">
+        <cells x="3" y="6"/>
+        <cells x="4" y="6"/>
+        <cells x="5" y="6"/>
+        <cells x="6" y="6"/>
+        <cells x="7" y="6"/>
+        <cells x="8" y="6"/>
+        <cells x="9" y="6"/>
+      </word>
+      <word id="11">
+        <cells x="2" y="7"/>
+        <cells x="3" y="7"/>
+        <cells x="4" y="7"/>
+        <cells x="5" y="7"/>
+        <cells x="6" y="7"/>
+      </word>
+      <word id="12">
+        <cells x="9" y="7"/>
+        <cells x="10" y="7"/>
+        <cells x="11" y="7"/>
+      </word>
+      <word id="13">
+        <cells x="1" y="8"/>
+        <cells x="2" y="8"/>
+        <cells x="3" y="8"/>
+        <cells x="4" y="8"/>
+        <cells x="5" y="8"/>
+        <cells x="6" y="8"/>
+        <cells x="7" y="8"/>
+      </word>
+      <word id="14">
+        <cells x="9" y="8"/>
+        <cells x="10" y="8"/>
+        <cells x="11" y="8"/>
+      </word>
+      <word id="15">
+        <cells x="1" y="9"/>
+        <cells x="2" y="9"/>
+        <cells x="3" y="9"/>
+        <cells x="4" y="9"/>
+        <cells x="5" y="9"/>
+        <cells x="6" y="9"/>
+        <cells x="7" y="9"/>
+        <cells x="8" y="9"/>
+        <cells x="9" y="9"/>
+        <cells x="10" y="9"/>
+        <cells x="11" y="9"/>
+      </word>
+      <word id="16">
+        <cells x="1" y="10"/>
+        <cells x="2" y="10"/>
+        <cells x="3" y="10"/>
+        <cells x="4" y="10"/>
+        <cells x="5" y="10"/>
+      </word>
+      <word id="17">
+        <cells x="7" y="10"/>
+        <cells x="8" y="10"/>
+        <cells x="9" y="10"/>
+        <cells x="10" y="10"/>
+        <cells x="11" y="10"/>
+      </word>
+      <word id="18">
+        <cells x="2" y="11"/>
+        <cells x="3" y="11"/>
+        <cells x="4" y="11"/>
+      </word>
+      <word id="19">
+        <cells x="7" y="11"/>
+        <cells x="8" y="11"/>
+        <cells x="9" y="11"/>
+        <cells x="10" y="11"/>
+      </word>
+      <word id="20">
+        <cells x="2" y="1"/>
+        <cells x="2" y="2"/>
+        <cells x="2" y="3"/>
+        <cells x="2" y="4"/>
+        <cells x="2" y="5"/>
+      </word>
+      <word id="21">
+        <cells x="3" y="1"/>
+        <cells x="3" y="2"/>
+        <cells x="3" y="3"/>
+        <cells x="3" y="4"/>
+        <cells x="3" y="5"/>
+        <cells x="3" y="6"/>
+        <cells x="3" y="7"/>
+        <cells x="3" y="8"/>
+        <cells x="3" y="9"/>
+        <cells x="3" y="10"/>
+        <cells x="3" y="11"/>
+      </word>
+      <word id="22">
+        <cells x="4" y="1"/>
+        <cells x="4" y="2"/>
+        <cells x="4" y="3"/>
+      </word>
+      <word id="23">
+        <cells x="5" y="1"/>
+        <cells x="5" y="2"/>
+        <cells x="5" y="3"/>
+        <cells x="5" y="4"/>
+      </word>
+      <word id="24">
+        <cells x="8" y="1"/>
+        <cells x="8" y="2"/>
+        <cells x="8" y="3"/>
+        <cells x="8" y="4"/>
+        <cells x="8" y="5"/>
+        <cells x="8" y="6"/>
+      </word>
+      <word id="25">
+        <cells x="9" y="1"/>
+        <cells x="9" y="2"/>
+        <cells x="9" y="3"/>
+        <cells x="9" y="4"/>
+        <cells x="9" y="5"/>
+        <cells x="9" y="6"/>
+        <cells x="9" y="7"/>
+        <cells x="9" y="8"/>
+        <cells x="9" y="9"/>
+        <cells x="9" y="10"/>
+        <cells x="9" y="11"/>
+      </word>
+      <word id="26">
+        <cells x="10" y="1"/>
+        <cells x="10" y="2"/>
+        <cells x="10" y="3"/>
+        <cells x="10" y="4"/>
+        <cells x="10" y="5"/>
+      </word>
+      <word id="27">
+        <cells x="1" y="2"/>
+        <cells x="1" y="3"/>
+        <cells x="1" y="4"/>
+        <cells x="1" y="5"/>
+      </word>
+      <word id="28">
+        <cells x="7" y="2"/>
+        <cells x="7" y="3"/>
+        <cells x="7" y="4"/>
+        <cells x="7" y="5"/>
+        <cells x="7" y="6"/>
+      </word>
+      <word id="29">
+        <cells x="11" y="2"/>
+        <cells x="11" y="3"/>
+        <cells x="11" y="4"/>
+      </word>
+      <word id="30">
+        <cells x="6" y="3"/>
+        <cells x="6" y="4"/>
+        <cells x="6" y="5"/>
+        <cells x="6" y="6"/>
+        <cells x="6" y="7"/>
+        <cells x="6" y="8"/>
+        <cells x="6" y="9"/>
+      </word>
+      <word id="31">
+        <cells x="4" y="6"/>
+        <cells x="4" y="7"/>
+        <cells x="4" y="8"/>
+        <cells x="4" y="9"/>
+        <cells x="4" y="10"/>
+        <cells x="4" y="11"/>
+      </word>
+      <word id="32">
+        <cells x="5" y="6"/>
+        <cells x="5" y="7"/>
+        <cells x="5" y="8"/>
+        <cells x="5" y="9"/>
+        <cells x="5" y="10"/>
+      </word>
+      <word id="33">
+        <cells x="2" y="7"/>
+        <cells x="2" y="8"/>
+        <cells x="2" y="9"/>
+        <cells x="2" y="10"/>
+        <cells x="2" y="11"/>
+      </word>
+      <word id="34">
+        <cells x="10" y="7"/>
+        <cells x="10" y="8"/>
+        <cells x="10" y="9"/>
+        <cells x="10" y="10"/>
+        <cells x="10" y="11"/>
+      </word>
+      <word id="35">
+        <cells x="11" y="7"/>
+        <cells x="11" y="8"/>
+        <cells x="11" y="9"/>
+        <cells x="11" y="10"/>
+      </word>
+      <word id="36">
+        <cells x="1" y="8"/>
+        <cells x="1" y="9"/>
+        <cells x="1" y="10"/>
+      </word>
+      <word id="37">
+        <cells x="7" y="8"/>
+        <cells x="7" y="9"/>
+        <cells x="7" y="10"/>
+        <cells x="7" y="11"/>
+      </word>
+      <word id="38">
+        <cells x="8" y="9"/>
+        <cells x="8" y="10"/>
+        <cells x="8" y="11"/>
+      </word>
+      <clues>
+        <title>Across</title>
+        <clue number="1" word="1">Teeny, as a cute animal, familiarly</clue>
+        <clue number="5" word="2">Indie record label counting Bad Brains, Husker Du, and Sonic Youth as past artists</clue>
+        <clue number="8" word="3">Early 80's gaming console brand</clue>
+        <clue number="9" word="4">Shitty channel?</clue>
+        <clue number="11" word="5">"Sound the hot new puzzle alarm!"</clue>
+        <clue number="13" word="6">Some digital FX</clue>
+        <clue number="14" word="7">Folded bookmarks</clue>
+        <clue number="15" word="8">Moment in time</clue>
+        <clue number="16" word="9">___ ray</clue>
+        <clue number="17" word="10">Judge a fly ball badly, for example</clue>
+        <clue number="20" word="11">Lead-in to Carlo or Cristo</clue>
+        <clue number="21" word="12">*scratches chin* "Let me think..."</clue>
+        <clue number="24" word="13">They pay flat rates</clue>
+        <clue number="26" word="14">Obama-era health care legislation, for short</clue>
+        <clue number="27" word="15">Tooted</clue>
+        <clue number="29" word="16">Get (up)</clue>
+        <clue number="30" word="17">Dress for a Tet celebration, perhaps</clue>
+        <clue number="31" word="18">Barrett of Pink Floyd</clue>
+        <clue number="32" word="19">"You left it at the hotel! You go back and you get her ___ bee! GO TO THE HOTEL AND GET ___ BEE! RUN!" -iconic Best in Show quote</clue>
+      </clues>
+      <clues>
+        <title>Down</title>
+        <clue number="1" word="20">___ fright, bout of frayed nerves that may lead to 6d</clue>
+        <clue number="2" word="21">Bangles hit about Garfield's least favorite day of the week</clue>
+        <clue number="3" word="22">transgenderlawcenter.___</clue>
+        <clue number="4" word="23">Fudged, as a story</clue>
+        <clue number="5" word="24">Mononymously-named singer known as "Queen of Tejano music"</clue>
+        <clue number="6" word="25">Clammy effect of 1d, maybe</clue>
+        <clue number="7" word="26">Latin for "land"</clue>
+        <clue number="8" word="27">They're easy as 123's</clue>
+        <clue number="9" word="28">NPR host Peter</clue>
+        <clue number="10" word="29">Shares another's post on Twitter, for short</clue>
+        <clue number="12" word="30">One-piece garments that I absolutely didn't only just now learn are not the same as jumpsuits</clue>
+        <clue number="18" word="31">Mean</clue>
+        <clue number="19" word="32">Home closing?</clue>
+        <clue number="20" word="33">Butcher buys</clue>
+        <clue number="22" word="34">"Anchorman" director Adam</clue>
+        <clue number="23" word="35">"Will you allow me?"</clue>
+        <clue number="24" word="36">Motel units: Abbr.</clue>
+        <clue number="25" word="37">Attempt</clue>
+        <clue number="28" word="38">Short message?</clue>
+      </clues>
+    </crossword>
+  </rectangular-puzzle>
+</crossword-compiler-applet>
