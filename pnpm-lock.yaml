@@ -11,9 +11,9 @@ importers:
 
   .:
     dependencies:
-      saxen:
-        specifier: 10.0.0
-        version: 10.0.0
+      xml-parser:
+        specifier: 1.2.1
+        version: 1.2.1
     devDependencies:
       '@confuzzle/readpuz':
         specifier: ^1.2.3
@@ -36,6 +36,9 @@ importers:
       '@types/node':
         specifier: ^16.11.21
         version: 16.11.21
+      '@types/xml-parser':
+        specifier: 1.2.33
+        version: 1.2.33
       jest:
         specifier: ^27.4.7
         version: 27.4.7
@@ -494,6 +497,9 @@ packages:
   '@types/unist@2.0.6':
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
 
+  '@types/xml-parser@1.2.33':
+    resolution: {integrity: sha512-ICBLYmorgU+X9Q0hKUQe7OBlr9INYO8bEcl2ynqRf528Ct2b9EEoECPZtBB/cqHFaP6T/lDM0ckWcLvN0K/okw==}
+
   '@types/yargs-parser@20.2.1':
     resolution: {integrity: sha512-7tFImggNeNBVMsn0vLrpn1H1uPrUBdnARPTpZoitY37ZrdJREzf7I16tMrlK3hen349gr1NYh8CmZQa7CTG6Aw==}
 
@@ -756,6 +762,14 @@ packages:
   data-urls@2.0.0:
     resolution: {integrity: sha512-X5eWTSXO/BJmpdIKCRuKUgSCgAN0OwliVK3yPKbwIWU1Tdw5BRajxlzMidvh+gwko9AfQ9zIj52pzF91Q3YAvQ==}
     engines: {node: '>=10'}
+
+  debug@2.6.9:
+    resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
 
   debug@4.3.3:
     resolution: {integrity: sha512-/zxw5+vh1Tfv+4Qn7a5nsbcJKPaSvCDhojn6FEl9vupwK2VCSDtEiEtqr8DFtzYFOdz63LBkxec7DYuc2jon6Q==}
@@ -1581,6 +1595,9 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  ms@2.0.0:
+    resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}
+
   ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
 
@@ -1800,10 +1817,6 @@ packages:
 
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
-
-  saxen@10.0.0:
-    resolution: {integrity: sha512-RXsmWok/SAWqOG/f5ADEz51DN9WtZEzqih3e08ranldcaXekxjx8NBKjGh/y5hlowjo0JH/LekBu6gtPFD1G6g==}
-    engines: {node: '>= 18'}
 
   saxes@5.0.1:
     resolution: {integrity: sha512-5LBh1Tls8c9xgGjw3QrMwETmTMVk0oFgvrFSvWx62llR2hcEInrKNZ2GZCCuuy2lvWrdl5jhbpeqc5hRYKFOcw==}
@@ -2106,6 +2119,9 @@ packages:
 
   xml-name-validator@3.0.0:
     resolution: {integrity: sha512-A5CUptxDsvxKJEU3yO6DuWBSJz/qizqzJKOMIfUJHETbBw/sFaDxgd6fxm1ewUaM0jZ444Fc5vC5ROYurg/4Pw==}
+
+  xml-parser@1.2.1:
+    resolution: {integrity: sha512-lPUzzmS0zdwcNtyNndCl2IwH172ozkUDqmfmH3FcuDzHVl552Kr6oNfsvteHabqTWhsrMgpijqZ/yT7Wo1/Pzw==}
 
   xmlchars@2.2.0:
     resolution: {integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==}
@@ -2729,6 +2745,8 @@ snapshots:
 
   '@types/unist@2.0.6': {}
 
+  '@types/xml-parser@1.2.33': {}
+
   '@types/yargs-parser@20.2.1': {}
 
   '@types/yargs@15.0.14':
@@ -3002,6 +3020,10 @@ snapshots:
       abab: 2.0.5
       whatwg-mimetype: 2.3.0
       whatwg-url: 8.7.0
+
+  debug@2.6.9:
+    dependencies:
+      ms: 2.0.0
 
   debug@4.3.3:
     dependencies:
@@ -4094,6 +4116,8 @@ snapshots:
 
   mkdirp@1.0.4: {}
 
+  ms@2.0.0: {}
+
   ms@2.1.2: {}
 
   mz@2.7.0:
@@ -4305,8 +4329,6 @@ snapshots:
   safe-buffer@5.1.2: {}
 
   safer-buffer@2.1.2: {}
-
-  saxen@10.0.0: {}
 
   saxes@5.0.1:
     dependencies:
@@ -4620,6 +4642,12 @@ snapshots:
   ws@7.5.6: {}
 
   xml-name-validator@3.0.0: {}
+
+  xml-parser@1.2.1:
+    dependencies:
+      debug: 2.6.9
+    transitivePeerDependencies:
+      - supports-color
 
   xmlchars@2.2.0: {}
 

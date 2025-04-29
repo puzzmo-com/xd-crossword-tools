@@ -45,6 +45,15 @@ const xmlString = await res.body()
 const xd = uclickXMLToXd(xmlString)
 ```
 
+### .jpz to .xd
+
+```ts
+import { jpzToXD } from "xd-crossword-tools"
+
+const jpz = "[...]"
+const xd = jpzToXD(jpz)
+```
+
 ### .xd to .puz
 
 We don't support _all_ of .puz features, but this library can generate a JSON object which can then be used `@confuzzle/writepuz` to generate a .puz file as a buffer which you can write to a file in node, or offer as a download on the web.
