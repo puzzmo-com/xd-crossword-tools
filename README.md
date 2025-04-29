@@ -4,11 +4,7 @@
 
 This repo provides tools for taking different crossword file formats and converting them to xd. Then has a comprehensive xd to JSON function. Mostly conforms to the v2 xd spec, and comes with a few editor-experience extensions for a REPL-like environment. Uses a [vendored](./lib//vendor/) copy of 'puzjs' which was ported to TypeScript.
 
-Runs in node, browsers, React Native and edge runtimes.
-
-### Documentation for authoring in xd
-
-[User Guide](./DOCS.md).
+Runs and tested in production in node, browsers, React Native and edge runtimes.
 
 ### .xd to .JSON
 
@@ -53,6 +49,8 @@ import { jpzToXD } from "xd-crossword-tools"
 const jpz = "[...]"
 const xd = jpzToXD(jpz)
 ```
+
+This is a work in progress, the jpz format supports features which we do not support so far (for example bars)
 
 ### .xd to .puz
 

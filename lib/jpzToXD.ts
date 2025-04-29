@@ -3,8 +3,11 @@ import { JSONToXD } from "./JSONtoXD"
 // @ts-ignore
 import parse from "xml-parser"
 import { LetterTile } from "../dist"
+import { cleanupClueMetadata } from "./cleanupClueMetadata"
 
-/** Takes a jpz xml string and converts it to an xd file */
+/**
+ * Takes a jpz xml string and converts it to an xd file.
+ */
 export function jpzToXD(xmlString: string): string {
   const parsed = parse(xmlString)
 
@@ -23,11 +26,13 @@ export function jpzToXD(xmlString: string): string {
   const cluesEls = crosswordEl.children.filter((child: { name: string }) => child.name === "clues")
   if (cluesEls.length !== 2) throw new Error("Expected exactly two clues elements in JPZ")
 
+  const title = metadataEl.children.find((c: { name: string }) => c.name === "title")?.content ?? "Untitled"
+
   // Grabbing metadata from the JPZ file
   const meta: CrosswordJSON["meta"] = {
-    title: metadataEl.children.find((c: { name: string }) => c.name === "title")?.content ?? "Untitled",
+    title,
     author: metadataEl.children.find((c: { name: string }) => c.name === "creator")?.content ?? "Unknown Author",
-    editor: metadataEl.children.find((c: { name: string }) => c.name === "editor")?.content ?? "", // JPZ doesn't seem to have editor?
+    editor: title.includes("edited by") ? title.split("edited by")[1].trim() : "",
     date: metadataEl.children.find((c: { name: string }) => c.name === "created_at")?.content ?? "",
     copyright: metadataEl.children.find((c: { name: string }) => c.name === "copyright")?.content ?? "",
   }
@@ -72,8 +77,16 @@ export function jpzToXD(xmlString: string): string {
       if (clueEl.name !== "clue") continue
 
       const num = clueEl.attributes.number
-      const textEl = clueEl.children.find((c: { name: string }) => c.name === "span")
-      const text = textEl?.content ?? ""
+      let text = ""
+
+      // Sometimes, the clue text is wrapped in a span element
+      if (clueEl.children.length > 0) {
+        const textEl = clueEl.children.find((c: { name: string }) => c.name === "span")
+        text = textEl?.content ?? ""
+      } else {
+        // Sometimes its not
+        text = clueEl.content ?? ""
+      }
       const pos = numberPositions[num]
       if (!pos) {
         console.warn(`Could not find position for clue number ${num}`)
@@ -105,6 +118,8 @@ export function jpzToXD(xmlString: string): string {
     rebuses: {},
     report: { success: true, errors: [], warnings: [] },
   }
+
+  cleanupClueMetadata(crosswordJSON)
 
   return JSONToXD(crosswordJSON)
 }
