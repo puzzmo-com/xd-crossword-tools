@@ -1,6 +1,6 @@
 # xd-crossword-tools
 
-[xd](https://github.com/century-arcade/xd) is a text-based crossword format which is easy for humans to read and reason about.
+[xd](https://github.com/century-arcade/xd/blob/master/doc/xd-format.md) is a text-based crossword format which is easy for humans to read and reason about.
 
 This repo provides tools for taking different crossword file formats and converting them to xd. Then has a comprehensive xd to JSON function. Mostly conforms to the v2 xd spec, and comes with a few editor-experience extensions for a REPL-like environment. Uses a [vendored](./lib//vendor/) copy of 'puzjs' which was ported to TypeScript.
 
