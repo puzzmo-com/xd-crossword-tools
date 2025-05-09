@@ -367,7 +367,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     } else if (title.startsWith("metadata")) {
       return "metadata"
     } else if (title.trim() === "meta") {
-      if (typeof jest === "undefined")
+      if (!("vitest" in globalThis))
         console.log("xd-crossword-tools: Shimmed '### meta' to '### metadata' - this will be removed in the future")
       return "metadata"
     } else if (title.startsWith("design")) {
