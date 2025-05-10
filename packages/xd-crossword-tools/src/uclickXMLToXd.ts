@@ -1,3 +1,7 @@
+// e.g. https://picayune.uclick.com/comics/usaon/data/usaon190124-data.xml
+// Which does not actually work, this code would need to be changed to better
+// handle formatting
+//
 enum State {
   Meta,
   Across,
@@ -33,12 +37,12 @@ export const uclickXMLToXd = (str: string) => {
       const keyName = line.split(" ")[0].slice(1)
       const value = line.split('v="')[1].slice(0, -4)
       metaRaw[keyName] = value
-    } else if (state === State.Across && line.startsWith("<a")) {
+    } else if (state === State.Across && line.startsWith("<a") && !line.includes("<across")) {
       const i = line.split(" ")[0].slice(1)
       const answer = line.split('a="')[1].split('" ')[0]
       const c = decodeURIComponent(line.split('c="')[1].split('" ')[0])
       acrosses.push(`${i}. ${c} ~ ${answer}`)
-    } else if (state === State.Down && line.startsWith("<d")) {
+    } else if (state === State.Down && line.startsWith("<d") && !line.includes("<down")) {
       const i = line.split(" ")[0].slice(1)
       const answer = line.split('a="')[1].split('" ')[0]
       const c = decodeURIComponent(line.split('c="')[1].split('" ')[0])

@@ -41,7 +41,7 @@ export const XDEditor = (props: {}) => {
       e.onDidContentSizeChange(updateHeight)
 
       e.onDidChangeCursorPosition((e) => {
-        const info = editorInfo?.(e.position.lineNumber, e.position.column)
+        const info = editorInfo?.(e.position.lineNumber - 1, e.position.column)
         if (info) {
           console.log(info)
         }
@@ -151,6 +151,27 @@ export const XDEditor = (props: {}) => {
       //     }
       //   },
       // })
+
+      m.editor.defineTheme("puzzmo", {
+        base: "vs",
+        inherit: true,
+        rules: [
+          { token: "header", foreground: "eeeeee", fontStyle: "bold" },
+          { token: "across-clue", foreground: "111111" },
+          { token: "down-clue", fontStyle: "bold" },
+          { token: "across-meta", fontStyle: "italic" },
+          { token: "down-meta", fontStyle: "italic" },
+          { token: "answer", foreground: "111111" },
+          { token: "key", foreground: "222222" },
+          { token: "todo", foreground: "FFAAAC" },
+          { token: "comment", foreground: "FFAAAC" },
+          { token: "keyword.crossword", foreground: "111111" },
+        ],
+
+        colors: {
+          "editor.foreground": "#111111",
+        },
+      })
     },
 
     []
@@ -161,13 +182,13 @@ export const XDEditor = (props: {}) => {
       <MonacoEditor
         width="100%"
         height={`${height}px`}
-        language="expression"
+        language="xd"
         options={{
           // Style
           fontSize: 12,
           suggestFontSize: 16,
           padding: { top: 5, bottom: 0 },
-
+          theme: "puzzmo",
           ...defaultMonacoSettings,
         }}
         onChange={setXD}

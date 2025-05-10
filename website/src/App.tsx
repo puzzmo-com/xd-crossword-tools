@@ -17,9 +17,10 @@ import { DragAndDrop } from "./DragAndDrop"
 
 import { JsonView, allExpanded, defaultStyles } from "react-json-view-lite"
 import "react-json-view-lite/dist/index.css"
+import { exampleXDs } from "./exampleXDs"
 
 function App() {
-  const { crosswordJSON, lastFileContext } = use(RootContext)
+  const { crosswordJSON, lastFileContext, setXD } = use(RootContext)
   return (
     <Container fluid>
       <Row>
@@ -27,7 +28,10 @@ function App() {
           <Panel min="180px">
             <Form>
               <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Expression Scope</Form.Label>
+                <Form.Label>
+                  xd playground. Supports drag & drop of <code>.puz</code>, <code>jpz</code>., amuse <code>.json</code>, uclick{" "}
+                  <code>.xml</code>
+                </Form.Label>
                 <DragAndDrop>
                   <XDEditor />
                 </DragAndDrop>
@@ -68,6 +72,22 @@ function App() {
                   </Card>
                 </Tab>
               )}
+
+              <Tab eventKey="examples" title="Examples">
+                <Card style={{ margin: "1em" }}>
+                  <Card.Header>Examples</Card.Header>
+                  <Card.Body>
+                    <ul>
+                      {exampleXDs.map((e) => (
+                        <li onClick={() => setXD(e.xd)}>
+                          <p>{e.title}</p>
+                          <p>{e.note}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </Card.Body>
+                </Card>
+              </Tab>
             </Tabs>
           </Panel>
         </PanelGroup>

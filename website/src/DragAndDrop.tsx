@@ -1,5 +1,5 @@
 import React, { useState, useCallback, use } from "react"
-import { jpzToXD, puzToXD, amuseToXD } from "xd-crossword-tools"
+import { jpzToXD, puzToXD, amuseToXD, uclickXMLToXd } from "xd-crossword-tools"
 
 import { decode } from "xd-crossword-tools/src/vendor/puzjs"
 
@@ -11,7 +11,7 @@ interface DragAndDropProps {
 
 export const DragAndDrop: React.FC<DragAndDropProps> = ({ children }) => {
   const { setXD, setLastFileContext } = use(RootContext)
-  const acceptedFileTypes = [".puz", ".jpz", ".json"]
+  const acceptedFileTypes = [".puz", ".jpz", ".json", ".xml"]
 
   const [isDragging, setIsDragging] = useState(false)
 
@@ -68,13 +68,12 @@ export const DragAndDrop: React.FC<DragAndDropProps> = ({ children }) => {
           setXD(xd)
           setLastFileContext({ content: jsonText, filename: file.name })
         }
+      }
 
-        // const xd = amuseToXD(amuseJSON)
-        // setXD(xd)
-        // setLastFile(jsonText)
-
-        // setXD(JSON.parse(json))
-        // setLastFile(json)
+      if (file.name.endsWith(".xml")) {
+        const xmlText = await file.text()
+        const xd = uclickXMLToXd(xmlText)
+        setLastFileContext({ content: xd, filename: file.name })
       }
     },
     [setXD]
