@@ -36,7 +36,7 @@ jobs:
       - name: Build website
         run: |
           yarn build
-          yarn workspace site build
+          yarn workspace site build-prod
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
