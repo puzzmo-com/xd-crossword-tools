@@ -1,0 +1,47 @@
+{
+  "name": "site",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "type-check": "tsc --noEmit",
+    "preview": "vite preview"
+  },
+  "prettier": {
+    "printWidth": 140,
+    "semi": false
+  },
+  "dependencies": {
+    "@bithero/monaco-editor-vite-plugin": "^1.0.2",
+    "@typescript/vfs": "^1.6.1",
+    "@window-splitter/react": "^0.8.6",
+    "angular-expressions": "^1.4.3",
+    "bootstrap": "^5.3.3",
+    "json-schema-traverse": "^1.0.0",
+    "lz-string": "^1.5.0",
+    "monaco-editor": "^0.52.2",
+    "react": "^19.0.0",
+    "react-bootstrap": "^2.10.9",
+    "react-bootstrap-typeahead": "^7.0.0-rc.4",
+    "react-dom": "^19.0.0",
+    "react-json-view-lite": "^2.4.1",
+    "react-monaco-editor": "^0.58.0",
+    "react-textarea-autosize": "^8.5.7",
+    "vitest": "^3.0.5",
+    "xd-crossword-parser": "workspace:*",
+    "xd-crossword-tools": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "globals": "^15.14.0",
+    "sass-embedded": "^1.83.4",
+    "typescript": "~5.7.2",
+    "vite": "^6.1.0",
+    "vite-plugin-monaco-editor": "^1.1.0"
+  },
+  "packageManager": "yarn@4.6.0"
+}
