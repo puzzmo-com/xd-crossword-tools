@@ -68,10 +68,13 @@ export const XDEditor = (props: {}) => {
         tokenizer: {
           root: [
             [/^(\s{0,3})(#+)((?:[^\\#])+)((?:#+)?)/, ["white", "keyword", "keyword", "keyword"]],
+
             [/^A\d*\./, "across-clue"],
-            [/^D\d*\./, "down-clue"],
             [/^A\d*\. \^.*/, "across-meta"],
+
+            [/^D\d*\./, "down-clue"],
             [/^D\d*\. \^.*/, "down-meta"],
+
             [/ ~ .*/, "answer"],
             [/ ~ .*/, "hint"],
             [/^(A|D)(\d*) \^\w*:/, "key"],
@@ -157,10 +160,10 @@ export const XDEditor = (props: {}) => {
         inherit: true,
         rules: [
           { token: "header", foreground: "eeeeee", fontStyle: "bold" },
-          { token: "across-clue", foreground: "111111" },
-          { token: "down-clue", fontStyle: "bold" },
-          { token: "across-meta", fontStyle: "italic" },
-          { token: "down-meta", fontStyle: "italic" },
+          { token: "across-clue", foreground: "007777" },
+          { token: "down-clue", foreground: "007777" },
+          { token: "across-meta", foreground: "007777" },
+          { token: "down-meta", foreground: "007777" },
           { token: "answer", foreground: "111111" },
           { token: "key", foreground: "222222" },
           { token: "todo", foreground: "FFAAAC" },
