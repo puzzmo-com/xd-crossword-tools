@@ -10,10 +10,10 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "xml-parser": "1.2.1",
-    "xd-crossword-parser": "workspace:*",
+    "@confuzzle/readpuz": "^1.2.3",
     "@confuzzle/writepuz": "^1.2.3",
-    "@confuzzle/readpuz": "^1.2.3"
+    "xd-crossword-parser": "workspace:*",
+    "xml-parser": "1.2.1"
   },
   "devDependencies": {
     "@types/xml-parser": "1.2.33"
