@@ -1,4 +1,4 @@
-import { ParseMode } from "./xdparser2"
+import { ParseMode } from "./parser/xdparser2"
 
 export type CrosswordJSON = {
   /** Info to display about the Crossword  */

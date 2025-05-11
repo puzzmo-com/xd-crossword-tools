@@ -1,5 +1,5 @@
 import { getTile } from "./getTile"
-import { Clue, CrosswordJSON, CursorDirection, Position } from "xd-crossword-parser"
+import { Clue, CrosswordJSON, CursorDirection, Position } from "../types"
 
 /** What clue exists for a position? */
 export const clueInfosForPosition = (tiles: CrosswordJSON["tiles"], clues: CrosswordJSON["clues"], position: Position) => {

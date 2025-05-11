@@ -1,4 +1,4 @@
-import { EditorError } from "./EditorError"
+import { EditorError } from "../utils/EditorError"
 
 export const shouldConvertToExplicitHeaders = (xd: string) => !xd.toLowerCase().includes("## ")
 

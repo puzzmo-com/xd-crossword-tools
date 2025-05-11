@@ -1,4 +1,4 @@
-import { xdMarkupProcessor, xdToJSON } from "../xdparser2"
+import { xdMarkupProcessor, xdToJSON } from "./xdparser2"
 import { readFileSync } from "fs"
 import { it, expect } from "vitest"
 

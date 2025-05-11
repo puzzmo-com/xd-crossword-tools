@@ -1,6 +1,7 @@
-export { xdToJSON, replaceWordWithSymbol, stringGridToTiles, letterToTile, xdMarkupProcessor } from "./xdparser2"
-export type { ParseMode } from "./xdparser2"
-export { getCluePositionsForBoard } from "./clueNumbersFromBoard"
+export { xdToJSON, replaceWordWithSymbol, stringGridToTiles, letterToTile, xdMarkupProcessor } from "./parser/xdparser2"
+export type { ParseMode } from "./parser/xdparser2"
+export { getTile } from "./utils/getTile"
+export { getCluePositionsForBoard } from "./utils/clueNumbersFromBoard"
 export type {
   CrosswordJSON,
   Report,

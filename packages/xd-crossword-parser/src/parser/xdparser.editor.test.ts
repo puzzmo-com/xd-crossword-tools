@@ -1,4 +1,4 @@
-import { xdToJSON } from "../xdparser2"
+import { xdToJSON } from "./xdparser2"
 import { readFileSync } from "fs"
 
 it("does not work on implicit files", () => {

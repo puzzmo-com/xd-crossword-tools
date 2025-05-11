@@ -1,4 +1,4 @@
-import type { CrosswordJSON, Tile, Position } from "./types"
+import type { CrosswordJSON, Tile, Position } from "../types"
 
 type PositionWithTiles = {
   position: Position

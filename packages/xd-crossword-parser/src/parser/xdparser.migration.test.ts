@@ -1,5 +1,5 @@
 import { readFileSync } from "fs"
-import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "../xdparser2.compat"
+import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "./xdparser2.compat"
 
 it("converts a v1 implicit xd to explicit under the hood", () => {
   const xd = readFileSync("./packages/xd-crossword-tools/tests/puz/alpha-bits.xd", "utf8")

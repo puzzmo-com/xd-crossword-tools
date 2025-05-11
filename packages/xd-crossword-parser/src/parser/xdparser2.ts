@@ -1,5 +1,5 @@
-import { getCluePositionsForBoard } from "./clueNumbersFromBoard"
-import type { Tile, CrosswordJSON, ClueComponentMarkup } from "./types"
+import { getCluePositionsForBoard } from "../utils/clueNumbersFromBoard"
+import type { Tile, CrosswordJSON, ClueComponentMarkup } from "../types"
 import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "./xdparser2.compat"
 
 // These are all the sections supported by this parser

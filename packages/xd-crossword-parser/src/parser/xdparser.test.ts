@@ -1,4 +1,4 @@
-import { xdToJSON } from "../xdparser2"
+import { xdToJSON } from "./xdparser2"
 
 it("Smallest, legal but totally illogical example", () => {
   const xd = `

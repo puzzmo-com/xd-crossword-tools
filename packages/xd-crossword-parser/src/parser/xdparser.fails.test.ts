@@ -1,4 +1,4 @@
-import { xdToJSON } from "../xdparser2"
+import { xdToJSON } from "./xdparser2"
 
 describe("errors", () => {
   it("blanks give errors", () => {
