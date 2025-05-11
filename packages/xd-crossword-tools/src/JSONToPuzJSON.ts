@@ -1,4 +1,4 @@
-import type { CrosswordJSON } from "xd-crossword-parser"
+import type { CrosswordJSON } from "xd-crossword-tools-parser"
 
 // https://github.com/rjkat/confuzzle/blob/master/%40confuzzle/readpuz/readpuz.js
 

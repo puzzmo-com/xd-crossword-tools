@@ -12,7 +12,7 @@
   "dependencies": {
     "@confuzzle/readpuz": "^1.2.3",
     "@confuzzle/writepuz": "^1.2.3",
-    "xd-crossword-parser": "workspace:*",
+    "xd-crossword-tools-parser": "workspace:*",
     "xml-parser": "1.2.1"
   },
   "devDependencies": {

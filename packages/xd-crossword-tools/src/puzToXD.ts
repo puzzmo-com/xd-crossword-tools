@@ -1,9 +1,9 @@
 import { decode, Puz2JSONResult } from "./vendor/puzjs"
-import { CrosswordJSON, CursorDirection, Tile } from "xd-crossword-parser"
+import { CrosswordJSON, CursorDirection, Tile } from "xd-crossword-tools-parser"
 
 import { getWordTilesForCursor } from "./getWordTilesForCursor"
-import { getCluePositionsForBoard } from "xd-crossword-parser"
-import { getTile } from "xd-crossword-parser/src/utils/getTile"
+import { getCluePositionsForBoard } from "xd-crossword-tools-parser"
+import { getTile } from "xd-crossword-tools-parser/src/utils/getTile"
 
 /** Takes a .puz Buffer and converts it to an xd file */
 export function puzToXD(buffer: ArrayBuffer) {

@@ -1,5 +1,5 @@
 import { JSONToXD } from "./JSONtoXD"
-import type { Clue, Position as CluePosition, CrosswordJSON } from "xd-crossword-parser"
+import type { Clue, Position as CluePosition, CrosswordJSON } from "xd-crossword-tools-parser"
 import { cleanupClueMetadata } from "./cleanupClueMetadata"
 
 import type { CellInfo, PlacedWord, AmuseTopLevel } from "./amuseJSONToXD.types.d.ts"

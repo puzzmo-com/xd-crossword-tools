@@ -9,7 +9,7 @@
     "docs": "md-magic",
     "type-check": "yarn workspaces foreach -A run type-check",
     "version-all": "yarn workspaces foreach -A version",
-    "publish-all": "yarn workspaces foreach -A npm publish"
+    "publish-all": "yarn build; yarn workspaces foreach -A --no-private npm publish"
   },
   "workspaces": [
     "packages/*",

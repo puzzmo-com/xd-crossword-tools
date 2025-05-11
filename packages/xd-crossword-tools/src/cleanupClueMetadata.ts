@@ -1,4 +1,4 @@
-import { CrosswordJSON, Tile } from "xd-crossword-parser"
+import { CrosswordJSON, Tile } from "xd-crossword-tools-parser"
 
 /** Re-creates the clue answer/tiles metadata from the grid section of the crossword */
 export const cleanupClueMetadata = (xword: CrosswordJSON): void => {

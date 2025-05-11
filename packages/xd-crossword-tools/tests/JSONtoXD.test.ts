@@ -1,6 +1,6 @@
 import { addSplits, JSONToXD, resolveFullClueAnswer } from "../src/JSONtoXD"
-import { xdToJSON } from "xd-crossword-parser"
-import type { Clue } from "xd-crossword-parser"
+import { xdToJSON } from "xd-crossword-tools-parser"
+import type { Clue } from "xd-crossword-tools-parser"
 
 /*
  * Utilities

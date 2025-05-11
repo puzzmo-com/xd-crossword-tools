@@ -1,5 +1,5 @@
-import { clueInfosForPosition } from "xd-crossword-parser/src/utils/clueFromPosition"
-import { Clue, CrosswordJSON, CursorDirection, Position } from "xd-crossword-parser"
+import { clueInfosForPosition } from "xd-crossword-tools-parser/src/utils/clueFromPosition"
+import { Clue, CrosswordJSON, CursorDirection, Position } from "xd-crossword-tools-parser"
 
 export type PositionInfo =
   | { type: "noop" }

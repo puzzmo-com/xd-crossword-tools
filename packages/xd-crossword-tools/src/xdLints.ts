@@ -1,4 +1,4 @@
-import { Clue, Report } from "xd-crossword-parser"
+import { Clue, Report } from "xd-crossword-tools-parser"
 
 export const runLinterForClue = (clue: Clue, ordinal: "across" | "down") => {
   const reports: Report[] = []

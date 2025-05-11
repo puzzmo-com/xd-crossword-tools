@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from "fs"
 import { puzToXD } from "../src/puzToXD"
-import { xdToJSON } from "xd-crossword-parser"
+import { xdToJSON } from "xd-crossword-tools-parser"
 import { JSONToPuzJSON } from "../src/JSONToPuzJSON"
 // @ts-ignore
 import { readpuz } from "@confuzzle/readpuz"

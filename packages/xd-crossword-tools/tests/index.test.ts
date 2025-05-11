@@ -2,7 +2,7 @@
 import { puzToXD } from "../src/puzToXD"
 import { uclickXMLToXd } from "../src/uclickXMLToXd"
 
-import { xdToJSON } from "xd-crossword-parser"
+import { xdToJSON } from "xd-crossword-tools-parser"
 
 import { readdirSync, readFileSync } from "fs"
 import { describe, it, expect } from "vitest"

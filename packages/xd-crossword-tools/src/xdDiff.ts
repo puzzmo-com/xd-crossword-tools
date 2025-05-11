@@ -1,5 +1,5 @@
-import type { Clue, CrosswordJSON } from "xd-crossword-parser"
-import { xdToJSON } from "xd-crossword-parser"
+import type { Clue, CrosswordJSON } from "xd-crossword-tools-parser"
+import { xdToJSON } from "xd-crossword-tools-parser"
 
 export type DiffHunk =
   | { type: "same"; content: string; beforeLine: number; afterLine: number }

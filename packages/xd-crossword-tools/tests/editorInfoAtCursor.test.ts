@@ -1,9 +1,9 @@
 import { readFileSync } from "fs"
-import { CrosswordJSON } from "xd-crossword-parser"
+import { CrosswordJSON } from "xd-crossword-tools-parser"
 import { puzToXD } from "../src/puzToXD"
 import { editorInfoAtCursor } from "../src/editorInfoAtCursor"
 import { JSONToXD } from "../src/JSONtoXD"
-import { xdToJSON } from "xd-crossword-parser"
+import { xdToJSON } from "xd-crossword-tools-parser"
 import { describe, it, expect, beforeAll } from "vitest"
 
 describe(editorInfoAtCursor.name, () => {

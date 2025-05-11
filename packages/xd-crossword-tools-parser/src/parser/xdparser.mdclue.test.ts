@@ -3,7 +3,7 @@ import { readFileSync } from "fs"
 import { it, expect } from "vitest"
 
 it("handles bolding", () => {
-  const xd = readFileSync("./packages/xd-crossword-parser/src/xdparser2/inputs/alpha-bits.xd", "utf8")
+  const xd = readFileSync("./packages/xd-crossword-tools-parser/src/xdparser2/inputs/alpha-bits.xd", "utf8")
   const originalClue = "A1. Captain of the Pequod ~ AHAB"
   const newMDClue = "A1. {/Captain/}, {*of*}, {_the_}, ship {-pequod-} {@see here|https://mylink.com@} ~ AHAB"
 

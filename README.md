@@ -8,13 +8,13 @@ Runs and tested in production in node, browsers, React Native and edge runtimes.
 
 There are two packages here:
 
-- `xd-crossword-parser` - A parser for the xd format, if you only want to convery an xd file to JSON and have a few helper functions for working with the JSON.
+- `xd-crossword-tools-parser` - A parser for the xd format, if you only want to convery an xd file to JSON and have a few helper functions for working with the JSON.
 - `xd-crossword-tools` - A set of tools for working with the xd format: dev tooling, importing/exporting, diffing, linting etc.
 
 ### .xd to .JSON
 
 ```ts
-import { xdToJSON } from "xd-crossword-parser"
+import { xdToJSON } from "xd-crossword-tools-parser"
 
 const xd = "[...]"
 const crossword = xdToJSON(xd)

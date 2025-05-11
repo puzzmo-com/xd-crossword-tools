@@ -1,4 +1,4 @@
-import { xdToJSON } from "xd-crossword-parser"
+import { xdToJSON } from "xd-crossword-tools-parser"
 
 import { readFileSync } from "fs"
 import { JSONToXD } from "../src/JSONtoXD"

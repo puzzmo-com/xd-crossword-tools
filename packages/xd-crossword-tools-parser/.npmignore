@@ -1,4 +1,4 @@
-lib
+src
 tests
 pnpm-lock.yaml
 tsconfig.json

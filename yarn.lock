@@ -4547,8 +4547,8 @@ __metadata:
     vite: "npm:^6.1.0"
     vite-plugin-monaco-editor: "npm:^1.1.0"
     vitest: "npm:^3.0.5"
-    xd-crossword-parser: "workspace:*"
     xd-crossword-tools: "workspace:*"
+    xd-crossword-tools-parser: "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -5559,9 +5559,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"xd-crossword-parser@workspace:*, xd-crossword-parser@workspace:packages/xd-crossword-parser":
+"xd-crossword-tools-parser@workspace:*, xd-crossword-tools-parser@workspace:packages/xd-crossword-tools-parser":
   version: 0.0.0-use.local
-  resolution: "xd-crossword-parser@workspace:packages/xd-crossword-parser"
+  resolution: "xd-crossword-tools-parser@workspace:packages/xd-crossword-tools-parser"
   languageName: unknown
   linkType: soft
 
@@ -5572,7 +5572,7 @@ __metadata:
     "@confuzzle/readpuz": "npm:^1.2.3"
     "@confuzzle/writepuz": "npm:^1.2.3"
     "@types/xml-parser": "npm:1.2.33"
-    xd-crossword-parser: "workspace:*"
+    xd-crossword-tools-parser: "workspace:*"
     xml-parser: "npm:1.2.1"
   languageName: unknown
   linkType: soft

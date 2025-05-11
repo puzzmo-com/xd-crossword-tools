@@ -1,4 +1,4 @@
-import type { Clue, CrosswordJSON } from "xd-crossword-parser"
+import type { Clue, CrosswordJSON } from "xd-crossword-tools-parser"
 
 export function resolveFullClueAnswer(rebusMap: CrosswordJSON["rebuses"], clue: Clue, splitChar: string) {
   // In order to correctly pipe rebus clues, we must temporarily substitute in rebus symbols

@@ -1,5 +1,5 @@
 {
-  "name": "xd-crossword-parser",
+  "name": "xd-crossword-tools-parser",
   "version": "9.0.0",
   "main": "dist/index.js",
   "module": "./dist/index.mjs",
@@ -8,8 +8,5 @@
     "build": "tsup src/index.ts --dts --format esm,cjs",
     "dev": "tsup src/index.ts --dts --format esm,cjs --watch",
     "type-check": "tsc --noEmit"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }

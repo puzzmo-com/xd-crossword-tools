@@ -1,7 +1,7 @@
-import { Clue, CrosswordJSON, Tile } from "xd-crossword-parser"
+import { Clue, CrosswordJSON, Tile } from "xd-crossword-tools-parser"
 import { JSONToXD } from "./JSONtoXD"
 import parse from "xml-parser"
-import { LetterTile } from "xd-crossword-parser"
+import { LetterTile } from "xd-crossword-tools-parser"
 import { cleanupClueMetadata } from "./cleanupClueMetadata"
 
 /**
