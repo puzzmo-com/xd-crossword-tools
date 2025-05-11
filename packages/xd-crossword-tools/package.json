@@ -1,6 +1,6 @@
 {
   "name": "xd-crossword-tools",
-  "version": "9.0.0",
+  "version": "9.0.1",
   "main": "dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -16,7 +16,8 @@
     "xml-parser": "1.2.1"
   },
   "devDependencies": {
-    "@types/xml-parser": "1.2.33"
+    "@types/xml-parser": "1.2.33",
+    "tsup": "^8.1.0"
   },
   "publishConfig": {
     "access": "public"

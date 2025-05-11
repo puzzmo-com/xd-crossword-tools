@@ -1,4 +1,5 @@
-import { CrosswordJSON, Cursor, Position, getTile } from "xd-crossword-tools-parser"
+import { CrosswordJSON, Cursor, Position } from "../types"
+import { getTile } from "./getTile"
 
 /** Gets all the related tiles for the cursor, may contain dupes */
 export const getWordTilesForCursor = (tiles: CrosswordJSON["tiles"], cursor: Cursor) => {

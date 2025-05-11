@@ -1,3 +1,5 @@
+export * from "xd-crossword-tools-parser"
+
 export { JSONToXD, resolveFullClueAnswer } from "./JSONtoXD"
 export { puzToXD } from "./puzToXD"
 export { uclickXMLToXD } from "./uclickXMLToXD"
@@ -10,6 +12,5 @@ export { cleanupClueMetadata } from "./cleanupClueMetadata"
 export { encode as puzEncode, decode as puzDecode } from "./vendor/puzjs"
 export type { Puz2JSONResult } from "./vendor/puzjs"
 export { runLinterForClue } from "./xdLints"
-export { getWordTilesForCursor, getSortedTilesForCursor } from "./getWordTilesForCursor"
-export * from "xd-crossword-tools-parser"
+export { getWordTilesForCursor, getSortedTilesForCursor } from "xd-crossword-tools-parser/src/utils/getWordTilesForCursor"
 export { amuseToXD } from "./amuseJSONToXD"

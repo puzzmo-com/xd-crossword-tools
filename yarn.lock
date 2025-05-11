@@ -5562,6 +5562,8 @@ __metadata:
 "xd-crossword-tools-parser@workspace:*, xd-crossword-tools-parser@workspace:packages/xd-crossword-tools-parser":
   version: 0.0.0-use.local
   resolution: "xd-crossword-tools-parser@workspace:packages/xd-crossword-tools-parser"
+  dependencies:
+    tsup: "npm:^8.1.0"
   languageName: unknown
   linkType: soft
 
@@ -5572,6 +5574,7 @@ __metadata:
     "@confuzzle/readpuz": "npm:^1.2.3"
     "@confuzzle/writepuz": "npm:^1.2.3"
     "@types/xml-parser": "npm:1.2.33"
+    tsup: "npm:^8.1.0"
     xd-crossword-tools-parser: "workspace:*"
     xml-parser: "npm:1.2.1"
   languageName: unknown

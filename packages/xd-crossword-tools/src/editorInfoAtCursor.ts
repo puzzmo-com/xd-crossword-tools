@@ -1,4 +1,4 @@
-import { clueInfosForPosition } from "xd-crossword-tools-parser/src/utils/clueFromPosition"
+import { clueInfosForPosition } from "xd-crossword-tools-parser"
 import { Clue, CrosswordJSON, CursorDirection, Position } from "xd-crossword-tools-parser"
 
 export type PositionInfo =

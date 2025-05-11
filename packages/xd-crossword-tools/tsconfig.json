@@ -4,11 +4,7 @@
     "outDir": "./dist",
     "rootDir": "./src"
   },
-  "include": [
-    "src/**/*",
-    "../xd-crossword-tools-parser/src/utils/clueFromPosition.ts",
-    "../xd-crossword-tools-parser/src/utils/getTile.ts"
-  ],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"],
   "types": ["vitest/globals"]
 }
