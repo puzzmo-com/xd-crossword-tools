@@ -1,5 +1,5 @@
 import React, { useState, useCallback, use } from "react"
-import { jpzToXD, puzToXD, amuseToXD, uclickXMLToXd } from "xd-crossword-tools"
+import { jpzToXD, puzToXD, amuseToXD, uclickXMLToXD } from "xd-crossword-tools"
 
 import { decode } from "xd-crossword-tools/src/vendor/puzjs"
 
@@ -72,7 +72,7 @@ export const DragAndDrop: React.FC<DragAndDropProps> = ({ children }) => {
 
       if (file.name.endsWith(".xml")) {
         const xmlText = await file.text()
-        const xd = uclickXMLToXd(xmlText)
+        const xd = uclickXMLToXD(xmlText)
         setLastFileContext({ content: xd, filename: file.name })
       }
     },

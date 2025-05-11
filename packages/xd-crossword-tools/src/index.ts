@@ -1,6 +1,6 @@
 export { JSONToXD, resolveFullClueAnswer } from "./JSONtoXD"
 export { puzToXD } from "./puzToXD"
-export { uclickXMLToXd } from "./uclickXMLToXd"
+export { uclickXMLToXD } from "./uclickXMLToXd"
 export { editorInfoAtCursor } from "./editorInfoAtCursor"
 export { clueInfosForPosition, tilePositionsForClue } from "./clueFromPosition"
 export { JSONToPuzJSON } from "./JSONToPuzJSON"

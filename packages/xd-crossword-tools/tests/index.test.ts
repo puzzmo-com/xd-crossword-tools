@@ -35,10 +35,3 @@ describe("Failing tests", () => {
     })
   })
 })
-
-// I do not have a legit XML doc I can legally add in here, so this can be re-used if we fine one
-it.skip("generates json from the xml", () => {
-  const puz = readFileSync(`./packages/xd-crossword-tools/tests/uclickXML/example.xml`, "utf8")
-  const xd = uclickXMLToXd(puz)
-  expect(xd).toMatchFileSnapshot(`./packages/xd-crossword-tools/tests/output/example.xd`)
-})

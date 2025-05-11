@@ -2,51 +2,46 @@
 // Which does not actually work, this code would need to be changed to better
 // handle formatting
 //
-enum State {
-  Meta,
-  Across,
-  Down,
-}
+import parse from "xml-parser"
 
-export const uclickXMLToXd = (str: string) => {
-  const lines = str.split("\n")
+export const uclickXMLToXD = (str: string) => {
+  const parsed = parse(str)
+  const crossword = parsed.root.children.find((child: { name: string }) => child.name === "crossword")
+  if (!crossword) throw new Error("Could not find crossword element in XML")
+
   let width = -1
   let metaRaw: Record<string, string> = {}
-  let state = State.Meta
   let answer = ""
   const downs: string[] = []
   const acrosses: string[] = []
 
-  lines.forEach((l) => {
-    const line = l.trim()
-    const ignore = ["<crossword"]
-    for (const toIgnore of ignore) {
-      if (line.startsWith(toIgnore)) {
-        return
-      }
-    }
-    if (line.startsWith("<across")) {
-      state = State.Across
-    } else if (line.startsWith("<down")) {
-      state = State.Down
-    } else if (line.startsWith("<Width")) {
-      width = Number(line.split('<Width v="')[1].slice(0, -4))
-    } else if (line.startsWith("<AllAnswer")) {
-      answer = line.split('<AllAnswer v="')[1].slice(0, -4).replace(/-/g, ".")
-    } else if (state === State.Meta) {
-      const keyName = line.split(" ")[0].slice(1)
-      const value = line.split('v="')[1].slice(0, -4)
-      metaRaw[keyName] = value
-    } else if (state === State.Across && line.startsWith("<a") && !line.includes("<across")) {
-      const i = line.split(" ")[0].slice(1)
-      const answer = line.split('a="')[1].split('" ')[0]
-      const c = decodeURIComponent(line.split('c="')[1].split('" ')[0])
-      acrosses.push(`${i}. ${c} ~ ${answer}`)
-    } else if (state === State.Down && line.startsWith("<d") && !line.includes("<down")) {
-      const i = line.split(" ")[0].slice(1)
-      const answer = line.split('a="')[1].split('" ')[0]
-      const c = decodeURIComponent(line.split('c="')[1].split('" ')[0])
-      downs.push(`${i}. ${c} ~ ${answer}`)
+  // Process all elements
+  crossword.children.forEach((element: any) => {
+    if (element.name === "Width") {
+      width = Number(element.attributes.v)
+    } else if (element.name === "AllAnswer") {
+      answer = element.attributes.v.replace(/-/g, ".")
+    } else if (element.name === "across") {
+      element.children.forEach((clue: any) => {
+        if (clue.name.startsWith("a")) {
+          const i = clue.name.slice(1)
+          const answer = clue.attributes.a
+          const c = decodeURIComponent(clue.attributes.c)
+          acrosses.push(`${i}. ${c} ~ ${answer}`)
+        }
+      })
+    } else if (element.name === "down") {
+      element.children.forEach((clue: any) => {
+        if (clue.name.startsWith("d")) {
+          const i = clue.name.slice(1)
+          const answer = clue.attributes.a
+          const c = decodeURIComponent(clue.attributes.c)
+          downs.push(`${i}. ${c} ~ ${answer}`)
+        }
+      })
+    } else {
+      // Handle metadata
+      metaRaw[element.name] = element.attributes.v
     }
   })
 
