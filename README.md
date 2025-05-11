@@ -6,10 +6,15 @@ This repo provides tools for taking different crossword file formats and convert
 
 Runs and tested in production in node, browsers, React Native and edge runtimes.
 
+There are two packages here:
+
+- `xd-crossword-parser` - A parser for the xd format, if you only want to convery an xd file to JSON and have a few helper functions for working with the JSON.
+- `xd-crossword-tools` - A set of tools for working with the xd format: dev tooling, importing/exporting, diffing, linting etc.
+
 ### .xd to .JSON
 
 ```ts
-import { xdToJSON } from "xd-crossword-tools"
+import { xdToJSON } from "xd-crossword-parser"
 
 const xd = "[...]"
 const crossword = xdToJSON(xd)
@@ -4550,3 +4555,8 @@ O { background: circle }
 
 - http://www.ipuz.org
 - https://www.xwordinfo.com/XPF/ / https://www.xwordinfo.com/JSON/
+
+## Deploys
+
+- `yarn version-all [major|minor|patch]`
+- `yarn publish-all`

@@ -1,5 +1,9 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 9.0.0
+
+- Split out the parser into it's own package. So, if you're making a crossword game, then you can just depend on `xd-crossword-parser` and not have to depend on the tools.
+
 ### 8.1.0
 
 Adds support for parsing jpz files into xd files using the new `jpzToXD` function.
