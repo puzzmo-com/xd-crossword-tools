@@ -4,7 +4,7 @@ import lzstring, { decompressFromEncodedURIComponent } from "lz-string"
 import React from "react"
 
 import { CrosswordJSON, editorInfoAtCursor, xdToJSON } from "xd-crossword-tools"
-import { defaultExampleXD } from "./exampleXDs"
+import { defaultExampleXD } from "../exampleXDs"
 // eslint-disable-next-line no-var
 var scopeResult = {}
 

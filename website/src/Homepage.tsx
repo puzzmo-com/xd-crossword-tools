@@ -1,7 +1,7 @@
 import React from "react"
 import { PanelGroup, Panel, PanelResizer } from "@window-splitter/react"
 import { use } from "react"
-import "./App.scss"
+import "./homepage.scss"
 
 import Container from "react-bootstrap/esm/Container"
 import Row from "react-bootstrap/esm/Row"
@@ -9,11 +9,11 @@ import Form from "react-bootstrap/esm/Form"
 import Card from "react-bootstrap/esm/Card"
 import Tab from "react-bootstrap/esm/Tab"
 import Tabs from "react-bootstrap/esm/Tabs"
-import { XDEditor } from "./XDEditor"
-import { RootContext } from "./RootContext"
+import { XDEditor } from "./components/XDEditor"
+import { RootContext } from "./components/RootContext"
 
 import "monaco-editor/esm/vs/editor/editor.all.js"
-import { DragAndDrop } from "./DragAndDrop"
+import { DragAndDrop } from "./components/SingleDragAndDrop"
 
 import { JsonView, allExpanded, defaultStyles } from "react-json-view-lite"
 import "react-json-view-lite/dist/index.css"

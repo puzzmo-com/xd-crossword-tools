@@ -2,7 +2,7 @@ import React, { use } from "react"
 
 import { useCallback, useRef, useState } from "react"
 import MonacoEditor, { EditorDidMount, EditorWillMount, monaco } from "react-monaco-editor"
-import { defaultMonacoSettings } from "./monacoConstants"
+import { defaultMonacoSettings } from "../monacoConstants"
 import { RootContext } from "./RootContext"
 
 const language = "xd"
