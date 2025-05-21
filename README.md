@@ -39,11 +39,11 @@ This API should cover most features in puz and xd.
 ### UClick .xml to .xd
 
 ```ts
-import { uclickXMLToXd } from "xd-crossword-tools"
+import { uclickXMLToXD } from "xd-crossword-tools"
 
 const xmlResponse = await fetch(url)
 const xmlString = await res.body()
-const xd = uclickXMLToXd(xmlString)
+const xd = uclickXMLToXD(xmlString)
 ```
 
 ### .jpz to .xd
