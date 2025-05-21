@@ -425,7 +425,7 @@
             <cells x="6" y="11" />
          </word>
          <clues>
-            <title>Across</title>
+            <title><b>Across</b></title>
             <clue number="1" word="1">
                <span>Breakfast chain that should install pogo stick racks?</span>
             </clue>

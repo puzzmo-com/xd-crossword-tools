@@ -69,7 +69,8 @@ export function jpzToXD(xmlString: string): string {
 
   for (const cluesEl of cluesEls) {
     const titleEl = cluesEl.children.find((c: { name: string }) => c.name === "title")
-    const direction = titleEl?.content?.toLowerCase() as "across" | "down" | undefined
+    const direction = (titleEl?.children?.length || 0) > 0 ? titleEl?.children[0]?.content?.toLowerCase() : titleEl?.content?.toLowerCase()
+
     if (!direction || (direction !== "across" && direction !== "down")) continue
 
     for (const clueEl of cluesEl.children) {
