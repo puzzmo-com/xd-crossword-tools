@@ -2,7 +2,7 @@ export * from "xd-crossword-tools-parser"
 
 export { JSONToXD, resolveFullClueAnswer } from "./JSONtoXD"
 export { puzToXD } from "./puzToXD"
-export { uclickXMLToXD } from "./uclickXMLToXD"
+export { uclickXMLToXD } from "./uclickToXD"
 export { editorInfoAtCursor } from "./editorInfoAtCursor"
 export { clueInfosForPosition, tilePositionsForClue } from "xd-crossword-tools-parser/src/utils/clueFromPosition"
 export { JSONToPuzJSON } from "./JSONToPuzJSON"
