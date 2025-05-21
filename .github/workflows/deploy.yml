@@ -35,7 +35,8 @@ jobs:
 
       - name: Build website
         run: |
-          yarn build
+          yarn workspace xd-crossword-tools-parser build
+          yarn workspace xd-crossword-tools build
           yarn workspace site build-prod
 
       - name: Setup Pages
