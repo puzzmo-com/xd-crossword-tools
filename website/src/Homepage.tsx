@@ -1,7 +1,7 @@
 import React from "react"
 import { PanelGroup, Panel, PanelResizer } from "@window-splitter/react"
 import { use } from "react"
-import "./homepage.scss"
+import "./Homepage.scss"
 
 import Container from "react-bootstrap/esm/Container"
 import Row from "react-bootstrap/esm/Row"
