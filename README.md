@@ -4558,5 +4558,8 @@ O { background: circle }
 
 ## Deploys
 
-- `yarn version-all [major|minor|patch]`
-- `yarn publish-all`
+```
+yarn workspaces foreach -A version [major|minor|patch]
+git add .; git commit -m "Prepare for release"
+yarn build; yarn workspaces foreach -A --no-private npm publish
+```
