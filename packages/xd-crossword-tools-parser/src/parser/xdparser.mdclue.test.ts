@@ -3,7 +3,7 @@ import { readFileSync } from "fs"
 import { it, expect } from "vitest"
 
 it("handles bolding", () => {
-  const xd = readFileSync("./packages/xd-crossword-tools-parser/src/xdparser2/inputs/alpha-bits.xd", "utf8")
+  const xd = readFileSync("./packages/xd-crossword-tools-parser/src/parser/outputs/explicit-alpha-bits.xd", "utf8")
   const originalClue = "A1. Captain of the Pequod ~ AHAB"
   const newMDClue = "A1. {/Captain/}, {*of*}, {_the_}, ship {-pequod-} {@see here|https://mylink.com@} ~ AHAB"
 
@@ -138,6 +138,74 @@ it("correctly handles a URL", () => {
   ],
 ]
 `)
+})
+
+it("handles inline images", () => {
+  const xd = readFileSync("./packages/xd-crossword-tools-parser/src/parser/outputs/explicit-alpha-bits.xd", "utf8")
+  const originalClue = "A1. Captain of the Pequod ~ AHAB"
+  const newMDClue = "A1. {!![https://emojipedia.org/image/y.png|alt text]!} block with alt text ~ AHAB"
+
+  const json = xdToJSON(xd.replace(originalClue, newMDClue))
+  const clue = json.clues.across[0]
+  expect(clue).toMatchInlineSnapshot(`
+    {
+      "answer": "AHAB",
+      "body": "{!![https://emojipedia.org/image/y.png|alt text]!} block with alt text",
+      "direction": "across",
+      "display": [
+        [
+          "img",
+          "https://emojipedia.org/image/y.png",
+          "alt text",
+          true,
+        ],
+        [
+          "text",
+          " block with alt text",
+        ],
+      ],
+      "metadata": undefined,
+      "number": 1,
+      "position": {
+        "col": 0,
+        "index": 0,
+      },
+      "tiles": [
+        {
+          "letter": "A",
+          "type": "letter",
+        },
+        {
+          "letter": "H",
+          "type": "letter",
+        },
+        {
+          "letter": "A",
+          "type": "letter",
+        },
+        {
+          "letter": "B",
+          "type": "letter",
+        },
+      ],
+    }
+  `)
+})
+
+it("correctly inline images in markup", () => {
+  const newMDClue = "{![https://emojipedia.org/image/y.png|alt text]!}"
+
+  const parsed = xdMarkupProcessor(newMDClue)
+  expect(parsed).toMatchInlineSnapshot(`
+    [
+      [
+        "img",
+        "https://emojipedia.org/image/y.png",
+        "alt text",
+        false,
+      ],
+    ]
+  `)
 })
 
 it("correctly handles ~ for strike also", () => {

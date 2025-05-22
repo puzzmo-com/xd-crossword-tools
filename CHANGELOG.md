@@ -1,8 +1,15 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 9.1.0
+
+Adds the ability to parse inline and block images in a clue using the following syntax:
+
+- Image inline: `{!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`!}`
+- Image block: `{!!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`!}`
+
 ### 9.0.0
 
-- Split out the parser into it's own package. So, if you're making a crossword game, then you can just depend on `xd-crossword-tools-parser` and not have to depend on the tools.
+Split out the parser into it's own package. So, if you're making a crossword game, then you can just depend on `xd-crossword-tools-parser` and not have to depend on the tools.
 
 ### 8.1.0
 
