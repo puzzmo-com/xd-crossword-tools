@@ -4562,4 +4562,5 @@ O { background: circle }
 yarn workspaces foreach -A version [major|minor|patch]
 git add .; git commit -m "Prepare for release"
 yarn build; yarn workspaces foreach -A --no-private npm publish
+git push
 ```
