@@ -2,7 +2,7 @@ import { xdToJSON } from "./xdparser2"
 import { readFileSync } from "fs"
 
 it("does not work on implicit files", () => {
-  const xd = readFileSync("./packages/xd-crossword-tools-parser/src/xdparser2/inputs/alpha-bits.xd", "utf8")
+  const xd = readFileSync("packages/xd-crossword-tools-parser/src/parser/inputs/alpha-bits.xd", "utf8")
 
   let failed = false
   try {

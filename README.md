@@ -8,7 +8,7 @@ Runs and tested in production in node, browsers, React Native and edge runtimes.
 
 There are two packages here:
 
-- `xd-crossword-tools-parser` - A parser for the xd format, if you only want to convery an xd file to JSON and have a few helper functions for working with the JSON.
+- `xd-crossword-tools-parser` - A parser for the xd format, if you only want to convert an xd file to JSON and have a few helper functions for working with the JSON.
 - `xd-crossword-tools` - A set of tools for working with the xd format: dev tooling, importing/exporting, diffing, linting etc.
 
 ### .xd to .JSON
@@ -4441,6 +4441,8 @@ Which will add the optional `"bodyMD"` to the clue:
 - Strike through: `{-`<kbd>words</kbd>`-}` - Note: that we also support `{~`<kbd>words</kbd>`~}` because that feels more natural
 - Underline: `{_`<kbd>words</kbd>`_}`
 - Link: `{@`<kbd>words</kbd>`|`<kbd>url</kbd>`@}`
+- Image inline: `{!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`!}`
+- Image block: `{!!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`!}`
 
 ##### Split character
 

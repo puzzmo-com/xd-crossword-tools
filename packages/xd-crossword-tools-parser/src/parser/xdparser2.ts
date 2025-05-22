@@ -668,7 +668,7 @@ export function xdMarkupProcessor(input: string): ClueComponentMarkup[] {
 
   const components: ClueComponentMarkup[] = []
   // https://regex101.com/r/JsLIDM/1
-  const regex = /\{([\/\*\_\-\@\~])(.*?)\1\}/g
+  const regex = /\{([\/\*\_\-\@\~!])(.*?)\1\}/g
   let lastIndex = 0
 
   let match
@@ -696,6 +696,23 @@ export function xdMarkupProcessor(input: string): ClueComponentMarkup[] {
         break
       case "@":
         components.push(["link", content.split("|")[0], content.split("|")[1]])
+        break
+      case "!":
+        {
+          // {![https://emojipedia.org/image/x.png]!} inline
+          // {!![https://emojipedia.org/image/y.png]!} block
+          // {!![https://emojipedia.org/image/y.png|alt text]!} block with alt text
+          const isBlock = content.startsWith("!")
+          const contentWithoutBlock = isBlock ? content.slice(1) : content
+          const contentWithSquareBrackets = contentWithoutBlock.slice(1, -1)
+          const hasAltText = contentWithSquareBrackets.includes("|")
+          if (hasAltText) {
+            const [url, alt] = contentWithSquareBrackets.split("|")
+            components.push(["img", url, alt, isBlock])
+          } else {
+            components.push(["img", contentWithSquareBrackets, "", isBlock])
+          }
+        }
         break
     }
 
