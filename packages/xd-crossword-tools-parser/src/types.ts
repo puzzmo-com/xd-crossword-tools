@@ -61,7 +61,7 @@ export type Report =
       position: Position
       length: number
       clueNum: number | unknown
-      clueType: "across" | "down" | unknown
+      clueType: CursorDirection | unknown
       message: string
     }
 
@@ -105,7 +105,7 @@ export interface RebusTile {
   }
 }
 
-interface BlankTile {
+export interface BlankTile {
   type: "blank"
 }
 
@@ -131,7 +131,7 @@ export interface Clue {
   display: ClueComponentMarkup[]
   /** The number, whether it is across or down is handled back at 'clues' */
   number: number
-  /** The string after the "~"" - if the clue has a split character than this will not be included */
+  /** The string after the "~" - if the clue has a split character than this will not be included */
   answer: string
   /** Alternative answers for Schrödinger squares (e.g. ["CONE", "CANE"]) */
   alternativeAnswers?: string[]
@@ -140,7 +140,7 @@ export interface Clue {
   /** Tiles that the clue is composed of */
   tiles: Tile[]
   /** Somewhat redundant, but also useful reference to whether this clue is was created when looking at acrosses or downs */
-  direction: "across" | "down"
+  direction: CursorDirection
   /** If an answer contains a split character, then this would include the indexes where it was used */
   splits?: number[]
   /** Duplicating a clue and using a meta suffix (e.g. "A23 ^Hint. A shot to the heart" )
