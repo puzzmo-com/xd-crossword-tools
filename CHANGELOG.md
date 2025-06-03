@@ -1,6 +1,10 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
-### 9.2.0
+### 9.1.3
+
+Exports more types
+
+### 9.1.1
 
 Adds the ability to track and store Schrödinger squares:
 
