@@ -1,6 +1,6 @@
 import { addSplits, JSONToXD, resolveFullClueAnswer } from "../src/JSONtoXD"
 import { xdToJSON } from "xd-crossword-tools-parser"
-import type { Clue } from "xd-crossword-tools-parser"
+import type { Clue, SchrodingerTile } from "xd-crossword-tools-parser"
 
 /*
  * Utilities
@@ -31,7 +31,7 @@ describe("resolveFullClueAnswer", () => {
       position: { col: 0, index: 0 },
       tiles: [
         { type: "letter", letter: "C" },
-        { type: "rebus", symbol: "❶" },
+        { type: "rebus", symbol: "❶", word: "AT" },
       ],
       metadata: undefined,
     } as Clue
@@ -79,6 +79,27 @@ describe("resolveFullClueAnswer", () => {
       splits: [5, 6, 7],
     } as Clue
     expect(resolveFullClueAnswer(rebuses, clue, "|")).toEqual("TWITCH|DOT|T|V")
+  })
+
+  it("Returns answer for clue with Schrödinger square", () => {
+    const rebuses = {}
+    const schrodingerTile: SchrodingerTile = { type: "schrodinger", validLetters: ["O", "A"] }
+    const clue = {
+      body: "Sugar ____",
+      answer: "CONE",
+      number: 6,
+      position: { col: 0, index: 8 },
+      tiles: [
+        { type: "letter", letter: "C" },
+        schrodingerTile,
+        { type: "letter", letter: "N" },
+        { type: "letter", letter: "E" },
+      ],
+      direction: "across" as const,
+      display: [["text", "Sugar ____"]],
+      metadata: { alt: "CANE" },
+    } as Clue
+    expect(resolveFullClueAnswer(rebuses, clue, "")).toEqual("CONE")
   })
 })
 
@@ -307,6 +328,51 @@ D4. two vowels ~ OE`
 
     const json = xdToJSON(puzzle)
     const newXD = JSONToXD(json)
+    expect(newXD).toEqual(puzzle)
+  })
+
+  it("handles Schrödinger squares correctly", () => {
+    const puzzle = `## Metadata
+
+title: Test Schrödinger
+author: Test Author
+date: 2025-01-01
+editor: Test
+
+## Grid
+
+TILE
+APEX
+C*NE
+ODDS
+
+## Clues
+
+A1. Mosaic piece ~ TILE
+A5. Pinnacle ~ APEX
+A6. Sugar ____ ~ CONE
+A6 ^alt: CANE
+
+A7. Chances, in gambling ~ ODDS
+
+D1. Tuesday treat ~ TACO
+D2. Apple tech ~ IPOD
+D2 ^alt: IPAD
+
+D3. Complement to borrow ~ LEND
+D4. Former intimates ~ EXES`
+
+    const json = xdToJSON(puzzle)
+    const newXD = JSONToXD(json)
+    
+    // Check that the grid contains the * character
+    expect(newXD).toContain("C*NE")
+    
+    // Check that alt metadata is preserved
+    expect(newXD).toContain("A6 ^alt: CANE")
+    expect(newXD).toContain("D2 ^alt: IPAD")
+    
+    // The output should be equivalent to the input
     expect(newXD).toEqual(puzzle)
   })
 })

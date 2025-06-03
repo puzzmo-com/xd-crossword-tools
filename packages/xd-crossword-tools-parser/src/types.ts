@@ -75,11 +75,20 @@ export type EditorInfo = {
 
 export type Direction = "UP" | "DOWN" | "LEFT" | "RIGHT"
 
-export type Tile = LetterTile | BlankTile | RebusTile
+export type Tile = LetterTile | BlankTile | RebusTile | SchrodingerTile
 
 export interface LetterTile {
   letter: string
   type: "letter"
+  clues?: {
+    across?: number
+    down?: number
+  }
+}
+
+export interface SchrodingerTile {
+  validLetters: string[]
+  type: "schrodinger"
   clues?: {
     across?: number
     down?: number
@@ -124,6 +133,8 @@ export interface Clue {
   number: number
   /** The string after the "~"" - if the clue has a split character than this will not be included */
   answer: string
+  /** Alternative answers for Schrödinger squares (e.g. ["CONE", "CANE"]) */
+  alternativeAnswers?: string[]
   /** Filled in metadata giving the location of the first char on the grid */
   position: Position
   /** Tiles that the clue is composed of */

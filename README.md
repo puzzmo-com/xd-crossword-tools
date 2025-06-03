@@ -4320,61 +4320,22 @@ O..O.#O.O##O..O
 
 This lib creates `xd` compatible files, but also extends the format in a way that allows for thinking of `xd` as a human-editor format.
 
-#### Structural
-
-Headers - `xd` out of the box has an implicit order:
-
-- Meta
-- Grid
-- Clues
-- Notes (optional)
-
-This library respects that behavior, but also supports a markdown header format whereby you could write an `xd` document like:
-
-```md
-## Metadata
-
-Title: Square
-Author: Orta
-Editor: Orta Therox
-Date: 2021-03-16
-
-## Grid
-
-BULB
-OK#O
-L##O
-DESK
-
-## Clues
-
-A1. Gardener's concern. ~ BULB
-A4. A reasonable statement. ~ OK
-A5. The office centerpiece. ~ DESK
-
-D1. To \_ly go. ~ BOLD
-D2. Bigger than britain. ~ UK
-D3. A conscious tree. ~ BOOK
-```
-
-This makes the sections a bit more explicit (and conceptually more user-friendly if you have not read the xd documentation ahead of seeing the file) and frees the order in which someone could write a document. Capitalization is ignored.
-
-##### Clue Metadata
+#### Clue Metadata
 
 You can add arbitrary metadata to clues by repeating the clue with a custom suffix:
 
-```md
+```
 A1. Gardener's concerns with A2 and D4. ~ BULB
 A1 ^Hint: Turned on to illuminate a room.
 A1 ^Refs: A2 D4
 
 A4. A reasonable statement. ~ OK
-A4 ^Hint: All \_\_.
+A4 ^Hint: All ___.
 
 A5. The office centerpiece. ~ DESK
 A5 ^Hint: Fried.
 
-D1. To \_ly go. ~ BOLD
+D1. To ___ly go. ~ BOLD
 D1 ^Hint: When you want to make some text stronger.
 
 D2. Bigger than britain. ~ UK
@@ -4386,7 +4347,34 @@ D3 ^Hint: Registering with a restaurant. ~ BOOK
 
 Capitalization is ignored, the metadata prefix will always be given as lowercase inside the JSON representation.
 
-##### Markdown/HTML style comments
+#### Schrödinger Squares
+
+We support declaring schrödinger's by indicating in the grid with a `"*"` and then using `alt`, and `alt2`, `alt3` (etc)
+
+```
+## Grid
+
+TILE
+APEX
+C*NE
+ODDS
+
+## Clues
+
+A1. Mosaic piece ~ TILE
+A5. Pinnacle ~ APEX
+A6. Sugar ____ ~ CONE
+A6 ^alt: CANE
+A7. Chances, in gambling ~ ODDS
+
+D1. Tuesday treat ~ TACO
+D2. Apple tech ~ IPOD
+D2 ^alt: IPAD
+D3. Complement to borrow ~ LEND
+D4. Former intimates ~ EXES
+```
+
+#### Markdown/HTML style comments
 
 In markdown you can write `<!--` and `-->` to comment out a section of your code. Our implementation is not _super_ smart:
 
@@ -4407,7 +4395,7 @@ Date: 2021-03-16
 
 The key is that a line has to start with `<!--` and eventually the same or another line has to **end** with `-->`.
 
-##### Markup in Clues
+#### Markup in Clues
 
 The [xd spec](https://github.com/century-arcade/xd/blob/master/doc/xd-format.md#clues-section-3) defines markup inside a clue as roughly being "markdown sigil's wrapped in `{` and `}`". We support this format, and will always fill out a key of `markup` which is an array of components. We also add support for links via this syntax: `{@text|url@}`.
 
@@ -4444,7 +4432,7 @@ Which will add the optional `"bodyMD"` to the clue:
 - Image inline: `{!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`!}`
 - Image block: `{!!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`!}`
 
-##### Split character
+#### Split character
 
 Provide hints for where one word terminates and the next begins in a single solution by declaring `SplitCharacter: {character}` in `Metadata`, and adding the chosen SplitCharacter between words in `Clues`.
 
@@ -4461,29 +4449,11 @@ The 'answer' given from the parser here will be 'STANLEE', but the indexes for e
 
 ### Spec-Breaking Differences
 
-We want to highlight that 'Comments', 'Split Characters' and some markup extensions are all spec-breaking. E.g. a parser which conforms exactly to the xd spec would likely choke when seeing these features.
+We want to highlight that 'Comments', 'Split Characters', 'Schrödinger clues' and some markup extensions are all spec-breaking. E.g. a parser which conforms exactly to the xd spec would likely choke when seeing these features.
 
 Otherwise, we keep all extensions inside a unique section which another xp parser would know to NOOP on.
 
-#### Metadata
-
-**Not yet supported**: This is our guess
-
-[Shrodinger's Squares](https://www.xwordinfo.com/Quantum). It's likely that a special form of Rebus will work here, for example:
-
-```
-Rebus: 1=M|F
-```
-
-Indicates to the game engine that the rebus for `1` on the grid can be _either_ `M` or `F`.
-
-```
-Rebus: 1=M&F 2=L&T
-```
-
-Indicates to the game engine that the rebus for `1` on the grid can be _either_ `M` or `F`, but that the side needs to be respected across all possible rebuses in the clue. So for `M1L2` you could have `MALE` and `FATE`but not `FALE` or `MATE`.
-
-#### Aesthetics
+### Aesthetics
 
 The xd spec is built for isplaying a large corpus of finished Crosswords, we use it for creation of new ones. This means we have a few extensions to the format to make it easier to write puzzles.
 
@@ -4539,28 +4509,9 @@ O { background: circle }
   .....#...##....
   ```
 
-- `## Metapuzzle`
-
-  We'd like a way to describe a final question and a final answer for a puzzle. For example, in alpha-bits above the circles indicate a letter pattern and there could be a way to respond that you got the theme. For example:
-
-  ```md
-  ## Metapuzzle
-
-  How are the words sorted?
-
-  > Alphabetic
-  ```
-
-  Case in the answer should be ignored by engines.
-
-### Filetypes this lib is open to adding
-
-- http://www.ipuz.org
-- https://www.xwordinfo.com/XPF/ / https://www.xwordinfo.com/JSON/
-
 ## Deploys
 
-```
+```sh
 yarn workspaces foreach -A version [major|minor|patch]
 git add .; git commit -m "Prepare for release"
 yarn build; yarn workspaces foreach -A --no-private npm publish

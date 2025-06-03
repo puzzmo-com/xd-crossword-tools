@@ -1,5 +1,38 @@
 import { existsSync, readFileSync } from "fs"
 import { puzToXD } from "../src/puzToXD"
+import { xdToJSON } from "xd-crossword-tools-parser"
+
+it("handles Schrödinger squares", () => {
+  const path = __dirname + "/puz/Mini 240918 Schrdinger.puz"
+  const puz = readFileSync(path)
+  const xd = puzToXD(puz)
+  
+  // The .puz format doesn't natively support Schrödinger squares
+  // So this imports as a regular puzzle
+  expect(xd).toContain("CONE")
+  expect(xd).toContain("IPOD")
+  
+  // To make it a proper Schrödinger puzzle, we'd need to manually add the metadata
+  const xdWithSchrodinger = xd.replace(
+    "A6. Sugar ____ ~ CONE",
+    "A6. Sugar ____ ~ CONE\nA6 ^alt: CANE"
+  ).replace(
+    "D2. Apple tech ~ IPOD", 
+    "D2. Apple tech ~ IPOD\nD2 ^alt: IPAD"
+  ).replace(
+    "CONE",
+    "C*NE"
+  )
+  
+  // Verify the modified XD parses correctly with Schrödinger squares
+  const json = xdToJSON(xdWithSchrodinger)
+  const schrodingerTile = json.tiles[2][1]
+  expect(schrodingerTile.type).toBe("schrodinger")
+  if (schrodingerTile.type === "schrodinger") {
+    expect(schrodingerTile.validLetters).toContain("O")
+    expect(schrodingerTile.validLetters).toContain("A")
+  }
+})
 
 it("handles greyd backgrounds", () => {
   const path = "./tests/gitignored/has-bgs.puz"
