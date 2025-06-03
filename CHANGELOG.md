@@ -1,5 +1,49 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 9.2.0
+
+Adds the ability to track and store Schrödinger squares:
+
+```
+## Metadata
+
+title: Mini 240918 Schrödinger 1
+author: Puzzled in CNY
+copyright: Copyright Puzzled in CNY, all rights reserved
+description: Not the world's most challenging or entertaining Schrödinger but...baby steps! - Created on crosshare.org
+
+## Grid
+
+TILE
+APEX
+C*NE
+ODDS
+
+## Clues
+
+A1. Mosaic piece ~ TILE
+A5. Pinnacle ~ APEX
+A6. Sugar ____ ~ CONE
+A6 ^alt: CANE
+A7. Chances, in gambling ~ ODDS
+
+D1. Tuesday treat ~ TACO
+D2. Apple tech ~ IPOD
+D2 ^alt: IPAD
+D3. Complement to borrow ~ LEND
+D4. Former intimates ~ EXES
+```
+
+Supports multiples of alts, so:
+
+```
+A6. Sugar ____ ~ CONE
+A6 ^alt: CANE
+A6 ^alt2: BONE
+```
+
+Would all be legit.
+
 ### 9.1.0
 
 Adds the ability to parse inline and block images in a clue using the following syntax:

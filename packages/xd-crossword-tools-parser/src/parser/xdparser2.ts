@@ -315,6 +315,47 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     })
   }
 
+  // Process Schrödinger squares - find clues with alt metadata and populate validLetters
+  const allClues = [...json.clues.across, ...json.clues.down]
+  for (const clue of allClues) {
+    if (clue.metadata) {
+      // Collect all alternative answers (alt, alt1, alt2, etc.)
+      const altAnswers: string[] = []
+      for (const [key, value] of Object.entries(clue.metadata)) {
+        if (key === "alt" || key.startsWith("alt")) {
+          altAnswers.push(value)
+        }
+      }
+      
+      if (altAnswers.length > 0) {
+        const primaryAnswer = clue.answer
+        const allAnswers = [primaryAnswer, ...altAnswers]
+        
+        // For each position, collect all possible letters from all answers
+        for (let i = 0; i < primaryAnswer.length && i < clue.tiles.length; i++) {
+          const tile = clue.tiles[i]
+          if (tile.type === "schrodinger") {
+            const validLettersAtPosition = new Set<string>()
+            
+            // Collect unique letters at this position from all answers
+            for (const answer of allAnswers) {
+              if (i < answer.length) {
+                validLettersAtPosition.add(answer[i])
+              }
+            }
+            
+            // Add all valid letters to the tile
+            for (const letter of validLettersAtPosition) {
+              if (!tile.validLetters.includes(letter)) {
+                tile.validLetters.push(letter)
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   // Checks that all of the essential data has been set in a useful way
   if (strict) {
     const needed = mustHave.filter((needs) => !seenSections.includes(needs))
@@ -531,6 +572,8 @@ export const letterToTile = (letter: string): Tile => {
   if (letter === "#") return { type: "blank" }
   // Puzz support
   if (letter === ".") return { type: "blank" }
+  // Schrödinger square - will be populated with valid letters later
+  if (letter === "*") return { type: "schrodinger", validLetters: [] }
   return { type: "letter", letter }
 }
 

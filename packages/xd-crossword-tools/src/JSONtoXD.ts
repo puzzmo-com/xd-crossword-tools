@@ -1,15 +1,30 @@
-import type { Clue, CrosswordJSON } from "xd-crossword-tools-parser"
+import type { Clue, CrosswordJSON, Tile } from "xd-crossword-tools-parser"
 
 export function resolveFullClueAnswer(rebusMap: CrosswordJSON["rebuses"], clue: Clue, splitChar: string) {
+  // For simple cases (no rebus, no splits), just return the answer directly
+  const hasRebus = clue.tiles.some((t) => t.type === "rebus")
+  const hasSplits = clue.splits && clue.splits.length > 0
+
+  if (!hasRebus && !hasSplits) {
+    return clue.answer
+  }
+
   // In order to correctly pipe rebus clues, we must temporarily substitute in rebus symbols
   const replacedWithSymbol = clue.tiles
-    .map((t) => {
+    .map((t: Tile) => {
       if (t.type === "rebus") {
         return t.symbol
       } else if (t.type === "letter") {
         return t.letter
+      } else if (t.type === "schrodinger") {
+        // For Schrödinger tiles that appear as regular letter tiles with "*",
+        // we need to get the actual letter from the answer
+        const tileIndex = clue.tiles.indexOf(t)
+        return clue.answer[tileIndex] || "*"
+      } else if (t.type === "blank") {
+        return "" // This shouldn't happen in a clue answer
       }
-      throw new Error("Invalid tile type")
+      throw new Error(`Invalid tile type: ${(t as any).type}`)
     })
     .join("")
 
@@ -62,7 +77,7 @@ export const JSONToXD = (json: CrosswordJSON): string => {
   xd += json.tiles
     .map((row) =>
       row
-        .map((tile) => {
+        .map((tile: Tile) => {
           switch (tile.type) {
             case "letter":
               return tile.letter
@@ -70,6 +85,10 @@ export const JSONToXD = (json: CrosswordJSON): string => {
               return "."
             case "rebus":
               return tile.symbol
+            case "schrodinger":
+              return "*"
+            default:
+              throw new Error(`Unknown tile type: ${(tile as any).type}`)
           }
         })
         .join("")
