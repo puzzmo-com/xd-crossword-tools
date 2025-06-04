@@ -135,7 +135,7 @@ D4. Former intimates ~ EXES
     }
   })
 
-  it("handles Schrödinger squares with a rebus inside it", () => {
+  it("handles Schrödinger squares with in a clue with a rebus", () => {
     const xd = `
 ## Metadata
 Title: Test Schrödinger
