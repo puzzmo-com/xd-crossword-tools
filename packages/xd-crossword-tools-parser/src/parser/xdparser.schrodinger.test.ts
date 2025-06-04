@@ -129,8 +129,11 @@ D4. Former intimates ~ EXES
 
     if (schrodingerTile.type === "schrodinger") {
       expect(schrodingerTile.validRebuses).toBeDefined()
-      expect(schrodingerTile.validRebuses).toContain("AR")
-      expect(schrodingerTile.validRebuses).toContain("OR")
+      expect(schrodingerTile.validRebuses).toEqual(expect.arrayContaining([
+        { letters: "AR", symbol: "1" },
+        { letters: "OR", symbol: "2" }
+      ]))
+      expect(schrodingerTile.validRebuses).toHaveLength(2)
       expect(schrodingerTile.validLetters).toHaveLength(0)
     }
   })

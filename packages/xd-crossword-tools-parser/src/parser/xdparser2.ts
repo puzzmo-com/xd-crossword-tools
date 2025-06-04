@@ -339,15 +339,15 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
           const tile = clue.tiles[tileIdx]
           if (tile.type === "schrodinger") {
             const validLettersAtPosition = new Set<string>()
-            const validRebusesAtPosition = new Set<string>()
+            const validRebusesAtPosition = new Map<string, string>() // symbol -> letters
 
             // Collect unique letters/rebuses at this position from all processed answers
             for (const processedAnswer of processedAnswers) {
               if (tileIdx < processedAnswer.length) {
                 const char = processedAnswer[tileIdx]
                 if (json.rebuses[char]) {
-                  // For rebus symbols, add the actual rebus value to validRebuses
-                  validRebusesAtPosition.add(json.rebuses[char])
+                  // For rebus symbols, store both symbol and letters
+                  validRebusesAtPosition.set(char, json.rebuses[char])
                 } else {
                   // For regular letters, add to validLetters
                   validLettersAtPosition.add(char)
@@ -364,9 +364,11 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
 
             // Add all valid rebuses to the tile if any exist
             if (validRebusesAtPosition.size > 0) {
-              for (const rebus of validRebusesAtPosition) {
-                if (!tile.validRebuses.includes(rebus)) {
-                  tile.validRebuses.push(rebus)
+              for (const [symbol, letters] of validRebusesAtPosition) {
+                const rebusEntry = { letters, symbol }
+                const exists = tile.validRebuses.some(r => r.symbol === symbol && r.letters === letters)
+                if (!exists) {
+                  tile.validRebuses.push(rebusEntry)
                 }
               }
             }

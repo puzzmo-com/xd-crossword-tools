@@ -90,7 +90,7 @@ export interface SchrodingerTile {
   /** Possible letter tiles */
   validLetters: string[]
   /** Possible rebus tiles */
-  validRebuses: string[]
+  validRebuses: { letters: string; symbol: string }[]
   type: "schrodinger"
   clues?: {
     across?: number
