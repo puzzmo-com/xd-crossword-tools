@@ -4374,6 +4374,13 @@ D3. Complement to borrow ~ LEND
 D4. Former intimates ~ EXES
 ```
 
+For rebuses inside schrödinger use the symbol inside the clue/alt:
+
+```
+A6. Sugar ____ ~ 1NE
+A6 ^alt: 2NE
+```
+
 #### Markdown/HTML style comments
 
 In markdown you can write `<!--` and `-->` to comment out a section of your code. Our implementation is not _super_ smart:
