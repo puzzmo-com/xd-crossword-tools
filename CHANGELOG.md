@@ -1,5 +1,16 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 9.1.4 - 5
+
+It's now possible to put a rebus inside a schrodinger's square. You reference the rebus via the clue/alt
+
+```
+A6. Sugar ____ ~ 1NE
+A6 ^alt: 2NE
+```
+
+With the rebus as `Rebus: 1=CO 2=BO
+
 ### 9.1.3
 
 Exports more types

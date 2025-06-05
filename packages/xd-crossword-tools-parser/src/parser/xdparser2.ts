@@ -326,28 +326,50 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
           altAnswers.push(value)
         }
       }
-      
+
       if (altAnswers.length > 0) {
         const primaryAnswer = clue.answer
         const allAnswers = [primaryAnswer, ...altAnswers]
-        
-        // For each position, collect all possible letters from all answers
-        for (let i = 0; i < primaryAnswer.length && i < clue.tiles.length; i++) {
-          const tile = clue.tiles[i]
+
+        // Process each answer to replace rebus words with their symbols
+        const processedAnswers = allAnswers.map((answer) => replaceWordWithSymbol(answer, clue.tiles, json.meta.splitcharacter || "-"))
+
+        // For each tile position
+        for (let tileIdx = 0; tileIdx < clue.tiles.length; tileIdx++) {
+          const tile = clue.tiles[tileIdx]
           if (tile.type === "schrodinger") {
             const validLettersAtPosition = new Set<string>()
-            
-            // Collect unique letters at this position from all answers
-            for (const answer of allAnswers) {
-              if (i < answer.length) {
-                validLettersAtPosition.add(answer[i])
+            const validRebusesAtPosition = new Map<string, string>() // symbol -> letters
+
+            // Collect unique letters/rebuses at this position from all processed answers
+            for (const processedAnswer of processedAnswers) {
+              if (tileIdx < processedAnswer.length) {
+                const char = processedAnswer[tileIdx]
+                if (json.rebuses[char]) {
+                  // For rebus symbols, store both symbol and letters
+                  validRebusesAtPosition.set(char, json.rebuses[char])
+                } else {
+                  // For regular letters, add to validLetters
+                  validLettersAtPosition.add(char)
+                }
               }
             }
-            
+
             // Add all valid letters to the tile
             for (const letter of validLettersAtPosition) {
               if (!tile.validLetters.includes(letter)) {
                 tile.validLetters.push(letter)
+              }
+            }
+
+            // Add all valid rebuses to the tile if any exist
+            if (validRebusesAtPosition.size > 0) {
+              for (const [symbol, letters] of validRebusesAtPosition) {
+                const rebusEntry = { letters, symbol }
+                const exists = tile.validRebuses.some(r => r.symbol === symbol && r.letters === letters)
+                if (!exists) {
+                  tile.validRebuses.push(rebusEntry)
+                }
               }
             }
           }
@@ -573,7 +595,7 @@ export const letterToTile = (letter: string): Tile => {
   // Puzz support
   if (letter === ".") return { type: "blank" }
   // Schrödinger square - will be populated with valid letters later
-  if (letter === "*") return { type: "schrodinger", validLetters: [] }
+  if (letter === "*") return { type: "schrodinger", validLetters: [], validRebuses: [] }
   return { type: "letter", letter }
 }
 
