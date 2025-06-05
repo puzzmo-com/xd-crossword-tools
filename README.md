@@ -4400,7 +4400,7 @@ Date: 2021-03-16
 -->
 ```
 
-The key is that a line has to start with `<!--` and eventually the same or another line has to **end** with `-->`.
+The key is that a line has to start with `<!--` and eventually the same or another line has to **end** with `-->`. If you are doing automated transforms, these comments are likely to get lost.
 
 #### Markup in Clues
 
