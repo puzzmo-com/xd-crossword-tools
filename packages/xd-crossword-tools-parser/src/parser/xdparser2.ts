@@ -733,7 +733,7 @@ export function xdMarkupProcessor(input: string): ClueComponentMarkup[] {
 
   const components: ClueComponentMarkup[] = []
   // https://regex101.com/r/JsLIDM/1
-  const regex = /\{([\/\*\_\-\@\~!])(.*?)\1\}/g
+  const regex = /\{([\/\*\_\-\@\~!#])(.*?)\1\}/g
   let lastIndex = 0
 
   let match
@@ -776,6 +776,19 @@ export function xdMarkupProcessor(input: string): ClueComponentMarkup[] {
             components.push(["img", url, alt, isBlock])
           } else {
             components.push(["img", contentWithSquareBrackets, "", isBlock])
+          }
+        }
+        break
+      case "#":
+        {
+          // {#text|hex colour light|hex colour dark#}
+          const parts = content.split("|")
+          if (parts.length === 3) {
+            const [text, lightColor, darkColor] = parts
+            components.push(["color", text, lightColor, darkColor])
+          } else {
+            // If malformed, treat as text
+            components.push(["text", `{#${content}#}`])
           }
         }
         break

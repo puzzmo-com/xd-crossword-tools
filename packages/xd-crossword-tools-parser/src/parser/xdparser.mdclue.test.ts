@@ -228,3 +228,53 @@ it("correctly handles ~ for strike also", () => {
 ]
 `)
 })
+
+it("correctly handles inline colors", () => {
+  const newMDClue = "This text is {#red|#ff0000|#cc0000#} and this is {#blue|#0000ff|#0000cc#}"
+  const parsed = xdMarkupProcessor(newMDClue)
+  expect(parsed).toMatchInlineSnapshot(`
+[
+  [
+    "text",
+    "This text is ",
+  ],
+  [
+    "color",
+    "red",
+    "#ff0000",
+    "#cc0000",
+  ],
+  [
+    "text",
+    " and this is ",
+  ],
+  [
+    "color",
+    "blue",
+    "#0000ff",
+    "#0000cc",
+  ],
+]
+`)
+})
+
+it("handles malformed color syntax gracefully", () => {
+  const newMDClue = "This {#malformed#} color will be treated as text"
+  const parsed = xdMarkupProcessor(newMDClue)
+  expect(parsed).toMatchInlineSnapshot(`
+[
+  [
+    "text",
+    "This ",
+  ],
+  [
+    "text",
+    "{#malformed#}",
+  ],
+  [
+    "text",
+    " color will be treated as text",
+  ],
+]
+`)
+})
