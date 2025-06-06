@@ -126,6 +126,7 @@ export type ClueComponentMarkup =
   | [type: "underscore", text: string]
   | [type: "link", text: string, to: string]
   | [type: "img", url: string, alt: string, block: boolean]
+  | [type: "color", text: string, lightColor: string, darkColor: string]
 
 export interface Clue {
   /** The "clue" as a raw string, sans markup processing */

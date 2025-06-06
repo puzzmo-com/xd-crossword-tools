@@ -4438,6 +4438,7 @@ Which will add the optional `"bodyMD"` to the clue:
 - Link: `{@`<kbd>words</kbd>`|`<kbd>url</kbd>`@}`
 - Image inline: `{!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`!}`
 - Image block: `{!!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`!}`
+- Inline colours: `{#`<kbd>text</kbd>`|`<kbd>hex colour light</kbd>|<kbd>hex colour dark</kbd>`#}`
 
 #### Split character
 
