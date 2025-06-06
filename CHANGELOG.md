@@ -1,5 +1,11 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 9.1.6
+
+Clues can contain inline colours on a word:
+
+> Inline colours: `{#`<kbd>text</kbd>`|`<kbd>hex colour light</kbd>|<kbd>hex colour dark</kbd>`#}`
+
 ### 9.1.4 - 5
 
 It's now possible to put a rebus inside a schrodinger's square. You reference the rebus via the clue/alt
