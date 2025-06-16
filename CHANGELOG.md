@@ -1,5 +1,9 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 9.1.7
+
+Unknown sections of an xd file are now added into the JSON model, so you can use arbitrary sections at will.
+
 ### 9.1.6
 
 Clues can contain inline colours on a word:
