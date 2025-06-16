@@ -19,6 +19,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   let seenSections: string[] = []
   let preCommentState: ParseMode = "unknown"
   let styleTagContent: undefined | string = undefined
+  let currentUnknownSectionTitle: string | undefined = undefined
 
   if (xd && shouldConvertToExplicitHeaders(xd)) {
     if (editorInfo) throw new Error("xd-crossword-tools: This file is using v1 implicit headers, you can't use an editor with this file")
@@ -53,6 +54,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     },
     rebuses: {},
     notes: "",
+    unknownSections: {},
     report: {
       success: false,
       errors: [],
@@ -103,6 +105,22 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     if (content.startsWith("## ")) {
       mode = parseModeForString(content, line, strict)
 
+      // If this is an unknown section, capture the title
+      if (mode === "unknown") {
+        const sectionTitle = content.split("## ").pop()
+        if (sectionTitle) {
+          currentUnknownSectionTitle = sectionTitle.trim()
+          // Initialize the unknown section with empty content
+          const slugifiedTitle = slugify(currentUnknownSectionTitle)
+          json.unknownSections[slugifiedTitle] = {
+            title: currentUnknownSectionTitle,
+            content: ""
+          }
+        }
+      } else {
+        currentUnknownSectionTitle = undefined
+      }
+
       // Provide enough info for another tool to not need to parse the file
       if (json.editorInfo) {
         const sections = json.editorInfo.sections
@@ -124,7 +142,16 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
       addSyntaxError("This header has spaces before it, this is likely an accidental indentation", line)
 
     // Allow for prefix whitespaces, mainly to make the tests more readable but it can't hurt the parser
-    if (mode === "unknown") continue
+    if (mode === "unknown") {
+      // If we're in an unknown section and have a title, collect the content
+      if (currentUnknownSectionTitle) {
+        const slugifiedTitle = slugify(currentUnknownSectionTitle)
+        if (json.unknownSections[slugifiedTitle]) {
+          json.unknownSections[slugifiedTitle].content += content + "\n"
+        }
+      }
+      continue
+    }
 
     switch (mode) {
       // NOOP
@@ -394,6 +421,11 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     }
   }
 
+  // Clean up trailing newlines from unknown sections content
+  for (const [key, section] of Object.entries(json.unknownSections)) {
+    json.unknownSections[key].content = section.content.trimEnd()
+  }
+
   // if (editorInfo) {
   //   json.clues.across.forEach((clue) => {
   //     const warnings = runLinterForClue(clue, "across")
@@ -616,6 +648,16 @@ const toTitleSentence = (strs: string[]) => {
 
   const capNeeded = strs.map((h) => h[0].toUpperCase() + h.slice(1))
   return capNeeded.slice(0, -1).join(", ") + " & " + capNeeded[capNeeded.length - 1]
+}
+
+const slugify = (text: string): string => {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+    .replace(/^-|-$/g, '') // Remove leading/trailing hyphens
 }
 
 function updateMetaPuzzleForLine(

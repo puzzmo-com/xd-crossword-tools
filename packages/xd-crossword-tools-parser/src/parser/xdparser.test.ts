@@ -786,3 +786,60 @@ A2. Alphabet ~ A|B|C
   expect(json.clues.across[0].splits).toEqual([0])
   expect(json.clues.across[1].splits).toEqual([0, 1])
 })
+
+describe("unknownSections", () => {
+  it("captures unknown sections and their content", () => {
+    const xd = `## Metadata
+Title: Test Puzzle
+Author: Test Author
+
+## Custom Section
+This is some custom content
+with multiple lines.
+
+## Another Section!
+More content here.
+Even more content.
+
+## Grid
+## Clues
+`
+
+    const json = xdToJSON(xd)
+    expect(json.unknownSections).toMatchInlineSnapshot(`
+{
+  "another-section": {
+    "content": "More content here.
+Even more content.",
+    "title": "Another Section!",
+  },
+  "custom-section": {
+    "content": "This is some custom content
+with multiple lines.",
+    "title": "Custom Section",
+  },
+}
+`)
+  })
+
+  it("handles empty unknown sections", () => {
+    const xd = `## Metadata
+Title: Test Puzzle
+
+## Empty Section
+
+## Grid
+## Clues
+`
+
+    const json = xdToJSON(xd)
+    expect(json.unknownSections).toMatchInlineSnapshot(`
+{
+  "empty-section": {
+    "content": "",
+    "title": "Empty Section",
+  },
+}
+`)
+  })
+})
