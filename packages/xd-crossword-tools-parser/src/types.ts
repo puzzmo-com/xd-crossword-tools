@@ -52,6 +52,11 @@ export type CrosswordJSON = {
     /** Lint warnings which are general 'hey should you be doing this?' */
     warnings: Report[]
   }
+  /**
+   * If there are any sections which were not known, we slugify
+   * the title and use it as the key, then add the text content as the value
+   */
+  unknownSections: Record<string, { title: string; content: string }>
 }
 
 export type Report =
