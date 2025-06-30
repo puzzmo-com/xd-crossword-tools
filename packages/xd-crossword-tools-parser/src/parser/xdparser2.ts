@@ -809,15 +809,24 @@ export function xdMarkupProcessor(input: string): ClueComponentMarkup[] {
           // {![https://emojipedia.org/image/x.png]!} inline
           // {!![https://emojipedia.org/image/y.png]!} block
           // {!![https://emojipedia.org/image/y.png|alt text]!} block with alt text
+          // {!![https://emojipedia.org/image/y.png|alt text|width|height]!} block with alt text, width and height
           const isBlock = content.startsWith("!")
           const contentWithoutBlock = isBlock ? content.slice(1) : content
           const contentWithSquareBrackets = contentWithoutBlock.slice(1, -1)
-          const hasAltText = contentWithSquareBrackets.includes("|")
-          if (hasAltText) {
-            const [url, alt] = contentWithSquareBrackets.split("|")
-            components.push(["img", url, alt, isBlock])
-          } else {
-            components.push(["img", contentWithSquareBrackets, "", isBlock])
+          const parts = contentWithSquareBrackets.split("|")
+          
+          if (parts.length === 1) {
+            // Just URL
+            components.push(["img", parts[0], "", isBlock])
+          } else if (parts.length === 2) {
+            // URL and alt text
+            components.push(["img", parts[0], parts[1], isBlock])
+          } else if (parts.length === 3) {
+            // URL, alt text, and width
+            components.push(["img", parts[0], parts[1], isBlock, parts[2]])
+          } else if (parts.length >= 4) {
+            // URL, alt text, width, and height
+            components.push(["img", parts[0], parts[1], isBlock, parts[2], parts[3]])
           }
         }
         break

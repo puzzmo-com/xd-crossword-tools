@@ -278,3 +278,68 @@ it("handles malformed color syntax gracefully", () => {
 ]
 `)
 })
+
+it("correctly handles inline images with width and height", () => {
+  const newMDClue = "{![https://example.com/image.png|alt text|100|200]!}"
+  const parsed = xdMarkupProcessor(newMDClue)
+  expect(parsed).toMatchInlineSnapshot(`
+[
+  [
+    "img",
+    "https://example.com/image.png",
+    "alt text",
+    false,
+    "100",
+    "200",
+  ],
+]
+`)
+})
+
+it("correctly handles block images with width and height", () => {
+  const newMDClue = "{!![https://example.com/image.png|alt text|300|400]!}"
+  const parsed = xdMarkupProcessor(newMDClue)
+  expect(parsed).toMatchInlineSnapshot(`
+[
+  [
+    "img",
+    "https://example.com/image.png",
+    "alt text",
+    true,
+    "300",
+    "400",
+  ],
+]
+`)
+})
+
+it("correctly handles images with only width", () => {
+  const newMDClue = "{![https://example.com/image.png|alt text|150]!}"
+  const parsed = xdMarkupProcessor(newMDClue)
+  expect(parsed).toMatchInlineSnapshot(`
+[
+  [
+    "img",
+    "https://example.com/image.png",
+    "alt text",
+    false,
+    "150",
+  ],
+]
+`)
+})
+
+it("correctly handles images without width and height", () => {
+  const newMDClue = "{![https://example.com/image.png|alt text]!}"
+  const parsed = xdMarkupProcessor(newMDClue)
+  expect(parsed).toMatchInlineSnapshot(`
+[
+  [
+    "img",
+    "https://example.com/image.png",
+    "alt text",
+    false,
+  ],
+]
+`)
+})
