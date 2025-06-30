@@ -1,5 +1,12 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 9.1.8
+
+Added `width/height` to:
+
+- Image inline: `{!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`|width|height!}`
+- Image block: `{!!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`|width|height!}`
+
 ### 9.1.7
 
 Unknown sections of an xd file are now added into the JSON model, so you can use arbitrary sections at will.
@@ -73,8 +80,10 @@ Would all be legit.
 
 Adds the ability to parse inline and block images in a clue using the following syntax:
 
-- Image inline: `{!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`!}`
-- Image block: `{!!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`!}`
+- Image inline: `{!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`|width|height!}`
+- Image block: `{!!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`|width|height!}`
+
+(Updated in 9.1.8)
 
 ### 9.0.0
 

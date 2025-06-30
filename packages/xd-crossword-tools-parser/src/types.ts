@@ -130,7 +130,7 @@ export type ClueComponentMarkup =
   | [type: "strike", text: string]
   | [type: "underscore", text: string]
   | [type: "link", text: string, to: string]
-  | [type: "img", url: string, alt: string, block: boolean]
+  | [type: "img", url: string, alt: string, block: boolean, width?: string, height?: string]
   | [type: "color", text: string, lightColor: string, darkColor: string]
 
 export interface Clue {

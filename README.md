@@ -4436,8 +4436,8 @@ Which will add the optional `"bodyMD"` to the clue:
 - Strike through: `{-`<kbd>words</kbd>`-}` - Note: that we also support `{~`<kbd>words</kbd>`~}` because that feels more natural
 - Underline: `{_`<kbd>words</kbd>`_}`
 - Link: `{@`<kbd>words</kbd>`|`<kbd>url</kbd>`@}`
-- Image inline: `{!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`!}`
-- Image block: `{!!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`!}`
+- Image inline: `{!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`|width|height!}`
+- Image block: `{!!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`|width|height!}`
 - Inline colours: `{#`<kbd>text</kbd>`|`<kbd>hex colour light</kbd>|<kbd>hex colour dark</kbd>`#}`
 
 #### Split character
