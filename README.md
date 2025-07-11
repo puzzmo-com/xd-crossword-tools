@@ -2,7 +2,7 @@
 
 [xd](https://github.com/century-arcade/xd/blob/master/doc/xd-format.md) is a text-based crossword format which is easy for humans to read and reason about.
 
-This repo provides tools for taking different crossword file formats and converting them to xd. Then has a comprehensive xd to JSON function. Mostly conforms to the v2 xd spec, and comes with a few editor-experience extensions for a REPL-like environment. Uses a [vendored](./lib//vendor/) copy of 'puzjs' which was ported to TypeScript.
+This repo provides tools for taking different crossword file formats and converting them to xd. Then has a comprehensive xd to JSON function. Mostly conforms to the v2 xd spec, and comes with a few editor-experience extensions for a REPL-like environment. Uses a [vendored](./packages/xd-crossword-tools/src/vendor/) copy of 'puzjs' which was ported to TypeScript.
 
 Runs and tested in production in node, browsers, React Native and edge runtimes.
 
@@ -20,7 +20,7 @@ const xd = "[...]"
 const crossword = xdToJSON(xd)
 ```
 
-The JSON format is a bit more verbose than you might expect (see below for an example), but the goal is to have as much information pre-computed at parse time in order to save lookups later at runtime. You should use `crossword.report` to determine the parsing's success. You can see the type definitions here: [`./lib/types.ts`](./lib/types.ts).
+The JSON format is a bit more verbose than you might expect (see below for an example), but the goal is to have as much information pre-computed at parse time in order to save lookups later at runtime. You should use `crossword.report` to determine the parsing's success. You can see the type definitions here: [`./packages/xd-crossword-tools-parser/src/types.ts`](./packages/xd-crossword-tools-parser/src/types.ts).
 
 ### .puz to .xd
 
