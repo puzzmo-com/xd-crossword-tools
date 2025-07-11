@@ -254,7 +254,7 @@ function App() {
             {/* Desktop Layout with Resizable Panels */}
             <PanelGroup orientation="horizontal" autosaveId="xd-tools-panels">
               {/* Editor Panel (Left side) */}
-              <Panel default="45%" min="30%">
+              <Panel default="400px" min="300px">
                 <div className="editor-panel">
                   <Form className="form-container">
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
@@ -276,7 +276,7 @@ function App() {
               <PanelResizer size="5px" />
 
               {/* Content Panel (Right side) */}
-              <Panel min="30%">
+              <Panel min="300px">
                 <div className="content-panel">{renderTabsContent()}</div>
               </Panel>
             </PanelGroup>
