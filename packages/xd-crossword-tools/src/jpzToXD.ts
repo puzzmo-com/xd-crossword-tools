@@ -116,6 +116,7 @@ export function jpzToXD(xmlString: string): string {
     clues,
     notes: "",
     rebuses: {},
+    unknownSections: {},
     report: { success: true, errors: [], warnings: [] },
   }
 

@@ -3,7 +3,15 @@ import lzstring, { decompressFromEncodedURIComponent } from "lz-string"
 
 import React from "react"
 
-import { CrosswordJSON, editorInfoAtCursor, xdToJSON } from "xd-crossword-tools"
+import {
+  CrosswordJSON,
+  editorInfoAtCursor,
+  xdToJSON,
+  runLinterForClue,
+  validateClueAnswersMatchGrid,
+  ValidationReport,
+} from "xd-crossword-tools"
+import type { Report } from "xd-crossword-tools-parser"
 import { defaultExampleXD } from "../exampleXDs"
 // eslint-disable-next-line no-var
 var scopeResult = {}
@@ -16,6 +24,8 @@ export const RootContext = createContext<{
   editorInfo: ReturnType<typeof editorInfoAtCursor> | null
   lastFileContext: { content: string | object; filename: string } | null
   setLastFileContext: (file: { content: string | object; filename: string }) => void
+
+  validationReports: (Report | ValidationReport)[]
 }>({
   xd: "",
   setXD: () => {},
@@ -25,6 +35,8 @@ export const RootContext = createContext<{
 
   lastFileContext: null,
   setLastFileContext: () => {},
+
+  validationReports: [],
 })
 
 export const getScopeResult = () => scopeResult
@@ -36,12 +48,41 @@ export const RootProvider = ({ children }: React.PropsWithChildren<object>) => {
     return fromParams ? decompressFromEncodedURIComponent(fromParams) : localData || defaultExampleXD.xd
   })
 
-  const [crosswordJSON, editorInfo, error] = useMemo(() => {
+  const [crosswordJSON, editorInfo, validationReports] = useMemo(() => {
     try {
       const state = xdToJSON(xd, true, true)
-      return [state, editorInfoAtCursor(state), null] as const
+      const editorInfo = editorInfoAtCursor(state)
+
+      // Run validation
+      const reports: (Report | ValidationReport)[] = []
+
+      // Add existing parser reports if available
+      if (state.report?.errors) {
+        reports.push(...state.report.errors)
+      }
+
+      // Run linter for each clue
+      for (const clue of state.clues.across) {
+        reports.push(...runLinterForClue(clue, "across"))
+      }
+      for (const clue of state.clues.down) {
+        reports.push(...runLinterForClue(clue, "down"))
+      }
+
+      // Run grid validation
+      reports.push(...validateClueAnswersMatchGrid(state))
+
+      return [state, editorInfo, reports] as const
     } catch (error) {
-      return [null, null, error] as const
+      // Create a validation report for the parsing error
+      const errorReport: Report = {
+        type: "syntax",
+        message: error instanceof Error ? error.message : "Failed to parse XD content",
+        position: { col: 0, index: 0 },
+        length: -1,
+      }
+
+      return [null, null, [errorReport] as (Report | ValidationReport)[]] as const
     }
   }, [xd])
 
@@ -52,8 +93,6 @@ export const RootProvider = ({ children }: React.PropsWithChildren<object>) => {
 
     const options = new URLSearchParams(document.location.search)
     if (xd !== defaultExampleXD.xd) options.set("expression", lzstring.compressToEncodedURIComponent(xd))
-    // if (scopeString !== initialScopeString) options.set("scope", lzstring.compressToEncodedURIComponent(scopeString))
-    // if (tsInterfaceForSchema != initialTSInterfaceForSchema) options.set("ts", lzstring.compressToEncodedURIComponent(tsInterfaceForSchema))
 
     const newUrl = `${document.location.origin}${document.location.pathname}?${options.toString()}`
     window.history.replaceState({}, "", newUrl)
@@ -68,6 +107,7 @@ export const RootProvider = ({ children }: React.PropsWithChildren<object>) => {
         editorInfo,
         lastFileContext,
         setLastFileContext,
+        validationReports,
       }}
     >
       {children}

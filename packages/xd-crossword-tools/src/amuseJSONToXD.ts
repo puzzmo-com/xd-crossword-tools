@@ -113,6 +113,7 @@ export function convertTopLevelToCrosswordJSON(amuseJson: AmuseTopLevel): Crossw
     meta: meta,
     notes: "",
     rebuses: {},
+    unknownSections: {},
     report: {
       success: true,
       errors: [],

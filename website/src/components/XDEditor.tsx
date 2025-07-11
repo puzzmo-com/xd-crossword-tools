@@ -159,20 +159,25 @@ export const XDEditor = (props: {}) => {
         base: "vs",
         inherit: true,
         rules: [
-          { token: "header", foreground: "eeeeee", fontStyle: "bold" },
-          { token: "across-clue", foreground: "007777" },
-          { token: "down-clue", foreground: "007777" },
-          { token: "across-meta", foreground: "007777" },
-          { token: "down-meta", foreground: "007777" },
-          { token: "answer", foreground: "111111" },
-          { token: "key", foreground: "222222" },
-          { token: "todo", foreground: "FFAAAC" },
-          { token: "comment", foreground: "FFAAAC" },
-          { token: "keyword.crossword", foreground: "111111" },
+          { token: "header", foreground: "22bb22", fontStyle: "bold" },
+          { token: "across-clue", foreground: "16a34a" },
+          { token: "down-clue", foreground: "16a34a" },
+          { token: "across-meta", foreground: "059669" },
+          { token: "down-meta", foreground: "059669" },
+          { token: "answer", foreground: "365314" },
+          { token: "key", foreground: "166534" },
+          { token: "todo", foreground: "dc2626" },
+          { token: "comment", foreground: "84cc16" },
+          { token: "keyword.crossword", foreground: "365314" },
         ],
 
         colors: {
-          "editor.foreground": "#111111",
+          "editor.foreground": "#365314",
+          "editor.selectionBackground": "#d9f99d50",
+          "editor.lineHighlightBackground": "#ecfccb50",
+          "editorCursor.foreground": "#16a34a",
+          "editorLineNumber.foreground": "#84cc16",
+          "editorLineNumber.activeForeground": "#16a34a",
         },
       })
     },
@@ -192,6 +197,11 @@ export const XDEditor = (props: {}) => {
           suggestFontSize: 16,
           padding: { top: 5, bottom: 0 },
           theme: "puzzmo",
+          // Disable scroll capture to allow page scrolling
+          scrollBeyondLastLine: false,
+          scrollbar: {
+            alwaysConsumeMouseWheel: false,
+          },
           ...defaultMonacoSettings,
         }}
         onChange={setXD}

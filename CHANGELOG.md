@@ -1,5 +1,9 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 9.1.9
+
+Adds a new function `validateClueAnswersMatchGrid` which verifies the tiles and clues answer matches
+
 ### 9.1.8
 
 Added `width/height` to:

@@ -103,7 +103,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     }
 
     if (content.startsWith("## ")) {
-      mode = parseModeForString(content, line, strict)
+      mode = parseModeForString(content, line)
 
       // If this is an unknown section, capture the title
       if (mode === "unknown") {
@@ -114,7 +114,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
           const slugifiedTitle = slugify(currentUnknownSectionTitle)
           json.unknownSections[slugifiedTitle] = {
             title: currentUnknownSectionTitle,
-            content: ""
+            content: "",
           }
         }
       } else {
@@ -393,7 +393,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
             if (validRebusesAtPosition.size > 0) {
               for (const [symbol, letters] of validRebusesAtPosition) {
                 const rebusEntry = { letters, symbol }
-                const exists = tile.validRebuses.some(r => r.symbol === symbol && r.letters === letters)
+                const exists = tile.validRebuses.some((r) => r.symbol === symbol && r.letters === letters)
                 if (!exists) {
                   tile.validRebuses.push(rebusEntry)
                 }
@@ -441,7 +441,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   json.report.success = json.report.errors.length === 0
   return json
 
-  function parseModeForString(lineText: string, num: number, strict: boolean): ParseMode {
+  function parseModeForString(lineText: string, num: number): ParseMode {
     const content = lineText.split("## ").pop()
     if (!content) {
       addSyntaxError("This header needs a title", num)
@@ -467,15 +467,6 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
       return "metadata"
     } else if (title.startsWith("design")) {
       return "design"
-    }
-
-    if (strict && !knownHeaders.includes(content.trim() as any)) {
-      const headers = toTitleSentence(knownHeaders as any)
-
-      addSyntaxError(
-        `Two # headers are reserved for the system, we accept: ${headers}. Got '${content.trim()}'. You can use ### headers for inside notes.`,
-        num
-      )
     }
 
     return "unknown"
@@ -654,10 +645,10 @@ const slugify = (text: string): string => {
   return text
     .toLowerCase()
     .trim()
-    .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
-    .replace(/\s+/g, '-') // Replace spaces with hyphens
-    .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
-    .replace(/^-|-$/g, '') // Remove leading/trailing hyphens
+    .replace(/[^a-z0-9\s-]/g, "") // Remove special characters except spaces and hyphens
+    .replace(/\s+/g, "-") // Replace spaces with hyphens
+    .replace(/-+/g, "-") // Replace multiple hyphens with single hyphen
+    .replace(/^-|-$/g, "") // Remove leading/trailing hyphens
 }
 
 function updateMetaPuzzleForLine(
@@ -814,7 +805,7 @@ export function xdMarkupProcessor(input: string): ClueComponentMarkup[] {
           const contentWithoutBlock = isBlock ? content.slice(1) : content
           const contentWithSquareBrackets = contentWithoutBlock.slice(1, -1)
           const parts = contentWithSquareBrackets.split("|")
-          
+
           if (parts.length === 1) {
             // Just URL
             components.push(["img", parts[0], "", isBlock])
