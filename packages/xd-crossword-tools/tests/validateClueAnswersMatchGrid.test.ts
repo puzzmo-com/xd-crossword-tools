@@ -60,11 +60,11 @@ D3. Place to sleep ~ BED`
     expect(reports).toHaveLength(1)
     expect(reports[0]).toMatchObject({
       type: "clue_grid_mismatch",
-      clueNumber: 1,
-      direction: "across",
+      clueNum: 1,
+      clueType: "across",
       expectedAnswer: "DOG",
       actualAnswer: "CAB",
-      message: 'Clue ACROSS1 answer doesn\'t match grid: expected "DOG" but grid has "CAB"',
+      message: 'Clue A1 answer doesn\'t match grid: expected "DOG" but grid has "CAB"',
     })
   })
 
@@ -97,13 +97,13 @@ D3. Place to sleep ~ ABC`
     expect(reports).toHaveLength(6) // 3 across + 3 down mismatches
 
     // Check a few specific ones
-    const across1 = reports.find((r) => r.direction === "across" && r.clueNumber === 1)
+    const across1 = reports.find((r) => r.type === "clue_grid_mismatch" && r.clueType === "across" && r.clueNum === 1)
     expect(across1).toMatchObject({
       expectedAnswer: "DOG",
       actualAnswer: "CAB",
     })
 
-    const down1 = reports.find((r) => r.direction === "down" && r.clueNumber === 1)
+    const down1 = reports.find((r) => r.type === "clue_grid_mismatch" && r.clueType === "down" && r.clueNum === 1)
     expect(down1).toMatchObject({
       expectedAnswer: "TAX",
       actualAnswer: "CAT",

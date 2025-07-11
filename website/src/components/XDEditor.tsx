@@ -1,6 +1,6 @@
 import React, { use } from "react"
 
-import { useCallback, useRef, useState } from "react"
+import { useCallback, useRef, useState, useEffect } from "react"
 import MonacoEditor, { EditorDidMount, EditorWillMount, monaco } from "react-monaco-editor"
 import { defaultMonacoSettings } from "../monacoConstants"
 import { RootContext } from "./RootContext"
@@ -16,11 +16,12 @@ let getEditorTools = (text: string) => {}
 let didSetupLanguageTools = false
 
 export const XDEditor = (props: {}) => {
-  const { xd, setXD, editorInfo } = use(RootContext)
+  const { xd, setXD, editorInfo, validationReports } = use(RootContext)
 
   const [height, setHeight] = useState(600)
   const wrapperElement = useRef<HTMLDivElement>(null)
   const setDefaultHeight = useRef(false)
+  const editorInstanceRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null)
 
   // When the inner content height changes, handle the resize
   const updateHeight = useCallback((e: monaco.editor.IContentSizeChangedEvent) => {
@@ -32,6 +33,9 @@ export const XDEditor = (props: {}) => {
 
   const editorMounted = useCallback<EditorDidMount>(
     (e) => {
+      // Store editor instance for later use
+      editorInstanceRef.current = e
+
       // Handle width re-sizing
       if (wrapperElement.current) {
         const monacoWatcher = new ResizeObserver(() => e.layout())
@@ -51,7 +55,56 @@ export const XDEditor = (props: {}) => {
     [updateHeight, editorInfo]
   )
 
-  getEditorTools = (text) => {
+  // Update Monaco markers when validation reports change
+  useEffect(() => {
+    if (!editorInstanceRef.current) return
+
+    const editor = editorInstanceRef.current
+    const model = editor.getModel()
+    if (!model) return
+
+    // Convert validation reports to Monaco markers
+    const markers: monaco.editor.IMarkerData[] = validationReports.map((report) => {
+      let severity = monaco.MarkerSeverity.Info
+      
+      // Set severity based on report type
+      switch (report.type) {
+        case "syntax":
+          severity = monaco.MarkerSeverity.Error
+          break
+        case "clue_msg":
+          severity = monaco.MarkerSeverity.Warning
+          break
+        default:
+          severity = monaco.MarkerSeverity.Info
+      }
+      
+      // Handle ValidationReport types (they have different structure)
+      if ('clueNumber' in report && 'direction' in report) {
+        severity = monaco.MarkerSeverity.Error
+      }
+
+      // Convert 0-based position to 1-based for Monaco
+      const lineNumber = Math.max(1, (report.position?.index || 0) + 1)
+      const startColumn = Math.max(1, (report.position?.col || 0) + 1)
+      const endColumn = report.length > 0 ? startColumn + report.length : startColumn + 10
+
+      return {
+        severity,
+        message: report.message,
+        startLineNumber: lineNumber,
+        endLineNumber: lineNumber,
+        startColumn,
+        endColumn,
+        source: 'xd-validator'
+      }
+    })
+
+    // Set markers on the model
+    monaco.editor.setModelMarkers(model, 'xd-validator', markers)
+  }, [validationReports])
+
+  getEditorTools = (_text) => {
     const res = ""
     return res
   }

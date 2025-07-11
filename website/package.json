@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@bithero/monaco-editor-vite-plugin": "^1.0.2",
+    "@jaredreisinger/react-crossword": "^5.2.0",
     "@typescript/vfs": "^1.6.1",
     "@window-splitter/react": "^0.8.6",
     "angular-expressions": "^1.4.3",

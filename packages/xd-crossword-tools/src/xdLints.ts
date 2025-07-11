@@ -17,15 +17,15 @@ export const runLinterForClue = (clue: Clue, ordinal: "across" | "down") => {
   const clueLine = parseInt(clue.metadata?.["body:line"] || "-1")
   const hintLine = parseInt(clue.metadata?.["hint:line"] || "-1")
 
-  const addReport = (message: string, isHint?: boolean) =>
+  const addReport = (message: string, isHint?: boolean, length?: number, col?: number) =>
     reports.push({
       type: "clue_msg",
       message,
       position: {
-        col: 0,
+        col: col || 0,
         index: isHint ? hintLine ?? clueLine : clueLine,
       },
-      length: -1,
+      length: length || clue.body.length + 10, // Default to approximate clue length
       clueNum: clue.number,
       clueType: ordinal,
     })
@@ -36,7 +36,9 @@ export const runLinterForClue = (clue: Clue, ordinal: "across" | "down") => {
     const isWordInClue = wordsFromAnswerSet.has(word)
     if (isWordInClue || isWordInHint) {
       const place = isWordInHint ? "hint" : "clue"
-      addReport(`${ref} has an answer word '${word}' which is in the ${place}`, isWordInHint)
+      const clueLetterLength = clue.number.toString().length + 3 // +2 for ". "
+      const col = lowerClueBody.indexOf(word) + clueLetterLength
+      addReport(`${ref} has an answer word '${word}' which is in the ${place}`, isWordInHint, word.length, col)
     }
   }
 

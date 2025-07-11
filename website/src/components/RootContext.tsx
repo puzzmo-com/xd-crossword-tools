@@ -25,7 +25,7 @@ export const RootContext = createContext<{
   lastFileContext: { content: string | object; filename: string } | null
   setLastFileContext: (file: { content: string | object; filename: string }) => void
 
-  validationReports: (Report | ValidationReport)[]
+  validationReports: Report[]
 }>({
   xd: "",
   setXD: () => {},

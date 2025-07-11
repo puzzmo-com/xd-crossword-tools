@@ -69,6 +69,16 @@ export type Report =
       clueType: CursorDirection | unknown
       message: string
     }
+  | {
+      type: "clue_grid_mismatch"
+      position: Position
+      length: number
+      clueNum: number
+      message: string
+      clueType: CursorDirection | unknown
+      expectedAnswer: string
+      actualAnswer: string
+    }
 
 export type EditorInfo = {
   /** Positioning for the blocks of xd content */
