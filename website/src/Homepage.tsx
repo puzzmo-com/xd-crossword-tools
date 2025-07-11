@@ -33,8 +33,8 @@ function App() {
     return localStorage.getItem("activeTab") || "result"
   })
 
-  // Shared tabs content
-  const renderTabsContent = () => (
+  // Shared tabs content component
+  const TabsContent = () => (
     <Tabs activeKey={activeTab} onSelect={handleTabSelect} id="controlled-tab-example" className="mb-3">
       <Tab eventKey="docs" title="xd Format Spec">
         <Card className="modern-card">
@@ -247,7 +247,9 @@ function App() {
             </div>
 
             {/* Content Panel (Mobile sidebar) */}
-            <div className={`content-panel mobile-sidebar ${sidebarOpen ? "open" : ""}`}>{renderTabsContent()}</div>
+            <div className={`content-panel mobile-sidebar ${sidebarOpen ? "open" : ""}`}>
+              <TabsContent />
+            </div>
           </>
         ) : (
           <>
@@ -277,7 +279,9 @@ function App() {
 
               {/* Content Panel (Right side) */}
               <Panel min="300px">
-                <div className="content-panel">{renderTabsContent()}</div>
+                <div className="content-panel">
+                  <TabsContent />
+                </div>
               </Panel>
             </PanelGroup>
           </>
