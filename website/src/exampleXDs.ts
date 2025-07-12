@@ -1,6 +1,6 @@
 export const exampleXDs = [
   {
-    title: "Creature Feature by Orta, Danger & Brooke",
+    title: "Creature Feature by Orta, Danger & Brooke simplified",
     note: "",
     xd: `## Metadata
 
@@ -64,7 +64,7 @@ D28. Winter clock setting on the LES ~ E|S|T
   },
 
   {
-    title: "Creature Feature by Orta, Danger & Brooke (full)",
+    title: "Creature Feature by Orta, Danger & Brooke (Puzzmo)",
     note: "",
     xd: `## Metadata
 
