@@ -17,8 +17,7 @@
   "dependencies": {
     "@bithero/monaco-editor-vite-plugin": "^1.0.2",
     "@jaredreisinger/react-crossword": "^5.2.0",
-    "@typescript/vfs": "^1.6.1",
-    "@window-splitter/react": "^0.8.6",
+    "@window-splitter/react": "^1.1.0",
     "angular-expressions": "^1.4.3",
     "bootstrap": "^5.3.3",
     "json-schema-traverse": "^1.0.0",
@@ -36,10 +35,12 @@
     "xd-crossword-tools-parser": "workspace:*"
   },
   "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react-swc": "^3.10.2",
     "globals": "^15.14.0",
+    "markdown-it": "^14.1.0",
     "sass-embedded": "^1.83.4",
     "typescript": "~5.7.2",
     "vite": "^7.0.4",

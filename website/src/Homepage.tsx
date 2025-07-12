@@ -23,6 +23,7 @@ import "react-json-view-lite/dist/index.css"
 import { exampleXDs } from "./exampleXDs"
 import Crossword from "@jaredreisinger/react-crossword"
 import { convertToCrosswordFormat } from "./utils/convertToCrosswordFormat"
+import { readmeHtml } from "virtual:readme"
 
 function App() {
   const { crosswordJSON, lastFileContext, setXD, validationReports, cursorInfo } = use(RootContext)
@@ -40,6 +41,26 @@ function App() {
         <Card className="modern-card">
           <Card.Body style={{ padding: 0 }}>
             <XDSpec />
+          </Card.Body>
+        </Card>
+      </Tab>
+      <Tab eventKey="readme" title="README">
+        <Card className="modern-card">
+          <Card.Header className="card-header">
+            <Card.Title className="mb-0">Project README</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <div
+              className="readme-content"
+              dangerouslySetInnerHTML={{ __html: readmeHtml }}
+              style={{
+                maxHeight: "70vh",
+                overflow: "auto",
+                lineHeight: "1.6",
+                fontSize: "14px",
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+              }}
+            />
           </Card.Body>
         </Card>
       </Tab>
@@ -180,7 +201,7 @@ function App() {
           <Card.Header className="card-header">
             <Card.Title className="mb-0">Editor Cursor Information</Card.Title>
           </Card.Header>
-          <Card.Body style={{ position: 'relative', minHeight: '300px', paddingBottom: '200px' }}>
+          <Card.Body style={{ position: "relative", minHeight: "300px", paddingBottom: "200px" }}>
             {!cursorInfo || cursorInfo.type === "noop" ? (
               <div className="text-muted">Click on the editor to see information about the current position</div>
             ) : cursorInfo.type === "grid" ? (
@@ -189,7 +210,7 @@ function App() {
                 <p>
                   <strong>Row:</strong> {cursorInfo.position.index + 1}, <strong>Column:</strong> {cursorInfo.position.col + 1}
                 </p>
-                
+
                 {cursorInfo.clues.across && (
                   <div className="mb-3">
                     <h6>Across Clue</h6>
@@ -203,7 +224,7 @@ function App() {
                     )}
                   </div>
                 )}
-                
+
                 {cursorInfo.clues.down && (
                   <div>
                     <h6>Down Clue</h6>
@@ -229,23 +250,23 @@ function App() {
                 </p>
                 {crosswordJSON && (
                   <div>
-                    {cursorInfo.direction === "across" && crosswordJSON.clues.across.find(c => c.number === cursorInfo.number) && (
+                    {cursorInfo.direction === "across" && crosswordJSON.clues.across.find((c) => c.number === cursorInfo.number) && (
                       <div>
                         <p>
-                          <strong>Clue:</strong> {crosswordJSON.clues.across.find(c => c.number === cursorInfo.number)?.body}
+                          <strong>Clue:</strong> {crosswordJSON.clues.across.find((c) => c.number === cursorInfo.number)?.body}
                         </p>
                         <p>
-                          <strong>Answer:</strong> {crosswordJSON.clues.across.find(c => c.number === cursorInfo.number)?.answer}
+                          <strong>Answer:</strong> {crosswordJSON.clues.across.find((c) => c.number === cursorInfo.number)?.answer}
                         </p>
                       </div>
                     )}
-                    {cursorInfo.direction === "down" && crosswordJSON.clues.down.find(c => c.number === cursorInfo.number) && (
+                    {cursorInfo.direction === "down" && crosswordJSON.clues.down.find((c) => c.number === cursorInfo.number) && (
                       <div>
                         <p>
-                          <strong>Clue:</strong> {crosswordJSON.clues.down.find(c => c.number === cursorInfo.number)?.body}
+                          <strong>Clue:</strong> {crosswordJSON.clues.down.find((c) => c.number === cursorInfo.number)?.body}
                         </p>
                         <p>
-                          <strong>Answer:</strong> {crosswordJSON.clues.down.find(c => c.number === cursorInfo.number)?.answer}
+                          <strong>Answer:</strong> {crosswordJSON.clues.down.find((c) => c.number === cursorInfo.number)?.answer}
                         </p>
                       </div>
                     )}
@@ -263,11 +284,22 @@ function App() {
                 </p>
               </div>
             ) : null}
-            
+
             {cursorInfo && cursorInfo.type !== "noop" && (
-              <div style={{ position: 'absolute', bottom: '15px', left: '15px', right: '15px', maxHeight: '180px', overflow: 'auto', borderTop: '1px solid #dee2e6', paddingTop: '10px' }}>
-                <h6 style={{ margin: '0 0 10px 0', fontSize: '0.9rem', color: '#6c757d' }}>Raw JSON</h6>
-                <div className="json-viewer" style={{ fontSize: '0.8rem' }}>
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "15px",
+                  left: "15px",
+                  right: "15px",
+                  maxHeight: "180px",
+                  overflow: "auto",
+                  borderTop: "1px solid #dee2e6",
+                  paddingTop: "10px",
+                }}
+              >
+                <h6 style={{ margin: "0 0 10px 0", fontSize: "0.9rem", color: "#6c757d" }}>Raw JSON</h6>
+                <div className="json-viewer" style={{ fontSize: "0.8rem" }}>
                   <JsonView data={cursorInfo} shouldExpandNode={allExpanded} style={defaultStyles} />
                 </div>
               </div>
@@ -355,9 +387,9 @@ function App() {
         ) : (
           <>
             {/* Desktop Layout with Resizable Panels */}
-            <PanelGroup orientation="horizontal" autosaveId="xd-tools-panels">
+            <PanelGroup orientation="horizontal">
               {/* Editor Panel (Left side) */}
-              <Panel default="400px" min="300px">
+              <Panel default="50%" min="300px">
                 <div className="editor-panel">
                   <Form className="form-container">
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
@@ -379,7 +411,7 @@ function App() {
               <PanelResizer size="5px" />
 
               {/* Content Panel (Right side) */}
-              <Panel min="300px">
+              <Panel min="200px">
                 <div className="content-panel">
                   <TabsContent />
                 </div>

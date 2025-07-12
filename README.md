@@ -11,109 +11,6 @@ There are two packages here:
 - `xd-crossword-tools-parser` - A parser for the xd format, if you only want to convert an xd file to JSON and have a few helper functions for working with the JSON.
 - `xd-crossword-tools` - A set of tools for working with the xd format: dev tooling, importing/exporting, diffing, linting etc.
 
-### .xd to .JSON
-
-```ts
-import { xdToJSON } from "xd-crossword-tools-parser"
-
-const xd = "[...]"
-const crossword = xdToJSON(xd)
-```
-
-The JSON format is a bit more verbose than you might expect (see below for an example), but the goal is to have as much information pre-computed at parse time in order to save lookups later at runtime. You should use `crossword.report` to determine the parsing's success. You can see the type definitions here: [`./packages/xd-crossword-tools-parser/src/types.ts`](./packages/xd-crossword-tools-parser/src/types.ts).
-
-### .puz to .xd
-
-Builds on [puzjs](https://www.npmjs.com/package/puzjs) (ISC license). The puz format is generally what tools and websites will give you as an output format.
-
-```ts
-import { puzToXD } from "xd-crossword-tools"
-
-const puzResponse = await fetch(url)
-const puzBuffer = await res.arrayBuffer()
-const xd = puzToXD(puzBuffer)
-```
-
-This API should cover most features in puz and xd.
-
-### UClick .xml to .xd
-
-```ts
-import { uclickXMLToXD } from "xd-crossword-tools"
-
-const xmlResponse = await fetch(url)
-const xmlString = await res.body()
-const xd = uclickXMLToXD(xmlString)
-```
-
-### .jpz to .xd
-
-```ts
-import { jpzToXD } from "xd-crossword-tools"
-
-const jpz = "[...]"
-const xd = jpzToXD(jpz)
-```
-
-This is a work in progress, the jpz format supports features which we do not support so far (for example bars)
-
-### .xd to .puz
-
-We don't support _all_ of .puz features, but this library can generate a JSON object which can then be used `@confuzzle/writepuz` to generate a .puz file as a buffer which you can write to a file in node, or offer as a download on the web.
-
-```ts
-import { JSONToPuzJSON } from "xd-crossword-tools"
-import { writepuz } from "@confuzzle/writepuz"
-
-const xd = "[...]"
-const writeJSON = JSONToPuzJSON(xd)
-const puzBuffer = writepuz(writeJSON)
-```
-
-### Editor Support
-
-You can opt-in to more information from the parser, and lint warnings, by passing `true` as the third argument to `xdToJSON`.
-
-Triggering this will:
-
-- Turn on the linter for your code editor, which will give you warnings about your crossword based on pretty universally useful rules.
-- Add section metadata in the return value's `editorInfo` property
-- Add line numbers to the metadata section of the puzzle
-- Add line numbers to clues/hints/other in the metadata section of each clue
-
-This library includes `editorInfoAtCursor` which can get some information about what's under the cursor at `{ line, index }`.
-
-```ts
-import { xdToJSON, editorInfoAtCursor } from "xd-crossword-tools"
-
-const xd = "[...]"
-const editorSupport = true
-const crossword = xdToJSON(xd, true, editorSupport)
-
-const info = editorInfoAtCursor(crossword)
-const cursorInfo = info(0, 0)
-```
-
-Which returns a union of different results, you can check the types + tests to see what's available, but it's something like this:
-
-```tss
-export type PositionInfo =
-  | { type: "noop" }
-  | { type: "grid"; position: Position }
-  | { type: "clue"; direction: CursorDirection; number: number }
-  | ...
-```
-
-### xd Diffing
-
-This library includes a diffing function which can take two xd strings and return a list of changes. This is useful for version control, and for building a diffing UI.
-
-```ts
-import { diffXD } from "xd-crossword-tools"
-
-const diff = diffXD(xd1, xd2)
-```
-
 ### Example
 
 Let's take this free `.puz`: https://dehodson.github.io/crossword-puzzles/crosswords/alpha-bits/
@@ -4316,6 +4213,113 @@ O..O.#O.O##O..O
 
 </details>
 
+## Import / Export
+
+### .xd to .JSON
+
+This is effectively the only function which matters in `xd-crossword-tools-parser`.
+
+```ts
+import { xdToJSON } from "xd-crossword-tools-parser"
+
+const xd = "[...]"
+const crossword = xdToJSON(xd)
+```
+
+The JSON format is a bit more verbose than you might expect (see above for an example), but the goal is to have as much information pre-computed at parse time in order to save lookups later at runtime. You should use `crossword.report` to determine the parsing's success. You can see the type definitions here: [`./packages/xd-crossword-tools-parser/src/types.ts`](./packages/xd-crossword-tools-parser/src/types.ts).
+
+### .puz to .xd
+
+Builds on [puzjs](https://www.npmjs.com/package/puzjs) (ISC license). The puz format is generally what tools and websites will give you as an output format.
+
+```ts
+import { puzToXD } from "xd-crossword-tools"
+
+const puzResponse = await fetch(url)
+const puzBuffer = await res.arrayBuffer()
+const xd = puzToXD(puzBuffer)
+```
+
+This API should cover most features in puz and xd.
+
+### UClick .xml to .xd
+
+```ts
+import { uclickXMLToXD } from "xd-crossword-tools"
+
+const xmlResponse = await fetch(url)
+const xmlString = await res.body()
+const xd = uclickXMLToXD(xmlString)
+```
+
+### .jpz to .xd
+
+```ts
+import { jpzToXD } from "xd-crossword-tools"
+
+const jpz = "[...]"
+const xd = jpzToXD(jpz)
+```
+
+This is a work in progress, the jpz format supports features which we do not support so far (for example bars)
+
+### .xd to .puz
+
+We don't support _all_ of .puz features, but this library can generate a JSON object which can then be used `@confuzzle/writepuz` to generate a .puz file as a buffer which you can write to a file in node, or offer as a download on the web.
+
+```ts
+import { JSONToPuzJSON } from "xd-crossword-tools"
+import { writepuz } from "@confuzzle/writepuz"
+
+const xd = "[...]"
+const writeJSON = JSONToPuzJSON(xd)
+const puzBuffer = writepuz(writeJSON)
+```
+
+### Editor Support
+
+You can opt-in to more information from the parser, and lint warnings, by passing `true` as the third argument to `xdToJSON`.
+
+Triggering this will:
+
+- Turn on the linter for your code editor, which will give you warnings about your crossword based on pretty universally useful rules.
+- Add section metadata in the return value's `editorInfo` property
+- Add line numbers to the metadata section of the puzzle
+- Add line numbers to clues/hints/other in the metadata section of each clue
+
+This library includes `editorInfoAtCursor` which can get some information about what's under the cursor at `{ line, index }`.
+
+```ts
+import { xdToJSON, editorInfoAtCursor } from "xd-crossword-tools"
+
+const xd = "[...]"
+const editorSupport = true
+const crossword = xdToJSON(xd, true, editorSupport)
+
+const info = editorInfoAtCursor(crossword)
+const cursorInfo = info(0, 0)
+```
+
+Which returns a union of different results, you can check the types + tests to see what's available, but it's something like this:
+
+```tss
+export type PositionInfo =
+  | { type: "noop" }
+  | { type: "grid"; position: Position }
+  | { type: "clue"; direction: CursorDirection; number: number }
+  | ...etc
+```
+
+### xd Diffing
+
+This library includes a diffing function which can take two xd strings and return a list of changes. This is useful for version control, and for building a diffing UI.
+
+```ts
+import { diffXD } from "xd-crossword-tools"
+
+const diff = diffXD(xd1, xd2)
+```
+
 ### `xd` Extensions
 
 This lib creates `xd` compatible files, but also extends the format in a way that allows for thinking of `xd` as a human-editor format.
@@ -4400,7 +4404,7 @@ Date: 2021-03-16
 -->
 ```
 
-The key is that a line has to start with `<!--` and eventually the same or another line has to **end** with `-->`. If you are doing automated transforms, these comments are likely to get lost.
+The key is that a line has to start with `<!--` and eventually the same or another line has to **end** with `-->`. **Note:** If you are doing automated transforms, these comments are likely to get lost.
 
 #### Markup in Clues
 
@@ -4446,7 +4450,8 @@ Provide hints for where one word terminates and the next begins in a single solu
 
 ```
 ## Metadata
-SplitCharacter: |
+
+splitcharacter: |
 
 ## Clues
 …
@@ -4458,8 +4463,6 @@ The 'answer' given from the parser here will be 'STANLEE', but the indexes for e
 ### Spec-Breaking Differences
 
 We want to highlight that 'Comments', 'Split Characters', 'Schrödinger clues' and some markup extensions are all spec-breaking. E.g. a parser which conforms exactly to the xd spec would likely choke when seeing these features.
-
-Otherwise, we keep all extensions inside a unique section which another xp parser would know to NOOP on.
 
 ### Aesthetics
 
@@ -4516,6 +4519,49 @@ O { background: circle }
   .....#...#.....
   .....#...##....
   ```
+
+## API Reference
+
+### xd-crossword-tools Functions
+
+The main `xd-crossword-tools` package provides comprehensive functionality for format conversion, validation, and development tools:
+
+| Function                       | Description                                     | Parameters                                             | Return Type                                     | Notes                                                |
+| ------------------------------ | ----------------------------------------------- | ------------------------------------------------------ | ----------------------------------------------- | ---------------------------------------------------- |
+| `puzToXD`                      | Converts .puz file buffer to XD format          | `buffer: ArrayBuffer`                                  | `string`                                        | Handles rebus symbols, circles, shades, and metadata |
+| `uclickXMLToXD`                | Converts UClick XML format to XD                | `str: string`                                          | `string`                                        | Parses XML crossword data and converts to XD format  |
+| `jpzToXD`                      | Converts JPZ (XML) format to XD                 | `xmlString: string`                                    | `string`                                        | Handles JPZ crossword puzzle format conversion       |
+| `amuseToXD`                    | Converts Amuse JSON format to XD                | `amuseJSON: AmuseTopLevel`                             | `string`                                        | Converts Amuse Labs crossword format to XD           |
+| `JSONToXD`                     | Converts CrosswordJSON back to XD format string | `json: CrosswordJSON`                                  | `string`                                        | Main function for converting parsed data back to XD  |
+| `JSONToPuzJSON`                | Converts CrosswordJSON to .puz format JSON      | `json: CrosswordJSON`, `config?: {filled?: boolean}`   | `any`                                           | Creates JSON for @confuzzle/writepuz                 |
+| `puzEncode`                    | Encodes puzzle data to .puz binary format       | `puzzle: Puzzle`                                       | `Uint8Array`                                    | Low-level binary .puz file encoding                  |
+| `puzDecode`                    | Decodes .puz binary format to JSON              | `bytes: ArrayBuffer`                                   | `Puz2JSONResult`                                | Low-level binary .puz file decoding                  |
+| `editorInfoAtCursor`           | Gets crossword information at cursor position   | `data: CrosswordJSON`                                  | `(line: number, index: number) => PositionInfo` | For editor integrations - requires editorInfo        |
+| `xdDiff`                       | Creates semantic diff between two XD files      | `beforeXD: string`, `afterXD: string`                  | `DiffResults`                                   | Line-by-line differences with metadata awareness     |
+| `runLinterForClue`             | Runs linting checks on individual clues         | `clue: Clue`, `ordinal: "across" \| "down"`            | `Report[]`                                      | Checks for common crossword construction issues      |
+| `validateClueAnswersMatchGrid` | Validates clue answers match grid tiles         | `json: CrosswordJSON`                                  | `Report[]`                                      | Checks consistency between answers and grid          |
+| `resolveFullClueAnswer`        | Resolves clue answer with rebus and splits      | `rebusMap: Rebuses`, `clue: Clue`, `splitChar: string` | `string`                                        | Handles rebus substitution and split characters      |
+| `cleanupClueMetadata`          | Recreates clue answer/tiles from grid           | `xword: CrosswordJSON`                                 | `void`                                          | Updates clue metadata based on grid tiles            |
+
+### xd-crossword-tools-parser Utility Functions
+
+The `xd-crossword-tools-parser` package exports several utility functions for working with crossword data:
+
+| Function                                    | Description                                                          | Parameters                                              | Return Type                                            |
+| ------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------ |
+| `getTile`                                   | Gets a specific tile from the crossword grid at the given position   | `tiles: Tile[][]`, `position: Position`                 | `Tile \| undefined`                                    |
+| `clueInfosForPosition`                      | Finds which clues (across/down) exist at a given grid position       | `tiles: Tile[][]`, `clues: Clues`, `position: Position` | `{down?: ClueInfo, across?: ClueInfo}`                 |
+| `tilePositionsForClue`                      | Gets all tile positions that belong to a specific clue               | `clue: Clue`, `direction: CursorDirection`              | `Position[]`                                           |
+| `getWordTilesForCursor`                     | Gets all tile positions that are part of the word at cursor position | `tiles: Tile[][]`, `cursor: Cursor`                     | `Position[]`                                           |
+| `getSortedTilesForCursor`                   | Gets word tiles for cursor, sorted with boundary info                | `tiles: Tile[][]`, `cursor: Cursor`                     | `{first: Position, last: Position, tiles: Position[]}` |
+| `getCluePositionsForBoard`                  | Analyzes grid to determine all positions where clues start           | `tiles: Tile[][]`                                       | `PositionWithTiles[]`                                  |
+| `xdMarkupProcessor`                         | Processes XD markup syntax into structured components                | `input: string`                                         | `ClueComponentMarkup[]`                                |
+| `EditorError`                               | Custom error class for XD parsing errors with line numbers           | `message: string`, `line: number`                       | `EditorError`                                          |
+| `shouldConvertToExplicitHeaders`            | Checks if XD string needs conversion from v1 to v2 format            | `xd: string`                                            | `boolean`                                              |
+| `convertImplicitOrderedXDToExplicitHeaders` | Converts old v1 implicit XD format to new v2 explicit headers        | `xd: string`                                            | `string`                                               |
+| `letterToTile`                              | Converts a single letter string to a Tile object                     | `letter: string`                                        | `Tile`                                                 |
+| `stringGridToTiles`                         | Converts a 2D string array to a 2D Tile array                        | `rebuses: Rebuses`, `strArr: string[][]`                | `Tile[][]`                                             |
+| `replaceWordWithSymbol`                     | Replaces a word in tiles with a rebus symbol                         | `word: string`, `tiles: Tile[]`, `splitChar: string`    | `void`                                                 |
 
 ## Deploys
 

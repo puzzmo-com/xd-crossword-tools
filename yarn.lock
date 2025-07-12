@@ -1221,12 +1221,36 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/linkify-it@npm:^5":
+  version: 5.0.0
+  resolution: "@types/linkify-it@npm:5.0.0"
+  checksum: 10c0/7bbbf45b9dde17bf3f184fee585aef0e7342f6954f0377a24e4ff42ab5a85d5b806aaa5c8d16e2faf2a6b87b2d94467a196b7d2b85c9c7de2f0eaac5487aaab8
+  languageName: node
+  linkType: hard
+
+"@types/markdown-it@npm:^14.1.2":
+  version: 14.1.2
+  resolution: "@types/markdown-it@npm:14.1.2"
+  dependencies:
+    "@types/linkify-it": "npm:^5"
+    "@types/mdurl": "npm:^2"
+  checksum: 10c0/34f709f0476bd4e7b2ba7c3341072a6d532f1f4cb6f70aef371e403af8a08a7c372ba6907ac426bc618d356dab660c5b872791ff6c1ead80c483e0d639c6f127
+  languageName: node
+  linkType: hard
+
 "@types/mdast@npm:^3.0.0":
   version: 3.0.15
   resolution: "@types/mdast@npm:3.0.15"
   dependencies:
     "@types/unist": "npm:^2"
   checksum: 10c0/fcbf716c03d1ed5465deca60862e9691414f9c43597c288c7d2aefbe274552e1bbd7aeee91b88a02597e88a28c139c57863d0126fcf8416a95fdc681d054ee3d
+  languageName: node
+  linkType: hard
+
+"@types/mdurl@npm:^2":
+  version: 2.0.0
+  resolution: "@types/mdurl@npm:2.0.0"
+  checksum: 10c0/cde7bb571630ed1ceb3b92a28f7b59890bb38b8f34cd35326e2df43eebfc74985e6aa6fd4184e307393bad8a9e0783a519a3f9d13c8e03788c0f98e5ec869c5e
   languageName: node
   linkType: hard
 
@@ -1328,17 +1352,6 @@ __metadata:
   version: 1.2.33
   resolution: "@types/xml-parser@npm:1.2.33"
   checksum: 10c0/059e3080fa854433d5ade8fffe4bc6ebd1e4bb88d2c5c2246493bc4bf14d0eea5c14ba0d532dfb3b10109f11a94a563ab76bcbd411dc37746b2a348ae5a3cd1d
-  languageName: node
-  linkType: hard
-
-"@typescript/vfs@npm:^1.6.1":
-  version: 1.6.1
-  resolution: "@typescript/vfs@npm:1.6.1"
-  dependencies:
-    debug: "npm:^4.1.1"
-  peerDependencies:
-    typescript: "*"
-  checksum: 10c0/3878686aff4bf26813dad9242aa8e01c5c9734f4d37f31035f93e9c8b850f15ec6a4480f04cf3a3a1cbf78a4e796ae1be5d6c54f7f7c91556eafee913a8d0da4
   languageName: node
   linkType: hard
 
@@ -1518,35 +1531,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@window-splitter/interface@npm:0.8.6":
-  version: 0.8.6
-  resolution: "@window-splitter/interface@npm:0.8.6"
+"@window-splitter/interface@npm:1.1.0":
+  version: 1.1.0
+  resolution: "@window-splitter/interface@npm:1.1.0"
   dependencies:
-    "@window-splitter/state": "npm:0.8.6"
-  checksum: 10c0/0872322a84f2f6edf9a053fdf1fb2b81f538c650fa53c023aa66f2f78073bb022436f53cbbec776365f06905c75ffbb443b05faf99a41737a6b7031ecfa39800
+    "@window-splitter/state": "npm:1.1.0"
+  checksum: 10c0/046e1e434990044d29bac695ea68e16110dcacf2461cfd9e518132aa2748ed41f3bc504f293a50b53767773d911ffb1380e7c173bb8da888d9421fa599af8b81
   languageName: node
   linkType: hard
 
-"@window-splitter/react@npm:^0.8.6":
-  version: 0.8.6
-  resolution: "@window-splitter/react@npm:0.8.6"
+"@window-splitter/react@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@window-splitter/react@npm:1.1.0"
   dependencies:
     "@react-aria/utils": "npm:^3.28.2"
-    "@window-splitter/interface": "npm:0.8.6"
-    "@window-splitter/state": "npm:0.8.6"
+    "@window-splitter/interface": "npm:1.1.0"
+    "@window-splitter/state": "npm:1.1.0"
   peerDependencies:
     react: ">=16"
     react-dom: ">=16"
-  checksum: 10c0/69e22abab70d2b7b9fc19534e1b83e4d0812b9981665438d92723c57b4309959fbf9e13b6d71d3e75149eb07a833912aff21ebd881240c70d39b4913820cbbbe
+  checksum: 10c0/b5f8e6b55a5eb876aae8be20ffc5888599d2d55ac72e56232238defa4ff93d9c5659e5d1e85e1bc2ebb8728ae918738b640dada5f54fddbc54760e0be6d80452
   languageName: node
   linkType: hard
 
-"@window-splitter/state@npm:0.8.6":
-  version: 0.8.6
-  resolution: "@window-splitter/state@npm:0.8.6"
+"@window-splitter/state@npm:1.1.0":
+  version: 1.1.0
+  resolution: "@window-splitter/state@npm:1.1.0"
   dependencies:
     big.js: "npm:^6.2.1"
-  checksum: 10c0/75bfaaaf25a83bc4351cb581a18fc80a6d394a00af685dfc7f5799b2ed6886cd282cc46cabbe2c5540bced59f245be2ec2e71e39cea97cfd50397f4cb1bcc390
+  checksum: 10c0/050cde946e903d9ce7a1b939f4a61a429efc087f1125e740591ef75dcf2334a423276da53c0567acf0b962ae1ee176bf71c9d8f22a14784062f8231eb066a070
   languageName: node
   linkType: hard
 
@@ -1605,6 +1618,13 @@ __metadata:
   version: 1.3.0
   resolution: "any-promise@npm:1.3.0"
   checksum: 10c0/60f0298ed34c74fef50daab88e8dab786036ed5a7fad02e012ab57e376e0a0b4b29e83b95ea9b5e7d89df762f5f25119b83e00706ecaccb22cfbacee98d74889
+  languageName: node
+  linkType: hard
+
+"argparse@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "argparse@npm:2.0.1"
+  checksum: 10c0/c5640c2d89045371c7cedd6a70212a04e360fd34d6edeae32f6952c63949e3525ea77dbec0289d8213a99bbaeab5abfa860b5c12cf88a2e6cf8106e90dd27a7e
   languageName: node
   linkType: hard
 
@@ -2081,7 +2101,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4, debug@npm:^4.0.0, debug@npm:^4.1.1, debug@npm:^4.3.4, debug@npm:^4.4.0":
+"debug@npm:4, debug@npm:^4.0.0, debug@npm:^4.3.4, debug@npm:^4.4.0":
   version: 4.4.0
   resolution: "debug@npm:4.4.0"
   dependencies:
@@ -2273,6 +2293,13 @@ __metadata:
   version: 2.2.0
   resolution: "entities@npm:2.2.0"
   checksum: 10c0/7fba6af1f116300d2ba1c5673fc218af1961b20908638391b4e1e6d5850314ee2ac3ec22d741b3a8060479911c99305164aed19b6254bde75e7e6b1b2c3f3aa3
+  languageName: node
+  linkType: hard
+
+"entities@npm:^4.4.0":
+  version: 4.5.0
+  resolution: "entities@npm:4.5.0"
+  checksum: 10c0/5b039739f7621f5d1ad996715e53d964035f75ad3b9a4d38c6b3804bb226e282ffeae2443624d8fdd9c47d8e926ae9ac009c54671243f0c3294c26af7cc85250
   languageName: node
   linkType: hard
 
@@ -3447,6 +3474,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"linkify-it@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "linkify-it@npm:5.0.0"
+  dependencies:
+    uc.micro: "npm:^2.0.0"
+  checksum: 10c0/ff4abbcdfa2003472fc3eb4b8e60905ec97718e11e33cca52059919a4c80cc0e0c2a14d23e23d8c00e5402bc5a885cdba8ca053a11483ab3cc8b3c7a52f88e2d
+  languageName: node
+  linkType: hard
+
 "load-tsconfig@npm:^0.2.3":
   version: 0.2.5
   resolution: "load-tsconfig@npm:0.2.5"
@@ -3557,6 +3593,22 @@ __metadata:
     promise-retry: "npm:^2.0.1"
     ssri: "npm:^12.0.0"
   checksum: 10c0/c40efb5e5296e7feb8e37155bde8eb70bc57d731b1f7d90e35a092fde403d7697c56fb49334d92d330d6f1ca29a98142036d6480a12681133a0a1453164cb2f0
+  languageName: node
+  linkType: hard
+
+"markdown-it@npm:^14.1.0":
+  version: 14.1.0
+  resolution: "markdown-it@npm:14.1.0"
+  dependencies:
+    argparse: "npm:^2.0.1"
+    entities: "npm:^4.4.0"
+    linkify-it: "npm:^5.0.0"
+    mdurl: "npm:^2.0.0"
+    punycode.js: "npm:^2.3.1"
+    uc.micro: "npm:^2.1.0"
+  bin:
+    markdown-it: bin/markdown-it.mjs
+  checksum: 10c0/9a6bb444181d2db7016a4173ae56a95a62c84d4cbfb6916a399b11d3e6581bf1cc2e4e1d07a2f022ae72c25f56db90fbe1e529fca16fbf9541659dc53480d4b4
   languageName: node
   linkType: hard
 
@@ -3709,6 +3761,13 @@ __metadata:
   version: 2.0.0
   resolution: "mdast-util-to-string@npm:2.0.0"
   checksum: 10c0/a4231085133cdfec24644b694c13661e5a01d26716be0105b6792889faa04b8030e4abbf72d4be3363098b2b38b2b98f1f1f1f0858eb6580dc04e2aca1436a37
+  languageName: node
+  linkType: hard
+
+"mdurl@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "mdurl@npm:2.0.0"
+  checksum: 10c0/633db522272f75ce4788440669137c77540d74a83e9015666a9557a152c02e245b192edc20bc90ae953bbab727503994a53b236b4d9c99bdaee594d0e7dd2ce0
   languageName: node
   linkType: hard
 
@@ -4321,6 +4380,13 @@ __metadata:
     object-assign: "npm:^4.1.1"
     react-is: "npm:^16.13.1"
   checksum: 10c0/59ece7ca2fb9838031d73a48d4becb9a7cc1ed10e610517c7d8f19a1e02fa47f7c27d557d8a5702bec3cfeccddc853579832b43f449e54635803f277b1c78077
+  languageName: node
+  linkType: hard
+
+"punycode.js@npm:^2.3.1":
+  version: 2.3.1
+  resolution: "punycode.js@npm:2.3.1"
+  checksum: 10c0/1d12c1c0e06127fa5db56bd7fdf698daf9a78104456a6b67326877afc21feaa821257b171539caedd2f0524027fa38e67b13dd094159c8d70b6d26d2bea4dfdb
   languageName: node
   linkType: hard
 
@@ -5189,16 +5255,17 @@ __metadata:
   dependencies:
     "@bithero/monaco-editor-vite-plugin": "npm:^1.0.2"
     "@jaredreisinger/react-crossword": "npm:^5.2.0"
+    "@types/markdown-it": "npm:^14.1.2"
     "@types/react": "npm:^19.0.8"
     "@types/react-dom": "npm:^19.0.3"
-    "@typescript/vfs": "npm:^1.6.1"
     "@vitejs/plugin-react-swc": "npm:^3.10.2"
-    "@window-splitter/react": "npm:^0.8.6"
+    "@window-splitter/react": "npm:^1.1.0"
     angular-expressions: "npm:^1.4.3"
     bootstrap: "npm:^5.3.3"
     globals: "npm:^15.14.0"
     json-schema-traverse: "npm:^1.0.0"
     lz-string: "npm:^1.5.0"
+    markdown-it: "npm:^14.1.0"
     monaco-editor: "npm:^0.52.2"
     react: "npm:^19.0.0"
     react-bootstrap: "npm:^2.10.9"
@@ -5801,6 +5868,13 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10c0/39117e346ff8ebd87ae1510b3a77d5d92dae5a89bde588c747d25da5c146603a99c8ee588c7ef80faaf123d89ed46f6dbd918d534d641083177d5fac38b8a1cb
+  languageName: node
+  linkType: hard
+
+"uc.micro@npm:^2.0.0, uc.micro@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "uc.micro@npm:2.1.0"
+  checksum: 10c0/8862eddb412dda76f15db8ad1c640ccc2f47cdf8252a4a30be908d535602c8d33f9855dfcccb8b8837855c1ce1eaa563f7fa7ebe3c98fd0794351aab9b9c55fa
   languageName: node
   linkType: hard
 
