@@ -25,7 +25,7 @@ import Crossword from "@jaredreisinger/react-crossword"
 import { convertToCrosswordFormat } from "./utils/convertToCrosswordFormat"
 
 function App() {
-  const { crosswordJSON, lastFileContext, setXD, validationReports } = use(RootContext)
+  const { crosswordJSON, lastFileContext, setXD, validationReports, cursorInfo } = use(RootContext)
   const [isMobile, setIsMobile] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [activeTab, setActiveTab] = useState(() => {
@@ -174,6 +174,107 @@ function App() {
           </Card>
         </Tab>
       )}
+
+      <Tab eventKey="cursor" title="Cursor Info">
+        <Card className="modern-card">
+          <Card.Header className="card-header">
+            <Card.Title className="mb-0">Editor Cursor Information</Card.Title>
+          </Card.Header>
+          <Card.Body style={{ position: 'relative', minHeight: '300px', paddingBottom: '200px' }}>
+            {!cursorInfo || cursorInfo.type === "noop" ? (
+              <div className="text-muted">Click on the editor to see information about the current position</div>
+            ) : cursorInfo.type === "grid" ? (
+              <div>
+                <h5>Grid Position</h5>
+                <p>
+                  <strong>Row:</strong> {cursorInfo.position.index + 1}, <strong>Column:</strong> {cursorInfo.position.col + 1}
+                </p>
+                
+                {cursorInfo.clues.across && (
+                  <div className="mb-3">
+                    <h6>Across Clue</h6>
+                    <p>
+                      <strong>{cursorInfo.clues.across.number} Across:</strong> {cursorInfo.clues.across.body}
+                    </p>
+                    {cursorInfo.clues.across.answer && (
+                      <p>
+                        <strong>Answer:</strong> {cursorInfo.clues.across.answer}
+                      </p>
+                    )}
+                  </div>
+                )}
+                
+                {cursorInfo.clues.down && (
+                  <div>
+                    <h6>Down Clue</h6>
+                    <p>
+                      <strong>{cursorInfo.clues.down.number} Down:</strong> {cursorInfo.clues.down.body}
+                    </p>
+                    {cursorInfo.clues.down.answer && (
+                      <p>
+                        <strong>Answer:</strong> {cursorInfo.clues.down.answer}
+                      </p>
+                    )}
+                  </div>
+                )}
+              </div>
+            ) : cursorInfo.type === "clue" ? (
+              <div>
+                <h5>Clue Definition</h5>
+                <p>
+                  <strong>Direction:</strong> {cursorInfo.direction.charAt(0).toUpperCase() + cursorInfo.direction.slice(1)}
+                </p>
+                <p>
+                  <strong>Number:</strong> {cursorInfo.number}
+                </p>
+                {crosswordJSON && (
+                  <div>
+                    {cursorInfo.direction === "across" && crosswordJSON.clues.across.find(c => c.number === cursorInfo.number) && (
+                      <div>
+                        <p>
+                          <strong>Clue:</strong> {crosswordJSON.clues.across.find(c => c.number === cursorInfo.number)?.body}
+                        </p>
+                        <p>
+                          <strong>Answer:</strong> {crosswordJSON.clues.across.find(c => c.number === cursorInfo.number)?.answer}
+                        </p>
+                      </div>
+                    )}
+                    {cursorInfo.direction === "down" && crosswordJSON.clues.down.find(c => c.number === cursorInfo.number) && (
+                      <div>
+                        <p>
+                          <strong>Clue:</strong> {crosswordJSON.clues.down.find(c => c.number === cursorInfo.number)?.body}
+                        </p>
+                        <p>
+                          <strong>Answer:</strong> {crosswordJSON.clues.down.find(c => c.number === cursorInfo.number)?.answer}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            ) : cursorInfo.type === "metadata" ? (
+              <div>
+                <h5>Metadata</h5>
+                <p>
+                  <strong>Key:</strong> {cursorInfo.key}
+                </p>
+                <p>
+                  <strong>Value:</strong> {cursorInfo.value}
+                </p>
+              </div>
+            ) : null}
+            
+            {cursorInfo && cursorInfo.type !== "noop" && (
+              <div style={{ position: 'absolute', bottom: '15px', left: '15px', right: '15px', maxHeight: '180px', overflow: 'auto', borderTop: '1px solid #dee2e6', paddingTop: '10px' }}>
+                <h6 style={{ margin: '0 0 10px 0', fontSize: '0.9rem', color: '#6c757d' }}>Raw JSON</h6>
+                <div className="json-viewer" style={{ fontSize: '0.8rem' }}>
+                  <JsonView data={cursorInfo} shouldExpandNode={allExpanded} style={defaultStyles} />
+                </div>
+              </div>
+            )}
+          </Card.Body>
+        </Card>
+      </Tab>
     </Tabs>
   )
 

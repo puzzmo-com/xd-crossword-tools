@@ -10,6 +10,7 @@ import {
   runLinterForClue,
   validateClueAnswersMatchGrid,
   ValidationReport,
+  PositionInfo,
 } from "xd-crossword-tools"
 import type { Report } from "xd-crossword-tools-parser"
 import { defaultExampleXD } from "../exampleXDs"
@@ -26,6 +27,8 @@ export const RootContext = createContext<{
   setLastFileContext: (file: { content: string | object; filename: string }) => void
 
   validationReports: Report[]
+  cursorInfo: PositionInfo | null
+  setCursorInfo: (info: PositionInfo | null) => void
 }>({
   xd: "",
   setXD: () => {},
@@ -37,6 +40,8 @@ export const RootContext = createContext<{
   setLastFileContext: () => {},
 
   validationReports: [],
+  cursorInfo: null,
+  setCursorInfo: () => {},
 })
 
 export const getScopeResult = () => scopeResult
@@ -87,6 +92,7 @@ export const RootProvider = ({ children }: React.PropsWithChildren<object>) => {
   }, [xd])
 
   const [lastFileContext, setLastFileContext] = useState<{ content: string | object; filename: string } | null>(null)
+  const [cursorInfo, setCursorInfo] = useState<PositionInfo | null>(null)
 
   useEffect(() => {
     if (xd !== defaultExampleXD.xd) localStorage.setItem("xd", xd)
@@ -108,6 +114,8 @@ export const RootProvider = ({ children }: React.PropsWithChildren<object>) => {
         lastFileContext,
         setLastFileContext,
         validationReports,
+        cursorInfo,
+        setCursorInfo,
       }}
     >
       {children}

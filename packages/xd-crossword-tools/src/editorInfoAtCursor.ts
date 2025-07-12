@@ -5,6 +5,7 @@ export type PositionInfo =
   | { type: "noop" }
   | { type: "grid"; position: Position; clues: { across: Clue | undefined; down: Clue | undefined } }
   | { type: "clue"; direction: CursorDirection; number: number }
+  | { type: "metadata"; key: string; value: string }
 
 export const editorInfoAtCursor =
   (data: CrosswordJSON) =>
@@ -25,8 +26,21 @@ export const editorInfoAtCursor =
       case "notes":
       case "start":
       case "unknown":
-      case "metadata":
         return noop
+
+      case "metadata": {
+        const content = data.editorInfo.lines[line]
+        const trimmed = content.trim()
+
+        // Check if it's a metadata line (contains :)
+        if (!trimmed.includes(":")) return noop
+
+        const colonIndex = trimmed.indexOf(":")
+        const key = trimmed.substring(0, colonIndex).trim()
+        const value = trimmed.substring(colonIndex + 1).trim()
+
+        return { type: "metadata", key, value }
+      }
 
       case "clues": {
         const content = data.editorInfo.lines[line]

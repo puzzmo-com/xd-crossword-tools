@@ -16,7 +16,7 @@ let getEditorTools = (text: string) => {}
 let didSetupLanguageTools = false
 
 export const XDEditor = (props: {}) => {
-  const { xd, setXD, editorInfo, validationReports } = use(RootContext)
+  const { xd, setXD, editorInfo, validationReports, setCursorInfo } = use(RootContext)
 
   const [height, setHeight] = useState(600)
   const wrapperElement = useRef<HTMLDivElement>(null)
@@ -45,14 +45,12 @@ export const XDEditor = (props: {}) => {
       e.onDidContentSizeChange(updateHeight)
 
       e.onDidChangeCursorPosition((e) => {
-        const info = editorInfo?.(e.position.lineNumber - 1, e.position.column)
-        if (info) {
-          console.log(info)
-        }
+        const info = editorInfo?.(e.position.lineNumber - 1, e.position.column - 1)
+        setCursorInfo(info || null)
       })
     },
 
-    [updateHeight, editorInfo]
+    [updateHeight, editorInfo, setCursorInfo]
   )
 
   // Update Monaco markers when validation reports change
