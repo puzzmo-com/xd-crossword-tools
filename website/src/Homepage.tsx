@@ -36,8 +36,8 @@ function App() {
 
   // Shared tabs content component
   const TabsContent = () => (
-    <Tabs activeKey={activeTab} onSelect={handleTabSelect} id="controlled-tab-example" className="mb-3">
-      <Tab eventKey="docs" title="xd Format Spec">
+    <Tabs activeKey={activeTab} onSelect={handleTabSelect} id="controlled-tab-example" className="mb-3 compact-tabs">
+      <Tab eventKey="docs" title="Spec">
         <Card className="modern-card">
           <Card.Body style={{ padding: 0 }}>
             <XDSpec />
@@ -65,7 +65,7 @@ function App() {
         </Card>
       </Tab>
       {crosswordJSON && (
-        <Tab eventKey="result" title="JSON Output">
+        <Tab eventKey="result" title="JSON">
           <Card className="modern-card">
             <Card.Header className="card-header">
               <Card.Title className="mb-0">Parsed XD JSON</Card.Title>
@@ -78,7 +78,7 @@ function App() {
       )}
 
       {lastFileContext && (
-        <Tab eventKey="lastFile" title="File Content">
+        <Tab eventKey="lastFile" title="File">
           <Card className="modern-card">
             <Card.Header className="card-header">
               <Card.Title className="mb-0">{lastFileContext.filename}</Card.Title>
@@ -118,7 +118,7 @@ function App() {
         eventKey="validation"
         title={
           <span>
-            Validation
+            Valid
             {validationReports.length > 0 && (
               <Badge bg="warning" className="ms-2">
                 {validationReports.length}
@@ -196,7 +196,7 @@ function App() {
         </Tab>
       )}
 
-      <Tab eventKey="cursor" title="Cursor Info">
+      <Tab eventKey="cursor" title="Cursor">
         <Card className="modern-card">
           <Card.Header className="card-header">
             <Card.Title className="mb-0">Editor Cursor Information</Card.Title>
@@ -394,7 +394,6 @@ function App() {
                   <Form className="form-container">
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                       <Form.Label className="editor-label">
-                        <strong>XD Editor</strong>
                         <div className="format-support">
                           Supports drag & drop of <code>.puz</code>, <code>.jpz</code>, <code>.json</code> (amuse), <code>.xml</code>{" "}
                           (uclick)
