@@ -73,7 +73,8 @@ export const DragAndDrop: React.FC<DragAndDropProps> = ({ children }) => {
       if (file.name.endsWith(".xml")) {
         const xmlText = await file.text()
         const xd = uclickXMLToXD(xmlText)
-        setLastFileContext({ content: xd, filename: file.name })
+        setXD(xd)
+        setLastFileContext({ content: xmlText, filename: file.name })
       }
     },
     [setXD]

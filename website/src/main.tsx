@@ -2,13 +2,10 @@ import React from "react"
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 
-import App from "./Homepage"
-import { RootProvider } from "./components/RootContext"
+import App from "./App"
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RootProvider>
-      <App />
-    </RootProvider>
+    <App />
   </StrictMode>
 )

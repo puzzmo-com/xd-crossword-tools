@@ -24,6 +24,7 @@ import { exampleXDs } from "./exampleXDs"
 import Crossword from "@jaredreisinger/react-crossword"
 import { convertToCrosswordFormat } from "./utils/convertToCrosswordFormat"
 import { readmeHtml } from "virtual:readme"
+import { Link } from "wouter"
 
 function App() {
   const { crosswordJSON, lastFileContext, setXD, validationReports, cursorInfo } = use(RootContext)
@@ -343,6 +344,13 @@ function App() {
             </Badge>
           </Navbar.Brand>
           <div className={`header-subtitle ${isMobile ? "d-none" : ""}`}>Interactive crossword format converter and editor</div>
+          {!isMobile && (
+            <Link to="/mass-import">
+              <Button variant="outline-light" size="sm" className="ms-2">
+                Mass Import
+              </Button>
+            </Link>
+          )}
           {isMobile && (
             <Button
               variant="outline-light"

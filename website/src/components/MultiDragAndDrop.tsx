@@ -1,19 +1,87 @@
-import React, { useState, useCallback, use } from "react"
+import React, { useState, useCallback } from "react"
 import { jpzToXD, puzToXD, amuseToXD, uclickXMLToXD } from "xd-crossword-tools"
 
-import { decode } from "xd-crossword-tools/src/vendor/puzjs"
-
-import { RootContext } from "./RootContext"
-
-interface DragAndDropProps {
-  children: React.ReactNode
+interface ConversionResult {
+  filename: string
+  status: "success" | "error"
+  xd?: string
+  error?: string
+  originalFormat: string
 }
 
-export const DragAndDrop: React.FC<DragAndDropProps> = ({ children }) => {
-  const { setXD, setLastFileContext } = use(RootContext)
-  const acceptedFileTypes = [".puz", ".jpz", ".json", ".xml"]
+interface MultiDragAndDropProps {
+  onFilesProcessed: (results: ConversionResult[]) => void
+  setIsProcessing: (processing: boolean) => void
+}
 
+export const MultiDragAndDrop: React.FC<MultiDragAndDropProps> = ({ onFilesProcessed, setIsProcessing }) => {
+  const acceptedFileTypes = [".puz", ".jpz", ".json", ".xml"]
   const [isDragging, setIsDragging] = useState(false)
+
+  const processFile = async (file: File): Promise<ConversionResult> => {
+    const extension = "." + file.name.split(".").pop()?.toLowerCase()
+
+    try {
+      if (file.name.endsWith(".jpz")) {
+        const jpz = await file.text()
+        const xd = jpzToXD(jpz)
+        return {
+          filename: file.name,
+          status: "success",
+          xd,
+          originalFormat: "JPZ",
+        }
+      }
+
+      if (file.name.endsWith(".puz")) {
+        const puz = await file.arrayBuffer()
+        const xd = puzToXD(new Uint8Array(puz))
+        return {
+          filename: file.name,
+          status: "success",
+          xd,
+          originalFormat: "PUZ",
+        }
+      }
+
+      if (file.name.endsWith(".json")) {
+        const jsonText = await file.text()
+        const json = JSON.parse(jsonText)
+
+        if (json?.data?.attributes?.amuse_data) {
+          const xd = amuseToXD(json)
+          return {
+            filename: file.name,
+            status: "success",
+            xd,
+            originalFormat: "Amuse JSON",
+          }
+        } else {
+          throw new Error("Not a valid Amuse JSON file")
+        }
+      }
+
+      if (file.name.endsWith(".xml")) {
+        const xmlText = await file.text()
+        const xd = uclickXMLToXD(xmlText)
+        return {
+          filename: file.name,
+          status: "success",
+          xd,
+          originalFormat: "UClick XML",
+        }
+      }
+
+      throw new Error(`Unsupported file type: ${extension}`)
+    } catch (error) {
+      return {
+        filename: file.name,
+        status: "error",
+        error: error instanceof Error ? error.message : "Unknown error occurred",
+        originalFormat: extension.toUpperCase(),
+      }
+    }
+  }
 
   const handleDragOver = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
@@ -39,69 +107,92 @@ export const DragAndDrop: React.FC<DragAndDropProps> = ({ children }) => {
         return acceptedFileTypes.includes(extension)
       })
 
-      const file = validFiles[0]
-      if (!file) return
+      if (validFiles.length === 0) return
 
-      if (file.name.endsWith(".jpz")) {
-        const jpz = await file.text()
-        const xd = jpzToXD(jpz)
-        setXD(xd)
-        setLastFileContext({ content: jpz, filename: file.name })
-      }
+      setIsProcessing(true)
 
-      if (file.name.endsWith(".puz")) {
-        const puz = await file.arrayBuffer()
-        const xd = puzToXD(new Uint8Array(puz))
+      // Process files in batches to avoid blocking UI
+      const batchSize = 5
+      const results: ConversionResult[] = []
 
-        const puzJSON = decode(new Uint8Array(puz))
-        setLastFileContext({ content: puzJSON, filename: file.name })
+      for (let i = 0; i < validFiles.length; i += batchSize) {
+        const batch = validFiles.slice(i, i + batchSize)
+        const batchResults = await Promise.all(batch.map(processFile))
+        results.push(...batchResults)
 
-        setXD(xd)
-      }
+        // Update results after each batch
+        onFilesProcessed(batchResults)
 
-      if (file.name.endsWith(".json")) {
-        const jsonText = await file.text()
-        const json = JSON.parse(jsonText)
-
-        if (json?.data?.attributes?.amuse_data) {
-          const xd = amuseToXD(json)
-          setXD(xd)
-          setLastFileContext({ content: jsonText, filename: file.name })
+        // Small delay to keep UI responsive
+        if (i + batchSize < validFiles.length) {
+          await new Promise((resolve) => setTimeout(resolve, 100))
         }
       }
 
-      if (file.name.endsWith(".xml")) {
-        const xmlText = await file.text()
-        const xd = uclickXMLToXD(xmlText)
-        setLastFileContext({ content: xd, filename: file.name })
-      }
+      setIsProcessing(false)
     },
-    [setXD]
+    [onFilesProcessed, setIsProcessing]
+  )
+
+  const handleFileInput = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const files = Array.from(e.target.files || [])
+      const validFiles = files.filter((file) => {
+        const extension = "." + file.name.split(".").pop()?.toLowerCase()
+        return acceptedFileTypes.includes(extension)
+      })
+
+      if (validFiles.length === 0) return
+
+      setIsProcessing(true)
+
+      const results = await Promise.all(validFiles.map(processFile))
+      onFilesProcessed(results)
+
+      setIsProcessing(false)
+    },
+    [onFilesProcessed, setIsProcessing]
   )
 
   return (
     <div onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop} style={{ position: "relative" }}>
-      {children}
-      {isDragging && (
-        <div
+      <div
+        style={{
+          border: isDragging ? "2px dashed #4CAF50" : "2px dashed #ccc",
+          borderRadius: "8px",
+          padding: "3rem",
+          textAlign: "center",
+          backgroundColor: isDragging ? "rgba(76, 175, 80, 0.1)" : "#f8f9fa",
+          transition: "all 0.3s ease",
+          minHeight: "200px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <p style={{ margin: "0 0 1rem 0", fontSize: "1.1rem", color: isDragging ? "#4CAF50" : "#666" }}>
+          {isDragging ? "Drop your files here!" : "Drag and drop crossword files here"}
+        </p>
+        <p style={{ margin: "0 0 1rem 0", color: "#666", fontSize: "0.9rem" }}>or</p>
+        <label
+          htmlFor="file-input"
           style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            border: "2px dashed #4CAF50",
-            borderRadius: "8px",
-            backgroundColor: "rgba(76, 175, 80, 0.1)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 1000,
+            padding: "0.5rem 1rem",
+            backgroundColor: "#0e672e",
+            color: "white",
+            borderRadius: "0.25rem",
+            cursor: "pointer",
+            fontSize: "0.9rem",
+            transition: "background-color 0.2s",
           }}
+          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#166534")}
+          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#0e672e")}
         >
-          <p style={{ margin: 0, color: "#4CAF50" }}>Drop your crossword file here</p>
-        </div>
-      )}
+          Browse Files
+        </label>
+        <input id="file-input" type="file" multiple accept=".puz,.jpz,.json,.xml" onChange={handleFileInput} style={{ display: "none" }} />
+      </div>
     </div>
   )
 }

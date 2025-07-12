@@ -21,6 +21,7 @@
     "angular-expressions": "^1.4.3",
     "bootstrap": "^5.3.3",
     "json-schema-traverse": "^1.0.0",
+    "jszip": "^3.10.1",
     "lz-string": "^1.5.0",
     "monaco-editor": "^0.52.2",
     "react": "^19.0.0",
@@ -31,6 +32,7 @@
     "react-monaco-editor": "^0.58.0",
     "react-textarea-autosize": "^8.5.7",
     "vitest": "^3.2.4",
+    "wouter": "^3.7.1",
     "xd-crossword-tools": "workspace:*",
     "xd-crossword-tools-parser": "workspace:*"
   },
