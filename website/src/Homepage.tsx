@@ -13,6 +13,7 @@ import Button from "react-bootstrap/esm/Button"
 import { XDEditor } from "./components/XDEditor"
 import { RootContext } from "./components/RootContext"
 import { XDSpec } from "./components/xdSpec"
+import { DesignEditor } from "./components/DesignEditor"
 
 import "monaco-editor/esm/vs/editor/editor.all.js"
 import { DragAndDrop } from "./components/SingleDragAndDrop"
@@ -197,6 +198,51 @@ function App() {
         </Tab>
       )}
 
+      {crosswordJSON && (
+        <Tab eventKey="design" title="Design">
+          <Card className="modern-card">
+            <Card.Header className="card-header">
+              <Card.Title className="mb-0">Design View</Card.Title>
+            </Card.Header>
+
+            {crosswordJSON.design ? (
+              <Card.Body style={{ padding: 0 }}>
+                <DesignEditor
+                  designData={crosswordJSON.design}
+                  crosswordJSON={crosswordJSON}
+                  onDesignChange={(newDesign) => {
+                    // Handle design changes if needed
+                    console.log("Design updated:", newDesign)
+                  }}
+                />
+              </Card.Body>
+            ) : (
+              <Card.Body>
+                <div className="mb-3">
+                  <Button variant="primary" onClick={() => generateDesignPattern()} size="sm">
+                    Generate Design Pattern
+                  </Button>
+                </div>
+                <div
+                  id="design-output"
+                  style={{
+                    fontFamily: "monospace",
+                    whiteSpace: "pre-wrap",
+                    fontSize: "14px",
+                    backgroundColor: "#f8f9fa",
+                    padding: "15px",
+                    borderRadius: "4px",
+                    border: "1px solid #dee2e6",
+                  }}
+                >
+                  <div className="text-muted">Click "Generate Design Pattern" to create a visual representation of the crossword grid</div>
+                </div>
+              </Card.Body>
+            )}
+          </Card>
+        </Tab>
+      )}
+
       <Tab eventKey="cursor" title="Cursor">
         <Card className="modern-card">
           <Card.Header className="card-header">
@@ -310,6 +356,35 @@ function App() {
       </Tab>
     </Tabs>
   )
+
+  // Generate design pattern function
+  const generateDesignPattern = () => {
+    if (!crosswordJSON) return
+
+    const { tiles } = crosswordJSON
+    const rows = tiles.length // height
+    const cols = tiles[0]?.length || 0 // width
+
+    let pattern = `\n\n&lt;style>\n&lt;/style>\n\n`
+
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
+        const tile = tiles[row][col]
+
+        if (tile && (tile.type === "letter" || tile.type === "rebus" || tile.type === "schrodinger")) {
+          pattern += "."
+        } else {
+          pattern += "#"
+        }
+      }
+      pattern += "\n"
+    }
+
+    const outputElement = document.getElementById("design-output")
+    if (outputElement) {
+      outputElement.innerHTML = `<div style="color: #495057; font-weight: 500; margin-bottom: 10px;">## Design</div><pre style="margin: 0;">${pattern}</pre>`
+    }
+  }
 
   // Handle tab selection and save to localStorage
   const handleTabSelect = (key: string | null) => {
