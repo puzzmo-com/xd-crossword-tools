@@ -4496,6 +4496,24 @@ O { background: circle }
 ...O#...###.O..
 ```
 
+CSS Properties supported in style:
+
+- `background`: "circle" - sets a circle in the background
+- `backgroundLight: #[hex]` - sets the tile's background when in light mode
+- `backgroundDark: #[hex]` - sets the tile's background when in dark mode
+
+For example:
+
+<!-- prettier-ignore -->
+```html
+<style>
+O { background: circle }
+R { backgroundLight: #FF69B4; backgroundDark: #C71585 }
+G { backgroundLight: #00FF00; backgroundDark: #008000 }
+B { backgroundLight: #00FFFF; backgroundDark: #00008B }
+</style>
+```
+
 - `## Start`
 
   Instead of starting with an board, create a board with letters pre-filled. For example this crossword would start with "GO" "FOR" and "IT" already in:

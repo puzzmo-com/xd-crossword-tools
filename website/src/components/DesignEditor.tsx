@@ -241,10 +241,40 @@ export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswor
         </div>
 
         {/* Grid */}
-        <div>
+        <div className="mb-3">
           <h6>Grid:</h6>
           {renderGrid()}
           <small className="text-muted d-block mt-2">Click on any tile to apply the selected style</small>
+        </div>
+
+        {/* Style Documentation */}
+        <div>
+          <h6>Style Examples:</h6>
+          <div
+            style={{
+              fontSize: "12px",
+              fontFamily: "monospace",
+              backgroundColor: "#f8f9fa",
+              padding: "10px",
+              borderRadius: "4px",
+              border: "1px solid #dee2e6",
+            }}
+          >
+            <div className="mb-2">
+              <strong>Basic Styles:</strong>
+            </div>
+            <div>O &#123; background: circle &#125;</div>
+
+            <div className="mb-2 mt-3">
+              <strong>Color Styles:</strong>
+            </div>
+            <div>R &#123; backgroundLight: #FF69B4; backgroundDark: #C71585 &#125;</div>
+            <div>G &#123; backgroundLight: #00FF00; backgroundDark: #008000 &#125;</div>
+            <div>B &#123; backgroundLight: #00FFFF; backgroundDark: #00008B &#125;</div>
+          </div>
+          <small className="text-muted d-block mt-2">
+            Define styles in the main editor's Design section, then use the keys here to apply them to tiles.
+          </small>
         </div>
       </Card.Body>
     </div>
