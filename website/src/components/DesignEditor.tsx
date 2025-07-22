@@ -19,7 +19,10 @@ interface StyleDefinition {
 
 export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswordJSON, onDesignChange }) => {
   const { setXD } = use(RootContext)
-  const [selectedStyle, setSelectedStyle] = useState<string>("")
+  const [selectedStyle, setSelectedStyle] = useState<string>(() => {
+    // Load the last selected style from localStorage
+    return localStorage.getItem("designEditor.selectedStyle") || ""
+  })
   const [gridData, setGridData] = useState<string[][]>([])
   const [availableStyles, setAvailableStyles] = useState<StyleDefinition[]>([])
 
@@ -83,8 +86,17 @@ export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswor
     }
 
     setAvailableStyles(styles)
-    if (styles.length > 0 && !selectedStyle) {
-      setSelectedStyle(styles[0].character)
+    
+    // Set default selected style if none is selected or if the stored style is no longer available
+    if (styles.length > 0) {
+      const storedStyle = localStorage.getItem("designEditor.selectedStyle")
+      const isStoredStyleAvailable = storedStyle && styles.some(style => style.character === storedStyle)
+      
+      if (!selectedStyle || !isStoredStyleAvailable) {
+        const defaultStyle = isStoredStyleAvailable ? storedStyle : styles[0].character
+        setSelectedStyle(defaultStyle)
+        localStorage.setItem("designEditor.selectedStyle", defaultStyle)
+      }
     }
   }, [crosswordJSON?.design?.styles])
 
@@ -125,6 +137,8 @@ export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswor
 
   const handleStyleSelect = (character: string) => {
     setSelectedStyle(character)
+    // Save selected style to localStorage
+    localStorage.setItem("designEditor.selectedStyle", character)
   }
 
   const renderGrid = () => {
