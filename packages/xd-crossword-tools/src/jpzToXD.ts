@@ -50,18 +50,43 @@ export function jpzToXD(xmlString: string): string {
     if (cell.attributes.type === "block") {
       tiles[y][x] = { type: "blank" }
     } else {
+      // Check if there are any definitions for bars
+      const barAttributes = ["left-bar", "right-bar", "top-bar", "bottom-bar"]
+      if (barAttributes.some((attr) => cell.attributes[attr] === "true")) meta.form = "barred"
+
       const tile: LetterTile = {
         type: "letter",
         letter: cell.attributes.solution ?? "?", // Use '?' if solution missing
       }
+
       if (cell.attributes.number) {
         numberPositions[cell.attributes.number] = { row: y, col: x }
       }
 
-      // TODO: Handle circles, bars etc.
       // TODO: Rebuses
       tiles[y][x] = tile
     }
+  }
+
+  // Extract word definitions to get answers
+  const wordEls = crosswordEl.children.filter((child: { name: string }) => child.name === "word")
+  const wordAnswers: { [wordId: string]: string } = {}
+
+  for (const wordEl of wordEls) {
+    const wordId = wordEl.attributes.id
+    const cellsEls = wordEl.children.filter((child: { name: string }) => child.name === "cells")
+    let answer = ""
+
+    for (const cellEl of cellsEls) {
+      const x = parseInt(cellEl.attributes.x, 10) - 1
+      const y = parseInt(cellEl.attributes.y, 10) - 1
+      const tile = tiles[y][x]
+      if (tile.type === "letter") {
+        answer += tile.letter
+      }
+    }
+
+    wordAnswers[wordId] = answer
   }
 
   // Grabbing the clues
@@ -93,11 +118,20 @@ export function jpzToXD(xmlString: string): string {
         continue
       }
 
+      const wordID = clueEl.attributes.word
+      const answer = wordAnswers[wordID] || ""
+
+      // Skip clues without valid answers
+      if (!answer || answer.length === 0) {
+        console.warn(`Skipping clue ${num} with empty answer`)
+        continue
+      }
+
       const clue: Clue = {
         number: parseInt(num, 10),
         body: text,
         position: { col: pos.col, index: pos.row },
-        answer: "TBD", // Placeholder, need word extraction logic
+        answer: answer,
         direction: direction.toUpperCase() as "across" | "down",
         display: [],
         tiles: [],
@@ -122,5 +156,6 @@ export function jpzToXD(xmlString: string): string {
 
   cleanupClueMetadata(crosswordJSON)
 
+  // For now, log the bars we found
   return JSONToXD(crosswordJSON)
 }

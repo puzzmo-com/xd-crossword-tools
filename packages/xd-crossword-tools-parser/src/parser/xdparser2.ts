@@ -1,6 +1,7 @@
 import { getCluePositionsForBoard } from "../utils/clueNumbersFromBoard"
 import type { Tile, CrosswordJSON, ClueComponentMarkup } from "../types"
 import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "./xdparser2.compat"
+import { b } from "vitest/dist/chunks/suite.d.FvehnV49"
 
 // These are all the sections supported by this parser
 const knownHeaders = ["grid", "clues", "notes", "metadata", "metapuzzle", "start", "design", "design-style"] as const
@@ -321,9 +322,29 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   for (const keyClue of rawInput.clues) {
     const [_, clue] = keyClue
     const dirKey = clue.dir === "A" ? "across" : "down"
+    const bail = () => {
+      keyClue
+      const message = `The clue ${dirKey}${clue.num} does not have a valid position in the grid, it is likely that the grid is malformed or the clue number is incorrect: ${clue.num}`
+      json.report.errors.push({
+        type: "syntax",
+        position: { col: 0, index: -1 },
+        length: -1,
+        message,
+      })
+    }
+
     const arr = json.clues[dirKey]
     const positionData = positions[clue.num]
-    const tiles = positionData.tiles[dirKey]!
+    if (!positionData) {
+      bail()
+      continue
+    }
+
+    const tiles = positionData.tiles[dirKey]
+    if (!tiles) {
+      bail()
+      continue
+    }
 
     const answerWithRebusSymbols = replaceWordWithSymbol(clue.answer, tiles, json.meta.splitcharacter)
     const splits = parseSplitsFromAnswer(answerWithRebusSymbols, json.meta.splitcharacter)

@@ -1,8 +1,10 @@
 import { readFileSync } from "fs"
 import { jpzToXD } from "../src/jpzToXD"
 import { describe, it, expect } from "vitest"
-const simpleJpz = readFileSync("./packages/xd-crossword-tools/tests/jpz/That's a Bear in a Bee Costume.jpz", "utf8")
-const complexJpz = readFileSync("./packages/xd-crossword-tools/tests/jpz/lil-167-ratliff-121823.jpz", "utf8")
+
+const simpleJpz = readFileSync(__dirname + "/jpz/That's a Bear in a Bee Costume.jpz", "utf8")
+const complexJpz = readFileSync(__dirname + "/jpz/lil-167-ratliff-121823.jpz", "utf8")
+const jpzBarredContent = readFileSync(__dirname + "/jpz/Printer-Devilry-kyle-dolan.jpz", "utf-8")
 
 describe(jpzToXD.name, () => {
   it("should parse a simple jpz file", () => {
@@ -84,6 +86,7 @@ describe(jpzToXD.name, () => {
       editor: Will Eisenberg
       date: 2023-11-10
       copyright: (c) 2023
+      form: barred
 
       ## Grid
 
@@ -147,6 +150,53 @@ describe(jpzToXD.name, () => {
       D33. Word preceding band or squad ~ PEP
       D34. French wine designation ~ CRU
       D35. Psychedelic found during April Fool's Day? ~ LSD"
+    `)
+  })
+
+  it("handle a complex jpz file", () => {
+    const res = jpzToXD(jpzBarredContent)
+    expect(res).toMatchInlineSnapshot(`
+      "## Metadata
+
+      title: Beneath The Surface Printer&#039;s Devilry #4 (Midi)
+      author: Kyle Dolan
+      editor: 
+      date: 
+      copyright: © 2023 Kyle Dolan
+      form: barred
+
+      ## Grid
+
+      SIGNPOST
+      UNICORNS
+      NCNARROW
+      DAUNTUWE
+      EYPTENOR
+      RODENTLV
+      SLEETIDE
+      COUNTESS
+
+      ## Clues
+
+      A1. For dorm room wall, deer art is a popular choice (8) ~ SIGNPOST
+      A6. Playing an investment game in Economics class, was lots offered the market? (7) ~ UNICORNS
+      A9. As flight can be used to describe principles of classical mechanics (6) ~ NARROW
+      A10. The reunion included grandparents, uncle, sans cousins and other extended family (5) ~ DAUNTUWE
+      A13. The butcher shop was known for its famous sausages, for which they sold special extra-long buns (5) ~ TENOR
+      A15. The oral surgeon who removed my wisdom teeth was a pal. Insurance covered the whole thing! (6) ~ RODENTLV
+      A16. As commander of the flight, in having the most spacious cabin (3,4) ~ LEETIDE
+      A17. With the term paper due date approaching, the lazy student tried to buy ad--I say!--off the Internet (8) ~ COUNTESS
+
+      D1. The old couple knew each other so well that they had formed a Wordle standing between themselves (7) ~ SUNDERSC
+      D2. For puzzle lovers, a good crossword is like brandy (4) ~ INCAYOLO
+      D3. Loon setting up your user name and password to verify your account... (3,2) ~ GINUPDEU
+      D4. ...if you need tech, super. Your email? (7) ~ PORTENTT
+      D5. Our catcher isn&#039;t playing today--hermit there to be found (4) ~ SNOWOLDS
+      D7. The bouncer didn&#039;t bother. Toss ID--she knew right away it was fake (7) ~ CANTEEN
+      D8. Question: What items of clothing are typically worn by professional billiards players? Ants (7) ~ SWERVES
+      D11. A lover offs Will, often use them as conversation starters at parties (5) ~ UNTIE
+      D12. I&#039;ll have a turkey sandwich with Swiss cheese, mats of bacon, and tomatoes (4) ~ YOLO
+      D14. A cake like daiginjo pairs well with sushi (4) ~ OLDS"
     `)
   })
 })
