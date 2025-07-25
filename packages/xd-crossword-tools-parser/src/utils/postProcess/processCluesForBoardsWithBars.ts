@@ -40,65 +40,11 @@ export function getBarredCluePositions(
   acrossClues.sort((a, b) => a.num - b.num)
   downClues.sort((a, b) => a.num - b.num)
 
-  const acrossPositions = _deriveAcrossCluePositions(tiles, acrossClues, metadata.splitcharacter)
-  const downPositions = _deriveDownCluePositions(tiles, downClues, metadata.splitcharacter)
-
-  // Convert positions to Clue format for existing bar derivation functions
-  const acrossCluesForDerivation = acrossPositions.map((pos, index) => {
-    const answer =
-      pos.tiles.across
-        ?.map((tile) =>
-          tile.type === "letter"
-            ? tile.letter
-            : tile.type === "rebus"
-            ? tile.word
-            : tile.type === "schrodinger"
-            ? tile.validLetters[0] || "A"
-            : "A"
-        )
-        .join("") || ""
-
-    return {
-      number: index + 1,
-      position: pos.position,
-      answer,
-      tiles: pos.tiles.across || [],
-      direction: "across" as const,
-      body: "",
-      display: [],
-    }
-  })
-
-  const downCluesForDerivation = downPositions.map((pos, index) => {
-    const answer =
-      pos.tiles.down
-        ?.map((tile) =>
-          tile.type === "letter"
-            ? tile.letter
-            : tile.type === "rebus"
-            ? tile.word
-            : tile.type === "schrodinger"
-            ? tile.validLetters[0] || "A"
-            : "A"
-        )
-        .join("") || ""
-
-    return {
-      number: index + 1,
-      position: pos.position,
-      answer,
-      tiles: pos.tiles.down || [],
-      direction: "down" as const,
-      body: "",
-      display: [],
-    }
-  })
+  const acrossPositions = deriveAcrossCluePositions(tiles, acrossClues, metadata.splitcharacter)
+  const downPositions = deriveDownCluePositions(tiles, downClues, metadata.splitcharacter)
 
   // Use a more sophisticated bar derivation that analyzes the grid structure
-  const gridHeight = tiles.length
-  const gridWidth = tiles[0]?.length || 0
-
-  const allBars = _deriveAllBarsFromGridStructure(tiles, acrossPositions, downPositions)
+  const allBars = deriveAllBarsFromGridStructure(tiles, acrossPositions, downPositions)
 
   // Apply bars to tiles
   for (const bar of allBars) {
@@ -135,8 +81,7 @@ export function getBarredCluePositions(
   return positions
 }
 
-
-function _deriveAcrossCluePositions(
+function deriveAcrossCluePositions(
   tiles: CrosswordJSON["tiles"],
   acrossClues: RawClueData[],
   splitCharacter: string | undefined
@@ -219,7 +164,7 @@ function _deriveAcrossCluePositions(
   return positions
 }
 
-function _deriveDownCluePositions(
+function deriveDownCluePositions(
   tiles: CrosswordJSON["tiles"],
   downClues: RawClueData[],
   splitCharacter: string | undefined
@@ -302,8 +247,7 @@ function _deriveDownCluePositions(
   return positions
 }
 
-
-function _deriveAllBarsFromGridStructure(
+function deriveAllBarsFromGridStructure(
   tiles: CrosswordJSON["tiles"],
   acrossPositions: PositionWithTiles[],
   downPositions: PositionWithTiles[]
@@ -338,7 +282,6 @@ function _deriveAllBarsFromGridStructure(
 
   // Algorithm: Add bars where adjacent cells have different word context
   // Key insight: bars separate cells that differ in EITHER across OR down word membership
-  
   for (let row = 0; row < gridHeight; row++) {
     for (let col = 0; col < gridWidth; col++) {
       if (tiles[row][col].type !== "letter") continue
@@ -352,9 +295,9 @@ function _deriveAllBarsFromGridStructure(
         const leftKey = `${row},${col - 1}`
         const leftAcrossWord = acrossWordMap.get(leftKey)
         const leftDownWord = downWordMap.get(leftKey)
-        
+
         let needsLeftBar = false
-        
+
         // Primary case: different across words (word boundary)
         if (acrossWord !== leftAcrossWord) {
           needsLeftBar = true
@@ -363,7 +306,7 @@ function _deriveAllBarsFromGridStructure(
         else if (acrossWord === undefined && leftAcrossWord === undefined && downWord !== leftDownWord) {
           needsLeftBar = true
         }
-        
+
         if (needsLeftBar) {
           bars.push({ row, col, type: "left" })
         }
@@ -374,9 +317,9 @@ function _deriveAllBarsFromGridStructure(
         const topKey = `${row - 1},${col}`
         const topAcrossWord = acrossWordMap.get(topKey)
         const topDownWord = downWordMap.get(topKey)
-        
+
         let needsTopBar = false
-        
+
         // Primary case: different down words (word boundary)
         if (downWord !== topDownWord) {
           needsTopBar = true
@@ -385,7 +328,7 @@ function _deriveAllBarsFromGridStructure(
         else if (downWord === undefined && topDownWord === undefined && acrossWord !== topAcrossWord) {
           needsTopBar = true
         }
-        
+
         if (needsTopBar) {
           bars.push({ row, col, type: "top" })
         }

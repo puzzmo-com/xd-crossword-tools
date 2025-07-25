@@ -22,6 +22,8 @@ export type RawClueData = {
 /**
  * Analyzes a crossword grid and determines the positions where clues should be numbered.
  * Supports both standard crosswords (using black squares) and barred grids (using bars to separate words).
+ *
+ * The extra 2 params are optional so that it can be used in the puzToXD and jpzToXD parsers where there is less computed info.
  */
 export const getCluePositionsForBoard = (
   tiles: CrosswordJSON["tiles"],

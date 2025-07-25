@@ -1,6 +1,8 @@
 import { getCluePositionsForBoard, PositionWithTiles } from "../utils/clueNumbersFromBoard"
 import type { Tile, CrosswordJSON, ClueComponentMarkup } from "../types"
 import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "./xdparser2.compat"
+import { b } from "vitest/dist/chunks/suite.d.FvehnV49"
+import { dir } from "console"
 
 // These are all the sections supported by this parser
 const knownHeaders = ["grid", "clues", "notes", "metadata", "metapuzzle", "start", "design", "design-style"] as const
@@ -320,28 +322,31 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
 
   // Update the clues with position info and the right metadata
   const positions = getCluePositionsForBoard(json.tiles, json.meta, rawInput.clues)
-  
+
   // For barred grids, create a proper mapping from clue numbers to positions
   let positionsByClueNumber: Record<number, PositionWithTiles> = {}
   if (useBarredLogic && Array.isArray(positions)) {
     // Build a mapping by matching answer strings exactly
     const usedPositions = new Set<number>()
-    
+
     for (const keyClue of rawInput.clues) {
       const [_, clue] = keyClue
       const dirKey = clue.dir === "A" ? "across" : "down"
-      
+
       // Find the position that matches this clue's answer exactly
       const matchingPositionIndex = (positions as PositionWithTiles[]).findIndex((p, index) => {
         if (usedPositions.has(index)) return false
-        
+
         const relevantTiles = dirKey === "across" ? p.tiles.across : p.tiles.down
         if (!relevantTiles) return false
-        
-        const posAnswer = relevantTiles.map((t) => (t.type === "letter" ? t.letter : "")).join("").toUpperCase()
+
+        const posAnswer = relevantTiles
+          .map((t) => (t.type === "letter" ? t.letter : ""))
+          .join("")
+          .toUpperCase()
         return posAnswer === clue.answer.toUpperCase()
       })
-      
+
       if (matchingPositionIndex !== -1) {
         positionsByClueNumber[clue.num] = (positions as PositionWithTiles[])[matchingPositionIndex]
         usedPositions.add(matchingPositionIndex)
@@ -351,21 +356,27 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     // For normal grids, positions is already indexed by clue number
     positionsByClueNumber = positions as Record<number, PositionWithTiles>
   }
-  
+
   for (const keyClue of rawInput.clues) {
     const [_, clue] = keyClue
 
     const dirKey = clue.dir === "A" ? "across" : "down"
     const arr = json.clues[dirKey]
+    const bail = () => {
+      const lineOfClue = getLine(xd, clue.question)
+      addSyntaxError(`The clue ${dirKey}${clue.num} is malformed`, lineOfClue || -1)
+    }
 
     const positionData = positionsByClueNumber[clue.num]
 
     if (!positionData) {
+      bail()
       continue
     }
 
     const tiles = positionData.tiles[dirKey]
     if (!tiles) {
+      bail()
       continue
     }
 

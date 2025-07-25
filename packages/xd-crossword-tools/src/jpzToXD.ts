@@ -2,7 +2,6 @@ import { Clue, CrosswordJSON, Tile } from "xd-crossword-tools-parser"
 import { JSONToXD } from "./JSONtoXD"
 import parse from "xml-parser"
 import { LetterTile } from "xd-crossword-tools-parser"
-import { cleanupClueMetadata } from "./cleanupClueMetadata"
 
 /**
  * Takes a jpz xml string and converts it to an xd file.
@@ -153,8 +152,6 @@ export function jpzToXD(xmlString: string): string {
     unknownSections: {},
     report: { success: true, errors: [], warnings: [] },
   }
-
-  cleanupClueMetadata(crosswordJSON)
 
   // For now, log the bars we found
   return JSONToXD(crosswordJSON)

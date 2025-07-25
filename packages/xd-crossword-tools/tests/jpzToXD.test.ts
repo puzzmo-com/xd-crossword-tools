@@ -76,7 +76,7 @@ describe(jpzToXD.name, () => {
     `)
   })
 
-  it("should parse a more complex jpz file (this has bars, so the clues etc are wrong)", () => {
+  it("should parse a more complex jpz file (mixes bars and blanks)", () => {
     const res = jpzToXD(complexJpz)
     expect(res).toMatchInlineSnapshot(`
       "## Metadata

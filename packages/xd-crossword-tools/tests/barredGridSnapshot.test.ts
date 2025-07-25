@@ -71,24 +71,16 @@ D14. A cake like daiginjo pairs well with sushi (4) ~ OLDS"
       const x = parseInt(cell.attributes.x, 10) - 1
       const y = parseInt(cell.attributes.y, 10) - 1
 
-      if (cell.attributes["left-bar"] === "true") {
-        bars.push({ row: y, col: x, type: "left" })
-      }
-      if (cell.attributes["right-bar"] === "true") {
-        bars.push({ row: y, col: x, type: "right" })
-      }
-      if (cell.attributes["top-bar"] === "true") {
-        bars.push({ row: y, col: x, type: "top" })
-      }
-      if (cell.attributes["bottom-bar"] === "true") {
-        bars.push({ row: y, col: x, type: "bottom" })
-      }
+      if (cell.attributes["left-bar"] === "true") bars.push({ row: y, col: x, type: "left" })
+      if (cell.attributes["right-bar"] === "true") bars.push({ row: y, col: x, type: "right" })
+      if (cell.attributes["top-bar"] === "true") bars.push({ row: y, col: x, type: "top" })
+      if (cell.attributes["bottom-bar"] === "true") bars.push({ row: y, col: x, type: "bottom" })
     }
 
     // Add bars to tiles
     const tilesWithBars = addBarsToTiles(xdJSON.tiles, bars)
 
-    // Snapshot the complete data structure
+    // Snapshot based on data from the JPZ xml
     expect("\n" + printBarredGrid(tilesWithBars)).toMatchInlineSnapshot(`
       "
       S   I   G   N   P   O   S   T
@@ -108,7 +100,7 @@ D14. A cake like daiginjo pairs well with sushi (4) ~ OLDS"
       C   O   U   N   T   E   S   S"
     `)
 
-    // These two should snapshots should be the same, when it is correct
+    // Snapshot based on the derived barred grid
     expect("\n" + printBarredGrid(xdJSON.tiles)).toMatchInlineSnapshot(`
       "
       S   I   G   N   P   O   S   T
@@ -130,4 +122,35 @@ D14. A cake like daiginjo pairs well with sushi (4) ~ OLDS"
 
     expect(printBarredGrid(xdJSON.tiles)).toEqual(printBarredGrid(tilesWithBars))
   })
+})
+
+it("looks at a different jpz file which has a mix of pipes and blocks", () => {
+  const jpzBarredContent = readFileSync(__dirname + "/jpz/lil-167-ratliff-121823.jpz", "utf-8")
+  const xd = jpzToXD(jpzBarredContent)
+  const xdJSON = xdToJSON(xd)
+
+  expect("\n" + printBarredGrid(xdJSON.tiles)).toMatchInlineSnapshot(`
+  "
+  I   H   O   P       S   T   A   I   N    
+                                            
+  N   O   T   I       N   U   D   G   E   S
+                            ╷               
+  C   O   R   N   C   O   B │ D   O   W   N
+                            ╵               
+  A   D   O   B   O               T   S   O
+                                            
+              A   I   M       B   Y   O   B
+                    ╷                       
+      H   A   L   F │ D   R   E   A   M    
+                    ╵                       
+  W   A   L   L       S   U   B            
+                                            
+  A   L   E               D   R   A   F   T
+                ╷                           
+  W   A   R   P │ C   L   E   A   N   E   R
+                ╵                           
+  A   L   T   E   R   S       V   E   T   O
+                                            
+          S   P   U   D       E   W   A   N"
+`)
 })
