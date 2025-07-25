@@ -108,19 +108,19 @@ describe(jpzToXD.name, () => {
       A5. Leave a mark? ~ STAIN
       A10. Shell-shielded species introduced in "Ahsoka" ~ NOTI
       A11. Gently encourages ~ NUDGES
-      A13. *Accessory for Frosty ~ CORNCOBDOWN
+      A13. *Accessory for Frosty ~ CORNCOB
       A15. *"Hush!" ~ DOWN
       A16. Filipino stew celebrated by a 2023 Google Doodle ~ ADOBO
       A17. General on many an American Chinese menu ~ TSO
       A18. Org. that seized a replica of the Mayflower on Thanksgiving 1970 ~ AIM
       A20. Caveat on a BBQ invite ~ BYOB
-      A21. *Ramp found in "Tony Hawk: Pro Skater 2" ~ HALFDREAM
+      A21. *Ramp found in "Tony Hawk: Pro Skater 2" ~ HALF
       A23. *Unlikely aspiration ~ DREAM
       A25. "Over the Garden ___" (Cartoon Network miniseries) ~ WALL
       A26. Step in ~ SUB
       A27. Word that might follow pretzel or pumpkin ~ ALE
       A28. What 27-Across might be on ~ DRAFT
-      A32. *Mario's portal that's apt since he's a plumber ~ WARPCLEANER
+      A32. *Mario's portal that's apt since he's a plumber ~ WARP
       A34. *Piece of equipment for an egg drop in Physics, perhaps ~ CLEANER
       A36. Changes a vowel in the spelling of altars? ~ ALTERS
       A37. Deny, presidentially ~ VETO
@@ -179,19 +179,19 @@ describe(jpzToXD.name, () => {
       ## Clues
 
       A1. For dorm room wall, deer art is a popular choice (8) ~ SIGNPOST
-      A6. Playing an investment game in Economics class, was lots offered the market? (7) ~ UNICORNS
+      A6. Playing an investment game in Economics class, was lots offered the market? (7) ~ UNICORN
       A9. As flight can be used to describe principles of classical mechanics (6) ~ NARROW
-      A10. The reunion included grandparents, uncle, sans cousins and other extended family (5) ~ DAUNTUWE
+      A10. The reunion included grandparents, uncle, sans cousins and other extended family (5) ~ DAUNT
       A13. The butcher shop was known for its famous sausages, for which they sold special extra-long buns (5) ~ TENOR
-      A15. The oral surgeon who removed my wisdom teeth was a pal. Insurance covered the whole thing! (6) ~ RODENTLV
+      A15. The oral surgeon who removed my wisdom teeth was a pal. Insurance covered the whole thing! (6) ~ RODENT
       A16. As commander of the flight, in having the most spacious cabin (3,4) ~ LEETIDE
       A17. With the term paper due date approaching, the lazy student tried to buy ad--I say!--off the Internet (8) ~ COUNTESS
 
-      D1. The old couple knew each other so well that they had formed a Wordle standing between themselves (7) ~ SUNDERSC
-      D2. For puzzle lovers, a good crossword is like brandy (4) ~ INCAYOLO
-      D3. Loon setting up your user name and password to verify your account... (3,2) ~ GINUPDEU
-      D4. ...if you need tech, super. Your email? (7) ~ PORTENTT
-      D5. Our catcher isn&#039;t playing today--hermit there to be found (4) ~ SNOWOLDS
+      D1. The old couple knew each other so well that they had formed a Wordle standing between themselves (7) ~ SUNDERS
+      D2. For puzzle lovers, a good crossword is like brandy (4) ~ INCA
+      D3. Loon setting up your user name and password to verify your account... (3,2) ~ GINUP
+      D4. ...if you need tech, super. Your email? (7) ~ PORTENT
+      D5. Our catcher isn&#039;t playing today--hermit there to be found (4) ~ SNOW
       D7. The bouncer didn&#039;t bother. Toss ID--she knew right away it was fake (7) ~ CANTEEN
       D8. Question: What items of clothing are typically worn by professional billiards players? Ants (7) ~ SWERVES
       D11. A lover offs Will, often use them as conversation starters at parties (5) ~ UNTIE

@@ -120,7 +120,7 @@ export function deriveBarPositionsFromDownClues(clues: Clue[], gridHeight: numbe
 
 export function deriveAllBarPositions(acrossClues: Clue[], downClues: Clue[], gridWidth: number, gridHeight: number): BarPosition[] {
   const acrossBars = deriveBarPositionsFromAcrossClues(acrossClues, gridWidth)
-  const downBars = deriveBarPositionsFromDownClues(downClues, gridWidth, gridHeight)
+  const downBars = deriveBarPositionsFromDownClues(downClues, gridHeight)
 
   // Combine and deduplicate bars
   const allBars = [...acrossBars, ...downBars]

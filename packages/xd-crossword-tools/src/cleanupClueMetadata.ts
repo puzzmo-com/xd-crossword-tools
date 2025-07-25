@@ -10,26 +10,38 @@ export const cleanupClueMetadata = (xword: CrosswordJSON): void => {
   if (height === 0) return // No grid, nothing to do
   const width = tiles[0].length
 
+  // For barred crosswords, the original JPZ word definitions are more accurate
+  // than walking the grid until blank tiles, so preserve the original answers
+  const isBarredCrossword = xword.meta.form === "barred"
+
   // Process across clues
   for (const clue of acrossClues) {
     let answer = ""
     const startRow = clue.position.index
     let currentCol = clue.position.col
 
-    while (currentCol < width) {
-      const tile = tiles[startRow][currentCol]
-      if (tile.type === "blank") break
+    if (isBarredCrossword && clue.answer) {
+      // For barred crosswords, preserve the original answer and build tiles based on answer length
+      answer = clue.answer
+      const answerLength = answer.length
+      clue.tiles = tiles[startRow].slice(clue.position.col, clue.position.col + answerLength)
+    } else {
+      // For regular crosswords, walk until blank tile
+      while (currentCol < width) {
+        const tile = tiles[startRow][currentCol]
+        if (tile.type === "blank") break
 
-      if (tile.type === "letter") {
-        answer += tile.letter
-      } else if (tile.type === "rebus") {
-        // Assuming the full word is part of the answer for rebus tiles
-        answer += tile.word
+        if (tile.type === "letter") {
+          answer += tile.letter
+        } else if (tile.type === "rebus") {
+          // Assuming the full word is part of the answer for rebus tiles
+          answer += tile.word
+        }
+        currentCol++
       }
-      currentCol++
+      clue.answer = answer
+      clue.tiles = tiles[startRow].slice(clue.position.col, currentCol)
     }
-    clue.answer = answer
-    clue.tiles = tiles[startRow].slice(clue.position.col, currentCol)
   }
 
   // Process down clues
@@ -39,22 +51,35 @@ export const cleanupClueMetadata = (xword: CrosswordJSON): void => {
     let currentRow = clue.position.index
     const clueTiles: Tile[] = [] // Initialize array for down clue tiles
 
-    while (currentRow < height) {
-      const tile = tiles[currentRow][startCol]
-      if (tile.type === "blank") break
-
-      if (tile.type === "letter") {
-        answer += tile.letter
-        clueTiles.push(tile) // Add tile to the array
-      } else if (tile.type === "rebus") {
-        // Assuming the full word is part of the answer for rebus tiles
-        answer += tile.word
-        clueTiles.push(tile) // Add tile to the array
+    if (isBarredCrossword && clue.answer) {
+      // For barred crosswords, preserve the original answer and build tiles based on answer length
+      answer = clue.answer
+      const answerLength = answer.length
+      for (let i = 0; i < answerLength; i++) {
+        if (currentRow + i < height) {
+          clueTiles.push(tiles[currentRow + i][startCol])
+        }
       }
-      currentRow++
-    }
+      clue.tiles = clueTiles
+    } else {
+      // For regular crosswords, walk until blank tile
+      while (currentRow < height) {
+        const tile = tiles[currentRow][startCol]
+        if (tile.type === "blank") break
 
-    clue.answer = answer
-    clue.tiles = clueTiles // Assign the collected tiles
+        if (tile.type === "letter") {
+          answer += tile.letter
+          clueTiles.push(tile) // Add tile to the array
+        } else if (tile.type === "rebus") {
+          // Assuming the full word is part of the answer for rebus tiles
+          answer += tile.word
+          clueTiles.push(tile) // Add tile to the array
+        }
+        currentRow++
+      }
+
+      clue.answer = answer
+      clue.tiles = clueTiles // Assign the collected tiles
+    }
   }
 }

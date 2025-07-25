@@ -2,8 +2,8 @@ import { describe, it, expect } from "vitest"
 import { readFileSync } from "fs"
 import parse from "xml-parser"
 
-import { Tile, xdToJSON } from "xd-crossword-tools-parser/src"
-import { printBarredGrid, addBarsToTiles } from "../src/printBarredGrid4"
+import { xdToJSON } from "xd-crossword-tools-parser/src"
+import { printBarredGrid, addBarsToTiles } from "../src/printBarredGrid"
 import { BarPosition } from "../src/deriveBarPositions"
 import { jpzToXD } from "../src/jpzToXD"
 
@@ -37,19 +37,19 @@ describe("barred grid snapshot", () => {
       ## Clues
 
       A1. For dorm room wall, deer art is a popular choice (8) ~ SIGNPOST
-      A6. Playing an investment game in Economics class, was lots offered the market? (7) ~ UNICORNS
+      A6. Playing an investment game in Economics class, was lots offered the market? (7) ~ UNICORN
       A9. As flight can be used to describe principles of classical mechanics (6) ~ NARROW
-      A10. The reunion included grandparents, uncle, sans cousins and other extended family (5) ~ DAUNTUWE
+      A10. The reunion included grandparents, uncle, sans cousins and other extended family (5) ~ DAUNT
       A13. The butcher shop was known for its famous sausages, for which they sold special extra-long buns (5) ~ TENOR
-      A15. The oral surgeon who removed my wisdom teeth was a pal. Insurance covered the whole thing! (6) ~ RODENTLV
+      A15. The oral surgeon who removed my wisdom teeth was a pal. Insurance covered the whole thing! (6) ~ RODENT
       A16. As commander of the flight, in having the most spacious cabin (3,4) ~ LEETIDE
       A17. With the term paper due date approaching, the lazy student tried to buy ad--I say!--off the Internet (8) ~ COUNTESS
 
-      D1. The old couple knew each other so well that they had formed a Wordle standing between themselves (7) ~ SUNDERSC
-      D2. For puzzle lovers, a good crossword is like brandy (4) ~ INCAYOLO
-      D3. Loon setting up your user name and password to verify your account... (3,2) ~ GINUPDEU
-      D4. ...if you need tech, super. Your email? (7) ~ PORTENTT
-      D5. Our catcher isn&#039;t playing today--hermit there to be found (4) ~ SNOWOLDS
+      D1. The old couple knew each other so well that they had formed a Wordle standing between themselves (7) ~ SUNDERS
+      D2. For puzzle lovers, a good crossword is like brandy (4) ~ INCA
+      D3. Loon setting up your user name and password to verify your account... (3,2) ~ GINUP
+      D4. ...if you need tech, super. Your email? (7) ~ PORTENT
+      D5. Our catcher isn&#039;t playing today--hermit there to be found (4) ~ SNOW
       D7. The bouncer didn&#039;t bother. Toss ID--she knew right away it was fake (7) ~ CANTEEN
       D8. Question: What items of clothing are typically worn by professional billiards players? Ants (7) ~ SWERVES
       D11. A lover offs Will, often use them as conversation starters at parties (5) ~ UNTIE
@@ -107,5 +107,27 @@ describe("barred grid snapshot", () => {
       ──┘   ╶───╴   ╶───╴           
       C   O   U   N   T   E   S   S"
     `)
+
+    // These two should snapshots should be the same, when it is correct
+    expect("\n" + printBarredGrid(xdJSON.tiles)).toMatchInlineSnapshot(`
+      "
+      S   I   G   N   P   O   S   T
+                ╶───╴           ╶───
+      U   N   I   C   O   R   N   S
+            ╷                       
+      N   C │ N   A   R   R   O   W
+            ╵           ╶───╴       
+      D   A   U   N   T   U   W   E
+                ╷                   
+      E   Y   P │ T   E   N   O   R
+                ╵                   
+      R   O   D   E   N   T   L   V
+        ╷                           
+      S │ L   E   E   T   I   D   E
+        ╵                           
+      C   O   U   N   T   E   S   S"
+    `)
+
+    // expect(printBarredGrid(xdJSON.tiles)).toEqual(printBarredGrid(tilesWithBars))
   })
 })

@@ -45,6 +45,8 @@ function getBars(tile: Tile) {
 /**
  * Prints a crossword grid similar to the googledocs-cryptic-jpz format
  * Uses Unicode box-drawing characters for a professional barred grid appearance
+ * Based on https://github.com/nhrqz/googledocs-cryptic-jpz/blob/master/src/import.js
+ * MIT License at https://github.com/nhrqz/googledocs-cryptic-jpz/commit/ccf1ebd2c5c85f793f44438d1971075271771473
  */
 export function printBarredGrid(tiles: Tile[][]): string {
   const height = tiles.length
@@ -69,9 +71,6 @@ export function printBarredGrid(tiles: Tile[][]): string {
 
   return rows.join("\n")
 }
-
-// Based on https://github.com/nhrqz/googledocs-cryptic-jpz/blob/master/src/import.js
-// MIT License at https://github.com/nhrqz/googledocs-cryptic-jpz/commit/ccf1ebd2c5c85f793f44438d1971075271771473
 
 function drawBox(cell: Tile, s: Tile | null, e: Tile | null, se: Tile | null): string {
   const letter = cell.type === "letter" ? cell.letter : cell.type === "rebus" ? cell.symbol : " "

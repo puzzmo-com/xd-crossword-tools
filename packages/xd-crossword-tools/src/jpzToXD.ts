@@ -73,7 +73,7 @@ export function jpzToXD(xmlString: string): string {
   const wordAnswers: { [wordId: string]: string } = {}
 
   for (const wordEl of wordEls) {
-    const wordId = wordEl.attributes.id
+    const wordID = wordEl.attributes.id
     const cellsEls = wordEl.children.filter((child: { name: string }) => child.name === "cells")
     let answer = ""
 
@@ -86,8 +86,11 @@ export function jpzToXD(xmlString: string): string {
       }
     }
 
-    wordAnswers[wordId] = answer
+
+    wordAnswers[wordID] = answer
   }
+
+  wordAnswers
 
   // Grabbing the clues
   const clues: CrosswordJSON["clues"] = { across: [], down: [] }
@@ -120,6 +123,7 @@ export function jpzToXD(xmlString: string): string {
 
       const wordID = clueEl.attributes.word
       const answer = wordAnswers[wordID] || ""
+
 
       // Skip clues without valid answers
       if (!answer || answer.length === 0) {

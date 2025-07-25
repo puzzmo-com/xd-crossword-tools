@@ -238,7 +238,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
         continue
       }
 
-      // Create a spare array of letters to add by default to the crossword
+      // Create a sparse array of letters to add by default to the crossword
       case "start": {
         if (trimmed === "") continue
         if (!json.start) json.start = []
@@ -253,6 +253,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
         continue
       }
 
+      // A lil CSS parser for the design section
       case "design": {
         if (trimmed === "") continue
         if (trimmed.startsWith("<style>")) {
@@ -315,33 +316,54 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   // The process above will make pretty white-spacey answers.
   if (json.metapuzzle) json.metapuzzle.answer = json.metapuzzle.answer.trim()
 
-  // Update the clues with position info and the right meta
+  const useBarredLogic = json.meta.form === "barred"
 
-  const positions = getCluePositionsForBoard(json.tiles)
+  // Update the clues with position info and the right metadata
+  const positions = getCluePositionsForBoard(json.tiles, json.meta, rawInput.clues)
   for (const keyClue of rawInput.clues) {
     const [_, clue] = keyClue
     const dirKey = clue.dir === "A" ? "across" : "down"
-    const bail = () => {
-      keyClue
-      const message = `The clue ${dirKey}${clue.num} does not have a valid position in the grid, it is likely that the grid is malformed or the clue number is incorrect: ${clue.num}`
-      json.report.errors.push({
-        type: "syntax",
-        position: { col: 0, index: -1 },
-        length: -1,
-        message,
-      })
-    }
+    // const bail = () => {
+    //   keyClue
+    //   const message = `The clue ${dirKey}${clue.num} does not have a valid position in the grid, it is likely that the grid is malformed or the clue number is incorrect: ${clue.num}`
+    //   json.report.errors.push({
+    //     type: "syntax",
+    //     position: { col: 0, index: -1 },
+    //     length: -1,
+    //     message,
+    //   })
+    // }
 
     const arr = json.clues[dirKey]
-    const positionData = positions[clue.num]
+    
+    // For barred grids, positions might not be indexed by clue number
+    let positionData = positions[clue.num]
+    
+    // If not found by index, search through all positions
+    if (!positionData && useBarredLogic) {
+      positionData = positions.find(p => {
+        if (dirKey === "across" && p.tiles.across) {
+          // Check if this position's tiles match the clue answer
+          const posAnswer = p.tiles.across.map(t => 
+            t.type === "letter" ? t.letter : ""
+          ).join("")
+          return posAnswer.toUpperCase().startsWith(clue.answer.slice(0, posAnswer.length).toUpperCase())
+        } else if (dirKey === "down" && p.tiles.down) {
+          const posAnswer = p.tiles.down.map(t => 
+            t.type === "letter" ? t.letter : ""
+          ).join("")
+          return posAnswer.toUpperCase().startsWith(clue.answer.slice(0, posAnswer.length).toUpperCase())
+        }
+        return false
+      })
+    }
+    
     if (!positionData) {
-      bail()
       continue
     }
 
     const tiles = positionData.tiles[dirKey]
     if (!tiles) {
-      bail()
       continue
     }
 
