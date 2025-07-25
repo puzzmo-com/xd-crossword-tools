@@ -112,22 +112,22 @@ describe("barred grid snapshot", () => {
     expect("\n" + printBarredGrid(xdJSON.tiles)).toMatchInlineSnapshot(`
       "
       S   I   G   N   P   O   S   T
-                ╶───╴           ╶───
-      U   N   I   C   O   R   N   S
-            ╷                       
-      N   C │ N   A   R   R   O   W
-            ╵           ╶───╴       
-      D   A   U   N   T   U   W   E
-                ╷                   
-      E   Y   P │ T   E   N   O   R
-                ╵                   
-      R   O   D   E   N   T   L   V
-        ╷                           
+                ╶───╴   ╶───╴   ┌───
+      U   N   I   C   O   R   N │ S
+        ╷   ╷           ╶───╴   ╵   
+      N │ C │ N   A   R   R   O   W
+        ╵   ╵           ┌───┐   ╷   
+      D   A   U   N   T │ U │ W │ E
+        ┌───┐   ╷       ╵   └───┘   
+      E │ Y │ P │ T   E   N   O   R
+        ╵   └───┘           ╷   ╷   
+      R   O   D   E   N   T │ L │ V
+        ╷   ╶───╴           ╵   ╵   
       S │ L   E   E   T   I   D   E
-        ╵                           
+      ──┘   ╶───╴   ╶───╴           
       C   O   U   N   T   E   S   S"
     `)
 
-    // expect(printBarredGrid(xdJSON.tiles)).toEqual(printBarredGrid(tilesWithBars))
+    expect(printBarredGrid(xdJSON.tiles)).toEqual(printBarredGrid(tilesWithBars))
   })
 })

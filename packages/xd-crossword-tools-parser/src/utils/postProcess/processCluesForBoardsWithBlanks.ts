@@ -1,7 +1,7 @@
 import type { CrosswordJSON, Tile, Position, Clue } from "../../types"
 import { PositionWithTiles } from "../clueNumbersFromBoard"
 
-export const getBlankCluePositions = (tiles: CrosswordJSON["tiles"], meta?: CrosswordJSON["meta"], rawClues?: Map<string, RawClueData>) => {
+export const getBlankCluePositions = (tiles: CrosswordJSON["tiles"]) => {
   const spots = getPossibleTiles(tiles)
   const down = downCluePositions(spots, tiles)
   const across = acrossCluePositions(spots, tiles)

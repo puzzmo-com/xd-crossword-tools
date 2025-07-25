@@ -1,4 +1,4 @@
-import { CrosswordJSON, Tile, Clue } from "../../types"
+import { CrosswordJSON, Tile } from "../../types"
 import { RawClueData, PositionWithTiles } from "../clueNumbersFromBoard"
 
 interface BarPosition {
@@ -43,15 +43,10 @@ export function getBarredCluePositions(
   const acrossPositions = _deriveAcrossCluePositions(tiles, acrossClues, metadata.splitcharacter)
   const downPositions = _deriveDownCluePositions(tiles, downClues, metadata.splitcharacter)
 
-  console.log("DEBUG: Found", acrossPositions.length, "across positions and", downPositions.length, "down positions")
-
-  //   // Use existing derivation functions to determine clue positions algorithmically
-
-  //   console.log("DEBUG: Found", acrossPositions.length, "across positions and", downPositions.length, "down positions")
-
-  //   // Convert positions to Clue format for existing bar derivation functions
-    const acrossCluesForDerivation = acrossPositions.map((pos, index) => {
-      const answer = pos.tiles.across
+  // Convert positions to Clue format for existing bar derivation functions
+  const acrossCluesForDerivation = acrossPositions.map((pos, index) => {
+    const answer =
+      pos.tiles.across
         ?.map((tile) =>
           tile.type === "letter"
             ? tile.letter
@@ -62,22 +57,21 @@ export function getBarredCluePositions(
             : "A"
         )
         .join("") || ""
-      
-      console.log(`DEBUG: Across clue at (${pos.position.index},${pos.position.col}) answer: "${answer}" length: ${answer.length}`)
-      
-      return {
-        number: index + 1,
-        position: pos.position,
-        answer,
-        tiles: pos.tiles.across || [],
-        direction: "across" as const,
-        body: "",
-        display: [],
-      }
-    })
 
-    const downCluesForDerivation = downPositions.map((pos, index) => {
-      const answer = pos.tiles.down
+    return {
+      number: index + 1,
+      position: pos.position,
+      answer,
+      tiles: pos.tiles.across || [],
+      direction: "across" as const,
+      body: "",
+      display: [],
+    }
+  })
+
+  const downCluesForDerivation = downPositions.map((pos, index) => {
+    const answer =
+      pos.tiles.down
         ?.map((tile) =>
           tile.type === "letter"
             ? tile.letter
@@ -88,159 +82,59 @@ export function getBarredCluePositions(
             : "A"
         )
         .join("") || ""
-      
-      console.log(`DEBUG: Down clue at (${pos.position.index},${pos.position.col}) answer: "${answer}" length: ${answer.length}`)
-      
-      return {
-        number: index + 1,
-        position: pos.position,
-        answer,
-        tiles: pos.tiles.down || [],
-        direction: "down" as const,
-        body: "",
-        display: [],
-      }
-    })
 
-    // Use a more sophisticated bar derivation that analyzes the grid structure
-    const gridHeight = tiles.length
-    const gridWidth = tiles[0]?.length || 0
-
-    const allBars = _deriveAllBarsFromGridStructure(tiles, acrossPositions, downPositions)
-    console.log("DEBUG: Derived bars:", allBars)
-
-    // Apply bars to tiles
-    for (const bar of allBars) {
-      const tile = tiles[bar.row][bar.col] as any
-      if (!tile.design) tile.design = []
-      const barDesign = `bar-${bar.type}`
-      if (!tile.design.includes(barDesign)) {
-        tile.design.push(barDesign)
-        console.log(`DEBUG: Added ${barDesign} at (${bar.row},${bar.col})`)
-      }
+    return {
+      number: index + 1,
+      position: pos.position,
+      answer,
+      tiles: pos.tiles.down || [],
+      direction: "down" as const,
+      body: "",
+      display: [],
     }
+  })
 
-    // Combine positions, handling clues that share the same starting position
-    const allPositions = new Map<string, PositionWithTiles>()
+  // Use a more sophisticated bar derivation that analyzes the grid structure
+  const gridHeight = tiles.length
+  const gridWidth = tiles[0]?.length || 0
 
-    // Add across clues
-    for (const pos of acrossPositions) {
-      const key = `${pos.position.index},${pos.position.col}`
-      if (!allPositions.has(key)) {
-        allPositions.set(key, { position: pos.position, tiles: {} })
-      }
-      allPositions.get(key)!.tiles.across = pos.tiles.across
+  const allBars = _deriveAllBarsFromGridStructure(tiles, acrossPositions, downPositions)
+
+  // Apply bars to tiles
+  for (const bar of allBars) {
+    const tile = tiles[bar.row][bar.col] as any
+    if (!tile.design) tile.design = []
+    const barDesign = `bar-${bar.type}`
+    if (!tile.design.includes(barDesign)) {
+      tile.design.push(barDesign)
     }
+  }
 
-    // Add down clues
-    for (const pos of downPositions) {
-      const key = `${pos.position.index},${pos.position.col}`
-      if (!allPositions.has(key)) {
-        allPositions.set(key, { position: pos.position, tiles: {} })
-      }
-      allPositions.get(key)!.tiles.down = pos.tiles.down
+  // Combine positions, handling clues that share the same starting position
+  const allPositions = new Map<string, PositionWithTiles>()
+
+  // Add across clues
+  for (const pos of acrossPositions) {
+    const key = `${pos.position.index},${pos.position.col}`
+    if (!allPositions.has(key)) {
+      allPositions.set(key, { position: pos.position, tiles: {} })
     }
+    allPositions.get(key)!.tiles.across = pos.tiles.across
+  }
 
-    positions.push(...Array.from(allPositions.values()))
-    return positions
+  // Add down clues
+  for (const pos of downPositions) {
+    const key = `${pos.position.index},${pos.position.col}`
+    if (!allPositions.has(key)) {
+      allPositions.set(key, { position: pos.position, tiles: {} })
+    }
+    allPositions.get(key)!.tiles.down = pos.tiles.down
+  }
+
+  positions.push(...Array.from(allPositions.values()))
+  return positions
 }
 
-function _addBarsFromCluePositions(
-  tiles: CrosswordJSON["tiles"],
-  acrossPositions: PositionWithTiles[],
-  downPositions: PositionWithTiles[]
-) {
-  console.log("DEBUG: Adding bars for", acrossPositions.length, "across positions and", downPositions.length, "down positions")
-
-  // Create a map of occupied positions to avoid placing redundant bars
-  const occupiedRanges = new Set<string>()
-
-  // Mark all occupied horizontal ranges
-  for (const pos of acrossPositions) {
-    if (!pos.tiles.across) continue
-    const row = pos.position.index
-    const startCol = pos.position.col
-    const endCol = startCol + pos.tiles.across.length - 1
-
-    for (let col = startCol; col <= endCol; col++) {
-      occupiedRanges.add(`across:${row}:${col}`)
-    }
-  }
-
-  // Mark all occupied vertical ranges
-  for (const pos of downPositions) {
-    if (!pos.tiles.down) continue
-    const col = pos.position.col
-    const startRow = pos.position.index
-    const endRow = startRow + pos.tiles.down.length - 1
-
-    for (let row = startRow; row <= endRow; row++) {
-      occupiedRanges.add(`down:${row}:${col}`)
-    }
-  }
-
-  // Add bars for across clues - only where they separate from other words
-  for (const pos of acrossPositions) {
-    if (!pos.tiles.across) continue
-
-    const row = pos.position.index
-    const startCol = pos.position.col
-    const endCol = startCol + pos.tiles.across.length - 1
-
-    console.log(`DEBUG: Processing across clue at (${row},${startCol}) length ${pos.tiles.across.length}, endCol=${endCol}`)
-
-    // Add left bar if there's a letter immediately to the left (not part of this word)
-    if (startCol > 0 && tiles[row][startCol - 1].type !== "blank") {
-      const tile = tiles[row][startCol] as any
-      if (!tile.design) tile.design = []
-      if (!tile.design.includes("bar-left")) {
-        tile.design.push("bar-left")
-        console.log(`DEBUG: Added left bar at (${row},${startCol})`)
-      }
-    }
-
-    // Add right bar if there's a letter immediately to the right (not part of this word)
-    if (endCol < tiles[row].length - 1 && tiles[row][endCol + 1].type !== "blank") {
-      const tile = tiles[row][endCol] as any
-      if (!tile.design) tile.design = []
-      if (!tile.design.includes("bar-right")) {
-        tile.design.push("bar-right")
-        console.log(`DEBUG: Added right bar at (${row},${endCol})`)
-      }
-    }
-  }
-
-  // Add bars for down clues - only where they separate from other words
-  for (const pos of downPositions) {
-    if (!pos.tiles.down) continue
-
-    const col = pos.position.col
-    const startRow = pos.position.index
-    const endRow = startRow + pos.tiles.down.length - 1
-
-    console.log(`DEBUG: Processing down clue at (${startRow},${col}) length ${pos.tiles.down.length}, endRow=${endRow}`)
-
-    // Add top bar if there's a letter immediately above (not part of this word)
-    if (startRow > 0 && tiles[startRow - 1][col].type !== "blank") {
-      const tile = tiles[startRow][col] as any
-      if (!tile.design) tile.design = []
-      if (!tile.design.includes("bar-top")) {
-        tile.design.push("bar-top")
-        console.log(`DEBUG: Added top bar at (${startRow},${col})`)
-      }
-    }
-
-    // Add bottom bar if there's a letter immediately below (not part of this word)
-    if (endRow < tiles.length - 1 && tiles[endRow + 1][col].type !== "blank") {
-      const tile = tiles[endRow][col] as any
-      if (!tile.design) tile.design = []
-      if (!tile.design.includes("bar-bottom")) {
-        tile.design.push("bar-bottom")
-        console.log(`DEBUG: Added bottom bar at (${endRow},${col})`)
-      }
-    }
-  }
-}
 
 function _deriveAcrossCluePositions(
   tiles: CrosswordJSON["tiles"],
@@ -258,8 +152,7 @@ function _deriveAcrossCluePositions(
   for (const clue of sortedClues) {
     // Split the answer by split character to get individual words
     const words = splitCharacter ? clue.answer.split(splitCharacter) : [clue.answer]
-    console.log(`DEBUG: Across clue ${clue.num}: words [${words.map(w => `"${w}"`).join(", ")}]`)
-    
+
     // Process each word separately
     for (const word of words) {
       const answer = word.toUpperCase()
@@ -317,13 +210,8 @@ function _deriveAcrossCluePositions(
             // Mark this position as used
             usedPositions.add(posKey)
             foundPosition = true
-            console.log(`DEBUG: Found across word "${answer}" at (${row},${col})`)
           }
         }
-      }
-
-      if (!foundPosition) {
-        console.log(`DEBUG: Could not find position for across word: "${answer}"`)
       }
     }
   }
@@ -331,7 +219,11 @@ function _deriveAcrossCluePositions(
   return positions
 }
 
-function _deriveDownCluePositions(tiles: CrosswordJSON["tiles"], downClues: RawClueData[], splitCharacter: string | undefined): PositionWithTiles[] {
+function _deriveDownCluePositions(
+  tiles: CrosswordJSON["tiles"],
+  downClues: RawClueData[],
+  splitCharacter: string | undefined
+): PositionWithTiles[] {
   const positions: PositionWithTiles[] = []
   const gridHeight = tiles.length
   const gridWidth = tiles[0]?.length || 0
@@ -343,8 +235,7 @@ function _deriveDownCluePositions(tiles: CrosswordJSON["tiles"], downClues: RawC
   for (const clue of sortedClues) {
     // Split the answer by split character to get individual words
     const words = splitCharacter ? clue.answer.split(splitCharacter) : [clue.answer]
-    console.log(`DEBUG: Down clue ${clue.num}: words [${words.map(w => `"${w}"`).join(", ")}]`)
-    
+
     // Process each word separately
     for (const word of words) {
       const answer = word.toUpperCase()
@@ -402,13 +293,8 @@ function _deriveDownCluePositions(tiles: CrosswordJSON["tiles"], downClues: RawC
             // Mark this position as used
             usedPositions.add(posKey)
             foundPosition = true
-            console.log(`DEBUG: Found down word "${answer}" at (${row},${col})`)
           }
         }
-      }
-
-      if (!foundPosition) {
-        console.log(`DEBUG: Could not find position for down word: "${answer}"`)
       }
     }
   }
@@ -416,109 +302,6 @@ function _deriveDownCluePositions(tiles: CrosswordJSON["tiles"], downClues: RawC
   return positions
 }
 
-function _deriveBarPositionsFromAcrossClues(clues: Clue[], gridWidth: number): BarPosition[] {
-  const bars: BarPosition[] = []
-
-  // Sort clues by row, then by column
-  const sortedClues = [...clues].sort((a, b) => {
-    if (a.position.index !== b.position.index) {
-      return a.position.index - b.position.index
-    }
-    return a.position.col - b.position.col
-  })
-
-  // Group clues by row
-  const cluesByRow = new Map<number, Clue[]>()
-  for (const clue of sortedClues) {
-    const row = clue.position.index
-    if (!cluesByRow.has(row)) {
-      cluesByRow.set(row, [])
-    }
-    cluesByRow.get(row)!.push(clue)
-  }
-
-  // For each row, derive bars between clues
-  for (const [row, rowClues] of cluesByRow) {
-    for (let i = 0; i < rowClues.length; i++) {
-      const clue = rowClues[i]
-      const answerLength = clue.answer.length
-      const startCol = clue.position.col
-      const endCol = startCol + answerLength - 1
-
-      // Add left bar if this is not the first cell of the row
-      if (startCol > 0) {
-        bars.push({
-          row,
-          col: startCol,
-          type: "left",
-        })
-      }
-
-      // Add right bar if this is not the last cell of the row
-      if (endCol < gridWidth - 1) {
-        bars.push({
-          row,
-          col: endCol,
-          type: "right",
-        })
-      }
-    }
-  }
-
-  return bars
-}
-
-function _deriveBarPositionsFromDownClues(clues: Clue[], gridHeight: number): BarPosition[] {
-  const bars: BarPosition[] = []
-
-  // Sort clues by column, then by row
-  const sortedClues = [...clues].sort((a, b) => {
-    if (a.position.col !== b.position.col) {
-      return a.position.col - b.position.col
-    }
-    return a.position.index - b.position.index
-  })
-
-  // Group clues by column
-  const cluesByCol = new Map<number, Clue[]>()
-  for (const clue of sortedClues) {
-    const col = clue.position.col
-    if (!cluesByCol.has(col)) {
-      cluesByCol.set(col, [])
-    }
-    cluesByCol.get(col)!.push(clue)
-  }
-
-  // For each column, derive bars between clues
-  for (const [col, colClues] of cluesByCol) {
-    for (let i = 0; i < colClues.length; i++) {
-      const clue = colClues[i]
-      const answerLength = clue.answer.length
-      const startRow = clue.position.index
-      const endRow = startRow + answerLength - 1
-
-      // Add top bar if this is not the first cell of the column
-      if (startRow > 0) {
-        bars.push({
-          row: startRow,
-          col,
-          type: "top",
-        })
-      }
-
-      // Add bottom bar if this is not the last cell of the column
-      if (endRow < gridHeight - 1) {
-        bars.push({
-          row: endRow,
-          col,
-          type: "bottom",
-        })
-      }
-    }
-  }
-
-  return bars
-}
 
 function _deriveAllBarsFromGridStructure(
   tiles: CrosswordJSON["tiles"],
@@ -529,81 +312,82 @@ function _deriveAllBarsFromGridStructure(
   const gridHeight = tiles.length
   const gridWidth = tiles[0]?.length || 0
 
-  // Create a map of occupied cells by direction
-  const acrossOccupied = new Set<string>()
-  const downOccupied = new Set<string>()
+  // Create word membership maps to track which word each cell belongs to
+  const acrossWordMap = new Map<string, number>()
+  const downWordMap = new Map<string, number>()
 
-  // Mark all cells occupied by across words
-  for (const pos of acrossPositions) {
-    if (!pos.tiles.across) continue
+  // Map across word cells
+  acrossPositions.forEach((pos, wordIndex) => {
+    if (!pos.tiles.across) return
     const row = pos.position.index
     const startCol = pos.position.col
     for (let i = 0; i < pos.tiles.across.length; i++) {
-      acrossOccupied.add(`${row},${startCol + i}`)
+      acrossWordMap.set(`${row},${startCol + i}`, wordIndex)
     }
-  }
+  })
 
-  // Mark all cells occupied by down words
-  for (const pos of downPositions) {
-    if (!pos.tiles.down) continue
+  // Map down word cells
+  downPositions.forEach((pos, wordIndex) => {
+    if (!pos.tiles.down) return
     const col = pos.position.col
     const startRow = pos.position.index
     for (let i = 0; i < pos.tiles.down.length; i++) {
-      downOccupied.add(`${startRow + i},${col}`)
+      downWordMap.set(`${startRow + i},${col}`, wordIndex)
     }
-  }
+  })
 
-  // Add bars where across words need separation
+  // Algorithm: Add bars where adjacent cells have different word context
+  // Key insight: bars separate cells that differ in EITHER across OR down word membership
+  
   for (let row = 0; row < gridHeight; row++) {
-    let inAcrossWord = false
-    let acrossStart = -1
+    for (let col = 0; col < gridWidth; col++) {
+      if (tiles[row][col].type !== "letter") continue
 
-    for (let col = 0; col <= gridWidth; col++) {
       const cellKey = `${row},${col}`
-      const hasAcross = acrossOccupied.has(cellKey)
+      const acrossWord = acrossWordMap.get(cellKey)
+      const downWord = downWordMap.get(cellKey)
 
-      if (hasAcross && !inAcrossWord) {
-        // Starting a new across word
-        inAcrossWord = true
-        acrossStart = col
-        // Add left bar if there's a letter to the left that's not part of this word
-        if (col > 0 && tiles[row][col - 1].type === "letter") {
+      // Left bar: more nuanced logic based on word boundaries
+      if (col > 0 && tiles[row][col - 1].type === "letter") {
+        const leftKey = `${row},${col - 1}`
+        const leftAcrossWord = acrossWordMap.get(leftKey)
+        const leftDownWord = downWordMap.get(leftKey)
+        
+        let needsLeftBar = false
+        
+        // Primary case: different across words (word boundary)
+        if (acrossWord !== leftAcrossWord) {
+          needsLeftBar = true
+        }
+        // Secondary case: both cells are isolated horizontally but belong to different down words
+        else if (acrossWord === undefined && leftAcrossWord === undefined && downWord !== leftDownWord) {
+          needsLeftBar = true
+        }
+        
+        if (needsLeftBar) {
           bars.push({ row, col, type: "left" })
         }
-      } else if (!hasAcross && inAcrossWord) {
-        // Ending an across word
-        inAcrossWord = false
-        // Add right bar if there's a letter to the right
-        if (col < gridWidth && tiles[row][col].type === "letter") {
-          bars.push({ row, col: col - 1, type: "right" })
-        }
       }
-    }
-  }
 
-  // Add bars where down words need separation
-  for (let col = 0; col < gridWidth; col++) {
-    let inDownWord = false
-    let downStart = -1
-
-    for (let row = 0; row <= gridHeight; row++) {
-      const cellKey = `${row},${col}`
-      const hasDown = downOccupied.has(cellKey)
-
-      if (hasDown && !inDownWord) {
-        // Starting a new down word
-        inDownWord = true
-        downStart = row
-        // Add top bar if there's a letter above that's not part of this word
-        if (row > 0 && tiles[row - 1][col].type === "letter") {
-          bars.push({ row, col, type: "top" })
+      // Top bar: more nuanced logic based on word boundaries
+      if (row > 0 && tiles[row - 1][col].type === "letter") {
+        const topKey = `${row - 1},${col}`
+        const topAcrossWord = acrossWordMap.get(topKey)
+        const topDownWord = downWordMap.get(topKey)
+        
+        let needsTopBar = false
+        
+        // Primary case: different down words (word boundary)
+        if (downWord !== topDownWord) {
+          needsTopBar = true
         }
-      } else if (!hasDown && inDownWord) {
-        // Ending a down word
-        inDownWord = false
-        // Add bottom bar if there's a letter below
-        if (row < gridHeight && tiles[row][col].type === "letter") {
-          bars.push({ row: row - 1, col, type: "bottom" })
+        // Secondary case: both cells are isolated vertically but belong to different across words
+        else if (downWord === undefined && topDownWord === undefined && acrossWord !== topAcrossWord) {
+          needsTopBar = true
+        }
+        
+        if (needsTopBar) {
+          bars.push({ row, col, type: "top" })
         }
       }
     }
