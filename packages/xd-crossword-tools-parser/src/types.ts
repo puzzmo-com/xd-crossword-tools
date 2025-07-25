@@ -92,6 +92,8 @@ export type Direction = "UP" | "DOWN" | "LEFT" | "RIGHT"
 
 export type Tile = LetterTile | BlankTile | RebusTile | SchrodingerTile
 
+export type TileDesignFlags = "bar-top" | "bar-bottom" | "bar-left" | "bar-right"
+
 export interface LetterTile {
   letter: string
   type: "letter"
@@ -99,28 +101,31 @@ export interface LetterTile {
     across?: number
     down?: number
   }
+  design?: TileDesignFlags[]
 }
 
 export interface SchrodingerTile {
+  type: "schrodinger"
   /** Possible letter tiles */
   validLetters: string[]
   /** Possible rebus tiles */
   validRebuses: { letters: string; symbol: string }[]
-  type: "schrodinger"
   clues?: {
     across?: number
     down?: number
   }
+  design?: TileDesignFlags[]
 }
 
 export interface RebusTile {
+  type: "rebus"
   word: string
   symbol: string
-  type: "rebus"
   clues?: {
     across?: number
     down?: number
   }
+  design?: TileDesignFlags[]
 }
 
 export interface BlankTile {

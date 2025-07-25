@@ -64,7 +64,7 @@ export const XDEditor = (props: {}) => {
     // Convert validation reports to Monaco markers
     const markers: monaco.editor.IMarkerData[] = validationReports.map((report) => {
       let severity = monaco.MarkerSeverity.Info
-      
+
       // Set severity based on report type
       switch (report.type) {
         case "syntax":
@@ -76,9 +76,9 @@ export const XDEditor = (props: {}) => {
         default:
           severity = monaco.MarkerSeverity.Info
       }
-      
+
       // Handle ValidationReport types (they have different structure)
-      if ('clueNumber' in report && 'direction' in report) {
+      if ("clueNumber" in report && "direction" in report) {
         severity = monaco.MarkerSeverity.Error
       }
 
@@ -94,12 +94,12 @@ export const XDEditor = (props: {}) => {
         endLineNumber: lineNumber,
         startColumn,
         endColumn,
-        source: 'xd-validator'
+        source: "xd-validator",
       }
     })
 
     // Set markers on the model
-    monaco.editor.setModelMarkers(model, 'xd-validator', markers)
+    monaco.editor.setModelMarkers(model, "xd-validator", markers)
   }, [validationReports])
 
   getEditorTools = (_text) => {

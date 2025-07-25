@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<crossword-compiler-applet xmlns="http://crossword.info/xml/crossword-compiler">
+<applet-settings width="720" height="600" cursor-color="#00FF00" selected-cells-color="#80FF80">
+<completion friendly-submit="false" only-if-correct="true">Congratulations!  The puzzle is solved correctly</completion>
+<actions graphical-buttons="false" wide-buttons="false" buttons-layout="left"><reveal-word label="Reveal Word"></reveal-word><reveal-letter label="Reveal"></reveal-letter><check label="Check"></check><solution label="Solution"></solution><pencil label="Pencil"></pencil></actions>
+</applet-settings>
+<rectangular-puzzle xmlns="http://crossword.info/xml/rectangular-puzzle" alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ">
+<metadata>
+<title>Beneath The Surface Printer&#039;s Devilry #4 (Midi)</title>
+<creator>Kyle Dolan</creator>
+<copyright>© 2023 Kyle Dolan</copyright>
+<description>Each clue in this puzzle is a passage from which the constructor has removed a hidden word, closing up the gap and sometimes changing the punctuation but leaving the remaining letters in their original order. When reconstructed, the original passages should make reasonable sense.
+
+Example: Cases are a staple of action movies (4) 
+Solution: ARCH
+Undeviled passage: C(AR CH)ases are a staple of action movies
+
+Grid entries include one proper noun and one acronym.</description>
+</metadata>
+<crossword>
+<grid width="8" height="8">
+<grid-look hide-lines="true" cell-size-in-pixels="25" />
+        <cell x="1" y="1" solution="S" number="1"  />
+        <cell x="1" y="2" solution="U" number="6"  />
+        <cell x="1" y="3" solution="N"  />
+        <cell x="1" y="4" solution="D" number="10"  />
+        <cell x="1" y="5" solution="E"  />
+        <cell x="1" y="6" solution="R" number="15"  />
+        <cell x="1" y="7" solution="S"  />
+        <cell x="1" y="8" solution="C" number="17" top-bar="true"  />
+        <cell x="2" y="1" solution="I" number="2"  />
+        <cell x="2" y="2" solution="N"  />
+        <cell x="2" y="3" solution="C" left-bar="true"  />
+        <cell x="2" y="4" solution="A"  />
+        <cell x="2" y="5" solution="Y" number="12" top-bar="true" left-bar="true"  />
+        <cell x="2" y="6" solution="O"  />
+        <cell x="2" y="7" solution="L" number="16" left-bar="true"  />
+        <cell x="2" y="8" solution="O"  />
+        <cell x="3" y="1" solution="G" number="3"  />
+        <cell x="3" y="2" solution="I"  />
+        <cell x="3" y="3" solution="N" number="9" left-bar="true"  />
+        <cell x="3" y="4" solution="U"  />
+        <cell x="3" y="5" solution="P" left-bar="true"  />
+        <cell x="3" y="6" solution="D" top-bar="true"  />
+        <cell x="3" y="7" solution="E" top-bar="true"  />
+        <cell x="3" y="8" solution="U" top-bar="true"  />
+        <cell x="4" y="1" solution="N"  />
+        <cell x="4" y="2" solution="C" number="7" top-bar="true"  />
+        <cell x="4" y="3" solution="A"  />
+        <cell x="4" y="4" solution="N"  />
+        <cell x="4" y="5" solution="T" number="13" left-bar="true"  />
+        <cell x="4" y="6" solution="E"  />
+        <cell x="4" y="7" solution="E"  />
+        <cell x="4" y="8" solution="N"  />
+        <cell x="5" y="1" solution="P" number="4"  />
+        <cell x="5" y="2" solution="O"  />
+        <cell x="5" y="3" solution="R"  />
+        <cell x="5" y="4" solution="T"  />
+        <cell x="5" y="5" solution="E"  />
+        <cell x="5" y="6" solution="N"  />
+        <cell x="5" y="7" solution="T"  />
+        <cell x="5" y="8" solution="T" top-bar="true"  />
+        <cell x="6" y="1" solution="O"  />
+        <cell x="6" y="2" solution="R" top-bar="true"  />
+        <cell x="6" y="3" solution="R" top-bar="true"  />
+        <cell x="6" y="4" solution="U" number="11" top-bar="true" left-bar="true"  />
+        <cell x="6" y="5" solution="N"  />
+        <cell x="6" y="6" solution="T"  />
+        <cell x="6" y="7" solution="I"  />
+        <cell x="6" y="8" solution="E"  />
+        <cell x="7" y="1" solution="S" number="5"  />
+        <cell x="7" y="2" solution="N"  />
+        <cell x="7" y="3" solution="O"  />
+        <cell x="7" y="4" solution="W" left-bar="true"  />
+        <cell x="7" y="5" solution="O" number="14" top-bar="true"  />
+        <cell x="7" y="6" solution="L" left-bar="true"  />
+        <cell x="7" y="7" solution="D"  />
+        <cell x="7" y="8" solution="S"  />
+        <cell x="8" y="1" solution="T"  />
+        <cell x="8" y="2" solution="S" number="8" top-bar="true" left-bar="true"  />
+        <cell x="8" y="3" solution="W"  />
+        <cell x="8" y="4" solution="E" left-bar="true"  />
+        <cell x="8" y="5" solution="R"  />
+        <cell x="8" y="6" solution="V" left-bar="true"  />
+        <cell x="8" y="7" solution="E"  />
+        <cell x="8" y="8" solution="S"  />
+    </grid>
+    <word id="1">
+        <cells x="1" y="1" />
+        <cells x="2" y="1" />
+        <cells x="3" y="1" />
+        <cells x="4" y="1" />
+        <cells x="5" y="1" />
+        <cells x="6" y="1" />
+        <cells x="7" y="1" />
+        <cells x="8" y="1" />
+    </word>
+    <word id="2">
+        <cells x="1" y="2" />
+        <cells x="2" y="2" />
+        <cells x="3" y="2" />
+        <cells x="4" y="2" />
+        <cells x="5" y="2" />
+        <cells x="6" y="2" />
+        <cells x="7" y="2" />
+    </word>
+    <word id="3">
+        <cells x="3" y="3" />
+        <cells x="4" y="3" />
+        <cells x="5" y="3" />
+        <cells x="6" y="3" />
+        <cells x="7" y="3" />
+        <cells x="8" y="3" />
+    </word>
+    <word id="4">
+        <cells x="1" y="4" />
+        <cells x="2" y="4" />
+        <cells x="3" y="4" />
+        <cells x="4" y="4" />
+        <cells x="5" y="4" />
+    </word>
+    <word id="5">
+        <cells x="4" y="5" />
+        <cells x="5" y="5" />
+        <cells x="6" y="5" />
+        <cells x="7" y="5" />
+        <cells x="8" y="5" />
+    </word>
+    <word id="6">
+        <cells x="1" y="6" />
+        <cells x="2" y="6" />
+        <cells x="3" y="6" />
+        <cells x="4" y="6" />
+        <cells x="5" y="6" />
+        <cells x="6" y="6" />
+    </word>
+    <word id="7">
+        <cells x="2" y="7" />
+        <cells x="3" y="7" />
+        <cells x="4" y="7" />
+        <cells x="5" y="7" />
+        <cells x="6" y="7" />
+        <cells x="7" y="7" />
+        <cells x="8" y="7" />
+    </word>
+    <word id="8">
+        <cells x="1" y="8" />
+        <cells x="2" y="8" />
+        <cells x="3" y="8" />
+        <cells x="4" y="8" />
+        <cells x="5" y="8" />
+        <cells x="6" y="8" />
+        <cells x="7" y="8" />
+        <cells x="8" y="8" />
+    </word>
+    <word id="9">
+        <cells x="1" y="1" />
+        <cells x="1" y="2" />
+        <cells x="1" y="3" />
+        <cells x="1" y="4" />
+        <cells x="1" y="5" />
+        <cells x="1" y="6" />
+        <cells x="1" y="7" />
+    </word>
+    <word id="10">
+        <cells x="2" y="1" />
+        <cells x="2" y="2" />
+        <cells x="2" y="3" />
+        <cells x="2" y="4" />
+    </word>
+    <word id="11">
+        <cells x="3" y="1" />
+        <cells x="3" y="2" />
+        <cells x="3" y="3" />
+        <cells x="3" y="4" />
+        <cells x="3" y="5" />
+    </word>
+    <word id="12">
+        <cells x="5" y="1" />
+        <cells x="5" y="2" />
+        <cells x="5" y="3" />
+        <cells x="5" y="4" />
+        <cells x="5" y="5" />
+        <cells x="5" y="6" />
+        <cells x="5" y="7" />
+    </word>
+    <word id="13">
+        <cells x="7" y="1" />
+        <cells x="7" y="2" />
+        <cells x="7" y="3" />
+        <cells x="7" y="4" />
+    </word>
+    <word id="14">
+        <cells x="4" y="2" />
+        <cells x="4" y="3" />
+        <cells x="4" y="4" />
+        <cells x="4" y="5" />
+        <cells x="4" y="6" />
+        <cells x="4" y="7" />
+        <cells x="4" y="8" />
+    </word>
+    <word id="15">
+        <cells x="8" y="2" />
+        <cells x="8" y="3" />
+        <cells x="8" y="4" />
+        <cells x="8" y="5" />
+        <cells x="8" y="6" />
+        <cells x="8" y="7" />
+        <cells x="8" y="8" />
+    </word>
+    <word id="16">
+        <cells x="6" y="4" />
+        <cells x="6" y="5" />
+        <cells x="6" y="6" />
+        <cells x="6" y="7" />
+        <cells x="6" y="8" />
+    </word>
+    <word id="17">
+        <cells x="2" y="5" />
+        <cells x="2" y="6" />
+        <cells x="2" y="7" />
+        <cells x="2" y="8" />
+    </word>
+    <word id="18">
+        <cells x="7" y="5" />
+        <cells x="7" y="6" />
+        <cells x="7" y="7" />
+        <cells x="7" y="8" />
+    </word>
+    <clues ordering="normal">
+        <title>Across</title>
+        <clue word="1" number="1">For dorm room wall, deer art is a popular choice (8)</clue>
+        <clue word="2" number="6">Playing an investment game in Economics class, was lots offered the market? (7)</clue>
+        <clue word="3" number="9">As flight can be used to describe principles of classical mechanics (6)</clue>
+        <clue word="4" number="10">The reunion included grandparents, uncle, sans cousins and other extended family (5)</clue>
+        <clue word="5" number="13">The butcher shop was known for its famous sausages, for which they sold special extra-long buns (5)</clue>
+        <clue word="6" number="15">The oral surgeon who removed my wisdom teeth was a pal. Insurance covered the whole thing! (6)</clue>
+        <clue word="7" number="16">As commander of the flight, in having the most spacious cabin (3,4)</clue>
+        <clue word="8" number="17">With the term paper due date approaching, the lazy student tried to buy ad--I say!--off the Internet (8)</clue>
+    </clues>
+    <clues ordering="normal">
+        <title>Down</title>
+        <clue word="9" number="1">The old couple knew each other so well that they had formed a Wordle standing between themselves (7)</clue>
+        <clue word="10" number="2">For puzzle lovers, a good crossword is like brandy (4)</clue>
+        <clue word="11" number="3">Loon setting up your user name and password to verify your account... (3,2)</clue>
+        <clue word="12" number="4">...if you need tech, super. Your email? (7)</clue>
+        <clue word="13" number="5">Our catcher isn&#039;t playing today--hermit there to be found (4)</clue>
+        <clue word="14" number="7">The bouncer didn&#039;t bother. Toss ID--she knew right away it was fake (7)</clue>
+        <clue word="15" number="8">Question: What items of clothing are typically worn by professional billiards players? Ants (7)</clue>
+        <clue word="16" number="11">A lover offs Will, often use them as conversation starters at parties (5)</clue>
+        <clue word="17" number="12">I&#039;ll have a turkey sandwich with Swiss cheese, mats of bacon, and tomatoes (4)</clue>
+        <clue word="18" number="14">A cake like daiginjo pairs well with sushi (4)</clue>
+    </clues>
+</crossword>
+</rectangular-puzzle>
+</crossword-compiler-applet>

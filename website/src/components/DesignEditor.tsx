@@ -86,12 +86,12 @@ export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswor
     }
 
     setAvailableStyles(styles)
-    
+
     // Set default selected style if none is selected or if the stored style is no longer available
     if (styles.length > 0) {
       const storedStyle = localStorage.getItem("designEditor.selectedStyle")
-      const isStoredStyleAvailable = storedStyle && styles.some(style => style.character === storedStyle)
-      
+      const isStoredStyleAvailable = storedStyle && styles.some((style) => style.character === storedStyle)
+
       if (!selectedStyle || !isStoredStyleAvailable) {
         const defaultStyle = isStoredStyleAvailable ? storedStyle : styles[0].character
         setSelectedStyle(defaultStyle)

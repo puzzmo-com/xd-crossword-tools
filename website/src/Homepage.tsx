@@ -24,6 +24,7 @@ import "react-json-view-lite/dist/index.css"
 import { exampleXDs } from "./exampleXDs"
 import Crossword from "@jaredreisinger/react-crossword"
 import { convertToCrosswordFormat } from "./utils/convertToCrosswordFormat"
+import { CrosswordBarPreview } from "./components/CrosswordPreview"
 import { readmeHtml } from "virtual:readme"
 import { Link } from "wouter"
 
@@ -192,6 +193,21 @@ function App() {
               </div>
               <div className="crossword-note">
                 <strong>Note:</strong> This preview uses a Crossword engine which doesn't support any clever features.
+              </div>
+            </Card.Body>
+          </Card>
+        </Tab>
+      )}
+
+      {crosswordJSON && crosswordJSON.meta?.form === "barred" && (
+        <Tab eventKey="barsPreview" title="Bars Preview">
+          <Card className="modern-card">
+            <Card.Body>
+              <div className="crossword-container">
+                <CrosswordBarPreview crosswordJSON={crosswordJSON} />
+              </div>
+              <div className="crossword-note">
+                <strong>Note:</strong> This preview shows the barred grid structure for the bars between cells.
               </div>
             </Card.Body>
           </Card>

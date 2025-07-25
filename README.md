@@ -4559,7 +4559,6 @@ The main `xd-crossword-tools` package provides comprehensive functionality for f
 | `runLinterForClue`             | Runs linting checks on individual clues         | `clue: Clue`, `ordinal: "across" \| "down"`            | `Report[]`                                      | Checks for common crossword construction issues      |
 | `validateClueAnswersMatchGrid` | Validates clue answers match grid tiles         | `json: CrosswordJSON`                                  | `Report[]`                                      | Checks consistency between answers and grid          |
 | `resolveFullClueAnswer`        | Resolves clue answer with rebus and splits      | `rebusMap: Rebuses`, `clue: Clue`, `splitChar: string` | `string`                                        | Handles rebus substitution and split characters      |
-| `cleanupClueMetadata`          | Recreates clue answer/tiles from grid           | `xword: CrosswordJSON`                                 | `void`                                          | Updates clue metadata based on grid tiles            |
 
 ### xd-crossword-tools-parser Utility Functions
 

@@ -87,27 +87,18 @@ asda asdasda
   `
 
     expect(throwsWithError(xd, true)).toMatchInlineSnapshot(`
-[
-  {
-    "length": -1,
-    "message": "Two # headers are reserved for the system, we accept: Grid, Clues, Notes, Metadata, Metapuzzle, Start, Design & Design-style. Got 'Orta's extension'. You can use ### headers for inside notes.",
-    "position": {
-      "col": 0,
-      "index": 2,
-    },
-    "type": "syntax",
-  },
-  {
-    "length": -1,
-    "message": "This crossword does not have a working grid",
-    "position": {
-      "col": 0,
-      "index": 4,
-    },
-    "type": "syntax",
-  },
-]
-`)
+      [
+        {
+          "length": -1,
+          "message": "This crossword does not have a working grid",
+          "position": {
+            "col": 0,
+            "index": 4,
+          },
+          "type": "syntax",
+        },
+      ]
+    `)
   })
 
   it("handles bad meta", () => {
