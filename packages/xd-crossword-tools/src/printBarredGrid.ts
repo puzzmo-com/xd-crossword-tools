@@ -110,14 +110,14 @@ function drawBox(cell: Tile, s: Tile | null, e: Tile | null, se: Tile | null): s
         ? seBars.left
           ? seBars.top
             ? "┬─"
-            : "┌─"
+            : "┐ "
           : seBars.top
           ? "──"
           : "╴ "
         : seBars.left
         ? seBars.top
-          ? "╷ "
-          : "  "
+          ? "┌─"
+          : "╷ "
         : seBars.top
         ? "╶─"
         : "  "

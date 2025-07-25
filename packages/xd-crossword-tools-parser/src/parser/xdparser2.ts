@@ -1,7 +1,6 @@
 import { getCluePositionsForBoard } from "../utils/clueNumbersFromBoard"
 import type { Tile, CrosswordJSON, ClueComponentMarkup } from "../types"
 import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "./xdparser2.compat"
-import { b } from "vitest/dist/chunks/suite.d.FvehnV49"
 
 // These are all the sections supported by this parser
 const knownHeaders = ["grid", "clues", "notes", "metadata", "metapuzzle", "start", "design", "design-style"] as const
