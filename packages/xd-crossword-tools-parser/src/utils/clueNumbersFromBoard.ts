@@ -33,5 +33,5 @@ export const getCluePositionsForBoard = (
     return getBarredCluePositions(tiles, rawClues, meta)
   }
 
-  return getBlankCluePositions(tiles, meta, rawClues)
+  return getBlankCluePositions(tiles)
 }
