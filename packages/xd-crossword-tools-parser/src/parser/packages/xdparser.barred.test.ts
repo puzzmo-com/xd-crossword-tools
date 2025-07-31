@@ -18,6 +18,9 @@ it("generates a barred crossword from the xd", () => {
 
   const clue12 = crosswordJSON.clues.down.find((c) => c.number === 12)
   expect(clue12?.answer).toBe("YOLO")
+
+  const clue14 = crosswordJSON.clues.down.find((c) => c.number === 14)
+  expect(clue14?.answer).toBe("OLDS")
 })
 
 const xdForBarred = `## Metadata
@@ -60,5 +63,5 @@ D7. The bouncer didn&#039;t bother. Toss ID--she knew right away it was fake (7)
 D8. Question: What items of clothing are typically worn by professional billiards players? Ants (7) ~ SWERVES
 D11. A lover offs Will, often use them as conversation starters at parties (5) ~ UNTIE
 D12. I&#039;ll have a turkey sandwich with Swiss cheese, mats of bacon, and tomatoes (4) ~ YOLO
-D14. A cake like daiginjo pairs well with sushi (4) ~ OLDS"
+D14. A cake like daiginjo pairs well with sushi (4) ~ OLDS
 `
