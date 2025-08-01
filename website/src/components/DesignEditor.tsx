@@ -116,7 +116,7 @@ export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswor
     const updatedCrosswordJSON: CrosswordJSON = {
       ...crosswordJSON,
       design: {
-        ...crosswordJSON.design,
+        ...(crosswordJSON.design as any),
         positions: newGridData,
       },
     }
@@ -159,7 +159,7 @@ export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswor
           row.map((cell, colIndex) => {
             // Get the actual crossword tile data
             const crosswordTile = crosswordJSON?.tiles?.[rowIndex]?.[colIndex]
-            const actualLetter = crosswordTile?.letter || crosswordTile?.word || ""
+            const actualLetter = (crosswordTile as any)?.letter || (crosswordTile as any)?.word || ""
             const isBlocked = cell === "#"
 
             return (

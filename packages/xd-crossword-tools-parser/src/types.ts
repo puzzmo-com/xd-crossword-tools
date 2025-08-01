@@ -92,7 +92,7 @@ export type Direction = "UP" | "DOWN" | "LEFT" | "RIGHT"
 
 export type Tile = LetterTile | BlankTile | RebusTile | SchrodingerTile
 
-export type TileDesignFlags = "bar-top" | "bar-bottom" | "bar-left" | "bar-right"
+export type TileDesignFlags = "bar-top" | "bar-left"
 
 export interface LetterTile {
   letter: string

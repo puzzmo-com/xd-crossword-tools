@@ -9,10 +9,10 @@ import {
   xdToJSON,
   runLinterForClue,
   validateClueAnswersMatchGrid,
-  ValidationReport,
   PositionInfo,
+  Report,
 } from "xd-crossword-tools"
-import type { Report } from "xd-crossword-tools-parser"
+
 import { defaultExampleXD } from "../exampleXDs"
 // eslint-disable-next-line no-var
 var scopeResult = {}
@@ -59,7 +59,7 @@ export const RootProvider = ({ children }: React.PropsWithChildren<object>) => {
       const editorInfo = editorInfoAtCursor(state)
 
       // Run validation
-      const reports: (Report | ValidationReport)[] = []
+      const reports: Report[] = []
 
       // Add existing parser reports if available
       if (state.report?.errors) {
@@ -87,7 +87,7 @@ export const RootProvider = ({ children }: React.PropsWithChildren<object>) => {
         length: -1,
       }
 
-      return [null, null, [errorReport] as (Report | ValidationReport)[]] as const
+      return [null, null, [errorReport] as Report[]] as const
     }
   }, [xd])
 

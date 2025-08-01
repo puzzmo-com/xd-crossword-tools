@@ -106,20 +106,6 @@ export const CrosswordBarPreview: React.FC<CrosswordPreviewProps> = ({ crossword
               />
             )
             break
-          case "bar-bottom":
-            elements.push(
-              <line
-                key={`${row}-${col}-bar-bottom-${idx}`}
-                x1={x - barOffset}
-                y1={y + cellSize}
-                x2={x + cellSize + barOffset}
-                y2={y + cellSize}
-                stroke="#000"
-                strokeWidth={barWidth}
-                strokeLinecap="square"
-              />
-            )
-            break
           case "bar-left":
             elements.push(
               <line
@@ -127,20 +113,6 @@ export const CrosswordBarPreview: React.FC<CrosswordPreviewProps> = ({ crossword
                 x1={x}
                 y1={y - barOffset}
                 x2={x}
-                y2={y + cellSize + barOffset}
-                stroke="#000"
-                strokeWidth={barWidth}
-                strokeLinecap="square"
-              />
-            )
-            break
-          case "bar-right":
-            elements.push(
-              <line
-                key={`${row}-${col}-bar-right-${idx}`}
-                x1={x + cellSize}
-                y1={y - barOffset}
-                x2={x + cellSize}
                 y2={y + cellSize + barOffset}
                 stroke="#000"
                 strokeWidth={barWidth}

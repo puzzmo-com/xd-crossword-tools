@@ -1,5 +1,10 @@
 import { Tile } from "xd-crossword-tools-parser"
-import { BarPosition } from "./deriveBarPositions"
+
+export interface BarPosition {
+  row: number
+  col: number
+  type: "left" | "top"
+}
 
 /**
  * Converts bar positions to a tile grid with bar flags

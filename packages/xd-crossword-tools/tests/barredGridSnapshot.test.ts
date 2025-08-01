@@ -4,7 +4,7 @@ import parse from "xml-parser"
 
 import { xdToJSON } from "xd-crossword-tools-parser/src"
 import { printBarredGrid, addBarsToTiles } from "../src/printBarredGrid"
-import { BarPosition } from "../src/deriveBarPositions"
+import { BarPosition } from "../src/printBarredGrid"
 import { jpzToXD } from "../src/jpzToXD"
 
 describe("barred grid snapshot", () => {

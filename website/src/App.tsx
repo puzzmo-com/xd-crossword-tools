@@ -5,23 +5,23 @@ import Homepage from "./Homepage"
 import MassImport from "./MassImport"
 
 // Hash-based routing for GitHub Pages compatibility
-const useHashLocation = () => {
+const useHashLocation = (): [string, (to: string) => void] => {
   const [location, setLocation] = useState(() => window.location.hash.slice(1) || "/")
-  
+
   useEffect(() => {
     const handleHashChange = () => {
       setLocation(window.location.hash.slice(1) || "/")
     }
-    
+
     window.addEventListener("hashchange", handleHashChange)
     return () => window.removeEventListener("hashchange", handleHashChange)
   }, [])
-  
+
   const navigate = (to: string) => {
     window.location.hash = to
   }
-  
-  return [location, navigate] as const
+
+  return [location, navigate]
 }
 
 function App() {

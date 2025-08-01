@@ -1,10 +1,10 @@
 import { CrosswordJSON, Tile } from "../../types"
 import { RawClueData, PositionWithTiles } from "../clueNumbersFromBoard"
 
-interface BarPosition {
+export interface BarPosition {
   row: number
   col: number
-  type: "left" | "right" | "top" | "bottom"
+  type: "left" | "top"
 }
 
 export const validateWeCanUseThisCrossword = (tiles: CrosswordJSON["tiles"]) => {
