@@ -28,11 +28,12 @@ export type RawClueData = {
 export const getCluePositionsForBoard = (
   tiles: CrosswordJSON["tiles"],
   meta?: CrosswordJSON["meta"],
-  rawClues?: Map<string, RawClueData>
+  rawClues?: Map<string, RawClueData>,
+  crosswordJSON?: CrosswordJSON
 ): PositionWithTiles[] => {
   // Check if this is a barred grid
   if (meta?.form === "barred" && rawClues) {
-    return getBarredCluePositions(tiles, rawClues, meta)
+    return getBarredCluePositions(tiles, rawClues, meta, crosswordJSON)
   }
 
   return getBlankCluePositions(tiles)

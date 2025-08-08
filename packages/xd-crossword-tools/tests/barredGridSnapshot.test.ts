@@ -54,7 +54,25 @@ describe("barred grid snapshot", () => {
       D8. Question: What items of clothing are typically worn by professional billiards players? Ants (7) ~ SWERVES
       D11. A lover offs Will, often use them as conversation starters at parties (5) ~ UNTIE
       D12. I&#039;ll have a turkey sandwich with Swiss cheese, mats of bacon, and tomatoes (4) ~ YOLO
-      D14. A cake like daiginjo pairs well with sushi (4) ~ OLDS"
+      D14. A cake like daiginjo pairs well with sushi (4) ~ OLDS
+
+      ## Design
+
+      <style>
+      A { bar-top: true }
+      B { bar-left: true }
+      C { bar-left: true; bar-top: true }
+      </style>
+
+      ........
+      ...A.A.C
+      .BB..A..
+      .....CBB
+      .CBB..A.
+      ..A...BB
+      .BA.....
+      A.A.A...
+      "
     `)
 
     const xdJSON = xdToJSON(parsed)
@@ -66,15 +84,24 @@ describe("barred grid snapshot", () => {
     const gridEl = crosswordEl!.children.find((child: { name: string }) => child.name === "grid")!
 
     const bars: BarPosition[] = []
+    const gridWidth = parseInt(gridEl.attributes.width, 10)
+    const gridHeight = parseInt(gridEl.attributes.height, 10)
+    
     for (const cell of gridEl.children) {
       if (cell.name !== "cell") continue
       const x = parseInt(cell.attributes.x, 10) - 1
       const y = parseInt(cell.attributes.y, 10) - 1
 
       if (cell.attributes["left-bar"] === "true") bars.push({ row: y, col: x, type: "left" })
-      if (cell.attributes["right-bar"] === "true") bars.push({ row: y, col: x, type: "right" })
       if (cell.attributes["top-bar"] === "true") bars.push({ row: y, col: x, type: "top" })
-      if (cell.attributes["bottom-bar"] === "true") bars.push({ row: y, col: x, type: "bottom" })
+      
+      // Convert right-bar and bottom-bar to left-bar and top-bar on adjacent cells
+      if (cell.attributes["right-bar"] === "true" && x < gridWidth - 1) {
+        bars.push({ row: y, col: x + 1, type: "left" })
+      }
+      if (cell.attributes["bottom-bar"] === "true" && y < gridHeight - 1) {
+        bars.push({ row: y + 1, col: x, type: "top" })
+      }
     }
 
     // Add bars to tiles
@@ -100,7 +127,7 @@ describe("barred grid snapshot", () => {
       C   O   U   N   T   E   S   S"
     `)
 
-    // Snapshot based on the derived barred grid
+    // Snapshot based on the barred grid from design data
     expect("\n" + printBarredGrid(xdJSON.tiles)).toMatchInlineSnapshot(`
     "
     S   I   G   N   P   O   S   T

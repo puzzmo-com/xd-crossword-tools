@@ -41,6 +41,10 @@ export function jpzToXD(xmlString: string): string {
   const tiles: Tile[][] = Array.from({ length: gridHeight }, () => Array(gridWidth).fill({ type: "blank" }))
   const numberPositions: { [num: string]: { row: number; col: number } } = {}
 
+  // Track cells with bars and their combinations
+  const cellBars: { [key: string]: { left?: boolean; top?: boolean } } = {}
+  let hasAnyBars = false
+
   for (const cell of gridEl.children) {
     if (cell.name !== "cell") continue
     const x = parseInt(cell.attributes.x, 10) - 1 // 1-based to 0-based
@@ -60,6 +64,39 @@ export function jpzToXD(xmlString: string): string {
 
       if (cell.attributes.number) {
         numberPositions[cell.attributes.number] = { row: y, col: x }
+      }
+
+      // Collect bar information for this cell
+      const bars: { left?: boolean; top?: boolean } = {}
+      if (cell.attributes["left-bar"] === "true") {
+        bars.left = true
+        hasAnyBars = true
+      }
+      if (cell.attributes["top-bar"] === "true") {
+        bars.top = true
+        hasAnyBars = true
+      }
+
+      // Note: right-bar and bottom-bar are converted to left-bar and top-bar on adjacent cells
+      // For the XD format, we need to store them on the adjacent cells
+      if (cell.attributes["right-bar"] === "true" && x < gridWidth - 1) {
+        const key = `${y},${x + 1}`
+        if (!cellBars[key]) cellBars[key] = {}
+        cellBars[key].left = true
+        hasAnyBars = true
+      }
+      if (cell.attributes["bottom-bar"] === "true" && y < gridHeight - 1) {
+        const key = `${y + 1},${x}`
+        if (!cellBars[key]) cellBars[key] = {}
+        cellBars[key].top = true
+        hasAnyBars = true
+      }
+
+      if (bars.left || bars.top) {
+        const key = `${y},${x}`
+        if (!cellBars[key]) cellBars[key] = {}
+        if (bars.left) cellBars[key].left = true
+        if (bars.top) cellBars[key].top = true
       }
 
       // TODO: Rebuses
@@ -143,6 +180,52 @@ export function jpzToXD(xmlString: string): string {
   clues.across.sort((a, b) => a.number - b.number)
   clues.down.sort((a, b) => a.number - b.number)
 
+  // Create Design section if there are bars
+  let design = undefined
+  if (hasAnyBars) {
+    // Create unique style combinations
+    const styleMap = new Map<string, string>()
+    const positions: string[][] = Array.from({ length: gridHeight }, () => Array(gridWidth).fill(""))
+
+    // Generate style letters starting from 'A'
+    let styleLetterCode = 65 // ASCII for 'A'
+
+    for (const [cellKey, bars] of Object.entries(cellBars)) {
+      const [y, x] = cellKey.split(",").map(Number)
+
+      // Create a unique key for this bar combination
+      const barKey = `${bars.left ? "L" : ""}${bars.top ? "T" : ""}`
+
+      if (barKey && !styleMap.has(barKey)) {
+        const styleLetter = String.fromCharCode(styleLetterCode++)
+        const barStyles: string[] = []
+
+        if (bars.left) barStyles.push("bar-left: true")
+        if (bars.top) barStyles.push("bar-top: true")
+
+        styleMap.set(barKey, styleLetter)
+      }
+
+      if (barKey) {
+        positions[y][x] = styleMap.get(barKey) || ""
+      }
+    }
+
+    // Convert styleMap to the format expected by the Design section
+    const styles: { [key: string]: { [prop: string]: string } } = {}
+    for (const [barKey, letter] of styleMap) {
+      const styleObj: { [prop: string]: string } = {}
+      if (barKey.includes("L")) styleObj["bar-left"] = "true"
+      if (barKey.includes("T")) styleObj["bar-top"] = "true"
+      styles[letter] = styleObj
+    }
+
+    design = {
+      styles,
+      positions,
+    }
+  }
+
   const crosswordJSON: CrosswordJSON = {
     meta,
     tiles,
@@ -151,6 +234,7 @@ export function jpzToXD(xmlString: string): string {
     rebuses: {},
     unknownSections: {},
     report: { success: true, errors: [], warnings: [] },
+    ...(design && { design }),
   }
 
   // For now, log the bars we found

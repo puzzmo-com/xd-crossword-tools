@@ -1,5 +1,5 @@
 import { xdToJSON } from "../xdparser2"
-import { it } from "vitest"
+import { it, expect } from "vitest"
 
 it("generates a barred crossword from the xd", () => {
   const crosswordJSON = xdToJSON(xdForBarred)
@@ -64,4 +64,21 @@ D8. Question: What items of clothing are typically worn by professional billiard
 D11. A lover offs Will, often use them as conversation starters at parties (5) ~ UNTIE
 D12. I&#039;ll have a turkey sandwich with Swiss cheese, mats of bacon, and tomatoes (4) ~ YOLO
 D14. A cake like daiginjo pairs well with sushi (4) ~ OLDS
+
+## Design
+
+<style>
+A { bar-top: true }
+B { bar-left: true }
+C { bar-left: true; bar-top: true }
+</style>
+
+........
+...A.A.C
+.BB..A..
+.....CBB
+.CBB..A.
+..A...BB
+.BA.....
+A.A.A...
 `

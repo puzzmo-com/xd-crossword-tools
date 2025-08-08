@@ -4261,7 +4261,7 @@ const jpz = "[...]"
 const xd = jpzToXD(jpz)
 ```
 
-This is a work in progress, the jpz format supports features which we do not support so far (for example bars)
+The jpz format import supports barred crosswords.
 
 ### .xd to .puz
 
@@ -4499,8 +4499,10 @@ O { background: circle }
 CSS Properties supported in style:
 
 - `background`: "circle" - sets a circle in the background
-- `backgroundLight: #[hex]` - sets the tile's background when in light mode
-- `backgroundDark: #[hex]` - sets the tile's background when in dark mode
+- `background-light: #[hex]` - sets the tile's background when in light mode
+- `background-dark: #[hex]` - sets the tile's background when in dark mode
+- `bar-top: true` - describes that in a barred crossword the bar is on the left of this tile
+- `bar-left: true` - describes that in a barred crossword the bar is on the top of this tile
 
 For example:
 
@@ -4508,9 +4510,10 @@ For example:
 ```html
 <style>
 O { background: circle }
-R { backgroundLight: #FF69B4; backgroundDark: #C71585 }
-G { backgroundLight: #00FF00; backgroundDark: #008000 }
-B { backgroundLight: #00FFFF; backgroundDark: #00008B }
+R { background-light: #FF69B4; background-dark: #C71585 }
+G { background-light: #00FF00; background-dark: #008000 }
+B { background-light: #00FFFF; background-dark: #00008B }
+T { bar-top: true }
 </style>
 ```
 

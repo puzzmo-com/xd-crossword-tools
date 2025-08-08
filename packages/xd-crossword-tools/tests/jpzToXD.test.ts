@@ -149,7 +149,26 @@ describe(jpzToXD.name, () => {
       D31. 1982 cult classic in which Jeff Bridges says, "Greetings, programs" ~ TRON
       D33. Word preceding band or squad ~ PEP
       D34. French wine designation ~ CRU
-      D35. Psychedelic found during April Fool's Day? ~ LSD"
+      D35. Psychedelic found during April Fool's Day? ~ LSD
+
+      ## Design
+
+      <style>
+      A { bar-left: true }
+      </style>
+
+      ....#.....#
+      ....#......
+      .......A...
+      .....###...
+      ###...#....
+      #....A....#
+      ....#...###
+      ...###.....
+      ....A......
+      ......#....
+      ##....#....
+      "
     `)
   })
 
@@ -196,7 +215,25 @@ describe(jpzToXD.name, () => {
       D8. Question: What items of clothing are typically worn by professional billiards players? Ants (7) ~ SWERVES
       D11. A lover offs Will, often use them as conversation starters at parties (5) ~ UNTIE
       D12. I&#039;ll have a turkey sandwich with Swiss cheese, mats of bacon, and tomatoes (4) ~ YOLO
-      D14. A cake like daiginjo pairs well with sushi (4) ~ OLDS"
+      D14. A cake like daiginjo pairs well with sushi (4) ~ OLDS
+
+      ## Design
+
+      <style>
+      A { bar-top: true }
+      B { bar-left: true }
+      C { bar-left: true; bar-top: true }
+      </style>
+
+      ........
+      ...A.A.C
+      .BB..A..
+      .....CBB
+      .CBB..A.
+      ..A...BB
+      .BA.....
+      A.A.A...
+      "
     `)
   })
 })
