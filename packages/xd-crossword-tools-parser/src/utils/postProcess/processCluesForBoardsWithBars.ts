@@ -1,12 +1,6 @@
 import { CrosswordJSON, Tile } from "../../types"
 import { RawClueData, PositionWithTiles } from "../clueNumbersFromBoard"
 
-export interface BarPosition {
-  row: number
-  col: number
-  type: "left" | "top"
-}
-
 export const validateWeCanUseThisCrossword = (tiles: CrosswordJSON["tiles"]) => {
   // we only support barred grids with no rebuses or schrodingers today
   for (const row of tiles) {
@@ -23,9 +17,9 @@ export const validateWeCanUseThisCrossword = (tiles: CrosswordJSON["tiles"]) => 
 export function getBarredCluePositions(
   tiles: CrosswordJSON["tiles"],
   rawClues: Map<string, RawClueData>,
-  metadata: Record<string, string>
+  metadata: Record<string, string>,
+  crosswordJSON?: CrosswordJSON
 ): PositionWithTiles[] {
-  const positions: PositionWithTiles[] = []
   const acrossClues: RawClueData[] = []
   const downClues: RawClueData[] = []
 
@@ -40,21 +34,60 @@ export function getBarredCluePositions(
   acrossClues.sort((a, b) => a.num - b.num)
   downClues.sort((a, b) => a.num - b.num)
 
-  const acrossPositions = deriveAcrossCluePositions(tiles, acrossClues, metadata.splitcharacter)
-  const downPositions = deriveDownCluePositions(tiles, downClues, metadata.splitcharacter)
+  // Check if we have design information with explicit bar data
+  if (crosswordJSON?.design) {
+    return getBarredCluePositionsFromDesign(tiles, acrossClues, downClues, metadata.splitcharacter, crosswordJSON.design)
+  }
 
-  // Use a more sophisticated bar derivation that analyzes the grid structure
-  const allBars = deriveAllBarsFromGridStructure(tiles, acrossPositions, downPositions)
+  // No design information available - barred grids require explicit bar data
+  throw new Error("Barred grids require explicit design information with bar positions. Cannot infer bar positions from grid structure.")
+}
 
-  // Apply bars to tiles
-  for (const bar of allBars) {
-    const tile = tiles[bar.row][bar.col] as any
-    if (!tile.design) tile.design = []
-    const barDesign = `bar-${bar.type}`
-    if (!tile.design.includes(barDesign)) {
-      tile.design.push(barDesign)
+function getBarredCluePositionsFromDesign(
+  tiles: CrosswordJSON["tiles"],
+  acrossClues: RawClueData[],
+  downClues: RawClueData[],
+  splitCharacter: string | undefined,
+  design: { styles: Record<string, any>; positions: string[][] }
+): PositionWithTiles[] {
+  const gridHeight = tiles.length
+  const gridWidth = tiles[0]?.length || 0
+
+  // Create a map of bar information from the design section
+  const barMap = new Map<string, { left: boolean; top: boolean }>()
+
+  // Parse the design information to extract bar positions
+  for (let row = 0; row < design.positions.length && row < gridHeight; row++) {
+    for (let col = 0; col < design.positions[row].length && col < gridWidth; col++) {
+      const styleKey = design.positions[row][col]
+      if (styleKey && design.styles[styleKey]) {
+        const style = design.styles[styleKey]
+        const cellKey = `${row},${col}`
+        barMap.set(cellKey, {
+          left: style["bar-left"] === "true",
+          top: style["bar-top"] === "true",
+        })
+      }
     }
   }
+
+  // Apply bars to tiles for visual consistency
+  for (const [cellKey, bars] of barMap) {
+    const [row, col] = cellKey.split(",").map(Number)
+    const tile = tiles[row][col] as any
+    if (!tile.design) tile.design = []
+
+    if (bars.left && !tile.design.includes("bar-left")) {
+      tile.design.push("bar-left")
+    }
+    if (bars.top && !tile.design.includes("bar-top")) {
+      tile.design.push("bar-top")
+    }
+  }
+
+  // Find word segments using bar information
+  const acrossPositions = findWordsFromBars(tiles, acrossClues, splitCharacter, barMap, "across")
+  const downPositions = findWordsFromBars(tiles, downClues, splitCharacter, barMap, "down")
 
   // Combine positions, handling clues that share the same starting position
   const allPositions = new Map<string, PositionWithTiles>()
@@ -77,84 +110,74 @@ export function getBarredCluePositions(
     allPositions.get(key)!.tiles.down = pos.tiles.down
   }
 
-  positions.push(...Array.from(allPositions.values()))
-  return positions
+  return Array.from(allPositions.values())
 }
 
-function deriveAcrossCluePositions(
+function findWordsFromBars(
   tiles: CrosswordJSON["tiles"],
-  acrossClues: RawClueData[],
-  splitCharacter: string | undefined
+  clues: RawClueData[],
+  splitCharacter: string | undefined,
+  barMap: Map<string, { left: boolean; top: boolean }>,
+  direction: "across" | "down"
 ): PositionWithTiles[] {
-  const positions: PositionWithTiles[] = []
   const gridHeight = tiles.length
   const gridWidth = tiles[0]?.length || 0
+  const positions: PositionWithTiles[] = []
   const usedPositions = new Set<string>()
 
-  // Sort clues by number to process them in order
-  const sortedClues = [...acrossClues].sort((a, b) => a.num - b.num)
-
-  for (const clue of sortedClues) {
-    // Split the answer by split character to get individual words
+  for (const clue of clues) {
     const words = splitCharacter ? clue.answer.split(splitCharacter) : [clue.answer]
 
-    // Process each word separately
     for (const word of words) {
       const answer = word.toUpperCase()
       if (answer.length === 0) continue
 
-      // Find position in grid where the answer letters match the grid letters
       let foundPosition = false
 
-      for (let row = 0; row < gridHeight && !foundPosition; row++) {
-        for (let col = 0; col <= gridWidth - answer.length && !foundPosition; col++) {
-          // Check if this position is already used
-          const posKey = `${row},${col}`
-          if (usedPositions.has(posKey)) continue
+      // Search the grid for word positions based on bar boundaries
+      if (direction === "across") {
+        for (let row = 0; row < gridHeight && !foundPosition; row++) {
+          for (let col = 0; col <= gridWidth - answer.length && !foundPosition; col++) {
+            const posKey = `${row},${col}`
+            if (usedPositions.has(posKey)) continue
 
-          // Check if this position matches the answer letters
-          let matches = true
+            if (isValidWordPosition(tiles, answer, row, col, direction, barMap)) {
+              const relatedTiles: Tile[] = []
+              for (let i = 0; i < answer.length; i++) {
+                relatedTiles.push(tiles[row][col + i])
+              }
 
-          for (let i = 0; i < answer.length; i++) {
-            const tile = tiles[row][col + i]
+              positions.push({
+                position: { col, index: row },
+                tiles: { across: relatedTiles },
+              })
 
-            if (tile.type === "blank") {
-              matches = false
-              break
-            }
-
-            // Get the letter from the tile
-            let tileChar = ""
-            if (tile.type === "letter") {
-              tileChar = tile.letter.toUpperCase()
-            } else if (tile.type === "rebus") {
-              throw new Error(`Rebus tiles are not supported in barred grids: ${tile.word}`)
-            } else if (tile.type === "schrodinger") {
-              // For schrodinger, check if any valid letter matches
-              throw new Error(`Schrodinger tiles are not supported in barred grids: ${tile.validLetters.join(", ")}`)
-            }
-
-            if (tileChar !== answer[i]) {
-              matches = false
-              break
+              usedPositions.add(posKey)
+              foundPosition = true
             }
           }
+        }
+      } else {
+        // down
+        for (let col = 0; col < gridWidth && !foundPosition; col++) {
+          for (let row = 0; row <= gridHeight - answer.length && !foundPosition; row++) {
+            const posKey = `${row},${col}`
+            if (usedPositions.has(posKey)) continue
 
-          if (matches) {
-            // Found a matching position for this clue
-            const relatedTiles: Tile[] = []
-            for (let i = 0; i < answer.length; i++) {
-              relatedTiles.push(tiles[row][col + i])
+            if (isValidWordPosition(tiles, answer, row, col, direction, barMap)) {
+              const relatedTiles: Tile[] = []
+              for (let i = 0; i < answer.length; i++) {
+                relatedTiles.push(tiles[row + i][col])
+              }
+
+              positions.push({
+                position: { col, index: row },
+                tiles: { down: relatedTiles },
+              })
+
+              usedPositions.add(posKey)
+              foundPosition = true
             }
-
-            positions.push({
-              position: { col, index: row },
-              tiles: { across: relatedTiles },
-            })
-
-            // Mark this position as used
-            usedPositions.add(posKey)
-            foundPosition = true
           }
         }
       }
@@ -164,177 +187,88 @@ function deriveAcrossCluePositions(
   return positions
 }
 
-function deriveDownCluePositions(
+function isValidWordPosition(
   tiles: CrosswordJSON["tiles"],
-  downClues: RawClueData[],
-  splitCharacter: string | undefined
-): PositionWithTiles[] {
-  const positions: PositionWithTiles[] = []
+  answer: string,
+  startRow: number,
+  startCol: number,
+  direction: "across" | "down",
+  barMap: Map<string, { left: boolean; top: boolean }>
+): boolean {
   const gridHeight = tiles.length
   const gridWidth = tiles[0]?.length || 0
-  const usedPositions = new Set<string>()
 
-  // Sort clues by number to process them in order
-  const sortedClues = [...downClues].sort((a, b) => a.num - b.num)
+  // Check if letters match
+  for (let i = 0; i < answer.length; i++) {
+    const row = direction === "across" ? startRow : startRow + i
+    const col = direction === "across" ? startCol + i : startCol
 
-  for (const clue of sortedClues) {
-    // Split the answer by split character to get individual words
-    const words = splitCharacter ? clue.answer.split(splitCharacter) : [clue.answer]
+    if (row >= gridHeight || col >= gridWidth) return false
 
-    // Process each word separately
-    for (const word of words) {
-      const answer = word.toUpperCase()
-      if (answer.length === 0) continue
+    const tile = tiles[row][col]
+    if (tile.type !== "letter") return false
+    if (tile.letter.toUpperCase() !== answer[i]) return false
+  }
 
-      // Find position in grid where the answer letters match the grid letters
-      let foundPosition = false
+  // Check that this word segment is properly bounded by bars
+  const wordEndRow = direction === "across" ? startRow : startRow + answer.length - 1
+  const wordEndCol = direction === "across" ? startCol + answer.length - 1 : startCol
 
-      for (let col = 0; col < gridWidth && !foundPosition; col++) {
-        for (let row = 0; row <= gridHeight - answer.length && !foundPosition; row++) {
-          // Check if this position is already used
-          const posKey = `${row},${col}`
-          if (usedPositions.has(posKey)) continue
-
-          // Check if this position matches the answer letters
-          let matches = true
-
-          for (let i = 0; i < answer.length; i++) {
-            const tile = tiles[row + i][col]
-
-            if (tile.type === "blank") {
-              matches = false
-              break
-            }
-
-            // Get the letter from the tile
-            let tileChar = ""
-            if (tile.type === "letter") {
-              tileChar = tile.letter.toUpperCase()
-            } else if (tile.type === "rebus") {
-              throw new Error(`Rebus tiles are not supported in barred grids: ${tile.word}`)
-            } else if (tile.type === "schrodinger") {
-              // For schrodinger, check if any valid letter matches
-              throw new Error(`Schrodinger tiles are not supported in barred grids: ${tile.validLetters.join(", ")}`)
-            }
-
-            if (tileChar !== answer[i]) {
-              matches = false
-              break
-            }
-          }
-
-          if (matches) {
-            // Found a matching position for this clue
-            const relatedTiles: Tile[] = []
-            for (let i = 0; i < answer.length; i++) {
-              relatedTiles.push(tiles[row + i][col])
-            }
-
-            positions.push({
-              position: { col, index: row },
-              tiles: { down: relatedTiles },
-            })
-
-            // Mark this position as used
-            usedPositions.add(posKey)
-            foundPosition = true
-          }
-        }
+  // Check start boundary
+  if (direction === "across") {
+    // For across words, there should be a left bar at the start OR we're at the grid edge OR there's a blank tile to the left
+    if (startCol > 0) {
+      const bars = barMap.get(`${startRow},${startCol}`)
+      const leftTile = tiles[startRow][startCol - 1]
+      if (!bars?.left && leftTile.type === "letter") {
+        return false // Word should be separated by a bar
+      }
+    }
+  } else {
+    // For down words, there should be a top bar at the start OR we're at the grid edge OR there's a blank tile above
+    if (startRow > 0) {
+      const bars = barMap.get(`${startRow},${startCol}`)
+      const topTile = tiles[startRow - 1][startCol]
+      if (!bars?.top && topTile.type === "letter") {
+        return false // Word should be separated by a bar
       }
     }
   }
 
-  return positions
-}
-
-function deriveAllBarsFromGridStructure(
-  tiles: CrosswordJSON["tiles"],
-  acrossPositions: PositionWithTiles[],
-  downPositions: PositionWithTiles[]
-): BarPosition[] {
-  const bars: BarPosition[] = []
-  const gridHeight = tiles.length
-  const gridWidth = tiles[0]?.length || 0
-
-  // Create word membership maps to track which word each cell belongs to
-  const acrossWordMap = new Map<string, number>()
-  const downWordMap = new Map<string, number>()
-
-  // Map across word cells
-  acrossPositions.forEach((pos, wordIndex) => {
-    if (!pos.tiles.across) return
-    const row = pos.position.index
-    const startCol = pos.position.col
-    for (let i = 0; i < pos.tiles.across.length; i++) {
-      acrossWordMap.set(`${row},${startCol + i}`, wordIndex)
-    }
-  })
-
-  // Map down word cells
-  downPositions.forEach((pos, wordIndex) => {
-    if (!pos.tiles.down) return
-    const col = pos.position.col
-    const startRow = pos.position.index
-    for (let i = 0; i < pos.tiles.down.length; i++) {
-      downWordMap.set(`${startRow + i},${col}`, wordIndex)
-    }
-  })
-
-  // Algorithm: Add bars where adjacent cells have different word context
-  // Key insight: bars separate cells that differ in EITHER across OR down word membership
-  for (let row = 0; row < gridHeight; row++) {
-    for (let col = 0; col < gridWidth; col++) {
-      if (tiles[row][col].type !== "letter") continue
-
-      const cellKey = `${row},${col}`
-      const acrossWord = acrossWordMap.get(cellKey)
-      const downWord = downWordMap.get(cellKey)
-
-      // Left bar: more nuanced logic based on word boundaries
-      if (col > 0 && tiles[row][col - 1].type === "letter") {
-        const leftKey = `${row},${col - 1}`
-        const leftAcrossWord = acrossWordMap.get(leftKey)
-        const leftDownWord = downWordMap.get(leftKey)
-
-        let needsLeftBar = false
-
-        // Primary case: different across words (word boundary)
-        if (acrossWord !== leftAcrossWord) {
-          needsLeftBar = true
-        }
-        // Secondary case: both cells are isolated horizontally but belong to different down words
-        else if (acrossWord === undefined && leftAcrossWord === undefined && downWord !== leftDownWord) {
-          needsLeftBar = true
-        }
-
-        if (needsLeftBar) {
-          bars.push({ row, col, type: "left" })
-        }
+  // Check end boundary
+  if (direction === "across") {
+    // For across words, there should be a left bar after the end OR we're at the grid edge OR there's a blank tile to the right
+    if (wordEndCol < gridWidth - 1) {
+      const bars = barMap.get(`${wordEndRow},${wordEndCol + 1}`)
+      const rightTile = tiles[wordEndRow][wordEndCol + 1]
+      if (!bars?.left && rightTile.type === "letter") {
+        return false // Word should be separated by a bar
       }
-
-      // Top bar: more nuanced logic based on word boundaries
-      if (row > 0 && tiles[row - 1][col].type === "letter") {
-        const topKey = `${row - 1},${col}`
-        const topAcrossWord = acrossWordMap.get(topKey)
-        const topDownWord = downWordMap.get(topKey)
-
-        let needsTopBar = false
-
-        // Primary case: different down words (word boundary)
-        if (downWord !== topDownWord) {
-          needsTopBar = true
-        }
-        // Secondary case: both cells are isolated vertically but belong to different across words
-        else if (downWord === undefined && topDownWord === undefined && acrossWord !== topAcrossWord) {
-          needsTopBar = true
-        }
-
-        if (needsTopBar) {
-          bars.push({ row, col, type: "top" })
-        }
+    }
+  } else {
+    // For down words, there should be a top bar after the end OR we're at the grid edge OR there's a blank tile below
+    if (wordEndRow < gridHeight - 1) {
+      const bars = barMap.get(`${wordEndRow + 1},${wordEndCol}`)
+      const bottomTile = tiles[wordEndRow + 1][wordEndCol]
+      if (!bars?.top && bottomTile.type === "letter") {
+        return false // Word should be separated by a bar
       }
     }
   }
 
-  return bars
+  // Check that there are no bars within the word
+  for (let i = 1; i < answer.length; i++) {
+    const row = direction === "across" ? startRow : startRow + i
+    const col = direction === "across" ? startCol + i : startCol
+    const bars = barMap.get(`${row},${col}`)
+
+    if (direction === "across" && bars?.left) {
+      return false // There shouldn't be a left bar within an across word
+    }
+    if (direction === "down" && bars?.top) {
+      return false // There shouldn't be a top bar within a down word
+    }
+  }
+
+  return true
 }

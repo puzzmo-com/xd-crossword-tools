@@ -1,8 +1,6 @@
 import { getCluePositionsForBoard, PositionWithTiles } from "../utils/clueNumbersFromBoard"
 import type { Tile, CrosswordJSON, ClueComponentMarkup } from "../types"
 import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "./xdparser2.compat"
-import { b } from "vitest/dist/chunks/suite.d.FvehnV49"
-import { dir } from "console"
 
 // These are all the sections supported by this parser
 const knownHeaders = ["grid", "clues", "notes", "metadata", "metapuzzle", "start", "design", "design-style"] as const
@@ -321,7 +319,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   const useBarredLogic = json.meta.form === "barred"
 
   // Update the clues with position info and the right metadata
-  const positions = getCluePositionsForBoard(json.tiles, json.meta, rawInput.clues)
+  const positions = getCluePositionsForBoard(json.tiles, json.meta, rawInput.clues, json)
 
   // For barred grids, create a proper mapping from clue numbers to positions
   let positionsByClueNumber: Record<number, PositionWithTiles> = {}

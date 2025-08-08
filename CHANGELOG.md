@@ -1,5 +1,36 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 11.0.0
+
+Two breaking changes:
+
+One minor: `backgroundLight` and `backgroundDark` are now documented as `background-light` and `background-dark` in the design docs.
+
+The second is a pretty drastic change to barred support. Instead of trying to derive all of the bars by an algorithm, we now explicitly require a design section which describes the bars positions.
+
+I prefer the explicit nature of this, but a lot of the reason is that making a perfect algorithm for this is tricky and requires having access to a lot of examples. This way we can make the jpz/json port simpler and makes the xd file describe the problem better.
+
+We support describing both a bar-top and bar-left in the CSS style system. So, for example the below crossword would have a design section like:
+
+```
+## Design
+
+<style>
+A { bar-top: true }
+B { bar-left: true }
+C { bar-left: true; bar-top: true }
+</style>
+
+........
+...A.A.C
+.BB..A..
+.....CBB
+.CBB..A.
+..A...BB
+.BA.....
+A.A.A...
+```
+
 ### 10.0.0
 
 Adds support for barred Crosswords (in jpz imports, and if you are hand authoring) - a barred xd file requires you to declare that it is barred via
