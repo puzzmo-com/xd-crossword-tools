@@ -167,10 +167,14 @@ export interface Clue {
   direction: CursorDirection
   /** If an answer contains a split character, then this would include the indexes where it was used */
   splits?: number[]
-  /** Duplicating a clue and using a meta suffix (e.g. "A23 ^Hint. A shot to the heart" )
-   * would add to { "hint": " A shot to the heart" } to the metadata.
+  /**
+   * Duplicating a clue and using a meta suffix (e.g. "A23 ^Hint. A shot to the heart" )
+   * would add to { "hint": " A shot to the heart" } to the metadata. This works for any key
+   *
+   * When either 'hint' or 'revealer' are set, then template string processing is applied
+   * resulting in "hint:display" and "revealer:display" which contain processed markup components.
    */
-  metadata?: Record<string, string>
+  metadata?: Record<string, string> & { "hint:display"?: ClueComponentMarkup[]; "revealer:display"?: ClueComponentMarkup[] }
 }
 
 export interface Cursor {

@@ -133,7 +133,7 @@ export const JSONToXD = (json: CrosswordJSON): string => {
       .map((key) => {
         const content = Object.entries(key[1])
           .map(([key, value]) => `${key}: ${value}`)
-          .join(";")
+          .join("; ")
 
         return `${key[0]} { ${content} }`
       })

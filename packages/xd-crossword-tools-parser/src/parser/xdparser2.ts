@@ -1,8 +1,6 @@
 import { getCluePositionsForBoard, PositionWithTiles } from "../utils/clueNumbersFromBoard"
 import type { Tile, CrosswordJSON, ClueComponentMarkup } from "../types"
 import { convertImplicitOrderedXDToExplicitHeaders, shouldConvertToExplicitHeaders } from "./xdparser2.compat"
-import { b } from "vitest/dist/chunks/suite.d.FvehnV49"
-import { dir } from "console"
 
 // These are all the sections supported by this parser
 const knownHeaders = ["grid", "clues", "notes", "metadata", "metapuzzle", "start", "design", "design-style"] as const
@@ -32,7 +30,14 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     tiles: string[][]
     clues: Map<
       string,
-      { num: number; question: string; metadata?: Record<string, string>; answer: string; dir: "A" | "D"; display: ClueComponentMarkup[] }
+      {
+        num: number
+        question: string
+        metadata?: CrosswordJSON["clues"]["across"][number]["metadata"]
+        answer: string
+        dir: "A" | "D"
+        display: ClueComponentMarkup[]
+      }
     >
   } = {
     tiles: [],
@@ -321,7 +326,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   const useBarredLogic = json.meta.form === "barred"
 
   // Update the clues with position info and the right metadata
-  const positions = getCluePositionsForBoard(json.tiles, json.meta, rawInput.clues)
+  const positions = getCluePositionsForBoard(json.tiles, json.meta, rawInput.clues, json)
 
   // For barred grids, create a proper mapping from clue numbers to positions
   let positionsByClueNumber: Record<number, PositionWithTiles> = {}
@@ -384,13 +389,25 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     const splits = parseSplitsFromAnswer(answerWithRebusSymbols, json.meta.splitcharacter)
 
     if (editorInfo && clue.metadata) clue.metadata["answer:unprocessed"] = clue.answer
+
+    // Process hint and revealer metadata through markup processor
+    const processedMetadata: typeof clue.metadata = clue.metadata ? { ...clue.metadata } : {}
+    if (clue.metadata) {
+      if (clue.metadata.hint) {
+        processedMetadata["hint:display"] = xdMarkupProcessor(clue.metadata.hint)
+      }
+      if (clue.metadata.revealer) {
+        processedMetadata["revealer:display"] = xdMarkupProcessor(clue.metadata.revealer)
+      }
+    }
+
     arr.push({
       body: clue.question,
       answer: clue.answer.split(json.meta.splitcharacter).join(""),
       number: clue.num,
       position: positionData.position,
       tiles,
-      metadata: clue.metadata,
+      metadata: processedMetadata,
       display: clue.display,
       direction: dirKey,
       ...(splits ? { splits } : {}),
@@ -404,7 +421,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
       // Collect all alternative answers (alt, alt1, alt2, etc.)
       const altAnswers: string[] = []
       for (const [key, value] of Object.entries(clue.metadata)) {
-        if (key === "alt" || key.startsWith("alt")) {
+        if ((key === "alt" || key.startsWith("alt")) && typeof value === "string") {
           altAnswers.push(value)
         }
       }
