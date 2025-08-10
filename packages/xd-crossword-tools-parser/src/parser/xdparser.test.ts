@@ -202,207 +202,207 @@ D3. A conscious tree. ~ BOOK
 
     const { clues } = xdToJSON(xd)
     expect(clues).toMatchInlineSnapshot(`
-{
-  "across": [
-    {
-      "answer": "BULB",
-      "body": "Gardener's concern.",
-      "direction": "across",
-      "display": [
-        [
-          "text",
-          "Gardener's concern.",
+      {
+        "across": [
+          {
+            "answer": "BULB",
+            "body": "Gardener's concern.",
+            "direction": "across",
+            "display": [
+              [
+                "text",
+                "Gardener's concern.",
+              ],
+            ],
+            "metadata": {},
+            "number": 1,
+            "position": {
+              "col": 0,
+              "index": 0,
+            },
+            "tiles": [
+              {
+                "letter": "B",
+                "type": "letter",
+              },
+              {
+                "letter": "U",
+                "type": "letter",
+              },
+              {
+                "letter": "L",
+                "type": "letter",
+              },
+              {
+                "letter": "B",
+                "type": "letter",
+              },
+            ],
+          },
+          {
+            "answer": "OK",
+            "body": "A reasonable statement.",
+            "direction": "across",
+            "display": [
+              [
+                "text",
+                "A reasonable statement.",
+              ],
+            ],
+            "metadata": {},
+            "number": 4,
+            "position": {
+              "col": 0,
+              "index": 1,
+            },
+            "tiles": [
+              {
+                "letter": "O",
+                "type": "letter",
+              },
+              {
+                "letter": "K",
+                "type": "letter",
+              },
+            ],
+          },
+          {
+            "answer": "DESK",
+            "body": "The office centerpiece.",
+            "direction": "across",
+            "display": [
+              [
+                "text",
+                "The office centerpiece.",
+              ],
+            ],
+            "metadata": {},
+            "number": 5,
+            "position": {
+              "col": 0,
+              "index": 3,
+            },
+            "tiles": [
+              {
+                "letter": "D",
+                "type": "letter",
+              },
+              {
+                "letter": "E",
+                "type": "letter",
+              },
+              {
+                "letter": "S",
+                "type": "letter",
+              },
+              {
+                "letter": "K",
+                "type": "letter",
+              },
+            ],
+          },
         ],
-      ],
-      "metadata": undefined,
-      "number": 1,
-      "position": {
-        "col": 0,
-        "index": 0,
-      },
-      "tiles": [
-        {
-          "letter": "B",
-          "type": "letter",
-        },
-        {
-          "letter": "U",
-          "type": "letter",
-        },
-        {
-          "letter": "L",
-          "type": "letter",
-        },
-        {
-          "letter": "B",
-          "type": "letter",
-        },
-      ],
-    },
-    {
-      "answer": "OK",
-      "body": "A reasonable statement.",
-      "direction": "across",
-      "display": [
-        [
-          "text",
-          "A reasonable statement.",
+        "down": [
+          {
+            "answer": "BOLD",
+            "body": "To _ly go.",
+            "direction": "down",
+            "display": [
+              [
+                "text",
+                "To _ly go.",
+              ],
+            ],
+            "metadata": {},
+            "number": 1,
+            "position": {
+              "col": 0,
+              "index": 0,
+            },
+            "tiles": [
+              {
+                "letter": "B",
+                "type": "letter",
+              },
+              {
+                "letter": "O",
+                "type": "letter",
+              },
+              {
+                "letter": "L",
+                "type": "letter",
+              },
+              {
+                "letter": "D",
+                "type": "letter",
+              },
+            ],
+          },
+          {
+            "answer": "UK",
+            "body": "Bigger than britain.",
+            "direction": "down",
+            "display": [
+              [
+                "text",
+                "Bigger than britain.",
+              ],
+            ],
+            "metadata": {},
+            "number": 2,
+            "position": {
+              "col": 1,
+              "index": 0,
+            },
+            "tiles": [
+              {
+                "letter": "U",
+                "type": "letter",
+              },
+              {
+                "letter": "K",
+                "type": "letter",
+              },
+            ],
+          },
+          {
+            "answer": "BOOK",
+            "body": "A conscious tree.",
+            "direction": "down",
+            "display": [
+              [
+                "text",
+                "A conscious tree.",
+              ],
+            ],
+            "metadata": {},
+            "number": 3,
+            "position": {
+              "col": 3,
+              "index": 0,
+            },
+            "tiles": [
+              {
+                "letter": "B",
+                "type": "letter",
+              },
+              {
+                "letter": "O",
+                "type": "letter",
+              },
+              {
+                "letter": "O",
+                "type": "letter",
+              },
+              {
+                "letter": "K",
+                "type": "letter",
+              },
+            ],
+          },
         ],
-      ],
-      "metadata": undefined,
-      "number": 4,
-      "position": {
-        "col": 0,
-        "index": 1,
-      },
-      "tiles": [
-        {
-          "letter": "O",
-          "type": "letter",
-        },
-        {
-          "letter": "K",
-          "type": "letter",
-        },
-      ],
-    },
-    {
-      "answer": "DESK",
-      "body": "The office centerpiece.",
-      "direction": "across",
-      "display": [
-        [
-          "text",
-          "The office centerpiece.",
-        ],
-      ],
-      "metadata": undefined,
-      "number": 5,
-      "position": {
-        "col": 0,
-        "index": 3,
-      },
-      "tiles": [
-        {
-          "letter": "D",
-          "type": "letter",
-        },
-        {
-          "letter": "E",
-          "type": "letter",
-        },
-        {
-          "letter": "S",
-          "type": "letter",
-        },
-        {
-          "letter": "K",
-          "type": "letter",
-        },
-      ],
-    },
-  ],
-  "down": [
-    {
-      "answer": "BOLD",
-      "body": "To _ly go.",
-      "direction": "down",
-      "display": [
-        [
-          "text",
-          "To _ly go.",
-        ],
-      ],
-      "metadata": undefined,
-      "number": 1,
-      "position": {
-        "col": 0,
-        "index": 0,
-      },
-      "tiles": [
-        {
-          "letter": "B",
-          "type": "letter",
-        },
-        {
-          "letter": "O",
-          "type": "letter",
-        },
-        {
-          "letter": "L",
-          "type": "letter",
-        },
-        {
-          "letter": "D",
-          "type": "letter",
-        },
-      ],
-    },
-    {
-      "answer": "UK",
-      "body": "Bigger than britain.",
-      "direction": "down",
-      "display": [
-        [
-          "text",
-          "Bigger than britain.",
-        ],
-      ],
-      "metadata": undefined,
-      "number": 2,
-      "position": {
-        "col": 1,
-        "index": 0,
-      },
-      "tiles": [
-        {
-          "letter": "U",
-          "type": "letter",
-        },
-        {
-          "letter": "K",
-          "type": "letter",
-        },
-      ],
-    },
-    {
-      "answer": "BOOK",
-      "body": "A conscious tree.",
-      "direction": "down",
-      "display": [
-        [
-          "text",
-          "A conscious tree.",
-        ],
-      ],
-      "metadata": undefined,
-      "number": 3,
-      "position": {
-        "col": 3,
-        "index": 0,
-      },
-      "tiles": [
-        {
-          "letter": "B",
-          "type": "letter",
-        },
-        {
-          "letter": "O",
-          "type": "letter",
-        },
-        {
-          "letter": "O",
-          "type": "letter",
-        },
-        {
-          "letter": "K",
-          "type": "letter",
-        },
-      ],
-    },
-  ],
-}
-`)
+      }
+    `)
   })
 
   it("handles whitespace lines in the clues ", () => {

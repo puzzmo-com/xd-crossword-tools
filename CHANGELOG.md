@@ -2,9 +2,13 @@ This isn't a comprehensive doc because to our knowledge there are no OSS consume
 
 ### 11.0.0
 
-Two breaking changes:
+Three breaking changes:
 
-One minor: `backgroundLight` and `backgroundDark` are now documented as `background-light` and `background-dark` in the design docs.
+Two minor:
+
+- `clue.metadata` not isn't always a `Record<string, string>` - we process both `hint` and `revealer` clue metadata strings, so that you can use template syntax inside the strings. Available as `hint:display` and `revealer:display`.
+
+- `backgroundLight` and `backgroundDark` are now documented as `background-light` and `background-dark` in the design docs.
 
 The second is a pretty drastic change to barred support. Instead of trying to derive all of the bars by an algorithm, we now explicitly require a design section which describes the bars positions.
 

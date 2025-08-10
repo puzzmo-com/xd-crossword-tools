@@ -10,75 +10,75 @@ it("handles bolding", () => {
   const json = xdToJSON(xd.replace(originalClue, newMDClue))
   const clue = json.clues.across[0]
   expect(clue).toMatchInlineSnapshot(`
-{
-  "answer": "AHAB",
-  "body": "{/Captain/}, {*of*}, {_the_}, ship {-pequod-} {@see here|https://mylink.com@}",
-  "direction": "across",
-  "display": [
-    [
-      "italics",
-      "Captain",
-    ],
-    [
-      "text",
-      ", ",
-    ],
-    [
-      "bold",
-      "of",
-    ],
-    [
-      "text",
-      ", ",
-    ],
-    [
-      "underscore",
-      "the",
-    ],
-    [
-      "text",
-      ", ship ",
-    ],
-    [
-      "strike",
-      "pequod",
-    ],
-    [
-      "text",
-      " ",
-    ],
-    [
-      "link",
-      "see here",
-      "https://mylink.com",
-    ],
-  ],
-  "metadata": undefined,
-  "number": 1,
-  "position": {
-    "col": 0,
-    "index": 0,
-  },
-  "tiles": [
     {
-      "letter": "A",
-      "type": "letter",
-    },
-    {
-      "letter": "H",
-      "type": "letter",
-    },
-    {
-      "letter": "A",
-      "type": "letter",
-    },
-    {
-      "letter": "B",
-      "type": "letter",
-    },
-  ],
-}
-`)
+      "answer": "AHAB",
+      "body": "{/Captain/}, {*of*}, {_the_}, ship {-pequod-} {@see here|https://mylink.com@}",
+      "direction": "across",
+      "display": [
+        [
+          "italics",
+          "Captain",
+        ],
+        [
+          "text",
+          ", ",
+        ],
+        [
+          "bold",
+          "of",
+        ],
+        [
+          "text",
+          ", ",
+        ],
+        [
+          "underscore",
+          "the",
+        ],
+        [
+          "text",
+          ", ship ",
+        ],
+        [
+          "strike",
+          "pequod",
+        ],
+        [
+          "text",
+          " ",
+        ],
+        [
+          "link",
+          "see here",
+          "https://mylink.com",
+        ],
+      ],
+      "metadata": {},
+      "number": 1,
+      "position": {
+        "col": 0,
+        "index": 0,
+      },
+      "tiles": [
+        {
+          "letter": "A",
+          "type": "letter",
+        },
+        {
+          "letter": "H",
+          "type": "letter",
+        },
+        {
+          "letter": "A",
+          "type": "letter",
+        },
+        {
+          "letter": "B",
+          "type": "letter",
+        },
+      ],
+    }
+  `)
 })
 
 it("correctly handles xd-spec syntax", () => {
@@ -164,7 +164,7 @@ it("handles inline images", () => {
           " block with alt text",
         ],
       ],
-      "metadata": undefined,
+      "metadata": {},
       "number": 1,
       "position": {
         "col": 0,
