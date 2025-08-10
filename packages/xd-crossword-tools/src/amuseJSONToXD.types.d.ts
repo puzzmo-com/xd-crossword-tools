@@ -25,7 +25,7 @@ export interface AmuseData {
   h: number
   w: number
   id: string
-  box: Array<Array<Direction | null>>
+  box: Array<Array<Letter | null>>
   help: string
   tags: any[]
   title: string
@@ -84,7 +84,7 @@ export interface AmuseData {
   completionSoundURL?: string
 }
 
-export enum Direction {
+export enum Letter {
   A = "A",
   AI = "A/I",
   B = "B",
@@ -150,7 +150,7 @@ export interface PlacedWord {
   nBoxes: number
   clueNum: string
   wordLens?: number[]
-  direction?: Direction
+  direction?: Letter
   intersects: boolean
   clueSection?: ClueSection
   originalTerm: string
