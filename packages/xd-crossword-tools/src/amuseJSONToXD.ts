@@ -22,6 +22,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
 
   const meta: Meta = {
     title: amuseData.title || "Untitled Crossword",
+    subtitle: amuseData.subtitle,
     author: amuseData.author || "Unknown Author",
     date: formatDate(amuseData.publishTime),
     // copyright: amuseData.copyright === Copyright.Empty ? "" : amuseData.copyright,
@@ -29,7 +30,10 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
     width: amuseData.w.toString(),
     height: amuseData.h.toString(),
     editor: "not in data",
-    id: attributes.amuse_id || amuseData.id,
+
+    id: amuseData.id,
+    amuseID: attributes.amuse_id,
+    set: attributes.amuse_set,
   }
 
   // Tiles - using row-major order [y][x]
@@ -220,13 +224,32 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
     }
   })
 
+  // Prepare unknown sections for HTML content
+  const unknownSections: Record<string, { title: string; content: string }> = {}
+
+  if (amuseData.description && amuseData.description.trim()) {
+    unknownSections["description"] = { title: "Description", content: amuseData.description }
+  }
+
+  if (amuseData.help && amuseData.help.trim()) {
+    unknownSections["help"] = { title: "Help", content: amuseData.help }
+  }
+
+  if (amuseData.pauseMessage && amuseData.pauseMessage.trim()) {
+    unknownSections["pausemessage"] = { title: "Pause Message", content: amuseData.pauseMessage }
+  }
+
+  if (amuseData.endMessage && amuseData.endMessage.trim()) {
+    unknownSections["endmessage"] = { title: "End Message", content: amuseData.endMessage }
+  }
+
   const result: CrosswordJSON = {
     tiles,
     clues: cluesStructure,
     meta: meta,
     notes: "",
     rebuses: {},
-    unknownSections: {},
+    unknownSections: unknownSections,
     report: {
       success: true,
       errors: [],

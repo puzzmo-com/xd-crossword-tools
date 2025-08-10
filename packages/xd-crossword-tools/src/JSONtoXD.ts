@@ -187,5 +187,11 @@ export const JSONToXD = (json: CrosswordJSON): string => {
     xd += json.notes
   }
 
+  // Add unknown sections
+  for (const [key, section] of Object.entries(json.unknownSections)) {
+    xd += `\n\n## ${section.title}\n\n`
+    xd += section.content
+  }
+
   return xd
 }

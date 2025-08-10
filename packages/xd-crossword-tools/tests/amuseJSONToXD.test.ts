@@ -315,7 +315,7 @@ describeConditional("amuseJSONToXD", () => {
 
       // Find clues that should have revealer metadata
       const allClues = [...result.clues.across, ...result.clues.down]
-      const cluesWithRevealers = allClues.filter(clue => clue.metadata?.revealer)
+      const cluesWithRevealers = allClues.filter((clue) => clue.metadata?.revealer)
 
       // The barred cryptic puzzle should have some clues with refText
       expect(cluesWithRevealers.length).toBeGreaterThan(0)
@@ -338,9 +338,45 @@ describeConditional("amuseJSONToXD", () => {
 
       // Check that XD output contains revealer metadata
       expect(xdOutput).toContain("revealer:")
-      
+
       // Should contain the specific revealer content from refText
       expect(xdOutput).toContain("SCAB + BARD")
+    })
+
+    it("includes HTML content sections in XD output", () => {
+      // Use the barred cryptic JSON file which has HTML content
+      const xdOutput = amuseToXD(amuseJSON)
+
+      // Check for End Message section (has HTML content)
+      expect(xdOutput).toContain("## End Message")
+      expect(xdOutput).toContain("Close this pop-up to see an explanation")
+
+      // Check for Pause Message section (has HTML content)
+      expect(xdOutput).toContain("## Pause Message")
+
+      // Check that HTML content is preserved (not stripped)
+      expect(xdOutput).toContain("<div>")
+      expect(xdOutput).toContain("<img")
+    })
+
+    it("includes themed puzzle HTML sections", () => {
+      // Use the themed JSON file which has different HTML content
+      const xdOutput = amuseToXD(themedAmuseJSON)
+
+      // Check for Help section
+      expect(xdOutput).toContain("## Help")
+      expect(xdOutput).toContain("Innovation & Tech issue")
+
+      // Check for End Message section
+      expect(xdOutput).toContain("## End Message")
+      expect(xdOutput).toContain("Sign up for the Puzzles & Games newsletter")
+
+      // Check for Pause Message section
+      expect(xdOutput).toContain("## Pause Message")
+
+      // Check that HTML content is preserved (not stripped)
+      expect(xdOutput).toContain("<p class=")
+      expect(xdOutput).toContain("<a href=")
     })
 
     it("converts barred grids correctly", () => {
@@ -397,27 +433,29 @@ describeConditional("amuseJSONToXD", () => {
       const xdOutput = amuseToXD(amuseJSON)
 
       // Check that XD output contains design section
-      expect("## Design" + xdOutput.split("## Design")[1]).toMatchInlineSnapshot(`
-            "## Design
+      expect("## Design" + xdOutput.split("## Design")[1].split("##")[0]).toMatchInlineSnapshot(`
+        "## Design
 
-            <style>
-            A { bar-top: true }
-            B { bar-left: true; bar-top: true }
-            C { bar-left: true }
-            </style>
+        <style>
+        A { bar-top: true }
+        B { bar-left: true; bar-top: true }
+        C { bar-left: true }
+        </style>
 
-            ........
-            ..A.B.A.
-            ..A...A.
-            .CBCCCBC
-            ........
-            A......A
-            .CCCCCCC
-            .A...A..
-            .A..CA..
-            .A.A.A..
-            "
-          `)
+        ........
+        ..A.B.A.
+        ..A...A.
+        .CBCCCBC
+        ........
+        A......A
+        .CCCCCCC
+        .A...A..
+        .A..CA..
+        .A.A.A..
+
+
+        "
+      `)
     })
 
     it("generates correct XD output with circled cells", () => {
