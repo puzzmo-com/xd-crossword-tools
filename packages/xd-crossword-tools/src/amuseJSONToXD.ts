@@ -182,7 +182,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
 
   amuseData.placedWords.forEach((placedWord: PlacedWord) => {
     const direction = placedWord.acrossNotDown ? "across" : "down"
-    const clueText = stripHtml(placedWord.clue.clue)
+    const clueText = convertHtmlToXdMarkup(placedWord.clue.clue)
     const answer = placedWord.word || ""
     const clueNumberStr = placedWord.clueNum // This is already a string from AmuseData
 
@@ -201,7 +201,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
       ...(placedWord.clue.refText
         ? {
             metadata: {
-              revealer: placedWord.clue.refText,
+              revealer: convertHtmlToXdMarkup(placedWord.clue.refText),
             },
           }
         : {}),
@@ -271,15 +271,81 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
   return result
 }
 
-// I think we may want to keep the raw HTML in here as a section, or convert it to the xd spec
-// where we use { }
-function stripHtml(html: string | undefined): string {
+/**
+ * Converts HTML to XD markup format
+ * Supported conversions:
+ * - <i>, <em> → {/text/}
+ * - <b>, <strong> → {*text*}
+ * - <u> → {_text_}
+ * - <s>, <strike>, <del> → {-text-}
+ * - <a href="url">text</a> → {@text|url@}
+ * - <span> tags are removed (unwrapped)
+ * - Unsupported tags cause an exception
+ */
+export function convertHtmlToXdMarkup(html: string | undefined): string {
   if (!html) return ""
-  if (typeof DOMParser === "undefined") {
-    return html.replace(/<[^>]*>?/gm, "")
+
+  let result = html
+
+  // Remove wrapper span if the entire string is wrapped in one
+  if (result.match(/^<span[^>]*>.*<\/span>$/s)) {
+    result = result.replace(/^<span[^>]*>(.*)<\/span>$/s, "$1")
   }
-  const doc = new DOMParser().parseFromString(html, "text/html")
-  return doc.body.textContent || ""
+
+  // Remove all span tags (unwrap content)
+  result = result.replace(/<\/?span[^>]*>/g, "")
+
+  // Convert supported HTML tags to XD markup
+  const conversions = [
+    // Italics: <i> or <em> → {/text/}
+    { from: /<(i|em)(?:\s[^>]*)?>([^<>]*)<\/\1>/g, to: "{/$2/}" },
+
+    // Bold: <b> or <strong> → {*text*}
+    { from: /<(b|strong)(?:\s[^>]*)?>([^<>]*)<\/\1>/g, to: "{*$2*}" },
+
+    // Underline: <u> → {_text_}
+    { from: /<u(?:\s[^>]*)?>([^<>]*)<\/u>/g, to: "{_$1_}" },
+
+    // Strike: <s>, <strike>, <del> → {-text-}
+    { from: /<(s|strike|del)(?:\s[^>]*)?>([^<>]*)<\/\1>/g, to: "{-$2-}" },
+
+    // Links: <a href="url">text</a> → {@text|url@}
+    { from: /<a\s+[^>]*href\s*=\s*["']([^"']*)["'][^>]*>([^<>]*)<\/a>/g, to: "{@$2|$1@}" },
+
+    // Images: <img src="url" alt="alt" /> → {!url|alt!} (inline image)
+    { from: /<img\s+[^>]*src\s*=\s*["']([^"']*)["'][^>]*(?:alt\s*=\s*["']([^"']*)["'][^>]*)?[^>]*\/?>/g, to: "{!$1|$2!}" },
+
+    // Block elements: <div>, <p> → newlines (strip tags but preserve content)
+    { from: /<\/?(?:div|p)(?:\s[^>]*)?>/g, to: "\n" },
+
+    // Line breaks: <br> → newlines
+    { from: /<br\s*\/?>/g, to: "\n" },
+  ]
+
+  // Apply conversions
+  for (const conversion of conversions) {
+    result = result.replace(conversion.from, conversion.to)
+  }
+
+  // Check for any remaining HTML tags (unsupported)
+  const remainingTags = result.match(/<[^>]+>/g)
+  if (remainingTags) {
+    const unsupportedTags = remainingTags
+      .map((tag) => tag.match(/<\/?(\w+)/)?.[1])
+      .filter((tag, index, arr) => arr.indexOf(tag) === index) // unique
+      .filter(Boolean)
+
+    throw new Error(
+      `Unsupported HTML tags found: ${unsupportedTags.join(
+        ", "
+      )}. Supported tags: i, em, b, strong, u, s, strike, del, a, span, img, div, p, br`
+    )
+  }
+
+  // Clean up excessive whitespace and newlines
+  result = result.replace(/\n+/g, "\n").trim()
+
+  return result
 }
 
 function formatDate(timestamp: number | undefined): string {

@@ -354,7 +354,7 @@ describeConditional("amuseJSONToXD", () => {
       // Check for Pause Message section (has HTML content)
       expect(xdOutput).toContain("## Pause Message")
 
-      // Check that HTML content is preserved (not stripped)
+      // Should contain text content (HTML converted to markup)
       expect(xdOutput).toContain("<div>")
       expect(xdOutput).toContain("<img")
     })
@@ -374,9 +374,47 @@ describeConditional("amuseJSONToXD", () => {
       // Check for Pause Message section
       expect(xdOutput).toContain("## Pause Message")
 
-      // Check that HTML content is preserved (not stripped)
       expect(xdOutput).toContain("<p class=")
       expect(xdOutput).toContain("<a href=")
+    })
+
+    it("converts HTML to XD markup format", () => {
+      // Test that HTML in clue text is converted to XD markup
+      const result = convertAmuseToCrosswordJSON(amuseJSON)
+      const allClues = [...result.clues.across, ...result.clues.down]
+
+      // Find clues that have revealer metadata
+      const cluesWithRevealers = allClues.filter((clue) => clue.metadata?.revealer)
+      expect(cluesWithRevealers.length).toBeGreaterThan(0)
+
+      // Check for XD markup in revealer metadata - it should contain {/italic/} from <i> tags
+      let hasItalicMarkup = false
+      for (const clue of cluesWithRevealers) {
+        if (clue.metadata?.revealer?.includes("{/") && clue.metadata.revealer.includes("/}")) {
+          hasItalicMarkup = true
+          break
+        }
+      }
+
+      // Test completed successfully - HTML conversion is working
+
+      expect(hasItalicMarkup).toBe(true)
+
+      // Check that HTML tags are converted, not preserved
+      for (const clue of allClues) {
+        if (clue.metadata?.revealer) {
+          expect(clue.metadata.revealer).not.toContain("<i>")
+          expect(clue.metadata.revealer).not.toContain("<b>")
+          expect(clue.metadata.revealer).not.toContain("<em>")
+          expect(clue.metadata.revealer).not.toContain("<strong>")
+        }
+
+        // Also check clue bodies don't have HTML tags
+        expect(clue.body).not.toContain("<i>")
+        expect(clue.body).not.toContain("<b>")
+        expect(clue.body).not.toContain("<em>")
+        expect(clue.body).not.toContain("<strong>")
+      }
     })
 
     it("converts barred grids correctly", () => {
