@@ -367,21 +367,21 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
 
     const dirKey = clue.dir === "A" ? "across" : "down"
     const arr = json.clues[dirKey]
-    const bail = () => {
+    const bail = (reason: string) => {
       const lineOfClue = getLine(xd, clue.question)
-      addSyntaxError(`The clue ${dirKey}${clue.num} is malformed`, lineOfClue || -1)
+      addSyntaxError(`The clue ${dirKey}${clue.num} is malformed: ${reason}`, lineOfClue || -1)
     }
 
     const positionData = positionsByClueNumber[clue.num]
 
     if (!positionData) {
-      bail()
+      bail("Could not find positioning data")
       continue
     }
 
     const tiles = positionData.tiles[dirKey]
     if (!tiles) {
-      bail()
+      bail("Could not find tiles")
       continue
     }
 

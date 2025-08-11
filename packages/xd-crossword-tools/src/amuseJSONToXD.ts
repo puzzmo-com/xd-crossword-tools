@@ -50,6 +50,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
   // Track circled cells and bars for design section
   const hasCircledCells = amuseData.cellInfos?.some((cell) => cell.isCircled) || false
   const hasBars = amuseData.cellInfos?.some((cell) => cell.rightWall || cell.bottomWall) || false
+  if (hasBars) meta.form = "barred"
   const needsDesign = hasCircledCells || hasBars
 
   let designPositions: string[][] | undefined = undefined
