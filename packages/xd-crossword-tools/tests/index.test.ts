@@ -12,7 +12,7 @@ puzs.forEach((file) => {
   describe(file, () => {
     it("converts a random puz file", async () => {
       const puz = readFileSync(`./packages/xd-crossword-tools/tests/puz/${file}.puz`)
-      const xd = puzToXD(puz)
+      const xd = puzToXD(puz as any)
       await expect(xd).toMatchFileSnapshot(`./packages/xd-crossword-tools/tests/output/${file}.xd`)
     })
 
@@ -29,7 +29,7 @@ describe("Failing tests", () => {
   fails.forEach((file) => {
     it(`creates the right fail for ${file}`, async () => {
       const xd = readFileSync(`./packages/xd-crossword-tools/tests/fails/${file}`, "utf8")
-      const json = xdToJSON(xd)
+      const json = xdToJSON(xd as any)
       await expect(JSON.stringify(json, null, 2)).toMatchFileSnapshot(`./packages/xd-crossword-tools/tests/output/fail_${file}.json`)
       expect(json.report.success).toBeFalsy()
     })

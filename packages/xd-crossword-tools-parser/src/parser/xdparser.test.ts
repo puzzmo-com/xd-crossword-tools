@@ -214,7 +214,7 @@ D3. A conscious tree. ~ BOOK
                 "Gardener's concern.",
               ],
             ],
-            "metadata": {},
+            "metadata": undefined,
             "number": 1,
             "position": {
               "col": 0,
@@ -249,7 +249,7 @@ D3. A conscious tree. ~ BOOK
                 "A reasonable statement.",
               ],
             ],
-            "metadata": {},
+            "metadata": undefined,
             "number": 4,
             "position": {
               "col": 0,
@@ -276,7 +276,7 @@ D3. A conscious tree. ~ BOOK
                 "The office centerpiece.",
               ],
             ],
-            "metadata": {},
+            "metadata": undefined,
             "number": 5,
             "position": {
               "col": 0,
@@ -313,7 +313,7 @@ D3. A conscious tree. ~ BOOK
                 "To _ly go.",
               ],
             ],
-            "metadata": {},
+            "metadata": undefined,
             "number": 1,
             "position": {
               "col": 0,
@@ -348,7 +348,7 @@ D3. A conscious tree. ~ BOOK
                 "Bigger than britain.",
               ],
             ],
-            "metadata": {},
+            "metadata": undefined,
             "number": 2,
             "position": {
               "col": 1,
@@ -375,7 +375,7 @@ D3. A conscious tree. ~ BOOK
                 "A conscious tree.",
               ],
             ],
-            "metadata": {},
+            "metadata": undefined,
             "number": 3,
             "position": {
               "col": 3,

@@ -53,7 +53,7 @@ it("handles bolding", () => {
           "https://mylink.com",
         ],
       ],
-      "metadata": {},
+      "metadata": undefined,
       "number": 1,
       "position": {
         "col": 0,
@@ -164,7 +164,7 @@ it("handles inline images", () => {
           " block with alt text",
         ],
       ],
-      "metadata": {},
+      "metadata": undefined,
       "number": 1,
       "position": {
         "col": 0,

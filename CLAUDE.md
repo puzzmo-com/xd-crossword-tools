@@ -9,6 +9,7 @@ xd-crossword-tools is a TypeScript monorepo for working with crossword puzzles, 
 ## Monorepo Structure
 
 Three main packages:
+
 - `packages/xd-crossword-tools-parser/`: Core parser (.xd → JSON), minimal dependencies
 - `packages/xd-crossword-tools/`: Full toolset with format conversions, depends on parser
 - `website/`: React-based interactive playground with Monaco editor
@@ -16,6 +17,7 @@ Three main packages:
 ## Common Commands
 
 ### Building
+
 ```bash
 # Build all packages
 yarn build
@@ -32,6 +34,7 @@ cd website && yarn dev
 ```
 
 ### Testing
+
 ```bash
 # Run all tests
 yarn test
@@ -44,11 +47,13 @@ yarn test -u
 ```
 
 ### Type Checking
+
 ```bash
 yarn type-check
 ```
 
 ### Running the Website
+
 ```bash
 cd website
 yarn dev  # Starts on http://localhost:5173
@@ -65,6 +70,7 @@ yarn dev  # Starts on http://localhost:5173
 ## XD Format Syntax
 
 Basic structure:
+
 ```
 Title: Example Puzzle
 Author: Jane Doe
@@ -80,6 +86,7 @@ Down
 ```
 
 Special features:
+
 - Rebus: `(OK)` in grid
 - Markup: `{/italic/}`, `{*bold*}`, `{&link|url&}`, `{!image|alt!}`
 - Metadata in curly braces: `{Notes: Some notes}`
@@ -90,3 +97,4 @@ Special features:
 - Format conversion tests use snapshot testing - review snapshots carefully when they change
 - The website automatically rebuilds when packages change in dev mode
 - Check existing test fixtures in `tests/` directories for format examples
+- When writing tests prefer using fixtures instead of writing objects yourself which conform to the interface shapes

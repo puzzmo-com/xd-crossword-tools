@@ -401,13 +401,15 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
       }
     }
 
+    const hasFields = Object.keys(processedMetadata).length > 0
+
     arr.push({
       body: clue.question,
       answer: clue.answer.split(json.meta.splitcharacter).join(""),
       number: clue.num,
       position: positionData.position,
       tiles,
-      metadata: processedMetadata,
+      metadata: hasFields ? processedMetadata : undefined,
       display: clue.display,
       direction: dirKey,
       ...(splits ? { splits } : {}),
