@@ -323,8 +323,8 @@ describeConditional("amuseJSONToXD", () => {
       // Check that revealer metadata is properly set
       for (const clue of cluesWithRevealers) {
         expect(clue.metadata?.revealer).toBeDefined()
-        expect(typeof clue.metadata.revealer).toBe("string")
-        expect(clue.metadata.revealer.length).toBeGreaterThan(0)
+        expect(typeof clue.metadata?.revealer).toBe("string")
+        expect(clue.metadata?.revealer.length).toBeGreaterThan(0)
       }
 
       // Check a specific example (first clue with revealer)
