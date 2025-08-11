@@ -1,6 +1,5 @@
 import { JSONToXD } from "./JSONtoXD"
 import type { Clue, Position as CluePosition, CrosswordJSON } from "xd-crossword-tools-parser"
-import { cleanupClueMetadata } from "./cleanupClueMetadata"
 
 import type { CellInfo, PlacedWord, AmuseTopLevel } from "./amuseJSONToXD.types.d.ts"
 
@@ -64,10 +63,12 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
   }
 
   // First pass: create tiles and track walls
+  // Note: The Amuse box data appears to be transposed compared to our internal format
+  // We need to swap x and y when accessing the box data
   for (let y = 0; y < amuseData.h; y++) {
     for (let x = 0; x < amuseData.w; x++) {
-      const letterFromBox = amuseData.box[y]?.[x] as string | null
-      const clueNumString = amuseData.clueNums[y]?.[x]
+      const letterFromBox = amuseData.box[x]?.[y] as string | null
+      const clueNumString = amuseData.clueNums[x]?.[y]
       const cellKey = `${y}-${x}`
       const specificCellInfo = cellInfoMap.get(cellKey)
 
@@ -181,7 +182,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
   const cluePositionsMap: Record<string, CluePosition> = {}
 
   amuseData.placedWords.forEach((placedWord: PlacedWord) => {
-    const direction = placedWord.acrossNotDown ? "across" : "down"
+    const direction = placedWord.clueSection === "Across" ? "across" : "down"
     const clueText = convertHtmlToXdMarkup(placedWord.clue.clue)
     const answer = placedWord.word || ""
     const clueNumberStr = placedWord.clueNum // This is already a string from AmuseData
@@ -207,7 +208,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
         : {}),
     }
 
-    const clueId = `${clueNumberStr}-${direction}`
+    const clueID = `${clueNumberStr}-${direction}`
 
     const positionData: CluePosition = {
       col: placedWord.x,
@@ -215,7 +216,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
     }
 
     currentClue.position = positionData
-    cluePositionsMap[clueId] = positionData
+    cluePositionsMap[clueID] = positionData
 
     if (direction === "across") {
       cluesStructure.across.push(currentClue)
@@ -223,6 +224,8 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
       cluesStructure.down.push(currentClue)
     }
   })
+  cluesStructure.across.sort((a, b) => a.number - b.number)
+  cluesStructure.down.sort((a, b) => a.number - b.number)
 
   // Prepare unknown sections for HTML content
   const unknownSections: Record<string, { title: string; content: string }> = {}
@@ -265,8 +268,6 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
         }
       : {}),
   }
-
-  cleanupClueMetadata(result)
 
   return result
 }

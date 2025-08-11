@@ -8,6 +8,8 @@ const fullExamplePath = exampleJSONPath
 
 const hasCirclesPath = "/Users/orta/dev/workshop/packages/amuse-to-xd/examples/2025_04_01-themed.json"
 
+const largeGrid = "/Users/orta/dev/workshop/packages/amuse-to-xd/examples/2021_01_01-oversize.json"
+
 // Only run tests if the example JSON files exist
 const shouldRunTests = existsSync(fullExamplePath) && existsSync(hasCirclesPath)
 
@@ -511,6 +513,18 @@ describeConditional("amuseJSONToXD", () => {
       expect(designSection).toBeDefined()
       expect(designSection).toContain("O")
     })
+  })
+
+  it("generates the correct grid for a large puzzle", () => {
+    const xdOutput = convertAmuseToCrosswordJSON(JSON.parse(readFileSync(largeGrid, "utf-8")))
+
+    const a5Clue = xdOutput.clues.across.find((clue) => clue.number === 5)
+    expect(a5Clue).toBeDefined()
+    expect(a5Clue?.answer).toEqual("FAD")
+
+    const a8Clue = xdOutput.clues.across.find((clue) => clue.number === 8)
+    expect(a8Clue).toBeDefined()
+    expect(a8Clue?.answer).toEqual("FCC")
   })
 })
 
