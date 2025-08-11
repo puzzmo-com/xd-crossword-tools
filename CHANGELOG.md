@@ -1,5 +1,9 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 11.0.1
+
+- Amuse JSON import improvements
+
 ### 11.0.0
 
 Three breaking changes:
