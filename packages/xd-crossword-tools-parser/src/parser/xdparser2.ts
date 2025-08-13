@@ -840,7 +840,7 @@ export function xdMarkupProcessor(input: string): ClueComponentMarkup[] {
 
   const components: ClueComponentMarkup[] = []
   // https://regex101.com/r/JsLIDM/1
-  const regex = /\{([\/\*\_\-\@\~!#])(.*?)\1\}/g
+  const regex = /\{([\/\*\_\-\@\~\^!#])(.*?)\1\}/g
   let lastIndex = 0
 
   let match
@@ -863,8 +863,13 @@ export function xdMarkupProcessor(input: string): ClueComponentMarkup[] {
         components.push(["underscore", content])
         break
       case "-":
-      case "~":
         components.push(["strike", content])
+        break
+      case "~":
+        components.push(["subscript", content])
+        break
+      case "^":
+        components.push(["superscript", content])
         break
       case "@":
         components.push(["link", content.split("|")[0], content.split("|")[1]])

@@ -4437,12 +4437,16 @@ Which will add the optional `"bodyMD"` to the clue:
 
 - Italics: `{/`<kbd>words</kbd>`/}`
 - Bold: `{*`<kbd>words</kbd>`*}`
-- Strike through: `{-`<kbd>words</kbd>`-}` - Note: that we also support `{~`<kbd>words</kbd>`~}` because that feels more natural
+- Strike through: `{-`<kbd>words</kbd>`-}`
 - Underline: `{_`<kbd>words</kbd>`_}`
 - Link: `{@`<kbd>words</kbd>`|`<kbd>url</kbd>`@}`
 - Image inline: `{!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`|width|height!}`
 - Image block: `{!!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`|width|height!}`
 - Inline colours: `{#`<kbd>text</kbd>`|`<kbd>hex colour light</kbd>|<kbd>hex colour dark</kbd>`#}`
+- Subscript `{~`<kbd>words</kbd>`~}`
+- Superscript `{^`<kbd>words</kbd>`^}`
+
+There is an exported `xdMarkupProcessor` which you can use to do your own markup processing if needed.
 
 #### Split character
 

@@ -63,6 +63,9 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
       .map(() => Array(amuseData.w).fill(null))
   }
 
+  const rebuses: CrosswordJSON["rebuses"] = {}
+  let rebusSymbolCharCode = 9424
+
   // First pass: create tiles and track walls
   // Note: The Amuse box data appears to be transposed compared to our internal format
   // We need to swap x and y when accessing the box data
@@ -76,13 +79,35 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
       if (letterFromBox === null || letterFromBox === "." || letterFromBox === "#") {
         tiles[y][x] = { type: "blank" }
       } else {
-        tiles[y][x] = {
-          type: "letter",
-          letter: letterFromBox || "",
-          clues: {
-            across: clueNumString ? parseInt(clueNumString) : undefined,
-            down: clueNumString ? parseInt(clueNumString) : undefined,
-          },
+        const clues = {
+          across: clueNumString ? parseInt(clueNumString) : undefined,
+          down: clueNumString ? parseInt(clueNumString) : undefined,
+        }
+
+        if (letterFromBox.includes("/")) {
+          tiles[y][x] = {
+            type: "schrodinger",
+            validLetters: letterFromBox.split("/"),
+            validRebuses: [],
+            clues,
+          }
+        } else if (letterFromBox.length > 1) {
+          const symbol = String.fromCharCode(rebusSymbolCharCode++)
+
+          tiles[y][x] = {
+            type: "rebus",
+            word: letterFromBox,
+            symbol,
+            clues,
+          }
+
+          rebuses[symbol] = letterFromBox
+        } else {
+          tiles[y][x] = {
+            type: "letter",
+            letter: letterFromBox || "",
+            clues,
+          }
         }
       }
 
@@ -185,8 +210,29 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
   amuseData.placedWords.forEach((placedWord: PlacedWord) => {
     const direction = placedWord.clueSection === "Across" ? "across" : "down"
     const clueText = convertHtmlToXdMarkup(placedWord.clue.clue)
-    const answer = placedWord.word || ""
     const clueNumberStr = placedWord.clueNum // This is already a string from AmuseData
+    const word = placedWord.word || ""
+    let answer
+    let alt
+
+    // schrodinger handling
+    if (word.includes("/")) {
+      let firstSchrodingerAnswer = word
+      let secondSchrodingerAnswer = word
+
+      for (const match of word.matchAll(/({.\/.})/g)) {
+        firstSchrodingerAnswer = firstSchrodingerAnswer.replace(match[0], match[0][1])
+        secondSchrodingerAnswer = secondSchrodingerAnswer.replace(match[0], match[0][3])
+      }
+
+      answer = firstSchrodingerAnswer
+      alt = secondSchrodingerAnswer
+      // rebus handling
+    } else if (word.includes("{") && word.includes("}")) {
+      answer = word.replace(/{/g, "").replace(/}/g, "")
+    } else {
+      answer = word
+    }
 
     const currentClue: Clue = {
       number: parseInt(clueNumberStr),
@@ -199,14 +245,17 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
         col: placedWord.x,
         index: placedWord.y,
       },
-      // Add revealer metadata if refText exists
-      ...(placedWord.clue.refText
-        ? {
-            metadata: {
-              revealer: convertHtmlToXdMarkup(placedWord.clue.refText),
-            },
-          }
-        : {}),
+      metadata: {},
+    }
+
+    // add alt metadata for schrodinger clues
+    if (alt && currentClue.metadata) {
+      currentClue.metadata.alt = alt
+    }
+
+    // Add revealer metadata if refText exists
+    if (currentClue.metadata && placedWord.clue.refText) {
+      currentClue.metadata.revealer = convertHtmlToXdMarkup(placedWord.clue.refText)
     }
 
     const clueID = `${clueNumberStr}-${direction}`
@@ -225,8 +274,8 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
       cluesStructure.down.push(currentClue)
     }
   })
-  cluesStructure.across.sort((a, b) => a.number - b.number)
-  cluesStructure.down.sort((a, b) => a.number - b.number)
+  cluesStructure.across.sort((a: Clue, b: Clue) => a.number - b.number)
+  cluesStructure.down.sort((a: Clue, b: Clue) => a.number - b.number)
 
   // Prepare unknown sections for HTML content
   const unknownSections: Record<string, { title: string; content: string }> = {}
@@ -247,12 +296,21 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
     unknownSections["endmessage"] = { title: "End Message", content: amuseData.endMessage }
   }
 
+  // rebus handling
+  const metaRebus = Object.entries(rebuses)
+    .map(([key, value]) => `${key}=${value}`)
+    .join(" ")
+
+  if (metaRebus.length) {
+    meta.rebus = metaRebus
+  }
+
   const result: CrosswordJSON = {
     tiles,
     clues: cluesStructure,
     meta: meta,
     notes: "",
-    rebuses: {},
+    rebuses,
     unknownSections: unknownSections,
     report: {
       success: true,
@@ -311,6 +369,12 @@ export function convertHtmlToXdMarkup(html: string | undefined): string {
     // Strike: <s>, <strike>, <del> → {-text-}
     { from: /<(s|strike|del)(?:\s[^>]*)?>([^<>]*)<\/\1>/g, to: "{-$2-}" },
 
+    // Subscript: <sub> → {~text~}
+    { from: /<sub(?:\s[^>]*)?>([^<>]*)<\/sub>/g, to: "{~$1~}" },
+
+    // Superscript: <sup> → {^text^}
+    { from: /<sup(?:\s[^>]*)?>([^<>]*)<\/sup>/g, to: "{^$1^}" },
+
     // Links: <a href="url">text</a> → {@text|url@}
     { from: /<a\s+[^>]*href\s*=\s*["']([^"']*)["'][^>]*>([^<>]*)<\/a>/g, to: "{@$2|$1@}" },
 
@@ -340,7 +404,7 @@ export function convertHtmlToXdMarkup(html: string | undefined): string {
     throw new Error(
       `Unsupported HTML tags found: ${unsupportedTags.join(
         ", "
-      )}. Supported tags: i, em, b, strong, u, s, strike, del, a, span, img, div, p, br`
+      )}. Supported tags: i, em, b, strong, u, s, strike, del, sub, sup, a, span, img, div, p, br`
     )
   }
 
