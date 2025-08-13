@@ -4589,12 +4589,13 @@ The `xd-crossword-tools-parser` package exports several utility functions for wo
 
 ## Deploys
 
+Happen on CI, you. just write the changelog and then bump the version:
+
 ```sh
 yarn workspaces foreach -A version [major|minor|patch]
 
 # e.g.
 yarn workspaces foreach -A version patch
 git add .; git commit -m "Prepare for release"
-yarn build; yarn workspaces foreach -A --no-private npm publish
 git push
 ```
