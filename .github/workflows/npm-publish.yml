@@ -1,0 +1,102 @@
+name: NPM Publish
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write # This is required for npm provenance
+
+jobs:
+  check-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Build parser
+        run: yarn workspace xd-crossword-tools-parser build
+
+      - name: Build lib
+        run: yarn workspace xd-crossword-tools build
+
+      - name: Type check
+        run: yarn type-check
+
+      - name: Run tests
+        run: yarn test --run
+
+      - name: Check if packages need publishing
+        id: check-versions
+        run: |
+          set -e
+          NEEDS_PUBLISH=""
+
+          # Check xd-crossword-tools-parser
+          PARSER_LOCAL=$(cd packages/xd-crossword-tools-parser && node -p "require('./package.json').version")
+          PARSER_REMOTE=$(npm view xd-crossword-tools-parser version 2>/dev/null || echo "0.0.0")
+          echo "Parser: Local=$PARSER_LOCAL, Remote=$PARSER_REMOTE"
+
+          if [ "$PARSER_LOCAL" != "$PARSER_REMOTE" ]; then
+            echo "xd-crossword-tools-parser needs publishing: $PARSER_LOCAL > $PARSER_REMOTE"
+            NEEDS_PUBLISH="$NEEDS_PUBLISH parser"
+          fi
+
+          # Check xd-crossword-tools
+          TOOLS_LOCAL=$(cd packages/xd-crossword-tools && node -p "require('./package.json').version")
+          TOOLS_REMOTE=$(npm view xd-crossword-tools version 2>/dev/null || echo "0.0.0")
+          echo "Tools: Local=$TOOLS_LOCAL, Remote=$TOOLS_REMOTE"
+
+          if [ "$TOOLS_LOCAL" != "$TOOLS_REMOTE" ]; then
+            echo "xd-crossword-tools needs publishing: $TOOLS_LOCAL > $TOOLS_REMOTE"
+            NEEDS_PUBLISH="$NEEDS_PUBLISH tools"
+          fi
+
+          if [ -n "$NEEDS_PUBLISH" ]; then
+            echo "packages-to-publish=$NEEDS_PUBLISH" >> $GITHUB_OUTPUT
+            echo "should-publish=true" >> $GITHUB_OUTPUT
+          else
+            echo "should-publish=false" >> $GITHUB_OUTPUT
+            echo "No packages need publishing"
+          fi
+
+      - name: Publish xd-crossword-tools-parser
+        if: steps.check-versions.outputs.should-publish == 'true' && contains(steps.check-versions.outputs.packages-to-publish, 'parser')
+        working-directory: packages/xd-crossword-tools-parser
+        run: |
+          npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish xd-crossword-tools
+        if: steps.check-versions.outputs.should-publish == 'true' && contains(steps.check-versions.outputs.packages-to-publish, 'tools')
+        working-directory: packages/xd-crossword-tools
+        run: |
+          npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create release tag
+        if: steps.check-versions.outputs.should-publish == 'true'
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "v$VERSION" -m "Release v$VERSION"
+          git push origin "v$VERSION"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

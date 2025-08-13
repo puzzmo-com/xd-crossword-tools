@@ -1,7 +1,7 @@
 {
   "name": "xd-crossword-monorepo",
   "private": true,
-  "version": "11.0.3",
+  "version": "11.1.0",
   "description": "Tools for taking different crossword file formats and converting them to xd, and for converting an xd file to useful JSON",
   "scripts": {
     "build": "yarn workspaces foreach -A run build",
