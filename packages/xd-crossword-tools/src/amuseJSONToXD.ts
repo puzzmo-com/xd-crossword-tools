@@ -63,8 +63,8 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
       .map(() => Array(amuseData.w).fill(null))
   }
 
-  const rebuses: CrosswordJSON["rebuses"] = {};
-  let rebusSymbolCharCode = 9424;
+  const rebuses: CrosswordJSON["rebuses"] = {}
+  let rebusSymbolCharCode = 9424
 
   // First pass: create tiles and track walls
   // Note: The Amuse box data appears to be transposed compared to our internal format
@@ -82,16 +82,17 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
         const clues = {
           across: clueNumString ? parseInt(clueNumString) : undefined,
           down: clueNumString ? parseInt(clueNumString) : undefined,
-        };
+        }
 
         if (letterFromBox.includes("/")) {
           tiles[y][x] = {
             type: "schrodinger",
             validLetters: letterFromBox.split("/"),
+            validRebuses: [],
             clues,
           }
         } else if (letterFromBox.length > 1) {
-          const symbol = String.fromCharCode(rebusSymbolCharCode++);
+          const symbol = String.fromCharCode(rebusSymbolCharCode++)
 
           tiles[y][x] = {
             type: "rebus",
@@ -100,7 +101,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
             clues,
           }
 
-          rebuses[symbol] = letterFromBox;
+          rebuses[symbol] = letterFromBox
         } else {
           tiles[y][x] = {
             type: "letter",
@@ -216,21 +217,21 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
 
     // schrodinger handling
     if (word.includes("/")) {
-      let firstSchrodingerAnswer = word;
-      let secondSchrodingerAnswer = word;
-      
+      let firstSchrodingerAnswer = word
+      let secondSchrodingerAnswer = word
+
       for (const match of word.matchAll(/({.\/.})/g)) {
-        firstSchrodingerAnswer = firstSchrodingerAnswer.replace(match[0], match[0][1]);
-        secondSchrodingerAnswer = secondSchrodingerAnswer.replace(match[0], match[0][3]);
+        firstSchrodingerAnswer = firstSchrodingerAnswer.replace(match[0], match[0][1])
+        secondSchrodingerAnswer = secondSchrodingerAnswer.replace(match[0], match[0][3])
       }
-      
-      answer = firstSchrodingerAnswer;
-      alt = secondSchrodingerAnswer;
-    // rebus handling 
+
+      answer = firstSchrodingerAnswer
+      alt = secondSchrodingerAnswer
+      // rebus handling
     } else if (word.includes("{") && word.includes("}")) {
       answer = word.replace(/{/g, "").replace(/}/g, "")
     } else {
-      answer = word;
+      answer = word
     }
 
     const currentClue: Clue = {
@@ -248,12 +249,12 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
     }
 
     // add alt metadata for schrodinger clues
-    if (alt) {
+    if (alt && currentClue.metadata) {
       currentClue.metadata.alt = alt
     }
 
     // Add revealer metadata if refText exists
-    if (placedWord.clue.refText) {
+    if (currentClue.metadata && placedWord.clue.refText) {
       currentClue.metadata.revealer = convertHtmlToXdMarkup(placedWord.clue.refText)
     }
 
@@ -298,10 +299,10 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
   // rebus handling
   const metaRebus = Object.entries(rebuses)
     .map(([key, value]) => `${key}=${value}`)
-    .join(" ");
+    .join(" ")
 
   if (metaRebus.length) {
-    meta.rebus = metaRebus;
+    meta.rebus = metaRebus
   }
 
   const result: CrosswordJSON = {
