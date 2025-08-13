@@ -1,5 +1,13 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 11.1.0
+
+Markup changes:
+
+- Changed ~ from strike to subscript
+- Added ^ for superscript
+- Strike now only uses -
+
 ### 11.0.1
 
 - Amuse JSON import improvements

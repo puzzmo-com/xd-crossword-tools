@@ -208,8 +208,50 @@ it("correctly inline images in markup", () => {
   `)
 })
 
-it("correctly handles ~ for strike also", () => {
-  const newMDClue = "I {~think~}, no.. I know"
+it("correctly handles ~ for subscript", () => {
+  const newMDClue = "H{~2~}O is water"
+  const parsed = xdMarkupProcessor(newMDClue)
+  expect(parsed).toMatchInlineSnapshot(`
+[
+  [
+    "text",
+    "H",
+  ],
+  [
+    "subscript",
+    "2",
+  ],
+  [
+    "text",
+    "O is water",
+  ],
+]
+`)
+})
+
+it("correctly handles ^ for superscript", () => {
+  const newMDClue = "E=mc{^2^} is famous"
+  const parsed = xdMarkupProcessor(newMDClue)
+  expect(parsed).toMatchInlineSnapshot(`
+[
+  [
+    "text",
+    "E=mc",
+  ],
+  [
+    "superscript",
+    "2",
+  ],
+  [
+    "text",
+    " is famous",
+  ],
+]
+`)
+})
+
+it("correctly handles - for strike", () => {
+  const newMDClue = "I {-think-}, no.. I know"
   const parsed = xdMarkupProcessor(newMDClue)
   expect(parsed).toMatchInlineSnapshot(`
 [

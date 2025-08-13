@@ -144,6 +144,8 @@ export type ClueComponentMarkup =
   | [type: "bold", text: string]
   | [type: "strike", text: string]
   | [type: "underscore", text: string]
+  | [type: "subscript", text: string]
+  | [type: "superscript", text: string]
   | [type: "link", text: string, to: string]
   | [type: "img", url: string, alt: string, block: boolean, width?: string, height?: string]
   | [type: "color", text: string, lightColor: string, darkColor: string]

@@ -369,6 +369,12 @@ export function convertHtmlToXdMarkup(html: string | undefined): string {
     // Strike: <s>, <strike>, <del> → {-text-}
     { from: /<(s|strike|del)(?:\s[^>]*)?>([^<>]*)<\/\1>/g, to: "{-$2-}" },
 
+    // Subscript: <sub> → {~text~}
+    { from: /<sub(?:\s[^>]*)?>([^<>]*)<\/sub>/g, to: "{~$1~}" },
+
+    // Superscript: <sup> → {^text^}
+    { from: /<sup(?:\s[^>]*)?>([^<>]*)<\/sup>/g, to: "{^$1^}" },
+
     // Links: <a href="url">text</a> → {@text|url@}
     { from: /<a\s+[^>]*href\s*=\s*["']([^"']*)["'][^>]*>([^<>]*)<\/a>/g, to: "{@$2|$1@}" },
 
@@ -398,7 +404,7 @@ export function convertHtmlToXdMarkup(html: string | undefined): string {
     throw new Error(
       `Unsupported HTML tags found: ${unsupportedTags.join(
         ", "
-      )}. Supported tags: i, em, b, strong, u, s, strike, del, a, span, img, div, p, br`
+      )}. Supported tags: i, em, b, strong, u, s, strike, del, sub, sup, a, span, img, div, p, br`
     )
   }
 
