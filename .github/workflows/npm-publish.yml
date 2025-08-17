@@ -86,7 +86,12 @@ jobs:
         if: steps.check-versions.outputs.should-publish == 'true' && contains(steps.check-versions.outputs.packages-to-publish, 'tools')
         working-directory: packages/xd-crossword-tools
         run: |
+          # Convert workspace:* dependency to actual version number
+          PARSER_VERSION=$(cd ../xd-crossword-tools-parser && node -p "require('./package.json').version")
+          sed -i.bak "s/\"xd-crossword-tools-parser\": \"workspace:\*\"/\"xd-crossword-tools-parser\": \"^$PARSER_VERSION\"/" package.json
           npm publish --provenance --access public
+          # Restore original package.json
+          mv package.json.bak package.json
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
