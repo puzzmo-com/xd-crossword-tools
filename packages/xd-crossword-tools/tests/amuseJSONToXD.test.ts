@@ -8,8 +8,8 @@ const exampleJSONPath = "/Users/orta/dev/workshop/packages/amuse-to-xd/examples/
 const fullExamplePath = exampleJSONPath
 
 const hasCirclesPath = "/Users/orta/dev/workshop/packages/amuse-to-xd/examples/2025_04_01-themed.json"
-
 const largeGrid = "/Users/orta/dev/workshop/packages/amuse-to-xd/examples/2021_01_01-oversize.json"
+const cartoon = "/Users/orta/dev/workshop/packages/amuse-to-xd/examples/2019_12_23-cartoon.json"
 
 // Only run tests if the example JSON files exist
 const shouldRunTests = existsSync(fullExamplePath) && existsSync(hasCirclesPath)
@@ -573,6 +573,17 @@ describe("amuseJSONToXD", () => {
       const a8Clue = xdOutput.clues.across.find((clue) => clue.number === 8)
       expect(a8Clue).toBeDefined()
       expect(a8Clue?.answer).toEqual("FCC")
+    })
+  })
+
+  describe(cartoon, () => {
+    it("has answers for the clues", () => {
+      const xdOutput = convertAmuseToCrosswordJSON(JSON.parse(readFileSync(cartoon, "utf-8")))
+
+      const a1Clue = xdOutput.clues.across.find((clue) => clue.number === 1)
+      expect(a1Clue).toBeDefined()
+      expect(a1Clue?.body).toEqual("Hairdo")
+      expect(a1Clue?.answer).toEqual("COIF")
     })
   })
 })
