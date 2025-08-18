@@ -2,7 +2,6 @@ import { JSONToXD } from "./JSONtoXD"
 import type { Clue, Position as CluePosition, CrosswordJSON, Report } from "xd-crossword-tools-parser"
 
 import type { CellInfo, PlacedWord, AmuseTopLevel } from "./amuseJSONToXD.types.d.ts"
-import { doesNotReject } from "assert"
 
 /** Convert an Amuse JSON to an XD file. */
 export const amuseToXD = (amuseJSON: AmuseTopLevel) => JSONToXD(convertAmuseToCrosswordJSON(amuseJSON))
@@ -429,8 +428,15 @@ export function convertHtmlToXdMarkup(html: string | undefined): string {
     )
   }
 
+  // Don't think this is actually a goal: https://github.com/puzzmo-com/xd-crossword-tools/issues/46
+  // Convert spaced dots to ellipsis
+  // result = result.replace(/\. \. \./g, "…")
+
   // Clean up excessive whitespace and newlines
   result = result.replace(/\n+/g, "\n").trim()
+
+  // Remove extra HTML entities like "&#039;"
+  result = result.replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(dec))
 
   return result
 }

@@ -16,7 +16,7 @@ const shouldRunTests = existsSync(fullExamplePath) && existsSync(hasCirclesPath)
 
 const describeConditional = shouldRunTests ? describe : describe.skip
 
-describe("amuseJSONToXD", () => {
+describeConditional("amuseJSONToXD", () => {
   it("handles schrodinger clues correctly", () => {
     const result = convertAmuseToCrosswordJSON(schrodingerAmuseExample)
 
@@ -200,6 +200,13 @@ describe("amuseJSONToXD", () => {
 
         console.warn = consoleSpy.warn
       })
+    })
+
+    it.skip("handles converting ellipsis", () => {
+      const result = convertAmuseToCrosswordJSON(amuseJSON)
+
+      const across7 = result.clues.across.find((clue) => clue.number === 7)
+      expect(across7?.body).toMatchInlineSnapshot(`"Single ensign full of exuberance … (4)"`)
     })
 
     describe("amuseToXD", () => {
