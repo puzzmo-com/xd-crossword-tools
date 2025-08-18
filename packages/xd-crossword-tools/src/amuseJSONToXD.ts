@@ -1,5 +1,5 @@
 import { JSONToXD } from "./JSONtoXD"
-import type { Clue, Position as CluePosition, CrosswordJSON } from "xd-crossword-tools-parser"
+import type { Clue, Position as CluePosition, CrosswordJSON, Report } from "xd-crossword-tools-parser"
 
 import type { CellInfo, PlacedWord, AmuseTopLevel } from "./amuseJSONToXD.types.d.ts"
 
@@ -207,11 +207,31 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
   const cluesStructure: Clues = { across: [], down: [] }
   const cluePositionsMap: Record<string, CluePosition> = {}
 
+  const errorReports: Report[] = []
+
   amuseData.placedWords.forEach((placedWord: PlacedWord) => {
-    const direction = placedWord.clueSection === "Across" ? "across" : "down"
+    let direction: "across" | "down" | null = null
+
+    // I think different ages of amuse json's have different data structures,
+    // as one crossword we have does not include "clueSection" - so we fall back to "acrossNotDown"
+    if (placedWord.clueSection) direction = placedWord.clueSection === "Across" ? "across" : "down"
+    if ("acrossNotDown" in placedWord && !direction) direction = placedWord.acrossNotDown ? "across" : "down"
+    if (!direction) {
+      errorReports.push({
+        type: "syntax",
+        message: `Could not determine a direction for placed word ${placedWord.word}.`,
+        length: -1,
+        position: {
+          col: placedWord.x,
+          index: placedWord.y,
+        },
+      })
+      return
+    }
+
     const clueText = convertHtmlToXdMarkup(placedWord.clue.clue)
     const clueNumberStr = placedWord.clueNum // This is already a string from AmuseData
-    const word = placedWord.word || ""
+    const word = placedWord.word || placedWord.originalTerm || ""
     let answer
     let alt
 
@@ -239,7 +259,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
       body: clueText,
       answer: answer,
       tiles: [],
-      direction: direction,
+      direction,
       display: [],
       position: {
         col: placedWord.x,
@@ -408,8 +428,15 @@ export function convertHtmlToXdMarkup(html: string | undefined): string {
     )
   }
 
+  // Don't think this is actually a goal: https://github.com/puzzmo-com/xd-crossword-tools/issues/46
+  // Convert spaced dots to ellipsis
+  // result = result.replace(/\. \. \./g, "…")
+
   // Clean up excessive whitespace and newlines
   result = result.replace(/\n+/g, "\n").trim()
+
+  // Remove extra HTML entities like "&#039;"
+  result = result.replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(dec))
 
   return result
 }
