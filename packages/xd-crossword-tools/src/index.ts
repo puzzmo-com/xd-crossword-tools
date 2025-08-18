@@ -12,3 +12,7 @@ export type { Puz2JSONResult } from "./vendor/puzjs"
 export { runLinterForClue } from "./xdLints"
 export { amuseToXD } from "./amuseJSONToXD"
 export { validateClueAnswersMatchGrid } from "./validateClueAnswersMatchGrid"
+
+// Export the package version
+import packageJson from "../package.json"
+export const version = packageJson.version

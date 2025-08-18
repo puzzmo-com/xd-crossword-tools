@@ -27,6 +27,7 @@ import { convertToCrosswordFormat } from "./utils/convertToCrosswordFormat"
 import { CrosswordBarPreview } from "./components/CrosswordPreview"
 import { readmeHtml } from "virtual:readme"
 import { Link } from "wouter"
+import { version } from "xd-crossword-tools"
 
 function App() {
   const { crosswordJSON, lastFileContext, setXD, validationReports, cursorInfo } = use(RootContext)
@@ -431,7 +432,7 @@ function App() {
           <Navbar.Brand className={`brand-title ${isMobile ? "mobile-brand" : ""}`}>
             XD Crossword Tools
             <Badge bg="primary" className={`ms-2 version-badge ${isMobile ? "d-none" : ""}`}>
-              playground
+              v{version}
             </Badge>
           </Navbar.Brand>
           <div className={`header-subtitle ${isMobile ? "d-none" : ""}`}>Interactive crossword format converter and editor</div>

@@ -7,6 +7,7 @@
     "lib": ["es2020", "dom"],
     "noEmit": true,
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "declaration": true,
     "sourceMap": true,
