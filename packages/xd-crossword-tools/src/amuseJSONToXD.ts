@@ -19,9 +19,11 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
     console.warn("Input puzzleType is not CROSSWORD, conversion might be inaccurate.")
   }
 
+  const { cleanTitle, subtitle: extractedSubtitle } = extractSubtitleFromTitle(amuseData.title)
+
   const meta: Meta = {
-    title: amuseData.title || "Untitled Crossword",
-    subtitle: amuseData.subtitle,
+    title: cleanTitle,
+    subtitle: amuseData.subtitle || extractedSubtitle || "",
     author: amuseData.author || "Unknown Author",
     date: formatDate(amuseData.publishTime),
     // copyright: amuseData.copyright === Copyright.Empty ? "" : amuseData.copyright,
@@ -439,6 +441,36 @@ export function convertHtmlToXdMarkup(html: string | undefined): string {
   result = result.replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(dec))
 
   return result
+}
+
+/**
+ * Extracts subtitle from HTML spans in title and returns cleaned title
+ * Specifically handles spans with classes like "print_only tny-print-only-subtitle"
+ * and removes top-level <i> or <em> tags from the extracted content
+ */
+function extractSubtitleFromTitle(title: string | undefined): { cleanTitle: string; subtitle?: string } {
+  if (!title) return { cleanTitle: "Untitled Crossword" }
+
+  // Match spans that contain subtitle-like content
+  const spanMatch = title.match(/<span[^>]*class="[^"]*(?:subtitle|print[_-]only)[^"]*"[^>]*>(.*?)<\/span>/i)
+
+  if (!spanMatch) {
+    return { cleanTitle: title }
+  }
+
+  // Extract the content inside the span
+  let subtitleContent = spanMatch[1]
+
+  // Remove top-level <i> or <em> tags from the subtitle content
+  subtitleContent = subtitleContent.replace(/^<(i|em)(?:\s[^>]*)?>(.+)<\/\1>$/i, "$2")
+
+  // Clean the main title by removing the entire span
+  const cleanTitle = title.replace(/<span[^>]*class="[^"]*(?:subtitle|print[_-]only)[^"]*"[^>]*>.*?<\/span>/i, "").trim()
+
+  return {
+    cleanTitle: cleanTitle || "Untitled Crossword",
+    subtitle: subtitleContent.trim() || undefined,
+  }
 }
 
 function formatDate(timestamp: number | undefined): string {
