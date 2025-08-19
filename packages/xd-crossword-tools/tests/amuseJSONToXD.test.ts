@@ -54,6 +54,28 @@ describeConditional("amuseJSONToXD", () => {
     expect(result.rebuses["ⓐ"]).toBe("LD")
   })
 
+  it("extracts subtitles from HTML spans in titles", () => {
+    const mockAmuseJSON: AmuseTopLevel = {
+      ...schrodingerAmuseExample,
+      data: {
+        ...schrodingerAmuseExample.data,
+        attributes: {
+          ...schrodingerAmuseExample.data.attributes,
+          amuse_data: {
+            ...schrodingerAmuseExample.data.attributes.amuse_data,
+            title:
+              'The Crossword: Tuesday, April 1, 2025<span class="print_only tny-print-only-subtitle"><i>Today\'s theme: Language barriers.</i></span>',
+          },
+        },
+      },
+    }
+
+    const result = convertAmuseToCrosswordJSON(mockAmuseJSON)
+
+    expect(result.meta.title).toBe("The Crossword: Tuesday, April 1, 2025")
+    expect(result.meta.subtitle).toBe("Today's theme: Language barriers.")
+  })
+
   // If the test files don't exist, provide a helpful message
   if (!shouldRunTests) {
     describe("amuseJSONToXD (skipped)", () => {
