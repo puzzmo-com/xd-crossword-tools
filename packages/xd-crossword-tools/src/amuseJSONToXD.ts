@@ -280,6 +280,32 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
       currentClue.metadata.revealer = convertHtmlToXdMarkup(placedWord.clue.refText)
     }
 
+    // Add refs metadata for linked clues
+    if (currentClue.metadata && placedWord.linkedWordIdxs && placedWord.linkedWordIdxs.length > 0) {
+      const refs: string[] = []
+      for (const linkedIdx of placedWord.linkedWordIdxs) {
+        const linkedWord = amuseData.placedWords[linkedIdx]
+        if (linkedWord) {
+          // Determine direction of the linked word
+          let linkedDirection: "A" | "D"
+          if (linkedWord.clueSection) {
+            linkedDirection = linkedWord.clueSection === "Across" ? "A" : "D"
+          } else if ("acrossNotDown" in linkedWord) {
+            linkedDirection = linkedWord.acrossNotDown ? "A" : "D"
+          } else {
+            // Skip this linked word if we can't determine direction
+            continue
+          }
+          
+          refs.push(`${linkedDirection}${linkedWord.clueNum}`)
+        }
+      }
+      
+      if (refs.length > 0) {
+        currentClue.metadata.refs = refs.join(" ")
+      }
+    }
+
     const clueID = `${clueNumberStr}-${direction}`
 
     const positionData: CluePosition = {

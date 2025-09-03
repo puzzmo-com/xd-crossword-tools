@@ -4,12 +4,12 @@ import type { AmuseTopLevel } from "../src/amuseJSONToXD.types"
 import { beforeAll, describe, expect, it } from "vitest"
 import { rebusAmuseExample, schrodingerAmuseExample } from "./amuse/amuseExamples"
 
-const exampleJSONPath = "/Users/orta/dev/workshop/packages/amuse-to-xd/examples/2024_03_17-barred_cryptic.json"
+const exampleJSONPath = "/Users/orta/dev/old-workshop/packages/amuse-to-xd/examples/2024_03_17-barred_cryptic.json"
 const fullExamplePath = exampleJSONPath
 
-const hasCirclesPath = "/Users/orta/dev/workshop/packages/amuse-to-xd/examples/2025_04_01-themed.json"
-const largeGrid = "/Users/orta/dev/workshop/packages/amuse-to-xd/examples/2021_01_01-oversize.json"
-const cartoon = "/Users/orta/dev/workshop/packages/amuse-to-xd/examples/2019_12_23-cartoon.json"
+const hasCirclesPath = "/Users/orta/dev/old-workshop/packages/amuse-to-xd/examples/2025_04_01-themed.json"
+const largeGrid = "/Users/orta/dev/old-workshop/packages/amuse-to-xd/examples/2021_01_01-oversize.json"
+const cartoon = "/Users/orta/dev/old-workshop/packages/amuse-to-xd/examples/2019_12_23-cartoon.json"
 
 // Only run tests if the example JSON files exist
 const shouldRunTests = existsSync(fullExamplePath) && existsSync(hasCirclesPath)
@@ -613,6 +613,27 @@ describeConditional("amuseJSONToXD", () => {
       expect(a1Clue).toBeDefined()
       expect(a1Clue?.body).toEqual("Hairdo")
       expect(a1Clue?.answer).toEqual("COIF")
+    })
+
+    it("handles linked clues with refs metadata", () => {
+      const xdOutput = convertAmuseToCrosswordJSON(JSON.parse(readFileSync(largeGrid, "utf-8")))
+
+      // Look for clues with refs metadata (linked clues)
+      const allClues = [...xdOutput.clues.across, ...xdOutput.clues.down]
+      const cluesWithRefs = allClues.filter((clue) => clue.metadata?.refs)
+
+      expect(cluesWithRefs.map((c) => [c.body, c.metadata?.refs] as const).sort((a, b) => a[0].localeCompare(b[0]))).toMatchInlineSnapshot(`
+          [
+            [
+              "See 54-Across",
+              "A54",
+            ],
+            [
+              "With 44-Across, Middle Eastern body of water",
+              "A44",
+            ],
+          ]
+        `)
     })
   })
 })
