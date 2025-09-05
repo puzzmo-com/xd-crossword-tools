@@ -81,6 +81,32 @@ describe("resolveFullClueAnswer", () => {
     expect(resolveFullClueAnswer(rebuses, clue, "|")).toEqual("TWITCH|DOT|T|V")
   })
 
+  it("Demonstrates correct pipe position handling with rebus squares", () => {
+    // This test demonstrates the correct handling of pipes within rebus squares
+    const rebuses = { "❶": "TASK" }
+    const clue = {
+      body: "Not too much!",
+      answer: "JUSTASKOSH",
+      number: 14,
+      position: { col: 0, index: 0 },
+      tiles: [
+        { type: "letter", letter: "J" },
+        { type: "letter", letter: "U" },
+        { type: "letter", letter: "S" },
+        { type: "rebus", symbol: "❶", word: "TASK" },
+        { type: "letter", letter: "O" },
+        { type: "letter", letter: "S" },
+        { type: "letter", letter: "H" },
+      ],
+      metadata: undefined,
+      // Internal splits within the rebus at tile position 3
+      rebusInternalSplits: { 3: [0, 1] }, // T|A|SK
+    } as Clue
+
+    // Should produce JUST|A|SKOSH (perfect internal rebus splits)
+    expect(resolveFullClueAnswer(rebuses, clue, "|")).toEqual("JUST|A|SKOSH")
+  })
+
   it("Returns answer for clue with Schrödinger square", () => {
     const rebuses = {}
     const schrodingerTile: SchrodingerTile = { type: "schrodinger", validLetters: ["O", "A"] }
@@ -89,12 +115,7 @@ describe("resolveFullClueAnswer", () => {
       answer: "CONE",
       number: 6,
       position: { col: 0, index: 8 },
-      tiles: [
-        { type: "letter", letter: "C" },
-        schrodingerTile,
-        { type: "letter", letter: "N" },
-        { type: "letter", letter: "E" },
-      ],
+      tiles: [{ type: "letter", letter: "C" }, schrodingerTile, { type: "letter", letter: "N" }, { type: "letter", letter: "E" }],
       direction: "across" as const,
       display: [["text", "Sugar ____"]],
       metadata: { alt: "CANE" },
@@ -364,15 +385,116 @@ D4. Former intimates ~ EXES`
 
     const json = xdToJSON(puzzle)
     const newXD = JSONToXD(json)
-    
+
     // Check that the grid contains the * character
     expect(newXD).toContain("C*NE")
-    
+
     // Check that alt metadata is preserved
     expect(newXD).toContain("A6 ^alt: CANE")
     expect(newXD).toContain("D2 ^alt: IPAD")
-    
+
     // The output should be equivalent to the input
     expect(newXD).toEqual(puzzle)
+  })
+
+  it("Perfect round-trip with pipes within rebus squares", () => {
+    // This demonstrates perfect round-trip conversion with internal rebus splits
+    const puzzle = `## Metadata
+
+title: Pipe Bug Test
+author: Test
+date: 2025-01-01
+rebus: ❶=TASK
+splitcharacter: |
+
+## Grid
+
+JUS❶OSH
+
+## Clues
+
+A1. Not too much! ~ JUST|A|SKOSH`
+
+    const expectedOutput = `## Metadata
+
+title: Pipe Bug Test
+author: Test
+date: 2025-01-01
+editor: Not set
+rebus: ❶=TASK
+splitcharacter: |
+
+## Grid
+
+JUS❶OSH
+
+## Clues
+
+A1. Not too much! ~ JUST|A|SKOSH
+
+`
+
+    const json = xdToJSON(puzzle)
+    const newXD = JSONToXD(json)
+
+    // Perfect round-trip: internal rebus splits are preserved
+    expect(newXD).toEqual(expectedOutput)
+  })
+
+  it("Handles mixed regular and internal rebus splits", () => {
+    // Test case with both regular splits and internal rebus splits
+    const rebuses = { "❶": "DOT" }
+    const clue = {
+      body: "Mixed example",
+      answer: "TWITCHDOTTV",
+      number: 1,
+      position: { col: 0, index: 0 },
+      tiles: [
+        { type: "letter", letter: "T" },
+        { type: "letter", letter: "W" },
+        { type: "letter", letter: "I" },
+        { type: "letter", letter: "T" },
+        { type: "letter", letter: "C" },
+        { type: "letter", letter: "H" },
+        { type: "rebus", symbol: "❶", word: "DOT" },
+        { type: "letter", letter: "T" },
+        { type: "letter", letter: "V" },
+      ],
+      metadata: undefined,
+      display: [["text", "Mixed example"]],
+      direction: "across" as const,
+      splits: [5, 6, 7], // Split after TWITCH, after rebus, and after T
+      rebusInternalSplits: { 6: [0] }, // D|OT within rebus
+    } as Clue
+    
+    // Should produce TWITCH|D|OT|T|V
+    expect(resolveFullClueAnswer(rebuses, clue, "|")).toEqual("TWITCH|D|OT|T|V")
+  })
+
+  it("Handles multiple internal splits in same rebus", () => {
+    // Test case with multiple internal splits in the same rebus
+    const rebuses = { "❶": "TASK" }
+    const clue = {
+      body: "All internal splits",
+      answer: "JUSTASKOSH",
+      number: 1,
+      position: { col: 0, index: 0 },
+      tiles: [
+        { type: "letter", letter: "J" },
+        { type: "letter", letter: "U" },
+        { type: "letter", letter: "S" },
+        { type: "rebus", symbol: "❶", word: "TASK" },
+        { type: "letter", letter: "O" },
+        { type: "letter", letter: "S" },
+        { type: "letter", letter: "H" },
+      ],
+      metadata: undefined,
+      display: [["text", "All internal splits"]],
+      direction: "across" as const,
+      rebusInternalSplits: { 3: [0, 1, 2] }, // T|A|S|K
+    } as Clue
+    
+    // Should produce JUST|A|S|KOSH
+    expect(resolveFullClueAnswer(rebuses, clue, "|")).toEqual("JUST|A|S|KOSH")
   })
 })

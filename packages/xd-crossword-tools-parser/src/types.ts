@@ -169,6 +169,8 @@ export interface Clue {
   direction: CursorDirection
   /** If an answer contains a split character, then this would include the indexes where it was used */
   splits?: number[]
+  /** For splits that occur within rebus squares, maps tile index to array of internal split positions */
+  rebusInternalSplits?: Record<number, number[]>
   /**
    * Duplicating a clue and using a meta suffix (e.g. "A23 ^Hint. A shot to the heart" )
    * would add to { "hint": " A shot to the heart" } to the metadata. This works for any key
