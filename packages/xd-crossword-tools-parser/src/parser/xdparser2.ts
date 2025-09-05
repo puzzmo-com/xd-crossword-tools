@@ -569,13 +569,31 @@ export function replaceWordWithSymbol(word: string, tiles: Tile[], splitChar: st
     }
 
     if (rebusAndNotSplitChar) {
-      // adding in the number of split characters to `i` as well because those don't count as tile characters
-      // and tile.word.length is a length not including splitChars
-      const numSplitChars = word
-        .slice(i, i + tile.word.length)
-        .split("")
-        .filter((c) => c === splitChar).length
-      i += tile.word.length + numSplitChars
+      // For rebus tiles, we need to consume the entire rebus word from the input
+      // and preserve any boundary split characters
+
+      // Calculate how much input corresponds to this rebus word
+      const rebusStartPos = i
+      let rebusCharsConsumed = 0
+      let inputPos = i
+
+      // Consume characters until we've matched the entire rebus word
+      while (rebusCharsConsumed < tile.word.length && inputPos < word.length) {
+        const char = word[inputPos]
+        if (char !== splitChar) {
+          rebusCharsConsumed++
+        }
+        inputPos++
+      }
+
+      // Check for split characters immediately after the rebus section
+      while (inputPos < word.length && word[inputPos] === splitChar) {
+        // These are boundary splits that should be preserved
+        newWord += splitChar
+        inputPos++
+      }
+
+      i = inputPos
     } else {
       i++
     }

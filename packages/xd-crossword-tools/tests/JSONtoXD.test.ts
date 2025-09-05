@@ -1,6 +1,8 @@
+import { describe, it, expect } from "vitest"
 import { addSplits, JSONToXD, resolveFullClueAnswer } from "../src/JSONtoXD"
-import { xdToJSON } from "xd-crossword-tools-parser"
+import { xdToJSON } from "xd-crossword-tools-parser/src"
 import type { Clue, SchrodingerTile } from "xd-crossword-tools-parser"
+import { readFileSync } from "fs"
 
 /*
  * Utilities
@@ -89,12 +91,7 @@ describe("resolveFullClueAnswer", () => {
       answer: "CONE",
       number: 6,
       position: { col: 0, index: 8 },
-      tiles: [
-        { type: "letter", letter: "C" },
-        schrodingerTile,
-        { type: "letter", letter: "N" },
-        { type: "letter", letter: "E" },
-      ],
+      tiles: [{ type: "letter", letter: "C" }, schrodingerTile, { type: "letter", letter: "N" }, { type: "letter", letter: "E" }],
       direction: "across" as const,
       display: [["text", "Sugar ____"]],
       metadata: { alt: "CANE" },
@@ -364,15 +361,34 @@ D4. Former intimates ~ EXES`
 
     const json = xdToJSON(puzzle)
     const newXD = JSONToXD(json)
-    
+
     // Check that the grid contains the * character
     expect(newXD).toContain("C*NE")
-    
+
     // Check that alt metadata is preserved
     expect(newXD).toContain("A6 ^alt: CANE")
     expect(newXD).toContain("D2 ^alt: IPAD")
-    
+
     // The output should be equivalent to the input
     expect(newXD).toEqual(puzzle)
   })
+})
+
+it("can handle going from xd to json and back when there are pipes in rebus parts of clues", () => {
+  const crowdwordXD = readFileSync(__dirname + "/./vendoredXDs/crowdwork.xd", "utf-8")
+  const json = xdToJSON(crowdwordXD)
+
+  const newXD = JSONToXD(json)
+
+  const differentLines: [string][] = []
+  for (const [idx, line] of newXD.split("\n").entries()) {
+    if (!crowdwordXD.includes(line)) {
+      differentLines.push([`${idx} - was: ${crowdwordXD.split("\n")[idx]} - now: ${line}`])
+    }
+  }
+
+  // this is for my notes, it should be empty, but it is not
+  expect(differentLines).toMatchInlineSnapshot(`[]`)
+
+  expect(differentLines).toHaveLength(0)
 })
