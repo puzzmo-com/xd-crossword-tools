@@ -11,7 +11,9 @@ export function resolveFullClueAnswer(rebusMap: CrosswordJSON["rebuses"], clue: 
   }
 
   // Build the answer tile by tile, applying internal splits to rebus tiles
+  // Work in Unicode code points to avoid surrogate pair issues.
   let result = ""
+  const answerCodePoints = [...clue.answer]
   let currentCharIndex = 0
   
   for (let tileIndex = 0; tileIndex < clue.tiles.length; tileIndex++) {
@@ -25,19 +27,20 @@ export function resolveFullClueAnswer(rebusMap: CrosswordJSON["rebuses"], clue: 
     if (tile.type === "rebus") {
       const rebusWord = tile.word
       const internalSplits = clue.rebusInternalSplits?.[tileIndex] || []
-      
-      // Add each character of the rebus word, with internal splits
-      for (let i = 0; i < rebusWord.length; i++) {
+
+      const rebusCP = [...rebusWord]
+      // Add each code point of the rebus word, with internal splits
+      for (let i = 0; i < rebusCP.length; i++) {
         if (internalSplits.includes(i - 1)) {
           result += splitChar
         }
-        result += rebusWord[i]
+        result += rebusCP[i]
       }
     } else if (tile.type === "letter") {
       result += tile.letter
     } else if (tile.type === "schrodinger") {
-      // Get the actual letter from the answer at this position
-      result += clue.answer[currentCharIndex] || "*"
+      // Get the actual letter from the answer at this position (by code point)
+      result += answerCodePoints[currentCharIndex] || "*"
     } else if (tile.type === "blank") {
       // This shouldn't happen in a clue answer
       result += ""
@@ -45,9 +48,9 @@ export function resolveFullClueAnswer(rebusMap: CrosswordJSON["rebuses"], clue: 
       throw new Error(`Invalid tile type: ${(tile as any).type}`)
     }
     
-    // Update character index for Schrödinger tiles
+    // Update character index (by code points)
     if (tile.type === "rebus") {
-      currentCharIndex += tile.word.length
+      currentCharIndex += [...tile.word].length
     } else if (tile.type !== "blank") {
       currentCharIndex++
     }
