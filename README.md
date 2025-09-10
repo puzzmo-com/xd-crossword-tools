@@ -4565,7 +4565,7 @@ The main `xd-crossword-tools` package provides comprehensive functionality for f
 | `xdDiff`                       | Creates semantic diff between two XD files      | `beforeXD: string`, `afterXD: string`                  | `DiffResults`                                   | Line-by-line differences with metadata awareness     |
 | `runLinterForClue`             | Runs linting checks on individual clues         | `clue: Clue`, `ordinal: "across" \| "down"`            | `Report[]`                                      | Checks for common crossword construction issues      |
 | `validateClueAnswersMatchGrid` | Validates clue answers match grid tiles         | `json: CrosswordJSON`                                  | `Report[]`                                      | Checks consistency between answers and grid          |
-| `resolveFullClueAnswer`        | Resolves clue answer with rebus and splits      | `rebusMap: Rebuses`, `clue: Clue`, `splitChar: string` | `string`                                        | Handles rebus substitution and split characters      |
+| `resolveFullClueAnswer`        | Resolves clue answer with rebus and splits      | `clue: Clue`, `splitChar: string`                      | `string`                                        | Handles rebus substitution and split characters      |
 
 ### xd-crossword-tools-parser Utility Functions
 

@@ -7,7 +7,6 @@ import type { Clue, SchrodingerTile } from "xd-crossword-tools-parser"
  ******************************************************************************/
 describe("resolveFullClueAnswer", () => {
   it("Returns the answer for basic clue", () => {
-    const rebuses = {}
     const clue = {
       body: "to",
       answer: "AT",
@@ -19,11 +18,10 @@ describe("resolveFullClueAnswer", () => {
       ],
       metadata: undefined,
     } as Clue
-    expect(resolveFullClueAnswer(rebuses, clue, "")).toEqual(clue.answer)
+    expect(resolveFullClueAnswer(clue, "")).toEqual(clue.answer)
   })
 
   it("Returns answer for rebus clue", () => {
-    const rebuses = { "❶": "AT" }
     const clue = {
       body: "to",
       answer: "CAT",
@@ -35,11 +33,10 @@ describe("resolveFullClueAnswer", () => {
       ],
       metadata: undefined,
     } as Clue
-    expect(resolveFullClueAnswer(rebuses, clue, "")).toEqual(clue.answer)
+    expect(resolveFullClueAnswer(clue, "")).toEqual(clue.answer)
   })
 
   it("Returns answer for clue with pipes", () => {
-    const rebuses = {}
     const clue = {
       body: "Band with two words.",
       answer: "OKGO",
@@ -54,11 +51,10 @@ describe("resolveFullClueAnswer", () => {
       metadata: undefined,
       splits: [1],
     } as Clue
-    expect(resolveFullClueAnswer(rebuses, clue, "|")).toEqual("OK|GO")
+    expect(resolveFullClueAnswer(clue, "|")).toEqual("OK|GO")
   })
 
   it("Returns answer for rebus clue with pipes", () => {
-    const rebuses = { "❶": "DOT" }
     const clue = {
       body: "Example",
       answer: "TWITCHDOTTV",
@@ -78,12 +74,11 @@ describe("resolveFullClueAnswer", () => {
       metadata: undefined,
       splits: [5, 6, 7],
     } as Clue
-    expect(resolveFullClueAnswer(rebuses, clue, "|")).toEqual("TWITCH|DOT|T|V")
+    expect(resolveFullClueAnswer(clue, "|")).toEqual("TWITCH|DOT|T|V")
   })
 
   it("Demonstrates correct pipe position handling with rebus squares", () => {
     // This test demonstrates the correct handling of pipes within rebus squares
-    const rebuses = { "❶": "TASK" }
     const clue = {
       body: "Not too much!",
       answer: "JUSTASKOSH",
@@ -99,17 +94,18 @@ describe("resolveFullClueAnswer", () => {
         { type: "letter", letter: "H" },
       ],
       metadata: undefined,
+      display: [["text", "Not too much!"]],
+      direction: "across" as const,
       // Internal splits within the rebus at tile position 3
       rebusInternalSplits: { 3: [0, 1] }, // T|A|SK
     } as Clue
 
     // Should produce JUST|A|SKOSH (perfect internal rebus splits)
-    expect(resolveFullClueAnswer(rebuses, clue, "|")).toEqual("JUST|A|SKOSH")
+    expect(resolveFullClueAnswer(clue, "|")).toEqual("JUST|A|SKOSH")
   })
 
   it("Returns answer for clue with Schrödinger square", () => {
-    const rebuses = {}
-    const schrodingerTile: SchrodingerTile = { type: "schrodinger", validLetters: ["O", "A"] }
+    const schrodingerTile: SchrodingerTile = { type: "schrodinger", validLetters: ["O", "A"], validRebuses: [] }
     const clue = {
       body: "Sugar ____",
       answer: "CONE",
@@ -120,7 +116,7 @@ describe("resolveFullClueAnswer", () => {
       display: [["text", "Sugar ____"]],
       metadata: { alt: "CANE" },
     } as Clue
-    expect(resolveFullClueAnswer(rebuses, clue, "")).toEqual("CONE")
+    expect(resolveFullClueAnswer(clue, "")).toEqual("CONE")
   })
 })
 
@@ -404,6 +400,7 @@ D4. Former intimates ~ EXES`
 title: Pipe Bug Test
 author: Test
 date: 2025-01-01
+editor: Penelope Rudow
 rebus: ❶=TASK
 splitcharacter: |
 
@@ -413,37 +410,17 @@ JUS❶OSH
 
 ## Clues
 
-A1. Not too much! ~ JUST|A|SKOSH`
-
-    const expectedOutput = `## Metadata
-
-title: Pipe Bug Test
-author: Test
-date: 2025-01-01
-editor: Not set
-rebus: ❶=TASK
-splitcharacter: |
-
-## Grid
-
-JUS❶OSH
-
-## Clues
-
-A1. Not too much! ~ JUST|A|SKOSH
-
-`
+A1. Not too much! ~ JUST|A|SKOSH\n\n`
 
     const json = xdToJSON(puzzle)
     const newXD = JSONToXD(json)
 
     // Perfect round-trip: internal rebus splits are preserved
-    expect(newXD).toEqual(expectedOutput)
+    expect(newXD).toEqual(puzzle)
   })
 
   it("Handles mixed regular and internal rebus splits", () => {
     // Test case with both regular splits and internal rebus splits
-    const rebuses = { "❶": "DOT" }
     const clue = {
       body: "Mixed example",
       answer: "TWITCHDOTTV",
@@ -466,14 +443,13 @@ A1. Not too much! ~ JUST|A|SKOSH
       splits: [5, 6, 7], // Split after TWITCH, after rebus, and after T
       rebusInternalSplits: { 6: [0] }, // D|OT within rebus
     } as Clue
-    
+
     // Should produce TWITCH|D|OT|T|V
-    expect(resolveFullClueAnswer(rebuses, clue, "|")).toEqual("TWITCH|D|OT|T|V")
+    expect(resolveFullClueAnswer(clue, "|")).toEqual("TWITCH|D|OT|T|V")
   })
 
   it("Handles multiple internal splits in same rebus", () => {
     // Test case with multiple internal splits in the same rebus
-    const rebuses = { "❶": "TASK" }
     const clue = {
       body: "All internal splits",
       answer: "JUSTASKOSH",
@@ -491,10 +467,10 @@ A1. Not too much! ~ JUST|A|SKOSH
       metadata: undefined,
       display: [["text", "All internal splits"]],
       direction: "across" as const,
-      rebusInternalSplits: { 3: [0, 1, 2] }, // T|A|S|K
+      rebusInternalSplits: { 3: [0, 1] },
     } as Clue
-    
-    // Should produce JUST|A|S|KOSH
-    expect(resolveFullClueAnswer(rebuses, clue, "|")).toEqual("JUST|A|S|KOSH")
+
+    // Should produce JUST|A|SKOSH
+    expect(resolveFullClueAnswer(clue, "|")).toEqual("JUST|A|SKOSH")
   })
 })

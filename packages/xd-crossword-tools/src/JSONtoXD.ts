@@ -1,6 +1,6 @@
 import type { Clue, CrosswordJSON, Tile } from "xd-crossword-tools-parser"
 
-export function resolveFullClueAnswer(rebusMap: CrosswordJSON["rebuses"], clue: Clue, splitChar: string) {
+export function resolveFullClueAnswer(clue: Clue, splitChar: string) {
   // For simple cases (no rebus, no splits, no internal splits), just return the answer directly
   const hasRebus = clue.tiles.some((t) => t.type === "rebus")
   const hasSplits = clue.splits && clue.splits.length > 0
@@ -112,7 +112,7 @@ export const JSONToXD = (json: CrosswordJSON): string => {
   const getCluesXD = (clues: Clue[], direction: "A" | "D") => {
     return clues
       .map((clue) => {
-        const final = resolveFullClueAnswer(json.rebuses, clue, splitChar)
+        const final = resolveFullClueAnswer(clue, splitChar)
         let line = `${direction}${clue.number}. ${clue.body} ~ ${final}`
         if (clue.metadata) {
           let printed = false

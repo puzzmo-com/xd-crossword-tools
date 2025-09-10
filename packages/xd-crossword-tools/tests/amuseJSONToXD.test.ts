@@ -24,14 +24,16 @@ describeConditional("amuseJSONToXD", () => {
     expect(result.tiles[0][0].type).toBe("schrodinger")
 
     expect(result.tiles[0][0]).toHaveProperty("validLetters")
-    expect(result.tiles[0][0].validLetters).toEqual(["H", "J"])
+    if (result.tiles[0][0].type === "schrodinger") {
+      expect(result.tiles[0][0].validLetters).toEqual(["H", "J"])
+    }
 
     expect(result.clues.down[0]).toHaveProperty("answer")
     expect(result.clues.down[0].answer).toEqual("HELLO")
 
     expect(result.clues.down[0]).toHaveProperty("metadata")
     expect(result.clues.down[0].metadata).toHaveProperty("alt")
-    expect(result.clues.down[0].metadata.alt).toEqual("JELLO")
+    expect(result.clues.down[0].metadata?.alt).toEqual("JELLO")
   })
 
   it("handles rebus clues correctly", () => {
@@ -41,10 +43,14 @@ describeConditional("amuseJSONToXD", () => {
     expect(result.tiles[3][0].type).toBe("rebus")
 
     expect(result.tiles[3][0]).toHaveProperty("word")
-    expect(result.tiles[3][0].word).toBe("LD")
+    if (result.tiles[3][0].type === "rebus") {
+      expect(result.tiles[3][0].word).toBe("LD")
+    }
 
     expect(result.tiles[3][0]).toHaveProperty("symbol")
-    expect(result.tiles[3][0].symbol).toBe("ⓐ")
+    if (result.tiles[3][0].type === "rebus") {
+      expect(result.tiles[3][0].symbol).toBe("ⓐ")
+    }
 
     expect(result.meta).toHaveProperty("rebus")
     expect(result.meta.rebus).toContain("ⓐ=LD")
