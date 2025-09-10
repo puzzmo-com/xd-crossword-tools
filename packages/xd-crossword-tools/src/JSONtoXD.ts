@@ -31,7 +31,7 @@ export function resolveFullClueAnswer(clue: Clue, splitChar: string) {
       const rebusCP = [...rebusWord]
       // Add each code point of the rebus word, with internal splits
       for (let i = 0; i < rebusCP.length; i++) {
-        if (internalSplits.includes(i - 1)) {
+        if (i > 0 && internalSplits.includes(i - 1)) {
           result += splitChar
         }
         result += rebusCP[i]
