@@ -4,7 +4,7 @@
   "version": "11.1.4",
   "description": "Tools for taking different crossword file formats and converting them to xd, and for converting an xd file to useful JSON",
   "scripts": {
-    "build": "yarn workspaces foreach -A run build",
+    "build": "yarn workspaces foreach -At run build",
     "test": "vitest",
     "docs": "md-magic",
     "type-check": "yarn workspaces foreach -A run type-check"
