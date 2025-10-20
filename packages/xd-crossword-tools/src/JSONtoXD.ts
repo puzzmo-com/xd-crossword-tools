@@ -1,48 +1,62 @@
 import type { Clue, CrosswordJSON, Tile } from "xd-crossword-tools-parser"
 
-export function resolveFullClueAnswer(rebusMap: CrosswordJSON["rebuses"], clue: Clue, splitChar: string) {
-  // For simple cases (no rebus, no splits), just return the answer directly
+export function resolveFullClueAnswer(clue: Clue, splitChar: string) {
+  // For simple cases (no rebus, no splits, no internal splits), just return the answer directly
   const hasRebus = clue.tiles.some((t) => t.type === "rebus")
   const hasSplits = clue.splits && clue.splits.length > 0
+  const hasInternalSplits = clue.rebusInternalSplits && Object.keys(clue.rebusInternalSplits).length > 0
 
-  if (!hasRebus && !hasSplits) {
+  if (!hasRebus && !hasSplits && !hasInternalSplits) {
     return clue.answer
   }
 
-  // In order to correctly pipe rebus clues, we must temporarily substitute in rebus symbols
-  const replacedWithSymbol = clue.tiles
-    .map((t: Tile) => {
-      if (t.type === "rebus") {
-        return t.symbol
-      } else if (t.type === "letter") {
-        return t.letter
-      } else if (t.type === "schrodinger") {
-        // For Schrödinger tiles that appear as regular letter tiles with "*",
-        // we need to get the actual letter from the answer
-        const tileIndex = clue.tiles.indexOf(t)
-        return clue.answer[tileIndex] || "*"
-      } else if (t.type === "blank") {
-        return "" // This shouldn't happen in a clue answer
+  // Build the answer tile by tile, applying internal splits to rebus tiles
+  // Work in Unicode code points to avoid surrogate pair issues.
+  let result = ""
+  const answerCodePoints = [...clue.answer]
+  let currentCharIndex = 0
+  
+  for (let tileIndex = 0; tileIndex < clue.tiles.length; tileIndex++) {
+    const tile = clue.tiles[tileIndex]
+    
+    // Add split before this tile if needed
+    if (clue.splits && clue.splits.includes(tileIndex - 1)) {
+      result += splitChar
+    }
+    
+    if (tile.type === "rebus") {
+      const rebusWord = tile.word
+      const internalSplits = clue.rebusInternalSplits?.[tileIndex] || []
+
+      const rebusCP = [...rebusWord]
+      // Add each code point of the rebus word, with internal splits
+      for (let i = 0; i < rebusCP.length; i++) {
+        if (i > 0 && internalSplits.includes(i - 1)) {
+          result += splitChar
+        }
+        result += rebusCP[i]
       }
-      throw new Error(`Invalid tile type: ${(t as any).type}`)
-    })
-    .join("")
+    } else if (tile.type === "letter") {
+      result += tile.letter
+    } else if (tile.type === "schrodinger") {
+      // Get the actual letter from the answer at this position (by code point)
+      result += answerCodePoints[currentCharIndex] || "*"
+    } else if (tile.type === "blank") {
+      // This shouldn't happen in a clue answer
+      result += ""
+    } else {
+      throw new Error(`Invalid tile type: ${(tile as any).type}`)
+    }
+    
+    // Update character index (by code points)
+    if (tile.type === "rebus") {
+      currentCharIndex += [...tile.word].length
+    } else if (tile.type !== "blank") {
+      currentCharIndex++
+    }
+  }
 
-  // now, apply splits after the replace
-  const withSplits = addSplits(replacedWithSymbol, splitChar, clue.splits)
-
-  // now, replace symbols with words again
-  const answer = withSplits
-    .split("")
-    .map((char) => {
-      if (rebusMap[char]) {
-        return rebusMap[char]
-      }
-      return char
-    })
-    .join("")
-
-  return answer
+  return result
 }
 
 export function addSplits(answer: string, splitChar: string, splits?: number[]): string {
@@ -98,7 +112,7 @@ export const JSONToXD = (json: CrosswordJSON): string => {
   const getCluesXD = (clues: Clue[], direction: "A" | "D") => {
     return clues
       .map((clue) => {
-        const final = resolveFullClueAnswer(json.rebuses, clue, splitChar)
+        const final = resolveFullClueAnswer(clue, splitChar)
         let line = `${direction}${clue.number}. ${clue.body} ~ ${final}`
         if (clue.metadata) {
           let printed = false

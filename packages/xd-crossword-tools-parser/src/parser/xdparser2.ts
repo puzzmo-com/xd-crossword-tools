@@ -385,8 +385,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
       continue
     }
 
-    const answerWithRebusSymbols = replaceWordWithSymbol(clue.answer, tiles, json.meta.splitcharacter)
-    const splits = parseSplitsFromAnswer(answerWithRebusSymbols, json.meta.splitcharacter)
+    const splitResult = parseSplitsFromAnswer(clue.answer, json.meta.splitcharacter, tiles)
 
     if (editorInfo && clue.metadata) clue.metadata["answer:unprocessed"] = clue.answer
 
@@ -412,7 +411,8 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
       metadata: hasFields ? processedMetadata : undefined,
       display: clue.display,
       direction: dirKey,
-      ...(splits ? { splits } : {}),
+      ...(splitResult.splits ? { splits: splitResult.splits } : {}),
+      ...(splitResult.rebusInternalSplits ? { rebusInternalSplits: splitResult.rebusInternalSplits } : {}),
     })
   }
 
@@ -817,20 +817,99 @@ function parseStyleCSSLike(str: string, xd: string, errorReporter: (msg: string,
  * @param splitCharacter character to split on
  * @returns an array of split locations
  */
-function parseSplitsFromAnswer(answerWithSplits: string, splitCharacter?: string): number[] | undefined {
-  if (!splitCharacter) return undefined
-  const splits = []
-  const characters = [...answerWithSplits] // account for unicode characters like emojis that could take up more than one utf-16 unit
-  for (var i = 0; i < characters.length; i++) {
+function parseSplitsFromAnswer(
+  answerWithSplits: string,
+  splitCharacter?: string,
+  tiles?: Tile[]
+): {
+  splits?: number[]
+  rebusInternalSplits?: Record<number, number[]>
+} {
+  if (!splitCharacter) return {}
+
+  // Extract split positions from the answer, counting by code points
+  const characters = [...answerWithSplits]
+  const splitPositions: number[] = []
+
+  let charIndex = 0
+  for (let i = 0; i < characters.length; i++) {
     if (characters[i] === splitCharacter) {
-      splits.push(characters.slice(0, i).filter((c) => c !== splitCharacter).length - 1)
+      splitPositions.push(charIndex - 1)
+    } else {
+      charIndex++
     }
   }
 
-  // Only include the splits when it is used
-  if (splits.length === 0) return undefined
+  if (splitPositions.length === 0) return {}
 
-  return splits
+  // If no tiles provided, return simple splits (backward compatibility)
+  if (!tiles) {
+    // Deduplicate and sort in case of repeated split chars
+    const dedup = Array.from(new Set(splitPositions)).sort((a, b) => a - b)
+    return { splits: dedup }
+  }
+
+  // Map code-point character positions to tile positions and internal indices
+  let currentCharIndex = 0
+  let currentTileIndex = 0
+  const charToTileMap = new Map<number, { tileIndex: number; internalIndex: number }>()
+
+  for (const tile of tiles) {
+    if (tile.type === "rebus") {
+      let internal = 0
+      for (const _ch of [...tile.word]) {
+        charToTileMap.set(currentCharIndex, { tileIndex: currentTileIndex, internalIndex: internal })
+        currentCharIndex++
+        internal++
+      }
+    } else {
+      charToTileMap.set(currentCharIndex, { tileIndex: currentTileIndex, internalIndex: 0 })
+      currentCharIndex++
+    }
+    currentTileIndex++
+  }
+
+  // Categorize splits: tile boundary vs internal rebus splits
+  const tileBoundarySplits: number[] = []
+  const rebusInternalSplits: Record<number, number[]> = {}
+
+  for (const splitPos of splitPositions) {
+    const mapping = charToTileMap.get(splitPos)
+    if (!mapping) continue
+
+    const { tileIndex, internalIndex } = mapping
+    const tile = tiles[tileIndex]
+
+    if (tile.type === "rebus") {
+      const cpLen = [...tile.word].length
+      if (internalIndex < cpLen - 1) {
+        // Internal split within a rebus (by code-point index)
+        if (!rebusInternalSplits[tileIndex]) rebusInternalSplits[tileIndex] = []
+        rebusInternalSplits[tileIndex].push(internalIndex)
+        continue
+      }
+    }
+    // Otherwise, a split at a tile boundary
+    tileBoundarySplits.push(tileIndex)
+  }
+
+  const result: { splits?: number[]; rebusInternalSplits?: Record<number, number[]> } = {}
+
+  if (tileBoundarySplits.length > 0) {
+    result.splits = Array.from(new Set(tileBoundarySplits)).sort((a, b) => a - b)
+  }
+
+  if (Object.keys(rebusInternalSplits).length > 0) {
+    // Dedupe and sort internal splits for each rebus
+    for (const tileIndex in rebusInternalSplits) {
+      const dedup = Array.from(new Set(rebusInternalSplits[tileIndex]))
+      dedup.sort((a, b) => a - b)
+      rebusInternalSplits[tileIndex] = dedup
+    }
+    result.rebusInternalSplits = rebusInternalSplits
+  }
+
+  return result
 }
 
 /** xd spec compliant parser for markup inside a clue */

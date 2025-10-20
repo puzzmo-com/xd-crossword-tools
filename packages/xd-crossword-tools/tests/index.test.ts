@@ -1,6 +1,6 @@
 // Careful of this resolving to the .js version!
 import { puzToXD } from "../src/puzToXD"
-import { uclickXMLToXd } from "../src/uclickToXD"
+import { uclickXMLToXD } from "../src/uclickToXD"
 
 import { xdToJSON } from "xd-crossword-tools-parser"
 
