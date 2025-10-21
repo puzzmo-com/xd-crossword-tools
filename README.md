@@ -4551,21 +4551,21 @@ T { bar-top: true }
 
 The main `xd-crossword-tools` package provides comprehensive functionality for format conversion, validation, and development tools:
 
-| Function                       | Description                                     | Parameters                                             | Return Type                                     | Notes                                                |
-| ------------------------------ | ----------------------------------------------- | ------------------------------------------------------ | ----------------------------------------------- | ---------------------------------------------------- |
-| `puzToXD`                      | Converts .puz file buffer to XD format          | `buffer: ArrayBuffer`                                  | `string`                                        | Handles rebus symbols, circles, shades, and metadata |
-| `uclickXMLToXD`                | Converts UClick XML format to XD                | `str: string`                                          | `string`                                        | Parses XML crossword data and converts to XD format  |
-| `jpzToXD`                      | Converts JPZ (XML) format to XD                 | `xmlString: string`                                    | `string`                                        | Handles JPZ crossword puzzle format conversion       |
-| `amuseToXD`                    | Converts Amuse JSON format to XD                | `amuseJSON: AmuseTopLevel`                             | `string`                                        | Converts Amuse Labs crossword format to XD           |
-| `JSONToXD`                     | Converts CrosswordJSON back to XD format string | `json: CrosswordJSON`                                  | `string`                                        | Main function for converting parsed data back to XD  |
-| `JSONToPuzJSON`                | Converts CrosswordJSON to .puz format JSON      | `json: CrosswordJSON`, `config?: {filled?: boolean}`   | `any`                                           | Creates JSON for @confuzzle/writepuz                 |
-| `puzEncode`                    | Encodes puzzle data to .puz binary format       | `puzzle: Puzzle`                                       | `Uint8Array`                                    | Low-level binary .puz file encoding                  |
-| `puzDecode`                    | Decodes .puz binary format to JSON              | `bytes: ArrayBuffer`                                   | `Puz2JSONResult`                                | Low-level binary .puz file decoding                  |
-| `editorInfoAtCursor`           | Gets crossword information at cursor position   | `data: CrosswordJSON`                                  | `(line: number, index: number) => PositionInfo` | For editor integrations - requires editorInfo        |
-| `xdDiff`                       | Creates semantic diff between two XD files      | `beforeXD: string`, `afterXD: string`                  | `DiffResults`                                   | Line-by-line differences with metadata awareness     |
-| `runLinterForClue`             | Runs linting checks on individual clues         | `clue: Clue`, `ordinal: "across" \| "down"`            | `Report[]`                                      | Checks for common crossword construction issues      |
-| `validateClueAnswersMatchGrid` | Validates clue answers match grid tiles         | `json: CrosswordJSON`                                  | `Report[]`                                      | Checks consistency between answers and grid          |
-| `resolveFullClueAnswer`        | Resolves clue answer with rebus and splits      | `clue: Clue`, `splitChar: string`                      | `string`                                        | Handles rebus substitution and split characters      |
+| Function                       | Description                                     | Parameters                                           | Return Type                                     | Notes                                                |
+| ------------------------------ | ----------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------- | ---------------------------------------------------- |
+| `puzToXD`                      | Converts .puz file buffer to XD format          | `buffer: ArrayBuffer`                                | `string`                                        | Handles rebus symbols, circles, shades, and metadata |
+| `uclickXMLToXD`                | Converts UClick XML format to XD                | `str: string`                                        | `string`                                        | Parses XML crossword data and converts to XD format  |
+| `jpzToXD`                      | Converts JPZ (XML) format to XD                 | `xmlString: string`                                  | `string`                                        | Handles JPZ crossword puzzle format conversion       |
+| `amuseToXD`                    | Converts Amuse JSON format to XD                | `amuseJSON: AmuseTopLevel`                           | `string`                                        | Converts Amuse Labs crossword format to XD           |
+| `JSONToXD`                     | Converts CrosswordJSON back to XD format string | `json: CrosswordJSON`                                | `string`                                        | Main function for converting parsed data back to XD  |
+| `JSONToPuzJSON`                | Converts CrosswordJSON to .puz format JSON      | `json: CrosswordJSON`, `config?: {filled?: boolean}` | `any`                                           | Creates JSON for @confuzzle/writepuz                 |
+| `puzEncode`                    | Encodes puzzle data to .puz binary format       | `puzzle: Puzzle`                                     | `Uint8Array`                                    | Low-level binary .puz file encoding                  |
+| `puzDecode`                    | Decodes .puz binary format to JSON              | `bytes: ArrayBuffer`                                 | `Puz2JSONResult`                                | Low-level binary .puz file decoding                  |
+| `editorInfoAtCursor`           | Gets crossword information at cursor position   | `data: CrosswordJSON`                                | `(line: number, index: number) => PositionInfo` | For editor integrations - requires editorInfo        |
+| `xdDiff`                       | Creates semantic diff between two XD files      | `beforeXD: string`, `afterXD: string`                | `DiffResults`                                   | Line-by-line differences with metadata awareness     |
+| `runLinterForClue`             | Runs linting checks on individual clues         | `clue: Clue`, `ordinal: "across" \| "down"`          | `Report[]`                                      | Checks for common crossword construction issues      |
+| `validateClueAnswersMatchGrid` | Validates clue answers match grid tiles         | `json: CrosswordJSON`                                | `Report[]`                                      | Checks consistency between answers and grid          |
+| `resolveFullClueAnswer`        | Resolves clue answer with rebus and splits      | `clue: Clue`, `splitChar: string`                    | `string`                                        | Handles rebus substitution and split characters      |
 
 ### xd-crossword-tools-parser Utility Functions
 
@@ -4587,15 +4587,45 @@ The `xd-crossword-tools-parser` package exports several utility functions for wo
 | `stringGridToTiles`                         | Converts a 2D string array to a 2D Tile array                        | `rebuses: Rebuses`, `strArr: string[][]`                | `Tile[][]`                                             |
 | `replaceWordWithSymbol`                     | Replaces a word in tiles with a rebus symbol                         | `word: string`, `tiles: Tile[]`, `splitChar: string`    | `void`                                                 |
 
-## Deploys
+## Publishing and deployment
 
-Happen on CI, you. just write the changelog and then bump the version:
+### NPM Package Publishing
 
-```sh
-yarn workspaces foreach -A version [major|minor|patch]
+NPM package publishing happens automatically via GitHub Actions when changes are pushed to the `main` branch. The workflow compares local package versions with published versions on npm and only publishes if versions have been bumped.
 
-# e.g.
-yarn workspaces foreach -A version patch
-git add .; git commit -m "Prepare for release"
-git push
-```
+#### To Prepare a New Release:
+
+1. **Update the changelog** (if applicable) to document changes in this release
+
+2. **Bump package versions** using Yarn workspaces:
+
+   ```sh
+   # Bump all workspace packages by the same amount
+   yarn workspaces foreach -A version [major|minor|patch]
+
+   # Examples:
+   yarn workspaces foreach -A version patch  # 1.0.0 -> 1.0.1
+   yarn workspaces foreach -A version minor  # 1.0.0 -> 1.1.0
+   yarn workspaces foreach -A version major  # 1.0.0 -> 2.0.0
+   ```
+
+3. **Commit and push** the version changes:
+
+   ```sh
+   git add .
+   git commit -m "v1.2.3"  # Use the new version number
+   git push
+   ```
+
+4. **Automated CI process** runs on push to `main`:
+   - Builds both packages (`xd-crossword-tools-parser` and `xd-crossword-tools`)
+   - Runs type checking and tests
+   - Compares local versions with npm registry versions
+   - Publishes any packages with version mismatches
+   - Creates a git tag for the release (e.g., `v1.2.3`)
+
+**Note:** The workflow automatically handles the dependency between packages - it converts `workspace:*` references to actual version numbers before publishing.
+
+### Website Deployment
+
+The interactive playground website deploys automatically to GitHub Pages on every push to `main`.
