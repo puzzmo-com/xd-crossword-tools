@@ -23,6 +23,82 @@ it("generates a barred crossword from the xd", () => {
   expect(clue14?.answer).toBe("OLDS")
 })
 
+it("rejects comma-separated selectors in Design section", () => {
+  const xd = `## Metadata
+
+title: Test Comma Error
+author: Test
+form: barred
+
+## Grid
+
+CAT
+DOG
+
+## Clues
+
+A1. Feline ~ CAT
+A4. Canine ~ DOG
+
+D1. Two letters ~ CD
+D2. Two letters ~ AO
+D3. Two letters ~ TG
+
+## Design
+
+<style>
+A, B { bar-top: true }
+</style>
+
+...
+AAA
+`
+
+  const result = xdToJSON(xd, true)
+
+  expect(result.report.success).toBe(false)
+  expect(result.report.errors.length).toBeGreaterThan(0)
+  expect(result.report.errors.some(e => e.message && e.message.includes("Comma-separated selectors"))).toBe(true)
+})
+
+it("rejects commas inside style properties in Design section", () => {
+  const xd = `## Metadata
+
+title: Test Comma Error
+author: Test
+form: barred
+
+## Grid
+
+CAT
+DOG
+
+## Clues
+
+A1. Feline ~ CAT
+A4. Canine ~ DOG
+
+D1. Two letters ~ CD
+D2. Two letters ~ AO
+D3. Two letters ~ TG
+
+## Design
+
+<style>
+A { bar-top: true, bar-left: true }
+</style>
+
+...
+AAA
+`
+
+  const result = xdToJSON(xd, true)
+
+  expect(result.report.success).toBe(false)
+  expect(result.report.errors.length).toBeGreaterThan(0)
+  expect(result.report.errors.some(e => e.message && e.message.includes("Commas are not allowed inside style rules"))).toBe(true)
+})
+
 const xdForBarred = `## Metadata
 
 title: Beneath The Surface Printer&#039;s Devilry #4 (Midi)
