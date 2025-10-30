@@ -5,7 +5,7 @@ export const validateWeCanUseThisCrossword = (tiles: CrosswordJSON["tiles"]) => 
   // we only support barred grids with no rebuses or schrodingers today
   for (const row of tiles) {
     for (const tile of row) {
-      if (tile.type === "rebus" || tile.type === "schrodinger" || tile.type === "blank") {
+      if (tile.type === "rebus" || tile.type === "schrodinger") {
         return false
       }
     }

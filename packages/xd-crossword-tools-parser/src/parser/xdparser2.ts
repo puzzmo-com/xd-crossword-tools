@@ -325,8 +325,44 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
 
   const useBarredLogic = json.meta.form === "barred"
 
+  // Validate barred crosswords don't use unsupported features
+  if (useBarredLogic) {
+    const hasUnsupportedTiles = json.tiles.some((row) =>
+      row.some((tile) => tile.type === "rebus" || tile.type === "schrodinger")
+    )
+
+    if (hasUnsupportedTiles) {
+      const rebusLine = getLine(xd.toLowerCase(), "rebus:")
+      addSyntaxError(
+        `Barred crosswords do not support rebuses or Schrödinger squares. Please remove the 'rebus:' metadata and use only letters and blank tiles in your grid.`,
+        rebusLine || 0
+      )
+      // Skip clue processing since it will fail anyway
+      return json
+    }
+
+    // Also check if design section is missing
+    if (!json.design) {
+      const formLine = getLine(xd.toLowerCase(), "form:")
+      addSyntaxError(
+        `Barred crosswords require a '## Design' section with bar positions. Add a design section with <style> tags defining bar-left and bar-top properties.`,
+        formLine || 0
+      )
+      // Skip clue processing since we need the design section
+      return json
+    }
+  }
+
   // Update the clues with position info and the right metadata
-  const positions = getCluePositionsForBoard(json.tiles, json.meta, rawInput.clues, json)
+  let positions: PositionWithTiles[] | Record<number, PositionWithTiles>
+  try {
+    positions = getCluePositionsForBoard(json.tiles, json.meta, rawInput.clues, json)
+  } catch (error) {
+    // If getCluePositionsForBoard throws an error, add it to the report and return early
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    addSyntaxError(`Error processing barred crossword: ${errorMessage}`, 0)
+    return json
+  }
 
   // For barred grids, create a proper mapping from clue numbers to positions
   let positionsByClueNumber: Record<number, PositionWithTiles> = {}
@@ -375,7 +411,13 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     const positionData = positionsByClueNumber[clue.num]
 
     if (!positionData) {
-      bail("Could not find positioning data")
+      if (useBarredLogic) {
+        bail(
+          `Could not find positioning data. In barred crosswords, clue answers must exactly match letter sequences in the grid separated by bars. Check that: (1) your answer "${clue.answer}" appears in the grid, (2) bars correctly separate this word from adjacent letters, and (3) the grid doesn't contain rebuses.`
+        )
+      } else {
+        bail("Could not find positioning data")
+      }
       continue
     }
 
@@ -761,6 +803,14 @@ function parseStyleCSSLike(str: string, xd: string, errorReporter: (msg: string,
   for (let index = 0; index < str.length; index++) {
     const letter = str.slice(index, index + 1)
     if (mode === "outer") {
+      // Check for commas which indicate attempted multi-selector syntax
+      if (letter === ",") {
+        errorReporter(
+          `Comma-separated selectors are not supported in the Design section. Each grid cell can only reference one style rule.`,
+          lineOfGrid
+        )
+        continue
+      }
       // Keep adding letters to the token until we hit a }
       if (letter === "{") {
         mode = "inner"
@@ -768,7 +818,10 @@ function parseStyleCSSLike(str: string, xd: string, errorReporter: (msg: string,
         token = ""
         currentKeyName = undefined
         if (currentRuleName.length > 1) {
-          errorReporter(`Cannot have a style rule which is longer than one character: got '${currentRuleName}'`, lineOfGrid)
+          errorReporter(
+            `Cannot have a style rule which is longer than one character: got '${currentRuleName}' - it needs to fit in a grid cell`,
+            lineOfGrid
+          )
         }
         continue
       }
@@ -790,6 +843,9 @@ function parseStyleCSSLike(str: string, xd: string, errorReporter: (msg: string,
         styleSheet[currentRuleName!][currentKeyName!.trim()] = token.trim()
 
         token = ""
+        continue
+      } else if (letter === ",") {
+        errorReporter(`Commas are not allowed inside style rules. Use semicolons (;) to separate properties instead of commas.`, lineOfGrid)
         continue
       }
     }
