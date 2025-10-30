@@ -58,7 +58,7 @@ AAA
 
   expect(result.report.success).toBe(false)
   expect(result.report.errors.length).toBeGreaterThan(0)
-  expect(result.report.errors.some(e => e.message && e.message.includes("Comma-separated selectors"))).toBe(true)
+  expect(result.report.errors.some((e) => e.message && e.message.includes("Comma-separated selectors"))).toBe(true)
 })
 
 it("rejects commas inside style properties in Design section", () => {
@@ -96,9 +96,8 @@ AAA
 
   expect(result.report.success).toBe(false)
   expect(result.report.errors.length).toBeGreaterThan(0)
-  expect(result.report.errors.some(e => e.message && e.message.includes("Commas are not allowed inside style rules"))).toBe(true)
+  expect(result.report.errors.some((e) => e.message && e.message.includes("Commas are not allowed inside style rules"))).toBe(true)
 })
-
 const xdForBarred = `## Metadata
 
 title: Beneath The Surface Printer&#039;s Devilry #4 (Midi)

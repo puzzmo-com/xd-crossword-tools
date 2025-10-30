@@ -328,13 +328,13 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   // Validate barred crosswords don't use unsupported features
   if (useBarredLogic) {
     const hasUnsupportedTiles = json.tiles.some((row) =>
-      row.some((tile) => tile.type === "rebus" || tile.type === "schrodinger" || tile.type === "blank")
+      row.some((tile) => tile.type === "rebus" || tile.type === "schrodinger")
     )
 
     if (hasUnsupportedTiles) {
       const rebusLine = getLine(xd.toLowerCase(), "rebus:")
       addSyntaxError(
-        `Barred crosswords do not support rebuses, Schrödinger squares, or blank tiles. Please remove the 'rebus:' metadata and use only letters in your grid.`,
+        `Barred crosswords do not support rebuses or Schrödinger squares. Please remove the 'rebus:' metadata and use only letters and blank tiles in your grid.`,
         rebusLine || 0
       )
       // Skip clue processing since it will fail anyway
@@ -845,10 +845,7 @@ function parseStyleCSSLike(str: string, xd: string, errorReporter: (msg: string,
         token = ""
         continue
       } else if (letter === ",") {
-        errorReporter(
-          `Commas are not allowed inside style rules. Use semicolons (;) to separate properties instead of commas.`,
-          lineOfGrid
-        )
+        errorReporter(`Commas are not allowed inside style rules. Use semicolons (;) to separate properties instead of commas.`, lineOfGrid)
         continue
       }
     }

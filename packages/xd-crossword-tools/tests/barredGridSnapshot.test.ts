@@ -86,7 +86,7 @@ describe("barred grid snapshot", () => {
     const bars: BarPosition[] = []
     const gridWidth = parseInt(gridEl.attributes.width, 10)
     const gridHeight = parseInt(gridEl.attributes.height, 10)
-    
+
     for (const cell of gridEl.children) {
       if (cell.name !== "cell") continue
       const x = parseInt(cell.attributes.x, 10) - 1
@@ -94,7 +94,7 @@ describe("barred grid snapshot", () => {
 
       if (cell.attributes["left-bar"] === "true") bars.push({ row: y, col: x, type: "left" })
       if (cell.attributes["top-bar"] === "true") bars.push({ row: y, col: x, type: "top" })
-      
+
       // Convert right-bar and bottom-bar to left-bar and top-bar on adjacent cells
       if (cell.attributes["right-bar"] === "true" && x < gridWidth - 1) {
         bars.push({ row: y, col: x + 1, type: "left" })
@@ -155,6 +155,101 @@ it("looks at a different jpz file which has a mix of pipes and blocks", () => {
   const jpzBarredContent = readFileSync(__dirname + "/jpz/lil-167-ratliff-121823.jpz", "utf-8")
   const xd = jpzToXD(jpzBarredContent)
   const xdJSON = xdToJSON(xd)
+
+  expect(xd).toMatchInlineSnapshot(`
+    "## Metadata
+
+    title: December 18, 2023 - "Pipelines" - Darby Ratliff, edited by Will Eisenberg
+    author: Darby Ratliff
+    editor: Will Eisenberg
+    date: 2023-11-10
+    copyright: (c) 2023
+    form: barred
+
+    ## Grid
+
+    IHOP.STAIN.
+    NOTI.NUDGES
+    CORNCOBDOWN
+    ADOBO...TSO
+    ...AIM.BYOB
+    .HALFDREAM.
+    WALL.SUB...
+    ALE...DRAFT
+    WARPCLEANER
+    ALTERS.VETO
+    ..SPUD.EWAN
+
+    ## Clues
+
+    A1. Breakfast chain that should install pogo stick racks? ~ IHOP
+    A5. Leave a mark? ~ STAIN
+    A10. Shell-shielded species introduced in "Ahsoka" ~ NOTI
+    A11. Gently encourages ~ NUDGES
+    A13. *Accessory for Frosty ~ CORNCOB
+    A15. *"Hush!" ~ DOWN
+    A16. Filipino stew celebrated by a 2023 Google Doodle ~ ADOBO
+    A17. General on many an American Chinese menu ~ TSO
+    A18. Org. that seized a replica of the Mayflower on Thanksgiving 1970 ~ AIM
+    A20. Caveat on a BBQ invite ~ BYOB
+    A21. *Ramp found in "Tony Hawk: Pro Skater 2" ~ HALF
+    A23. *Unlikely aspiration ~ DREAM
+    A25. "Over the Garden ___" (Cartoon Network miniseries) ~ WALL
+    A26. Step in ~ SUB
+    A27. Word that might follow pretzel or pumpkin ~ ALE
+    A28. What 27-Across might be on ~ DRAFT
+    A32. *Mario's portal that's apt since he's a plumber ~ WARP
+    A34. *Piece of equipment for an egg drop in Physics, perhaps ~ CLEANER
+    A36. Changes a vowel in the spelling of altars? ~ ALTERS
+    A37. Deny, presidentially ~ VETO
+    A38. Tater ~ SPUD
+    A39. "Obi-Wan Kenobi" star McGregor ~ EWAN
+
+    D1. Quechua speaker ~ INCA
+    D2. Robin tail? ~ HOOD
+    D3. Al ___ Lado (humanitarian support group whose name means "On the Other Side") ~ OTRO
+    D4. Arcade game with "Star Wars" and "Ghostbusters" variants ~ PINBALL
+    D5. ___-caps ~ SNO
+    D6. Place to rub-a-dub-dub ~ TUB
+    D7. Put it all together, say ~ ADD
+    D8. "Lean on me" ~ IGOTYA
+    D9. "Divers" singer Joanna ~ NEWSOM
+    D12. One who might have their pinky up ~ SNOB
+    D14. Style elaborately ~ COIF
+    D19. Psychiatrists' degs. ~ MDS
+    D20. "You can do this" ~ BEBRAVE
+    D21. Kind of food often found in a D.C. food cart ~ HALAL
+    D22. Notifies ~ ALERTS
+    D24. Response to teasing ~ RUDE
+    D25. Sheetz competitor ~ WAWA
+    D29. Over again ~ ANEW
+    D30. Baked cheese in a viral TikTok recipe ~ FETA
+    D31. 1982 cult classic in which Jeff Bridges says, "Greetings, programs" ~ TRON
+    D33. Word preceding band or squad ~ PEP
+    D34. French wine designation ~ CRU
+    D35. Psychedelic found during April Fool's Day? ~ LSD
+
+    ## Design
+
+    <style>
+    A { bar-left: true }
+    </style>
+
+    ....#.....#
+    ....#......
+    .......A...
+    .....###...
+    ###...#....
+    #....A....#
+    ....#...###
+    ...###.....
+    ....A......
+    ......#....
+    ##....#....
+    "
+  `)
+
+  expect(xdJSON.report.success).toBe(true)
 
   expect("\n" + printBarredGrid(xdJSON.tiles)).toMatchInlineSnapshot(`
   "
