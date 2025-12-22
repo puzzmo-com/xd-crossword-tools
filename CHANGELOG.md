@@ -1,5 +1,9 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 12.1.0
+
+- Adds some functions for handling importing from a Puzzleme URL
+
 ### 12.0.0
 
 - Fix bug with pipe positions inside rebus answers that occurred when converting xd format to JSON and back to xd. This change updates the format of JSON puzzle to include `rebusInternalSplits`, and updates the signature of the resolveFullClueAnswer function to no longer take a rebusMap parameter.

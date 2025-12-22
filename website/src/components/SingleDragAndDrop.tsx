@@ -28,8 +28,14 @@ interface DragAndDropProps {
 const processFile = async (
   file: File,
   setXD: (xd: string) => void,
-  setLastFileContext: (ctx: { content: unknown; filename: string }) => void
+  setLastFileContext: (ctx: { content: string | object; filename: string }) => void
 ) => {
+  if (file.name.endsWith(".xd")) {
+    const xdContent = await file.text()
+    setXD(xdContent)
+    // No file context needed for .xd files since the content is already in XD format
+  }
+
   if (file.name.endsWith(".jpz")) {
     const jpz = await file.text()
     const xd = jpzToXD(jpz)
@@ -68,7 +74,7 @@ const processFile = async (
 
 export const DragAndDrop: React.FC<DragAndDropProps> = ({ children }) => {
   const { setXD, setLastFileContext } = use(RootContext)
-  const acceptedFileTypes = [".puz", ".jpz", ".json", ".xml"]
+  const acceptedFileTypes = [".xd", ".puz", ".jpz", ".json", ".xml"]
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const [isDragging, setIsDragging] = useState(false)

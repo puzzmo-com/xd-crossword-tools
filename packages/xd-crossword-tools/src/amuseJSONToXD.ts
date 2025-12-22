@@ -78,7 +78,9 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
       const cellKey = `${y}-${x}`
       const specificCellInfo = cellInfoMap.get(cellKey)
 
-      if (letterFromBox === null || letterFromBox === "." || letterFromBox === "#") {
+      // Black/blocked squares can be represented as null, ".", "#", or "-" depending on the source
+      // "\u0000" (null character) appears in some PuzzleMe puzzles for cells outside the grid shape
+      if (letterFromBox === null || letterFromBox === "." || letterFromBox === "#" || letterFromBox === "-" || letterFromBox === "\u0000") {
         tiles[y][x] = { type: "blank" }
       } else {
         const clues = {
