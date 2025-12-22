@@ -6,10 +6,13 @@ import Card from "react-bootstrap/esm/Card"
 import Button from "react-bootstrap/esm/Button"
 import Badge from "react-bootstrap/esm/Badge"
 import Navbar from "react-bootstrap/esm/Navbar"
+import Form from "react-bootstrap/esm/Form"
+import InputGroup from "react-bootstrap/esm/InputGroup"
 import { Link } from "wouter"
 import JSZip from "jszip"
 
 import { MultiDragAndDrop } from "./components/MultiDragAndDrop"
+import { decodePuzzleMeHTML, amuseToXD } from "xd-crossword-tools"
 
 interface ConversionResult {
   filename: string
@@ -23,9 +26,62 @@ function MassImport() {
   const [results, setResults] = useState<ConversionResult[]>([])
   const [isProcessing, setIsProcessing] = useState(false)
   const [isCreatingZip, setIsCreatingZip] = useState(false)
+  const [puzzleMeUrl, setPuzzleMeUrl] = useState("")
+  const [isLoadingUrl, setIsLoadingUrl] = useState(false)
+  const [urlError, setUrlError] = useState<string | null>(null)
 
   const handleFilesProcessed = (newResults: ConversionResult[]) => {
     setResults(prev => [...prev, ...newResults])
+  }
+
+  const handlePuzzleMeImport = async () => {
+    if (!puzzleMeUrl.trim()) return
+
+    // Validate URL
+    if (!puzzleMeUrl.includes("puzzleme.amuselabs.com")) {
+      setUrlError("Please enter a valid PuzzleMe URL (puzzleme.amuselabs.com)")
+      return
+    }
+
+    setIsLoadingUrl(true)
+    setUrlError(null)
+
+    try {
+      // Use a CORS proxy to fetch the page
+      // In production, you'd want your own proxy or backend
+      const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(puzzleMeUrl)}`
+
+      const response = await fetch(proxyUrl)
+      if (!response.ok) {
+        throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`)
+      }
+
+      const html = await response.text()
+
+      // Decode the puzzle
+      const amuseData = decodePuzzleMeHTML(html)
+      const xd = amuseToXD(amuseData)
+
+      // Extract puzzle ID from URL or data for filename
+      const puzzleId = amuseData.data.attributes.amuse_data.id || "puzzle"
+      const title = amuseData.data.attributes.amuse_data.title || puzzleId
+
+      // Add to results
+      const result: ConversionResult = {
+        filename: `${puzzleId}.xd`,
+        status: "success",
+        xd: xd,
+        originalFormat: `PuzzleMe (${title})`
+      }
+
+      setResults(prev => [...prev, result])
+      setPuzzleMeUrl("") // Clear input on success
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Unknown error"
+      setUrlError(`Failed to import: ${errorMessage}`)
+    } finally {
+      setIsLoadingUrl(false)
+    }
   }
 
   const clearResults = () => {
@@ -68,8 +124,8 @@ function MassImport() {
 
   const downloadSingleXD = (result: ConversionResult) => {
     if (!result.xd) return
-    
-    const blob = new Blob([result.xd], { type: "text/plain" })
+
+    const blob = new Blob([result.xd], { type: "text/plain;charset=utf-8" })
     const url = URL.createObjectURL(blob)
     const a = document.createElement("a")
     a.href = url
@@ -118,6 +174,48 @@ function MassImport() {
                     Drop multiple files or folders to convert them all at once.
                   </p>
                 </div>
+
+                <hr className="my-4" />
+
+                <h6>Import from PuzzleMe URL</h6>
+                <InputGroup className="mb-2">
+                  <Form.Control
+                    type="url"
+                    placeholder="https://puzzleme.amuselabs.com/pmm/crossword?id=..."
+                    value={puzzleMeUrl}
+                    onChange={(e) => {
+                      setPuzzleMeUrl(e.target.value)
+                      setUrlError(null)
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault()
+                        handlePuzzleMeImport()
+                      }
+                    }}
+                    disabled={isLoadingUrl}
+                  />
+                  <Button
+                    variant="primary"
+                    onClick={handlePuzzleMeImport}
+                    disabled={isLoadingUrl || !puzzleMeUrl.trim()}
+                  >
+                    {isLoadingUrl ? (
+                      <>
+                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        Loading...
+                      </>
+                    ) : (
+                      "Import"
+                    )}
+                  </Button>
+                </InputGroup>
+                {urlError && (
+                  <div className="text-danger small">{urlError}</div>
+                )}
+                <p className="text-muted small">
+                  Paste a PuzzleMe crossword URL to import directly from the web.
+                </p>
 
                 {results.length > 0 && (
                   <div className="mt-3 d-flex gap-2">

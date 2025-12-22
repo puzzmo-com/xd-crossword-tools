@@ -559,8 +559,8 @@ function App() {
                       <strong>XD Editor</strong>
                       <div className="format-support">
                         <span>
-                          Supports drag & drop of <code>.puz</code>, <code>.jpz</code>, <code>.json</code> (amuse), <code>.xml</code>{" "}
-                          (uclick)
+                          Supports drag & drop of <code>.xd</code>, <code>.puz</code>, <code>.jpz</code>, <code>.json</code> (amuse),{" "}
+                          <code>.xml</code> (uclick)
                         </span>
                         <UploadButton className="upload-btn" />
                       </div>
@@ -589,7 +589,7 @@ function App() {
                         <Form.Label className="editor-label">
                           <div className="format-support">
                             <span>
-                              Supports drag & drop conversion of <code>.puz</code>, <code>.jpz</code>, <code>.json</code> (amuse),{" "}
+                              Supports drag & drop of <code>.xd</code>, <code>.puz</code>, <code>.jpz</code>, <code>.json</code> (amuse),{" "}
                               <code>.xml</code> (uclick)
                             </span>
                             <UploadButton className="upload-btn" />

@@ -11,6 +11,7 @@ export { encode as puzEncode, decode as puzDecode } from "./vendor/puzjs"
 export type { Puz2JSONResult } from "./vendor/puzjs"
 export { runLinterForClue } from "./xdLints"
 export { amuseToXD } from "./amuseJSONToXD"
+export { decodePuzzleMeHTML, decodePuzzleMeRawc, extractPuzzleMeRawc, puzzleMeDataToAmuseTopLevel } from "./puzzleMeDecode"
 export { validateClueAnswersMatchGrid } from "./validateClueAnswersMatchGrid"
 
 // Export the package version
