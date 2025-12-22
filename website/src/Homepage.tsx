@@ -27,7 +27,7 @@ import { convertToCrosswordFormat } from "./utils/convertToCrosswordFormat"
 import { CrosswordBarPreview } from "./components/CrosswordPreview"
 import { readmeHtml } from "virtual:readme"
 import { Link } from "wouter"
-import { version, puzEncode, type CrosswordJSON } from "xd-crossword-tools"
+import { version, puzEncode, decodePuzzleMeHTML, amuseToXD, type CrosswordJSON } from "xd-crossword-tools"
 
 function App() {
   const { crosswordJSON, lastFileContext, setXD, validationReports, cursorInfo } = use(RootContext)
@@ -37,6 +37,45 @@ function App() {
     // Load the last active tab from localStorage, defaulting to "result"
     return localStorage.getItem("activeTab") || "result"
   })
+
+  // PuzzleMe URL import state
+  const [showImportInput, setShowImportInput] = useState(false)
+  const [importUrl, setImportUrl] = useState("")
+  const [isImporting, setIsImporting] = useState(false)
+  const [importError, setImportError] = useState<string | null>(null)
+
+  const handlePuzzleMeImport = async () => {
+    if (!importUrl.trim()) return
+
+    if (!importUrl.includes("puzzleme.amuselabs.com")) {
+      setImportError("Please enter a valid PuzzleMe URL")
+      return
+    }
+
+    setIsImporting(true)
+    setImportError(null)
+
+    try {
+      const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(importUrl)}`
+      const response = await fetch(proxyUrl)
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch: ${response.status}`)
+      }
+
+      const html = await response.text()
+      const amuseData = decodePuzzleMeHTML(html)
+      const xd = amuseToXD(amuseData)
+
+      setXD(xd)
+      setImportUrl("")
+      setShowImportInput(false)
+    } catch (error) {
+      setImportError(error instanceof Error ? error.message : "Import failed")
+    } finally {
+      setIsImporting(false)
+    }
+  }
 
   // Convert CrosswordJSON to the format expected by puzEncode
   const crosswordJSONToPuzFormat = (json: CrosswordJSON) => {
@@ -562,8 +601,52 @@ function App() {
                           Supports drag & drop of <code>.xd</code>, <code>.puz</code>, <code>.jpz</code>, <code>.json</code> (amuse),{" "}
                           <code>.xml</code> (uclick)
                         </span>
-                        <UploadButton className="upload-btn" />
+                        <div className="format-buttons">
+                          <button
+                            type="button"
+                            className="upload-btn"
+                            onClick={() => setShowImportInput(!showImportInput)}
+                          >
+                            Import
+                          </button>
+                          <UploadButton className="upload-btn" />
+                        </div>
                       </div>
+                      {showImportInput && (
+                        <div className="import-url-input">
+                          <input
+                            type="url"
+                            placeholder="https://puzzleme.amuselabs.com/pmm/crossword?id=..."
+                            value={importUrl}
+                            onChange={(e) => {
+                              setImportUrl(e.target.value)
+                              setImportError(null)
+                            }}
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter") {
+                                e.preventDefault()
+                                handlePuzzleMeImport()
+                              }
+                              if (e.key === "Escape") {
+                                setShowImportInput(false)
+                                setImportUrl("")
+                                setImportError(null)
+                              }
+                            }}
+                            disabled={isImporting}
+                            autoFocus
+                          />
+                          <button
+                            type="button"
+                            onClick={handlePuzzleMeImport}
+                            disabled={isImporting || !importUrl.trim()}
+                            className="import-go-btn"
+                          >
+                            {isImporting ? "..." : "Go"}
+                          </button>
+                          {importError && <div className="import-error">{importError}</div>}
+                        </div>
+                      )}
                     </Form.Label>
                     <XDEditor />
                   </DragAndDrop>
@@ -592,8 +675,52 @@ function App() {
                               Supports drag & drop of <code>.xd</code>, <code>.puz</code>, <code>.jpz</code>, <code>.json</code> (amuse),{" "}
                               <code>.xml</code> (uclick)
                             </span>
-                            <UploadButton className="upload-btn" />
+                            <div className="format-buttons">
+                              <button
+                                type="button"
+                                className="upload-btn"
+                                onClick={() => setShowImportInput(!showImportInput)}
+                              >
+                                Import
+                              </button>
+                              <UploadButton className="upload-btn" />
+                            </div>
                           </div>
+                          {showImportInput && (
+                            <div className="import-url-input">
+                              <input
+                                type="url"
+                                placeholder="https://puzzleme.amuselabs.com/pmm/crossword?id=..."
+                                value={importUrl}
+                                onChange={(e) => {
+                                  setImportUrl(e.target.value)
+                                  setImportError(null)
+                                }}
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") {
+                                    e.preventDefault()
+                                    handlePuzzleMeImport()
+                                  }
+                                  if (e.key === "Escape") {
+                                    setShowImportInput(false)
+                                    setImportUrl("")
+                                    setImportError(null)
+                                  }
+                                }}
+                                disabled={isImporting}
+                                autoFocus
+                              />
+                              <button
+                                type="button"
+                                onClick={handlePuzzleMeImport}
+                                disabled={isImporting || !importUrl.trim()}
+                                className="import-go-btn"
+                              >
+                                {isImporting ? "..." : "Go"}
+                              </button>
+                              {importError && <div className="import-error">{importError}</div>}
+                            </div>
+                          )}
                         </Form.Label>
                         <XDEditor />
                       </DragAndDrop>

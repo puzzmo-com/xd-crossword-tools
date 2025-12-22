@@ -98,9 +98,14 @@ export const RootProvider = ({ children }: React.PropsWithChildren<object>) => {
     if (xd !== defaultExampleXD.xd) localStorage.setItem("xd", xd)
 
     const options = new URLSearchParams(document.location.search)
-    if (xd !== defaultExampleXD.xd) options.set("expression", lzstring.compressToEncodedURIComponent(xd))
+    if (xd !== defaultExampleXD.xd) {
+      options.set("xd", lzstring.compressToEncodedURIComponent(xd))
+    } else {
+      options.delete("xd")
+    }
 
-    const newUrl = `${document.location.origin}${document.location.pathname}?${options.toString()}`
+    const queryString = options.toString()
+    const newUrl = `${document.location.origin}${document.location.pathname}${queryString ? `?${queryString}` : ""}`
     window.history.replaceState({}, "", newUrl)
   }, [xd])
 

@@ -28,7 +28,7 @@ interface DragAndDropProps {
 const processFile = async (
   file: File,
   setXD: (xd: string) => void,
-  setLastFileContext: (ctx: { content: unknown; filename: string }) => void
+  setLastFileContext: (ctx: { content: string | object; filename: string }) => void
 ) => {
   if (file.name.endsWith(".xd")) {
     const xdContent = await file.text()
