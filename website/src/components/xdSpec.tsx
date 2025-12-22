@@ -10,7 +10,7 @@ export const XDSpec = () => {
           rel="noopener noreferrer"
           className="source-link"
         >
-          📖 View on GitHub →
+          View on GitHub →
         </a>
       </div>
 
