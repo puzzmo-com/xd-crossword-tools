@@ -282,9 +282,9 @@ export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswor
             <div className="mb-2 mt-3">
               <strong>Color Styles:</strong>
             </div>
-            <div>R &#123; backgroundLight: #FF69B4; backgroundDark: #C71585 &#125;</div>
-            <div>G &#123; backgroundLight: #00FF00; backgroundDark: #008000 &#125;</div>
-            <div>B &#123; backgroundLight: #00FFFF; backgroundDark: #00008B &#125;</div>
+            <div>R &#123; background-light: #FF69B4; background-dark: #C71585 &#125;</div>
+            <div>G &#123; background-light: #00FF00; background-dark: #008000 &#125;</div>
+            <div>B &#123; background-light: #00FFFF; background-dark: #00008B &#125;</div>
           </div>
           <small className="text-muted d-block mt-2">
             Define styles in the main editor's Design section, then use the keys here to apply them to tiles.
