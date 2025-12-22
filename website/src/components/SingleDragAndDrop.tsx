@@ -1,17 +1,75 @@
-import React, { useState, useCallback, use } from "react"
+import React, { useState, useCallback, use, useRef, createContext } from "react"
 import { jpzToXD, puzToXD, amuseToXD, uclickXMLToXD } from "xd-crossword-tools"
 
 import { decode } from "xd-crossword-tools/src/vendor/puzjs"
 
 import { RootContext } from "./RootContext"
 
+// Context for triggering file upload from outside the component
+export const FileUploadContext = createContext<{ triggerUpload: () => void }>({
+  triggerUpload: () => {},
+})
+
+// Button component that uses the context to trigger file upload
+export const UploadButton: React.FC<{ className?: string }> = ({ className }) => {
+  const { triggerUpload } = use(FileUploadContext)
+  return (
+    <button type="button" className={className} onClick={triggerUpload} title="Upload a crossword file">
+      Upload
+    </button>
+  )
+}
+
 interface DragAndDropProps {
   children: React.ReactNode
+}
+
+// Process a file and return the XD content and file context
+const processFile = async (
+  file: File,
+  setXD: (xd: string) => void,
+  setLastFileContext: (ctx: { content: unknown; filename: string }) => void
+) => {
+  if (file.name.endsWith(".jpz")) {
+    const jpz = await file.text()
+    const xd = jpzToXD(jpz)
+    setXD(xd)
+    setLastFileContext({ content: jpz, filename: file.name })
+  }
+
+  if (file.name.endsWith(".puz")) {
+    const puz = await file.arrayBuffer()
+    const xd = puzToXD(new Uint8Array(puz))
+
+    const puzJSON = decode(new Uint8Array(puz))
+    setLastFileContext({ content: puzJSON, filename: file.name })
+
+    setXD(xd)
+  }
+
+  if (file.name.endsWith(".json")) {
+    const jsonText = await file.text()
+    const json = JSON.parse(jsonText)
+
+    if (json?.data?.attributes?.amuse_data) {
+      const xd = amuseToXD(json)
+      setXD(xd)
+      setLastFileContext({ content: jsonText, filename: file.name })
+    }
+  }
+
+  if (file.name.endsWith(".xml")) {
+    const xmlText = await file.text()
+    const xd = uclickXMLToXD(xmlText)
+    setXD(xd)
+    setLastFileContext({ content: xmlText, filename: file.name })
+  }
 }
 
 export const DragAndDrop: React.FC<DragAndDropProps> = ({ children }) => {
   const { setXD, setLastFileContext } = use(RootContext)
   const acceptedFileTypes = [".puz", ".jpz", ".json", ".xml"]
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const [isDragging, setIsDragging] = useState(false)
 
@@ -26,6 +84,20 @@ export const DragAndDrop: React.FC<DragAndDropProps> = ({ children }) => {
     e.stopPropagation()
     setIsDragging(false)
   }, [])
+
+  const handleFileInputChange = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const files = e.target.files
+      if (!files || files.length === 0) return
+
+      const file = files[0]
+      await processFile(file, setXD, setLastFileContext)
+
+      // Reset the input so the same file can be selected again
+      e.target.value = ""
+    },
+    [setXD, setLastFileContext]
+  )
 
   const handleDrop = useCallback(
     async (e: React.DragEvent<HTMLDivElement>) => {
@@ -42,67 +114,47 @@ export const DragAndDrop: React.FC<DragAndDropProps> = ({ children }) => {
       const file = validFiles[0]
       if (!file) return
 
-      if (file.name.endsWith(".jpz")) {
-        const jpz = await file.text()
-        const xd = jpzToXD(jpz)
-        setXD(xd)
-        setLastFileContext({ content: jpz, filename: file.name })
-      }
-
-      if (file.name.endsWith(".puz")) {
-        const puz = await file.arrayBuffer()
-        const xd = puzToXD(new Uint8Array(puz))
-
-        const puzJSON = decode(new Uint8Array(puz))
-        setLastFileContext({ content: puzJSON, filename: file.name })
-
-        setXD(xd)
-      }
-
-      if (file.name.endsWith(".json")) {
-        const jsonText = await file.text()
-        const json = JSON.parse(jsonText)
-
-        if (json?.data?.attributes?.amuse_data) {
-          const xd = amuseToXD(json)
-          setXD(xd)
-          setLastFileContext({ content: jsonText, filename: file.name })
-        }
-      }
-
-      if (file.name.endsWith(".xml")) {
-        const xmlText = await file.text()
-        const xd = uclickXMLToXD(xmlText)
-        setXD(xd)
-        setLastFileContext({ content: xmlText, filename: file.name })
-      }
+      await processFile(file, setXD, setLastFileContext)
     },
-    [setXD]
+    [setXD, setLastFileContext]
   )
 
+  const triggerUpload = useCallback(() => {
+    fileInputRef.current?.click()
+  }, [])
+
   return (
-    <div onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop} style={{ position: "relative" }}>
-      {children}
-      {isDragging && (
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            border: "2px dashed #4CAF50",
-            borderRadius: "8px",
-            backgroundColor: "rgba(76, 175, 80, 0.1)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 1000,
-          }}
-        >
-          <p style={{ margin: 0, color: "#4CAF50" }}>Drop your crossword file here</p>
-        </div>
-      )}
-    </div>
+    <FileUploadContext value={{ triggerUpload }}>
+      <div onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop} style={{ position: "relative" }}>
+        <input
+          type="file"
+          ref={fileInputRef}
+          onChange={handleFileInputChange}
+          accept={acceptedFileTypes.join(",")}
+          style={{ display: "none" }}
+        />
+        {children}
+        {isDragging && (
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              border: "2px dashed #4CAF50",
+              borderRadius: "8px",
+              backgroundColor: "rgba(76, 175, 80, 0.1)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 1000,
+            }}
+          >
+            <p style={{ margin: 0, color: "#4CAF50" }}>Drop your crossword file here</p>
+          </div>
+        )}
+      </div>
+    </FileUploadContext>
   )
 }

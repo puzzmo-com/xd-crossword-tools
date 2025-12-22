@@ -4,7 +4,7 @@ import { Clue, CrosswordJSON, CursorDirection, Position } from "xd-crossword-too
 export type PositionInfo =
   | { type: "noop" }
   | { type: "grid"; position: Position; clues: { across: Clue | undefined; down: Clue | undefined } }
-  | { type: "clue"; direction: CursorDirection; number: number }
+  | { type: "clue"; direction: CursorDirection; number: number; lineMeta?: { type: string; value: string } }
   | { type: "metadata"; key: string; value: string }
 
 export const editorInfoAtCursor =
@@ -44,15 +44,24 @@ export const editorInfoAtCursor =
 
       case "clues": {
         const content = data.editorInfo.lines[line]
-        const trimmed = content.toLowerCase().trim()
+        const trimmed = content.trim()
+        const trimmedLower = trimmed.toLowerCase()
 
-        if (!trimmed.startsWith("a") && !trimmed.startsWith("d")) return noop
+        if (!trimmedLower.startsWith("a") && !trimmedLower.startsWith("d")) return noop
         if (!trimmed.includes(".") && !trimmed.includes("^")) return noop
         if (trimmed === "") return noop
 
-        const direction = trimmed.startsWith("a") ? "across" : "down"
-        const numStr = trimmed.slice(1).split(" ")[0].replace(".", "")
+        const direction = trimmedLower.startsWith("a") ? "across" : "down"
+        const numStr = trimmedLower.slice(1).split(" ")[0].replace(".", "").replace("^", "")
         const number = parseInt(numStr)
+
+        // Check for clue metadata line (e.g., "A5 ^hint: Cell phone company...")
+        const metaMatch = trimmed.match(/^[AD]\d+\s+\^(\w+):\s*(.*)$/i)
+        if (metaMatch) {
+          const lineMeta = { type: metaMatch[1].toLowerCase(), value: metaMatch[2] }
+          return { type: "clue", direction, number, lineMeta }
+        }
+
         return { type: "clue", direction, number }
       }
 

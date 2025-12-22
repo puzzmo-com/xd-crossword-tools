@@ -16,7 +16,7 @@ import { XDSpec } from "./components/xdSpec"
 import { DesignEditor } from "./components/DesignEditor"
 
 import "monaco-editor/esm/vs/editor/editor.all.js"
-import { DragAndDrop } from "./components/SingleDragAndDrop"
+import { DragAndDrop, UploadButton } from "./components/SingleDragAndDrop"
 import { PanelGroup, Panel, PanelResizer } from "@window-splitter/react"
 
 import { JsonView, allExpanded, defaultStyles } from "react-json-view-lite"
@@ -27,7 +27,7 @@ import { convertToCrosswordFormat } from "./utils/convertToCrosswordFormat"
 import { CrosswordBarPreview } from "./components/CrosswordPreview"
 import { readmeHtml } from "virtual:readme"
 import { Link } from "wouter"
-import { version } from "xd-crossword-tools"
+import { version, puzEncode, type CrosswordJSON } from "xd-crossword-tools"
 
 function App() {
   const { crosswordJSON, lastFileContext, setXD, validationReports, cursorInfo } = use(RootContext)
@@ -37,6 +37,81 @@ function App() {
     // Load the last active tab from localStorage, defaulting to "result"
     return localStorage.getItem("activeTab") || "result"
   })
+
+  // Convert CrosswordJSON to the format expected by puzEncode
+  const crosswordJSONToPuzFormat = (json: CrosswordJSON) => {
+    // Build the grid as string[][]
+    const grid: string[][] = json.tiles.map((row) =>
+      row.map((tile) => {
+        if (tile.type === "blank") return "."
+        if (tile.type === "letter") return tile.letter
+        if (tile.type === "rebus") return tile.word
+        return "."
+      })
+    )
+
+    // Build clues arrays indexed by clue number
+    const across: string[] = []
+    const down: string[] = []
+    json.clues.across.forEach((clue) => {
+      across[clue.number] = clue.body
+    })
+    json.clues.down.forEach((clue) => {
+      down[clue.number] = clue.body
+    })
+
+    // Find circles from design if present
+    const circles: number[] = []
+    if (json.design) {
+      const circleStyles = new Set<string>()
+      for (const [key, style] of Object.entries(json.design.styles || {})) {
+        if (style.background === "circle") circleStyles.add(key)
+      }
+      if (circleStyles.size > 0) {
+        json.design.positions.forEach((row, rowIdx) => {
+          row.forEach((styleKey, colIdx) => {
+            if (circleStyles.has(styleKey)) {
+              circles.push(rowIdx * row.length + colIdx)
+            }
+          })
+        })
+      }
+    }
+
+    return {
+      grid,
+      meta: {
+        title: json.meta.title || "",
+        author: json.meta.author || "",
+        copyright: json.meta.copyright || "",
+      },
+      clues: { across, down },
+      circles,
+      shades: [] as number[],
+    }
+  }
+
+  // Download the current crossword as a .puz file
+  const downloadPuz = () => {
+    if (!crosswordJSON) return
+
+    try {
+      const puzData = crosswordJSONToPuzFormat(crosswordJSON)
+      const puzBytes = puzEncode(puzData)
+      const blob = new Blob([puzBytes], { type: "application/octet-stream" })
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement("a")
+      a.href = url
+      a.download = `${crosswordJSON.meta.title || "crossword"}.puz`
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      URL.revokeObjectURL(url)
+    } catch (e) {
+      console.error("Failed to generate .puz file:", e)
+      alert(`Failed to generate .puz file: ${e instanceof Error ? e.message : "Unknown error"}`)
+    }
+  }
 
   // Shared tabs content component
   const TabsContent = () => (
@@ -186,9 +261,9 @@ function App() {
                 <Crossword
                   data={convertToCrosswordFormat(crosswordJSON)}
                   theme={{
-                    focusBackground: "#66bb55",
-                    highlightBackground: "#c0ebc0ff",
-                    numberColor: "#000000",
+                    focusBackground: "#0d5526",
+                    highlightBackground: "#d1d9d4",
+                    numberColor: "#1a1f1c",
                   }}
                 />
               </div>
@@ -428,32 +503,45 @@ function App() {
   return (
     <>
       <Navbar className="modern-header shadow-sm mb-0" expand="lg">
-        <Container fluid className={isMobile ? "mobile-header-container" : ""}>
-          <Navbar.Brand className={`brand-title ${isMobile ? "mobile-brand" : ""}`}>
-            XD Crossword Tools
-            <Badge bg="primary" className={`ms-2 version-badge ${isMobile ? "d-none" : ""}`}>
-              v{version}
-            </Badge>
-          </Navbar.Brand>
-          <div className={`header-subtitle ${isMobile ? "d-none" : ""}`}>Interactive crossword format converter and editor</div>
-          {!isMobile && (
-            <Link to="/mass-import">
-              <Button variant="outline-light" size="sm" className="ms-2">
-                Mass Import
+        <Container fluid className={isMobile ? "mobile-header-container" : "desktop-header-container"}>
+          <div className="header-left">
+            <Navbar.Brand className={`brand-title ${isMobile ? "mobile-brand" : ""}`}>
+              XD Crossword Tools
+              <Badge bg="primary" className={`ms-2 version-badge ${isMobile ? "d-none" : ""}`}>
+                v{version}
+              </Badge>
+            </Navbar.Brand>
+          </div>
+          <div className={`header-center ${isMobile ? "d-none" : ""}`}>
+            <span className="header-subtitle">A site for playing with XD Crossword files</span>
+          </div>
+          <div className="header-right">
+            {!isMobile && (
+              <>
+                {crosswordJSON && (
+                  <Button variant="outline-light" size="sm" onClick={downloadPuz}>
+                    Download .puz
+                  </Button>
+                )}
+                <Link to="/mass-import">
+                  <Button variant="outline-light" size="sm">
+                    Mass Import
+                  </Button>
+                </Link>
+              </>
+            )}
+            {isMobile && (
+              <Button
+                variant="outline-light"
+                className="mobile-menu-btn"
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                size="sm"
+                title={sidebarOpen ? "Close" : "View Results"}
+              >
+                {sidebarOpen ? "✕" : "Info"}
               </Button>
-            </Link>
-          )}
-          {isMobile && (
-            <Button
-              variant="outline-light"
-              className="mobile-menu-btn"
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              size="sm"
-              title={sidebarOpen ? "Close" : "View Results"}
-            >
-              {sidebarOpen ? "✕" : "Info"}
-            </Button>
-          )}
+            )}
+          </div>
         </Container>
       </Navbar>
 
@@ -466,13 +554,17 @@ function App() {
             <div className="editor-panel mobile-main">
               <Form className="form-container">
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                  <Form.Label className="editor-label">
-                    <strong>XD Editor</strong>
-                    <div className="format-support">
-                      Supports drag & drop of <code>.puz</code>, <code>.jpz</code>, <code>.json</code> (amuse), <code>.xml</code> (uclick)
-                    </div>
-                  </Form.Label>
                   <DragAndDrop>
+                    <Form.Label className="editor-label">
+                      <strong>XD Editor</strong>
+                      <div className="format-support">
+                        <span>
+                          Supports drag & drop of <code>.puz</code>, <code>.jpz</code>, <code>.json</code> (amuse), <code>.xml</code>{" "}
+                          (uclick)
+                        </span>
+                        <UploadButton className="upload-btn" />
+                      </div>
+                    </Form.Label>
                     <XDEditor />
                   </DragAndDrop>
                 </Form.Group>
@@ -493,13 +585,16 @@ function App() {
                 <div className="editor-panel">
                   <Form className="form-container">
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                      <Form.Label className="editor-label">
-                        <div className="format-support">
-                          Supports drag & drop of <code>.puz</code>, <code>.jpz</code>, <code>.json</code> (amuse), <code>.xml</code>{" "}
-                          (uclick)
-                        </div>
-                      </Form.Label>
                       <DragAndDrop>
+                        <Form.Label className="editor-label">
+                          <div className="format-support">
+                            <span>
+                              Supports drag & drop conversion of <code>.puz</code>, <code>.jpz</code>, <code>.json</code> (amuse),{" "}
+                              <code>.xml</code> (uclick)
+                            </span>
+                            <UploadButton className="upload-btn" />
+                          </div>
+                        </Form.Label>
                         <XDEditor />
                       </DragAndDrop>
                     </Form.Group>

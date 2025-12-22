@@ -12,8 +12,6 @@
     "postpublish": "rm ./README.md"
   },
   "dependencies": {
-    "@confuzzle/readpuz": "^1.2.3",
-    "@confuzzle/writepuz": "^1.2.3",
     "xd-crossword-tools-parser": "workspace:*",
     "xml-parser": "1.2.1"
   },
