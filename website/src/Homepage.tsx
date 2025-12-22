@@ -29,8 +29,157 @@ import { readmeHtml } from "virtual:readme"
 import { Link } from "wouter"
 import { version, puzEncode, decodePuzzleMeHTML, amuseToXD, type CrosswordJSON } from "xd-crossword-tools"
 
+const PRINT_SERVICE_BASE = "https://games-u7ii.onrender.com"
+
+interface PrintOptions {
+  includeSolution: boolean
+  includeClues: boolean
+  includeGrid: boolean
+  grid: {
+    showClueNumbers: boolean
+    fillLetters: boolean
+    boldLetters: boolean
+    darkGridLines: boolean
+  }
+}
+
+const PrintTab: React.FC<{ xd: string; crosswordJSON: CrosswordJSON }> = ({ xd, crosswordJSON }) => {
+  const [isGenerating, setIsGenerating] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [options, setOptions] = useState<PrintOptions>({
+    includeSolution: false,
+    includeClues: true,
+    includeGrid: true,
+    grid: {
+      showClueNumbers: true,
+      fillLetters: false,
+      boldLetters: false,
+      darkGridLines: false,
+    },
+  })
+
+  const handleOpenPrint = async (asPDF: boolean) => {
+    setIsGenerating(true)
+    setError(null)
+
+    try {
+      const requestBody = {
+        xd,
+        options: {
+          title: crosswordJSON.meta.title,
+          authorString: crosswordJSON.meta.author,
+          ...options,
+        },
+      }
+
+      const response = await fetch(`${PRINT_SERVICE_BASE}/crossword/store`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestBody),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(errorData.error || `Failed to store: ${response.status}`)
+      }
+
+      const { slug } = await response.json()
+      const url = asPDF
+        ? `${PRINT_SERVICE_BASE}/crossword/stored/${slug}/pdf`
+        : `${PRINT_SERVICE_BASE}/crossword/stored/${slug}`
+
+      window.open(url, "_blank")
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to generate print view")
+    } finally {
+      setIsGenerating(false)
+    }
+  }
+
+  return (
+    <Card className="modern-card">
+      <Card.Header className="card-header">
+        <Card.Title className="mb-0">Print Crossword</Card.Title>
+      </Card.Header>
+      <Card.Body>
+        <p>Configure and generate a printable version of the crossword.</p>
+
+        <div className="print-options">
+          <h6>Content Options</h6>
+          <Form.Check
+            type="checkbox"
+            id="includeGrid"
+            label="Include Grid"
+            checked={options.includeGrid}
+            onChange={(e) => setOptions({ ...options, includeGrid: e.target.checked })}
+          />
+          <Form.Check
+            type="checkbox"
+            id="includeClues"
+            label="Include Clues"
+            checked={options.includeClues}
+            onChange={(e) => setOptions({ ...options, includeClues: e.target.checked })}
+          />
+          <Form.Check
+            type="checkbox"
+            id="includeSolution"
+            label="Include Solution"
+            checked={options.includeSolution}
+            onChange={(e) => setOptions({ ...options, includeSolution: e.target.checked })}
+          />
+
+          <h6 className="mt-3">Grid Options</h6>
+          <Form.Check
+            type="checkbox"
+            id="showClueNumbers"
+            label="Show Clue Numbers"
+            checked={options.grid.showClueNumbers}
+            onChange={(e) => setOptions({ ...options, grid: { ...options.grid, showClueNumbers: e.target.checked } })}
+          />
+          <Form.Check
+            type="checkbox"
+            id="fillLetters"
+            label="Fill Letters (show answers in grid)"
+            checked={options.grid.fillLetters}
+            onChange={(e) => setOptions({ ...options, grid: { ...options.grid, fillLetters: e.target.checked } })}
+          />
+          <Form.Check
+            type="checkbox"
+            id="boldLetters"
+            label="Bold Letters"
+            checked={options.grid.boldLetters}
+            onChange={(e) => setOptions({ ...options, grid: { ...options.grid, boldLetters: e.target.checked } })}
+          />
+          <Form.Check
+            type="checkbox"
+            id="darkGridLines"
+            label="Dark Grid Lines"
+            checked={options.grid.darkGridLines}
+            onChange={(e) => setOptions({ ...options, grid: { ...options.grid, darkGridLines: e.target.checked } })}
+          />
+        </div>
+
+        {error && <div className="text-danger mt-3">{error}</div>}
+
+        <div className="d-flex gap-2 flex-wrap mt-4">
+          <Button variant="primary" onClick={() => handleOpenPrint(false)} disabled={isGenerating}>
+            {isGenerating ? "Generating..." : "Open Print View"}
+          </Button>
+          <Button variant="outline-primary" onClick={() => handleOpenPrint(true)} disabled={isGenerating}>
+            {isGenerating ? "Generating..." : "Download PDF"}
+          </Button>
+        </div>
+
+        <div className="crossword-note mt-3">
+          <strong>Note:</strong> The print service is a WIP.
+        </div>
+      </Card.Body>
+    </Card>
+  )
+}
+
 function App() {
-  const { crosswordJSON, lastFileContext, setXD, validationReports, cursorInfo } = use(RootContext)
+  const { xd, crosswordJSON, lastFileContext, setXD, validationReports, cursorInfo } = use(RootContext)
   const [isMobile, setIsMobile] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [activeTab, setActiveTab] = useState(() => {
@@ -311,6 +460,12 @@ function App() {
               </div>
             </Card.Body>
           </Card>
+        </Tab>
+      )}
+
+      {crosswordJSON && (
+        <Tab eventKey="print" title="Print">
+          <PrintTab xd={xd} crosswordJSON={crosswordJSON} />
         </Tab>
       )}
 
@@ -602,11 +757,7 @@ function App() {
                           <code>.xml</code> (uclick)
                         </span>
                         <div className="format-buttons">
-                          <button
-                            type="button"
-                            className="upload-btn"
-                            onClick={() => setShowImportInput(!showImportInput)}
-                          >
+                          <button type="button" className="upload-btn" onClick={() => setShowImportInput(!showImportInput)}>
                             Import
                           </button>
                           <UploadButton className="upload-btn" />
@@ -676,11 +827,7 @@ function App() {
                               <code>.xml</code> (uclick)
                             </span>
                             <div className="format-buttons">
-                              <button
-                                type="button"
-                                className="upload-btn"
-                                onClick={() => setShowImportInput(!showImportInput)}
-                              >
+                              <button type="button" className="upload-btn" onClick={() => setShowImportInput(!showImportInput)}>
                                 Import
                               </button>
                               <UploadButton className="upload-btn" />
