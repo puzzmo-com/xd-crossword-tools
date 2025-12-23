@@ -1,100 +1,196 @@
 import type { AmuseTopLevel, AmuseData } from "./amuseJSONToXD.types"
 
+// The deobfuscation algorithm is adapted from:
+// - https://github.com/thisisparker/xword-dl (xword-dl by Parker Higgins)
+//   https://github.com/thisisparker/xword-dl/blob/main/src/xword_dl/downloader/amuselabsdownloader.py
+// - https://github.com/jpd236/kotwords (kotwords by jpd236)
+//   https://github.com/jpd236/kotwords/blob/master/LICENSE
+//
+// Used here under the terms of their respective licenses (Apache 2.0 / MIT).
+//
+// PuzzleMe scrambles the rawc field by reversing successive chunks of the string,
+// using a repeating key of 7 digits (each 2-20) as chunk lengths. This implementation
+// uses brute-force key discovery with BFS to find the correct key.
+//
+// Known keys (for fast-path optimization):
+// - V1: [8, 11, 7, 17, 11, 7, 11]  - older puzzles
+// - V2: [15, 14, 9, 8, 17, 11, 4]  - current as of late 2024
+// - V3: [18, 15, 7, 16, 14, 17, 12] - Billboard variant
+
+/** Known descramble keys for fast-path decoding */
+const KNOWN_KEYS: number[][] = [
+  [15, 14, 9, 8, 17, 11, 4], // V2 - most common currently
+  [18, 15, 7, 16, 14, 17, 12], // V3 - Billboard variant
+  [8, 11, 7, 17, 11, 7, 11], // V1 - legacy
+]
+
 /**
- * Descramble function that reverses chunks of the string at specific intervals.
+ * Descramble a string using a known key.
  *
- * This is a direct port of the JavaScript Lf function from PuzzleMe's c-min.js.
- * It performs 5 passes of chunk reversal with different parameters.
+ * Reverses successive chunks of the string using key digits as chunk lengths.
  *
- * @param t - The scrambled string
+ * @param rawc - The scrambled string
+ * @param key - Array of chunk lengths (typically 7 digits, each 2-20)
  * @returns The descrambled string
  */
-function descramble(t: string): string {
-  const i = t.split("")
-  const length = t.length
-  let n: number, r: number, o: number, s: number, c: number, a: string
+function descrambleWithKey(rawc: string, key: number[]): string {
+  const buffer = rawc.split("")
+  let i = 0
+  let segmentCount = 0
 
-  // Pass 1: start at 8, step 61, reverse 11 chars (or remaining)
-  for (n = 8; n < length; n += 61) {
-    r = n
-    c = 10 + r < length ? 11 : length - r + 1
-    for (o = r, s = r + c - 1; o < s; s--, o++) {
-      a = i[s]
-      i[s] = i[o]
-      i[o] = a
+  while (i < buffer.length - 1) {
+    const segmentLength = Math.min(key[segmentCount % key.length], buffer.length - i)
+    segmentCount++
+
+    // Reverse this segment
+    let left = i
+    let right = i + segmentLength - 1
+    while (left < right) {
+      ;[buffer[left], buffer[right]] = [buffer[right], buffer[left]]
+      left++
+      right--
     }
-    n = r += c
+
+    i += segmentLength
   }
 
-  // Pass 2: start at 19, step 65, reverse 7 chars (or remaining)
-  for (n = 19; n < length; n += 65) {
-    r = n
-    c = 6 + r < length ? 7 : length - r + 1
-    for (o = r, s = r + c - 1; o < s; s--, o++) {
-      a = i[s]
-      i[s] = i[o]
-      i[o] = a
+  return buffer.join("")
+}
+
+/**
+ * Validate if a key prefix could produce valid base64/UTF-8 output.
+ *
+ * This is used during brute-force key discovery to prune invalid branches early.
+ *
+ * @param rawc - The scrambled string
+ * @param keyPrefix - Partial key to test
+ * @param spacing - Remaining space to account for (min/max of remaining digits)
+ * @returns true if this prefix could lead to valid output
+ */
+function isValidKeyPrefix(rawc: string, keyPrefix: number[], spacing: number): boolean {
+  try {
+    let pos = 0
+    let chunk: string[] = []
+
+    while (pos < rawc.length) {
+      const startPos = pos
+      let keyIndex = 0
+
+      // Assemble a chunk by reversing segments of specified lengths
+      while (keyIndex < keyPrefix.length && pos < rawc.length) {
+        const chunkLength = Math.min(keyPrefix[keyIndex], rawc.length - pos)
+        chunk.push(
+          rawc
+            .slice(pos, pos + chunkLength)
+            .split("")
+            .reverse()
+            .join("")
+        )
+        pos += chunkLength
+        keyIndex++
+      }
+
+      const chunkStr = chunk.join("")
+
+      // Align to 4-byte Base64 boundaries
+      const base64Start = Math.floor((startPos + 3) / 4) * 4 - startPos
+      const base64End = Math.floor(pos / 4) * 4 - startPos
+
+      if (base64Start >= chunkStr.length || base64End <= base64Start) {
+        chunk = []
+        pos += spacing
+        continue
+      }
+
+      const b64Chunk = chunkStr.slice(base64Start, base64End)
+
+      try {
+        const decoded = base64Decode(b64Chunk)
+        // Check for invalid UTF-8 bytes
+        for (const byte of decoded) {
+          if ((byte < 32 && ![0x09, 0x0a, 0x0d].includes(byte)) || byte === 0xc0 || byte === 0xc1 || byte >= 0xf5) {
+            return false
+          }
+        }
+      } catch {
+        return false
+      }
+
+      pos += spacing
+      chunk = []
     }
-    n = r += c
+    return true
+  } catch {
+    return false
+  }
+}
+
+/**
+ * Brute-force discover the descramble key using BFS.
+ *
+ * Uses heuristics to find the first key digit, then expands candidates
+ * using validation to prune invalid branches.
+ *
+ * @param rawc - The scrambled string
+ * @returns The discovered 7-digit key, or null if not found
+ */
+function discoverKey(rawc: string): number[] | null {
+  // Heuristic: find "ye" or "we" which appear at the start of Base64-encoded JSON
+  // These strings (reversed) correspond to `{"` and `{\n`
+  const yePos = rawc.indexOf("ye")
+  const wePos = rawc.indexOf("we")
+
+  const ye = yePos !== -1 ? yePos : rawc.length
+  const we = wePos !== -1 ? wePos : rawc.length
+
+  const firstKeyDigit = Math.min(ye, we) + 2
+
+  // Initialize BFS queue
+  let queue: number[][] = firstKeyDigit > 20 ? [[]] : [[firstKeyDigit]]
+
+  while (queue.length > 0) {
+    const candidateKeyPrefix = queue.shift()!
+
+    if (candidateKeyPrefix.length === 7) {
+      // Try this complete key
+      try {
+        const descrambled = descrambleWithKey(rawc, candidateKeyPrefix)
+        const decodedBytes = base64Decode(descrambled)
+        const decodedString = utf8Decode(decodedBytes)
+
+        if (decodedString.startsWith("{")) {
+          const parsed = JSON.parse(decodedString) as AmuseData
+          if (parsed.w && parsed.h) {
+            return candidateKeyPrefix
+          }
+        }
+      } catch {
+        // This key didn't work, continue searching
+      }
+      continue
+    }
+
+    // Expand by trying next digits (2-20)
+    for (let nextDigit = 2; nextDigit <= 20; nextDigit++) {
+      const newCandidate = [...candidateKeyPrefix, nextDigit]
+      const remainingDigits = 7 - newCandidate.length
+      const minSpacing = 2 * remainingDigits
+      const maxSpacing = 20 * remainingDigits
+
+      // Test if any spacing within bounds produces valid output
+      let valid = false
+      for (let spacing = minSpacing; spacing <= maxSpacing && !valid; spacing++) {
+        if (isValidKeyPrefix(rawc, newCandidate, spacing)) {
+          valid = true
+        }
+      }
+      if (valid) {
+        queue.push(newCandidate)
+      }
+    }
   }
 
-  // Pass 3: start at 61, step 61, reverse 11 chars (or remaining)
-  for (n = 61; n < length; n += 61) {
-    r = n
-    c = 10 + r < length ? 11 : length - r + 1
-    for (o = r, s = r + c - 1; o < s; s--, o++) {
-      a = i[s]
-      i[s] = i[o]
-      i[o] = a
-    }
-    n = r += c
-  }
-
-  // Pass 4: start at 26, step 37, reverse 17 then 11 then 7
-  for (n = 26; n < length; n += 37) {
-    r = n
-
-    // First: 17 chars
-    c = 16 + r < length ? 17 : length - r + 1
-    for (o = r, s = r + c - 1; o < s; s--, o++) {
-      a = i[s]
-      i[s] = i[o]
-      i[o] = a
-    }
-    r += c
-
-    // Second: 11 chars
-    c = 10 + r < length ? 11 : length - r + 1
-    for (o = r, s = r + c - 1; o < s; s--, o++) {
-      a = i[s]
-      i[s] = i[o]
-      i[o] = a
-    }
-    r += c
-
-    // Third: 7 chars
-    c = 6 + r < length ? 7 : length - r + 1
-    for (o = r, s = r + c - 1; o < s; s--, o++) {
-      a = i[s]
-      i[s] = i[o]
-      i[o] = a
-    }
-    n = r += c
-  }
-
-  // Pass 5: start at 0, step 64, reverse 8 chars
-  for (n = 0; n < length; n += 64) {
-    r = n
-    c = 7 + r < length ? 8 : length - r + 1
-    for (o = r, s = r + c - 1; o < s; s--, o++) {
-      a = i[s]
-      i[s] = i[o]
-      i[o] = a
-    }
-    n = r += c
-  }
-
-  return i.join("")
+  return null
 }
 
 /**
@@ -161,31 +257,70 @@ function utf8Decode(bytes: Uint8Array): string {
 }
 
 /**
+ * Try to decode with a specific key.
+ *
+ * @param rawc - The encoded rawc string
+ * @param key - The descramble key to use
+ * @returns The parsed puzzle data, or null if decoding failed
+ */
+function tryDecodeWithKey(rawc: string, key: number[]): AmuseData | null {
+  try {
+    const descrambled = descrambleWithKey(rawc, key)
+    const decodedBytes = base64Decode(descrambled)
+    const decodedString = utf8Decode(decodedBytes)
+
+    // Quick validation: should start with { and be valid JSON
+    if (!decodedString.startsWith("{")) {
+      return null
+    }
+
+    const puzzleData = JSON.parse(decodedString) as AmuseData
+
+    // Validate it has expected fields
+    if (!puzzleData.w || !puzzleData.h) {
+      return null
+    }
+
+    return puzzleData
+  } catch {
+    return null
+  }
+}
+
+/**
  * Decode the rawc field from PuzzleMe to get puzzle data.
  *
  * The decode chain is:
- * 1. descramble() - Reverses chunks of the string at specific intervals
+ * 1. descramble() - Reverses chunks of the string using a key
  * 2. base64Decode() - Standard base64 decoding to bytes
  * 3. utf8Decode() - Converts bytes to UTF-8 string
  * 4. JSON.parse() - Parses the JSON puzzle data
+ *
+ * This function first tries known keys for fast decoding, then falls back
+ * to brute-force key discovery if none work.
  *
  * @param rawc - The encoded rawc string from PuzzleMe HTML
  * @returns The decoded puzzle data as AmuseData
  */
 export function decodePuzzleMeRawc(rawc: string): AmuseData {
-  // Step 1: Descramble using the Lf algorithm
-  const descrambled = descramble(rawc)
+  // Fast path: try known keys first
+  for (const key of KNOWN_KEYS) {
+    const puzzleData = tryDecodeWithKey(rawc, key)
+    if (puzzleData) {
+      return puzzleData
+    }
+  }
 
-  // Step 2: Base64 decode
-  const decodedBytes = base64Decode(descrambled)
+  // Slow path: brute-force key discovery
+  const discoveredKey = discoverKey(rawc)
+  if (discoveredKey) {
+    const puzzleData = tryDecodeWithKey(rawc, discoveredKey)
+    if (puzzleData) {
+      return puzzleData
+    }
+  }
 
-  // Step 3: UTF-8 decode
-  const decodedString = utf8Decode(decodedBytes)
-
-  // Step 4: Parse JSON
-  const puzzleData = JSON.parse(decodedString) as AmuseData
-
-  return puzzleData
+  throw new Error("Failed to decode PuzzleMe rawc data with any known algorithm")
 }
 
 /**

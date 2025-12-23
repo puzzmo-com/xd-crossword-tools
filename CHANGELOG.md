@@ -2,7 +2,7 @@ This isn't a comprehensive doc because to our knowledge there are no OSS consume
 
 ### 12.1.0
 
-- Adds some functions for handling importing from a Puzzleme URL
+- Adds some functions for handling importing from a Puzzleme URL. Built on code found in https://github.com/thisisparker/xword-dl and https://github.com/jpd236/kotwords
 
 ### 12.0.0
 
