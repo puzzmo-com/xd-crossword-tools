@@ -13,6 +13,7 @@ import JSZip from "jszip"
 
 import { MultiDragAndDrop } from "./components/MultiDragAndDrop"
 import { decodePuzzleMeHTML, amuseToXD } from "xd-crossword-tools"
+import { resolvePuzzleMeUrl, couldBePuzzleMeUrl } from "./utils/resolvePuzzleMeUrl"
 
 interface ConversionResult {
   filename: string
@@ -37,14 +38,14 @@ function MassImport() {
   const [totalUrls, setTotalUrls] = useState(0)
 
   const handleFilesProcessed = (newResults: ConversionResult[]) => {
-    setResults(prev => [...prev, ...newResults])
+    setResults((prev) => [...prev, ...newResults])
   }
 
   const handlePuzzleMeBatchImport = async () => {
     const urls = puzzleMeUrls
       .split("\n")
-      .map(url => url.trim())
-      .filter(url => url.length > 0 && url.includes("puzzleme.amuselabs.com"))
+      .map((url) => url.trim())
+      .filter((url) => url.length > 0 && couldBePuzzleMeUrl(url))
 
     if (urls.length === 0) return
 
@@ -57,7 +58,10 @@ function MassImport() {
       setCurrentUrlIndex(i + 1)
 
       try {
-        const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(url)}`
+        // Resolve the URL to a PuzzleMe URL (handles iframes in blog posts, etc.)
+        const { puzzleMeUrl } = await resolvePuzzleMeUrl(url)
+
+        const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(puzzleMeUrl)}`
         const response = await fetch(proxyUrl)
 
         if (!response.ok) {
@@ -75,10 +79,10 @@ function MassImport() {
           filename: `${puzzleId}.xd`,
           status: "success",
           xd: xd,
-          originalFormat: `PuzzleMe (${title})`
+          originalFormat: `PuzzleMe (${title})`,
         }
 
-        setResults(prev => [...prev, result])
+        setResults((prev) => [...prev, result])
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : "Unknown error"
 
@@ -90,15 +94,15 @@ function MassImport() {
           filename: `${puzzleId}.xd`,
           status: "error",
           error: errorMessage,
-          originalFormat: "PuzzleMe"
+          originalFormat: "PuzzleMe",
         }
 
-        setResults(prev => [...prev, result])
+        setResults((prev) => [...prev, result])
       }
 
       // Small delay between requests to be nice to the server
       if (i < urls.length - 1) {
-        await new Promise(resolve => setTimeout(resolve, 500))
+        await new Promise((resolve) => setTimeout(resolve, 500))
       }
     }
 
@@ -111,7 +115,7 @@ function MassImport() {
   }
 
   const downloadAllXD = async () => {
-    const successfulResults = results.filter(r => r.status === "success" && r.xd)
+    const successfulResults = results.filter((r) => r.status === "success" && r.xd)
 
     if (successfulResults.length === 0) return
 
@@ -120,7 +124,7 @@ function MassImport() {
     try {
       const zip = new JSZip()
 
-      successfulResults.forEach(result => {
+      successfulResults.forEach((result) => {
         const filename = result.filename.replace(/\.[^/.]+$/, ".xd")
         zip.file(filename, result.xd!)
       })
@@ -130,7 +134,7 @@ function MassImport() {
       const url = URL.createObjectURL(content)
       const a = document.createElement("a")
       a.href = url
-      a.download = `converted-puzzles-${new Date().toISOString().split('T')[0]}.zip`
+      a.download = `converted-puzzles-${new Date().toISOString().split("T")[0]}.zip`
       a.click()
       URL.revokeObjectURL(url)
     } catch (error) {
@@ -153,14 +157,13 @@ function MassImport() {
     URL.revokeObjectURL(url)
   }
 
-  const successCount = results.filter(r => r.status === "success").length
-  const errorCount = results.filter(r => r.status === "error").length
+  const successCount = results.filter((r) => r.status === "success").length
+  const errorCount = results.filter((r) => r.status === "error").length
 
   const validUrlCount = puzzleMeUrls
     .split("\n")
-    .map(url => url.trim())
-    .filter(url => url.length > 0 && url.includes("puzzleme.amuselabs.com"))
-    .length
+    .map((url) => url.trim())
+    .filter((url) => url.length > 0 && couldBePuzzleMeUrl(url)).length
 
   return (
     <>
@@ -188,10 +191,14 @@ function MassImport() {
               <Card.Header className="card-header p-0">
                 <Nav variant="tabs" activeKey={mode} onSelect={(k) => setMode(k as ImportMode)}>
                   <Nav.Item>
-                    <Nav.Link eventKey="files" className="px-4">Files</Nav.Link>
+                    <Nav.Link eventKey="files" className="px-4">
+                      Files
+                    </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="puzzleme" className="px-4">PuzzleMe URLs</Nav.Link>
+                    <Nav.Link eventKey="puzzleme" className="px-4">
+                      PuzzleMe URLs
+                    </Nav.Link>
                   </Nav.Item>
                 </Nav>
               </Card.Header>
@@ -204,9 +211,7 @@ function MassImport() {
                       <p className="text-muted">
                         Supported formats: <code>.puz</code>, <code>.jpz</code>, <code>.json</code> (amuse), <code>.xml</code> (uclick)
                       </p>
-                      <p className="text-muted">
-                        Drop multiple files or folders to convert them all at once.
-                      </p>
+                      <p className="text-muted">Drop multiple files or folders to convert them all at once.</p>
                     </div>
                   </>
                 )}
@@ -218,7 +223,9 @@ function MassImport() {
                       <Form.Control
                         as="textarea"
                         rows={10}
-                        placeholder={"https://puzzleme.amuselabs.com/pmm/crossword?id=puzzle1&set=...\nhttps://puzzleme.amuselabs.com/pmm/crossword?id=puzzle2&set=...\nhttps://puzzleme.amuselabs.com/pmm/crossword?id=puzzle3&set=..."}
+                        placeholder={
+                          "https://puzzleme.amuselabs.com/pmm/crossword?id=puzzle1&set=...\nhttps://blog.example.com/crossword-post (pages with PuzzleMe iframes)\nhttps://puzzleme.amuselabs.com/pmm/crossword?id=puzzle2&set=..."
+                        }
                         value={puzzleMeUrls}
                         onChange={(e) => setPuzzleMeUrls(e.target.value)}
                         disabled={isLoadingUrls}
@@ -230,7 +237,9 @@ function MassImport() {
                       <div className="mb-3">
                         <div className="d-flex align-items-center gap-2 mb-2">
                           <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                          <span>Processing URL {currentUrlIndex} of {totalUrls}...</span>
+                          <span>
+                            Processing URL {currentUrlIndex} of {totalUrls}...
+                          </span>
                         </div>
                         <div className="progress">
                           <div
@@ -262,18 +271,15 @@ function MassImport() {
                     </Button>
 
                     <p className="text-muted small mt-2">
-                      Each URL will be fetched and converted to XD format. Invalid URLs will be skipped.
+                      Each URL will be fetched and converted to XD format. Supports direct PuzzleMe URLs or pages containing PuzzleMe
+                      iframes.
                     </p>
                   </>
                 )}
 
                 {results.length > 0 && (
                   <div className="mt-3 d-flex gap-2">
-                    <Button
-                      variant="success"
-                      onClick={downloadAllXD}
-                      disabled={successCount === 0 || isCreatingZip}
-                    >
+                    <Button variant="success" onClick={downloadAllXD} disabled={successCount === 0 || isCreatingZip}>
                       {isCreatingZip ? (
                         <>
                           <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
@@ -283,10 +289,7 @@ function MassImport() {
                         `Download ZIP (${successCount} files)`
                       )}
                     </Button>
-                    <Button
-                      variant="outline-danger"
-                      onClick={clearResults}
-                    >
+                    <Button variant="outline-danger" onClick={clearResults}>
                       Clear Results
                     </Button>
                   </div>
@@ -302,8 +305,14 @@ function MassImport() {
                   Conversion Results
                   {results.length > 0 && (
                     <>
-                      <Badge bg="success" className="ms-2">{successCount} succeeded</Badge>
-                      {errorCount > 0 && <Badge bg="danger" className="ms-2">{errorCount} failed</Badge>}
+                      <Badge bg="success" className="ms-2">
+                        {successCount} succeeded
+                      </Badge>
+                      {errorCount > 0 && (
+                        <Badge bg="danger" className="ms-2">
+                          {errorCount} failed
+                        </Badge>
+                      )}
                     </>
                   )}
                 </Card.Title>
@@ -320,27 +329,29 @@ function MassImport() {
 
                 {!isProcessing && !isLoadingUrls && results.length === 0 && (
                   <div className="text-center text-muted p-4">
-                    <p>No files processed yet. {mode === "files" ? "Drop some crossword files on the left to get started!" : "Paste some PuzzleMe URLs and click Import!"}</p>
+                    <p>
+                      No files processed yet.{" "}
+                      {mode === "files"
+                        ? "Drop some crossword files on the left to get started!"
+                        : "Paste some PuzzleMe URLs and click Import!"}
+                    </p>
                   </div>
                 )}
 
                 {results.map((result, index) => (
-                  <div key={index} className={`mb-3 p-3 border rounded ${result.status === "success" ? "border-success" : "border-danger"}`}>
+                  <div
+                    key={index}
+                    className={`mb-3 p-3 border rounded ${result.status === "success" ? "border-success" : "border-danger"}`}
+                  >
                     <div className="d-flex justify-content-between align-items-start">
                       <div>
                         <h6 className="mb-1">
                           {result.status === "success" ? "✅" : "❌"} {result.filename}
                         </h6>
-                        <small className="text-muted">
-                          Format: {result.originalFormat}
-                        </small>
+                        <small className="text-muted">Format: {result.originalFormat}</small>
                       </div>
                       {result.status === "success" && (
-                        <Button
-                          size="sm"
-                          variant="outline-primary"
-                          onClick={() => downloadSingleXD(result)}
-                        >
+                        <Button size="sm" variant="outline-primary" onClick={() => downloadSingleXD(result)}>
                           Download
                         </Button>
                       )}

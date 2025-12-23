@@ -28,6 +28,7 @@ import { CrosswordBarPreview } from "./components/CrosswordPreview"
 import { readmeHtml } from "virtual:readme"
 import { Link } from "wouter"
 import { version, puzEncode, decodePuzzleMeHTML, amuseToXD, type CrosswordJSON } from "xd-crossword-tools"
+import { resolvePuzzleMeUrl } from "./utils/resolvePuzzleMeUrl"
 
 const PRINT_SERVICE_BASE = "https://games-u7ii.onrender.com"
 
@@ -196,16 +197,14 @@ function App() {
   const handlePuzzleMeImport = async () => {
     if (!importUrl.trim()) return
 
-    if (!importUrl.includes("puzzleme.amuselabs.com")) {
-      setImportError("Please enter a valid PuzzleMe URL")
-      return
-    }
-
     setIsImporting(true)
     setImportError(null)
 
     try {
-      const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(importUrl)}`
+      // Resolve the URL to a PuzzleMe URL (handles iframes in blog posts, etc.)
+      const { puzzleMeUrl } = await resolvePuzzleMeUrl(importUrl)
+
+      const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(puzzleMeUrl)}`
       const response = await fetch(proxyUrl)
 
       if (!response.ok) {
@@ -767,7 +766,7 @@ function App() {
                         <div className="import-url-input">
                           <input
                             type="url"
-                            placeholder="https://puzzleme.amuselabs.com/pmm/crossword?id=..."
+                            placeholder="PuzzleMe URL or page with PuzzleMe iframe..."
                             value={importUrl}
                             onChange={(e) => {
                               setImportUrl(e.target.value)
@@ -837,7 +836,7 @@ function App() {
                             <div className="import-url-input">
                               <input
                                 type="url"
-                                placeholder="https://puzzleme.amuselabs.com/pmm/crossword?id=..."
+                                placeholder="PuzzleMe URL or page with PuzzleMe iframe..."
                                 value={importUrl}
                                 onChange={(e) => {
                                   setImportUrl(e.target.value)
