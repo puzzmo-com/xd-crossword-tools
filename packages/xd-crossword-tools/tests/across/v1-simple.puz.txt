@@ -1,0 +1,26 @@
+<ACROSS PUZZLE>
+<TITLE>
+    Across Test
+<AUTHOR>
+    madebygare
+<COPYRIGHT>
+    2026 Puzzmo
+<SIZE>
+4x4
+<GRID>
+    .DOT
+    TEST
+    ONLY
+    PTO.
+<ACROSS>
+    Used to make a square black in Ingrid.
+    This file is for a ____.
+    Sole.
+    Vacation.
+<DOWN>
+    Something you don't want on your new car.
+    Capital of Norway.
+    On linux this is short for teletypewriter.
+    The opposite of bottom.
+<NOTEPAD>
+This is a simple test puzzle without any special features.

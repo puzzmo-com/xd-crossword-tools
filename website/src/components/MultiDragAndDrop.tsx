@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react"
-import { jpzToXD, puzToXD, amuseToXD, uclickXMLToXD } from "xd-crossword-tools"
+import { jpzToXD, puzToXD, amuseToXD, uclickXMLToXD, acrossTextToXD } from "xd-crossword-tools"
 
 interface ConversionResult {
   filename: string
@@ -15,7 +15,7 @@ interface MultiDragAndDropProps {
 }
 
 export const MultiDragAndDrop: React.FC<MultiDragAndDropProps> = ({ onFilesProcessed, setIsProcessing }) => {
-  const acceptedFileTypes = [".puz", ".jpz", ".json", ".xml"]
+  const acceptedFileTypes = [".puz", ".puz.txt", ".jpz", ".json", ".xml"]
   const [isDragging, setIsDragging] = useState(false)
 
   const processFile = async (file: File): Promise<ConversionResult> => {
@@ -72,6 +72,17 @@ export const MultiDragAndDrop: React.FC<MultiDragAndDropProps> = ({ onFilesProce
         }
       }
 
+      if (file.name.endsWith(".puz.txt")) {
+        const acrossText = await file.text()
+        const xd = acrossTextToXD(acrossText)
+        return {
+          filename: file.name,
+          status: "success",
+          xd,
+          originalFormat: "Across Text",
+        }
+      }
+
       throw new Error(`Unsupported file type: ${extension}`)
     } catch (error) {
       return {
@@ -103,8 +114,8 @@ export const MultiDragAndDrop: React.FC<MultiDragAndDropProps> = ({ onFilesProce
 
       const files = Array.from(e.dataTransfer.files)
       const validFiles = files.filter((file) => {
-        const extension = "." + file.name.split(".").pop()?.toLowerCase()
-        return acceptedFileTypes.includes(extension)
+        const lowerName = file.name.toLowerCase()
+        return acceptedFileTypes.some((ext) => lowerName.endsWith(ext))
       })
 
       if (validFiles.length === 0) return
@@ -131,15 +142,15 @@ export const MultiDragAndDrop: React.FC<MultiDragAndDropProps> = ({ onFilesProce
 
       setIsProcessing(false)
     },
-    [onFilesProcessed, setIsProcessing]
+    [onFilesProcessed, setIsProcessing],
   )
 
   const handleFileInput = useCallback(
     async (e: React.ChangeEvent<HTMLInputElement>) => {
       const files = Array.from(e.target.files || [])
       const validFiles = files.filter((file) => {
-        const extension = "." + file.name.split(".").pop()?.toLowerCase()
-        return acceptedFileTypes.includes(extension)
+        const lowerName = file.name.toLowerCase()
+        return acceptedFileTypes.some((ext) => lowerName.endsWith(ext))
       })
 
       if (validFiles.length === 0) return
@@ -151,7 +162,7 @@ export const MultiDragAndDrop: React.FC<MultiDragAndDropProps> = ({ onFilesProce
 
       setIsProcessing(false)
     },
-    [onFilesProcessed, setIsProcessing]
+    [onFilesProcessed, setIsProcessing],
   )
 
   return (
@@ -191,7 +202,14 @@ export const MultiDragAndDrop: React.FC<MultiDragAndDropProps> = ({ onFilesProce
         >
           Browse Files
         </label>
-        <input id="file-input" type="file" multiple accept=".puz,.jpz,.json,.xml" onChange={handleFileInput} style={{ display: "none" }} />
+        <input
+          id="file-input"
+          type="file"
+          multiple
+          accept=".puz,.puz.txt,.jpz,.json,.xml"
+          onChange={handleFileInput}
+          style={{ display: "none" }}
+        />
       </div>
     </div>
   )

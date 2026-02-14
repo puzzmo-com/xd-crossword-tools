@@ -4263,6 +4263,19 @@ const xd = jpzToXD(jpz)
 
 The jpz format import supports barred crosswords.
 
+### Across Text (.puz.txt) to .xd
+
+This library supports both v1 and v2 formats, including rebus cells and circled cells (MARK flag).
+
+[Format Document](https://www.litsoft.com/across/docs/AcrossTextFormat.pdf)
+
+```ts
+import { acrossTextToXD } from "xd-crossword-tools"
+
+const acrossText = "..."
+const xd = acrossTextToXD(acrossText)
+```
+
 ### .xd to .puz
 
 We don't support _all_ of .puz features, but this library can generate a JSON object which can then be used `@confuzzle/writepuz` to generate a .puz file as a buffer which you can write to a file in node, or offer as a download on the web.
@@ -4557,6 +4570,7 @@ The main `xd-crossword-tools` package provides comprehensive functionality for f
 | `uclickXMLToXD`                | Converts UClick XML format to XD                | `str: string`                                        | `string`                                        | Parses XML crossword data and converts to XD format  |
 | `jpzToXD`                      | Converts JPZ (XML) format to XD                 | `xmlString: string`                                  | `string`                                        | Handles JPZ crossword puzzle format conversion       |
 | `amuseToXD`                    | Converts Amuse JSON format to XD                | `amuseJSON: AmuseTopLevel`                           | `string`                                        | Converts Amuse Labs crossword format to XD           |
+| `acrossTextToXD`               | Converts Across Text format to XD               | `textContent: string`                                | `string`                                        | Supports v1 and v2 formats, handles rebus and circles |
 | `JSONToXD`                     | Converts CrosswordJSON back to XD format string | `json: CrosswordJSON`                                | `string`                                        | Main function for converting parsed data back to XD  |
 | `JSONToPuzJSON`                | Converts CrosswordJSON to .puz format JSON      | `json: CrosswordJSON`, `config?: {filled?: boolean}` | `any`                                           | Creates JSON for @confuzzle/writepuz                 |
 | `puzEncode`                    | Encodes puzzle data to .puz binary format       | `puzzle: Puzzle`                                     | `Uint8Array`                                    | Low-level binary .puz file encoding                  |

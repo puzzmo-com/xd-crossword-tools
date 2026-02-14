@@ -85,9 +85,7 @@ const PrintTab: React.FC<{ xd: string; crosswordJSON: CrosswordJSON }> = ({ xd, 
       }
 
       const { slug } = await response.json()
-      const url = asPDF
-        ? `${PRINT_SERVICE_BASE}/crossword/stored/${slug}/pdf`
-        : `${PRINT_SERVICE_BASE}/crossword/stored/${slug}`
+      const url = asPDF ? `${PRINT_SERVICE_BASE}/crossword/stored/${slug}/pdf` : `${PRINT_SERVICE_BASE}/crossword/stored/${slug}`
 
       window.open(url, "_blank")
     } catch (err) {
@@ -234,7 +232,7 @@ function App() {
         if (tile.type === "letter") return tile.letter
         if (tile.type === "rebus") return tile.word
         return "."
-      })
+      }),
     )
 
     // Build clues arrays indexed by clue number
@@ -753,7 +751,7 @@ function App() {
                       <div className="format-support">
                         <span>
                           Supports drag & drop of <code>.xd</code>, <code>.puz</code>, <code>.jpz</code>, <code>.json</code> (amuse),{" "}
-                          <code>.xml</code> (uclick)
+                          <code>.xml</code> (uclick), <code>.puz.txt</code> (Across Text)
                         </span>
                         <div className="format-buttons">
                           <button type="button" className="upload-btn" onClick={() => setShowImportInput(!showImportInput)}>
@@ -823,7 +821,7 @@ function App() {
                           <div className="format-support">
                             <span>
                               Supports drag & drop of <code>.xd</code>, <code>.puz</code>, <code>.jpz</code>, <code>.json</code> (amuse),{" "}
-                              <code>.xml</code> (uclick)
+                              <code>.xml</code> (uclick), <code>.puz.txt</code> (Across Text)
                             </span>
                             <div className="format-buttons">
                               <button type="button" className="upload-btn" onClick={() => setShowImportInput(!showImportInput)}>
