@@ -13,6 +13,7 @@ export { runLinterForClue } from "./xdLints"
 export { amuseToXD } from "./amuseJSONToXD"
 export { decodePuzzleMeHTML, decodePuzzleMeRawc, extractPuzzleMeRawc, puzzleMeDataToAmuseTopLevel } from "./puzzleMeDecode"
 export { validateClueAnswersMatchGrid } from "./validateClueAnswersMatchGrid"
+export { acrossTextToXD } from "./acrossTextToXD"
 
 // Export the package version
 import packageJson from "../package.json"

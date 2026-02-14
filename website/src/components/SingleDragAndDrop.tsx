@@ -1,5 +1,5 @@
 import React, { useState, useCallback, use, useRef, createContext } from "react"
-import { jpzToXD, puzToXD, amuseToXD, uclickXMLToXD } from "xd-crossword-tools"
+import { jpzToXD, puzToXD, amuseToXD, uclickXMLToXD, acrossTextToXD } from "xd-crossword-tools"
 
 import { decode } from "xd-crossword-tools/src/vendor/puzjs"
 
@@ -28,7 +28,7 @@ interface DragAndDropProps {
 const processFile = async (
   file: File,
   setXD: (xd: string) => void,
-  setLastFileContext: (ctx: { content: string | object; filename: string }) => void
+  setLastFileContext: (ctx: { content: string | object; filename: string }) => void,
 ) => {
   if (file.name.endsWith(".xd")) {
     const xdContent = await file.text()
@@ -70,11 +70,18 @@ const processFile = async (
     setXD(xd)
     setLastFileContext({ content: xmlText, filename: file.name })
   }
+
+  if (file.name.endsWith(".puz.txt")) {
+    const acrossText = await file.text()
+    const xd = acrossTextToXD(acrossText)
+    setXD(xd)
+    setLastFileContext({ content: acrossText, filename: file.name })
+  }
 }
 
 export const DragAndDrop: React.FC<DragAndDropProps> = ({ children }) => {
   const { setXD, setLastFileContext } = use(RootContext)
-  const acceptedFileTypes = [".xd", ".puz", ".jpz", ".json", ".xml"]
+  const acceptedFileTypes = [".xd", ".puz", ".puz.txt", ".jpz", ".json", ".xml"]
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const [isDragging, setIsDragging] = useState(false)
@@ -102,7 +109,7 @@ export const DragAndDrop: React.FC<DragAndDropProps> = ({ children }) => {
       // Reset the input so the same file can be selected again
       e.target.value = ""
     },
-    [setXD, setLastFileContext]
+    [setXD, setLastFileContext],
   )
 
   const handleDrop = useCallback(
@@ -113,8 +120,8 @@ export const DragAndDrop: React.FC<DragAndDropProps> = ({ children }) => {
 
       const files = Array.from(e.dataTransfer.files)
       const validFiles = files.filter((file) => {
-        const extension = "." + file.name.split(".").pop()?.toLowerCase()
-        return acceptedFileTypes.includes(extension)
+        const lowerName = file.name.toLowerCase()
+        return acceptedFileTypes.some((ext) => lowerName.endsWith(ext))
       })
 
       const file = validFiles[0]
@@ -122,7 +129,7 @@ export const DragAndDrop: React.FC<DragAndDropProps> = ({ children }) => {
 
       await processFile(file, setXD, setLastFileContext)
     },
-    [setXD, setLastFileContext]
+    [setXD, setLastFileContext],
   )
 
   const triggerUpload = useCallback(() => {

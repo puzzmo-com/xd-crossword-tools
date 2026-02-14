@@ -1,0 +1,29 @@
+<ACROSS PUZZLE V2>
+<TITLE>
+    Across Test
+<AUTHOR>
+    madebygare
+<COPYRIGHT>
+    2026 Puzzmo
+<SIZE>
+4x4
+<GRID>
+    .D2T
+    T1ST
+    2NLY
+    PT2.
+<REBUS>
+1:EEE:E
+2:OOO:O
+<ACROSS>
+    Used to make a square black in Ingrid.
+    This file is for a ____.
+    Sole.
+    Vacation.
+<DOWN>
+    Something you don't want on your new car.
+    Capital of Norway.
+    On linux this is short for teletypewriter.
+    The opposite of bottom.
+<NOTEPAD>
+This puzzle demonstrates rebus cells with multi-letter entries.

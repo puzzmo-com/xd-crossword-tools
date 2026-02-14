@@ -1,0 +1,141 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`acrossTextToXD > should handle files with carriage return line endings 1`] = `
+"## Metadata
+
+title: Across Test
+author: madebygare
+copyright: 2026 Puzzmo
+
+## Grid
+
+#DOT
+TEST
+ONLY
+PTO#
+
+
+## Clues
+
+A1. Used to make a square black in Ingrid. ~ DOT
+A4. This file is for a ____. ~ TEST
+A5. Sole. ~ ONLY
+A6. Vacation. ~ PTO
+
+D1. Something you don't want on your new car. ~ DENT
+D2. Capital of Norway. ~ OSLO
+D3. On linux this is short for teletypewriter. ~ TTY
+D4. The opposite of bottom. ~ TOP
+
+## Notes
+
+This is a simple test puzzle without any special features."
+`;
+
+exports[`acrossTextToXD > should parse v1 simple puzzle 1`] = `
+"## Metadata
+
+title: Across Test
+author: madebygare
+copyright: 2026 Puzzmo
+
+## Grid
+
+#DOT
+TEST
+ONLY
+PTO#
+
+
+## Clues
+
+A1. Used to make a square black in Ingrid. ~ DOT
+A4. This file is for a ____. ~ TEST
+A5. Sole. ~ ONLY
+A6. Vacation. ~ PTO
+
+D1. Something you don't want on your new car. ~ DENT
+D2. Capital of Norway. ~ OSLO
+D3. On linux this is short for teletypewriter. ~ TTY
+D4. The opposite of bottom. ~ TOP
+
+## Notes
+
+This is a simple test puzzle without any special features."
+`;
+
+exports[`acrossTextToXD > should parse v2 puzzle with MARK flag (circled cells) 1`] = `
+"## Metadata
+
+title: Across Test
+author: madebygare
+copyright: 2026 Puzzmo
+O { background: circle }
+
+## Grid
+
+#DOT
+TEST
+ONLY
+PTO#
+
+
+## Clues
+
+A1. Used to make a square black in Ingrid. ~ DOT
+A4. This file is for a ____. ~ TEST
+A5. Sole. ~ ONLY
+A6. Vacation. ~ PTO
+
+D1. Something you don't want on your new car. ~ DENT
+D2. Capital of Norway. ~ OSLO
+D3. On linux this is short for teletypewriter. ~ TTY
+D4. The opposite of bottom. ~ TOP
+
+## Notes
+
+This puzzle demonstrates circled cells using the MARK flag.
+
+## Design
+
+<style>O { background: circle }</style>
+
+#...
+OOOO
+....
+...#
+"
+`;
+
+exports[`acrossTextToXD > should parse v2 puzzle with rebus 1`] = `
+"## Metadata
+
+title: Across Test
+author: madebygare
+copyright: 2026 Puzzmo
+rebus: ❶=EEE ❷=OOO
+
+## Grid
+
+#D❷T
+T❶ST
+❷NLY
+PT❷#
+
+
+## Clues
+
+A1. Used to make a square black in Ingrid. ~ DOOOT
+A4. This file is for a ____. ~ TEEEST
+A5. Sole. ~ OOONLY
+A6. Vacation. ~ PTOOO
+
+D1. Something you don't want on your new car. ~ DEEENT
+D2. Capital of Norway. ~ OOOSLOOO
+D3. On linux this is short for teletypewriter. ~ TTY
+D4. The opposite of bottom. ~ TOOOP
+
+## Notes
+
+This puzzle demonstrates rebus cells with multi-letter entries."
+`;
