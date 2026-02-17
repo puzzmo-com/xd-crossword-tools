@@ -1,5 +1,9 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 12.2.0
+
+- Adds support for converting Across Text format to XD.
+
 ### 12.1.0
 
 - Adds some functions for handling importing from a Puzzleme URL. Built on code found in https://github.com/thisisparker/xword-dl and https://github.com/jpd236/kotwords
