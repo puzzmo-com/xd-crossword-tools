@@ -103,6 +103,9 @@ dist
 # TernJS port file
 .tern-port
 
+# Yarn Berry
+.yarn/install-state.gz
+
 # Build file
 index.js
 .DS_Store
