@@ -1,5 +1,9 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 12.2.1
+
+- Roundtrips through xdToJSON and back do not add newlines to custom sections
+
 ### 12.2.0
 
 - Adds support for converting Across Text format to XD.
