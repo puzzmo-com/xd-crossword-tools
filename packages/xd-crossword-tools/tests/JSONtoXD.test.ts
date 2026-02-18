@@ -448,6 +448,59 @@ A1. Not too much! ~ JUST|A|SKOSH\n\n`
     expect(resolveFullClueAnswer(clue, "|")).toEqual("TWITCH|D|OT|T|V")
   })
 
+  it("unknown section content does not grow through repeated round-trips", () => {
+    const puzzle = `## Metadata
+
+title: Round Trip Test
+author: Test
+date: 2025-01-01
+editor: Test
+
+## Grid
+
+BULB
+OK.O
+L..O
+DESK
+
+## Clues
+
+A1. Gardener's concern. ~ BULB
+A1 ^hint: Turned on with a flick.
+
+A4. A reasonable statement. ~ OK
+A4 ^hint: All __.
+
+A5. The office centerpiece. ~ DESK
+A5 ^hint: Fried.
+
+
+D1. To _ly go. ~ BOLD
+D1 ^hint: When you want to make some text stronger.
+
+D2. Bigger than britain. ~ UK
+D2 ^hint: A union which left europe.
+
+D3. A conscious tree. ~ BOOK
+D3 ^hint: Registering with a restaurant.
+
+## Line Breaks
+
+A1. nbsp:4
+D1. wbr:3`
+
+    let xdString = puzzle
+    for (let i = 0; i < 10; i++) {
+      const json = xdToJSON(xdString)
+      // Simulate a clue edit like the studio does
+      json.clues.across[0].body = `Gardener's concern (edit ${i}).`
+      xdString = JSONToXD(json)
+    }
+
+    const finalJSON = xdToJSON(xdString)
+    expect(finalJSON.unknownSections["line-breaks"].content).toBe("A1. nbsp:4\nD1. wbr:3")
+  })
+
   it("Handles multiple internal splits in same rebus", () => {
     // Test case with multiple internal splits in the same rebus
     const clue = {
