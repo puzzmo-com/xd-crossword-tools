@@ -842,4 +842,22 @@ Title: Test Puzzle
 }
 `)
   })
+
+  it("does not include leading newlines in unknown section content", () => {
+    const xd = `## Metadata
+Title: Test Puzzle
+
+## Grid
+
+## Clues
+
+## Custom Section
+
+Line one
+Line two
+`
+
+    const json = xdToJSON(xd)
+    expect(json.unknownSections["custom-section"].content).toBe("Line one\nLine two")
+  })
 })

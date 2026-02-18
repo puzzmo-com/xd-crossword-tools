@@ -539,7 +539,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
 
   // Clean up trailing newlines from unknown sections content
   for (const [key, section] of Object.entries(json.unknownSections)) {
-    json.unknownSections[key].content = section.content.trimEnd()
+    json.unknownSections[key].content = section.content.trim()
   }
 
   // if (editorInfo) {
