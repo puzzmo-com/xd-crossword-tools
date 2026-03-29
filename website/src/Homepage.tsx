@@ -22,6 +22,7 @@ import { PanelGroup, Panel, PanelResizer } from "@window-splitter/react"
 import { JsonView, allExpanded, defaultStyles } from "react-json-view-lite"
 import "react-json-view-lite/dist/index.css"
 import { exampleXDs } from "./exampleXDs"
+import { CDNBrowser } from "./components/CDNBrowser"
 import Crossword from "@jaredreisinger/react-crossword"
 import { convertToCrosswordFormat } from "./utils/convertToCrosswordFormat"
 import { CrosswordBarPreview } from "./components/CrosswordPreview"
@@ -33,7 +34,6 @@ import { resolvePuzzleMeUrl } from "./utils/resolvePuzzleMeUrl"
 const PRINT_SERVICE_BASE = "https://games-u7ii.onrender.com"
 
 interface PrintOptions {
-  includeSolution: boolean
   includeClues: boolean
   includeGrid: boolean
   grid: {
@@ -48,7 +48,6 @@ const PrintTab: React.FC<{ xd: string; crosswordJSON: CrosswordJSON }> = ({ xd, 
   const [isGenerating, setIsGenerating] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [options, setOptions] = useState<PrintOptions>({
-    includeSolution: false,
     includeClues: true,
     includeGrid: true,
     grid: {
@@ -119,14 +118,6 @@ const PrintTab: React.FC<{ xd: string; crosswordJSON: CrosswordJSON }> = ({ xd, 
             checked={options.includeClues}
             onChange={(e) => setOptions({ ...options, includeClues: e.target.checked })}
           />
-          <Form.Check
-            type="checkbox"
-            id="includeSolution"
-            label="Include Solution"
-            checked={options.includeSolution}
-            onChange={(e) => setOptions({ ...options, includeSolution: e.target.checked })}
-          />
-
           <h6 className="mt-3">Grid Options</h6>
           <Form.Check
             type="checkbox"
@@ -163,9 +154,6 @@ const PrintTab: React.FC<{ xd: string; crosswordJSON: CrosswordJSON }> = ({ xd, 
         <div className="d-flex gap-2 flex-wrap mt-4">
           <Button variant="primary" onClick={() => handleOpenPrint(false)} disabled={isGenerating}>
             {isGenerating ? "Generating..." : "Open Print View"}
-          </Button>
-          <Button variant="outline-primary" onClick={() => handleOpenPrint(true)} disabled={isGenerating}>
-            {isGenerating ? "Generating..." : "Download PDF"}
           </Button>
         </div>
 
@@ -363,7 +351,7 @@ function App() {
       <Tab eventKey="examples" title="Examples">
         <Card className="modern-card">
           <Card.Header className="card-header">
-            <Card.Title className="mb-0">Sample Puzzles</Card.Title>
+            <Card.Title className="mb-0">Sample Puzzles from Puzzmo</Card.Title>
           </Card.Header>
           <Card.Body>
             <div className="examples-grid">
@@ -374,6 +362,9 @@ function App() {
                 </button>
               ))}
             </div>
+            <hr />
+            <h6 className="mb-2">Browse gxd</h6>
+            <CDNBrowser onSelect={setXD} />
           </Card.Body>
         </Card>
       </Tab>
