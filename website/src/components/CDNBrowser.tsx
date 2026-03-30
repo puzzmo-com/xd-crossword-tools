@@ -103,7 +103,7 @@ export function CDNBrowser({ onSelect }: CDNBrowserProps) {
   return (
     <div>
       <p className="text-muted small mb-2">
-        Over 6,000 pre-1965 crosswords from the{" "}
+        Crosswords from the{" "}
         <a href="https://xd.saul.pw/data" target="_blank" rel="noreferrer">
           gxd
         </a>{" "}
