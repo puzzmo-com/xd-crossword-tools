@@ -4213,6 +4213,26 @@ O..O.#O.O##O..O
 
 </details>
 
+## CLI
+
+You can convert crossword files to `.xd` format directly from the command line without installing outside of Node.js:
+
+```sh
+# Convert a .puz file
+npx xd-crossword-tools puzzle.puz -o ./output
+
+# Convert multiple files at once
+npx xd-crossword-tools *.puz *.jpz -o ./xd-files
+
+# Convert a PuzzleMe URL
+npx xd-crossword-tools "https://puzzleme.amuselabs.com/pmm/crossword?id=abc123&set=..." -o ./output
+
+# Mix files and URLs
+npx xd-crossword-tools puzzle.puz "https://puzzleme.amuselabs.com/pmm/crossword?id=abc123&set=..." -o ./output
+```
+
+Supported input formats: `.puz`, `.jpz`, `.xml` (UClick), `.json` (Amuse Labs), `.txt` (Across text), and URLs which contain PuzzleMe crosswords.
+
 ## Import / Export
 
 ### .xd to .JSON
