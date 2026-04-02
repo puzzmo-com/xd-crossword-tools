@@ -1,6 +1,6 @@
 {
   "name": "xd-crossword-tools",
-  "version": "12.3.0",
+  "version": "13.0.0",
   "main": "dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
