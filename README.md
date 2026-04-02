@@ -4441,7 +4441,9 @@ The key is that a line has to start with `<!--` and eventually the same or anoth
 
 #### Markup in Clues
 
-The [xd spec](https://github.com/century-arcade/xd/blob/master/doc/xd-format.md#clues-section-3) defines markup inside a clue as roughly being "markdown sigil's wrapped in `{` and `}`". We support this format, and will always fill out a key of `markup` which is an array of components. We also add support for links via this syntax: `{@text|url@}`.
+The [xd spec](https://github.com/century-arcade/xd/blob/master/doc/xd-format.md#clues-section-3) defines markup inside a clue as roughly being "markdown sigil's wrapped in `{` and `}`".
+
+We support this format, and will always fill out a key of `markup` which is an array of components. We also support nested tags.
 
 <!-- prettier-ignore -->
 ```md
@@ -4478,8 +4480,9 @@ Which will add the optional `"bodyMD"` to the clue:
 - Inline colours: `{#`<kbd>text</kbd>`|`<kbd>hex colour light</kbd>|<kbd>hex colour dark</kbd>`#}`
 - Subscript `{~`<kbd>words</kbd>`~}`
 - Superscript `{^`<kbd>words</kbd>`^}`
+- Small caps: `{=`<kbd>words</kbd>`=}`
 
-There is an exported `xdMarkupProcessor` which you can use to do your own markup processing if needed.
+There is an exported `xdMarkupProcessor` and `xdMarkupSerializer` which you can use to do your own markup processing if needed.
 
 #### Split character
 
@@ -4503,7 +4506,7 @@ We want to highlight that 'Comments', 'Split Characters', 'Schrödinger clues' a
 
 ### Aesthetics
 
-The xd spec is built for isplaying a large corpus of finished Crosswords, we use it for creation of new ones. This means we have a few extensions to the format to make it easier to write puzzles.
+The xd spec is built for displaying a large corpus of finished Crosswords, we use it for creation of new ones. This means we have a few extensions to the format to make it easier to write puzzles.
 
 - `## Design`
 

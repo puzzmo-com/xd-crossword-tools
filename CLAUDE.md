@@ -69,27 +69,51 @@ yarn dev  # Starts on http://localhost:5173
 
 ## XD Format Syntax
 
-Basic structure:
+Real example from `tests/output/alpha-bits.xd` (trimmed):
 
 ```
-Title: Example Puzzle
-Author: Jane Doe
+## Metadata
 
-[grid definition with letters/blanks]
+title: Alpha-Bits
+author: Drew Hodson
+copyright: © 2021
+description: N/A
 
-Across
-1. First clue
-2. Second clue
+## Grid
 
-Down
-1. First down clue
+AHAB..CUD.SERIF
+MADAM.ANY.ABODE
+PLANE.DIE.NOTON
+....TODO.EGO...
+
+## Clues
+
+A1. Captain of the Pequod ~ AHAB
+A5. Food for second chance chewing ~ CUD
+A8. Font feature ~ SERIF
+...
+D1. Pc. of concert gear ~ AMP
+D2. Conceal ~ HIDE
+D3. AAA's counterpart across the pond ~ RAC
+...
+
+## Notes
+
+## Design
+
+<style>O { background: circle }</style>
+
+O..O##O.O#.O..O
+.....#...#.....
+...
 ```
+
+Sections are separated by `## Headers`. Grid uses `.` for black squares, letters for fills. Clues use `A`/`D` prefixes with `~` separating clue from answer.
 
 Special features:
 
-- Rebus: `(OK)` in grid
-- Markup: `{/italic/}`, `{*bold*}`, `{&link|url&}`, `{!image|alt!}`
-- Metadata in curly braces: `{Notes: Some notes}`
+- Markup: `{/italic/}`, `{*bold*}`, `{&link|url&}`, `{!image|alt!}` and more
+
 
 ## Development Tips
 
@@ -98,3 +122,4 @@ Special features:
 - The website automatically rebuilds when packages change in dev mode
 - Check existing test fixtures in `tests/` directories for format examples
 - When writing tests prefer using fixtures instead of writing objects yourself which conform to the interface shapes
+- **Round-trip fidelity is a hard problem in this project.** The pipeline xd → AST → xd must produce the same document. New features should always include a full pipeline round-trip test to verify the output matches the original input

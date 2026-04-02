@@ -1,5 +1,14 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 13.0.0
+
+- All formatting types (bold, italics, strike, underscore, subscript, superscript, link, color) now have a required `children` field containing parsed inner components. This enables nested markup like `{*{/bold italic/}*}` or `{*bold {/and italic/} text*}`.
+
+- The `text` field (index 1) still contains the raw content string for backwards compatibility. It has been marked as deprecated though.
+
+- The markup has switched from some regexes to a real parser.
+
+
 ### 12.3.0
 
 - Adds a CLI, see the README for examples of usage

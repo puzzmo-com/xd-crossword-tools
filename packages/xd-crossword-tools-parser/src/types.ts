@@ -137,18 +137,21 @@ export interface Position {
   index: number
 }
 
-// Inline elements to handle when rendering clues
+// Inline elements to handle when rendering clues.
+// The `children` field contains parsed inner components and supports nested markup
+// (e.g. {*{/bold italic/}*}). The `text` field retains the raw content string.
 export type ClueComponentMarkup =
   | [type: "text", text: string]
-  | [type: "italics", text: string]
-  | [type: "bold", text: string]
-  | [type: "strike", text: string]
-  | [type: "underscore", text: string]
-  | [type: "subscript", text: string]
-  | [type: "superscript", text: string]
-  | [type: "link", text: string, to: string]
   | [type: "img", url: string, alt: string, block: boolean, width?: string, height?: string]
-  | [type: "color", text: string, lightColor: string, darkColor: string]
+  | [type: "italics", /** @deprecated  */ text: string, children: ClueComponentMarkup[]]
+  | [type: "bold", /** @deprecated  */ text: string, children: ClueComponentMarkup[]]
+  | [type: "strike", /** @deprecated  */ text: string, children: ClueComponentMarkup[]]
+  | [type: "underscore", /** @deprecated  */ text: string, children: ClueComponentMarkup[]]
+  | [type: "subscript", /** @deprecated  */ text: string, children: ClueComponentMarkup[]]
+  | [type: "superscript", /** @deprecated  */ text: string, children: ClueComponentMarkup[]]
+  | [type: "smallcaps", /** @deprecated  */ text: string, children: ClueComponentMarkup[]]
+  | [type: "link", /** @deprecated  */ text: string, to: string, children: ClueComponentMarkup[]]
+  | [type: "color", /** @deprecated  */ text: string, lightColor: string, darkColor: string, children: ClueComponentMarkup[]]
 
 export interface Clue {
   /** The "clue" as a raw string, sans markup processing */
