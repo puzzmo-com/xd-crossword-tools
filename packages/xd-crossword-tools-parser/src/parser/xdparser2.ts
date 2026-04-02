@@ -327,15 +327,13 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
 
   // Validate barred crosswords don't use unsupported features
   if (useBarredLogic) {
-    const hasUnsupportedTiles = json.tiles.some((row) =>
-      row.some((tile) => tile.type === "rebus" || tile.type === "schrodinger")
-    )
+    const hasUnsupportedTiles = json.tiles.some((row) => row.some((tile) => tile.type === "rebus" || tile.type === "schrodinger"))
 
     if (hasUnsupportedTiles) {
       const rebusLine = getLine(xd.toLowerCase(), "rebus:")
       addSyntaxError(
         `Barred crosswords do not support rebuses or Schrödinger squares. Please remove the 'rebus:' metadata and use only letters and blank tiles in your grid.`,
-        rebusLine || 0
+        rebusLine || 0,
       )
       // Skip clue processing since it will fail anyway
       return json
@@ -346,7 +344,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
       const formLine = getLine(xd.toLowerCase(), "form:")
       addSyntaxError(
         `Barred crosswords require a '## Design' section with bar positions. Add a design section with <style> tags defining bar-left and bar-top properties.`,
-        formLine || 0
+        formLine || 0,
       )
       // Skip clue processing since we need the design section
       return json
@@ -413,7 +411,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     if (!positionData) {
       if (useBarredLogic) {
         bail(
-          `Could not find positioning data. In barred crosswords, clue answers must exactly match letter sequences in the grid separated by bars. Check that: (1) your answer "${clue.answer}" appears in the grid, (2) bars correctly separate this word from adjacent letters, and (3) the grid doesn't contain rebuses.`
+          `Could not find positioning data. In barred crosswords, clue answers must exactly match letter sequences in the grid separated by bars. Check that: (1) your answer "${clue.answer}" appears in the grid, (2) bars correctly separate this word from adjacent letters, and (3) the grid doesn't contain rebuses.`,
         )
       } else {
         bail("Could not find positioning data")
@@ -769,7 +767,7 @@ const slugify = (text: string): string => {
 
 function updateMetaPuzzleForLine(
   input: string,
-  metapuzzle: { clue: string; answer: string } | undefined
+  metapuzzle: { clue: string; answer: string } | undefined,
 ): { clue: string; answer: string } {
   if (!metapuzzle) {
     metapuzzle = { clue: "", answer: "" }
@@ -807,7 +805,7 @@ function parseStyleCSSLike(str: string, xd: string, errorReporter: (msg: string,
       if (letter === ",") {
         errorReporter(
           `Comma-separated selectors are not supported in the Design section. Each grid cell can only reference one style rule.`,
-          lineOfGrid
+          lineOfGrid,
         )
         continue
       }
@@ -820,7 +818,7 @@ function parseStyleCSSLike(str: string, xd: string, errorReporter: (msg: string,
         if (currentRuleName.length > 1) {
           errorReporter(
             `Cannot have a style rule which is longer than one character: got '${currentRuleName}' - it needs to fit in a grid cell`,
-            lineOfGrid
+            lineOfGrid,
           )
         }
         continue
@@ -876,7 +874,7 @@ function parseStyleCSSLike(str: string, xd: string, errorReporter: (msg: string,
 function parseSplitsFromAnswer(
   answerWithSplits: string,
   splitCharacter?: string,
-  tiles?: Tile[]
+  tiles?: Tile[],
 ): {
   splits?: number[]
   rebusInternalSplits?: Record<number, number[]>
@@ -968,94 +966,198 @@ function parseSplitsFromAnswer(
   return result
 }
 
+const MARKUP_TYPE_CHARS = new Set(["/", "*", "_", "-", "@", "~", "^", "!", "#", "="])
+
+/**
+ * Find the matching close delimiter for a markup tag, handling nested tags.
+ * Returns the index of the closing typeChar (the one before `}`), or -1 if not found.
+ */
+function findClosingDelimiter(input: string, start: number, typeChar: string): number {
+  let i = start
+  while (i < input.length) {
+    if (input[i] === "{" && i + 1 < input.length && MARKUP_TYPE_CHARS.has(input[i + 1])) {
+      // Nested tag — find its end and skip over it
+      const innerTypeChar = input[i + 1]
+      const innerClose = findClosingDelimiter(input, i + 2, innerTypeChar)
+      if (innerClose === -1) {
+        // Malformed inner tag, just advance past the `{`
+        i++
+      } else {
+        // Skip past the inner tag's closing `}`
+        i = innerClose + 2 // innerClose points to typeChar, +1 for `}`, +1 to move past
+      }
+    } else if (input[i] === typeChar && i + 1 < input.length && input[i + 1] === "}") {
+      return i
+    } else {
+      i++
+    }
+  }
+  return -1
+}
+
+/** Build a ClueComponentMarkup node from a type char and its raw content string */
+function buildMarkupNode(typeChar: string, content: string): ClueComponentMarkup {
+  const children = parseMarkupContent(content)
+
+  switch (typeChar) {
+    case "/":
+      return ["italics", content, children]
+    case "*":
+      return ["bold", content, children]
+    case "_":
+      return ["underscore", content, children]
+    case "-":
+      return ["strike", content, children]
+    case "~":
+      return ["subscript", content, children]
+    case "^":
+      return ["superscript", content, children]
+    case "=":
+      return ["smallcaps", content, children]
+    case "@": {
+      const pipeIdx = findTopLevelPipe(content)
+      const text = pipeIdx === -1 ? content : content.slice(0, pipeIdx)
+      const url = pipeIdx === -1 ? "" : content.slice(pipeIdx + 1)
+      return ["link", text, url, parseMarkupContent(text)]
+    }
+    case "!": {
+      // {![url]!} inline, {!![url]!} block
+      const isBlock = content.startsWith("!")
+      const contentWithoutBlock = isBlock ? content.slice(1) : content
+      const contentWithSquareBrackets = contentWithoutBlock.slice(1, -1)
+      const parts = contentWithSquareBrackets.split("|")
+
+      if (parts.length === 1) {
+        return ["img", parts[0], "", isBlock]
+      } else if (parts.length === 2) {
+        return ["img", parts[0], parts[1], isBlock]
+      } else if (parts.length === 3) {
+        return ["img", parts[0], parts[1], isBlock, parts[2]]
+      } else {
+        return ["img", parts[0], parts[1], isBlock, parts[2], parts[3]]
+      }
+    }
+    case "#": {
+      // {#text|light|dark#} — pipes here are structural, not nested
+      const parts = content.split("|")
+      if (parts.length === 3) {
+        const [text, lightColor, darkColor] = parts
+        return ["color", text, lightColor, darkColor, parseMarkupContent(text)]
+      }
+      // Malformed, treat as text
+      return ["text", `{#${content}#}`]
+    }
+    default:
+      return ["text", `{${typeChar}${content}${typeChar}}`]
+  }
+}
+
+/** Find the first `|` that is not inside a nested `{...}` tag */
+function findTopLevelPipe(content: string): number {
+  let depth = 0
+  for (let i = 0; i < content.length; i++) {
+    if (content[i] === "{") depth++
+    else if (content[i] === "}") depth--
+    else if (content[i] === "|" && depth === 0) return i
+  }
+  return -1
+}
+
+/** Recursive content parser — parses a string that may contain markup tags */
+function parseMarkupContent(input: string): ClueComponentMarkup[] {
+  const components: ClueComponentMarkup[] = []
+  let i = 0
+  let textStart = 0
+
+  while (i < input.length) {
+    if (input[i] === "{" && i + 1 < input.length && MARKUP_TYPE_CHARS.has(input[i + 1])) {
+      // Flush any accumulated plain text
+      if (i > textStart) {
+        components.push(["text", input.slice(textStart, i)])
+      }
+
+      const typeChar = input[i + 1]
+      const contentStart = i + 2
+      const closeIdx = findClosingDelimiter(input, contentStart, typeChar)
+
+      if (closeIdx === -1) {
+        // No matching close — treat `{typeChar` as plain text, continue
+        i++
+        textStart = i - 1 // Keep the `{` as part of text; backtrack textStart
+        textStart = i - 1
+        continue
+      }
+
+      const content = input.slice(contentStart, closeIdx)
+      components.push(buildMarkupNode(typeChar, content))
+
+      i = closeIdx + 2 // skip past typeChar + `}`
+      textStart = i
+    } else {
+      i++
+    }
+  }
+
+  // Flush trailing text
+  if (textStart < input.length) {
+    components.push(["text", input.slice(textStart)])
+  }
+
+  return components
+}
+
 /** xd spec compliant parser for markup inside a clue */
 export function xdMarkupProcessor(input: string): ClueComponentMarkup[] {
   if (!input) return [["text", ""]]
   if (!input.includes("{")) return [["text", input]]
+  return parseMarkupContent(input)
+}
 
-  const components: ClueComponentMarkup[] = []
-  // https://regex101.com/r/JsLIDM/1
-  const regex = /\{([\/\*\_\-\@\~\^!#])(.*?)\1\}/g
-  let lastIndex = 0
+const typeToChar: Record<string, string> = {
+  italics: "/",
+  bold: "*",
+  strike: "-",
+  underscore: "_",
+  subscript: "~",
+  superscript: "^",
+  smallcaps: "=",
+  link: "@",
+  color: "#",
+}
 
-  let match
-  while ((match = regex.exec(input)) !== null) {
-    if (match.index > lastIndex) {
-      components.push(["text", input.slice(lastIndex, match.index)])
-    }
-
-    const typeChar = match[1]
-    const content = match[2]
-
-    switch (typeChar) {
-      case "/":
-        components.push(["italics", content])
-        break
-      case "*":
-        components.push(["bold", content])
-        break
-      case "_":
-        components.push(["underscore", content])
-        break
-      case "-":
-        components.push(["strike", content])
-        break
-      case "~":
-        components.push(["subscript", content])
-        break
-      case "^":
-        components.push(["superscript", content])
-        break
-      case "@":
-        components.push(["link", content.split("|")[0], content.split("|")[1]])
-        break
-      case "!":
-        {
-          // {![https://emojipedia.org/image/x.png]!} inline
-          // {!![https://emojipedia.org/image/y.png]!} block
-          // {!![https://emojipedia.org/image/y.png|alt text]!} block with alt text
-          // {!![https://emojipedia.org/image/y.png|alt text|width|height]!} block with alt text, width and height
-          const isBlock = content.startsWith("!")
-          const contentWithoutBlock = isBlock ? content.slice(1) : content
-          const contentWithSquareBrackets = contentWithoutBlock.slice(1, -1)
-          const parts = contentWithSquareBrackets.split("|")
-
-          if (parts.length === 1) {
-            // Just URL
-            components.push(["img", parts[0], "", isBlock])
-          } else if (parts.length === 2) {
-            // URL and alt text
-            components.push(["img", parts[0], parts[1], isBlock])
-          } else if (parts.length === 3) {
-            // URL, alt text, and width
-            components.push(["img", parts[0], parts[1], isBlock, parts[2]])
-          } else if (parts.length >= 4) {
-            // URL, alt text, width, and height
-            components.push(["img", parts[0], parts[1], isBlock, parts[2], parts[3]])
-          }
-        }
-        break
-      case "#":
-        {
-          // {#text|hex colour light|hex colour dark#}
-          const parts = content.split("|")
-          if (parts.length === 3) {
-            const [text, lightColor, darkColor] = parts
-            components.push(["color", text, lightColor, darkColor])
-          } else {
-            // If malformed, treat as text
-            components.push(["text", `{#${content}#}`])
-          }
-        }
-        break
-    }
-
-    lastIndex = regex.lastIndex
-  }
-
-  if (lastIndex < input.length) {
-    components.push(["text", input.slice(lastIndex)])
-  }
-
+/** Serialize a ClueComponentMarkup[] array back to an xd markup string */
+export function xdMarkupSerializer(components: ClueComponentMarkup[]): string {
   return components
+    .map((c) => {
+      const type = c[0]
+      switch (type) {
+        case "text":
+          return c[1]
+        case "italics":
+        case "bold":
+        case "strike":
+        case "underscore":
+        case "subscript":
+        case "superscript":
+        case "smallcaps": {
+          const char = typeToChar[type]
+          return `{${char}${xdMarkupSerializer(c[2])}${char}}`
+        }
+        case "link": {
+          return `{@${xdMarkupSerializer(c[3])}|${c[2]}@}`
+        }
+        case "img": {
+          const [, url, alt, block, width, height] = c
+          const parts = [url, ...(alt || width || height ? [alt] : []), ...(width ? [width] : []), ...(height ? [height] : [])]
+          const bracket = `[${parts.join("|")}]`
+          return block ? `{!!${bracket}!}` : `{!${bracket}!}`
+        }
+        case "color": {
+          return `{#${xdMarkupSerializer(c[4])}|${c[2]}|${c[3]}#}`
+        }
+        default:
+          return ""
+      }
+    })
+    .join("")
 }

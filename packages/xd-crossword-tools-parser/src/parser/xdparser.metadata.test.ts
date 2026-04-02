@@ -198,71 +198,101 @@ D1 ^Hint: {@Link text|http://example.com@} and {#colored|ff0000|00ff00#}.
   }))
   
   expect(focused).toMatchInlineSnapshot(`
-[
-  {
-    "body": "Gardener's concern.",
-    "hint": "{*Bold*} text with {/italic/} formatting.",
-    "hintDisplay": [
-      [
-        "bold",
-        "Bold",
-      ],
-      [
-        "text",
-        " text with ",
-      ],
-      [
-        "italics",
-        "italic",
-      ],
-      [
-        "text",
-        " formatting.",
-      ],
-    ],
-    "revealer": "This clue reveals {_underline_} information.",
-    "revealerDisplay": [
-      [
-        "text",
-        "This clue reveals ",
-      ],
-      [
-        "underscore",
-        "underline",
-      ],
-      [
-        "text",
-        " information.",
-      ],
-    ],
-  },
-  {
-    "body": "To _ly go.",
-    "hint": "{@Link text|http://example.com@} and {#colored|ff0000|00ff00#}.",
-    "hintDisplay": [
-      [
-        "link",
-        "Link text",
-        "http://example.com",
-      ],
-      [
-        "text",
-        " and ",
-      ],
-      [
-        "color",
-        "colored",
-        "ff0000",
-        "00ff00",
-      ],
-      [
-        "text",
-        ".",
-      ],
-    ],
-    "revealer": undefined,
-    "revealerDisplay": undefined,
-  },
-]
-`)
+    [
+      {
+        "body": "Gardener's concern.",
+        "hint": "{*Bold*} text with {/italic/} formatting.",
+        "hintDisplay": [
+          [
+            "bold",
+            "Bold",
+            [
+              [
+                "text",
+                "Bold",
+              ],
+            ],
+          ],
+          [
+            "text",
+            " text with ",
+          ],
+          [
+            "italics",
+            "italic",
+            [
+              [
+                "text",
+                "italic",
+              ],
+            ],
+          ],
+          [
+            "text",
+            " formatting.",
+          ],
+        ],
+        "revealer": "This clue reveals {_underline_} information.",
+        "revealerDisplay": [
+          [
+            "text",
+            "This clue reveals ",
+          ],
+          [
+            "underscore",
+            "underline",
+            [
+              [
+                "text",
+                "underline",
+              ],
+            ],
+          ],
+          [
+            "text",
+            " information.",
+          ],
+        ],
+      },
+      {
+        "body": "To _ly go.",
+        "hint": "{@Link text|http://example.com@} and {#colored|ff0000|00ff00#}.",
+        "hintDisplay": [
+          [
+            "link",
+            "Link text",
+            "http://example.com",
+            [
+              [
+                "text",
+                "Link text",
+              ],
+            ],
+          ],
+          [
+            "text",
+            " and ",
+          ],
+          [
+            "color",
+            "colored",
+            "ff0000",
+            "00ff00",
+            [
+              [
+                "text",
+                "colored",
+              ],
+            ],
+          ],
+          [
+            "text",
+            ".",
+          ],
+        ],
+        "revealer": undefined,
+        "revealerDisplay": undefined,
+      },
+    ]
+  `)
 })
