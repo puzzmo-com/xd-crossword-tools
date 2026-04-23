@@ -39,18 +39,38 @@ export function resolveFullClueAnswer(clue: Clue, splitChar: string) {
     } else if (tile.type === "letter") {
       result += tile.letter
     } else if (tile.type === "schrodinger") {
-      // Get the actual letter from the answer at this position (by code point)
-      result += answerCodePoints[currentCharIndex] || "*"
+      if (tile.symbol && tile.validRebuses.length > 0) {
+        // Rebus-based Schrödinger: find the matching value in the answer
+        const remaining = answerCodePoints.slice(currentCharIndex).join("")
+        const matchingRebus = [...tile.validRebuses, ...tile.validLetters.map((l) => ({ letters: l }))].find((r) =>
+          remaining.startsWith(r.letters),
+        )
+        if (matchingRebus) {
+          result += matchingRebus.letters
+        } else {
+          result += answerCodePoints[currentCharIndex] || "*"
+        }
+      } else {
+        // Star-based Schrödinger: single character from answer
+        result += answerCodePoints[currentCharIndex] || "*"
+      }
     } else if (tile.type === "blank") {
       // This shouldn't happen in a clue answer
       result += ""
     } else {
       throw new Error(`Invalid tile type: ${(tile as any).type}`)
     }
-    
+
     // Update character index (by code points)
     if (tile.type === "rebus") {
       currentCharIndex += [...tile.word].length
+    } else if (tile.type === "schrodinger" && tile.symbol && tile.validRebuses.length > 0) {
+      // Rebus-based Schrödinger: advance by the matched value length
+      const remaining = answerCodePoints.slice(currentCharIndex).join("")
+      const matchingRebus = [...tile.validRebuses, ...tile.validLetters.map((l) => ({ letters: l }))].find((r) =>
+        remaining.startsWith(r.letters),
+      )
+      currentCharIndex += matchingRebus ? [...matchingRebus.letters].length : 1
     } else if (tile.type !== "blank") {
       currentCharIndex++
     }
@@ -100,7 +120,7 @@ export const JSONToXD = (json: CrosswordJSON): string => {
             case "rebus":
               return tile.symbol
             case "schrodinger":
-              return "*"
+              return tile.symbol || "*"
             default:
               throw new Error(`Unknown tile type: ${(tile as any).type}`)
           }

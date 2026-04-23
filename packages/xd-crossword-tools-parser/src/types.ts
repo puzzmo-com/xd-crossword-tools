@@ -110,6 +110,8 @@ export interface SchrodingerTile {
   validLetters: string[]
   /** Possible rebus tiles */
   validRebuses: { letters: string; symbol: string }[]
+  /** Present when this Schrödinger tile originated from a multi-valued rebus key */
+  symbol?: string
   clues?: {
     across?: number
     down?: number
