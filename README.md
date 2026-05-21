@@ -13,7 +13,7 @@ There are two packages here:
 
 ### Example
 
-Let's take this free `.puz`: https://dehodson.github.io/crossword-puzzles/crosswords/alpha-bits/
+Let's take this free `.puz`: <https://dehodson.github.io/crossword-puzzles/crosswords/alpha-bits/>
 
 Their .puz file turns into this xd:
 
@@ -4285,9 +4285,7 @@ The jpz format import supports barred crosswords.
 
 ### Crossword Compiler .xml to .xd
 
-Crossword Compiler exports XML conforming to the [`rectangular-puzzle`](https://crossword.info/xml/rectangular-puzzle.xsd) schema. The importer handles standard and barred grids, circled cells, pre-filled letters, multi-letter rebus cells, inline clue markup (`<i>`, `<b>`, `<a>`, etc.), solver instructions, and per-clue metadata (`citation`, `hint-url`, `tags`, plus `is-theme` on the word).
-
-Multi-word answers are preserved using the xd split character: a `<word solution="rear-view"/>` (or a `<clue format="4-4">` when no explicit solution is given) becomes `~ REAR|VIEW` with `splitcharacter: |` in the metadata.
+Crossword Compiler exports XML conforming to the [`rectangular-puzzle`](https://crossword.info/xml/rectangular-puzzle.xsd) schema.
 
 ```ts
 import { crossCompilerXMLToXD } from "xd-crossword-tools"
@@ -4644,7 +4642,7 @@ The `xd-crossword-tools-parser` package exports several utility functions for wo
 
 NPM package publishing happens automatically via GitHub Actions when changes are pushed to the `main` branch. The workflow compares local package versions with published versions on npm and only publishes if versions have been bumped.
 
-#### To Prepare a New Release:
+#### To Prepare a New Release
 
 1. **Update the changelog** (if applicable) to document changes in this release
 
