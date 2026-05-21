@@ -22,6 +22,8 @@ export const XDEditor = (props: {}) => {
   const wrapperElement = useRef<HTMLDivElement>(null)
   const setDefaultHeight = useRef(false)
   const editorInstanceRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null)
+  const editorInfoRef = useRef(editorInfo)
+  editorInfoRef.current = editorInfo
 
   // When the inner content height changes, handle the resize
   const updateHeight = useCallback((e: monaco.editor.IContentSizeChangedEvent) => {
@@ -45,12 +47,12 @@ export const XDEditor = (props: {}) => {
       e.onDidContentSizeChange(updateHeight)
 
       e.onDidChangeCursorPosition((e) => {
-        const info = editorInfo?.(e.position.lineNumber - 1, e.position.column - 1)
+        const info = editorInfoRef.current?.(e.position.lineNumber - 1, e.position.column - 1)
         setCursorInfo(info || null)
       })
     },
 
-    [updateHeight, editorInfo, setCursorInfo]
+    [updateHeight, setCursorInfo]
   )
 
   // Update Monaco markers when validation reports change

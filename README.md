@@ -4231,7 +4231,7 @@ npx xd-crossword-tools "https://puzzleme.amuselabs.com/pmm/crossword?id=abc123&s
 npx xd-crossword-tools puzzle.puz "https://puzzleme.amuselabs.com/pmm/crossword?id=abc123&set=..." -o ./output
 ```
 
-Supported input formats: `.puz`, `.jpz`, `.xml` (UClick), `.json` (Amuse Labs), `.txt` (Across text), and URLs which contain PuzzleMe crosswords.
+Supported input formats: `.puz`, `.jpz`, `.xml` (UClick or Crossword Compiler), `.json` (Amuse Labs), `.txt` (Across text), and URLs which contain PuzzleMe crosswords.
 
 ## Import / Export
 
@@ -4282,6 +4282,20 @@ const xd = jpzToXD(jpz)
 ```
 
 The jpz format import supports barred crosswords.
+
+### Crossword Compiler .xml to .xd
+
+Crossword Compiler exports XML conforming to the [`rectangular-puzzle`](https://crossword.info/xml/rectangular-puzzle.xsd) schema. The importer handles standard and barred grids, circled cells, pre-filled letters, multi-letter rebus cells, inline clue markup (`<i>`, `<b>`, `<a>`, etc.), solver instructions, and per-clue metadata (`citation`, `hint-url`, `tags`, plus `is-theme` on the word).
+
+Multi-word answers are preserved using the xd split character: a `<word solution="rear-view"/>` (or a `<clue format="4-4">` when no explicit solution is given) becomes `~ REAR|VIEW` with `splitcharacter: |` in the metadata.
+
+```ts
+import { crossCompilerXMLToXD } from "xd-crossword-tools"
+
+const xmlResponse = await fetch(url)
+const xmlString = await xmlResponse.text()
+const xd = crossCompilerXMLToXD(xmlString)
+```
 
 ### Across Text (.puz.txt) to .xd
 

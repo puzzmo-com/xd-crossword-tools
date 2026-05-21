@@ -68,10 +68,10 @@ export const RootProvider = ({ children }: React.PropsWithChildren<object>) => {
 
       // Run linter for each clue
       for (const clue of state.clues.across) {
-        reports.push(...runLinterForClue(clue, "across"))
+        reports.push(...runLinterForClue(clue, "across", state))
       }
       for (const clue of state.clues.down) {
-        reports.push(...runLinterForClue(clue, "down"))
+        reports.push(...runLinterForClue(clue, "down", state))
       }
 
       // Run grid validation

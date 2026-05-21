@@ -1,6 +1,20 @@
-import { Clue, Report } from "xd-crossword-tools-parser"
+import { Clue, CrosswordJSON, Report } from "xd-crossword-tools-parser"
 
-export const runLinterForClue = (clue: Clue, ordinal: "across" | "down") => {
+/**
+ * Runs linting checks on a single clue and returns any issues found.
+ *
+ * Checks include:
+ * - Answer words appearing in the clue body or hint (giving away the answer)
+ * - `-across` / `-down` references in the clue body without `refs` metadata set
+ *   (only when the puzzle has a `splitCharacter` defined)
+ * - Multi-word answers (via splits) whose hint is missing a `:` qualifier
+ *   (e.g. `: Abbr.`, `: Hyph.`, `: 2 wds.`)
+ *
+ * @param clue - The clue to lint
+ * @param ordinal - Whether this is an across or down clue
+ * @param crossword - The full crossword JSON; used to read puzzle-level meta (e.g. splitCharacter)
+ */
+export const runLinterForClue = (clue: Clue, ordinal: "across" | "down", crossword?: CrosswordJSON) => {
   const reports: Report[] = []
 
   const lowerClueBody = clue.body.toLocaleLowerCase()
@@ -43,7 +57,9 @@ export const runLinterForClue = (clue: Clue, ordinal: "across" | "down") => {
   }
 
   // If you're referring to another clue, you probably need to do this
-  if (lowerClueBody.includes("-across") || lowerClueBody.includes("-down")) {
+  // Only relevant when a splitCharacter is defined in the meta, as that's when cross-clue refs are meaningful
+  const splitCharacter = crossword?.meta.splitCharacter || (crossword?.meta as Record<string, string> | undefined)?.["splitcharacter"]
+  if (splitCharacter && (lowerClueBody.includes("-across") || lowerClueBody.includes("-down"))) {
     if (!clue.metadata?.refs) addReport(`Clue ${ref} has a -across or -down hint, but no refs are provided`)
   }
 
