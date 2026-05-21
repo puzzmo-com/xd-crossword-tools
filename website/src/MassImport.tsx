@@ -209,7 +209,7 @@ function MassImport() {
 
                     <div className="mt-3">
                       <p className="text-muted">
-                        Supported formats: <code>.puz</code>, <code>.jpz</code>, <code>.json</code> (amuse), <code>.xml</code> (uclick)
+                        Supported formats: <code>.puz</code>, <code>.jpz</code>, <code>.json</code> (amuse), <code>.xml</code> (uclick or Crossword Compiler)
                       </p>
                       <p className="text-muted">Drop multiple files or folders to convert them all at once.</p>
                     </div>

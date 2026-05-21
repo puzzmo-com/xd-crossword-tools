@@ -1,5 +1,10 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 13.2.0
+
+- Adds support for Crossword Compiler XML files
+- Makes some of the Puzzmo-y feeling linters only apply if you have split character on
+
 ### 13.1.0
 
 - Switched the xml parsing library from xml-parser to fast-xml-parser. It may claim to be faster, but it can handle more complicated XML setups. This is mostly useful for the jpz -> xd clue parsing which should cover more cases now
@@ -11,7 +16,6 @@ This isn't a comprehensive doc because to our knowledge there are no OSS consume
 - The `text` field (index 1) still contains the raw content string for backwards compatibility. It has been marked as deprecated though.
 
 - The markup has switched from some regexes to a real parser.
-
 
 ### 12.3.0
 
@@ -27,7 +31,7 @@ This isn't a comprehensive doc because to our knowledge there are no OSS consume
 
 ### 12.1.0
 
-- Adds some functions for handling importing from a Puzzleme URL. Built on code found in https://github.com/thisisparker/xword-dl and https://github.com/jpd236/kotwords
+- Adds some functions for handling importing from a Puzzleme URL. Built on code found in <https://github.com/thisisparker/xword-dl> and <https://github.com/jpd236/kotwords>
 
 ### 12.0.0
 

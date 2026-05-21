@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react"
-import { jpzToXD, puzToXD, amuseToXD, uclickXMLToXD, acrossTextToXD } from "xd-crossword-tools"
+import { jpzToXD, puzToXD, amuseToXD, uclickXMLToXD, crossCompilerXMLToXD, acrossTextToXD } from "xd-crossword-tools"
 
 interface ConversionResult {
   filename: string
@@ -63,12 +63,13 @@ export const MultiDragAndDrop: React.FC<MultiDragAndDropProps> = ({ onFilesProce
 
       if (file.name.endsWith(".xml")) {
         const xmlText = await file.text()
-        const xd = uclickXMLToXD(xmlText)
+        const isCrosswordCompiler = xmlText.includes("crossword-compiler") || xmlText.includes("rectangular-puzzle")
+        const xd = isCrosswordCompiler ? crossCompilerXMLToXD(xmlText) : uclickXMLToXD(xmlText)
         return {
           filename: file.name,
           status: "success",
           xd,
-          originalFormat: "UClick XML",
+          originalFormat: isCrosswordCompiler ? "Crossword Compiler XML" : "UClick XML",
         }
       }
 

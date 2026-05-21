@@ -13,7 +13,7 @@ There are two packages here:
 
 ### Example
 
-Let's take this free `.puz`: https://dehodson.github.io/crossword-puzzles/crosswords/alpha-bits/
+Let's take this free `.puz`: <https://dehodson.github.io/crossword-puzzles/crosswords/alpha-bits/>
 
 Their .puz file turns into this xd:
 
@@ -4231,7 +4231,7 @@ npx xd-crossword-tools "https://puzzleme.amuselabs.com/pmm/crossword?id=abc123&s
 npx xd-crossword-tools puzzle.puz "https://puzzleme.amuselabs.com/pmm/crossword?id=abc123&set=..." -o ./output
 ```
 
-Supported input formats: `.puz`, `.jpz`, `.xml` (UClick), `.json` (Amuse Labs), `.txt` (Across text), and URLs which contain PuzzleMe crosswords.
+Supported input formats: `.puz`, `.jpz`, `.xml` (UClick or Crossword Compiler), `.json` (Amuse Labs), `.txt` (Across text), and URLs which contain PuzzleMe crosswords.
 
 ## Import / Export
 
@@ -4282,6 +4282,18 @@ const xd = jpzToXD(jpz)
 ```
 
 The jpz format import supports barred crosswords.
+
+### Crossword Compiler .xml to .xd
+
+Crossword Compiler exports XML conforming to the [`rectangular-puzzle`](https://crossword.info/xml/rectangular-puzzle.xsd) schema.
+
+```ts
+import { crossCompilerXMLToXD } from "xd-crossword-tools"
+
+const xmlResponse = await fetch(url)
+const xmlString = await xmlResponse.text()
+const xd = crossCompilerXMLToXD(xmlString)
+```
 
 ### Across Text (.puz.txt) to .xd
 
@@ -4630,7 +4642,7 @@ The `xd-crossword-tools-parser` package exports several utility functions for wo
 
 NPM package publishing happens automatically via GitHub Actions when changes are pushed to the `main` branch. The workflow compares local package versions with published versions on npm and only publishes if versions have been bumped.
 
-#### To Prepare a New Release:
+#### To Prepare a New Release
 
 1. **Update the changelog** (if applicable) to document changes in this release
 

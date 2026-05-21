@@ -1,5 +1,5 @@
 import React, { useState, useCallback, use, useRef, createContext } from "react"
-import { jpzToXD, puzToXD, amuseToXD, uclickXMLToXD, acrossTextToXD } from "xd-crossword-tools"
+import { jpzToXD, puzToXD, amuseToXD, uclickXMLToXD, crossCompilerXMLToXD, acrossTextToXD } from "xd-crossword-tools"
 
 import { decode } from "xd-crossword-tools/src/vendor/puzjs"
 
@@ -66,7 +66,9 @@ const processFile = async (
 
   if (file.name.endsWith(".xml")) {
     const xmlText = await file.text()
-    const xd = uclickXMLToXD(xmlText)
+    // Crossword Compiler XML uses the rectangular-puzzle schema; UClick XML doesn't.
+    const isCrosswordCompiler = xmlText.includes("crossword-compiler") || xmlText.includes("rectangular-puzzle")
+    const xd = isCrosswordCompiler ? crossCompilerXMLToXD(xmlText) : uclickXMLToXD(xmlText)
     setXD(xd)
     setLastFileContext({ content: xmlText, filename: file.name })
   }
