@@ -193,7 +193,7 @@ function App() {
       // Resolve the URL to a PuzzleMe URL (handles iframes in blog posts, etc.)
       const { puzzleMeUrl } = await resolvePuzzleMeUrl(importUrl)
 
-      const proxyUrl = `https://api.cors.lol/?url=${encodeURIComponent(puzzleMeUrl)}`
+      const proxyUrl = `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(puzzleMeUrl)}`
       const response = await fetch(proxyUrl)
 
       if (!response.ok) {
