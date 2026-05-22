@@ -9,7 +9,7 @@
  * License: MIT - https://github.com/thisisparker/xword-dl/blob/bd578c906aa51294b22e83284997832d471aeb3b/LICENSE
  */
 
-const CORS_PROXY = "https://corsproxy.io/?"
+const CORS_PROXY = "https://api.cors.lol/?url="
 
 export interface ResolvedPuzzleMeUrl {
   puzzleMeUrl: string
