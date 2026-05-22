@@ -10,6 +10,8 @@ import Tabs from "react-bootstrap/esm/Tabs"
 import Navbar from "react-bootstrap/esm/Navbar"
 import Badge from "react-bootstrap/esm/Badge"
 import Button from "react-bootstrap/esm/Button"
+import Toast from "react-bootstrap/esm/Toast"
+import ToastContainer from "react-bootstrap/esm/ToastContainer"
 import { XDEditor } from "./components/XDEditor"
 import { RootContext } from "./components/RootContext"
 import { XDSpec } from "./components/xdSpec"
@@ -179,6 +181,7 @@ function App() {
   const [importUrl, setImportUrl] = useState("")
   const [isImporting, setIsImporting] = useState(false)
   const [importError, setImportError] = useState<string | null>(null)
+  const [networkErrorToast, setNetworkErrorToast] = useState<string | null>(null)
 
   const handlePuzzleMeImport = async () => {
     if (!importUrl.trim()) return
@@ -194,7 +197,9 @@ function App() {
       const response = await fetch(proxyUrl)
 
       if (!response.ok) {
-        throw new Error(`Failed to fetch: ${response.status}`)
+        const body = (await response.text().catch(() => "")).trim()
+        const detail = body ? ` — ${body.slice(0, 300)}` : ""
+        throw new Error(`Failed to fetch (${response.status} ${response.statusText})${detail}`)
       }
 
       const html = await response.text()
@@ -205,7 +210,9 @@ function App() {
       setImportUrl("")
       setShowImportInput(false)
     } catch (error) {
-      setImportError(error instanceof Error ? error.message : "Import failed")
+      const message = error instanceof Error ? error.message : "Import failed"
+      setImportError(message)
+      setNetworkErrorToast(message)
     } finally {
       setIsImporting(false)
     }
@@ -876,6 +883,23 @@ function App() {
           </>
         )}
       </Container>
+
+      <ToastContainer position="bottom-end" className="p-3" style={{ position: "fixed", zIndex: 1080 }}>
+        <Toast
+          onClose={() => setNetworkErrorToast(null)}
+          show={networkErrorToast !== null}
+          delay={8000}
+          autohide
+          bg="danger"
+        >
+          <Toast.Header closeButton>
+            <strong className="me-auto">Import failed</strong>
+          </Toast.Header>
+          <Toast.Body className="text-white" style={{ wordBreak: "break-word" }}>
+            {networkErrorToast}
+          </Toast.Body>
+        </Toast>
+      </ToastContainer>
     </>
   )
 }

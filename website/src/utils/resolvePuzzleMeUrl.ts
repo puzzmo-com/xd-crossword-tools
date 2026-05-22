@@ -73,7 +73,9 @@ async function fetchWithProxy(url: string): Promise<string> {
   const proxyUrl = `${CORS_PROXY}${encodeURIComponent(url)}`
   const response = await fetch(proxyUrl)
   if (!response.ok) {
-    throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`)
+    const body = (await response.text().catch(() => "")).trim()
+    const detail = body ? ` — ${body.slice(0, 300)}` : ""
+    throw new Error(`Failed to fetch (${response.status} ${response.statusText})${detail}`)
   }
   return response.text()
 }

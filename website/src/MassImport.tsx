@@ -8,6 +8,8 @@ import Badge from "react-bootstrap/esm/Badge"
 import Navbar from "react-bootstrap/esm/Navbar"
 import Form from "react-bootstrap/esm/Form"
 import Nav from "react-bootstrap/esm/Nav"
+import Toast from "react-bootstrap/esm/Toast"
+import ToastContainer from "react-bootstrap/esm/ToastContainer"
 import { Link } from "wouter"
 import JSZip from "jszip"
 
@@ -36,6 +38,7 @@ function MassImport() {
   const [isLoadingUrls, setIsLoadingUrls] = useState(false)
   const [currentUrlIndex, setCurrentUrlIndex] = useState(0)
   const [totalUrls, setTotalUrls] = useState(0)
+  const [networkErrorToast, setNetworkErrorToast] = useState<string | null>(null)
 
   const handleFilesProcessed = (newResults: ConversionResult[]) => {
     setResults((prev) => [...prev, ...newResults])
@@ -65,7 +68,9 @@ function MassImport() {
         const response = await fetch(proxyUrl)
 
         if (!response.ok) {
-          throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`)
+          const body = (await response.text().catch(() => "")).trim()
+          const detail = body ? ` — ${body.slice(0, 300)}` : ""
+          throw new Error(`Failed to fetch (${response.status} ${response.statusText})${detail}`)
         }
 
         const html = await response.text()
@@ -98,6 +103,7 @@ function MassImport() {
         }
 
         setResults((prev) => [...prev, result])
+        setNetworkErrorToast(errorMessage)
       }
 
       // Small delay between requests to be nice to the server
@@ -378,6 +384,23 @@ function MassImport() {
           </div>
         </div>
       </Container>
+
+      <ToastContainer position="bottom-end" className="p-3" style={{ position: "fixed", zIndex: 1080 }}>
+        <Toast
+          onClose={() => setNetworkErrorToast(null)}
+          show={networkErrorToast !== null}
+          delay={8000}
+          autohide
+          bg="danger"
+        >
+          <Toast.Header closeButton>
+            <strong className="me-auto">Import failed</strong>
+          </Toast.Header>
+          <Toast.Body className="text-white" style={{ wordBreak: "break-word" }}>
+            {networkErrorToast}
+          </Toast.Body>
+        </Toast>
+      </ToastContainer>
     </>
   )
 }
