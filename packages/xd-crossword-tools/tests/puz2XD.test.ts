@@ -173,3 +173,9 @@ it("handles greyd backgrounds", () => {
   `)
   // expect(xd).toMatchFile(`./tests/output/${file}.xd`)
 })
+
+it("throws a clear error for truncated/malformed puz files instead of looping forever", () => {
+  const path = __dirname + "/puz/truncated-strings.puz"
+  const puz = readFileSync(path)
+  expect(() => puzToXD(puz)).toThrowError(/Invalid PUZ file/)
+})
