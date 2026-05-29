@@ -458,8 +458,20 @@ function PUZtoJSON(buffer: ArrayBuffer) {
 
   var ncol = bytes[44]
   var nrow = bytes[45]
+  if (!ncol || !nrow) {
+    throw new Error(`Invalid PUZ file: header reports grid size ${ncol}x${nrow}`)
+  }
   if (!(bytes[50] === 0 && bytes[51] === 0)) {
     throw new Error("Scrambled PUZ file")
+  }
+  // Header must be followed by solution (ncol*nrow) and progress (ncol*nrow) bytes
+  // before the NUL-terminated string section starts. If the file is shorter than
+  // that the puzzle is truncated and we cannot safely decode it.
+  var minBytes = 52 + 2 * ncol * nrow
+  if (bytes.length < minBytes) {
+    throw new Error(
+      `Invalid PUZ file: header reports ${ncol}x${nrow} grid (needs at least ${minBytes} bytes) but file is only ${bytes.length} bytes`
+    )
   }
 
   for (var i = 0; i < nrow; i++) {
@@ -475,8 +487,8 @@ function PUZtoJSON(buffer: ArrayBuffer) {
     return i < 0 || j < 0 || i >= nrow || j >= ncol || grid[i][j] === "."
   }
 
-  var isAcross = []
-  var isDown = []
+  var isAcross: boolean[] = []
+  var isDown: boolean[] = []
   var n = 0
   for (var _i = 0; _i < nrow; _i++) {
     for (var _j = 0; _j < ncol; _j++) {
@@ -496,8 +508,18 @@ function PUZtoJSON(buffer: ArrayBuffer) {
   var ibyte = 52 + ncol * nrow * 2
   function readString() {
     var result = ""
+    if (ibyte >= bytes.length) {
+      throw new Error(
+        `Invalid PUZ file: reached end of file while reading strings. The grid scan found ${n} numbered cells (${
+          isAcross.filter(Boolean).length
+        } across, ${isDown.filter(Boolean).length} down) which doesn't match the strings stored in the file — the puzzle is likely truncated or its header grid size (${ncol}x${nrow}) is wrong.`
+      )
+    }
     var b = bytes[ibyte++]
     while (b !== 0) {
+      if (b === undefined) {
+        throw new Error("Invalid PUZ file: unterminated string at end of file")
+      }
       result += String.fromCharCode(b)
       b = bytes[ibyte++]
     }
