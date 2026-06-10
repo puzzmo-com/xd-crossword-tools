@@ -32,8 +32,11 @@ import { readmeHtml } from "virtual:readme"
 import { Link } from "wouter"
 import { version, puzEncode, decodePuzzleMeHTML, amuseToXD, type CrosswordJSON } from "xd-crossword-tools"
 import { resolvePuzzleMeUrl } from "./utils/resolvePuzzleMeUrl"
+import { compressToEncodedURIComponent } from "lz-string"
 
-const PRINT_SERVICE_BASE = "https://games-u7ii.onrender.com"
+// The print page is a static app: the whole puzzle travels lz-string
+// compressed in the URL fragment, so there is no server round-trip.
+const PRINT_PAGE_BASE = "https://print.puzzmo.com"
 
 interface PrintOptions {
   includeClues: boolean
@@ -47,8 +50,6 @@ interface PrintOptions {
 }
 
 const PrintTab: React.FC<{ xd: string; crosswordJSON: CrosswordJSON }> = ({ xd, crosswordJSON }) => {
-  const [isGenerating, setIsGenerating] = useState(false)
-  const [error, setError] = useState<string | null>(null)
   const [options, setOptions] = useState<PrintOptions>({
     includeClues: true,
     includeGrid: true,
@@ -60,40 +61,19 @@ const PrintTab: React.FC<{ xd: string; crosswordJSON: CrosswordJSON }> = ({ xd, 
     },
   })
 
-  const handleOpenPrint = async (asPDF: boolean) => {
-    setIsGenerating(true)
-    setError(null)
-
-    try {
-      const requestBody = {
-        xd,
-        options: {
-          title: crosswordJSON.meta.title,
-          authorString: crosswordJSON.meta.author,
-          ...options,
-        },
-      }
-
-      const response = await fetch(`${PRINT_SERVICE_BASE}/crossword/store`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(requestBody),
-      })
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}))
-        throw new Error(errorData.error || `Failed to store: ${response.status}`)
-      }
-
-      const { slug } = await response.json()
-      const url = asPDF ? `${PRINT_SERVICE_BASE}/crossword/stored/${slug}/pdf` : `${PRINT_SERVICE_BASE}/crossword/stored/${slug}`
-
-      window.open(url, "_blank")
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to generate print view")
-    } finally {
-      setIsGenerating(false)
+  const handleOpenPrint = () => {
+    const payload = {
+      xd,
+      options: {
+        title: crosswordJSON.meta.title,
+        authorString: crosswordJSON.meta.author,
+        autoprint: true,
+        ...options,
+      },
     }
+
+    const url = `${PRINT_PAGE_BASE}/#${compressToEncodedURIComponent(JSON.stringify(payload))}`
+    window.open(url, "_blank")
   }
 
   return (
@@ -151,11 +131,9 @@ const PrintTab: React.FC<{ xd: string; crosswordJSON: CrosswordJSON }> = ({ xd, 
           />
         </div>
 
-        {error && <div className="text-danger mt-3">{error}</div>}
-
         <div className="d-flex gap-2 flex-wrap mt-4">
-          <Button variant="primary" onClick={() => handleOpenPrint(false)} disabled={isGenerating}>
-            {isGenerating ? "Generating..." : "Open Print View"}
+          <Button variant="primary" onClick={handleOpenPrint}>
+            Open Print View
           </Button>
         </div>
 
