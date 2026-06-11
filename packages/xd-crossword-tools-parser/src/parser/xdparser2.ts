@@ -308,8 +308,9 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   // Now that we have a mostly fleshed out file parse, do extra work to bring it all together
 
   // We can't reliably set the tiles until we have the rebus info, but we can't guarantee the order
-  json.rebuses = getRebuses(json.meta.rebus || "")
-  json.tiles = stringGridToTiles(json.rebuses, rawInput.tiles)
+  const { rebuses, schrodingerRebuses } = getRebuses(json.meta.rebus || "")
+  json.rebuses = rebuses
+  json.tiles = stringGridToTiles(json.rebuses, schrodingerRebuses, rawInput.tiles)
 
   if (json.design) {
     if (!styleTagContent) {
@@ -711,12 +712,29 @@ const clueFromLine = (line: string, num: number): ClueParserResponse => {
   }
 }
 
-export const stringGridToTiles = (rebuses: CrosswordJSON["rebuses"], strArr: string[][]): CrosswordJSON["tiles"] => {
+export const stringGridToTiles = (
+  rebuses: CrosswordJSON["rebuses"],
+  schrodingerRebuses: Record<string, string[]>,
+  strArr: string[][],
+): CrosswordJSON["tiles"] => {
   const rebusKeys = Object.keys(rebuses)
+  const schrodingerKeys = Object.keys(schrodingerRebuses)
   const tiles: CrosswordJSON["tiles"] = strArr.map((_) => [])
   strArr.forEach((row, rowI) => {
     row.forEach((char) => {
-      if (rebusKeys.includes(char)) {
+      if (schrodingerKeys.includes(char)) {
+        const values = schrodingerRebuses[char]
+        const validLetters: string[] = []
+        const validRebuses: { letters: string; symbol: string }[] = []
+        for (const value of values) {
+          if (value.length === 1) {
+            validLetters.push(value)
+          } else {
+            validRebuses.push({ letters: value, symbol: char })
+          }
+        }
+        tiles[rowI].push({ type: "schrodinger", validLetters, validRebuses, symbol: char })
+      } else if (rebusKeys.includes(char)) {
         tiles[rowI].push({ type: "rebus", symbol: char, word: rebuses[char] })
       } else {
         tiles[rowI].push(letterToTile(char))
@@ -736,15 +754,31 @@ export const letterToTile = (letter: string): Tile => {
   return { type: "letter", letter }
 }
 
-const getRebuses = (str: string) => {
-  if (!str.includes("=")) return {}
-  const rebuses = {} as Record<string, string>
+const getRebuses = (str: string): { rebuses: Record<string, string>; schrodingerRebuses: Record<string, string[]> } => {
+  if (!str.includes("=")) return { rebuses: {}, schrodingerRebuses: {} }
+
+  const allValues = new Map<string, string[]>()
+
   str.split(" ").forEach((substr) => {
+    if (!substr.includes("=")) return
     const [start, ...rest] = substr.split("=")
-    rebuses[start] = rest.join("=")
+    const value = rest.join("=")
+    if (!allValues.has(start)) allValues.set(start, [])
+    allValues.get(start)!.push(value)
   })
 
-  return rebuses
+  const rebuses: Record<string, string> = {}
+  const schrodingerRebuses: Record<string, string[]> = {}
+
+  for (const [key, values] of allValues) {
+    if (values.length === 1) {
+      rebuses[key] = values[0]
+    } else {
+      schrodingerRebuses[key] = values
+    }
+  }
+
+  return { rebuses, schrodingerRebuses }
 }
 
 const toTitleSentence = (strs: string[]) => {
