@@ -4248,6 +4248,22 @@ const crossword = xdToJSON(xd)
 
 The JSON format is a bit more verbose than you might expect (see above for an example), but the goal is to have as much information pre-computed at parse time in order to save lookups later at runtime. You should use `crossword.report` to determine the parsing's success. You can see the type definitions here: [`./packages/xd-crossword-tools-parser/src/types.ts`](./packages/xd-crossword-tools-parser/src/types.ts).
 
+### Any file to .xd (recommended)
+
+If you have a file and don't want to write the "is this a `.jpz` / `.puz` / Crossword Compiler XML / …" detection yourself, hand it to `fileToXD`. It picks the right converter based on the filename and — where the extension is ambiguous or missing — the file's contents, and works with whatever shape is convenient (`string`, `ArrayBuffer`, `Uint8Array`, or a `Blob`/`File`).
+
+```ts
+import { fileToXD } from "xd-crossword-tools"
+
+// e.g. a File from a drag-and-drop, or a Blob from fetch
+const { xd, format } = await fileToXD(file.name, file)
+console.log(`Imported a ${format} file`, xd)
+```
+
+It handles `.xd` (passed through), `.jpz`, `.puz`, Amuse `.json`, UClick / Crossword Compiler `.xml`, Across Lite `.puz.txt`, and PuzzleMe `.html`. It throws if the format can't be detected or the underlying converter fails (for example a `.json` that isn't an Amuse export). The individual converters below are still exported if you already know the format.
+
+> **Note on PuzzleMe HTML:** `fileToXD` expects the raw HTML of a PuzzleMe / AmuseLabs puzzle page (it reads the embedded `rawc` field). PuzzleMe puzzles are usually behind a URL rather than a file on disk, so in practice you fetch the page first and hand the HTML to `fileToXD` — or use `decodePuzzleMeHTML` directly. The playground imports these via URL for that reason, and its file-drop UI intentionally doesn't list `.html`.
+
 ### .puz to .xd
 
 Builds on [puzjs](https://www.npmjs.com/package/puzjs) (ISC license). The puz format is generally what tools and websites will give you as an output format.
@@ -4601,6 +4617,7 @@ The main `xd-crossword-tools` package provides comprehensive functionality for f
 
 | Function                       | Description                                     | Parameters                                           | Return Type                                     | Notes                                                |
 | ------------------------------ | ----------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------- | ---------------------------------------------------- |
+| `fileToXD`                     | Detects the format of a file and converts to XD | `filename: string`, `content: string \| ArrayBuffer \| Uint8Array \| Blob` | `Promise<{ xd: string; format: CrosswordFileFormat }>` | One entry point for every importer below; detects by extension then contents |
 | `puzToXD`                      | Converts .puz file buffer to XD format          | `buffer: ArrayBuffer`                                | `string`                                        | Handles rebus symbols, circles, shades, and metadata |
 | `uclickXMLToXD`                | Converts UClick XML format to XD                | `str: string`                                        | `string`                                        | Parses XML crossword data and converts to XD format  |
 | `jpzToXD`                      | Converts JPZ (XML) format to XD                 | `xmlString: string`                                  | `string`                                        | Handles JPZ crossword puzzle format conversion       |

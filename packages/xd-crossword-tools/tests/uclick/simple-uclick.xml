@@ -1,0 +1,19 @@
+<crossword_puzzle>
+  <crossword>
+    <Title v="Test UClick Daily"/>
+    <Author v="Jane Setter"/>
+    <Width v="3"/>
+    <Height v="3"/>
+    <AllAnswer v="CATOLEWAR"/>
+    <across>
+      <a1 a="CAT" c="Feline%20pet"/>
+      <a4 a="OLE" c="Bullring%20cheer"/>
+      <a7 a="WAR" c="Conflict"/>
+    </across>
+    <down>
+      <d1 a="COW" c="Moo%20maker"/>
+      <d2 a="ALA" c="Seasoned%2C%20on%20menus"/>
+      <d3 a="TER" c="Suffix%20with%20cash"/>
+    </down>
+  </crossword>
+</crossword_puzzle>

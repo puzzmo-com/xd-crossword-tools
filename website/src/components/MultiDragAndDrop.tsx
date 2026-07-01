@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react"
-import { jpzToXD, puzToXD, amuseToXD, uclickXMLToXD, crossCompilerXMLToXD, acrossTextToXD } from "xd-crossword-tools"
+import { fileToXD, type CrosswordFileFormat } from "xd-crossword-tools"
 
 interface ConversionResult {
   filename: string
@@ -7,6 +7,18 @@ interface ConversionResult {
   xd?: string
   error?: string
   originalFormat: string
+}
+
+// Human-readable labels for the format fileToXD detected.
+const formatLabels: Record<CrosswordFileFormat, string> = {
+  xd: "XD",
+  jpz: "JPZ",
+  puz: "PUZ",
+  amuse: "Amuse JSON",
+  "uclick-xml": "UClick XML",
+  "crossword-compiler-xml": "Crossword Compiler XML",
+  "across-lite": "Across Text",
+  "puzzleme-html": "PuzzleMe HTML",
 }
 
 interface MultiDragAndDropProps {
@@ -22,69 +34,13 @@ export const MultiDragAndDrop: React.FC<MultiDragAndDropProps> = ({ onFilesProce
     const extension = "." + file.name.split(".").pop()?.toLowerCase()
 
     try {
-      if (file.name.endsWith(".jpz")) {
-        const jpz = await file.text()
-        const xd = jpzToXD(jpz)
-        return {
-          filename: file.name,
-          status: "success",
-          xd,
-          originalFormat: "JPZ",
-        }
+      const { xd, format } = await fileToXD(file.name, file)
+      return {
+        filename: file.name,
+        status: "success",
+        xd,
+        originalFormat: formatLabels[format],
       }
-
-      if (file.name.endsWith(".puz")) {
-        const puz = await file.arrayBuffer()
-        const xd = puzToXD(new Uint8Array(puz))
-        return {
-          filename: file.name,
-          status: "success",
-          xd,
-          originalFormat: "PUZ",
-        }
-      }
-
-      if (file.name.endsWith(".json")) {
-        const jsonText = await file.text()
-        const json = JSON.parse(jsonText)
-
-        if (json?.data?.attributes?.amuse_data) {
-          const xd = amuseToXD(json)
-          return {
-            filename: file.name,
-            status: "success",
-            xd,
-            originalFormat: "Amuse JSON",
-          }
-        } else {
-          throw new Error("Not a valid Amuse JSON file")
-        }
-      }
-
-      if (file.name.endsWith(".xml")) {
-        const xmlText = await file.text()
-        const isCrosswordCompiler = xmlText.includes("crossword-compiler") || xmlText.includes("rectangular-puzzle")
-        const xd = isCrosswordCompiler ? crossCompilerXMLToXD(xmlText) : uclickXMLToXD(xmlText)
-        return {
-          filename: file.name,
-          status: "success",
-          xd,
-          originalFormat: isCrosswordCompiler ? "Crossword Compiler XML" : "UClick XML",
-        }
-      }
-
-      if (file.name.endsWith(".puz.txt")) {
-        const acrossText = await file.text()
-        const xd = acrossTextToXD(acrossText)
-        return {
-          filename: file.name,
-          status: "success",
-          xd,
-          originalFormat: "Across Text",
-        }
-      }
-
-      throw new Error(`Unsupported file type: ${extension}`)
     } catch (error) {
       return {
         filename: file.name,

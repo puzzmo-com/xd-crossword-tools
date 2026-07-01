@@ -1,5 +1,5 @@
 import React, { useState, useCallback, use, useRef, createContext } from "react"
-import { jpzToXD, puzToXD, amuseToXD, uclickXMLToXD, crossCompilerXMLToXD, acrossTextToXD } from "xd-crossword-tools"
+import { fileToXD } from "xd-crossword-tools"
 
 import { decode } from "xd-crossword-tools/src/vendor/puzjs"
 
@@ -24,60 +24,25 @@ interface DragAndDropProps {
   children: React.ReactNode
 }
 
-// Process a file and return the XD content and file context
+// Process a file and return the XD content and file context. All of the
+// "is this a .jpz / .puz / …" detection lives in fileToXD now.
 const processFile = async (
   file: File,
   setXD: (xd: string) => void,
   setLastFileContext: (ctx: { content: string | object; filename: string }) => void,
 ) => {
-  if (file.name.endsWith(".xd")) {
-    const xdContent = await file.text()
-    setXD(xdContent)
-    // No file context needed for .xd files since the content is already in XD format
-  }
+  const { xd, format } = await fileToXD(file.name, file)
+  setXD(xd)
 
-  if (file.name.endsWith(".jpz")) {
-    const jpz = await file.text()
-    const xd = jpzToXD(jpz)
-    setXD(xd)
-    setLastFileContext({ content: jpz, filename: file.name })
-  }
+  // .xd files are already in XD format, so there's no separate source to preview.
+  if (format === "xd") return
 
-  if (file.name.endsWith(".puz")) {
+  // Populate the source-preview card. .puz is binary, so show the decoded JSON.
+  if (format === "puz") {
     const puz = await file.arrayBuffer()
-    const xd = puzToXD(new Uint8Array(puz))
-
-    const puzJSON = decode(new Uint8Array(puz))
-    setLastFileContext({ content: puzJSON, filename: file.name })
-
-    setXD(xd)
-  }
-
-  if (file.name.endsWith(".json")) {
-    const jsonText = await file.text()
-    const json = JSON.parse(jsonText)
-
-    if (json?.data?.attributes?.amuse_data) {
-      const xd = amuseToXD(json)
-      setXD(xd)
-      setLastFileContext({ content: jsonText, filename: file.name })
-    }
-  }
-
-  if (file.name.endsWith(".xml")) {
-    const xmlText = await file.text()
-    // Crossword Compiler XML uses the rectangular-puzzle schema; UClick XML doesn't.
-    const isCrosswordCompiler = xmlText.includes("crossword-compiler") || xmlText.includes("rectangular-puzzle")
-    const xd = isCrosswordCompiler ? crossCompilerXMLToXD(xmlText) : uclickXMLToXD(xmlText)
-    setXD(xd)
-    setLastFileContext({ content: xmlText, filename: file.name })
-  }
-
-  if (file.name.endsWith(".puz.txt")) {
-    const acrossText = await file.text()
-    const xd = acrossTextToXD(acrossText)
-    setXD(xd)
-    setLastFileContext({ content: acrossText, filename: file.name })
+    setLastFileContext({ content: decode(new Uint8Array(puz)), filename: file.name })
+  } else {
+    setLastFileContext({ content: await file.text(), filename: file.name })
   }
 }
 

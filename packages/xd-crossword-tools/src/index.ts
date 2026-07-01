@@ -15,6 +15,7 @@ export { amuseToXD } from "./amuseJSONToXD"
 export { decodePuzzleMeHTML, decodePuzzleMeRawc, extractPuzzleMeRawc, puzzleMeDataToAmuseTopLevel } from "./puzzleMeDecode"
 export { validateClueAnswersMatchGrid } from "./validateClueAnswersMatchGrid"
 export { acrossTextToXD } from "./acrossTextToXD"
+export { fileToXD, type CrosswordFileFormat, type FileToXDResult, type FileToXDContent } from "./fileToXD"
 
 // Export the package version
 import packageJson from "../package.json"
