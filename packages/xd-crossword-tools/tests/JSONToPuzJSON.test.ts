@@ -202,7 +202,10 @@ describe(JSONToPuzJSON.name, () => {
 
 it("is good to see what they think of alpha bits", () => {
   const puz = readFileSync(`./packages/xd-crossword-tools/tests/puz/alpha-bits.puz`)
-  const a = puzDecode(puz.buffer)
+  // readFileSync can return a Buffer that is a view into a shared, pooled ArrayBuffer,
+  // so `puz.buffer` may be a 64KB pool with the file's bytes at a non-zero offset.
+  // Pass only the file's bytes, otherwise puzDecode reads the wrong header.
+  const a = puzDecode(puz.buffer.slice(puz.byteOffset, puz.byteOffset + puz.byteLength))
 
   expect(a).toMatchInlineSnapshot(`
     {
