@@ -1,5 +1,9 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 13.3.0
+
+- Adds `fileToXD(filename, content)`, a single entry point that detects a crossword file's format (from its extension, then its contents) and converts it to xd — so consumers no longer need to hand-roll the "is this a `.jpz` / `.puz` / Crossword Compiler XML / …" checks. Accepts a `string`, `ArrayBuffer`, `Uint8Array`, or `Blob`/`File`, and covers `.xd`, `.jpz`, `.puz`, Amuse `.json`, UClick / Crossword Compiler `.xml`, Across Lite `.puz.txt`, and PuzzleMe `.html`.
+
 ### 13.2.0
 
 - Adds support for Crossword Compiler XML files
