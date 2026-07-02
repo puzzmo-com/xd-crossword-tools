@@ -211,15 +211,15 @@ export function crossCompilerXMLToXD(xmlString: string): string {
 
   const parsed: FxpNode[] = fxpParser.parse(xmlString)
 
-  // Root is <crossword-compiler> (or <crossword-compiler-applet> for the applet variant).
+  // Root is <crossword-compiler> (or <crossword-compiler-applet> for the applet
+  // variant), though some syndicators publish <rectangular-puzzle> as the root.
   const root = parsed.find((n) => {
     const name = nodeName(n)
     return name !== undefined && name !== "?xml"
   })
   if (!root) throw new Error("Could not find root element in crossword-compiler XML")
 
-  const rootChildren = nodeChildren(root)
-  const rectangularPuzzle = findChild(rootChildren, "rectangular-puzzle")
+  const rectangularPuzzle = nodeName(root) === "rectangular-puzzle" ? root : findChild(nodeChildren(root), "rectangular-puzzle")
   if (!rectangularPuzzle) throw new Error("Could not find rectangular-puzzle element in crossword-compiler XML")
 
   const rpChildren = nodeChildren(rectangularPuzzle)
@@ -234,15 +234,18 @@ export function crossCompilerXMLToXD(xmlString: string): string {
     return el ? textContent(nodeChildren(el)).trim() : ""
   }
 
+  // Key order and "Not set" fallbacks match the xd parser's defaults, so the
+  // generated xd survives an xd → JSON → xd round trip unchanged.
   const meta: CrosswordJSON["meta"] = {
     title: readMeta("title") || "Untitled",
     author: readMeta("creator") || "Unknown Author",
-    editor: readMeta("editor"),
-    date: readMeta("created"),
-    copyright: readMeta("copyright") || readMeta("rights"),
+    date: readMeta("created") || "Not set",
+    editor: readMeta("editor") || "Not set",
   }
+  const copyright = readMeta("copyright") || readMeta("rights")
   const description = readMeta("description")
   const publisher = readMeta("publisher")
+  if (copyright) meta.copyright = copyright
   if (description) meta.description = description
   if (publisher) meta.publisher = publisher
 
