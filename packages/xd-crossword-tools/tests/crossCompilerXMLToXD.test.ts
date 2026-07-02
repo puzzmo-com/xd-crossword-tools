@@ -1,9 +1,11 @@
 import { readFileSync } from "fs"
 import { crossCompilerXMLToXD } from "../src/crossCompilerXMLToXD"
+import { JSONToXD } from "../src/JSONtoXD"
 import { xdToJSON } from "xd-crossword-tools-parser"
 import { describe, it, expect } from "vitest"
 
 const globeXML = readFileSync(__dirname + "/crosscompiler/globe-2026-february.xml", "utf8")
+const globeAndMailXML = readFileSync(__dirname + "/crosscompiler/globeandmail-2026-june-19.xml", "utf8")
 
 describe(crossCompilerXMLToXD.name, () => {
   it("converts a small inline crossword-compiler xml fixture", () => {
@@ -53,8 +55,8 @@ describe(crossCompilerXMLToXD.name, () => {
 
       title: Tiny test
       author: Ada Lovelace
-      editor: 
-      date: 
+      date: Not set
+      editor: Not set
       copyright: 2026
       description: A small fixture
 
@@ -484,6 +486,26 @@ describe(crossCompilerXMLToXD.name, () => {
     expect(res).toContain("A1 ^hintURL: https://example.com/help")
     expect(res).toContain("A1 ^tags: theme,easy")
     expect(res).toContain("A1 ^theme: true")
+  })
+
+  it("parses a puzzle where <rectangular-puzzle> is the root element", () => {
+    // Some syndicators (e.g. Andrews McMeel, via the Globe and Mail) publish the
+    // rectangular-puzzle element directly, without a <crossword-compiler> wrapper.
+    const res = crossCompilerXMLToXD(globeAndMailXML)
+
+    expect(res).toContain("title: Themeless Friday 1")
+    expect(res).toContain("A1. Astronaut Jemison ~ MAE")
+    expect(res).toContain("D3. Hiking destination in Tibet or Nepal ~ EVERESTBASECAMP")
+
+    const parsed = xdToJSON(res)
+    expect(parsed.report.success).toBe(true)
+    expect(parsed.tiles.length).toBe(15)
+    expect(parsed.tiles[0].length).toBe(15)
+    expect(parsed.clues.across.length).toBe(33)
+    expect(parsed.clues.down.length).toBe(35)
+
+    // Round-trip: xd → AST → xd should reproduce the same document.
+    expect(JSONToXD(parsed)).toBe(res)
   })
 
   it("parses the 69x69 Globe puzzle fixture", () => {
