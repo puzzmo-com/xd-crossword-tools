@@ -49,15 +49,32 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
     }
   }
 
-  // Track circled cells and bars for design section
+  // Track circled cells, cell colors and bars for design section
   const hasCircledCells = amuseData.cellInfos?.some((cell) => cell.isCircled) || false
+  const hasColors = amuseData.cellInfos?.some((cell) => cell.bgColor) || false
   const hasBars = amuseData.cellInfos?.some((cell) => cell.rightWall || cell.bottomWall) || false
   if (hasBars) meta.form = "barred"
-  const needsDesign = hasCircledCells || hasBars
+  const needsDesign = hasCircledCells || hasBars || hasColors
 
   let designPositions: string[][] | undefined = undefined
   let designStyles: Record<string, Record<string, string>> = {}
   let barDesignMap: Map<string, Set<string>> = new Map() // Map of "y-x" to Set of design flags
+
+  // Shared letter allocation for design styles - 'O' is reserved for plain circles
+  const usedDesignLetters = new Set<string>()
+  const nextDesignLetter = () => {
+    for (let code = 65; code <= 90; code++) {
+      const letter = String.fromCharCode(code)
+      if (letter !== "O" && !usedDesignLetters.has(letter)) {
+        usedDesignLetters.add(letter)
+        return letter
+      }
+    }
+    throw new Error("Ran out of letters for design styles")
+  }
+
+  // Map of "circled|bgColor" combinations to their assigned style letter
+  const circleColorLetters = new Map<string, string>()
 
   if (needsDesign) {
     designPositions = Array(amuseData.h)
@@ -133,10 +150,33 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
         }
       }
 
-      // Track circled cells in design positions
-      if (designPositions && specificCellInfo?.isCircled) {
-        designPositions[y][x] = "O"
-        designStyles["O"] = { background: "circle" }
+      // Track circled and colored cells in design positions
+      if (designPositions && (specificCellInfo?.isCircled || specificCellInfo?.bgColor)) {
+        const circled = specificCellInfo.isCircled
+        const bgColor = specificCellInfo.bgColor
+        const comboKey = `${circled ? "circle" : ""}|${bgColor || ""}`
+
+        let letter = circleColorLetters.get(comboKey)
+        if (!letter) {
+          if (circled && !bgColor) {
+            letter = "O"
+            usedDesignLetters.add("O")
+          } else {
+            letter = nextDesignLetter()
+          }
+
+          const style: Record<string, string> = {}
+          if (circled) style["background"] = "circle"
+          // Amuse only provides a single color, so use it for both light and dark mode
+          if (bgColor) {
+            style["background-light"] = bgColor
+            style["background-dark"] = bgColor
+          }
+          designStyles[letter] = style
+          circleColorLetters.set(comboKey, letter)
+        }
+
+        designPositions[y][x] = letter
       }
 
       // Convert walls to bars
@@ -164,9 +204,8 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
 
   // Second pass: apply bar designs to tiles and design positions
   if (hasBars && designPositions) {
-    // We'll use letters to represent different bar combinations
-    const barStyles: Map<string, string[]> = new Map()
-    let nextBarLetter = 65 // ASCII 'A'
+    // Map of sorted bar flag combinations to their assigned style letter
+    const barStyleLetters = new Map<string, string>()
 
     for (const [cellKey, designFlags] of barDesignMap) {
       const [yStr, xStr] = cellKey.split("-")
@@ -180,47 +219,20 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
       const sortedFlags = Array.from(designFlags).sort()
       const styleKey = sortedFlags.join("|")
 
-      let styleLetter: string
-      if (!barStyles.has(styleKey)) {
-        styleLetter = String.fromCharCode(nextBarLetter++)
-        barStyles.set(styleKey, sortedFlags)
+      let styleLetter = barStyleLetters.get(styleKey)
+      if (!styleLetter) {
+        styleLetter = nextDesignLetter()
+        barStyleLetters.set(styleKey, styleLetter)
 
-        // Add to design styles
         const styleObj: Record<string, string> = {}
         if (sortedFlags.includes("bar-left")) styleObj["bar-left"] = "true"
         if (sortedFlags.includes("bar-top")) styleObj["bar-top"] = "true"
         designStyles[styleLetter] = styleObj
-      } else {
-        // Find the letter for this style combination
-        styleLetter = Array.from(barStyles.entries())
-          .find(([key]) => key === styleKey)![1]
-          .map(() => String.fromCharCode(nextBarLetter - barStyles.size + Array.from(barStyles.keys()).indexOf(styleKey)))[0]
       }
 
-      // Mark this position in the design grid
+      // Circles and colors take precedence - xd only supports one style per cell
       if (!designPositions[y][x]) {
-        // Find or create the appropriate letter for this bar combination
-        for (const [letter, style] of Object.entries(designStyles)) {
-          const hasBarLeft = style["bar-left"] === "true"
-          const hasBarTop = style["bar-top"] === "true"
-          const wantsBarLeft = sortedFlags.includes("bar-left")
-          const wantsBarTop = sortedFlags.includes("bar-top")
-
-          if (hasBarLeft === wantsBarLeft && hasBarTop === wantsBarTop && letter !== "O") {
-            designPositions[y][x] = letter
-            break
-          }
-        }
-
-        // If we didn't find a matching style, create a new one
-        if (!designPositions[y][x]) {
-          const newLetter = String.fromCharCode(Object.keys(designStyles).filter((k) => k !== "O").length + 65)
-          const styleObj: Record<string, string> = {}
-          if (sortedFlags.includes("bar-left")) styleObj["bar-left"] = "true"
-          if (sortedFlags.includes("bar-top")) styleObj["bar-top"] = "true"
-          designStyles[newLetter] = styleObj
-          designPositions[y][x] = newLetter
-        }
+        designPositions[y][x] = styleLetter
       }
     }
   }

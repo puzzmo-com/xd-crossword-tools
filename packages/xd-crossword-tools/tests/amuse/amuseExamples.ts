@@ -221,3 +221,46 @@ export const rebusAmuseExample: AmuseTopLevel = {
        } }
   }
 }
+
+/** A 1x5 "HELLO" grid mixing colored, circled and circled+colored cells */
+export const colorAmuseExample: AmuseTopLevel = (() => {
+  const example = structuredClone(schrodingerAmuseExample)
+  const amuseData = example.data.attributes.amuse_data
+
+  amuseData.title = "Color Puzzle"
+  amuseData.box = [["H" as Letter, "E" as Letter, "L" as Letter, "L" as Letter, "O" as Letter]]
+
+  const emptyCellInfo = {
+    isVoid: false,
+    isCircled: false,
+    rightWall: false,
+    bottomWall: false,
+    displayRightWallShort: false,
+    displayBottomWallShort: false,
+  }
+
+  amuseData.cellInfos = [
+    { ...emptyCellInfo, x: 0, y: 0, bgColor: "#FFEB3B" },
+    { ...emptyCellInfo, x: 0, y: 1, bgColor: "#FFEB3B", isCircled: true },
+    { ...emptyCellInfo, x: 0, y: 2, bgColor: "#B3E5FC" },
+    { ...emptyCellInfo, x: 0, y: 3, isCircled: true },
+  ]
+
+  amuseData.placedWords = [
+    {
+      x: 0,
+      y: 0,
+      clue: {
+        clue: "colorful greeting",
+      },
+      word: "HELLO",
+      nBoxes: 5,
+      clueNum: "1",
+      intersects: false,
+      originalTerm: "HELLO",
+      acrossNotDown: false,
+    },
+  ]
+
+  return example
+})()

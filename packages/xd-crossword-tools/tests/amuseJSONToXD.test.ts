@@ -1,9 +1,10 @@
 import { existsSync, readFileSync } from "fs"
 import { amuseToXD, convertAmuseToCrosswordJSON } from "../src/amuseJSONToXD"
+import { JSONToXD } from "../src/JSONtoXD"
 import type { AmuseTopLevel } from "../src/amuseJSONToXD.types"
 import { xdToJSON } from "xd-crossword-tools-parser"
 import { beforeAll, describe, expect, it } from "vitest"
-import { rebusAmuseExample, schrodingerAmuseExample } from "./amuse/amuseExamples"
+import { colorAmuseExample, rebusAmuseExample, schrodingerAmuseExample } from "./amuse/amuseExamples"
 
 const exampleJSONPath = "/Users/orta/dev/old-workshop/packages/amuse-to-xd/examples/2024_03_17-barred_cryptic.json"
 const fullExamplePath = exampleJSONPath
@@ -660,5 +661,55 @@ describeConditional("amuseJSONToXD", () => {
           ]
         `)
     })
+  })
+})
+
+describe("cell colors", () => {
+  it("converts bgColor cells into design styles", () => {
+    const result = convertAmuseToCrosswordJSON(colorAmuseExample)
+
+    expect(result.design).toBeDefined()
+    expect(result.design?.styles).toEqual({
+      A: { "background-light": "#FFEB3B", "background-dark": "#FFEB3B" },
+      B: { background: "circle", "background-light": "#FFEB3B", "background-dark": "#FFEB3B" },
+      C: { "background-light": "#B3E5FC", "background-dark": "#B3E5FC" },
+      O: { background: "circle" },
+    })
+
+    // 1 wide, 5 tall - the last cell has no design
+    expect(result.design?.positions.map((row) => row[0] || ".")).toEqual(["A", "B", "C", "O", "."])
+  })
+
+  it("cells with the same color share a design style", () => {
+    const result = convertAmuseToCrosswordJSON(colorAmuseExample)
+
+    const positions = result.design!.positions
+    // (0,0) is color-only and (1,0) is circled+colored, so they get different letters,
+    // but both reference the same #FFEB3B background
+    expect(result.design!.styles[positions[0][0]]["background-light"]).toBe("#FFEB3B")
+    expect(result.design!.styles[positions[1][0]]["background-light"]).toBe("#FFEB3B")
+  })
+
+  it("emits a design section which round-trips through the parser", () => {
+    const xd = amuseToXD(colorAmuseExample)
+
+    expect(xd).toContain("## Design")
+    expect(xd).toContain("A { background-light: #FFEB3B; background-dark: #FFEB3B }")
+    expect(xd).toContain("B { background: circle; background-light: #FFEB3B; background-dark: #FFEB3B }")
+    expect(xd).toContain("C { background-light: #B3E5FC; background-dark: #B3E5FC }")
+    expect(xd).toContain("O { background: circle }")
+
+    const json = xdToJSON(xd)
+    expect(json.report.success).toBe(true)
+    expect(json.design?.styles).toEqual(convertAmuseToCrosswordJSON(colorAmuseExample).design?.styles)
+
+    // The design section survives xd -> AST -> xd untouched (meta gets normalized
+    // by the parser, so byte-equality is only checked from the Design header down)
+    const xd2 = JSONToXD(json)
+    expect(xd2.split("## Design")[1]).toEqual(xd.split("## Design")[1])
+
+    // And a normalized document is fully stable through another round-trip
+    const xd3 = JSONToXD(xdToJSON(xd2))
+    expect(xd3).toEqual(xd2)
   })
 })

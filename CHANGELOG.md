@@ -2,6 +2,7 @@ This isn't a comprehensive doc because to our knowledge there are no OSS consume
 
 ### 14.1.0
 
+- The Amuse importer now converts cell background colors (`cellInfos[].bgColor`) into Design section styles using `background-light`/`background-dark`, including cells which are both circled and colored. Bar and color style letters are allocated from a shared pool so they can no longer collide.
 - Adds `ipuzToXD(source)`, a converter for [ipuz](https://libipuz.org/spec/ipuz-spec.html) crossword files. It accepts the raw file text (including the optional `ipuz(...)` JSONP wrapper) or an already-parsed JSON object, and supports blocks, null cells, custom `block`/`empty` characters, rebus cells (multi-letter solutions), Schrödinger cells (solutions with multiple candidate values, emitted as 14.0.0's multi-valued rebus keys), circled/shaded cells, barred grids, pre-filled cells (as an xd Start section) and the common metadata fields. `fileToXD` now routes `.ipuz` files — and `.json` or extension-less files carrying an `ipuz.org` marker — to it automatically.
 
 ### 14.0.0
