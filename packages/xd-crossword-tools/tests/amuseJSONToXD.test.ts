@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from "fs"
 import { amuseToXD, convertAmuseToCrosswordJSON } from "../src/amuseJSONToXD"
 import type { AmuseTopLevel } from "../src/amuseJSONToXD.types"
+import { xdToJSON } from "xd-crossword-tools-parser"
 import { beforeAll, describe, expect, it } from "vitest"
 import { rebusAmuseExample, schrodingerAmuseExample } from "./amuse/amuseExamples"
 
@@ -26,14 +27,32 @@ describeConditional("amuseJSONToXD", () => {
     expect(result.tiles[0][0]).toHaveProperty("validLetters")
     if (result.tiles[0][0].type === "schrodinger") {
       expect(result.tiles[0][0].validLetters).toEqual(["H", "J"])
+      expect(result.tiles[0][0].symbol).toBe("1")
     }
+
+    expect(result.meta.rebus).toBe("1=H 1=J")
 
     expect(result.clues.down[0]).toHaveProperty("answer")
     expect(result.clues.down[0].answer).toEqual("HELLO")
 
-    expect(result.clues.down[0]).toHaveProperty("metadata")
-    expect(result.clues.down[0].metadata).toHaveProperty("alt")
-    expect(result.clues.down[0].metadata?.alt).toEqual("JELLO")
+    // The alternatives are carried by the rebus metadata, not a deprecated ^alt clue field
+    expect(result.clues.down[0].metadata?.alt).toBeUndefined()
+  })
+
+  it("emits rebus-based schrodinger xd which round-trips through the parser", () => {
+    const xd = amuseToXD(schrodingerAmuseExample)
+
+    expect(xd).toContain("rebus: 1=H 1=J")
+    expect(xd).toContain("~ HELLO")
+    expect(xd).not.toContain("^alt")
+
+    const json = xdToJSON(xd)
+    const tile = json.tiles[0][0]
+    expect(tile.type).toBe("schrodinger")
+    if (tile.type === "schrodinger") {
+      expect(tile.validLetters).toEqual(["H", "J"])
+      expect(tile.symbol).toBe("1")
+    }
   })
 
   it("handles rebus clues correctly", () => {

@@ -110,6 +110,17 @@ export interface SchrodingerTile {
   validLetters: string[]
   /** Possible rebus tiles */
   validRebuses: { letters: string; symbol: string }[]
+  /**
+   * Every valid value for this square (single letters and multi-letter rebus values
+   * in one ordered list). The position in the array is the variant index: Schrödinger
+   * squares which resolve to the same index belong to the same solution, so checkers
+   * can compare one index instead of special-casing letters vs rebuses. For rebus-based
+   * squares the order matches the declaration order in the `rebus:` metadata, for
+   * `^alt`-based squares it is [primary answer, alt, alt2, ...].
+   */
+  validOptions?: string[]
+  /** Present when this Schrödinger tile originated from a multi-valued rebus key */
+  symbol?: string
   clues?: {
     across?: number
     down?: number

@@ -4414,7 +4414,40 @@ Capitalization is ignored, the metadata prefix will always be given as lowercase
 
 #### Schrödinger Squares
 
-We support declaring schrödinger's by indicating in the grid with a `"*"` and then using `alt`, and `alt2`, `alt3` (etc)
+A Schrödinger square is a cell which has more than one correct answer. You declare one by giving a rebus key more than one value in the metadata, then using that symbol in the grid:
+
+```
+## Metadata
+
+rebus: 1=O 1=A
+
+## Grid
+
+TILE
+APEX
+C1NE
+ODDS
+
+## Clues
+
+A1. Mosaic piece ~ TILE
+A5. Pinnacle ~ APEX
+A6. Sugar ____ ~ CONE
+A7. Chances, in gambling ~ ODDS
+
+D1. Tuesday treat ~ TACO
+D2. Apple tech ~ IPOD
+D3. Complement to borrow ~ LEND
+D4. Former intimates ~ EXES
+```
+
+Here the `1` cell accepts either `O` or `A`, and clue answers are written using one of the valid options (e.g. `CONE`/`IPOD`). Values can also be multiple letters, making a Schrödinger rebus cell (`rebus: 1=OR 1=AR`), and multi-valued keys can be mixed with regular single-valued rebus keys in the same declaration.
+
+In the JSON, these tiles carry `validOptions`: every value in declaration order, where the array position acts as a variant index. Squares that resolve to the same index belong to the same solution of the puzzle, which lets a checker verify answers with several Schrödinger squares (e.g. an entry reading either `CLINTON` or `BOBDOLE`, never a mix) by comparing one index per square — see the 14.0.0 notes in [CHANGELOG.md](./CHANGELOG.md) for a worked example.
+
+##### Deprecated: `*` grid squares with `^alt` clue metadata
+
+The original syntax — a `"*"` in the grid with the alternatives declared via `alt`, `alt2`, `alt3` (etc) clue metadata — is still parsed, but is deprecated in favour of the rebus-based syntax above:
 
 ```
 ## Grid
@@ -4426,20 +4459,14 @@ ODDS
 
 ## Clues
 
-A1. Mosaic piece ~ TILE
-A5. Pinnacle ~ APEX
 A6. Sugar ____ ~ CONE
 A6 ^alt: CANE
-A7. Chances, in gambling ~ ODDS
 
-D1. Tuesday treat ~ TACO
 D2. Apple tech ~ IPOD
 D2 ^alt: IPAD
-D3. Complement to borrow ~ LEND
-D4. Former intimates ~ EXES
 ```
 
-For rebuses inside schrödinger use the symbol inside the clue/alt:
+For rebuses inside a `*`-style schrödinger use the symbol inside the clue/alt:
 
 ```
 A6. Sugar ____ ~ 1NE
@@ -4615,43 +4642,43 @@ T { bar-top: true }
 
 The main `xd-crossword-tools` package provides comprehensive functionality for format conversion, validation, and development tools:
 
-| Function                       | Description                                     | Parameters                                           | Return Type                                     | Notes                                                |
-| ------------------------------ | ----------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------- | ---------------------------------------------------- |
+| Function                       | Description                                     | Parameters                                                                 | Return Type                                            | Notes                                                                        |
+| ------------------------------ | ----------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------- |
 | `fileToXD`                     | Detects the format of a file and converts to XD | `filename: string`, `content: string \| ArrayBuffer \| Uint8Array \| Blob` | `Promise<{ xd: string; format: CrosswordFileFormat }>` | One entry point for every importer below; detects by extension then contents |
-| `puzToXD`                      | Converts .puz file buffer to XD format          | `buffer: ArrayBuffer`                                | `string`                                        | Handles rebus symbols, circles, shades, and metadata |
-| `uclickXMLToXD`                | Converts UClick XML format to XD                | `str: string`                                        | `string`                                        | Parses XML crossword data and converts to XD format  |
-| `jpzToXD`                      | Converts JPZ (XML) format to XD                 | `xmlString: string`                                  | `string`                                        | Handles JPZ crossword puzzle format conversion       |
-| `amuseToXD`                    | Converts Amuse JSON format to XD                | `amuseJSON: AmuseTopLevel`                           | `string`                                        | Converts Amuse Labs crossword format to XD           |
-| `acrossTextToXD`               | Converts Across Text format to XD               | `textContent: string`                                | `string`                                        | Supports v1 and v2 formats, handles rebus and circles |
-| `JSONToXD`                     | Converts CrosswordJSON back to XD format string | `json: CrosswordJSON`                                | `string`                                        | Main function for converting parsed data back to XD  |
-| `JSONToPuzJSON`                | Converts CrosswordJSON to .puz format JSON      | `json: CrosswordJSON`, `config?: {filled?: boolean}` | `any`                                           | Creates JSON for @confuzzle/writepuz                 |
-| `puzEncode`                    | Encodes puzzle data to .puz binary format       | `puzzle: Puzzle`                                     | `Uint8Array`                                    | Low-level binary .puz file encoding                  |
-| `puzDecode`                    | Decodes .puz binary format to JSON              | `bytes: ArrayBuffer`                                 | `Puz2JSONResult`                                | Low-level binary .puz file decoding                  |
-| `editorInfoAtCursor`           | Gets crossword information at cursor position   | `data: CrosswordJSON`                                | `(line: number, index: number) => PositionInfo` | For editor integrations - requires editorInfo        |
-| `xdDiff`                       | Creates semantic diff between two XD files      | `beforeXD: string`, `afterXD: string`                | `DiffResults`                                   | Line-by-line differences with metadata awareness     |
-| `runLinterForClue`             | Runs linting checks on individual clues         | `clue: Clue`, `ordinal: "across" \| "down"`          | `Report[]`                                      | Checks for common crossword construction issues      |
-| `validateClueAnswersMatchGrid` | Validates clue answers match grid tiles         | `json: CrosswordJSON`                                | `Report[]`                                      | Checks consistency between answers and grid          |
-| `resolveFullClueAnswer`        | Resolves clue answer with rebus and splits      | `clue: Clue`, `splitChar: string`                    | `string`                                        | Handles rebus substitution and split characters      |
+| `puzToXD`                      | Converts .puz file buffer to XD format          | `buffer: ArrayBuffer`                                                      | `string`                                               | Handles rebus symbols, circles, shades, and metadata                         |
+| `uclickXMLToXD`                | Converts UClick XML format to XD                | `str: string`                                                              | `string`                                               | Parses XML crossword data and converts to XD format                          |
+| `jpzToXD`                      | Converts JPZ (XML) format to XD                 | `xmlString: string`                                                        | `string`                                               | Handles JPZ crossword puzzle format conversion                               |
+| `amuseToXD`                    | Converts Amuse JSON format to XD                | `amuseJSON: AmuseTopLevel`                                                 | `string`                                               | Converts Amuse Labs crossword format to XD                                   |
+| `acrossTextToXD`               | Converts Across Text format to XD               | `textContent: string`                                                      | `string`                                               | Supports v1 and v2 formats, handles rebus and circles                        |
+| `JSONToXD`                     | Converts CrosswordJSON back to XD format string | `json: CrosswordJSON`                                                      | `string`                                               | Main function for converting parsed data back to XD                          |
+| `JSONToPuzJSON`                | Converts CrosswordJSON to .puz format JSON      | `json: CrosswordJSON`, `config?: {filled?: boolean}`                       | `any`                                                  | Creates JSON for @confuzzle/writepuz                                         |
+| `puzEncode`                    | Encodes puzzle data to .puz binary format       | `puzzle: Puzzle`                                                           | `Uint8Array`                                           | Low-level binary .puz file encoding                                          |
+| `puzDecode`                    | Decodes .puz binary format to JSON              | `bytes: ArrayBuffer`                                                       | `Puz2JSONResult`                                       | Low-level binary .puz file decoding                                          |
+| `editorInfoAtCursor`           | Gets crossword information at cursor position   | `data: CrosswordJSON`                                                      | `(line: number, index: number) => PositionInfo`        | For editor integrations - requires editorInfo                                |
+| `xdDiff`                       | Creates semantic diff between two XD files      | `beforeXD: string`, `afterXD: string`                                      | `DiffResults`                                          | Line-by-line differences with metadata awareness                             |
+| `runLinterForClue`             | Runs linting checks on individual clues         | `clue: Clue`, `ordinal: "across" \| "down"`                                | `Report[]`                                             | Checks for common crossword construction issues                              |
+| `validateClueAnswersMatchGrid` | Validates clue answers match grid tiles         | `json: CrosswordJSON`                                                      | `Report[]`                                             | Checks consistency between answers and grid                                  |
+| `resolveFullClueAnswer`        | Resolves clue answer with rebus and splits      | `clue: Clue`, `splitChar: string`                                          | `string`                                               | Handles rebus substitution and split characters                              |
 
 ### xd-crossword-tools-parser Utility Functions
 
 The `xd-crossword-tools-parser` package exports several utility functions for working with crossword data:
 
-| Function                                    | Description                                                          | Parameters                                              | Return Type                                            |
-| ------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------ |
-| `getTile`                                   | Gets a specific tile from the crossword grid at the given position   | `tiles: Tile[][]`, `position: Position`                 | `Tile \| undefined`                                    |
-| `clueInfosForPosition`                      | Finds which clues (across/down) exist at a given grid position       | `tiles: Tile[][]`, `clues: Clues`, `position: Position` | `{down?: ClueInfo, across?: ClueInfo}`                 |
-| `tilePositionsForClue`                      | Gets all tile positions that belong to a specific clue               | `clue: Clue`, `direction: CursorDirection`              | `Position[]`                                           |
-| `getWordTilesForCursor`                     | Gets all tile positions that are part of the word at cursor position | `tiles: Tile[][]`, `cursor: Cursor`                     | `Position[]`                                           |
-| `getSortedTilesForCursor`                   | Gets word tiles for cursor, sorted with boundary info                | `tiles: Tile[][]`, `cursor: Cursor`                     | `{first: Position, last: Position, tiles: Position[]}` |
-| `getCluePositionsForBoard`                  | Analyzes grid to determine all positions where clues start           | `tiles: Tile[][]`                                       | `PositionWithTiles[]`                                  |
-| `xdMarkupProcessor`                         | Processes XD markup syntax into structured components                | `input: string`                                         | `ClueComponentMarkup[]`                                |
-| `EditorError`                               | Custom error class for XD parsing errors with line numbers           | `message: string`, `line: number`                       | `EditorError`                                          |
-| `shouldConvertToExplicitHeaders`            | Checks if XD string needs conversion from v1 to v2 format            | `xd: string`                                            | `boolean`                                              |
-| `convertImplicitOrderedXDToExplicitHeaders` | Converts old v1 implicit XD format to new v2 explicit headers        | `xd: string`                                            | `string`                                               |
-| `letterToTile`                              | Converts a single letter string to a Tile object                     | `letter: string`                                        | `Tile`                                                 |
-| `stringGridToTiles`                         | Converts a 2D string array to a 2D Tile array                        | `rebuses: Rebuses`, `strArr: string[][]`                | `Tile[][]`                                             |
-| `replaceWordWithSymbol`                     | Replaces a word in tiles with a rebus symbol                         | `word: string`, `tiles: Tile[]`, `splitChar: string`    | `void`                                                 |
+| Function                                    | Description                                                          | Parameters                                                                                | Return Type                                            |
+| ------------------------------------------- | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| `getTile`                                   | Gets a specific tile from the crossword grid at the given position   | `tiles: Tile[][]`, `position: Position`                                                   | `Tile \| undefined`                                    |
+| `clueInfosForPosition`                      | Finds which clues (across/down) exist at a given grid position       | `tiles: Tile[][]`, `clues: Clues`, `position: Position`                                   | `{down?: ClueInfo, across?: ClueInfo}`                 |
+| `tilePositionsForClue`                      | Gets all tile positions that belong to a specific clue               | `clue: Clue`, `direction: CursorDirection`                                                | `Position[]`                                           |
+| `getWordTilesForCursor`                     | Gets all tile positions that are part of the word at cursor position | `tiles: Tile[][]`, `cursor: Cursor`                                                       | `Position[]`                                           |
+| `getSortedTilesForCursor`                   | Gets word tiles for cursor, sorted with boundary info                | `tiles: Tile[][]`, `cursor: Cursor`                                                       | `{first: Position, last: Position, tiles: Position[]}` |
+| `getCluePositionsForBoard`                  | Analyzes grid to determine all positions where clues start           | `tiles: Tile[][]`                                                                         | `PositionWithTiles[]`                                  |
+| `xdMarkupProcessor`                         | Processes XD markup syntax into structured components                | `input: string`                                                                           | `ClueComponentMarkup[]`                                |
+| `EditorError`                               | Custom error class for XD parsing errors with line numbers           | `message: string`, `line: number`                                                         | `EditorError`                                          |
+| `shouldConvertToExplicitHeaders`            | Checks if XD string needs conversion from v1 to v2 format            | `xd: string`                                                                              | `boolean`                                              |
+| `convertImplicitOrderedXDToExplicitHeaders` | Converts old v1 implicit XD format to new v2 explicit headers        | `xd: string`                                                                              | `string`                                               |
+| `letterToTile`                              | Converts a single letter string to a Tile object                     | `letter: string`                                                                          | `Tile`                                                 |
+| `stringGridToTiles`                         | Converts a 2D string array to a 2D Tile array                        | `rebuses: Rebuses`, `strArr: string[][]`, `schrodingerRebuses?: Record<string, string[]>` | `Tile[][]`                                             |
+| `replaceWordWithSymbol`                     | Replaces a word in tiles with a rebus symbol                         | `word: string`, `tiles: Tile[]`, `splitChar: string`                                      | `void`                                                 |
 
 ## Publishing and deployment
 

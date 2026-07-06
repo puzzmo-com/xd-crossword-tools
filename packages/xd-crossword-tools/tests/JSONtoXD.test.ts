@@ -393,6 +393,113 @@ D4. Former intimates ~ EXES`
     expect(newXD).toEqual(puzzle)
   })
 
+  it("round-trips rebus-based Schrödinger with single letters", () => {
+    const puzzle = `## Metadata
+
+title: Test Rebus Schrödinger
+author: Test Author
+date: 2025-01-01
+editor: Test
+rebus: 1=O 1=A
+
+## Grid
+
+TILE
+APEX
+C1NE
+ODDS
+
+## Clues
+
+A1. Mosaic piece ~ TILE
+A5. Pinnacle ~ APEX
+A6. Sugar ____ ~ CONE
+A7. Chances, in gambling ~ ODDS
+
+D1. Tuesday treat ~ TACO
+D2. Apple tech ~ IPOD
+D3. Complement to borrow ~ LEND
+D4. Former intimates ~ EXES`
+
+    const json = xdToJSON(puzzle)
+    const newXD = JSONToXD(json)
+
+    expect(newXD).toContain("C1NE")
+    expect(newXD).not.toContain("C*NE")
+    expect(newXD).toEqual(puzzle)
+  })
+
+  it("round-trips rebus-based Schrödinger with multi-letter values", () => {
+    const puzzle = `## Metadata
+
+title: Multi-letter Schrödinger
+author: Test
+date: 2025-01-01
+editor: Test
+rebus: 1=OR 1=AR
+
+## Grid
+
+TILE
+APEX
+C1NE
+ODDS
+
+## Clues
+
+A1. Mosaic piece ~ TILE
+A5. Pinnacle ~ APEX
+A6. Sugar ____ ~ CORNE
+A7. Chances, in gambling ~ ODDS
+
+D1. Tuesday treat ~ TACO
+D2. Apple tech ~ IPORD
+D3. Complement to borrow ~ LEND
+D4. Former intimates ~ EXES`
+
+    const json = xdToJSON(puzzle)
+    const newXD = JSONToXD(json)
+
+    expect(newXD).toContain("C1NE")
+    expect(newXD).toEqual(puzzle)
+  })
+
+  it("round-trips mixed regular rebuses and Schrödinger rebuses", () => {
+    const puzzle = `## Metadata
+
+title: Mixed Rebuses
+author: Test
+date: 2025-01-01
+editor: Test
+rebus: 1=O 1=A 2=XY
+
+## Grid
+
+TILE
+APEX
+C1N2
+ODDS
+
+## Clues
+
+A1. Mosaic piece ~ TILE
+A5. Pinnacle ~ APEX
+A6. Clue ~ CONXY
+A7. Chances, in gambling ~ ODDS
+
+D1. Tuesday treat ~ TACO
+D2. Apple tech ~ IPOD
+D3. Complement to borrow ~ LEND
+D4. Former intimates ~ EXXYS`
+
+    const json = xdToJSON(puzzle)
+    const newXD = JSONToXD(json)
+
+    expect(newXD).toContain("C1N2")
+    expect(newXD).toContain("rebus: 1=O 1=A 2=XY")
+    expect(newXD).toEqual(puzzle)
+  })
+
   it("Perfect round-trip with pipes within rebus squares", () => {
     // This demonstrates perfect round-trip conversion with internal rebus splits
     const puzzle = `## Metadata
