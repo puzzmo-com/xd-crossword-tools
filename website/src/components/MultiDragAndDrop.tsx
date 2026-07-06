@@ -19,6 +19,7 @@ const formatLabels: Record<CrosswordFileFormat, string> = {
   "crossword-compiler-xml": "Crossword Compiler XML",
   "across-lite": "Across Text",
   "puzzleme-html": "PuzzleMe HTML",
+  ipuz: "ipuz",
 }
 
 interface MultiDragAndDropProps {
@@ -27,7 +28,7 @@ interface MultiDragAndDropProps {
 }
 
 export const MultiDragAndDrop: React.FC<MultiDragAndDropProps> = ({ onFilesProcessed, setIsProcessing }) => {
-  const acceptedFileTypes = [".puz", ".puz.txt", ".jpz", ".json", ".xml"]
+  const acceptedFileTypes = [".puz", ".puz.txt", ".jpz", ".json", ".xml", ".ipuz"]
   const [isDragging, setIsDragging] = useState(false)
 
   const processFile = async (file: File): Promise<ConversionResult> => {

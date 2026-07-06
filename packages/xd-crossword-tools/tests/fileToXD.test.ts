@@ -10,6 +10,7 @@ import { uclickXMLToXD } from "../src/uclickToXD"
 import { crossCompilerXMLToXD } from "../src/crossCompilerXMLToXD"
 import { amuseToXD } from "../src/amuseJSONToXD"
 import { decodePuzzleMeHTML } from "../src/puzzleMeDecode"
+import { ipuzToXD } from "../src/ipuzToXD"
 import { schrodingerAmuseExample } from "./amuse/amuseExamples"
 
 const fixture = (...p: string[]) => join(__dirname, ...p)
@@ -23,6 +24,7 @@ const crossCompilerText = readText("crosscompiler", "globe-2026-february.xml")
 const uclickText = readText("uclick", "simple-uclick.xml")
 const puzzleMeHTML = readText("puzzleme", "team_bakery.html")
 const amuseJSONText = JSON.stringify(schrodingerAmuseExample)
+const ipuzText = readText("ipuz", "word-square.ipuz")
 
 describe("fileToXD", () => {
   describe("routing by file extension", () => {
@@ -61,6 +63,12 @@ describe("fileToXD", () => {
       const res = await fileToXD("puzzle.json", amuseJSONText)
       expect(res.format).toBe("amuse")
       expect(res.xd).toBe(amuseToXD(JSON.parse(amuseJSONText)))
+    })
+
+    it("converts an .ipuz file", async () => {
+      const res = await fileToXD("puzzle.ipuz", ipuzText)
+      expect(res.format).toBe("ipuz")
+      expect(res.xd).toBe(ipuzToXD(ipuzText))
     })
 
     it("converts a PuzzleMe .html file", async () => {
@@ -105,6 +113,12 @@ describe("fileToXD", () => {
       expect(res.format).toBe("amuse")
     })
 
+    it("routes a .json holding ipuz data to the ipuz converter", async () => {
+      const res = await fileToXD("puzzle.json", ipuzText)
+      expect(res.format).toBe("ipuz")
+      expect(res.xd).toBe(ipuzToXD(ipuzText))
+    })
+
     it("throws for valid JSON that is not an Amuse export", async () => {
       const json = JSON.stringify({ hello: "world" })
       await expect(fileToXD("puzzle.json", json)).rejects.toThrow(/Expected an Amuse JSON file/)
@@ -130,6 +144,16 @@ describe("fileToXD", () => {
     it("detects an Amuse JSON from a leading brace", async () => {
       const res = await fileToXD("no-extension", amuseJSONText)
       expect(res.format).toBe("amuse")
+    })
+
+    it("detects an ipuz file from its ipuz.org marker", async () => {
+      const res = await fileToXD("no-extension", ipuzText)
+      expect(res.format).toBe("ipuz")
+    })
+
+    it("detects an ipuz file from its JSONP wrapper", async () => {
+      const res = await fileToXD("no-extension", `ipuz(${ipuzText})`)
+      expect(res.format).toBe("ipuz")
     })
 
     it("detects PuzzleMe HTML from the embedded rawc field", async () => {

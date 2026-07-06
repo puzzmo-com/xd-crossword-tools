@@ -1,0 +1,36 @@
+{
+  "version": "http://ipuz.org/v2",
+  "kind": ["http://ipuz.org/crossword#1"],
+  "title": "Kitchen Sink",
+  "author": "Orta Therox",
+  "editor": "An Editor",
+  "copyright": "© 2026",
+  "publisher": "Puzzmo",
+  "url": "https://example.com/kitchen-sink",
+  "difficulty": "Easy",
+  "notes": "A tiny puzzle exercising rebuses, circles and pre-filled cells.",
+  "date": "07/06/2026",
+  "dimensions": { "width": 3, "height": 3 },
+  "puzzle": [
+    [1, 2, 3],
+    [4, { "cell": 0, "style": { "shapebg": "circle" } }, 0],
+    [5, 0, { "cell": 0, "value": "N" }]
+  ],
+  "solution": [
+    ["GO", "A", "T"],
+    ["A", "G", "E"],
+    ["T", "E", "N"]
+  ],
+  "clues": {
+    "Across": [
+      [1, "Farm animal that eats everything"],
+      [4, "Number of candles on a cake"],
+      [5, "Dime's worth"]
+    ],
+    "Down": [
+      [1, "Greatest of all time"],
+      [2, "Era"],
+      [3, "Base of the decimal system"]
+    ]
+  }
+}

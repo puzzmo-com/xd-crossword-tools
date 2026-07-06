@@ -4231,7 +4231,7 @@ npx xd-crossword-tools "https://puzzleme.amuselabs.com/pmm/crossword?id=abc123&s
 npx xd-crossword-tools puzzle.puz "https://puzzleme.amuselabs.com/pmm/crossword?id=abc123&set=..." -o ./output
 ```
 
-Supported input formats: `.puz`, `.jpz`, `.xml` (UClick or Crossword Compiler), `.json` (Amuse Labs), `.txt` (Across text), and URLs which contain PuzzleMe crosswords.
+Supported input formats: `.puz`, `.jpz`, `.ipuz`, `.xml` (UClick or Crossword Compiler), `.json` (Amuse Labs or ipuz), `.txt` (Across text), and URLs which contain PuzzleMe crosswords.
 
 ## Import / Export
 
@@ -4260,7 +4260,7 @@ const { xd, format } = await fileToXD(file.name, file)
 console.log(`Imported a ${format} file`, xd)
 ```
 
-It handles `.xd` (passed through), `.jpz`, `.puz`, Amuse `.json`, UClick / Crossword Compiler `.xml`, Across Lite `.puz.txt`, and PuzzleMe `.html`. It throws if the format can't be detected or the underlying converter fails (for example a `.json` that isn't an Amuse export). The individual converters below are still exported if you already know the format.
+It handles `.xd` (passed through), `.jpz`, `.puz`, `.ipuz`, Amuse `.json`, UClick / Crossword Compiler `.xml`, Across Lite `.puz.txt`, and PuzzleMe `.html`. It throws if the format can't be detected or the underlying converter fails (for example a `.json` that isn't an Amuse export). The individual converters below are still exported if you already know the format.
 
 > **Note on PuzzleMe HTML:** `fileToXD` expects the raw HTML of a PuzzleMe / AmuseLabs puzzle page (it reads the embedded `rawc` field). PuzzleMe puzzles are usually behind a URL rather than a file on disk, so in practice you fetch the page first and hand the HTML to `fileToXD` — or use `decodePuzzleMeHTML` directly. The playground imports these via URL for that reason, and its file-drop UI intentionally doesn't list `.html`.
 
@@ -4298,6 +4298,17 @@ const xd = jpzToXD(jpz)
 ```
 
 The jpz format import supports barred crosswords.
+
+### .ipuz to .xd
+
+Supports the [ipuz](https://libipuz.org/spec/ipuz-spec.html) crossword kind, including blocks, null cells, custom `block`/`empty` characters, rebus cells, Schrödinger cells (solutions with multiple candidate values, converted to multi-valued rebus keys), circled/shaded cells, barred grids and pre-filled cells (converted to an xd Start section). Accepts the raw file text (including the optional `ipuz(...)` JSONP wrapper) or an already-parsed JSON object.
+
+```ts
+import { ipuzToXD } from "xd-crossword-tools"
+
+const ipuzText = "..."
+const xd = ipuzToXD(ipuzText)
+```
 
 ### Crossword Compiler .xml to .xd
 
@@ -4648,6 +4659,7 @@ The main `xd-crossword-tools` package provides comprehensive functionality for f
 | `puzToXD`                      | Converts .puz file buffer to XD format          | `buffer: ArrayBuffer`                                                      | `string`                                               | Handles rebus symbols, circles, shades, and metadata                         |
 | `uclickXMLToXD`                | Converts UClick XML format to XD                | `str: string`                                                              | `string`                                               | Parses XML crossword data and converts to XD format                          |
 | `jpzToXD`                      | Converts JPZ (XML) format to XD                 | `xmlString: string`                                                        | `string`                                               | Handles JPZ crossword puzzle format conversion                               |
+| `ipuzToXD`                     | Converts ipuz format to XD                      | `source: string \| object`                                                 | `string`                                               | Handles rebuses, circles, bars and pre-filled cells                          |
 | `amuseToXD`                    | Converts Amuse JSON format to XD                | `amuseJSON: AmuseTopLevel`                                                 | `string`                                               | Converts Amuse Labs crossword format to XD                                   |
 | `acrossTextToXD`               | Converts Across Text format to XD               | `textContent: string`                                                      | `string`                                               | Supports v1 and v2 formats, handles rebus and circles                        |
 | `JSONToXD`                     | Converts CrosswordJSON back to XD format string | `json: CrosswordJSON`                                                      | `string`                                               | Main function for converting parsed data back to XD                          |

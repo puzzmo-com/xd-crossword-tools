@@ -9,8 +9,9 @@ import { uclickXMLToXD } from "./uclickToXD"
 import { amuseToXD } from "./amuseJSONToXD"
 import { acrossTextToXD } from "./acrossTextToXD"
 import { decodePuzzleMeHTML } from "./puzzleMeDecode"
+import { ipuzToXD } from "./ipuzToXD"
 
-const SUPPORTED_EXTENSIONS = [".puz", ".jpz", ".xml", ".json", ".txt"]
+const SUPPORTED_EXTENSIONS = [".puz", ".jpz", ".xml", ".json", ".txt", ".ipuz"]
 
 function usage(): never {
   console.log(`Usage: xd-crossword-tools <input-files...> -o <output-dir>
@@ -21,7 +22,8 @@ Supported input formats:
   .puz   - Across Lite binary format
   .jpz   - JPZ XML format
   .xml   - UClick XML format
-  .json  - Amuse Labs JSON format
+  .json  - Amuse Labs JSON (or ipuz) format
+  .ipuz  - ipuz format
   .txt   - Across text format
   URL    - PuzzleMe URL (https://puzzleme.amuselabs.com/...)
 
@@ -54,8 +56,13 @@ function convertFile(filePath: string): string {
     }
     case ".json": {
       const content = fs.readFileSync(filePath, "utf-8")
+      if (content.includes("ipuz.org")) return ipuzToXD(content)
       const json = JSON.parse(content)
       return amuseToXD(json)
+    }
+    case ".ipuz": {
+      const content = fs.readFileSync(filePath, "utf-8")
+      return ipuzToXD(content)
     }
     case ".txt": {
       const content = fs.readFileSync(filePath, "utf-8")

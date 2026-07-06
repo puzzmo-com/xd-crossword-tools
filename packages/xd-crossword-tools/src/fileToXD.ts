@@ -5,6 +5,7 @@ import { crossCompilerXMLToXD } from "./crossCompilerXMLToXD"
 import { acrossTextToXD } from "./acrossTextToXD"
 import { amuseToXD } from "./amuseJSONToXD"
 import { decodePuzzleMeHTML } from "./puzzleMeDecode"
+import { ipuzToXD } from "./ipuzToXD"
 
 /** The different crossword file formats that {@link fileToXD} knows how to convert into xd. */
 export type CrosswordFileFormat =
@@ -16,6 +17,7 @@ export type CrosswordFileFormat =
   | "crossword-compiler-xml"
   | "across-lite"
   | "puzzleme-html"
+  | "ipuz"
 
 export interface FileToXDResult {
   /** The converted (or, for a `.xd` input, verbatim) xd document. */
@@ -32,7 +34,7 @@ export type FileToXDContent = string | ArrayBuffer | Uint8Array | Blob
  * filename and — where the extension is ambiguous or missing — the contents.
  *
  * This is the single place a consumer should reach for instead of hand-rolling
- * "is this a .jpz / .puz / Crossword Compiler XML / …" checks. It accepts the
+ * "is this a .jpz / .puz / .ipuz / Crossword Compiler XML / …" checks. It accepts the
  * raw file contents in whatever shape is convenient (a string, an `ArrayBuffer`
  * / `Uint8Array` for binary `.puz` files, or a `Blob`/`File` straight from a
  * drag-and-drop or `fetch`).
@@ -73,6 +75,8 @@ export async function fileToXD(filename: string, content: FileToXDContent): Prom
       return { xd: amuseFromJSON(normalized.getText()), format }
     case "puzzleme-html":
       return { xd: amuseToXD(decodePuzzleMeHTML(normalized.getText())), format }
+    case "ipuz":
+      return { xd: ipuzToXD(normalized.getText()), format }
   }
 
   // Exhaustive above; guards against a future format string sneaking through.
@@ -90,7 +94,10 @@ function detectFormat(filename: string, content: NormalizedContent): CrosswordFi
   if (name.endsWith(".jpz")) return "jpz"
   if (name.endsWith(".puz.txt")) return "across-lite"
   if (name.endsWith(".puz")) return "puz"
-  if (name.endsWith(".json")) return "amuse"
+  if (name.endsWith(".ipuz")) return "ipuz"
+  // A .json is either an ipuz file or an Amuse export - ipuz files always carry
+  // an "http://ipuz.org/..." version/kind string
+  if (name.endsWith(".json")) return content.getText().includes("ipuz.org") ? "ipuz" : "amuse"
   if (name.endsWith(".xml")) return sniffXML(content.getText())
   if (name.endsWith(".html") || name.endsWith(".htm")) return "puzzleme-html"
   if (name.endsWith(".txt")) return "across-lite"
@@ -116,8 +123,11 @@ function sniffContent(content: NormalizedContent): CrosswordFileFormat {
 
   // Across Lite text starts with a `<ACROSS PUZZLE>` (or `V2`) banner.
   if (/^<ACROSS PUZZLE/i.test(text)) return "across-lite"
-  // A JSON object is an Amuse export (validated later when we convert).
-  if (text.startsWith("{")) return "amuse"
+  // ipuz files may be wrapped in an `ipuz(...)` JSONP callback.
+  if (text.startsWith("ipuz(")) return "ipuz"
+  // A JSON object is an ipuz file (which always carries an "http://ipuz.org/..."
+  // version/kind string) or otherwise an Amuse export (validated when we convert).
+  if (text.startsWith("{")) return text.includes("ipuz.org") ? "ipuz" : "amuse"
   // PuzzleMe HTML embeds the scrambled puzzle in a `"rawc"` field. Checked
   // before the generic `<`-tag branch since the HTML also starts with `<`.
   if (text.includes('"rawc"')) return "puzzleme-html"
@@ -125,7 +135,7 @@ function sniffContent(content: NormalizedContent): CrosswordFileFormat {
 
   throw new Error(
     "Could not detect the crossword format from the file contents. Pass a filename with a known extension " +
-      "(.xd, .puz, .jpz, .xml, .json, .puz.txt, .html) or recognisable content."
+      "(.xd, .puz, .jpz, .ipuz, .xml, .json, .puz.txt, .html) or recognisable content."
   )
 }
 
