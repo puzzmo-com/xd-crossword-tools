@@ -1,5 +1,12 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 13.4.0
+
+- Schrödinger squares can now be declared through the rebus metadata by giving a key more than one value, e.g. `rebus: 1=O 1=A` with a `1` in the grid. Values can be single letters, multi-letter (rebus) values, or a mix, and multi-valued keys can sit alongside regular single-valued rebus keys. These tiles get an optional `symbol` field on `SchrodingerTile`, and `JSONToXD` round-trips the syntax.
+- The previous way of declaring Schrödinger squares (a `*` in the grid plus `^alt:` clue metadata) is deprecated. It is still parsed, and the two techniques can be combined, but the rebus-based syntax is now the recommended approach.
+- The Amuse/PuzzleMe converter now emits rebus-based Schrödinger squares instead of `*` + `^alt:` metadata.
+- `stringGridToTiles` gains an optional third parameter, `schrodingerRebuses` — existing two-argument calls are unaffected.
+
 ### 13.3.1
 
 - Adds support for cross compiler XML without a root element of `<crossword-compiler>`

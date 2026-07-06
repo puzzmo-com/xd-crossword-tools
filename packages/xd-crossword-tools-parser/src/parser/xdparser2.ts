@@ -310,7 +310,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   // We can't reliably set the tiles until we have the rebus info, but we can't guarantee the order
   const { rebuses, schrodingerRebuses } = getRebuses(json.meta.rebus || "")
   json.rebuses = rebuses
-  json.tiles = stringGridToTiles(json.rebuses, schrodingerRebuses, rawInput.tiles)
+  json.tiles = stringGridToTiles(json.rebuses, rawInput.tiles, schrodingerRebuses)
 
   if (json.design) {
     if (!styleTagContent) {
@@ -714,8 +714,8 @@ const clueFromLine = (line: string, num: number): ClueParserResponse => {
 
 export const stringGridToTiles = (
   rebuses: CrosswordJSON["rebuses"],
-  schrodingerRebuses: Record<string, string[]>,
   strArr: string[][],
+  schrodingerRebuses: Record<string, string[]> = {},
 ): CrosswordJSON["tiles"] => {
   const rebusKeys = Object.keys(rebuses)
   const schrodingerKeys = Object.keys(schrodingerRebuses)

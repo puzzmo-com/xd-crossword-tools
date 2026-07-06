@@ -68,6 +68,12 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
   const rebuses: CrosswordJSON["rebuses"] = {}
   let rebusSymbolCharCode = 9424
 
+  // Schrödinger squares are represented as a multi-valued rebus key (e.g. "1=O 1=A"),
+  // cells with the same set of possible values share a symbol
+  const schrodingerSymbols = new Map<string, string>()
+  const schrodingerRebusEntries: string[] = []
+  let nextSchrodingerSymbol = 1
+
   // First pass: create tiles and track walls
   // Note: The Amuse box data appears to be transposed compared to our internal format
   // We need to swap x and y when accessing the box data
@@ -89,10 +95,21 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
         }
 
         if (letterFromBox.includes("/")) {
+          const values = letterFromBox.split("/")
+          const valuesKey = values.join("/")
+
+          let symbol = schrodingerSymbols.get(valuesKey)
+          if (!symbol) {
+            symbol = String(nextSchrodingerSymbol++)
+            schrodingerSymbols.set(valuesKey, symbol)
+            for (const value of values) schrodingerRebusEntries.push(`${symbol}=${value}`)
+          }
+
           tiles[y][x] = {
             type: "schrodinger",
-            validLetters: letterFromBox.split("/"),
-            validRebuses: [],
+            validLetters: values.filter((v) => v.length === 1),
+            validRebuses: values.filter((v) => v.length > 1).map((letters) => ({ letters, symbol: symbol! })),
+            symbol,
             clues,
           }
         } else if (letterFromBox.length > 1) {
@@ -237,20 +254,11 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
     const clueNumberStr = placedWord.clueNum // This is already a string from AmuseData
     const word = placedWord.word || placedWord.originalTerm || ""
     let answer
-    let alt
 
-    // schrodinger handling
+    // schrodinger handling: the answer uses the first of the possible values,
+    // the alternatives live in the grid tile / rebus metadata
     if (word.includes("/")) {
-      let firstSchrodingerAnswer = word
-      let secondSchrodingerAnswer = word
-
-      for (const match of word.matchAll(/({.\/.})/g)) {
-        firstSchrodingerAnswer = firstSchrodingerAnswer.replace(match[0], match[0][1])
-        secondSchrodingerAnswer = secondSchrodingerAnswer.replace(match[0], match[0][3])
-      }
-
-      answer = firstSchrodingerAnswer
-      alt = secondSchrodingerAnswer
+      answer = word.replace(/\{([^}]+)\}/g, (_match, group) => group.split("/")[0])
       // rebus handling
     } else if (word.includes("{") && word.includes("}")) {
       answer = word.replace(/{/g, "").replace(/}/g, "")
@@ -270,11 +278,6 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
         index: placedWord.y,
       },
       metadata: {},
-    }
-
-    // add alt metadata for schrodinger clues
-    if (alt && currentClue.metadata) {
-      currentClue.metadata.alt = alt
     }
 
     // Add revealer metadata if refText exists
@@ -347,9 +350,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
   }
 
   // rebus handling
-  const metaRebus = Object.entries(rebuses)
-    .map(([key, value]) => `${key}=${value}`)
-    .join(" ")
+  const metaRebus = [...Object.entries(rebuses).map(([key, value]) => `${key}=${value}`), ...schrodingerRebusEntries].join(" ")
 
   if (metaRebus.length) {
     meta.rebus = metaRebus
