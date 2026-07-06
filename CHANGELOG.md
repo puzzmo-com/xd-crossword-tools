@@ -4,31 +4,51 @@ This isn't a comprehensive doc because to our knowledge there are no OSS consume
 
 - Schrödinger squares can now be declared through the rebus metadata by giving a key more than one value, e.g. `rebus: 1=O 1=A` with a `1` in the grid. Values can be single letters, multi-letter (rebus) values, or a mix, and multi-valued keys can sit alongside regular single-valued rebus keys. These tiles get an optional `symbol` field on `SchrodingerTile`, and `JSONToXD` round-trips the syntax.
 - The previous way of declaring Schrödinger squares (a `*` in the grid plus `^alt:` clue metadata) is deprecated. It is still parsed, and the two techniques can be combined, but the rebus-based syntax is now the recommended approach.
-- The Amuse/PuzzleMe converter now emits rebus-based Schrödinger squares instead of `*` + `^alt:` metadata.
 - `stringGridToTiles` gains an optional third parameter, `schrodingerRebuses` — existing two-argument calls are unaffected.
 - `SchrodingerTile` gains `validOptions: string[]`: every valid value for the square (single letters and rebus values in one list) in declaration order, so the array position is a variant index. Squares which resolve to the same index belong to the same solution of the puzzle. The pre-existing `validLetters`/`validRebuses` split can't express this — with `rebus: 1=O 1=AR`, "O" is `validLetters[0]` and "AR" is `validRebuses[0]`, so index comparisons collapse two different solutions onto index 0.
 
-  This is what a completeness checker should look like — a clue is correct when every square matches, and every Schrödinger square in it resolves to the _same_ variant index (e.g. seven squares in one answer reading CLINTON or BOBDOLE, but never a mix):
+  FWIW this is what a completeness checker should look like, run per square as the player fills one in. A Schrödinger square's value must be one of the tile's options _and_ agree on the variant index with every other filled Schrödinger square in the two words crossing it (e.g. seven squares in one answer reading `CLINTON` or `BOBDOLE`, but never a mix). The board is complete when every square holds a value which passed this check:
 
   ```ts
-  function clueIsCorrect(clue: Clue, inputs: string[]) {
-    let variant: number | null = null
-    return clue.tiles.every((tile, i) => {
-      const value = inputs[i]
-      if (tile.type === "letter") return tile.letter === value
-      if (tile.type === "rebus") return tile.word === value
-      if (tile.type === "schrodinger") {
-        const index = tile.validOptions?.indexOf(value) ?? -1
-        if (index === -1) return false
-        if (variant === null) variant = index
-        return variant === index
+  import { getTile, clueInfosForPosition, tilePositionsForClue } from "xd-crossword-tools-parser"
+
+  /** valueAt is your game's user-input state: the string in a square, or undefined when empty */
+  function isTileCorrect(data: CrosswordJSON, position: Position, value: string, valueAt: (p: Position) => string | undefined) {
+    const tile = getTile(data.tiles, position)
+    if (!tile) return false
+    switch (tile.type) {
+      case "letter":
+        return tile.letter === value
+      case "rebus":
+        return tile.word === value
+      case "blank":
+        return false
+      case "schrodinger": {
+        const variant = tile.validOptions?.indexOf(value) ?? -1
+        if (variant === -1) return false
+
+        // Both the across and the down word through this square must agree on the variant
+        const clueInfos = clueInfosForPosition(data.tiles, data.clues, position)
+        for (const direction of ["across", "down"] as const) {
+          const clueInfo = clueInfos[direction]
+          if (!clueInfo) continue
+          for (const pos of tilePositionsForClue(clueInfo.clue, direction)) {
+            const otherTile = getTile(data.tiles, pos)
+            const otherValue = valueAt(pos)
+            if (otherTile?.type !== "schrodinger" || otherValue === undefined) continue
+            const otherVariant = otherTile.validOptions?.indexOf(otherValue) ?? -1
+            if (otherVariant !== -1 && otherVariant !== variant) return false
+          }
+        }
+        return true
       }
-      return false // blank tiles are never part of a clue
-    })
+    }
   }
   ```
 
-  Run this for the across and the down clue of each square (a square's value must satisfy both words), and the board is complete when every clue passes.
+  You could do a simpler clue-based checker, but you need some way to know that a tile is correct eventually.
+
+  One caveat with checking per square: a value is only compared against the Schrödinger squares filled in _so far_, so if the player later flips an earlier square to the other variant, re-run the check for the other squares in the affected words.
 
 ### 13.3.1
 
