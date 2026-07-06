@@ -505,3 +505,101 @@ D4. Former intimates ~ EXES
     }
   })
 })
+
+describe("validOptions variant indexes", () => {
+  it("preserves declaration order for rebus-based squares, including mixed letter/rebus values", () => {
+    const xd = `
+## Metadata
+Title: Ordering
+Author: Test
+Rebus: 1=O 1=AR 1=E
+
+## Clues
+A1. Clue ~ CONE
+
+## Grid
+C1NE
+ODDS
+DDDD
+SSSS
+`
+
+    const result = xdToJSON(xd)
+
+    const tile = result.tiles[0][1]
+    expect(tile.type).toBe("schrodinger")
+    if (tile.type === "schrodinger") {
+      // One ordered list: position is the variant index. The validLetters/validRebuses
+      // split would collapse "O" (letter index 0) and "AR" (rebus index 0) onto the same index.
+      expect(tile.validOptions).toEqual(["O", "AR", "E"])
+      expect(tile.validLetters).toEqual(["O", "E"])
+      expect(tile.validRebuses).toEqual([{ letters: "AR", symbol: "1" }])
+    }
+  })
+
+  it("orders star-based squares by [primary, alt, alt2, ...]", () => {
+    const xd = `
+## Metadata
+Title: Ordering
+Author: Test
+
+## Grid
+TILE
+APEX
+C*NE
+ODDS
+
+## Clues
+A1. Mosaic piece ~ TILE
+A5. Pinnacle ~ APEX
+A6. Sugar ____ ~ CONE
+A6 ^alt: CANE
+A6 ^alt2: CUNE
+A7. Chances, in gambling ~ ODDS
+
+D1. Tuesday treat ~ TACO
+D2. Apple tech ~ IPOD
+D2 ^alt: IPAD
+D3. Complement to borrow ~ LEND
+D4. Former intimates ~ EXES
+`
+
+    const result = xdToJSON(xd)
+
+    const tile = result.tiles[2][1]
+    expect(tile.type).toBe("schrodinger")
+    if (tile.type === "schrodinger") {
+      // A6's answers [CONE, CANE, CUNE] and D2's [IPOD, IPAD] agree on the variant order O, A
+      expect(tile.validOptions).toEqual(["O", "A", "U"])
+    }
+  })
+
+  it("gives every schrodinger square in a word the same variant order, for per-clue index checking", () => {
+    const xd = `
+## Metadata
+Title: Two cells one word
+Author: Test
+Rebus: 1=C 1=B 2=T 2=D
+
+## Clues
+A1. Pet sound ~ CAT
+
+## Grid
+1A2
+ODD
+GGG
+`
+
+    const result = xdToJSON(xd)
+
+    const one = result.tiles[0][0]
+    const two = result.tiles[0][2]
+    expect(one.type).toBe("schrodinger")
+    expect(two.type).toBe("schrodinger")
+    if (one.type === "schrodinger" && two.type === "schrodinger") {
+      // CAT resolves both cells to index 0, BAD resolves both to index 1
+      expect(one.validOptions).toEqual(["C", "B"])
+      expect(two.validOptions).toEqual(["T", "D"])
+    }
+  })
+})

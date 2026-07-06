@@ -4443,6 +4443,8 @@ D4. Former intimates ~ EXES
 
 Here the `1` cell accepts either `O` or `A`, and clue answers are written using one of the valid options (e.g. `CONE`/`IPOD`). Values can also be multiple letters, making a Schrödinger rebus cell (`rebus: 1=OR 1=AR`), and multi-valued keys can be mixed with regular single-valued rebus keys in the same declaration.
 
+In the JSON, these tiles carry `validOptions`: every value in declaration order, where the array position acts as a variant index. Squares that resolve to the same index belong to the same solution of the puzzle, which lets a checker verify answers with several Schrödinger squares (e.g. an entry reading either `CLINTON` or `BOBDOLE`, never a mix) by comparing one index per square — see the 14.0.0 notes in [CHANGELOG.md](./CHANGELOG.md) for a worked example.
+
 ##### Deprecated: `*` grid squares with `^alt` clue metadata
 
 The original syntax — a `"*"` in the grid with the alternatives declared via `alt`, `alt2`, `alt3` (etc) clue metadata — is still parsed, but is deprecated in favour of the rebus-based syntax above:

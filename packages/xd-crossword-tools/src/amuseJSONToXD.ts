@@ -109,6 +109,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
             type: "schrodinger",
             validLetters: values.filter((v) => v.length === 1),
             validRebuses: values.filter((v) => v.length > 1).map((letters) => ({ letters, symbol: symbol! })),
+            validOptions: [...values],
             symbol,
             clues,
           }

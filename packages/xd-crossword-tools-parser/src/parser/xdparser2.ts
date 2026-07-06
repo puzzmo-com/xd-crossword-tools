@@ -482,8 +482,11 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
           if (tile.type === "schrodinger") {
             const validLettersAtPosition = new Set<string>()
             const validRebusesAtPosition = new Map<string, string>() // symbol -> letters
+            if (!tile.validOptions) tile.validOptions = []
 
-            // Collect unique letters/rebuses at this position from all processed answers
+            // Collect unique letters/rebuses at this position from all processed answers.
+            // The answers are ordered [primary, alt, alt2, ...] so pushing in this order
+            // keeps validOptions' position-as-variant-index semantics.
             for (const processedAnswer of processedAnswers) {
               if (tileIdx < processedAnswer.length) {
                 const char = processedAnswer[tileIdx]
@@ -493,6 +496,11 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
                 } else {
                   // For regular letters, add to validLetters
                   validLettersAtPosition.add(char)
+                }
+
+                const value = json.rebuses[char] || char
+                if (!tile.validOptions.includes(value)) {
+                  tile.validOptions.push(value)
                 }
               }
             }
@@ -733,7 +741,7 @@ export const stringGridToTiles = (
             validRebuses.push({ letters: value, symbol: char })
           }
         }
-        tiles[rowI].push({ type: "schrodinger", validLetters, validRebuses, symbol: char })
+        tiles[rowI].push({ type: "schrodinger", validLetters, validRebuses, validOptions: [...values], symbol: char })
       } else if (rebusKeys.includes(char)) {
         tiles[rowI].push({ type: "rebus", symbol: char, word: rebuses[char] })
       } else {
@@ -750,7 +758,7 @@ export const letterToTile = (letter: string): Tile => {
   // Puzz support
   if (letter === ".") return { type: "blank" }
   // Schrödinger square - will be populated with valid letters later
-  if (letter === "*") return { type: "schrodinger", validLetters: [], validRebuses: [] }
+  if (letter === "*") return { type: "schrodinger", validLetters: [], validRebuses: [], validOptions: [] }
   return { type: "letter", letter }
 }
 
