@@ -126,6 +126,10 @@ export interface CellInfo {
   bottomWall: boolean
   displayRightWallShort: boolean
   displayBottomWallShort: boolean
+  /** Background colour for the cell as a hex string, e.g. "#DCEBF4" */
+  bgColor?: string
+  /** Text colour for the cell as a hex string */
+  fgColor?: string
 }
 
 export enum ClueSection {
