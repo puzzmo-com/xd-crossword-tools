@@ -1,0 +1,35 @@
+{
+  "version": "http://ipuz.org/v2",
+  "kind": ["http://ipuz.org/crossword#1"],
+  "title": "Word Square",
+  "author": "Orta Therox",
+  "copyright": "© 2026",
+  "date": "07/06/2026",
+  "dimensions": { "width": 4, "height": 4 },
+  "puzzle": [
+    [1, 2, 3, 4],
+    [5, 0, 0, 0],
+    [6, 0, 0, 0],
+    [7, 0, 0, 0]
+  ],
+  "solution": [
+    ["C", "A", "R", "D"],
+    ["A", "R", "E", "A"],
+    ["R", "E", "A", "R"],
+    ["D", "A", "R", "T"]
+  ],
+  "clues": {
+    "Across": [
+      [1, "Ace of spades, e.g."],
+      [5, "Length times width, for a rectangle"],
+      [6, "Back end of a car"],
+      [7, "Pub projectile"]
+    ],
+    "Down": [
+      [1, "It may be wild in poker"],
+      [2, "Zone"],
+      [3, "Hindmost part"],
+      [4, "Small pointed missile"]
+    ]
+  }
+}

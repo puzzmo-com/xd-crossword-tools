@@ -1,5 +1,9 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 14.1.0
+
+- Adds `ipuzToXD(source)`, a converter for [ipuz](https://libipuz.org/spec/ipuz-spec.html) crossword files. It accepts the raw file text (including the optional `ipuz(...)` JSONP wrapper) or an already-parsed JSON object, and supports blocks, null cells, custom `block`/`empty` characters, rebus cells (multi-letter solutions), Schrödinger cells (solutions with multiple candidate values, emitted as 14.0.0's multi-valued rebus keys), circled/shaded cells, barred grids, pre-filled cells (as an xd Start section) and the common metadata fields. `fileToXD` now routes `.ipuz` files — and `.json` or extension-less files carrying an `ipuz.org` marker — to it automatically.
+
 ### 14.0.0
 
 - Schrödinger squares can now be declared through the rebus metadata by giving a key more than one value, e.g. `rebus: 1=O 1=A` with a `1` in the grid. Values can be single letters, multi-letter (rebus) values, or a mix, and multi-valued keys can sit alongside regular single-valued rebus keys. These tiles get an optional `symbol` field on `SchrodingerTile`, and `JSONToXD` round-trips the syntax.
