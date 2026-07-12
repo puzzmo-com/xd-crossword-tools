@@ -1,9 +1,13 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 14.0.1
+
+- The Amuse importer collapses `<br>`/`<div>` line breaks inside clue text and revealer metadata to spaces - xd clues are one line each, and multi-line clue bodies produced xd which failed to parse.
+- The playground's Design tab editor now renders background colors (including on blank squares) and circles, shows color swatches on the style picker, and gains an eraser tool.
+
 ### 14.0.0
 
 - The Amuse importer now converts cell background colors (`cellInfos[].bgColor`) into Design section styles using `background-light`/`background-dark`, including cells which are both circled and colored. Bar and color style letters are allocated from a shared pool so they can no longer collide.
-
 - Adds `ipuzToXD(source)`, a converter for [ipuz](https://libipuz.org/spec/ipuz-spec.html) crossword files. It accepts the raw file text (including the optional `ipuz(...)` JSONP wrapper) or an already-parsed JSON object, and supports blocks, null cells, custom `block`/`empty` characters, rebus cells (multi-letter solutions), Schrödinger cells (solutions with multiple candidate values, emitted as 14.0.0's multi-valued rebus keys), circled/shaded cells, barred grids, pre-filled cells (as an xd Start section) and the common metadata fields. `fileToXD` now routes `.ipuz` files — and `.json` or extension-less files carrying an `ipuz.org` marker — to it automatically.
 
 - Schrödinger squares can now be declared through the rebus metadata by giving a key more than one value, e.g. `rebus: 1=O 1=A` with a `1` in the grid. Values can be single letters, multi-letter (rebus) values, or a mix, and multi-valued keys can sit alongside regular single-valued rebus keys. These tiles get an optional `symbol` field on `SchrodingerTile`, and `JSONToXD` round-trips the syntax.

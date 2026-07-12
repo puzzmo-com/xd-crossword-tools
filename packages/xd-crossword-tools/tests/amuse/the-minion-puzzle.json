@@ -1,0 +1,7370 @@
+{
+  "meta": {},
+  "data": {
+    "id": 1,
+    "attributes": {
+      "amuse_id": "5d0510f9",
+      "amuse_set": "puzzleme",
+      "unsupported": null,
+      "createdAt": "2026-07-12T05:44:07.880Z",
+      "updatedAt": "2026-07-12T05:44:07.881Z",
+      "amuse_data": {
+        "title": "THE MINION PUZZLE",
+        "subtitle": "",
+        "description": "",
+        "copyright": "© ur mom",
+        "author": "  meatdaddy69420, crosstina aquafina, and kate schmate  ",
+        "authorEmail": "",
+        "authorURL": "",
+        "help": "",
+        "pauseMessage": "",
+        "endMessage": "",
+        "attributions": "",
+        "id": "5d0510f9",
+        "locale": "en-US",
+        "puzzleType": "CROSSWORD",
+        "srcJPZ": false,
+        "isImported": true,
+        "creationTime": 0,
+        "modifiedTime": 0,
+        "publishTime": 1654145359797,
+        "publishTimeZone": "Etc/UTC",
+        "mediaPreviewEnabled": false,
+        "mediaPreviewAndTextEnabled": true,
+        "hideClueColumns": false,
+        "contestModeEnabled": false,
+        "unlinkGridAndClues": false,
+        "hideInPicker": false,
+        "w": 19,
+        "h": 21,
+        "box": [
+          [
+            "\u0000",
+            "\u0000",
+            "\u0000",
+            "\u0000",
+            "F",
+            "F",
+            "S",
+            "\u0000",
+            "\u0000",
+            "S",
+            "C",
+            "R",
+            "A",
+            "W",
+            "L",
+            "S",
+            "\u0000",
+            "A",
+            "M",
+            "S",
+            "O"
+          ],
+          [
+            "\u0000",
+            "\u0000",
+            "\u0000",
+            "F",
+            "O",
+            "I",
+            "E",
+            "\u0000",
+            "\u0000",
+            "U",
+            "R",
+            "E",
+            "T",
+            "H",
+            "A",
+            "N",
+            "E",
+            "\u0000",
+            "S",
+            "I",
+            "N"
+          ],
+          [
+            "\u0000",
+            "\u0000",
+            "B",
+            "U",
+            "R",
+            "S",
+            "T",
+            "\u0000",
+            "\u0000",
+            "D",
+            "E",
+            "F",
+            "E",
+            "A",
+            "T",
+            "I",
+            "N",
+            "G",
+            "\u0000",
+            "A",
+            "T"
+          ],
+          [
+            "\u0000",
+            "L",
+            "E",
+            "N",
+            "G",
+            "T",
+            "H",
+            "\u0000",
+            "\u0000",
+            "S",
+            "P",
+            "I",
+            "L",
+            "T",
+            "\u0000",
+            "T",
+            "O",
+            "P",
+            "S",
+            "\u0000",
+            "\u0000"
+          ],
+          [
+            "W",
+            "I",
+            "L",
+            "K",
+            "E",
+            "S",
+            "\u0000",
+            "\u0000",
+            "\u0000",
+            "\u0000",
+            "E",
+            "L",
+            "I",
+            "A",
+            "S",
+            "\u0000",
+            "S",
+            "O",
+            "N",
+            "\u0000",
+            "\u0000"
+          ],
+          [
+            "A",
+            "F",
+            "O",
+            "O",
+            "T",
+            "\u0000",
+            "\u0000",
+            "\u0000",
+            "\u0000",
+            "\u0000",
+            "\u0000",
+            "L",
+            "E",
+            "M",
+            "U",
+            "R",
+            "\u0000",
+            "Y",
+            "I",
+            "\u0000",
+            "\u0000"
+          ],
+          [
+            "L",
+            "E",
+            "N",
+            "S",
+            "\u0000",
+            "\u0000",
+            "B",
+            "E",
+            "E",
+            "F",
+            "\u0000",
+            "\u0000",
+            "R",
+            "I",
+            "S",
+            "E",
+            "S",
+            "\u0000",
+            "F",
+            "\u0000",
+            "\u0000"
+          ],
+          [
+            "L",
+            "F",
+            "G",
+            "\u0000",
+            "\u0000",
+            "H",
+            "I",
+            "Y",
+            "A",
+            "L",
+            "L",
+            "\u0000",
+            "\u0000",
+            "C",
+            "H",
+            "A",
+            "T",
+            "\u0000",
+            "F",
+            "\u0000",
+            "\u0000"
+          ],
+          [
+            "S",
+            "I",
+            "S",
+            "\u0000",
+            "R",
+            "A",
+            "G",
+            "E",
+            "R",
+            "O",
+            "O",
+            "M",
+            "\u0000",
+            "H",
+            "I",
+            "R",
+            "E",
+            "\u0000",
+            "S",
+            "\u0000",
+            "\u0000"
+          ],
+          [
+            "O",
+            "N",
+            "\u0000",
+            "\u0000",
+            "A",
+            "D",
+            "D",
+            "\u0000",
+            "\u0000",
+            "P",
+            "L",
+            "S",
+            "\u0000",
+            "O",
+            "R",
+            "L",
+            "A",
+            "\u0000",
+            "H",
+            "\u0000",
+            "\u0000"
+          ],
+          [
+            "F",
+            "D",
+            "R",
+            "\u0000",
+            "S",
+            "E",
+            "A",
+            "T",
+            "B",
+            "E",
+            "L",
+            "T",
+            "\u0000",
+            "P",
+            "R",
+            "I",
+            "M",
+            "\u0000",
+            "A",
+            "\u0000",
+            "\u0000"
+          ],
+          [
+            "T",
+            "S",
+            "A",
+            "\u0000",
+            "\u0000",
+            "S",
+            "T",
+            "A",
+            "I",
+            "R",
+            "S",
+            "\u0000",
+            "\u0000",
+            "P",
+            "I",
+            "N",
+            "E",
+            "\u0000",
+            "R",
+            "\u0000",
+            "\u0000"
+          ],
+          [
+            "E",
+            "A",
+            "V",
+            "E",
+            "\u0000",
+            "\u0000",
+            "A",
+            "B",
+            "B",
+            "A",
+            "\u0000",
+            "\u0000",
+            "P",
+            "E",
+            "T",
+            "E",
+            "R",
+            "\u0000",
+            "P",
+            "\u0000",
+            "\u0000"
+          ],
+          [
+            "X",
+            "W",
+            "I",
+            "N",
+            "G",
+            "\u0000",
+            "\u0000",
+            "\u0000",
+            "\u0000",
+            "\u0000",
+            "\u0000",
+            "T",
+            "O",
+            "D",
+            "O",
+            "S",
+            "\u0000",
+            "T",
+            "I",
+            "\u0000",
+            "\u0000"
+          ],
+          [
+            "T",
+            "A",
+            "N",
+            "D",
+            "E",
+            "M",
+            "\u0000",
+            "\u0000",
+            "\u0000",
+            "\u0000",
+            "W",
+            "O",
+            "O",
+            "L",
+            "S",
+            "\u0000",
+            "W",
+            "O",
+            "E",
+            "\u0000",
+            "\u0000"
+          ],
+          [
+            "\u0000",
+            "Y",
+            "E",
+            "O",
+            "M",
+            "A",
+            "N",
+            "\u0000",
+            "\u0000",
+            "P",
+            "I",
+            "P",
+            "P",
+            "I",
+            "\u0000",
+            "S",
+            "E",
+            "A",
+            "S",
+            "\u0000",
+            "\u0000"
+          ],
+          [
+            "\u0000",
+            "\u0000",
+            "S",
+            "W",
+            "I",
+            "N",
+            "E",
+            "\u0000",
+            "\u0000",
+            "A",
+            "C",
+            "T",
+            "I",
+            "V",
+            "A",
+            "T",
+            "E",
+            "D",
+            "\u0000",
+            "A",
+            "D"
+          ],
+          [
+            "\u0000",
+            "\u0000",
+            "\u0000",
+            "S",
+            "N",
+            "O",
+            "T",
+            "\u0000",
+            "\u0000",
+            "S",
+            "C",
+            "E",
+            "N",
+            "E",
+            "K",
+            "I",
+            "D",
+            "\u0000",
+            "N",
+            "T",
+            "A"
+          ],
+          [
+            "\u0000",
+            "\u0000",
+            "\u0000",
+            "\u0000",
+            "I",
+            "R",
+            "S",
+            "\u0000",
+            "\u0000",
+            "T",
+            "A",
+            "N",
+            "G",
+            "R",
+            "A",
+            "M",
+            "\u0000",
+            "N",
+            "E",
+            "E",
+            "D"
+          ]
+        ],
+        "clueNums": [
+          [
+            "0",
+            "0",
+            "0",
+            "0",
+            "20",
+            "26",
+            "30",
+            "0",
+            "0",
+            "38",
+            "48",
+            "52",
+            "56",
+            "59",
+            "65",
+            "68",
+            "0",
+            "76",
+            "81",
+            "85",
+            "88"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "17",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "39",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "72",
+            "0",
+            "82",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "14",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "40",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "77",
+            "0",
+            "86",
+            "0"
+          ],
+          [
+            "0",
+            "12",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "41",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "69",
+            "0",
+            "0",
+            "83",
+            "0",
+            "0"
+          ],
+          [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "49",
+            "0",
+            "0",
+            "0",
+            "66",
+            "0",
+            "73",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "2",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "53",
+            "0",
+            "0",
+            "0",
+            "70",
+            "0",
+            "78",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "3",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "31",
+            "34",
+            "36",
+            "42",
+            "0",
+            "0",
+            "57",
+            "0",
+            "0",
+            "0",
+            "74",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "4",
+            "0",
+            "0",
+            "0",
+            "0",
+            "27",
+            "0",
+            "0",
+            "0",
+            "0",
+            "50",
+            "0",
+            "0",
+            "60",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "5",
+            "0",
+            "0",
+            "0",
+            "21",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "54",
+            "0",
+            "61",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "6",
+            "0",
+            "0",
+            "0",
+            "22",
+            "0",
+            "0",
+            "0",
+            "0",
+            "43",
+            "0",
+            "0",
+            "0",
+            "62",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "7",
+            "0",
+            "15",
+            "0",
+            "23",
+            "0",
+            "0",
+            "35",
+            "37",
+            "0",
+            "0",
+            "0",
+            "0",
+            "63",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "8",
+            "0",
+            "0",
+            "0",
+            "0",
+            "28",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "64",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "9",
+            "0",
+            "0",
+            "18",
+            "0",
+            "0",
+            "32",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "58",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "10",
+            "0",
+            "0",
+            "0",
+            "24",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "55",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "79",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "11",
+            "0",
+            "0",
+            "0",
+            "0",
+            "29",
+            "0",
+            "0",
+            "0",
+            "0",
+            "51",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "75",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "13",
+            "0",
+            "0",
+            "0",
+            "0",
+            "33",
+            "0",
+            "0",
+            "44",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "71",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "16",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "45",
+            "0",
+            "0",
+            "0",
+            "0",
+            "67",
+            "0",
+            "0",
+            "0",
+            "0",
+            "87",
+            "89"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "19",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "46",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "84",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "0",
+            "25",
+            "0",
+            "0",
+            "0",
+            "0",
+            "47",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "80",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "placedWords": [
+          {
+            "originalTerm": "WALLSOFTEXT",
+            "nBoxes": 11,
+            "x": 4,
+            "y": 0,
+            "acrossNotDown": true,
+            "clueNum": "1",
+            "clue": {
+              "clue": "HAPPY 🎊🎁FUCKING 🎂BIRTHDAY🍫 🎉 YOU SLUT! HOEVID-19 🤧 has CUM💦 for us and 🙅‍♀️Social distancing is in effect🚫 butt 🍑I just want to spend my 🤷‍♂️quarenTEEN🔞 with YOU. WHEN YOUR PARENTS 👫GOT ⬇️ AND 👨‍👩‍👧‍👦👶🏻DIRTY 2️⃣8 YEARS AND 9️⃣ MONTHS 💬AGO👶🏽 THEY HAD NO IDEA the WORLD 🌍 was gonna be SUCKING CORONAS 🍺 DICK 🍆 TODAY 🗓. It SUCKS 😞 NUT 🥜 that your birthday 🎂 is spent in🗝lockdown🔒 flattening the curve📉 but it doesn’t 🙅🏻‍♀️ mean you can’t spend 💰 it FATTENING DEM’ 👏🏼 CURVES 🍑. YOU ARE THE ✔️✔️✔️BEST REARRANGEMENT 🔄🔁OF CHROMOSOMES❎ I HAVE SEEN 🕵🏼 🕵🏻‍♀️ ‼️‼️Can I be your birthBAE ❤️ and Netflix 📺 and chill 🛋🛋 with you ALL NIGHT 😴😴 LONG⁉️⁉️LOVE 💓YOU 💕BITCH! 🐩🐕MAY 🌼🌷🌹YOUR HAPPINESS😁😄 NEVER 🔚❕❗️",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              11
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "LIFEFINDSAWAY",
+            "nBoxes": 13,
+            "x": 3,
+            "y": 1,
+            "acrossNotDown": true,
+            "clueNum": "12",
+            "clue": {
+              "clue": "memetic jurassic park phrase, or, a handwavey explanation one might offer when hounded by persistent questions about the reproductive habits of the keebler elves",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              13
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "BELONGS",
+            "nBoxes": 7,
+            "x": 2,
+            "y": 2,
+            "acrossNotDown": true,
+            "clueNum": "14",
+            "clue": {
+              "clue": "Fits in",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              7
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "RAVINES",
+            "nBoxes": 7,
+            "x": 10,
+            "y": 2,
+            "acrossNotDown": true,
+            "clueNum": "15",
+            "clue": {
+              "clue": "Canyons, but somehow more ominous-sounding",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              7
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "FUNKOS",
+            "nBoxes": 6,
+            "x": 1,
+            "y": 3,
+            "acrossNotDown": true,
+            "clueNum": "17",
+            "clue": {
+              "clue": "are they bobbleheads? are they objets d'art? do they come alive at night? why is there one of tupac? i have a lot of questions and no one has answers!",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              6
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "ENDOWS",
+            "nBoxes": 6,
+            "x": 12,
+            "y": 3,
+            "acrossNotDown": true,
+            "clueNum": "18",
+            "clue": {
+              "clue": "bequeaths money to some institution like harvard that's already sitting on literally $53,000,000,000 but still charging tuition",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              6
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "FORGET",
+            "nBoxes": 6,
+            "x": 0,
+            "y": 4,
+            "acrossNotDown": true,
+            "clueNum": "20",
+            "clue": {
+              "clue": "___-me-not (phrase & flower that was a popular motif in victorian-era jewelry)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              6
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "RAS",
+            "nBoxes": 3,
+            "x": 8,
+            "y": 4,
+            "acrossNotDown": true,
+            "clueNum": "21",
+            "clue": {
+              "clue": "Partypoopers who will continually yell at you to turn down Crazy Frog - Axel F at 2am because you're \"waking everyone else in the dorm up\" and \"disturbing the peace\"",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "GEMINI",
+            "nBoxes": 6,
+            "x": 13,
+            "y": 4,
+            "acrossNotDown": true,
+            "clueNum": "24",
+            "clue": {
+              "clue": "meatdaddy69420, e.g.",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              6
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "FISTS",
+            "nBoxes": 5,
+            "x": 0,
+            "y": 5,
+            "acrossNotDown": true,
+            "clueNum": "26",
+            "clue": {
+              "clue": "Engages in a really hands-on sex act",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              5
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "HADES",
+            "nBoxes": 5,
+            "x": 7,
+            "y": 5,
+            "acrossNotDown": true,
+            "clueNum": "27",
+            "clue": {
+              "clue": "possibly-sexy villain of disney's hercules? i'm just Making Suggestions here",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              5
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "MANOR",
+            "nBoxes": 5,
+            "x": 14,
+            "y": 5,
+            "acrossNotDown": true,
+            "clueNum": "29",
+            "clue": {
+              "clue": "House on Zillow that has 69 beds, 420 bathrooms, is $666 billion, but also is haunted as shit and you have to live with a ghost who slams the doors shut at 3am and harasses your dog during Zoom meetings",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              5
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "SETH",
+            "nBoxes": 4,
+            "x": 0,
+            "y": 6,
+            "acrossNotDown": true,
+            "clueNum": "30",
+            "clue": {
+              "clue": "Egyptian god of disorder and violence who killed his brother Osiris in myth",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "BIGDATA",
+            "nBoxes": 7,
+            "x": 6,
+            "y": 6,
+            "acrossNotDown": true,
+            "clueNum": "31",
+            "clue": {
+              "clue": "an extremely large pie chart, mayhaps, or the meticulously researched and peer-reviewed flowchart i made freshman year of who everyone in my dorm was hooking up with",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              7
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "NETS",
+            "nBoxes": 4,
+            "x": 15,
+            "y": 6,
+            "acrossNotDown": true,
+            "clueNum": "33",
+            "clue": {
+              "clue": "aid in catching some rays?",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "EYE",
+            "nBoxes": 3,
+            "x": 6,
+            "y": 7,
+            "acrossNotDown": true,
+            "clueNum": "34",
+            "clue": {
+              "clue": "the 90s brought us new analysis of foucault’s use of the panopticon applied to the effects of mass media on society. the entertainment industry does not understand the panopticon as a threat or punishment but instead as an “amusement, liberation, and pleasure” (weibel, 2002) which is how the humble minion and its resemblance to the original bentham-ite panopticon design along with its all-seeing ___ has become a beloved memetic creature and not a death knell of personal freedom.",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "TAB",
+            "nBoxes": 3,
+            "x": 10,
+            "y": 7,
+            "acrossNotDown": true,
+            "clueNum": "35",
+            "clue": {
+              "clue": "one of literally 763 things i have open in chrome for iOS right now, while wondering why my goddamn phone refuses to work @stevejobs",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "EAR",
+            "nBoxes": 3,
+            "x": 6,
+            "y": 8,
+            "acrossNotDown": true,
+            "clueNum": "36",
+            "clue": {
+              "clue": "spot for some snails",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "BIB",
+            "nBoxes": 3,
+            "x": 10,
+            "y": 8,
+            "acrossNotDown": true,
+            "clueNum": "37",
+            "clue": {
+              "clue": "what awe u a widdle BABY do u need DIS TO EAT UR WOBSTER u fucking freak",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "SUDS",
+            "nBoxes": 4,
+            "x": 0,
+            "y": 9,
+            "acrossNotDown": true,
+            "clueNum": "38",
+            "clue": {
+              "clue": "Fictional disease that Spongebob got in that one episode where he plugs up all his holes and it's really weird",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "FLOPERA",
+            "nBoxes": 7,
+            "x": 6,
+            "y": 9,
+            "acrossNotDown": true,
+            "clueNum": "42",
+            "clue": {
+              "clue": "\"I feel like I have a chip in my shoulder without a NYT acceptance. Like can I even go to ACPT if I'm not NYT published??? Am I in my ___??\" (quote from a real live constructor of real killer puzzles!! look what NYT worship is doing to women!!!!)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              7
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "PAST",
+            "nBoxes": 4,
+            "x": 15,
+            "y": 9,
+            "acrossNotDown": true,
+            "clueNum": "44",
+            "clue": {
+              "clue": "Olive Garden's All You Can Eat ___a",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "CREPE",
+            "nBoxes": 5,
+            "x": 0,
+            "y": 10,
+            "acrossNotDown": true,
+            "clueNum": "48",
+            "clue": {
+              "clue": "🎶 i'm a ___/ i'm a weird dough 🎵",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              5
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "LOLLS",
+            "nBoxes": 5,
+            "x": 7,
+            "y": 10,
+            "acrossNotDown": true,
+            "clueNum": "50",
+            "clue": {
+              "clue": "hangs around in the living room all day moving as little as possible because if you don't move then the humidity can't catch you",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              5
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "WICCA",
+            "nBoxes": 5,
+            "x": 14,
+            "y": 10,
+            "acrossNotDown": true,
+            "clueNum": "51",
+            "clue": {
+              "clue": "craft guild?",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              5
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "REFILL",
+            "nBoxes": 6,
+            "x": 0,
+            "y": 11,
+            "acrossNotDown": true,
+            "clueNum": "52",
+            "clue": {
+              "clue": "your 3rd 48oz cherry vanilla coke during the 90-minute matinee you booked on a tuesday afternoon just for unlimited use of the local coke freestyle machine",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              6
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "MST",
+            "nBoxes": 3,
+            "x": 8,
+            "y": 11,
+            "acrossNotDown": true,
+            "clueNum": "54",
+            "clue": {
+              "clue": "who'___ decided that this isn't a good contraction? what was the circu___ance??! language is fake but also a living thing and we shouldn't box ourselves in to the arbitrary confines of prescriptivity like ha___ers! I should be able to make anything a pronoun if I WANT TO!! NEOPRONOUNS ARE AN OPEN CLASS!!!!!!!!!!! FIRE AND BRI___ONE!!!",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "TOPTEN",
+            "nBoxes": 6,
+            "x": 13,
+            "y": 11,
+            "acrossNotDown": true,
+            "clueNum": "55",
+            "clue": {
+              "clue": "list of favs at the end of the year (unless it's instagram where it has to be nine bc of square numbers (i'm smart))",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              6
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "ATELIER",
+            "nBoxes": 7,
+            "x": 0,
+            "y": 12,
+            "acrossNotDown": true,
+            "clueNum": "56",
+            "clue": {
+              "clue": "word for a designer's studio that more retailers should put in their dumb names to make themselves sound fancy and french. like, ___ primark? ___ new balance? would shop there tbh",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              7
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "POOPING",
+            "nBoxes": 7,
+            "x": 12,
+            "y": 12,
+            "acrossNotDown": true,
+            "clueNum": "58",
+            "clue": {
+              "clue": "Everybody's doing it (🙁) (🙁🙁🙁🙁)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              7
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "WHATAMICHOPPEDLIVER",
+            "nBoxes": 19,
+            "x": 0,
+            "y": 13,
+            "acrossNotDown": true,
+            "clueNum": "59",
+            "clue": {
+              "clue": "my cry as my cannibal boyfriend tells me he's going vegan and then breaks up with me",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              19
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "LAT",
+            "nBoxes": 3,
+            "x": 0,
+            "y": 14,
+            "acrossNotDown": true,
+            "clueNum": "65",
+            "clue": {
+              "clue": "Torso muscle used in a bend and snap, briefly",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "SUSHIRRITOS",
+            "nBoxes": 11,
+            "x": 4,
+            "y": 14,
+            "acrossNotDown": true,
+            "clueNum": "66",
+            "clue": {
+              "clue": "Truly the most heinous acme of Instagram \"fusion\" food where you wrap what is probably about a half of a pound of salmon in with like, what, pickled ginger? and eat it at Smorgasburg like the little piggy you are",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              11
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "AKA",
+            "nBoxes": 3,
+            "x": 16,
+            "y": 14,
+            "acrossNotDown": true,
+            "clueNum": "67",
+            "clue": {
+              "clue": "Desus Nice ___ Young Chipotle ___ \"Don't Talk to Me In the Uber Pool, I Don't Know You\" ___ The Juices Are Pressed But Your Boy Never Is ___ I AM The Art, Dammit!",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "SNIT",
+            "nBoxes": 4,
+            "x": 0,
+            "y": 15,
+            "acrossNotDown": true,
+            "clueNum": "68",
+            "clue": {
+              "clue": "pouty mcpoutpout time",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "REARLINES",
+            "nBoxes": 9,
+            "x": 5,
+            "y": 15,
+            "acrossNotDown": true,
+            "clueNum": "70",
+            "clue": {
+              "clue": "truthfully we all thought this was something about the seams of your underwear showing through tight clothes but it's actually part of a car braking system",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              9
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "STIM",
+            "nBoxes": 4,
+            "x": 15,
+            "y": 15,
+            "acrossNotDown": true,
+            "clueNum": "71",
+            "clue": {
+              "clue": "Use a fidget spinner, perhaps (abbr.)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "ENOS",
+            "nBoxes": 4,
+            "x": 1,
+            "y": 16,
+            "acrossNotDown": true,
+            "clueNum": "72",
+            "clue": {
+              "clue": "Left swipes",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "STEAMER",
+            "nBoxes": 7,
+            "x": 6,
+            "y": 16,
+            "acrossNotDown": true,
+            "clueNum": "74",
+            "clue": {
+              "clue": "Tool that you can use to get the wrinkles out of the pride flag you bought off Amazon before you hang it up, because what else screams \"I'm proud!\" like a crumply flag from a company that abuses its workers",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              7
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "WEED",
+            "nBoxes": 4,
+            "x": 14,
+            "y": 16,
+            "acrossNotDown": true,
+            "clueNum": "75",
+            "clue": {
+              "clue": "\"\"eww she fuck the ___ man for ___\" - a bitch that's fucking the Text man for Texts\" (iconic @verymimi tweet)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "GPOY",
+            "nBoxes": 4,
+            "x": 2,
+            "y": 17,
+            "acrossNotDown": true,
+            "clueNum": "77",
+            "clue": {
+              "clue": "superfluous selfie of the tumblr-era (no you haven't seen this clue elsewhere recently)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "TOAD",
+            "nBoxes": 4,
+            "x": 13,
+            "y": 17,
+            "acrossNotDown": true,
+            "clueNum": "79",
+            "clue": {
+              "clue": "Nintendo character who is a mushroom and also wearing a diaper?",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "MS",
+            "nBoxes": 2,
+            "x": 0,
+            "y": 18,
+            "acrossNotDown": true,
+            "clueNum": "81",
+            "clue": {
+              "clue": "🎶I'm sorry __ Jackson / (OOH) / I am four eels / Never meant to make your daughter cry / I am several fish and not a guy🎵",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              2
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "SNIFFSHARPIES",
+            "nBoxes": 13,
+            "x": 3,
+            "y": 18,
+            "acrossNotDown": true,
+            "clueNum": "83",
+            "clue": {
+              "clue": "cool kids in middle school art class huff rubber cement, kids that are too mid for that ___ instead",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              13
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "NE",
+            "nBoxes": 2,
+            "x": 17,
+            "y": 18,
+            "acrossNotDown": true,
+            "clueNum": "84",
+            "clue": {
+              "clue": "oakland-to-chicago direction",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              2
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "SIA",
+            "nBoxes": 3,
+            "x": 0,
+            "y": 19,
+            "acrossNotDown": true,
+            "clueNum": "85",
+            "clue": {
+              "clue": "what do you think she's hiding under her wig (i don't care if this is non-descript) (she sang chandelier)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "ATE",
+            "nBoxes": 3,
+            "x": 16,
+            "y": 19,
+            "acrossNotDown": true,
+            "clueNum": "87",
+            "clue": {
+              "clue": "Consumed t̶̢̡̮̞͓̦̩͙̖͈̠͔̠̿̊̋͒̎̍̈͑͂͌̍͋͌̀͠ḧ̷͍̩͙͎̖̝͎̦̬̯̤͓͎̆̑͗̈́͠ȩ̷̤̞̬̯͍̖̟̈́̀͂̿̾́̓̆͘͝ ̵͓͔̟̀͂b̷̧̬̹̤͇̜̟̖̝͈̪̦̳̈́͗̆̓̈́͝e̵̢͚̣͕̦̥͊͗͋̍ả̶̰̳͙͎̙̩̠̖̖̍̋̀͠a̸͍̝̬̻̾̍̾͒͂́͐̐ą̴͇͓͖̲̥̟̥͎̖̼͖̱͖̉̍͘a̷̛̦͓̟̣̱̫̅̈́̈́͋̉̀́͂̎̅̈́͛̚͝n̵̨̛͓̦͇̥̤̺̗̥̖̞͋̒̍̿͗̀̚͝͝n̴͇̘̫͊̀͊̅̂́͠n̸̡͔̯̮̫͚̯̪̑̈̏͝n̶̨̗͔͔͔͇̱̙̤͋̋́̿̈́͋̂̽̅̿̋͆̕͝s̵̼͊ ̴̢̺̜̮̺͎̔w̴̛̯̓̓͛̎̑̏͆̌̓̽͊͠͝͠h̶̖̗̘͆ą̴̮͚̫̏͗͑̄̾̔͊̒̓̉͛̀̆̏ẗ̶̺̇̈͑̋̅̅͌̽̿̕ ̵̧̡̲̣̠̫͈̺̫̝͕͈̘̗̲̓̇͛͆̑̈̐͛͠͝͝t̵̡̧̻̱̳͖̣̹̼̘̞̉̿̆̊͝h̶͉̜̞̫̐̏́̊͌̓̈́̾͠ë̵̡̼͖̞̺̣́̓͊͂̿̐͑͑́̇͘͘ͅ ̵̛͇̰̮̋̆̏̓̏f̶͙̬̙̥̜̩̘̼͕̝͖̬͐͊̅͗ú̸͇̤̫̲͓͎͗̔̄̔͌̌̑̽͘c̸̢̐̑̈́̀̍̐͊̓̉͘c̵̢̧̼̮̯̬͖̤̺̝͎͔̭̽̋͊̅̍͝ͅc̵͖͚̙̰͍̹͚̜̟͑͂̄̒̇̑͗̐́̕͠c̸͔̀̓͂͌͌̇k̶̡̨̫̯̟̮̘͉̠̎͂͋͊̋̇̚͜ͅk̷̪͔͖̟̙̩̂̄̀ķ̶̢̛͇̪͔̘̱͚͎̳̣̟̑͑̈́͜͝ḵ̷̥͖̫̙̞̬͚̲̲͉̰̾͆̃̒̓͗̽͘͝ͅ",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "ONT",
+            "nBoxes": 3,
+            "x": 0,
+            "y": 20,
+            "acrossNotDown": true,
+            "clueNum": "88",
+            "clue": {
+              "clue": "Transitioning",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "DAD",
+            "nBoxes": 3,
+            "x": 16,
+            "y": 20,
+            "acrossNotDown": true,
+            "clueNum": "89",
+            "clue": {
+              "clue": "Guy who puts the \"d\" in DILF",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "WILKES",
+            "nBoxes": 6,
+            "x": 4,
+            "y": 0,
+            "acrossNotDown": false,
+            "clueNum": "1",
+            "clue": {
+              "clue": "___-Barre, town presumably named partially after (checks notes) the dude who killed (checks notes again) \"THE SAVIOR OF THE UNION\"?",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              6
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "AFOOT",
+            "nBoxes": 5,
+            "x": 5,
+            "y": 0,
+            "acrossNotDown": false,
+            "clueNum": "2",
+            "clue": {
+              "clue": "It's a shoe in",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              5
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "LENS",
+            "nBoxes": 4,
+            "x": 6,
+            "y": 0,
+            "acrossNotDown": false,
+            "clueNum": "3",
+            "clue": {
+              "clue": "see-through?",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "LFG",
+            "nBoxes": 3,
+            "x": 7,
+            "y": 0,
+            "acrossNotDown": false,
+            "clueNum": "4",
+            "clue": {
+              "clue": "\"O HELL YA\"",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "SIS",
+            "nBoxes": 3,
+            "x": 8,
+            "y": 0,
+            "acrossNotDown": false,
+            "clueNum": "5",
+            "clue": {
+              "clue": "sibling abbrev that has enjoyed the same success as 'bro' but with different demographics",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "ON",
+            "nBoxes": 2,
+            "x": 9,
+            "y": 0,
+            "acrossNotDown": false,
+            "clueNum": "6",
+            "clue": {
+              "clue": "i love to get 2 __/i love to get 2 __",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              2
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "FDR",
+            "nBoxes": 3,
+            "x": 10,
+            "y": 0,
+            "acrossNotDown": false,
+            "clueNum": "7",
+            "clue": {
+              "clue": "New Deal president \n(MD: did he like...do anything funny.... \nCA: men aren't funny)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "TSA",
+            "nBoxes": 3,
+            "x": 11,
+            "y": 0,
+            "acrossNotDown": false,
+            "clueNum": "8",
+            "clue": {
+              "clue": "\"unpaid ___ workers blast travis scott's 'sicko mode' on loudspeaker at jfk airport during government shutdown\" (jan. 2019 headline)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "EAVE",
+            "nBoxes": 4,
+            "x": 12,
+            "y": 0,
+            "acrossNotDown": false,
+            "clueNum": "9",
+            "clue": {
+              "clue": "MD: part of a church, I think? what even is this where does this word come from\nKS: LOL are you thinking of APSE i think [this word] is like part of a roof???\nMD: FUCK",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "XWING",
+            "nBoxes": 5,
+            "x": 13,
+            "y": 0,
+            "acrossNotDown": false,
+            "clueNum": "10",
+            "clue": {
+              "clue": "some sort of sci-fi fighter jet? i don't see these movies, i'm too pretty",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              5
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "TANDEM",
+            "nBoxes": 6,
+            "x": 14,
+            "y": 0,
+            "acrossNotDown": false,
+            "clueNum": "11",
+            "clue": {
+              "clue": "two-for-one deal, bike-wise",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              6
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "LENGTH",
+            "nBoxes": 6,
+            "x": 3,
+            "y": 1,
+            "acrossNotDown": false,
+            "clueNum": "12",
+            "clue": {
+              "clue": "one dimension implied in a big-mac-truck-in-little-garage metaphor",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              6
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "YEOMAN",
+            "nBoxes": 6,
+            "x": 15,
+            "y": 1,
+            "acrossNotDown": false,
+            "clueNum": "13",
+            "clue": {
+              "clue": "___ farmer (some AP euro history shit, don't ask us)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              6
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "BURST",
+            "nBoxes": 5,
+            "x": 2,
+            "y": 2,
+            "acrossNotDown": false,
+            "clueNum": "14",
+            "clue": {
+              "clue": "Pop, like a bubblegum bubble",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              5
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "SWINE",
+            "nBoxes": 5,
+            "x": 16,
+            "y": 2,
+            "acrossNotDown": false,
+            "clueNum": "16",
+            "clue": {
+              "clue": "Kind of animal that makes people go \"sooooooooooie woooooo pigggg soooooooooooie oinkoinkoink\"",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              5
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "FOIE",
+            "nBoxes": 4,
+            "x": 1,
+            "y": 3,
+            "acrossNotDown": false,
+            "clueNum": "17",
+            "clue": {
+              "clue": "kelsey what does this mean in french (liver, in french)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "SNOT",
+            "nBoxes": 4,
+            "x": 17,
+            "y": 3,
+            "acrossNotDown": false,
+            "clueNum": "19",
+            "clue": {
+              "clue": "nose drops?",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "FFS",
+            "nBoxes": 3,
+            "x": 0,
+            "y": 4,
+            "acrossNotDown": false,
+            "clueNum": "20",
+            "clue": {
+              "clue": "\"OMG will you stop for like A GODDAMN SECOND\"",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "RAGEROOM",
+            "nBoxes": 8,
+            "x": 8,
+            "y": 4,
+            "acrossNotDown": false,
+            "clueNum": "21",
+            "clue": {
+              "clue": "Place where you pay to go and *Limp Bizkit voice* BREAK STUFF",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              8
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "ADD",
+            "nBoxes": 3,
+            "x": 9,
+            "y": 4,
+            "acrossNotDown": false,
+            "clueNum": "22",
+            "clue": {
+              "clue": "perform an advanced mathematical operation, like unsubtracting",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "SEATBELT",
+            "nBoxes": 8,
+            "x": 10,
+            "y": 4,
+            "acrossNotDown": false,
+            "clueNum": "23",
+            "clue": {
+              "clue": "Will Shortz won't wear one, reportedly",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              8
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "IRS",
+            "nBoxes": 3,
+            "x": 18,
+            "y": 4,
+            "acrossNotDown": false,
+            "clueNum": "25",
+            "clue": {
+              "clue": "Government organization that will not let me extend my rights as a sovereign citizen and refuse to pay my taxes because they hate to see a themboss winning",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "HIYALL",
+            "nBoxes": 6,
+            "x": 7,
+            "y": 5,
+            "acrossNotDown": false,
+            "clueNum": "27",
+            "clue": {
+              "clue": "the way crosstina has been known to address a crowd despite her entire personality being 'chicagoan' and having lived above the mason dixon line since approx. 1999",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              6
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "STAIRS",
+            "nBoxes": 6,
+            "x": 11,
+            "y": 5,
+            "acrossNotDown": false,
+            "clueNum": "28",
+            "clue": {
+              "clue": "you can run up these two at a time and it's fine but if you run *down* them two at a time you look like an ABSOLUTE FREAK",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              6
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "BEEF",
+            "nBoxes": 4,
+            "x": 6,
+            "y": 6,
+            "acrossNotDown": false,
+            "clueNum": "31",
+            "clue": {
+              "clue": "food best put to use in a stroganoff. I WILL NOT BE HEARING COUNTERARGUMENTS AT THIS TIME THANK YOU (kate made us put this clue in against our will) (that's right i'm a stroganoffer! i said it! i'm out!)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "ABBA",
+            "nBoxes": 4,
+            "x": 12,
+            "y": 6,
+            "acrossNotDown": false,
+            "clueNum": "32",
+            "clue": {
+              "clue": "Swedish band whose music still sounds really good at 2x AND x.5 speed",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "SCRAWLS",
+            "nBoxes": 7,
+            "x": 0,
+            "y": 9,
+            "acrossNotDown": false,
+            "clueNum": "38",
+            "clue": {
+              "clue": "signs, if you're like me and your signature appears to be the product of a person trying to write out their last wish before succumbing to general anesthesia",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              7
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "URETHANE",
+            "nBoxes": 8,
+            "x": 1,
+            "y": 9,
+            "acrossNotDown": false,
+            "clueNum": "39",
+            "clue": {
+              "clue": "mid kids in middle school shop class huff the wood glue, kids that are too cool for that inhale poly___ instead",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              8
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "DEFEATING",
+            "nBoxes": 9,
+            "x": 2,
+            "y": 9,
+            "acrossNotDown": false,
+            "clueNum": "40",
+            "clue": {
+              "clue": "self-___ (like tweeting hostilely at #nytxword one day and then submitting a puzzle the next)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              9
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "SPILT",
+            "nBoxes": 5,
+            "x": 3,
+            "y": 9,
+            "acrossNotDown": false,
+            "clueNum": "41",
+            "clue": {
+              "clue": "nearly clued this in reference to peas or bananas until i realized i was misreading it so your clue is now MILK",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              5
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "PLS",
+            "nBoxes": 3,
+            "x": 9,
+            "y": 9,
+            "acrossNotDown": false,
+            "clueNum": "43",
+            "clue": {
+              "clue": "\"can i 🥺\"",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "PIPPI",
+            "nBoxes": 5,
+            "x": 15,
+            "y": 9,
+            "acrossNotDown": false,
+            "clueNum": "44",
+            "clue": {
+              "clue": "children's character whose whole thing was wearing tall socks and having her hair in braids? bitch me too smh",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              5
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "ACTIVATED",
+            "nBoxes": 9,
+            "x": 16,
+            "y": 9,
+            "acrossNotDown": false,
+            "clueNum": "45",
+            "clue": {
+              "clue": "Like some charcoal in your weird latte that will make any medication you're taking totally useless",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              9
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "SCENEKID",
+            "nBoxes": 8,
+            "x": 17,
+            "y": 9,
+            "acrossNotDown": false,
+            "clueNum": "46",
+            "clue": {
+              "clue": "\"A final pilgrimage to Warped Tour, as told by a former ___\" (Stereogum headline)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              8
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "TANGRAM",
+            "nBoxes": 7,
+            "x": 18,
+            "y": 9,
+            "acrossNotDown": false,
+            "clueNum": "47",
+            "clue": {
+              "clue": "i had to google this to find out what it is and i thought it was a mondrian painting but turns out it's basically a GEOMETRY PUZZLE i've been tricked i demand compensation",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              7
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "ELIAS",
+            "nBoxes": 5,
+            "x": 4,
+            "y": 10,
+            "acrossNotDown": false,
+            "clueNum": "49",
+            "clue": {
+              "clue": "Long-haired hunky WWE wrestler who usually brings a guitar into the ring",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              5
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "WOOLS",
+            "nBoxes": 5,
+            "x": 14,
+            "y": 10,
+            "acrossNotDown": false,
+            "clueNum": "51",
+            "clue": {
+              "clue": "Merino, cashmere and mohair",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              5
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "LEMUR",
+            "nBoxes": 5,
+            "x": 5,
+            "y": 11,
+            "acrossNotDown": false,
+            "clueNum": "53",
+            "clue": {
+              "clue": "gigantic-eye ass primate",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              5
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "TODOS",
+            "nBoxes": 5,
+            "x": 13,
+            "y": 11,
+            "acrossNotDown": false,
+            "clueNum": "55",
+            "clue": {
+              "clue": "all the anxieties and fears of your life neatly packaged into a checkboxed list",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              5
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "RISES",
+            "nBoxes": 5,
+            "x": 6,
+            "y": 12,
+            "acrossNotDown": false,
+            "clueNum": "57",
+            "clue": {
+              "clue": "How a person from New York says \"risers\", phonetically",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              5
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "PETER",
+            "nBoxes": 5,
+            "x": 12,
+            "y": 12,
+            "acrossNotDown": false,
+            "clueNum": "58",
+            "clue": {
+              "clue": "\"Grisly Remains of 15 Hobbits Discovered in ___ Jackson's Attic\" (Onion headline)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              5
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "CHAT",
+            "nBoxes": 4,
+            "x": 7,
+            "y": 13,
+            "acrossNotDown": false,
+            "clueNum": "60",
+            "clue": {
+              "clue": "\"can we ___?\" (request that is completely innocuous on its face but that any thinking person knows is logical to respond to with all-consuming dread)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "HIRE",
+            "nBoxes": 4,
+            "x": 8,
+            "y": 13,
+            "acrossNotDown": false,
+            "clueNum": "61",
+            "clue": {
+              "clue": "Verb in a Creed song about getting a job",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "ORLA",
+            "nBoxes": 4,
+            "x": 9,
+            "y": 13,
+            "acrossNotDown": false,
+            "clueNum": "62",
+            "clue": {
+              "clue": "the eccentric friend in the 'derry girls' clique",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "PRIM",
+            "nBoxes": 4,
+            "x": 10,
+            "y": 13,
+            "acrossNotDown": false,
+            "clueNum": "63",
+            "clue": {
+              "clue": "what you are, legally, if you are wearing a twinset and pearls",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "PINE",
+            "nBoxes": 4,
+            "x": 11,
+            "y": 13,
+            "acrossNotDown": false,
+            "clueNum": "64",
+            "clue": {
+              "clue": "Long (for)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "TOPS",
+            "nBoxes": 4,
+            "x": 3,
+            "y": 15,
+            "acrossNotDown": false,
+            "clueNum": "69",
+            "clue": {
+              "clue": "Pegs, e.g.",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "SEAS",
+            "nBoxes": 4,
+            "x": 15,
+            "y": 15,
+            "acrossNotDown": false,
+            "clueNum": "71",
+            "clue": {
+              "clue": "big ocean wants you to think there's only seven of them but my extensive research says there are at LEAST 76",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "SON",
+            "nBoxes": 3,
+            "x": 4,
+            "y": 16,
+            "acrossNotDown": false,
+            "clueNum": "73",
+            "clue": {
+              "clue": "Peepy, to meatdaddy69420",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "WOE",
+            "nBoxes": 3,
+            "x": 14,
+            "y": 16,
+            "acrossNotDown": false,
+            "clueNum": "75",
+            "clue": {
+              "clue": "It's me!",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "AMSO",
+            "nBoxes": 4,
+            "x": 0,
+            "y": 17,
+            "acrossNotDown": false,
+            "clueNum": "76",
+            "clue": {
+              "clue": "initialism for the person you bring as your plus-one to morning events only",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "YI",
+            "nBoxes": 2,
+            "x": 5,
+            "y": 17,
+            "acrossNotDown": false,
+            "clueNum": "78",
+            "clue": {
+              "clue": "actor charlene, who was (probably) unwittingly at the center of a 8,423-changes-long edit war on the house, m.d. wikipedia page about the show's lack of asian diversity",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              2
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "TI",
+            "nBoxes": 2,
+            "x": 13,
+            "y": 17,
+            "acrossNotDown": false,
+            "clueNum": "79",
+            "clue": {
+              "clue": "atlanta rapper who dedicated his song 'live your life' to \"all my soldiers over there in iraq\"",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              2
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "NEED",
+            "nBoxes": 4,
+            "x": 18,
+            "y": 17,
+            "acrossNotDown": false,
+            "clueNum": "80",
+            "clue": {
+              "clue": "maslow's hierarchy of ___s (psychology concept fulfilled by getting railed in a cute lil sundress)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              4
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "SIN",
+            "nBoxes": 3,
+            "x": 1,
+            "y": 18,
+            "acrossNotDown": false,
+            "clueNum": "82",
+            "clue": {
+              "clue": "if only seven of them are deadly then why did my microwave burst into flames when i tried to heat up this jar of peanut butter? explain this!!",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "NTA",
+            "nBoxes": 3,
+            "x": 17,
+            "y": 18,
+            "acrossNotDown": false,
+            "clueNum": "84",
+            "clue": {
+              "clue": "my default vote on r/AITA whenever the post starts with \"my partner (45, m) told me (19, f)...\"",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              3
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "AT",
+            "nBoxes": 2,
+            "x": 2,
+            "y": 19,
+            "acrossNotDown": false,
+            "clueNum": "86",
+            "clue": {
+              "clue": "How you should address me on Twitter if you wanna fight",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              2
+            ],
+            "intersects": false
+          },
+          {
+            "originalTerm": "AD",
+            "nBoxes": 2,
+            "x": 16,
+            "y": 19,
+            "acrossNotDown": false,
+            "clueNum": "87",
+            "clue": {
+              "problems": [
+                {
+                  "warningNotError": true,
+                  "message": "The answer \"AD\" is embedded in the clue.",
+                  "lineNum": 0
+                }
+              ],
+              "clue": "\"why are the women in this moderate-to-severe plaque psoriasis ___ happier than me?\" (headline i wrote for reductress in 2017 that they rejected)",
+              "fullSentenceLowerCase": ""
+            },
+            "wordLens": [
+              2
+            ],
+            "intersects": false
+          }
+        ],
+        "boxToPlacedWordsIdxs": [
+          [
+            null,
+            null,
+            null,
+            null,
+            [
+              6,
+              66
+            ],
+            [
+              9,
+              66
+            ],
+            [
+              12,
+              66
+            ],
+            null,
+            null,
+            [
+              19,
+              75
+            ],
+            [
+              22,
+              75
+            ],
+            [
+              25,
+              75
+            ],
+            [
+              28,
+              75
+            ],
+            [
+              30,
+              75
+            ],
+            [
+              31,
+              75
+            ],
+            [
+              34,
+              75
+            ],
+            null,
+            [
+              99
+            ],
+            [
+              42,
+              99
+            ],
+            [
+              45,
+              99
+            ],
+            [
+              47,
+              99
+            ]
+          ],
+          [
+            null,
+            null,
+            null,
+            [
+              4,
+              64
+            ],
+            [
+              6,
+              64
+            ],
+            [
+              9,
+              64
+            ],
+            [
+              12,
+              64
+            ],
+            null,
+            null,
+            [
+              76,
+              19
+            ],
+            [
+              22,
+              76
+            ],
+            [
+              25,
+              76
+            ],
+            [
+              28,
+              76
+            ],
+            [
+              30,
+              76
+            ],
+            [
+              31,
+              76
+            ],
+            [
+              34,
+              76
+            ],
+            [
+              37,
+              76
+            ],
+            null,
+            [
+              103,
+              42
+            ],
+            [
+              45,
+              103
+            ],
+            [
+              47,
+              103
+            ]
+          ],
+          [
+            null,
+            null,
+            [
+              2,
+              62
+            ],
+            [
+              4,
+              62
+            ],
+            [
+              6,
+              62
+            ],
+            [
+              9,
+              62
+            ],
+            [
+              12,
+              62
+            ],
+            null,
+            null,
+            [
+              77,
+              19
+            ],
+            [
+              22,
+              77
+            ],
+            [
+              25,
+              77
+            ],
+            [
+              28,
+              77
+            ],
+            [
+              30,
+              77
+            ],
+            [
+              31,
+              77
+            ],
+            [
+              34,
+              77
+            ],
+            [
+              37,
+              77
+            ],
+            [
+              40,
+              77
+            ],
+            null,
+            [
+              105,
+              45
+            ],
+            [
+              47,
+              105
+            ]
+          ],
+          [
+            null,
+            [
+              1,
+              60
+            ],
+            [
+              2,
+              60
+            ],
+            [
+              4,
+              60
+            ],
+            [
+              6,
+              60
+            ],
+            [
+              9,
+              60
+            ],
+            [
+              12,
+              60
+            ],
+            null,
+            null,
+            [
+              78,
+              19
+            ],
+            [
+              22,
+              78
+            ],
+            [
+              25,
+              78
+            ],
+            [
+              28,
+              78
+            ],
+            [
+              30,
+              78
+            ],
+            null,
+            [
+              95,
+              34
+            ],
+            [
+              37,
+              95
+            ],
+            [
+              40,
+              95
+            ],
+            [
+              43,
+              95
+            ],
+            null,
+            null
+          ],
+          [
+            [
+              0,
+              49
+            ],
+            [
+              1,
+              49
+            ],
+            [
+              2,
+              49
+            ],
+            [
+              4,
+              49
+            ],
+            [
+              6,
+              49
+            ],
+            [
+              9,
+              49
+            ],
+            null,
+            null,
+            null,
+            null,
+            [
+              84,
+              22
+            ],
+            [
+              25,
+              84
+            ],
+            [
+              28,
+              84
+            ],
+            [
+              30,
+              84
+            ],
+            [
+              32,
+              84
+            ],
+            null,
+            [
+              97,
+              37
+            ],
+            [
+              40,
+              97
+            ],
+            [
+              43,
+              97
+            ],
+            null,
+            null
+          ],
+          [
+            [
+              50,
+              0
+            ],
+            [
+              1,
+              50
+            ],
+            [
+              2,
+              50
+            ],
+            [
+              4,
+              50
+            ],
+            [
+              6,
+              50
+            ],
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            [
+              86,
+              25
+            ],
+            [
+              28,
+              86
+            ],
+            [
+              30,
+              86
+            ],
+            [
+              32,
+              86
+            ],
+            [
+              35,
+              86
+            ],
+            null,
+            [
+              100,
+              40
+            ],
+            [
+              43,
+              100
+            ],
+            null,
+            null
+          ],
+          [
+            [
+              51,
+              0
+            ],
+            [
+              1,
+              51
+            ],
+            [
+              2,
+              51
+            ],
+            [
+              4,
+              51
+            ],
+            null,
+            null,
+            [
+              13,
+              73
+            ],
+            [
+              15,
+              73
+            ],
+            [
+              17,
+              73
+            ],
+            [
+              20,
+              73
+            ],
+            null,
+            null,
+            [
+              88,
+              28
+            ],
+            [
+              30,
+              88
+            ],
+            [
+              32,
+              88
+            ],
+            [
+              35,
+              88
+            ],
+            [
+              38,
+              88
+            ],
+            null,
+            [
+              43
+            ],
+            null,
+            null
+          ],
+          [
+            [
+              52,
+              0
+            ],
+            [
+              1,
+              52
+            ],
+            [
+              2,
+              52
+            ],
+            null,
+            null,
+            [
+              10,
+              71
+            ],
+            [
+              13,
+              71
+            ],
+            [
+              15,
+              71
+            ],
+            [
+              17,
+              71
+            ],
+            [
+              20,
+              71
+            ],
+            [
+              23,
+              71
+            ],
+            null,
+            null,
+            [
+              90,
+              30
+            ],
+            [
+              32,
+              90
+            ],
+            [
+              35,
+              90
+            ],
+            [
+              38,
+              90
+            ],
+            null,
+            [
+              43
+            ],
+            null,
+            null
+          ],
+          [
+            [
+              53,
+              0
+            ],
+            [
+              1,
+              53
+            ],
+            [
+              2,
+              53
+            ],
+            null,
+            [
+              7,
+              67
+            ],
+            [
+              10,
+              67
+            ],
+            [
+              13,
+              67
+            ],
+            [
+              15,
+              67
+            ],
+            [
+              17,
+              67
+            ],
+            [
+              20,
+              67
+            ],
+            [
+              23,
+              67
+            ],
+            [
+              26,
+              67
+            ],
+            null,
+            [
+              91,
+              30
+            ],
+            [
+              32,
+              91
+            ],
+            [
+              35,
+              91
+            ],
+            [
+              38,
+              91
+            ],
+            null,
+            [
+              43
+            ],
+            null,
+            null
+          ],
+          [
+            [
+              54,
+              0
+            ],
+            [
+              1,
+              54
+            ],
+            null,
+            null,
+            [
+              68,
+              7
+            ],
+            [
+              10,
+              68
+            ],
+            [
+              13,
+              68
+            ],
+            null,
+            null,
+            [
+              79,
+              20
+            ],
+            [
+              23,
+              79
+            ],
+            [
+              26,
+              79
+            ],
+            null,
+            [
+              92,
+              30
+            ],
+            [
+              32,
+              92
+            ],
+            [
+              35,
+              92
+            ],
+            [
+              38,
+              92
+            ],
+            null,
+            [
+              43
+            ],
+            null,
+            null
+          ],
+          [
+            [
+              55,
+              0
+            ],
+            [
+              1,
+              55
+            ],
+            [
+              3,
+              55
+            ],
+            null,
+            [
+              69,
+              7
+            ],
+            [
+              10,
+              69
+            ],
+            [
+              13,
+              69
+            ],
+            [
+              16,
+              69
+            ],
+            [
+              18,
+              69
+            ],
+            [
+              20,
+              69
+            ],
+            [
+              23,
+              69
+            ],
+            [
+              26,
+              69
+            ],
+            null,
+            [
+              93,
+              30
+            ],
+            [
+              32,
+              93
+            ],
+            [
+              35,
+              93
+            ],
+            [
+              38,
+              93
+            ],
+            null,
+            [
+              43
+            ],
+            null,
+            null
+          ],
+          [
+            [
+              56,
+              0
+            ],
+            [
+              1,
+              56
+            ],
+            [
+              3,
+              56
+            ],
+            null,
+            null,
+            [
+              72,
+              10
+            ],
+            [
+              13,
+              72
+            ],
+            [
+              16,
+              72
+            ],
+            [
+              18,
+              72
+            ],
+            [
+              20,
+              72
+            ],
+            [
+              23,
+              72
+            ],
+            null,
+            null,
+            [
+              94,
+              30
+            ],
+            [
+              32,
+              94
+            ],
+            [
+              35,
+              94
+            ],
+            [
+              38,
+              94
+            ],
+            null,
+            [
+              43
+            ],
+            null,
+            null
+          ],
+          [
+            [
+              57,
+              0
+            ],
+            [
+              1,
+              57
+            ],
+            [
+              3,
+              57
+            ],
+            [
+              5,
+              57
+            ],
+            null,
+            null,
+            [
+              74,
+              13
+            ],
+            [
+              16,
+              74
+            ],
+            [
+              18,
+              74
+            ],
+            [
+              20,
+              74
+            ],
+            null,
+            null,
+            [
+              29,
+              89
+            ],
+            [
+              30,
+              89
+            ],
+            [
+              32,
+              89
+            ],
+            [
+              35,
+              89
+            ],
+            [
+              38,
+              89
+            ],
+            null,
+            [
+              43
+            ],
+            null,
+            null
+          ],
+          [
+            [
+              58,
+              0
+            ],
+            [
+              1,
+              58
+            ],
+            [
+              3,
+              58
+            ],
+            [
+              5,
+              58
+            ],
+            [
+              8,
+              58
+            ],
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            [
+              27,
+              87
+            ],
+            [
+              29,
+              87
+            ],
+            [
+              30,
+              87
+            ],
+            [
+              32,
+              87
+            ],
+            [
+              35,
+              87
+            ],
+            null,
+            [
+              41,
+              101
+            ],
+            [
+              43,
+              101
+            ],
+            null,
+            null
+          ],
+          [
+            [
+              59,
+              0
+            ],
+            [
+              1,
+              59
+            ],
+            [
+              3,
+              59
+            ],
+            [
+              5,
+              59
+            ],
+            [
+              8,
+              59
+            ],
+            [
+              11,
+              59
+            ],
+            null,
+            null,
+            null,
+            null,
+            [
+              24,
+              85
+            ],
+            [
+              27,
+              85
+            ],
+            [
+              29,
+              85
+            ],
+            [
+              30,
+              85
+            ],
+            [
+              32,
+              85
+            ],
+            null,
+            [
+              39,
+              98
+            ],
+            [
+              41,
+              98
+            ],
+            [
+              43,
+              98
+            ],
+            null,
+            null
+          ],
+          [
+            null,
+            [
+              61,
+              1
+            ],
+            [
+              3,
+              61
+            ],
+            [
+              5,
+              61
+            ],
+            [
+              8,
+              61
+            ],
+            [
+              11,
+              61
+            ],
+            [
+              14,
+              61
+            ],
+            null,
+            null,
+            [
+              21,
+              80
+            ],
+            [
+              24,
+              80
+            ],
+            [
+              27,
+              80
+            ],
+            [
+              29,
+              80
+            ],
+            [
+              30,
+              80
+            ],
+            null,
+            [
+              36,
+              96
+            ],
+            [
+              39,
+              96
+            ],
+            [
+              41,
+              96
+            ],
+            [
+              43,
+              96
+            ],
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            [
+              63,
+              3
+            ],
+            [
+              5,
+              63
+            ],
+            [
+              8,
+              63
+            ],
+            [
+              11,
+              63
+            ],
+            [
+              14,
+              63
+            ],
+            null,
+            null,
+            [
+              81,
+              21
+            ],
+            [
+              24,
+              81
+            ],
+            [
+              27,
+              81
+            ],
+            [
+              29,
+              81
+            ],
+            [
+              30,
+              81
+            ],
+            [
+              33,
+              81
+            ],
+            [
+              36,
+              81
+            ],
+            [
+              39,
+              81
+            ],
+            [
+              41,
+              81
+            ],
+            null,
+            [
+              46,
+              106
+            ],
+            [
+              48,
+              106
+            ]
+          ],
+          [
+            null,
+            null,
+            null,
+            [
+              65,
+              5
+            ],
+            [
+              8,
+              65
+            ],
+            [
+              11,
+              65
+            ],
+            [
+              14,
+              65
+            ],
+            null,
+            null,
+            [
+              82,
+              21
+            ],
+            [
+              24,
+              82
+            ],
+            [
+              27,
+              82
+            ],
+            [
+              29,
+              82
+            ],
+            [
+              30,
+              82
+            ],
+            [
+              33,
+              82
+            ],
+            [
+              36,
+              82
+            ],
+            [
+              39,
+              82
+            ],
+            null,
+            [
+              44,
+              104
+            ],
+            [
+              46,
+              104
+            ],
+            [
+              48,
+              104
+            ]
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            [
+              70,
+              8
+            ],
+            [
+              11,
+              70
+            ],
+            [
+              14,
+              70
+            ],
+            null,
+            null,
+            [
+              83,
+              21
+            ],
+            [
+              24,
+              83
+            ],
+            [
+              27,
+              83
+            ],
+            [
+              29,
+              83
+            ],
+            [
+              30,
+              83
+            ],
+            [
+              33,
+              83
+            ],
+            [
+              36,
+              83
+            ],
+            null,
+            [
+              102
+            ],
+            [
+              44,
+              102
+            ],
+            [
+              46,
+              102
+            ],
+            [
+              48,
+              102
+            ]
+          ]
+        ],
+        "cellInfos": [
+          {
+            "x": 4,
+            "y": 0,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 0,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 6,
+            "y": 0,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 7,
+            "y": 0,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 8,
+            "y": 0,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 9,
+            "y": 0,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 10,
+            "y": 0,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 11,
+            "y": 0,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 12,
+            "y": 0,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 0,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 0,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 1,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 6,
+            "y": 1,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 7,
+            "y": 1,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 8,
+            "y": 1,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 9,
+            "y": 2,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 9,
+            "y": 1,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 10,
+            "y": 1,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 10,
+            "y": 2,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 11,
+            "y": 2,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 11,
+            "y": 1,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 12,
+            "y": 1,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 1,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 1,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 15,
+            "y": 1,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 15,
+            "y": 2,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 16,
+            "y": 2,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 2,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 2,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 12,
+            "y": 2,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 12,
+            "y": 3,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 3,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 3,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 15,
+            "y": 3,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 16,
+            "y": 3,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 17,
+            "y": 3,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 18,
+            "y": 4,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 18,
+            "y": 5,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 18,
+            "y": 6,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 17,
+            "y": 6,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 16,
+            "y": 6,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 15,
+            "y": 6,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 5,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 4,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 4,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 15,
+            "y": 5,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 15,
+            "y": 4,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 16,
+            "y": 5,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 16,
+            "y": 4,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 17,
+            "y": 5,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 17,
+            "y": 4,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 8,
+            "y": 2,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 7,
+            "y": 2,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 6,
+            "y": 2,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 2,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 2,
+            "y": 3,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 3,
+            "y": 3,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 3,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 3,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 6,
+            "y": 3,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 1,
+            "y": 3,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 0,
+            "y": 4,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 0,
+            "y": 5,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 0,
+            "y": 6,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 1,
+            "y": 6,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 2,
+            "y": 6,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 3,
+            "y": 6,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 3,
+            "y": 5,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 5,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 4,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 4,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 3,
+            "y": 4,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 2,
+            "y": 4,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 1,
+            "y": 4,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 1,
+            "y": 5,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 2,
+            "y": 5,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 0,
+            "y": 9,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 0,
+            "y": 10,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 0,
+            "y": 11,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 0,
+            "y": 12,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 0,
+            "y": 13,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 0,
+            "y": 14,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 0,
+            "y": 15,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 0,
+            "y": 17,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 0,
+            "y": 18,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 0,
+            "y": 19,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 0,
+            "y": 20,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 1,
+            "y": 20,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 2,
+            "y": 20,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 2,
+            "y": 19,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 1,
+            "y": 19,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 1,
+            "y": 18,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 16,
+            "y": 19,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 16,
+            "y": 20,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 17,
+            "y": 20,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 18,
+            "y": 20,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 17,
+            "y": 19,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 18,
+            "y": 19,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 18,
+            "y": 18,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 18,
+            "y": 17,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 17,
+            "y": 18,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 18,
+            "y": 10,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 18,
+            "y": 9,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 17,
+            "y": 9,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 16,
+            "y": 9,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 15,
+            "y": 9,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 10,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 15,
+            "y": 10,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 16,
+            "y": 10,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 17,
+            "y": 10,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 18,
+            "y": 11,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 18,
+            "y": 12,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 18,
+            "y": 13,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 18,
+            "y": 14,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 18,
+            "y": 15,
+            "bgColor": "#ffb929",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 17,
+            "y": 15,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 16,
+            "y": 15,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 15,
+            "y": 15,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 16,
+            "y": 14,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 17,
+            "y": 14,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 17,
+            "y": 13,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 17,
+            "y": 12,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 17,
+            "y": 11,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 16,
+            "y": 11,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 15,
+            "y": 11,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 11,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 11,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 12,
+            "y": 12,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 12,
+            "y": 13,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 12,
+            "y": 14,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 12,
+            "y": 15,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 12,
+            "y": 16,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 15,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 14,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 13,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 12,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 12,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 15,
+            "y": 12,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 16,
+            "y": 12,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 16,
+            "y": 13,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 15,
+            "y": 13,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 13,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 14,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 1,
+            "y": 9,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 2,
+            "y": 9,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 3,
+            "y": 9,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 1,
+            "y": 10,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 2,
+            "y": 10,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 3,
+            "y": 10,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 10,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 11,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 6,
+            "y": 12,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 7,
+            "y": 13,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 8,
+            "y": 13,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 9,
+            "y": 13,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 10,
+            "y": 13,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 11,
+            "y": 13,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 11,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 12,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 6,
+            "y": 13,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 3,
+            "y": 11,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 12,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 13,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 2,
+            "y": 11,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 3,
+            "y": 12,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 13,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 3,
+            "y": 13,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 2,
+            "y": 13,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 1,
+            "y": 13,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 1,
+            "y": 12,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 1,
+            "y": 11,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 2,
+            "y": 12,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 2,
+            "y": 14,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 1,
+            "y": 14,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 1,
+            "y": 15,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 1,
+            "y": 16,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 2,
+            "y": 15,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 2,
+            "y": 17,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 2,
+            "y": 16,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 3,
+            "y": 15,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 3,
+            "y": 16,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 3,
+            "y": 17,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 3,
+            "y": 18,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 18,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 18,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 6,
+            "y": 18,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 7,
+            "y": 18,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 8,
+            "y": 18,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 9,
+            "y": 18,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 10,
+            "y": 18,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 11,
+            "y": 18,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 12,
+            "y": 18,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 18,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 18,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 15,
+            "y": 18,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 17,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 17,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 15,
+            "y": 17,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 16,
+            "y": 17,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 16,
+            "y": 16,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 17,
+            "y": 16,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 15,
+            "y": 16,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 16,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 16,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 17,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 17,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 14,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 15,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 14,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 6,
+            "y": 14,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 7,
+            "y": 14,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 8,
+            "y": 14,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 9,
+            "y": 14,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 10,
+            "y": 14,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 11,
+            "y": 14,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 11,
+            "y": 15,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 10,
+            "y": 15,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 9,
+            "y": 15,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 8,
+            "y": 15,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 7,
+            "y": 15,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 6,
+            "y": 15,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 6,
+            "y": 16,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 7,
+            "y": 16,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 8,
+            "y": 16,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 9,
+            "y": 16,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 10,
+            "y": 16,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 11,
+            "y": 16,
+            "bgColor": "#ffd55e",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 9,
+            "y": 6,
+            "bgColor": "#8b582f",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 10,
+            "y": 6,
+            "bgColor": "#8b582f",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 10,
+            "y": 7,
+            "bgColor": "#8b582f",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 10,
+            "y": 8,
+            "bgColor": "#8b582f",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 10,
+            "y": 9,
+            "bgColor": "#8b582f",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 9,
+            "y": 9,
+            "bgColor": "#8b582f",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 8,
+            "y": 9,
+            "bgColor": "#8b582f",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 8,
+            "y": 8,
+            "bgColor": "#8b582f",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 8,
+            "y": 7,
+            "bgColor": "#8b582f",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 8,
+            "y": 6,
+            "bgColor": "#8b582f",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 9,
+            "y": 3,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 8,
+            "y": 3,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 7,
+            "y": 3,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 7,
+            "y": 4,
+            "bgColor": "#d7d7d7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 6,
+            "y": 4,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 6,
+            "y": 5,
+            "bgColor": "#d7d7d7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 5,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 6,
+            "bgColor": "#d7d7d7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 6,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 7,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 7,
+            "bgColor": "#d7d7d7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 8,
+            "bgColor": "#d7d7d7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 8,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 9,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 9,
+            "bgColor": "#d7d7d7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 10,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 6,
+            "y": 10,
+            "bgColor": "#d7d7d7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 6,
+            "y": 11,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 7,
+            "y": 11,
+            "bgColor": "#d7d7d7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 7,
+            "y": 12,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 8,
+            "y": 12,
+            "bgColor": "#d7d7d7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 9,
+            "y": 12,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 10,
+            "y": 12,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 11,
+            "y": 12,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 11,
+            "y": 11,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 12,
+            "y": 11,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 12,
+            "y": 10,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 10,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 9,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 9,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 8,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 8,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 7,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 7,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 6,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 6,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 5,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 12,
+            "y": 5,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 12,
+            "y": 4,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 11,
+            "y": 4,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 11,
+            "y": 3,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 10,
+            "y": 3,
+            "bgColor": "#b7b7b7",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 0,
+            "y": 16,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 1,
+            "y": 17,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 2,
+            "y": 18,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 3,
+            "y": 19,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 3,
+            "y": 20,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 19,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 4,
+            "y": 20,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 19,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 6,
+            "y": 19,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 7,
+            "y": 19,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 8,
+            "y": 19,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 9,
+            "y": 19,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 10,
+            "y": 19,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 11,
+            "y": 19,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 12,
+            "y": 19,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 19,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 19,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 15,
+            "y": 19,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 16,
+            "y": 18,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 17,
+            "y": 17,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 18,
+            "y": 16,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 15,
+            "y": 20,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 14,
+            "y": 20,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 13,
+            "y": 20,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 12,
+            "y": 20,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 11,
+            "y": 20,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 10,
+            "y": 20,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 9,
+            "y": 20,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 8,
+            "y": 20,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 7,
+            "y": 20,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 6,
+            "y": 20,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          },
+          {
+            "x": 5,
+            "y": 20,
+            "bgColor": "#2978a2",
+            "isCircled": false,
+            "rightWall": false,
+            "bottomWall": false,
+            "displayRightWallShort": false,
+            "displayBottomWallShort": false,
+            "isVoid": false
+          }
+        ],
+        "tags": []
+      }
+    }
+  }
+}

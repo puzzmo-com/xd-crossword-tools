@@ -713,3 +713,45 @@ describe("cell colors", () => {
     expect(xd3).toEqual(xd2)
   })
 })
+
+describe("the minion puzzle", () => {
+  // A real-world stress test: a 19x21 grid where every playable cell is colored
+  // (the design section draws a minion), plus emoji-heavy clues and clues
+  // containing <br>/<div> line breaks which must collapse to single-line xd clues.
+  // Source: https://crosstina-aquafina.blogspot.com/2022/06/one-in-minion-crosstina-kate-meatdaddy.html
+  const amuseJSON = () => JSON.parse(readFileSync(__dirname + "/amuse/the-minion-puzzle.json", "utf-8")) as AmuseTopLevel
+
+  it("converts to the vendored xd", () => {
+    const xd = amuseToXD(amuseJSON())
+    const vendored = readFileSync(__dirname + "/amuse/the-minion-puzzle.xd", "utf-8")
+    expect(xd).toEqual(vendored)
+  })
+
+  it("parses cleanly with all-colored design cells and single-line clues", () => {
+    const json = xdToJSON(amuseToXD(amuseJSON()))
+
+    expect(json.report.success).toBe(true)
+    expect(json.report.errors).toEqual([])
+    expect(json.clues.across.length).toBe(49)
+    expect(json.clues.down.length).toBe(58)
+
+    // Six distinct colors, no circles or bars
+    expect(Object.keys(json.design!.styles)).toEqual(["A", "B", "C", "D", "E", "F"])
+    for (const style of Object.values(json.design!.styles)) {
+      expect(style["background-light"]).toMatch(/^#[0-9a-f]{6}$/)
+      expect(style["background-dark"]).toEqual(style["background-light"])
+    }
+
+    // Blank squares carry colors too - 75 of the colored cells are black squares
+    // (the goggle ring and the overall corners). Check one of the goggle cells:
+    expect(json.tiles[7][4].type).toBe("blank")
+    expect(json.design!.positions[7][4]).toBe("C")
+    expect(json.design!.styles["C"]["background-light"]).toBe("#b7b7b7")
+
+    // Every clue is a single line
+    const allClues = [...json.clues.across, ...json.clues.down]
+    for (const clue of allClues) {
+      expect(clue.body).not.toContain("\n")
+    }
+  })
+})
