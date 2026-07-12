@@ -17,6 +17,9 @@ interface StyleDefinition {
   character: string
 }
 
+/** Sentinel for the eraser tool - restores a tile to its unstyled default */
+const ERASER_STYLE = "__eraser__"
+
 export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswordJSON, onDesignChange }) => {
   const { setXD } = use(RootContext)
   const [selectedStyle, setSelectedStyle] = useState<string>(() => {
@@ -100,16 +103,29 @@ export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswor
     }
   }, [crosswordJSON?.design?.styles])
 
+  // Resolve the visual treatment for a design style key (color styles + circles)
+  const getStyleInfo = (styleKey: string) => {
+    const style = crosswordJSON?.design?.styles?.[styleKey]
+    if (!style) return undefined
+    return {
+      color: style["background-light"] || style["background-dark"],
+      circle: style["background"] === "circle",
+    }
+  }
+
   const handleTileClick = (row: number, col: number) => {
     if (!selectedStyle) return
 
-    // Don't allow clicking on blocked tiles ("#")
-    const currentTile = gridData[row]?.[col]
-    if (currentTile === "#") return
+    // Blank squares can carry styles too (e.g. colored blocked cells), so
+    // clicking one applies the style. The eraser restores the tile default.
+    const tile = crosswordJSON?.tiles?.[row]?.[col]
+    const isBlank = !tile || tile.type === "blank"
+
+    const newValue = selectedStyle === ERASER_STYLE ? (isBlank ? "#" : ".") : selectedStyle
 
     // Update local grid data
     const newGridData = [...gridData]
-    newGridData[row][col] = selectedStyle
+    newGridData[row][col] = newValue
     setGridData(newGridData)
 
     // Create updated crosswordJSON with new design positions
@@ -160,7 +176,13 @@ export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswor
             // Get the actual crossword tile data
             const crosswordTile = crosswordJSON?.tiles?.[rowIndex]?.[colIndex]
             const actualLetter = (crosswordTile as any)?.letter || (crosswordTile as any)?.word || ""
-            const isBlocked = cell === "#"
+            const isBlank = !crosswordTile || crosswordTile.type === "blank"
+            const hasStyle = cell !== "." && cell !== "#"
+            const styleInfo = hasStyle ? getStyleInfo(cell) : undefined
+
+            // Design colors apply to blank squares too, so a styled blank renders
+            // its color rather than the default block treatment
+            const backgroundColor = styleInfo?.color || (isBlank ? "#333" : "#fff")
 
             return (
               <div
@@ -169,53 +191,62 @@ export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswor
                 style={{
                   width: "30px",
                   height: "30px",
-                  backgroundColor: isBlocked ? "#333" : "#fff",
+                  backgroundColor,
                   border: "1px solid #999",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  cursor: isBlocked ? "not-allowed" : "pointer",
+                  cursor: "pointer",
                   fontFamily: "monospace",
                   userSelect: "none",
-                  opacity: isBlocked ? 0.6 : 1,
+                  opacity: isBlank && !styleInfo?.color ? 0.6 : 1,
                   position: "relative",
                 }}
-                className={cell !== "." && cell !== "#" ? cell : ""}
+                className={hasStyle ? cell : ""}
               >
-                {isBlocked ? (
+                {styleInfo?.circle && (
+                  <span
+                    style={{
+                      position: "absolute",
+                      inset: "2px",
+                      border: "2px solid #888",
+                      borderRadius: "50%",
+                      pointerEvents: "none",
+                    }}
+                  />
+                )}
+
+                {isBlank && !styleInfo?.color ? (
                   <span style={{ fontSize: "16px", color: "#fff" }}>#</span>
                 ) : (
-                  <>
-                    {/* Large actual letter */}
-                    <span
-                      style={{
-                        fontSize: "18px",
-                        fontWeight: "bold",
-                        color: "#000",
-                      }}
-                    >
-                      {actualLetter}
-                    </span>
+                  <span
+                    style={{
+                      fontSize: "18px",
+                      fontWeight: "bold",
+                      color: "#000",
+                    }}
+                  >
+                    {actualLetter}
+                  </span>
+                )}
 
-                    {/* Small CSS style character in corner if different from "." */}
-                    {cell !== "." && (
-                      <span
-                        style={{
-                          position: "absolute",
-                          top: "2px",
-                          right: "2px",
-                          fontSize: "8px",
-                          color: "#666",
-                          backgroundColor: "#f0f0f0",
-                          borderRadius: "2px",
-                          padding: "1px 2px",
-                          lineHeight: "1",
-                        }}
-                      >
-                        {cell}
-                      </span>
-                    )}
-                  </>
+                {/* Small CSS style character in corner */}
+                {hasStyle && (
+                  <span
+                    style={{
+                      position: "absolute",
+                      top: "2px",
+                      right: "2px",
+                      fontSize: "8px",
+                      color: "#666",
+                      backgroundColor: "#f0f0f0",
+                      borderRadius: "2px",
+                      padding: "1px 2px",
+                      lineHeight: "1",
+                    }}
+                  >
+                    {cell}
+                  </span>
                 )}
               </div>
             )
@@ -232,24 +263,54 @@ export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswor
         <div className="mb-3">
           <h6>Available Styles:</h6>
           <div className="d-flex gap-2 flex-wrap">
-            {availableStyles.map((style) => (
-              <Badge
-                key={style.character}
-                bg={selectedStyle === style.character ? "primary" : "secondary"}
-                style={{
-                  cursor: "pointer",
-                  fontSize: "14px",
-                  padding: "8px 12px",
-                }}
-                onClick={() => handleStyleSelect(style.character)}
-              >
-                {style.character}
-              </Badge>
-            ))}
+            {availableStyles.map((style) => {
+              const styleInfo = getStyleInfo(style.character)
+              return (
+                <Badge
+                  key={style.character}
+                  bg={selectedStyle === style.character ? "primary" : "secondary"}
+                  style={{
+                    cursor: "pointer",
+                    fontSize: "14px",
+                    padding: "8px 12px",
+                  }}
+                  onClick={() => handleStyleSelect(style.character)}
+                >
+                  {styleInfo?.color && (
+                    <span
+                      style={{
+                        display: "inline-block",
+                        width: "10px",
+                        height: "10px",
+                        backgroundColor: styleInfo.color,
+                        border: "1px solid rgba(0, 0, 0, 0.3)",
+                        borderRadius: "2px",
+                        marginRight: "5px",
+                      }}
+                    />
+                  )}
+                  {styleInfo?.circle && <span style={{ marginRight: "5px" }}>◯</span>}
+                  {style.character}
+                </Badge>
+              )
+            })}
+            <Badge
+              bg={selectedStyle === ERASER_STYLE ? "primary" : "light"}
+              text={selectedStyle === ERASER_STYLE ? undefined : "dark"}
+              style={{
+                cursor: "pointer",
+                fontSize: "14px",
+                padding: "8px 12px",
+              }}
+              onClick={() => handleStyleSelect(ERASER_STYLE)}
+            >
+              Eraser
+            </Badge>
           </div>
           {selectedStyle && (
             <small className="text-muted d-block mt-2">
-              Selected: <strong>{selectedStyle}</strong> - Click on tiles to apply this style
+              Selected: <strong>{selectedStyle === ERASER_STYLE ? "Eraser" : selectedStyle}</strong> - Click on tiles (including blank
+              squares) to apply
             </small>
           )}
         </div>

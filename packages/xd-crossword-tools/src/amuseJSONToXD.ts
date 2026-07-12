@@ -263,7 +263,8 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
       return
     }
 
-    const clueText = convertHtmlToXdMarkup(placedWord.clue.clue)
+    // Clues are single lines in xd, so any <br>/<div> breaks inside a clue collapse to spaces
+    const clueText = convertHtmlToXdMarkup(placedWord.clue.clue).replace(/\n/g, " ")
     const clueNumberStr = placedWord.clueNum // This is already a string from AmuseData
     const word = placedWord.word || placedWord.originalTerm || ""
     let answer
@@ -293,9 +294,9 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
       metadata: {},
     }
 
-    // Add revealer metadata if refText exists
+    // Add revealer metadata if refText exists - metadata values are also single lines
     if (currentClue.metadata && placedWord.clue.refText) {
-      currentClue.metadata.revealer = convertHtmlToXdMarkup(placedWord.clue.refText)
+      currentClue.metadata.revealer = convertHtmlToXdMarkup(placedWord.clue.refText).replace(/\n/g, " ")
     }
 
     // Add refs metadata for linked clues
