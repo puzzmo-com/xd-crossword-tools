@@ -839,9 +839,25 @@ function parseStyleCSSLike(str: string, xd: string, errorReporter: (msg: string,
   let token = ""
   let currentRuleName: undefined | string = undefined
   let currentKeyName: undefined | string = undefined
+  // When set, we're inside a quoted value (e.g. background-image: url('data:...'))
+  // and every character is taken literally so data URIs containing : ; , don't
+  // get mis-parsed as CSS delimiters.
+  let quoteChar: undefined | string = undefined
 
   for (let index = 0; index < str.length; index++) {
     const letter = str.slice(index, index + 1)
+
+    if (quoteChar) {
+      if (letter === quoteChar) quoteChar = undefined
+      token += letter
+      continue
+    }
+    if (mode === "inner" && (letter === "'" || letter === '"')) {
+      quoteChar = letter
+      token += letter
+      continue
+    }
+
     if (mode === "outer") {
       // Check for commas which indicate attempted multi-selector syntax
       if (letter === ",") {

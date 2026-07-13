@@ -755,3 +755,72 @@ describe("the minion puzzle", () => {
     }
   })
 })
+
+describe("the spring kiss puzzle", () => {
+  // A real-world stress test for grid art: a 17x17 "art" crossword whose flowers,
+  // sun, leaves and scalloped border are drawn with `imagesInGrid` - 99 per-cell PNG
+  // overlays (35 unique). Colors alone can't represent it, so the design section
+  // gains `background-image: url('data:...')` styles, some combined with a bg colour.
+  // Source: https://zinnabun.blogspot.com/2022/05/spring-kiss.html
+  const amuseJSON = () => JSON.parse(readFileSync(__dirname + "/amuse/spring-kiss.json", "utf-8")) as AmuseTopLevel
+
+  it("converts to the vendored xd", () => {
+    const xd = amuseToXD(amuseJSON())
+    const vendored = readFileSync(__dirname + "/amuse/spring-kiss.xd", "utf-8")
+    expect(xd).toEqual(vendored)
+  })
+
+  it("emits data-URI background-image styles that parse cleanly", () => {
+    const json = xdToJSON(amuseToXD(amuseJSON()))
+
+    expect(json.report.success).toBe(true)
+    expect(json.report.errors).toEqual([])
+    expect(json.clues.across.length).toBe(32)
+    expect(json.clues.down.length).toBe(37)
+
+    // 99 image placements dedupe to 35 unique images; combined with bg colours they
+    // need 49 style rules - which spills out of A-Z into a-z (skipping O for circles).
+    const styles = json.design!.styles
+    expect(Object.keys(styles)).toHaveLength(49)
+    expect(Object.keys(styles)).not.toContain("O")
+    const imageStyles = Object.values(styles).filter((s) => s["background-image"])
+    expect(imageStyles).toHaveLength(35)
+
+    // The data URI - which contains ; and , that would otherwise break the CSS-like
+    // style parser - survives intact through the quote-aware parser.
+    for (const style of imageStyles) {
+      expect(style["background-image"]).toMatch(/^url\('data:image\/png;base64,[A-Za-z0-9+/=]+'\)$/)
+    }
+  })
+
+  it("places art on the correct cells, combined with the cell's bg colour", () => {
+    const json = xdToJSON(amuseToXD(amuseJSON()))
+    const styleAt = (y: number, x: number) => json.design!.styles[json.design!.positions[y][x]!]
+
+    // The whole board carries a blue gradient, so every art cell is a bg colour AND
+    // an image on the same cell. A sun petal sits on cell (row 1, col 6):
+    const petal = styleAt(1, 6)
+    expect(petal["background-image"]).toMatch(/^url\('data:image\/png;base64,/)
+    expect(petal["background-light"]).toBe("#dbf0ff")
+
+    // The scalloped purple frame is a purple bg colour with a scallop image on top.
+    const frame = styleAt(0, 1)
+    expect(frame["background-light"]).toBe("#663696")
+    expect(frame["background-image"]).toMatch(/^url\('data:image\/png;base64,/)
+
+    // All images here are single-cell, so no width/height spans are emitted.
+    for (const style of Object.values(json.design!.styles)) {
+      expect(style["width"]).toBeUndefined()
+      expect(style["height"]).toBeUndefined()
+    }
+  })
+
+  it("round-trips the design (images included) through xd -> JSON -> xd losslessly", () => {
+    const xd = amuseToXD(amuseJSON())
+    const first = xdToJSON(xd)
+    const second = xdToJSON(JSONToXD(first))
+    // The full document re-emit shifts by amuseToXD's empty `subtitle:` line, but the
+    // design - styles and positions, base64 blobs and all - is byte-for-byte stable.
+    expect(second.design).toEqual(first.design)
+  })
+})

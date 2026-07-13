@@ -3,7 +3,9 @@ This isn't a comprehensive doc because to our knowledge there are no OSS consume
 ### 14.0.1
 
 - The Amuse importer collapses `<br>`/`<div>` line breaks inside clue text and revealer metadata to spaces - xd clues are one line each, and multi-line clue bodies produced xd which failed to parse.
-- The playground's Design tab editor now renders background colors (including on blank squares) and circles, shows color swatches on the style picker, and gains an eraser tool.
+- The Amuse importer now converts `imagesInGrid` (per-cell raster art used by decorative "art" puzzles - flowers, borders, etc) into Design section styles carrying a `background-image: url('data:image/png;base64,...')` value, combined with the cell's background colour where present. Identical images are deduped to a single shared style, and multi-cell images emit `width`/`height` spans (defaulting to 1×1). Because a puzzle can now need more than 26 styles, the design style-letter pool spills from `A-Z` into `a-z`.
+- The Design section's `<style>` parser is now quote-aware, so a value like `url('data:...;base64,...')` survives intact - previously the `;`, `,` and `:` inside a data URI were mis-parsed as CSS delimiters.
+- The playground's Design tab editor now renders background colors (including on blank squares), circles, and per-cell `background-image` art, shows color swatches on the style picker, and gains an eraser tool.
 
 ### 14.0.0
 

@@ -38,6 +38,8 @@ export interface AmuseData {
   subtitle: string
   authorURL: string
   cellInfos?: CellInfo[]
+  /** Decorative raster images painted onto grid cells (see ImageInGrid) */
+  imagesInGrid?: ImageInGrid[]
   copyright: Copyright
   showRebus: boolean
   endMessage: string
@@ -130,6 +132,22 @@ export interface CellInfo {
   bgColor?: string
   /** Text colour for the cell as a hex string */
   fgColor?: string
+}
+
+/**
+ * A raster image painted onto the grid, used by decorative "art" puzzles to
+ * draw shapes (petals, leaves, borders, etc) that a flat cell colour can't.
+ * The image spans the inclusive cell rectangle (startX,startY)..(endX,endY);
+ * most are a single cell (start === end).
+ */
+export interface ImageInGrid {
+  startX: number
+  startY: number
+  endX: number
+  endY: number
+  /** Base64-encoded image data (no data: prefix), format given by imageFormat */
+  image: string
+  imageFormat: "png" | string
 }
 
 export enum ClueSection {
