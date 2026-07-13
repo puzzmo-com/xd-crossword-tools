@@ -103,13 +103,19 @@ export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswor
     }
   }, [crosswordJSON?.design?.styles])
 
-  // Resolve the visual treatment for a design style key (color styles + circles)
+  // Resolve the visual treatment for a design style key (color styles + circles + images)
   const getStyleInfo = (styleKey: string) => {
     const style = crosswordJSON?.design?.styles?.[styleKey]
     if (!style) return undefined
     return {
       color: style["background-light"] || style["background-dark"],
       circle: style["background"] === "circle",
+      // background-image is a full CSS value, e.g. url('data:image/png;base64,...').
+      // Art puzzles (imagesInGrid) paint per-cell PNGs on top of the cell colour.
+      backgroundImage: style["background-image"] as string | undefined,
+      // Images default to a single cell; a span covers width x height cells.
+      width: style["width"] ? parseInt(style["width"], 10) : 1,
+      height: style["height"] ? parseInt(style["height"], 10) : 1,
     }
   }
 
@@ -204,6 +210,25 @@ export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswor
                 }}
                 className={hasStyle ? cell : ""}
               >
+                {styleInfo?.backgroundImage && (
+                  <span
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      // A style spans width x height cells (each 30px); the rule char
+                      // sits on the top-left cell and the art overflows into the rest.
+                      width: `${30 * (styleInfo.width || 1)}px`,
+                      height: `${30 * (styleInfo.height || 1)}px`,
+                      backgroundImage: styleInfo.backgroundImage,
+                      backgroundSize: "100% 100%",
+                      backgroundRepeat: "no-repeat",
+                      pointerEvents: "none",
+                      zIndex: 1,
+                    }}
+                  />
+                )}
+
                 {styleInfo?.circle && (
                   <span
                     style={{

@@ -109,6 +109,24 @@ it("handles dashes fine", () => {
   expect(design?.positions.length).toBeGreaterThan(0)
 })
 
+it("keeps data-URI background images intact despite their : ; and , chars", () => {
+  // The data URI (used by amuse "art" puzzles) contains characters that are
+  // otherwise CSS-rule delimiters; the quote-aware parser must not split on them.
+  const dataURI = "url('data:image/png;base64,iVBORw0KGgo=')"
+  const xd = wrapStyle(`
+<style>
+A { background-light: #663696; background-image: ${dataURI}; width: 2 }
+</style>
+`)
+
+  const { design } = xdToJSON(xd, false)
+  expect(design?.styles["A"]).toEqual({
+    "background-light": "#663696",
+    "background-image": dataURI,
+    width: "2",
+  })
+})
+
 it("throws when empty", () => {
   const xd = wrapStyle(``)
 

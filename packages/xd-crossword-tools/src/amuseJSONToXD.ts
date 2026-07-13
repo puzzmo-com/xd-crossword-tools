@@ -49,21 +49,44 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
     }
   }
 
+  // Decorative "art" puzzles paint per-cell raster images onto the grid. Keyed by
+  // the image's top-left (origin) cell "y-x"; the same base64 blob is shared across
+  // cells (e.g. a repeated border piece), so we dedupe by content in the design pass.
+  const imageMap = new Map<string, { data: string; format: string; width: number; height: number }>()
+  if (amuseData.imagesInGrid) {
+    for (const image of amuseData.imagesInGrid) {
+      imageMap.set(`${image.startY}-${image.startX}`, {
+        data: image.image,
+        format: image.imageFormat || "png",
+        width: image.endX - image.startX + 1,
+        height: image.endY - image.startY + 1,
+      })
+    }
+  }
+
   // Track circled cells, cell colors and bars for design section
   const hasCircledCells = amuseData.cellInfos?.some((cell) => cell.isCircled) || false
   const hasColors = amuseData.cellInfos?.some((cell) => cell.bgColor) || false
   const hasBars = amuseData.cellInfos?.some((cell) => cell.rightWall || cell.bottomWall) || false
+  const hasImages = imageMap.size > 0
   if (hasBars) meta.form = "barred"
-  const needsDesign = hasCircledCells || hasBars || hasColors
+  const needsDesign = hasCircledCells || hasBars || hasColors || hasImages
 
   let designPositions: string[][] | undefined = undefined
   let designStyles: Record<string, Record<string, string>> = {}
   let barDesignMap: Map<string, Set<string>> = new Map() // Map of "y-x" to Set of design flags
 
-  // Shared letter allocation for design styles - 'O' is reserved for plain circles
+  // Shared letter allocation for design styles - 'O' is reserved for plain circles.
+  // Art puzzles (per-cell background images) can need many more than 26 styles, so
+  // we spill from A-Z into a-z. Reserved position chars (space, '.', '#') never occur
+  // in this alphanumeric range.
   const usedDesignLetters = new Set<string>()
+  const designLetterCodes = [
+    ...Array.from({ length: 26 }, (_, i) => 65 + i), // A-Z
+    ...Array.from({ length: 26 }, (_, i) => 97 + i), // a-z
+  ]
   const nextDesignLetter = () => {
-    for (let code = 65; code <= 90; code++) {
+    for (const code of designLetterCodes) {
       const letter = String.fromCharCode(code)
       if (letter !== "O" && !usedDesignLetters.has(letter)) {
         usedDesignLetters.add(letter)
@@ -150,15 +173,18 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
         }
       }
 
-      // Track circled and colored cells in design positions
-      if (designPositions && (specificCellInfo?.isCircled || specificCellInfo?.bgColor)) {
-        const circled = specificCellInfo.isCircled
-        const bgColor = specificCellInfo.bgColor
-        const comboKey = `${circled ? "circle" : ""}|${bgColor || ""}`
+      // Track circled, colored and image cells in design positions
+      const image = imageMap.get(cellKey)
+      if (designPositions && (specificCellInfo?.isCircled || specificCellInfo?.bgColor || image)) {
+        const circled = specificCellInfo?.isCircled
+        const bgColor = specificCellInfo?.bgColor
+        // A cell can carry a colour *and* an image (e.g. a coloured frame cell with a
+        // scallop overlay); each distinct combination becomes one shared style rule.
+        const comboKey = `${circled ? "circle" : ""}|${bgColor || ""}|${image ? `${image.format}:${image.data}` : ""}`
 
         let letter = circleColorLetters.get(comboKey)
         if (!letter) {
-          if (circled && !bgColor) {
+          if (circled && !bgColor && !image) {
             letter = "O"
             usedDesignLetters.add("O")
           } else {
@@ -171,6 +197,12 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
           if (bgColor) {
             style["background-light"] = bgColor
             style["background-dark"] = bgColor
+          }
+          if (image) {
+            style["background-image"] = `url('data:image/${image.format};base64,${image.data}')`
+            // Images default to a single cell; only emit spans for multi-cell art.
+            if (image.width > 1) style["width"] = String(image.width)
+            if (image.height > 1) style["height"] = String(image.height)
           }
           designStyles[letter] = style
           circleColorLetters.set(comboKey, letter)
