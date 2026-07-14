@@ -16,6 +16,7 @@ import JSZip from "jszip"
 import { MultiDragAndDrop } from "./components/MultiDragAndDrop"
 import { decodePuzzleMeHTML, amuseToXD } from "xd-crossword-tools"
 import { resolvePuzzleMeUrl, couldBePuzzleMeUrl } from "./utils/resolvePuzzleMeUrl"
+import { fetchViaProxy } from "./utils/corsProxy"
 
 interface ConversionResult {
   filename: string
@@ -64,15 +65,7 @@ function MassImport() {
         // Resolve the URL to a PuzzleMe URL (handles iframes in blog posts, etc.)
         const { puzzleMeUrl } = await resolvePuzzleMeUrl(url)
 
-        const proxyUrl = `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(puzzleMeUrl)}`
-        const response = await fetch(proxyUrl)
-
-        if (!response.ok) {
-          const body = (await response.text().catch(() => "")).trim()
-          const detail = body ? ` — ${body.slice(0, 300)}` : ""
-          throw new Error(`Failed to fetch (${response.status} ${response.statusText})${detail}`)
-        }
-
+        const response = await fetchViaProxy(puzzleMeUrl)
         const html = await response.text()
         const amuseData = decodePuzzleMeHTML(html)
         const xd = amuseToXD(amuseData)

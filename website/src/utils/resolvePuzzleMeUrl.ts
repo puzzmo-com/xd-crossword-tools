@@ -9,7 +9,7 @@
  * License: MIT - https://github.com/thisisparker/xword-dl/blob/bd578c906aa51294b22e83284997832d471aeb3b/LICENSE
  */
 
-const CORS_PROXY = "https://api.codetabs.com/v1/proxy/?quest="
+import { fetchViaProxy } from "./corsProxy"
 
 export interface ResolvedPuzzleMeUrl {
   puzzleMeUrl: string
@@ -70,13 +70,7 @@ function extractPuzzleIdFromDatePicker(html: string, index: number): string | nu
  * Fetch a URL through the CORS proxy
  */
 async function fetchWithProxy(url: string): Promise<string> {
-  const proxyUrl = `${CORS_PROXY}${encodeURIComponent(url)}`
-  const response = await fetch(proxyUrl)
-  if (!response.ok) {
-    const body = (await response.text().catch(() => "")).trim()
-    const detail = body ? ` — ${body.slice(0, 300)}` : ""
-    throw new Error(`Failed to fetch (${response.status} ${response.statusText})${detail}`)
-  }
+  const response = await fetchViaProxy(url)
   return response.text()
 }
 
