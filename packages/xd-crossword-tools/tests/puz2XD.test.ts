@@ -174,6 +174,45 @@ it("handles greyd backgrounds", () => {
   // expect(xd).toMatchFile(`./tests/output/${file}.xd`)
 })
 
+it("converts non-alphanumeric solution characters into rebuses", () => {
+  const path = __dirname + "/puz/plus-symbol-rebus.puz"
+  const puz = readFileSync(path)
+  const xd = puzToXD(puz)
+
+  expect(xd).toMatchInlineSnapshot(`
+    "## Metadata
+
+    title: Plus Symbol Test
+    author: xd-crossword-tools
+    copyright: © 2026
+    description: © 2026
+    rebus: ❶=+ ❷=4
+
+    ## Grid
+
+    CAB
+    A❶E
+    B❷E
+
+
+    ## Clues
+
+    A1. Taxi ~ CAB
+    A4. Grade between an A and an A+, at some schools ~ A+E
+    A5. Earlier than, in textspeak (with a vowel stuck on) ~ B4E
+
+    D1. Yellow ride ~ CAB
+    D2. Top marks, twice over ~ A+4
+    D3. Honey maker ~ BEE"
+  `)
+
+  // The xd should parse back with the "+" and "4" squares as rebus tiles
+  const json = xdToJSON(xd)
+  expect(json.rebuses).toEqual({ "❶": "+", "❷": "4" })
+  expect(json.tiles[1][1]).toMatchObject({ type: "rebus", symbol: "❶", word: "+" })
+  expect(json.tiles[2][1]).toMatchObject({ type: "rebus", symbol: "❷", word: "4" })
+})
+
 it("throws a clear error for truncated/malformed puz files instead of looping forever", () => {
   const path = __dirname + "/puz/truncated-strings.puz"
   const puz = readFileSync(path)
