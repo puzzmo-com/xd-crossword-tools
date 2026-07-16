@@ -89,14 +89,26 @@ export const puzJSLetterToTile = (letter: string): Tile => {
 
 const setupBoard = (grid: Puz2JSONResult["grid"], rebuses: Map<string, string>) => {
   const getNewRebusSymbol = makeGetNewRebusSymbol()
+  const symbolForSolution = new Map<string, string>()
+
+  const addRebus = (solution: string) => {
+    const existing = symbolForSolution.get(solution)
+    if (existing) return existing
+    const symbol = getNewRebusSymbol()
+    symbolForSolution.set(solution, symbol)
+    rebuses.set(symbol, solution)
+    return symbol
+  }
 
   let board = ""
   grid.forEach((line) => {
     line.forEach((letter) => {
       if (typeof letter === "object" && "solution" in letter) {
-        const symbol = getNewRebusSymbol()
-        rebuses.set(symbol, letter["solution"])
-        board += symbol
+        board += addRebus(letter["solution"])
+      } else if (letter !== "." && letter !== "#" && !/^[A-Za-z]$/.test(letter)) {
+        // A non-alphabetic solution character (e.g. the "+" in LGBTQ+, or a digit)
+        // can't live in an xd grid directly, so it becomes a single-character rebus
+        board += addRebus(letter)
       } else {
         board += letter
       }
