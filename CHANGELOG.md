@@ -1,5 +1,9 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 14.1.0
+
+- Add support for a "plain" display for clues that strips out any markup from the clue.
+
 ### 14.0.1
 
 - puz importer handles more rebus cases
