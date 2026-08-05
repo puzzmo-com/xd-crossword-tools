@@ -755,3 +755,29 @@ describe("the minion puzzle", () => {
     }
   })
 })
+
+describe("publish date", () => {
+  const amuseJSON = () => JSON.parse(readFileSync(__dirname + "/amuse/the-minion-puzzle.json", "utf-8")) as AmuseTopLevel
+
+  const dateFor = (mutate: (data: AmuseTopLevel["data"]["attributes"]["amuse_data"]) => void) => {
+    const json = amuseJSON()
+    mutate(json.data.attributes.amuse_data)
+    return amuseToXD(json).match(/^date: (.*)$/m)![1]
+  }
+
+  it("reads the date in the puzzle's publish timezone, not the local one", () => {
+    // 2022-06-02T04:49:19Z - before midnight anywhere west of UTC, so a local-clock
+    // reading gives 2022-06-01 in the Americas.
+    expect(dateFor(() => {})).toBe("2022-06-02")
+  })
+
+  it("does not shift the date for timestamps near midnight UTC", () => {
+    expect(dateFor((d) => (d.publishTime = Date.parse("2022-06-02T00:00:00Z")))).toBe("2022-06-02")
+    expect(dateFor((d) => (d.publishTime = Date.parse("2022-06-02T23:59:59Z")))).toBe("2022-06-02")
+  })
+
+  it("falls back to UTC when the timezone is missing or unrecognised", () => {
+    expect(dateFor((d) => delete (d as Partial<typeof d>).publishTimeZone)).toBe("2022-06-02")
+    expect(dateFor((d) => ((d as any).publishTimeZone = "Not/AZone"))).toBe("2022-06-02")
+  })
+})
