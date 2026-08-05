@@ -1,7 +1,7 @@
 import { JSONToXD } from "./JSONtoXD"
 import type { Clue, Position as CluePosition, CrosswordJSON, Report } from "xd-crossword-tools-parser"
 
-import type { CellInfo, PlacedWord, AmuseTopLevel } from "./amuseJSONToXD.types.d.ts"
+import type { CellInfo, PlacedWord, AmuseTopLevel, PublishTimeZone } from "./amuseJSONToXD.types.d.ts"
 
 /** Convert an Amuse JSON to an XD file. */
 export const amuseToXD = (amuseJSON: AmuseTopLevel) => JSONToXD(convertAmuseToCrosswordJSON(amuseJSON))
@@ -25,7 +25,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
     title: cleanTitle,
     subtitle: amuseData.subtitle || extractedSubtitle || "",
     author: amuseData.author || "Unknown Author",
-    date: formatDate(amuseData.publishTime),
+    date: formatDate(amuseData.publishTime, amuseData.publishTimeZone),
     // copyright: amuseData.copyright === Copyright.Empty ? "" : amuseData.copyright,
     // notes: stripHtml(amuseData.help) + (amuseData.endMessage ? "\n\n" + stripHtml(amuseData.endMessage) : ""),
     width: amuseData.w.toString(),
@@ -516,11 +516,28 @@ function extractSubtitleFromTitle(title: string | undefined): { cleanTitle: stri
   }
 }
 
-function formatDate(timestamp: number | undefined): string {
+/**
+ * Amuse gives a UTC millisecond timestamp plus the timezone the puzzle was published in.
+ * The date has to be read in that timezone: reading it off the local clock instead means
+ * anyone west of it converts puzzles published soon after midnight to the previous day.
+ */
+function formatDate(timestamp: number | undefined, timeZone: PublishTimeZone | undefined): string {
   if (timestamp === undefined) return ""
-  const date = new Date(timestamp)
-  const year = date.getFullYear()
-  const month = (date.getMonth() + 1).toString().padStart(2, "0")
-  const day = date.getDate().toString().padStart(2, "0")
-  return `${year}-${month}-${day}`
+
+  // Parts are picked by type rather than relying on a locale to order them, so this holds
+  // on Node builds shipping only the en-US locale data.
+  const parts = dateFormatterFor(timeZone).formatToParts(new Date(timestamp))
+  const part = (type: "year" | "month" | "day") => parts.find((p) => p.type === type)!.value
+  return `${part("year")}-${part("month")}-${part("day")}`
+}
+
+function dateFormatterFor(timeZone: PublishTimeZone | undefined): Intl.DateTimeFormat {
+  const options: Intl.DateTimeFormatOptions = { year: "numeric", month: "2-digit", day: "2-digit" }
+  try {
+    return new Intl.DateTimeFormat("en-US", { ...options, timeZone: timeZone || "UTC" })
+  } catch {
+    // An unrecognised timezone throws rather than returning a formatter, and a puzzle is
+    // still worth converting with a slightly-off date.
+    return new Intl.DateTimeFormat("en-US", { ...options, timeZone: "UTC" })
+  }
 }
