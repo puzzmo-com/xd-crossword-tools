@@ -216,7 +216,7 @@ D3. A conscious tree. ~ BOOK
             ],
             "metadata": undefined,
             "number": 1,
-            "plainTextDisplay": "Gardener's concern.",
+            "plain": "Gardener's concern.",
             "position": {
               "col": 0,
               "index": 0,
@@ -252,7 +252,7 @@ D3. A conscious tree. ~ BOOK
             ],
             "metadata": undefined,
             "number": 4,
-            "plainTextDisplay": "A reasonable statement.",
+            "plain": "A reasonable statement.",
             "position": {
               "col": 0,
               "index": 1,
@@ -280,7 +280,7 @@ D3. A conscious tree. ~ BOOK
             ],
             "metadata": undefined,
             "number": 5,
-            "plainTextDisplay": "The office centerpiece.",
+            "plain": "The office centerpiece.",
             "position": {
               "col": 0,
               "index": 3,
@@ -318,7 +318,7 @@ D3. A conscious tree. ~ BOOK
             ],
             "metadata": undefined,
             "number": 1,
-            "plainTextDisplay": "To _ly go.",
+            "plain": "To _ly go.",
             "position": {
               "col": 0,
               "index": 0,
@@ -354,7 +354,7 @@ D3. A conscious tree. ~ BOOK
             ],
             "metadata": undefined,
             "number": 2,
-            "plainTextDisplay": "Bigger than britain.",
+            "plain": "Bigger than britain.",
             "position": {
               "col": 1,
               "index": 0,
@@ -382,7 +382,7 @@ D3. A conscious tree. ~ BOOK
             ],
             "metadata": undefined,
             "number": 3,
-            "plainTextDisplay": "A conscious tree.",
+            "plain": "A conscious tree.",
             "position": {
               "col": 3,
               "index": 0,
@@ -573,7 +573,7 @@ D2. A thing. ~ OBJECT
               "body:line": "18",
             },
             "number": 1,
-            "plainTextDisplay": "Band with two words.",
+            "plain": "Band with two words.",
             "position": {
               "col": 0,
               "index": 0,
@@ -614,7 +614,7 @@ D2. A thing. ~ OBJECT
               "body:line": "20",
             },
             "number": 1,
-            "plainTextDisplay": "Reverse santa.",
+            "plain": "Reverse santa.",
             "position": {
               "col": 0,
               "index": 0,
@@ -661,7 +661,7 @@ D2. A thing. ~ OBJECT
               "body:line": "21",
             },
             "number": 2,
-            "plainTextDisplay": "A thing.",
+            "plain": "A thing.",
             "position": {
               "col": 3,
               "index": 0,

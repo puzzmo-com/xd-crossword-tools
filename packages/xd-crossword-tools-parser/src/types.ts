@@ -174,7 +174,7 @@ export interface Clue {
    * Images become their alt text in square brackets (`[a sleepy cat]`, or `[image]` when no alt text was
    * given) and links are kept in markdown form (`[you should read](https://github.com)`).
    */
-  plainTextDisplay: string
+  plain: string
   /** The number, whether it is across or down is handled back at 'clues' */
   number: number
   /** The string after the "~" - if the clue has a split character than this will not be included */
@@ -197,13 +197,13 @@ export interface Clue {
    *
    * When either 'hint' or 'revealer' are set, then template string processing is applied
    * resulting in "hint:display" and "revealer:display" which contain processed markup components,
-   * alongside "hint:plainTextDisplay" and "revealer:plainTextDisplay" which contain the flattened strings.
+   * alongside "hint:plain" and "revealer:plain" which contain the flattened strings.
    */
   metadata?: Record<string, string> & {
     "hint:display"?: ClueComponentMarkup[]
     "revealer:display"?: ClueComponentMarkup[]
-    "hint:plainTextDisplay"?: string
-    "revealer:plainTextDisplay"?: string
+    "hint:plain"?: string
+    "revealer:plain"?: string
   }
 }
 

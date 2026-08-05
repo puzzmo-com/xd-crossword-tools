@@ -323,13 +323,13 @@ describe("xdMarkupToPlainText", () => {
   })
 })
 
-describe("clue.plainTextDisplay", () => {
+describe("clue.plain", () => {
   const xd = readFileSync("./packages/xd-crossword-tools-parser/src/parser/outputs/explicit-alpha-bits.xd", "utf8")
   const originalClue = "A1. Captain of the Pequod ~ AHAB"
 
   it("is set for clues without markup", () => {
     const json = xdToJSON(xd)
-    expect(json.clues.across[0].plainTextDisplay).toBe("Captain of the Pequod")
+    expect(json.clues.across[0].plain).toBe("Captain of the Pequod")
   })
 
   it("is set for clues with markup", () => {
@@ -338,13 +338,13 @@ describe("clue.plainTextDisplay", () => {
     const clue = json.clues.across[0]
 
     expect(clue.body).toBe("{/Captain/} of the {*Pequod*}, {@see here|https://mylink.com@}")
-    expect(clue.plainTextDisplay).toBe("Captain of the Pequod, [see here](https://mylink.com)")
+    expect(clue.plain).toBe("Captain of the Pequod, [see here](https://mylink.com)")
   })
 
   it("is set for clues with images", () => {
     const newMDClue = "A1. {!![https://emojipedia.org/image/y.png|alt text]!} block with alt text ~ AHAB"
     const json = xdToJSON(xd.replace(originalClue, newMDClue))
-    expect(json.clues.across[0].plainTextDisplay).toBe("[alt text] block with alt text")
+    expect(json.clues.across[0].plain).toBe("[alt text] block with alt text")
   })
 
   it("is set on hint and revealer metadata", () => {
@@ -356,7 +356,7 @@ describe("clue.plainTextDisplay", () => {
     const json = xdToJSON(xd.replace(originalClue, newMDClue))
     const clue = json.clues.across[0]
 
-    expect(clue.metadata!["hint:plainTextDisplay"]).toBe("A whaling captain")
-    expect(clue.metadata!["revealer:plainTextDisplay"]).toBe("See [a whale]")
+    expect(clue.metadata!["hint:plain"]).toBe("A whaling captain")
+    expect(clue.metadata!["revealer:plain"]).toBe("See [a whale]")
   })
 })

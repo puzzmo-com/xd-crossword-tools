@@ -436,12 +436,12 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
       if (clue.metadata.hint) {
         const display = xdMarkupProcessor(clue.metadata.hint)
         processedMetadata["hint:display"] = display
-        processedMetadata["hint:plainTextDisplay"] = xdMarkupToPlainText(display)
+        processedMetadata["hint:plain"] = xdMarkupToPlainText(display)
       }
       if (clue.metadata.revealer) {
         const display = xdMarkupProcessor(clue.metadata.revealer)
         processedMetadata["revealer:display"] = display
-        processedMetadata["revealer:plainTextDisplay"] = xdMarkupToPlainText(display)
+        processedMetadata["revealer:plain"] = xdMarkupToPlainText(display)
       }
     }
 
@@ -455,7 +455,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
       tiles,
       metadata: hasFields ? processedMetadata : undefined,
       display: clue.display,
-      plainTextDisplay: xdMarkupToPlainText(clue.display),
+      plain: xdMarkupToPlainText(clue.display),
       direction: dirKey,
       ...(splitResult.splits ? { splits: splitResult.splits } : {}),
       ...(splitResult.rebusInternalSplits ? { rebusInternalSplits: splitResult.rebusInternalSplits } : {}),
