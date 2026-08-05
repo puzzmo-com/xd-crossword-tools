@@ -216,6 +216,7 @@ D3. A conscious tree. ~ BOOK
             ],
             "metadata": undefined,
             "number": 1,
+            "plain": "Gardener's concern.",
             "position": {
               "col": 0,
               "index": 0,
@@ -251,6 +252,7 @@ D3. A conscious tree. ~ BOOK
             ],
             "metadata": undefined,
             "number": 4,
+            "plain": "A reasonable statement.",
             "position": {
               "col": 0,
               "index": 1,
@@ -278,6 +280,7 @@ D3. A conscious tree. ~ BOOK
             ],
             "metadata": undefined,
             "number": 5,
+            "plain": "The office centerpiece.",
             "position": {
               "col": 0,
               "index": 3,
@@ -315,6 +318,7 @@ D3. A conscious tree. ~ BOOK
             ],
             "metadata": undefined,
             "number": 1,
+            "plain": "To _ly go.",
             "position": {
               "col": 0,
               "index": 0,
@@ -350,6 +354,7 @@ D3. A conscious tree. ~ BOOK
             ],
             "metadata": undefined,
             "number": 2,
+            "plain": "Bigger than britain.",
             "position": {
               "col": 1,
               "index": 0,
@@ -377,6 +382,7 @@ D3. A conscious tree. ~ BOOK
             ],
             "metadata": undefined,
             "number": 3,
+            "plain": "A conscious tree.",
             "position": {
               "col": 3,
               "index": 0,
@@ -550,143 +556,146 @@ D2. A thing. ~ OBJECT
 
     const { clues } = xdToJSON(xd, false, true)
     expect(clues).toMatchInlineSnapshot(`
-{
-  "across": [
-    {
-      "answer": "OK|GO",
-      "body": "Band with two words.",
-      "direction": "across",
-      "display": [
-        [
-          "text",
-          "Band with two words.",
+      {
+        "across": [
+          {
+            "answer": "OK|GO",
+            "body": "Band with two words.",
+            "direction": "across",
+            "display": [
+              [
+                "text",
+                "Band with two words.",
+              ],
+            ],
+            "metadata": {
+              "answer:unprocessed": "OK|GO",
+              "body:line": "18",
+            },
+            "number": 1,
+            "plain": "Band with two words.",
+            "position": {
+              "col": 0,
+              "index": 0,
+            },
+            "tiles": [
+              {
+                "letter": "O",
+                "type": "letter",
+              },
+              {
+                "letter": "K",
+                "type": "letter",
+              },
+              {
+                "letter": "G",
+                "type": "letter",
+              },
+              {
+                "letter": "O",
+                "type": "letter",
+              },
+            ],
+          },
         ],
-      ],
-      "metadata": {
-        "answer:unprocessed": "OK|GO",
-        "body:line": "18",
-      },
-      "number": 1,
-      "position": {
-        "col": 0,
-        "index": 0,
-      },
-      "tiles": [
-        {
-          "letter": "O",
-          "type": "letter",
-        },
-        {
-          "letter": "K",
-          "type": "letter",
-        },
-        {
-          "letter": "G",
-          "type": "letter",
-        },
-        {
-          "letter": "O",
-          "type": "letter",
-        },
-      ],
-    },
-  ],
-  "down": [
-    {
-      "answer": "OH|OH|OH",
-      "body": "Reverse santa.",
-      "direction": "down",
-      "display": [
-        [
-          "text",
-          "Reverse santa.",
+        "down": [
+          {
+            "answer": "OH|OH|OH",
+            "body": "Reverse santa.",
+            "direction": "down",
+            "display": [
+              [
+                "text",
+                "Reverse santa.",
+              ],
+            ],
+            "metadata": {
+              "answer:unprocessed": "OH|OH|OH",
+              "body:line": "20",
+            },
+            "number": 1,
+            "plain": "Reverse santa.",
+            "position": {
+              "col": 0,
+              "index": 0,
+            },
+            "tiles": [
+              {
+                "letter": "O",
+                "type": "letter",
+              },
+              {
+                "letter": "H",
+                "type": "letter",
+              },
+              {
+                "letter": "O",
+                "type": "letter",
+              },
+              {
+                "letter": "H",
+                "type": "letter",
+              },
+              {
+                "letter": "O",
+                "type": "letter",
+              },
+              {
+                "letter": "H",
+                "type": "letter",
+              },
+            ],
+          },
+          {
+            "answer": "OBJECT",
+            "body": "A thing.",
+            "direction": "down",
+            "display": [
+              [
+                "text",
+                "A thing.",
+              ],
+            ],
+            "metadata": {
+              "answer:unprocessed": "OBJECT",
+              "body:line": "21",
+            },
+            "number": 2,
+            "plain": "A thing.",
+            "position": {
+              "col": 3,
+              "index": 0,
+            },
+            "tiles": [
+              {
+                "letter": "O",
+                "type": "letter",
+              },
+              {
+                "letter": "B",
+                "type": "letter",
+              },
+              {
+                "letter": "J",
+                "type": "letter",
+              },
+              {
+                "letter": "E",
+                "type": "letter",
+              },
+              {
+                "letter": "C",
+                "type": "letter",
+              },
+              {
+                "letter": "T",
+                "type": "letter",
+              },
+            ],
+          },
         ],
-      ],
-      "metadata": {
-        "answer:unprocessed": "OH|OH|OH",
-        "body:line": "20",
-      },
-      "number": 1,
-      "position": {
-        "col": 0,
-        "index": 0,
-      },
-      "tiles": [
-        {
-          "letter": "O",
-          "type": "letter",
-        },
-        {
-          "letter": "H",
-          "type": "letter",
-        },
-        {
-          "letter": "O",
-          "type": "letter",
-        },
-        {
-          "letter": "H",
-          "type": "letter",
-        },
-        {
-          "letter": "O",
-          "type": "letter",
-        },
-        {
-          "letter": "H",
-          "type": "letter",
-        },
-      ],
-    },
-    {
-      "answer": "OBJECT",
-      "body": "A thing.",
-      "direction": "down",
-      "display": [
-        [
-          "text",
-          "A thing.",
-        ],
-      ],
-      "metadata": {
-        "answer:unprocessed": "OBJECT",
-        "body:line": "21",
-      },
-      "number": 2,
-      "position": {
-        "col": 3,
-        "index": 0,
-      },
-      "tiles": [
-        {
-          "letter": "O",
-          "type": "letter",
-        },
-        {
-          "letter": "B",
-          "type": "letter",
-        },
-        {
-          "letter": "J",
-          "type": "letter",
-        },
-        {
-          "letter": "E",
-          "type": "letter",
-        },
-        {
-          "letter": "C",
-          "type": "letter",
-        },
-        {
-          "letter": "T",
-          "type": "letter",
-        },
-      ],
-    },
-  ],
-}
-`)
+      }
+    `)
   })
 })
 

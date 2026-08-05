@@ -169,6 +169,12 @@ export interface Clue {
   body: string
   /** The body as a set of inline markup components, based on the xd spec, you always want to use this for displaying clues to a user */
   display: ClueComponentMarkup[]
+  /**
+   * The body with all markup flattened into a single string, for consumers which cannot render markup.
+   * Images become their alt text in square brackets (`[a sleepy cat]`, or `[image]` when no alt text was
+   * given) and links are kept in markdown form (`[you should read](https://github.com)`).
+   */
+  plain: string
   /** The number, whether it is across or down is handled back at 'clues' */
   number: number
   /** The string after the "~" - if the clue has a split character than this will not be included */
@@ -190,9 +196,15 @@ export interface Clue {
    * would add to { "hint": " A shot to the heart" } to the metadata. This works for any key
    *
    * When either 'hint' or 'revealer' are set, then template string processing is applied
-   * resulting in "hint:display" and "revealer:display" which contain processed markup components.
+   * resulting in "hint:display" and "revealer:display" which contain processed markup components,
+   * alongside "hint:plain" and "revealer:plain" which contain the flattened strings.
    */
-  metadata?: Record<string, string> & { "hint:display"?: ClueComponentMarkup[]; "revealer:display"?: ClueComponentMarkup[] }
+  metadata?: Record<string, string> & {
+    "hint:display"?: ClueComponentMarkup[]
+    "revealer:display"?: ClueComponentMarkup[]
+    "hint:plain"?: string
+    "revealer:plain"?: string
+  }
 }
 
 export interface Cursor {

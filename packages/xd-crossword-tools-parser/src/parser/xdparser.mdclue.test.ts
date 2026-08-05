@@ -1,4 +1,4 @@
-import { xdMarkupProcessor, xdMarkupSerializer, xdToJSON } from "./xdparser2"
+import { xdMarkupProcessor, xdMarkupSerializer, xdMarkupToPlainText, xdToJSON } from "./xdparser2"
 import { readFileSync } from "fs"
 import { it, expect, describe } from "vitest"
 import type { ClueComponentMarkup } from "../types"
@@ -271,4 +271,92 @@ describe("roundtrip: parse → serialize → parse", () => {
       expect(reparsed).toEqual(parsed)
     })
   }
+})
+
+// --- Plain text tests ---
+
+describe("xdMarkupToPlainText", () => {
+  it("passes plain text through untouched", () => {
+    expect(xdMarkupToPlainText(xdMarkupProcessor("Captain of the Pequod"))).toBe("Captain of the Pequod")
+  })
+
+  it("drops styling and keeps the inner text", () => {
+    expect(xdMarkupToPlainText(xdMarkupProcessor("{/Italic/}, {_underscore_}, or {-strike-thru-}"))).toBe(
+      "Italic, underscore, or strike-thru",
+    )
+    expect(xdMarkupToPlainText(xdMarkupProcessor("H{~2~}O is water"))).toBe("H2O is water")
+    expect(xdMarkupToPlainText(xdMarkupProcessor("E=mc{^2^} is famous"))).toBe("E=mc2 is famous")
+    expect(xdMarkupToPlainText(xdMarkupProcessor("The word {=hello=} in small caps"))).toBe("The word hello in small caps")
+    expect(xdMarkupToPlainText(xdMarkupProcessor("This is {#red|#ff0000|#cc0000#} text"))).toBe("This is red text")
+  })
+
+  it("keeps links in markdown form", () => {
+    expect(xdMarkupToPlainText(xdMarkupProcessor("I think {@you should read|https://github.com@} more"))).toBe(
+      "I think [you should read](https://github.com) more",
+    )
+  })
+
+  it("drops the parens from a link with no url", () => {
+    expect(xdMarkupToPlainText(xdMarkupProcessor("I think {@you should read@} more"))).toBe("I think you should read more")
+  })
+
+  it("represents images by their alt text", () => {
+    expect(xdMarkupToPlainText(xdMarkupProcessor("{![https://example.com/cat.png|a sleepy cat]!} nap spot"))).toBe("[a sleepy cat] nap spot")
+    expect(xdMarkupToPlainText(xdMarkupProcessor("{!![https://example.com/cat.png|a sleepy cat|300|400]!} nap spot"))).toBe(
+      "[a sleepy cat] nap spot",
+    )
+  })
+
+  it("falls back to '[image]' when an image has no alt text", () => {
+    expect(xdMarkupToPlainText(xdMarkupProcessor("{![https://example.com/cat.png]!} nap spot"))).toBe("[image] nap spot")
+  })
+
+  it("flattens nested markup", () => {
+    expect(xdMarkupToPlainText(xdMarkupProcessor("{*{/bold italic/}*}"))).toBe("bold italic")
+    expect(xdMarkupToPlainText(xdMarkupProcessor("{*bold {/and italic/} text*}"))).toBe("bold and italic text")
+    expect(xdMarkupToPlainText(xdMarkupProcessor("{@{*bold link*}|https://example.com@}"))).toBe("[bold link](https://example.com)")
+    expect(xdMarkupToPlainText(xdMarkupProcessor("{*{/{_deep_}/}*}"))).toBe("deep")
+  })
+
+  it("handles an empty clue", () => {
+    expect(xdMarkupToPlainText(xdMarkupProcessor(""))).toBe("")
+  })
+})
+
+describe("clue.plain", () => {
+  const xd = readFileSync("./packages/xd-crossword-tools-parser/src/parser/outputs/explicit-alpha-bits.xd", "utf8")
+  const originalClue = "A1. Captain of the Pequod ~ AHAB"
+
+  it("is set for clues without markup", () => {
+    const json = xdToJSON(xd)
+    expect(json.clues.across[0].plain).toBe("Captain of the Pequod")
+  })
+
+  it("is set for clues with markup", () => {
+    const newMDClue = "A1. {/Captain/} of the {*Pequod*}, {@see here|https://mylink.com@} ~ AHAB"
+    const json = xdToJSON(xd.replace(originalClue, newMDClue))
+    const clue = json.clues.across[0]
+
+    expect(clue.body).toBe("{/Captain/} of the {*Pequod*}, {@see here|https://mylink.com@}")
+    expect(clue.plain).toBe("Captain of the Pequod, [see here](https://mylink.com)")
+  })
+
+  it("is set for clues with images", () => {
+    const newMDClue = "A1. {!![https://emojipedia.org/image/y.png|alt text]!} block with alt text ~ AHAB"
+    const json = xdToJSON(xd.replace(originalClue, newMDClue))
+    expect(json.clues.across[0].plain).toBe("[alt text] block with alt text")
+  })
+
+  it("is set on hint and revealer metadata", () => {
+    const newMDClue = [
+      originalClue,
+      "A1 ^hint: A {*whaling*} captain",
+      "A1 ^revealer: See {![https://example.com/whale.png|a whale]!}",
+    ].join("\n")
+    const json = xdToJSON(xd.replace(originalClue, newMDClue))
+    const clue = json.clues.across[0]
+
+    expect(clue.metadata!["hint:plain"]).toBe("A whaling captain")
+    expect(clue.metadata!["revealer:plain"]).toBe("See [a whale]")
+  })
 })

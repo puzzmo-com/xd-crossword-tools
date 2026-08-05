@@ -273,6 +273,7 @@ export function ipuzToXD(source: string | object): string {
         answer,
         direction,
         display: [],
+        plain: "",
         tiles: clueTiles,
       }
       clues[direction].push(clue)

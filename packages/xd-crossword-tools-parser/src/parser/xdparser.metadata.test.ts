@@ -44,6 +44,7 @@ D3 ^Hint: Registering with a restaurant.
               "Turned on with a flick.",
             ],
           ],
+          "hint:plain": "Turned on with a flick.",
         },
       },
       {
@@ -56,6 +57,7 @@ D3 ^Hint: Registering with a restaurant.
               "All __.",
             ],
           ],
+          "hint:plain": "All __.",
         },
       },
       {
@@ -68,6 +70,7 @@ D3 ^Hint: Registering with a restaurant.
               "Fried.",
             ],
           ],
+          "hint:plain": "Fried.",
         },
       },
       {
@@ -80,6 +83,7 @@ D3 ^Hint: Registering with a restaurant.
               "When you want to make some text stronger.",
             ],
           ],
+          "hint:plain": "When you want to make some text stronger.",
         },
       },
       {
@@ -92,6 +96,7 @@ D3 ^Hint: Registering with a restaurant.
               "A union which left europe.",
             ],
           ],
+          "hint:plain": "A union which left europe.",
         },
       },
       {
@@ -104,6 +109,7 @@ D3 ^Hint: Registering with a restaurant.
               "Registering with a restaurant.",
             ],
           ],
+          "hint:plain": "Registering with a restaurant.",
         },
       },
     ]
@@ -147,6 +153,7 @@ D1 ^Hint: When you want to make some text stronger.
               "Turned: on with a flick.",
             ],
           ],
+          "hint:plain": "Turned: on with a flick.",
         },
       },
       {
@@ -159,6 +166,7 @@ D1 ^Hint: When you want to make some text stronger.
               "When you want to make some text stronger.",
             ],
           ],
+          "hint:plain": "When you want to make some text stronger.",
         },
       },
     ]
