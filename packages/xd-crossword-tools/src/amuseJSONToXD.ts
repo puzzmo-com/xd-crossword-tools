@@ -287,6 +287,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
       tiles: [],
       direction,
       display: [],
+      plainTextDisplay: "",
       position: {
         col: placedWord.x,
         index: placedWord.y,

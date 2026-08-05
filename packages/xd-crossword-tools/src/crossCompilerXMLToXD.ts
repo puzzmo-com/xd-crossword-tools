@@ -415,6 +415,7 @@ export function crossCompilerXMLToXD(xmlString: string): string {
       position: { col: first.col, index: first.row },
       direction: word.direction === "across" ? "across" : "down",
       display: [],
+      plainTextDisplay: "",
       tiles: wordTiles,
       ...(splits.length > 0 && { splits }),
       ...(Object.keys(metadata).length > 0 && { metadata }),

@@ -434,10 +434,14 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     const processedMetadata: typeof clue.metadata = clue.metadata ? { ...clue.metadata } : {}
     if (clue.metadata) {
       if (clue.metadata.hint) {
-        processedMetadata["hint:display"] = xdMarkupProcessor(clue.metadata.hint)
+        const display = xdMarkupProcessor(clue.metadata.hint)
+        processedMetadata["hint:display"] = display
+        processedMetadata["hint:plainTextDisplay"] = xdMarkupToPlainText(display)
       }
       if (clue.metadata.revealer) {
-        processedMetadata["revealer:display"] = xdMarkupProcessor(clue.metadata.revealer)
+        const display = xdMarkupProcessor(clue.metadata.revealer)
+        processedMetadata["revealer:display"] = display
+        processedMetadata["revealer:plainTextDisplay"] = xdMarkupToPlainText(display)
       }
     }
 
@@ -451,6 +455,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
       tiles,
       metadata: hasFields ? processedMetadata : undefined,
       display: clue.display,
+      plainTextDisplay: xdMarkupToPlainText(clue.display),
       direction: dirKey,
       ...(splitResult.splits ? { splits: splitResult.splits } : {}),
       ...(splitResult.rebusInternalSplits ? { rebusInternalSplits: splitResult.rebusInternalSplits } : {}),
@@ -1155,6 +1160,52 @@ export function xdMarkupProcessor(input: string): ClueComponentMarkup[] {
   return parseMarkupContent(input)
 }
 
+/**
+ * Flatten markup components into a single string for consumers which cannot render markup.
+ *
+ * Styling (bold, italics, colour, etc) is dropped and only its inner text survives. Images become
+ * their alt text in square brackets - `[a sleepy cat]`, or `[image]` when no alt text was given - and
+ * links keep both halves in markdown form: `[you should read](https://github.com)`.
+ */
+export function xdMarkupToPlainText(components: ClueComponentMarkup[]): string {
+  return components
+    .map((c) => {
+      const type = c[0]
+      switch (type) {
+        case "text":
+          return c[1]
+        case "italics":
+        case "bold":
+        case "strike":
+        case "underscore":
+        case "subscript":
+        case "superscript":
+        case "smallcaps":
+          return xdMarkupToPlainText(c[2])
+        case "link": {
+          const text = xdMarkupToPlainText(c[3])
+          return c[2] ? `[${text}](${c[2]})` : text
+        }
+        case "img":
+          return `[${c[2] || "image"}]`
+        case "color":
+          return xdMarkupToPlainText(c[4])
+        default:
+          return unhandledMarkupType(type)
+      }
+    })
+    .join("")
+}
+
+/**
+ * Called from the `default` branch of every switch over a markup type. The `never` parameter means
+ * adding a variant to ClueComponentMarkup without extending those switches is a compile error, rather
+ * than a new markup type silently flattening to an empty string.
+ */
+function unhandledMarkupType(type: never): string {
+  return ""
+}
+
 const typeToChar: Record<string, string> = {
   italics: "/",
   bold: "*",
@@ -1198,7 +1249,7 @@ export function xdMarkupSerializer(components: ClueComponentMarkup[]): string {
           return `{#${xdMarkupSerializer(c[4])}|${c[2]}|${c[3]}#}`
         }
         default:
-          return ""
+          return unhandledMarkupType(type)
       }
     })
     .join("")

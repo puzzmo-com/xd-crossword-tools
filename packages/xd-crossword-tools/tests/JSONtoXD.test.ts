@@ -95,6 +95,7 @@ describe("resolveFullClueAnswer", () => {
       ],
       metadata: undefined,
       display: [["text", "Not too much!"]],
+      plainTextDisplay: "Not too much!",
       direction: "across" as const,
       // Internal splits within the rebus at tile position 3
       rebusInternalSplits: { 3: [0, 1] }, // T|A|SK
@@ -114,6 +115,7 @@ describe("resolveFullClueAnswer", () => {
       tiles: [{ type: "letter", letter: "C" }, schrodingerTile, { type: "letter", letter: "N" }, { type: "letter", letter: "E" }],
       direction: "across" as const,
       display: [["text", "Sugar ____"]],
+      plainTextDisplay: "Sugar ____",
       metadata: { alt: "CANE" },
     } as Clue
     expect(resolveFullClueAnswer(clue, "")).toEqual("CONE")
@@ -546,6 +548,7 @@ A1. Not too much! ~ JUST|A|SKOSH\n\n`
       ],
       metadata: undefined,
       display: [["text", "Mixed example"]],
+      plainTextDisplay: "Mixed example",
       direction: "across" as const,
       splits: [5, 6, 7], // Split after TWITCH, after rebus, and after T
       rebusInternalSplits: { 6: [0] }, // D|OT within rebus
@@ -626,11 +629,61 @@ D1. wbr:3`
       ],
       metadata: undefined,
       display: [["text", "All internal splits"]],
+      plainTextDisplay: "All internal splits",
       direction: "across" as const,
       rebusInternalSplits: { 3: [0, 1] },
     } as Clue
 
     // Should produce JUST|A|SKOSH
     expect(resolveFullClueAnswer(clue, "|")).toEqual("JUST|A|SKOSH")
+  })
+})
+
+describe("plainTextDisplay", () => {
+  const markupXD = `## Metadata
+
+title: Markup
+author: Orta
+date: 2021-03-16
+editor: Not set
+
+## Grid
+
+BULB
+OK.O
+L..O
+DESK
+
+## Clues
+
+A1. Gardener's {*concern*}. ~ BULB
+A1 ^hint: Turned on with a {/flick/}.
+
+A4. A {@reasonable|https://example.com@} statement. ~ OK
+A5. The {![https://example.com/desk.png|an office desk]!} centerpiece. ~ DESK
+
+D1. To {_ly_} go. ~ BOLD
+D2. Bigger than {![https://example.com/flag.png]!}. ~ UK
+D3. A {#conscious|#0f0|#0a0#} tree. ~ BOOK`
+
+  it("flattens markup for consumers which cannot render it", () => {
+    const json = xdToJSON(markupXD)
+
+    expect(json.clues.across.map((c) => c.plainTextDisplay)).toEqual([
+      "Gardener's concern.",
+      "A [reasonable](https://example.com) statement.",
+      "The [an office desk] centerpiece.",
+    ])
+    expect(json.clues.down.map((c) => c.plainTextDisplay)).toEqual([
+      "To ly go.",
+      "Bigger than [image].",
+      "A conscious tree.",
+    ])
+    expect(json.clues.across[0].metadata!["hint:plainTextDisplay"]).toBe("Turned on with a flick.")
+  })
+
+  it("does not affect the xd → JSON → xd roundtrip", () => {
+    const json = xdToJSON(markupXD)
+    expect(JSONToXD(json)).toEqual(markupXD)
   })
 })

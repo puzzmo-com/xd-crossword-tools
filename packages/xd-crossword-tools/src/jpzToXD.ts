@@ -294,6 +294,7 @@ export function jpzToXD(xmlString: string): string {
         answer: answer,
         direction: direction.toUpperCase() as "across" | "down",
         display: [],
+        plainTextDisplay: "",
         tiles: [],
       }
       clues[direction].push(clue)
