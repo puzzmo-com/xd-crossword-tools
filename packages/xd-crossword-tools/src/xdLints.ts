@@ -7,8 +7,6 @@ import { Clue, CrosswordJSON, Report } from "xd-crossword-tools-parser"
  * - Answer words appearing in the clue body or hint (giving away the answer)
  * - `-across` / `-down` references in the clue body without `refs` metadata set
  *   (only when the puzzle has a `splitCharacter` defined)
- * - Multi-word answers (via splits) whose hint is missing a `:` qualifier
- *   (e.g. `: Abbr.`, `: Hyph.`, `: 2 wds.`)
  *
  * @param clue - The clue to lint
  * @param ordinal - Whether this is an across or down clue
@@ -61,14 +59,6 @@ export const runLinterForClue = (clue: Clue, ordinal: "across" | "down", crosswo
   const splitCharacter = crossword?.meta.splitCharacter || (crossword?.meta as Record<string, string> | undefined)?.["splitcharacter"]
   if (splitCharacter && (lowerClueBody.includes("-across") || lowerClueBody.includes("-down"))) {
     if (!clue.metadata?.refs) addReport(`Clue ${ref} has a -across or -down hint, but no refs are provided`)
-  }
-
-  // If the answer has a | in it, there should be a flag if the clue doesn't have a : in it, since a | should often indicate : Abbr., : Hyph., : 2 wds. , etc
-  if (clue.splits?.length && lowerHint) {
-    if (!lowerHint.includes(":"))
-      addReport(`${ref} answer has multiple words, but the hint doesn't have a : in it (e.g. : Abbr., : Hyph., : 2 wds. , etc)`)
-    // if (!clue.body.includes(":"))
-    //   addReport(`Clue ${ref} has multiple words, but the clue doesn't have a : in it (e.g. : Abbr., : Hyph., : 2 wds. , etc)`)
   }
 
   return reports
