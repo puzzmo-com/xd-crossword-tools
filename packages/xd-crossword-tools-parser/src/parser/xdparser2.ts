@@ -28,6 +28,8 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
 
   let rawInput: {
     tiles: string[][]
+    /** The line each row of `tiles` came from, so grid problems can be reported in place */
+    tileLines: number[]
     clues: Map<
       string,
       {
@@ -41,6 +43,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     >
   } = {
     tiles: [],
+    tileLines: [],
     clues: new Map(),
   }
 
@@ -170,7 +173,9 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
       case "grid": {
         if (trimmed === "") continue
 
-        rawInput.tiles.push(trimmed.split(""))
+        // Split by code point, not UTF-16 code unit, so an emoji rebus symbol stays one cell
+        rawInput.tiles.push([...trimmed])
+        rawInput.tileLines.push(line)
         continue
       }
 
@@ -311,6 +316,13 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   const { rebuses, schrodingerRebuses } = getRebuses(json.meta.rebus || "")
   json.rebuses = rebuses
   json.tiles = stringGridToTiles(json.rebuses, rawInput.tiles, schrodingerRebuses)
+
+  // Only authoring tools ask for strict, so already-published puzzles keep loading
+  if (strict) {
+    for (const { message, line, col } of undeclaredGridSymbols(rawInput.tiles, rawInput.tileLines, rebuses, schrodingerRebuses)) {
+      json.report.errors.push({ type: "syntax", position: { col, index: line }, length: 1, message })
+    }
+  }
 
   if (json.design) {
     if (!styleTagContent) {
@@ -792,6 +804,54 @@ const getRebuses = (str: string): { rebuses: Record<string, string>; schrodinger
   }
 
   return { rebuses, schrodingerRebuses }
+}
+
+/** Grid characters which mean something on their own, without a `rebus:` declaration backing them */
+const gridControlCharacters = new Set(["#", ".", "_", "*"])
+
+/**
+ * Finds grid cells which are neither A-Z nor declared in the `rebus:` metadata. Undeclared symbols
+ * silently became letter tiles holding a character no keyboard offers, making the puzzle unsolvable.
+ * Reported once per distinct character so a whole bad grid doesn't drown the error list.
+ */
+function undeclaredGridSymbols(
+  tiles: string[][],
+  tileLines: number[],
+  rebuses: Record<string, string>,
+  schrodingerRebuses: Record<string, string[]>,
+) {
+  const declared = new Set([...Object.keys(rebuses), ...Object.keys(schrodingerRebuses)])
+  const seen = new Map<string, { line: number; col: number; count: number }>()
+
+  tiles.forEach((row, rowI) => {
+    row.forEach((char, colI) => {
+      if (/^[A-Z]$/.test(char)) return
+      if (gridControlCharacters.has(char) || declared.has(char)) return
+
+      const existing = seen.get(char)
+      if (existing) existing.count++
+      else seen.set(char, { line: tileLines[rowI] ?? 0, col: colI, count: 1 })
+    })
+  })
+
+  return Array.from(seen, ([char, { line, col, count }]) => ({
+    line,
+    col,
+    message: `${describeGridSymbol(char)}${count > 1 ? ` (${count} cells)` : ""}. ${adviceForGridSymbol(char)}`,
+  }))
+}
+
+const describeGridSymbol = (char: string) => {
+  if (char === " ") return "The grid contains a space"
+  if (/^[a-z]$/.test(char)) return `The grid contains the lowercase letter '${char}'`
+  return `The grid contains '${char}', which is not a letter and is not declared in the 'rebus:' metadata`
+}
+
+const adviceForGridSymbol = (char: string) => {
+  if (char === " ") return "Use '#' or '.' for a block, or '_' for a cell which does not exist."
+  if (/^[a-z]$/.test(char))
+    return `Grids are uppercase, so use '${char.toUpperCase()}'. Lowercase used to mark a circled square - that now belongs in a '## Design' section.`
+  return `Declare it as a rebus (e.g. 'rebus: ${char}=${char}', or 'rebus: ${char}=${char} ${char}=WORD' to also accept a spelt-out answer) or replace it with a letter.`
 }
 
 const toTitleSentence = (strs: string[]) => {

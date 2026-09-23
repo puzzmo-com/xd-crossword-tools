@@ -1,5 +1,10 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### Unreleased
+
+- Grid cells are now split by code point instead of UTF-16 code unit, so an emoji used as a rebus symbol is one cell. Previously it was torn into two surrogate halves, which widened the row and produced two letter tiles holding invalid characters.
+- `xdToJSON` in strict mode reports a syntax error for any grid cell which is not `A-Z`, not one of `#`, `.`, `_`, `*`, and not declared in the `rebus:` metadata. Undeclared symbols used to become letter tiles holding a character no keyboard offers, making the puzzle unsolvable. Reported once per distinct character, positioned at its first occurrence. Non-strict parses are unaffected, so already-published puzzles keep loading.
+
 ### 14.1.1
 
 - Drop the clue linter warning which asked multi-word answers (answers with splits) to carry a `:` qualifier in their hint, e.g. `: Abbr.`, `: Hyph.`, `: 2 wds.`
