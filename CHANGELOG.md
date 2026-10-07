@@ -1,5 +1,9 @@
 This isn't a comprehensive doc because to our knowledge there are no OSS consumers of this lib, but for posterities sake here are the breaking changes:
 
+### 14.2.0
+
+- Rewrites the .puz export so the files open in Across Lite and other strict readers, and adds `JSONToPuz`/`xdToPuz` which also export pre-filled `## Start` squares and notes. The original .xd is embedded in a custom `XDOC` section so `puzToXD` can re-import it losslessly, and imported .puz notes now go to a `## Notes` section instead of `description:` metadata.
+
 ### 14.1.1
 
 - Drop the clue linter warning which asked multi-word answers (answers with splits) to carry a `:` qualifier in their hint, e.g. `: Abbr.`, `: Hyph.`, `: 2 wds.`

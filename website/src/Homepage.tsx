@@ -30,7 +30,7 @@ import { convertToCrosswordFormat } from "./utils/convertToCrosswordFormat"
 import { CrosswordBarPreview } from "./components/CrosswordPreview"
 import { readmeHtml } from "virtual:readme"
 import { Link } from "wouter"
-import { version, puzEncode, decodePuzzleMeHTML, amuseToXD, type CrosswordJSON } from "xd-crossword-tools"
+import { version, JSONToPuz, decodePuzzleMeHTML, amuseToXD, type CrosswordJSON } from "xd-crossword-tools"
 import { resolvePuzzleMeUrl } from "./utils/resolvePuzzleMeUrl"
 import { compressToEncodedURIComponent } from "lz-string"
 
@@ -196,66 +196,12 @@ function App() {
     }
   }
 
-  // Convert CrosswordJSON to the format expected by puzEncode
-  const crosswordJSONToPuzFormat = (json: CrosswordJSON) => {
-    // Build the grid as string[][]
-    const grid: string[][] = json.tiles.map((row) =>
-      row.map((tile) => {
-        if (tile.type === "blank") return "."
-        if (tile.type === "letter") return tile.letter
-        if (tile.type === "rebus") return tile.word
-        return "."
-      }),
-    )
-
-    // Build clues arrays indexed by clue number
-    const across: string[] = []
-    const down: string[] = []
-    json.clues.across.forEach((clue) => {
-      across[clue.number] = clue.body
-    })
-    json.clues.down.forEach((clue) => {
-      down[clue.number] = clue.body
-    })
-
-    // Find circles from design if present
-    const circles: number[] = []
-    if (json.design) {
-      const circleStyles = new Set<string>()
-      for (const [key, style] of Object.entries(json.design.styles || {})) {
-        if (style.background === "circle") circleStyles.add(key)
-      }
-      if (circleStyles.size > 0) {
-        json.design.positions.forEach((row, rowIdx) => {
-          row.forEach((styleKey, colIdx) => {
-            if (circleStyles.has(styleKey)) {
-              circles.push(rowIdx * row.length + colIdx)
-            }
-          })
-        })
-      }
-    }
-
-    return {
-      grid,
-      meta: {
-        title: json.meta.title || "",
-        author: json.meta.author || "",
-        copyright: json.meta.copyright || "",
-      },
-      clues: { across, down },
-      circles,
-      shades: [] as number[],
-    }
-  }
-
   // Download the current crossword as a .puz file
   const downloadPuz = () => {
     if (!crosswordJSON) return
 
     try {
-      const puzData = crosswordJSONToPuzFormat(crosswordJSON)
-      const puzBytes = puzEncode(puzData)
+      const puzBytes = JSONToPuz(crosswordJSON, { xd })
       const blob = new Blob([puzBytes], { type: "application/octet-stream" })
       const url = URL.createObjectURL(blob)
       const a = document.createElement("a")
@@ -422,6 +368,7 @@ function App() {
                 <Crossword
                   data={convertToCrosswordFormat(crosswordJSON)}
                   theme={{
+                    allowNonSquare: true,
                     focusBackground: "#0d5526",
                     highlightBackground: "#d1d9d4",
                     numberColor: "#1a1f1c",

@@ -19,7 +19,6 @@ it("can handle going back to an xd file", () => {
     date: Not set
     editor: Not set
     copyright: © 2021
-    description: N/A
 
     ## Grid
 
@@ -169,7 +168,6 @@ it("doesnt include the editor metadata", () => {
     date: Not set
     editor: Not set
     copyright: © 2021
-    description: N/A
 
     ## Grid
 
@@ -320,7 +318,6 @@ it("doesnt include the editor metadata", () => {
     date: Not set
     editor: Not set
     copyright: © 2021
-    description: N/A
 
     ## Grid
 
