@@ -51,29 +51,29 @@ describe(editorInfoAtCursor.name, () => {
     }
 
     expect(json.editorInfo?.sections).toMatchInlineSnapshot(`
-[
-  {
-    "endLine": 8,
-    "startLine": 0,
-    "type": "metadata",
-  },
-  {
-    "endLine": 26,
-    "startLine": 9,
-    "type": "grid",
-  },
-  {
-    "endLine": 295,
-    "startLine": 27,
-    "type": "clues",
-  },
-  {
-    "endLine": 318,
-    "startLine": 296,
-    "type": "design",
-  },
-]
-`)
+      [
+        {
+          "endLine": 7,
+          "startLine": 0,
+          "type": "metadata",
+        },
+        {
+          "endLine": 25,
+          "startLine": 8,
+          "type": "grid",
+        },
+        {
+          "endLine": 294,
+          "startLine": 26,
+          "type": "clues",
+        },
+        {
+          "endLine": 317,
+          "startLine": 295,
+          "type": "design",
+        },
+      ]
+    `)
 
     expect("\n" + lines.join("\n")).toMatchInlineSnapshot(`
       "
@@ -84,7 +84,6 @@ describe(editorInfoAtCursor.name, () => {
              | date: Not set
              | editor: Not set
              | copyright: © 2021
-             | description: N/A
              | 
              | ## Grid
              | 

@@ -45,7 +45,6 @@ it("handles greyd backgrounds", () => {
     title: June 8, 2022 - "Rhythm Parts" - Ben Tausig, edited by Francis Heaney
     author: Ben Tausig
     copyright: N/A
-    description: N/A
 
     ## Grid
 
@@ -185,7 +184,6 @@ it("converts non-alphanumeric solution characters into rebuses", () => {
     title: Plus Symbol Test
     author: xd-crossword-tools
     copyright: © 2026
-    description: © 2026
     rebus: ❶=+ ❷=4
 
     ## Grid
@@ -203,7 +201,12 @@ it("converts non-alphanumeric solution characters into rebuses", () => {
 
     D1. Yellow ride ~ CAB
     D2. Top marks, twice over ~ A+4
-    D3. Honey maker ~ BEE"
+    D3. Honey maker ~ BEE
+
+    ## Notes
+
+    © 2026
+    "
   `)
 
   // The xd should parse back with the "+" and "4" squares as rebus tiles

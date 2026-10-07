@@ -163,7 +163,8 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     switch (mode) {
       // NOOP
       case "notes":
-        json.notes += content
+        // Keep the line breaks, but skip any blank lines before the notes start
+        json.notes = json.notes ? json.notes + "\n" + content : content
         continue
 
       // Store it for later parsing once we have rebuses
@@ -323,6 +324,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
 
   // The process above will make pretty white-spacey answers.
   if (json.metapuzzle) json.metapuzzle.answer = json.metapuzzle.answer.trim()
+  json.notes = json.notes.trimEnd()
 
   const useBarredLogic = json.meta.form === "barred"
 

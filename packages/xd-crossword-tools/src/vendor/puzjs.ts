@@ -12,281 +12,203 @@
 // reference: https://code.google.com/archive/p/puz/wikis/FileFormat.wiki
 
 // === ENCODE ===
-function numToBytes(len: number, val?: number) {
-  val = val || 0
-  var result = new Uint8Array(len)
-  for (var i = len - 1; i >= 0; i -= 1) {
-    result[i] = val % 256
-    val = Math.floor(val / 256)
-  }
-  return result
+//
+// The upstream encoder stubbed out every checksum and wrote numbers big-endian, which produced files
+// that Across Lite (and other strict readers) refuse to open. This follows the spec in full:
+// all numbers are little-endian, and every checksum is computed.
+
+/** The shape `encode` accepts, `meta.notes` (or `meta.description`, which is what `decode` produces) becomes the notes string */
+export interface PuzEncodeInput {
+  grid: string[][]
+  meta: { title?: string; author?: string; copyright?: string; notes?: string; description?: string }
+  clues: { across: (string | undefined)[]; down: (string | undefined)[] }
+  circles?: number[]
+  shades?: number[]
+  /** Letters the player starts with, indexed like the grid; anything not a letter is left empty */
+  progress?: (string | undefined)[][]
+  /** Indexes of squares whose progress letter was given rather than solved, e.g. pre-filled squares */
+  given?: number[]
+  /** Additional sections to append, codes must be 4 uppercase letters and data at most 65535 bytes */
+  extraSections?: { code: string; data: Uint8Array }[]
 }
 
-function strToBytes(str: string, end?: string) {
-  str = str || ""
-  if (end === undefined) {
-    end = "\0"
-  }
-  str += end
-  var result = new Uint8Array(str.length)
-  for (var i = 0; i < str.length; i += 1) {
-    result[i] = str.charCodeAt(i)
-  }
-  return result
+// Windows-1252 has printable characters in 0x80-0x9F where Latin-1 has control codes, .puz readers
+// treat strings as Windows-1252 so this is where curly quotes, dashes and ellipses live.
+const cp1252: Record<number, number> = {
+  0x20ac: 0x80, 0x201a: 0x82, 0x0192: 0x83, 0x201e: 0x84, 0x2026: 0x85, 0x2020: 0x86, 0x2021: 0x87,
+  0x02c6: 0x88, 0x2030: 0x89, 0x0160: 0x8a, 0x2039: 0x8b, 0x0152: 0x8c, 0x017d: 0x8e, 0x2018: 0x91,
+  0x2019: 0x92, 0x201c: 0x93, 0x201d: 0x94, 0x2022: 0x95, 0x2013: 0x96, 0x2014: 0x97, 0x02dc: 0x98,
+  0x2122: 0x99, 0x0161: 0x9a, 0x203a: 0x9b, 0x0153: 0x9c, 0x017e: 0x9e, 0x0178: 0x9f,
 }
 
-// Unsure what the type for byteArrays is, as neither
-// UInt8Array nor Buffer fit here
-function concat(byteArrays: any[]) {
-  var totalLength = 0
-  byteArrays.forEach(function (bytes) {
-    totalLength += bytes.length
-  })
-  var result = new Uint8Array(totalLength)
-  var currentIndex = 0
-  byteArrays.forEach(function (bytes) {
+function charToByte(char: string): number {
+  const code = char.codePointAt(0)!
+  if (code < 0x80 || (code >= 0xa0 && code <= 0xff)) return code
+  if (cp1252[code] !== undefined) return cp1252[code]
+  // Try dropping accents (e.g. "ő" -> "o") before giving up
+  const stripped = char.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+  if (stripped.length === 1 && stripped !== char) return charToByte(stripped)
+  return "?".charCodeAt(0)
+}
+
+function strToBytes(str: string | undefined, nulTerminate = true): Uint8Array {
+  const bytes = Array.from(str || "", charToByte)
+  if (nulTerminate) bytes.push(0)
+  return Uint8Array.from(bytes)
+}
+
+function u16(val: number): Uint8Array {
+  return Uint8Array.from([val & 0xff, (val >> 8) & 0xff])
+}
+
+function concat(byteArrays: Uint8Array[]) {
+  const result = new Uint8Array(byteArrays.reduce((total, bytes) => total + bytes.length, 0))
+  let currentIndex = 0
+  for (const bytes of byteArrays) {
     result.set(bytes, currentIndex)
     currentIndex += bytes.length
-  })
-  return result
-}
-
-function Checksum_02() {
-  return numToBytes(2)
-} // stub
-
-function FileMagic_0C() {
-  return strToBytes("ACROSS&DOWN")
-} // stub
-
-function CIBChecksum_02() {
-  return numToBytes(2)
-} // stub
-
-function MaskedLowChecksums_04() {
-  return numToBytes(4)
-} // stub
-
-function MaskedHighChecksums_04() {
-  return numToBytes(4)
-} // stub
-
-function VersionString_04() {
-  return numToBytes(4)
-} // stub
-
-function Reserved1C_02() {
-  return numToBytes(2)
-} // stub
-
-function ScrambledChecksum_02() {
-  return numToBytes(2)
-} // stub
-
-function Reserved20_0C() {
-  return numToBytes(12)
-} // stub
-
-function Width_01(puzzle: Puzzle) {
-  return numToBytes(1, puzzle.grid[0].length)
-}
-
-function Height_01(puzzle: Puzzle) {
-  return numToBytes(1, puzzle.grid.length)
-}
-
-function NumClues_02(puzzle: Puzzle) {
-  var allClues = puzzle.clues.across.concat(puzzle.clues.down).filter(function (clue) {
-    return clue !== undefined
-  })
-  return numToBytes(2, allClues.length)
-}
-
-function UnknownBitmask_02() {
-  return numToBytes(2)
-} // stub
-
-function ScrambledTag_02() {
-  // indicate that the puzzle is not scrambled by putting 0s here
-  return numToBytes(2, 0)
-}
-
-function BoardSolution(puzzle: Puzzle) {
-  var solString = ""
-  puzzle.grid.forEach(function (row) {
-    row.forEach(function (cell) {
-      var sol = cell
-      if (sol === ".") {
-        // black square, append a '.'
-        solString += "."
-      } else {
-        // in case of rebus, only append first char
-        // rebus solutions are handled in the Extras Section
-        solString += sol.substring(0, 1)
-      }
-    })
-  })
-  return strToBytes(solString, "")
-}
-
-function BoardProgress(puzzle: Puzzle) {
-  var progressString = ""
-  puzzle.grid.forEach(function (row) {
-    row.forEach(function (cell) {
-      // In line 430ish we extend the string with a .solution if it is rebus
-      // @ts-ignore
-      var sol = cell.solution
-      if (sol === ".") {
-        // black square, append a '.'
-        progressString += "."
-      } else {
-        // we don't support user-progress yet, so we append '-' (empty cell)
-        progressString += "-"
-      }
-    })
-  })
-  return strToBytes(progressString, "")
-}
-
-function Title(puzzle: Puzzle) {
-  return strToBytes(puzzle.meta.title)
-}
-
-function Author(puzzle: Puzzle) {
-  return strToBytes(puzzle.meta.author)
-}
-
-function Copyright(puzzle: Puzzle) {
-  return strToBytes(puzzle.meta.copyright)
-}
-
-function Clues(puzzle: Puzzle) {
-  // ordered numerically, breaking ties by across before down
-  var cluesList = []
-  var across = puzzle.clues.across
-  var down = puzzle.clues.down
-  for (var i = 0; i < across.length || i < down.length; i += 1) {
-    if (across[i] !== undefined) {
-      cluesList.push(across[i])
-    }
-    if (down[i] !== undefined) {
-      cluesList.push(down[i])
-    }
   }
-  var byteArrays = cluesList.map(function (clue) {
-    return strToBytes(clue)
-  })
-  return concat(byteArrays)
-}
-
-function Notes(puzzle: Puzzle) {
-  return strToBytes(puzzle.meta.copyright)
-}
-
-function Extension(code: string, bytes: Uint8Array) {
-  var codeBytes = strToBytes(code, "") // must be length 4
-  var length = bytes.length
-  var lengthBytes = new Uint8Array(2)
-  lengthBytes[0] = Math.floor(length / 256)
-  lengthBytes[1] = length % 256
-  var checksum = new Uint8Array(2) // TODO implement this stuff
-  var header = concat([codeBytes, lengthBytes, checksum])
-  var result = concat([header, bytes])
   return result
 }
 
-function Rebus(puzzle: Puzzle) {
-  var table: any[] = []
-  var sols: any[] = []
-  var idx = 0
-  puzzle.grid.forEach(function (row) {
-    row.forEach(function (cell) {
+function checksumRegion(bytes: Uint8Array, cksum = 0) {
+  for (let i = 0; i < bytes.length; i++) {
+    cksum = cksum & 1 ? (cksum >> 1) | 0x8000 : cksum >> 1
+    cksum = (cksum + bytes[i]) & 0xffff
+  }
+  return cksum
+}
+
+function extension(code: string, data: Uint8Array) {
+  return concat([strToBytes(code, false), u16(data.length), u16(checksumRegion(data)), data, Uint8Array.of(0)])
+}
+
+function rebusExtensions(puzzle: PuzEncodeInput) {
+  const sols: string[] = []
+  const grbs = new Uint8Array(puzzle.grid.length * puzzle.grid[0].length)
+  let idx = 0
+  for (const row of puzzle.grid) {
+    for (const cell of row) {
       if (cell && cell.length > 1) {
-        var sol = cell
-        if (sols.indexOf(sol) === -1) {
-          sols.push(sol)
-        }
-        table[idx] = sols.indexOf(sol) + 1
+        if (!sols.includes(cell)) sols.push(cell)
+        grbs[idx] = sols.indexOf(cell) + 1
       }
       idx += 1
-    })
-  })
-
-  var grbs = new Uint8Array(puzzle.grid.length * puzzle.grid[0].length)
-  table.forEach(function (v, i) {
-    grbs[i] = v
-  })
-  var enc = new TextEncoder()
-  var solstring =
-    sols
-      .map(function (sol, i) {
-        return i + ":" + sol
-      })
-      .join(";") + ";"
-  var rtbl = enc.encode(solstring)
-  // dict string format is k1:v1;k2:v2;...;kn:vn;
-  if (sols.length) {
-    return concat([Extension("GRBS", grbs), Extension("RTBL", rtbl)])
+    }
   }
+  if (!sols.length) return new Uint8Array(0)
+
+  // dict string format is k1:v1;k2:v2;...;kn:vn; where the key is the GRBS value minus 1, padded to 2 chars
+  const rtbl = sols.map((sol, i) => `${i < 10 ? " " : ""}${i}:${sol};`).join("")
+  return concat([extension("GRBS", grbs), extension("RTBL", strToBytes(rtbl, false))])
 }
 
-function Circles(puzzle: Puzzle) {
-  var circles = puzzle.circles || []
-  var shades = puzzle.shades || []
-  if (circles.length + shades.length > 0) {
-    var markup = new Uint8Array(puzzle.grid.length * puzzle.grid[0].length)
-    circles.forEach(function (i) {
-      markup[i] = markup[i] | 128
-    })
-    shades.forEach(function (i) {
-      markup[i] = markup[i] | 8
-    })
-    return Extension("GEXT", markup)
-  }
+function markupExtension(puzzle: PuzEncodeInput) {
+  const circles = puzzle.circles || []
+  const shades = puzzle.shades || []
+  const given = puzzle.given || []
+  if (circles.length + shades.length + given.length === 0) return new Uint8Array(0)
+
+  const markup = new Uint8Array(puzzle.grid.length * puzzle.grid[0].length)
+  for (const i of circles) markup[i] |= 0x80
+  for (const i of shades) markup[i] |= 0x08
+  for (const i of given) markup[i] |= 0x40
+  return extension("GEXT", markup)
 }
 
 // .puz format documentation: https://code.google.com/archive/p/puz/wikis/FileFormat.wiki
-var format = [
-  //  ===== Header
-  //
+function encodePuz(puzzle: PuzEncodeInput) {
+  const width = puzzle.grid[0].length
+  const height = puzzle.grid.length
 
-  Checksum_02, // offset  0
-  FileMagic_0C, // offset  2
-  CIBChecksum_02, // offset 14
-  MaskedLowChecksums_04, // offset 16
-  MaskedHighChecksums_04, // offset 20
-  VersionString_04, // offset 24
-  Reserved1C_02, // offset 28
-  ScrambledChecksum_02, // offset 30
-  Reserved20_0C, // offset 32
-  Width_01, // offset 44
-  Height_01, // offset 45
-  NumClues_02, // offset 46
-  UnknownBitmask_02, // offset 48
-  ScrambledTag_02, // offset 50
+  // Rebus squares only keep their first letter in the solution, the full answer lives in GRBS/RTBL
+  const solution = strToBytes(puzzle.grid.map((row) => row.map((cell) => (cell === "." ? "." : cell.substring(0, 1))).join("")).join(""), false)
+  const progress = strToBytes(
+    puzzle.grid
+      .map((row, r) =>
+        row
+          .map((cell, c) => {
+            if (cell === ".") return "."
+            const entry = puzzle.progress?.[r]?.[c]
+            return entry && /^[^.\-\s]/.test(entry) ? entry.substring(0, 1) : "-"
+          })
+          .join(""),
+      )
+      .join(""),
+    false,
+  )
 
-  // ===== Puzzle Layout
-  //
-  // SIZE = width*height
+  // Ordered numerically, breaking ties by across before down
+  const clues: string[] = []
+  const { across, down } = puzzle.clues
+  for (let i = 0; i < across.length || i < down.length; i++) {
+    if (across[i] !== undefined) clues.push(across[i]!)
+    if (down[i] !== undefined) clues.push(down[i]!)
+  }
 
-  BoardSolution, // offset 52
-  BoardProgress, // offset 52+SIZE
+  const title = strToBytes(puzzle.meta.title)
+  const author = strToBytes(puzzle.meta.author)
+  const copyright = strToBytes(puzzle.meta.copyright)
+  const clueBytes = clues.map((clue) => strToBytes(clue))
+  const notes = strToBytes(puzzle.meta.notes ?? puzzle.meta.description)
 
-  // ===== Strings
-  //
-  // Starts at offset 52 + 2 * SIZE,
-  // Each string ends with a NUL byte
+  // Width, height, clue count, the "unknown" bitmask (always 1 in the wild) and the scrambled tag
+  const cib = concat([Uint8Array.of(width, height), u16(clues.length), u16(1), u16(0)])
 
-  Title,
-  Author,
-  Copyright,
-  Clues,
-  Notes,
+  // Title/author/copyright/notes include their NUL terminator but only when non-empty, clues never do
+  const textChecksum = (cksum: number) => {
+    for (const str of [title, author, copyright]) if (str.length > 1) cksum = checksumRegion(str, cksum)
+    for (const clue of clueBytes) cksum = checksumRegion(clue.subarray(0, -1), cksum)
+    if (notes.length > 1) cksum = checksumRegion(notes, cksum)
+    return cksum
+  }
 
-  // ===== Extra Sections
-  Rebus,
-  Circles,
-]
+  const cibChecksum = checksumRegion(cib)
+  const solutionChecksum = checksumRegion(solution)
+  const progressChecksum = checksumRegion(progress)
+  const textOnlyChecksum = textChecksum(0)
+  const globalChecksum = textChecksum(checksumRegion(progress, checksumRegion(solution, cibChecksum)))
+
+  const maskedLow = Uint8Array.of(
+    0x49 ^ (cibChecksum & 0xff),
+    0x43 ^ (solutionChecksum & 0xff),
+    0x48 ^ (progressChecksum & 0xff),
+    0x45 ^ (textOnlyChecksum & 0xff),
+  )
+  const maskedHigh = Uint8Array.of(
+    0x41 ^ (cibChecksum >> 8),
+    0x54 ^ (solutionChecksum >> 8),
+    0x45 ^ (progressChecksum >> 8),
+    0x44 ^ (textOnlyChecksum >> 8),
+  )
+
+  return concat([
+    u16(globalChecksum), // offset  0
+    strToBytes("ACROSS&DOWN"), // offset  2
+    u16(cibChecksum), // offset 14
+    maskedLow, // offset 16
+    maskedHigh, // offset 20
+    strToBytes("1.3"), // offset 24
+    new Uint8Array(2), // offset 28, reserved
+    u16(0), // offset 30, scrambled checksum
+    new Uint8Array(12), // offset 32, reserved
+    cib, // offset 44
+    solution, // offset 52
+    progress, // offset 52 + SIZE
+    title,
+    author,
+    copyright,
+    ...clueBytes,
+    notes,
+    rebusExtensions(puzzle),
+    markupExtension(puzzle),
+    ...(puzzle.extraSections || []).map((section) => {
+      if (!/^[A-Z]{4}$/.test(section.code)) throw new Error(`Invalid .puz section code: ${section.code}`)
+      if (section.data.length > 0xffff) throw new Error(`The ${section.code} section is too large for a .puz file`)
+      return extension(section.code, section.data)
+    }),
+  ])
+}
 
 // === DECODE ===
 
@@ -341,10 +263,33 @@ var _slicedToArray = (function () {
   }
 })()
 
-function getExtension(bytes: Uint8Array, code: string) {
-  // console.log("getExtension", code);
-  // console.log("=", code.charCodeAt(0), code.charCodeAt(1), code.charCodeAt(2), code.charCodeAt(3));
-  // struct byte format is 4S H H
+type Sections = Map<string, { data: Uint8Array; checksumValid: boolean }>
+
+/**
+ * Walks the extra sections which come after the strings: each one is a 4 char code, a little-endian
+ * length and checksum, the data, and a NUL terminator.
+ */
+function readSections(bytes: Uint8Array, offset: number): Sections {
+  var sections: Sections = new Map()
+  while (offset + 8 <= bytes.length) {
+    var code = String.fromCharCode(bytes[offset], bytes[offset + 1], bytes[offset + 2], bytes[offset + 3])
+    if (!/^[A-Z]{4}$/.test(code)) break
+    var length = bytes[offset + 4] | (bytes[offset + 5] << 8)
+    var checksum = bytes[offset + 6] | (bytes[offset + 7] << 8)
+    var data = bytes.subarray(offset + 8, offset + 8 + length)
+    if (data.length !== length) break
+    sections.set(code, { data: data, checksumValid: checksumRegion(data) === checksum })
+    offset += 8 + length + 1
+  }
+  return sections
+}
+
+/**
+ * The original lookup, which scans the whole file for the section's code. Only used when the
+ * sections can't be walked (e.g. a file with a malformed string section) as it can false-match
+ * on clue text.
+ */
+function scanForSection(bytes: Uint8Array, code: string) {
   var i = 0,
     j = 0
   for (i = 0; i < bytes.length; i += 1) {
@@ -356,28 +301,21 @@ function getExtension(bytes: Uint8Array, code: string) {
     }
   }
   if (j === code.length) {
-    // we found the code
-    var length = bytes[i] * 256 + bytes[i + 1]
-    i += 4 // skip the H H
-    return Array.from(bytes).slice(i, i + length)
+    var length = bytes[i] | (bytes[i + 1] << 8)
+    i += 4 // skip the length and checksum
+    return bytes.subarray(i, i + length)
   }
-  return null // could not find
+  return null
 }
 
-function getRebus(bytes: Uint8Array) {
-  var grbs = "GRBS"
-  var rtbl = "RTBL"
-
-  var table = getExtension(bytes, grbs)
-  if (!table) {
+function getRebus(sections: Sections) {
+  var table = sections.get("GRBS")?.data
+  var solbytes = sections.get("RTBL")?.data
+  if (!table || !solbytes) {
     return // no rebus
   }
-  var solbytes = getExtension(bytes, rtbl)
-  if (!solbytes) {
-    return
-  }
   var enc = new TextDecoder("ISO-8859-1")
-  var solstring = enc.decode(new Uint8Array(solbytes))
+  var solstring = enc.decode(solbytes)
   if (!solstring) {
     return
   }
@@ -394,40 +332,23 @@ function getRebus(bytes: Uint8Array) {
   })
   // dict string format is k1:v1;k2:v2;...;kn:vn;
 
-  return { table: table, sols: sols }
+  return { table: Array.from(table), sols: sols }
 }
 
-function getCircles(bytes: Uint8Array, gridSize: number) {
-  var circles: number[] = []
-  var gext = "GEXT"
-  var markups = getExtension(bytes, gext)
+/** Indexes of squares whose GEXT markup has the given bit set */
+function getMarkup(sections: Sections, gridSize: number, flag: number) {
+  var indexes: number[] = []
+  var markups = sections.get("GEXT")?.data
   if (markups) {
     // Only iterate up to grid size to avoid reading garbage data
     var limit = Math.min(markups.length, gridSize)
     for (var i = 0; i < limit; i++) {
-      if (markups[i] & 128) {
-        circles.push(i)
+      if (markups[i] & flag) {
+        indexes.push(i)
       }
     }
   }
-  return circles
-}
-
-function getShades(bytes: Uint8Array, gridSize: number) {
-  var shades: number[] = []
-  var gext = "GEXT"
-  var markups = getExtension(bytes, gext)
-  if (markups) {
-    // Only iterate up to grid size to avoid reading garbage data
-    var limit = Math.min(markups.length, gridSize)
-    for (var i = 0; i < limit; i++) {
-      if (markups[i] & 8) {
-        shades.push(i)
-      }
-    }
-  }
-
-  return shades
+  return indexes
 }
 
 function addRebusToGrid(grid: Puzzle["grid"], rebus: NonNullable<ReturnType<typeof getRebus>>) {
@@ -541,23 +462,51 @@ function PUZtoJSON(buffer: ArrayBuffer) {
 
   info.description = readString()
 
+  var sections = readSections(bytes, ibyte)
+  if (sections.size === 0) {
+    for (var code of ["GRBS", "RTBL", "GEXT"]) {
+      var found = scanForSection(bytes, code)
+      if (found) sections.set(code, { data: found, checksumValid: true })
+    }
+  }
+
+  // What the player has filled in so far, "-" is an empty square
+  var progress: string[][] = []
+  for (var _r = 0; _r < nrow; _r++) {
+    progress[_r] = []
+    for (var _c = 0; _c < ncol; _c++) {
+      progress[_r][_c] = String.fromCharCode(bytes[52 + ncol * nrow + _r * ncol + _c])
+    }
+  }
+
   var gridSize = nrow * ncol
-  var rebus = getRebus(bytes)
-  var circles = getCircles(bytes, gridSize)
-  var shades = getShades(bytes, gridSize)
+  var rebus = getRebus(sections)
+  var circles = getMarkup(sections, gridSize, 0x80)
+  var shades = getMarkup(sections, gridSize, 0x08)
+  // Squares whose progress letter was given to the player at the start
+  var given = getMarkup(sections, gridSize, 0x40)
   if (rebus) {
     grid = addRebusToGrid(grid, rebus)
   }
 
-  return { grid: grid, meta: info, circles: circles, shades: shades, clues: { across: across, down: down } }
+  // An xd document embedded by JSONToPuz, only trusted when its checksum is intact
+  var xdoc = sections.get("XDOC")
+  var xd = xdoc && xdoc.checksumValid ? new TextDecoder("utf-8").decode(xdoc.data) : undefined
+
+  return {
+    grid: grid,
+    progress: progress,
+    meta: info,
+    circles: circles,
+    shades: shades,
+    given: given,
+    xd: xd,
+    clues: { across: across, down: down },
+  }
 }
 
-export function encode(puzzle: Puzzle) {
-  return concat(
-    format.map(function (fn) {
-      return fn(puzzle) || new Uint8Array(0)
-    })
-  )
+export function encode(puzzle: PuzEncodeInput) {
+  return encodePuz(puzzle)
 }
 
 export function decode(bytes: ArrayBuffer) {

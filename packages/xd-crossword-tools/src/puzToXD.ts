@@ -1,5 +1,6 @@
 import { decode, Puz2JSONResult } from "./vendor/puzjs"
-import { CrosswordJSON, CursorDirection, Tile } from "xd-crossword-tools-parser"
+import { CrosswordJSON, CursorDirection, Tile, xdToJSON } from "xd-crossword-tools-parser"
+import { JSONToPuzInput } from "./JSONToPuz"
 
 import { getWordTilesForCursor } from "xd-crossword-tools-parser"
 import { getCluePositionsForBoard, getTile } from "xd-crossword-tools-parser"
@@ -10,7 +11,12 @@ export function puzToXD(buffer: ArrayBuffer) {
   const rebuses = new Map<string, string>()
 
   const file = decode(buffer)
-  const meta = Object.keys(file.meta).map((key) => `${key.toLowerCase()}: ${(file.meta[key] || "N/A").trim()}`)
+  if (file.xd && embeddedXDMatchesGrid(file.xd, file.grid)) return file.xd
+
+  // The notes string gets its own section, as it can be multi-line
+  const meta = Object.keys(file.meta)
+    .filter((key) => key !== "description")
+    .map((key) => `${key.toLowerCase()}: ${(file.meta[key] || "N/A").trim()}`)
   const board = setupBoard(file.grid, rebuses)
   const notes: string[] = []
 
@@ -46,6 +52,12 @@ export function puzToXD(buffer: ArrayBuffer) {
     meta.push("rebus:" + entries)
   }
 
+  const puzNotes = file.meta.description?.trim()
+  if (puzNotes) notes.push(puzNotes + "\n")
+
+  const start = generateStartSection(file)
+  if (start) notes.push(start)
+
   const visuals = generatePuzVisualsInfo(file)
   notes.push(...visuals.notes)
 
@@ -62,6 +74,42 @@ ${board}
 ${across}
 
 ${down}${notes.length ? "\n\n## Notes\n\n" + notes.join("\n") : ""}`
+}
+
+/**
+ * An .xd embedded by JSONToPuz is only used when the .puz grid still matches it, so a .puz
+ * which was edited in another tool afterwards is imported from its own data instead
+ */
+const embeddedXDMatchesGrid = (xd: string, grid: Puz2JSONResult["grid"]) => {
+  try {
+    const embeddedGrid = JSONToPuzInput(xdToJSON(xd)).grid
+    if (embeddedGrid.length !== grid.length) return false
+    return grid.every((row, r) =>
+      row.every((cell, c) => {
+        const solution = typeof cell === "object" ? (cell as any).solution : cell
+        return embeddedGrid[r][c] === solution
+      }),
+    )
+  } catch {
+    return false
+  }
+}
+
+/** Squares the .puz marks as given to the player become the Start section */
+const generateStartSection = (file: Puz2JSONResult) => {
+  if (!file.given.length) return
+
+  const width = file.grid[0].length
+  const rows = file.grid.map((row, r) =>
+    row
+      .map((cell, c) => {
+        if (cell === ".") return "#"
+        const letter = file.progress[r][c]
+        return file.given.includes(r * width + c) && letter !== "-" ? letter : "."
+      })
+      .join(""),
+  )
+  return `## Start\n\n${rows.join("\n")}\n`
 }
 
 export const puzStringGridToTiles = (strArr: string[][]): CrosswordJSON["tiles"] => {
