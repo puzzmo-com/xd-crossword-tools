@@ -103,8 +103,14 @@ export type Tile = LetterTile | BlankTile | RebusTile | SchrodingerTile
 export type TileDesignFlags = "bar-top" | "bar-left"
 
 export interface LetterTile {
+  /** The letter in the solution, an empty string for an unfilled cell */
   letter: string
   type: "letter"
+  /**
+   * Set for '?' in the grid: a cell which takes a letter, but whose solution isn't known yet - an unsolved
+   * puzzle, or a grid still being constructed. In answers, an unfilled cell is written as '?'.
+   */
+  unfilled?: true
   clues?: {
     across?: number
     down?: number

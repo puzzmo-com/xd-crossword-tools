@@ -1,3 +1,4 @@
+import { spellLetterTile } from "xd-crossword-tools-parser"
 import type { CrosswordJSON, Clue, Tile, Report } from "xd-crossword-tools-parser"
 
 export function validateClueAnswersMatchGrid(json: CrosswordJSON): Report[] {
@@ -51,7 +52,7 @@ function buildAnswerFromTiles(tiles: Tile[]): string {
     .map((tile) => {
       switch (tile.type) {
         case "letter":
-          return tile.letter
+          return spellLetterTile(tile)
         case "blank":
           return "" // This shouldn't happen in a valid clue
         case "rebus":

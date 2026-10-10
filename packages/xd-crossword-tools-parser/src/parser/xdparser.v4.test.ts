@@ -174,3 +174,23 @@ describe("design positions", () => {
     expect(json.design?.positions).toEqual([[], [], ["O"]])
   })
 })
+
+describe("unfilled cells", () => {
+  const xd = `## Metadata\n\ntitle: Draft\n\n## Grid\n\nC?NE\n\n## Clues\n\nA1. Sugar ___ ~ C?NE\n`
+
+  it("reads '?' as a letter tile with no letter yet", () => {
+    const json = xdToJSON(xd)
+    expect(json.report.errors).toEqual([])
+    expect(json.report.warnings).toEqual([])
+    expect(json.tiles[0][1]).toEqual({ type: "letter", letter: "", unfilled: true })
+    // It is still part of the word
+    expect(json.clues.across[0]).toMatchObject({ answer: "C?NE", position: { col: 0, index: 0 } })
+    expect(json.clues.across[0].tiles).toHaveLength(4)
+  })
+
+  it("keeps the meaning of '?' in an older file which declared it as a rebus key, with a deprecation", () => {
+    const json = xdToJSON(xd.replace("title: Draft", "title: Draft\nRebus: ?=O").replace("~ C?NE", "~ CONE"))
+    expect(json.tiles[0][1]).toEqual({ type: "rebus", symbol: "?", word: "O" })
+    expect(json.report.warnings.map((w) => w.type)).toEqual(["deprecation"])
+  })
+})

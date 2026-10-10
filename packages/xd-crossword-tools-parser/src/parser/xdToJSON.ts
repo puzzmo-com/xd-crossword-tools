@@ -3,6 +3,7 @@ import type { Tile, CrosswordJSON, XDownComponent, ClueAnswer } from "../types"
 import { addHeadersToImplicitSections, hasImplicitSections } from "./implicitSections"
 import { parseXDown, xdownToPlainText } from "./xdown"
 import { designHasBars, parseDesignRules } from "./design"
+import { spellLetterTile, UNFILLED_CELL } from "../utils/unfilledCells"
 
 // These are all the sections supported by this parser, xd v4 defines metadata, grid, clues and design
 // - the rest are extensions
@@ -349,6 +350,14 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   // We can't reliably set the tiles until we have the rebus info, but we can't guarantee the order
   const { rebuses, schrodingerRebuses } = getRebuses(json.meta.rebus || "")
   json.rebuses = rebuses
+
+  // '?' is reserved for unfilled cells in v4, but an older file which declared it as a rebus key keeps that meaning
+  if (UNFILLED_CELL in rebuses || UNFILLED_CELL in schrodingerRebuses) {
+    addDeprecation(
+      `'?' is reserved for unfilled cells in xd v4 and can't be a rebus key, migrateXDToV4 can move it to another character`,
+      getLine(xd.toLowerCase(), "rebus:") || 0,
+    )
+  }
   json.tiles = stringGridToTiles(json.rebuses, rawInput.tiles, schrodingerRebuses)
 
   // The process above will make pretty white-spacey answers.
@@ -437,7 +446,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
         if (!relevantTiles) return false
 
         const posAnswer = relevantTiles
-          .map((t) => (t.type === "letter" ? t.letter : ""))
+          .map((t) => (t.type === "letter" ? spellLetterTile(t) : ""))
           .join("")
           .toUpperCase()
         return posAnswer === clue.answer.toUpperCase()
@@ -952,6 +961,8 @@ export const letterToTile = (letter: string): Tile => {
   if (letter === ".") return { type: "blank" }
   // A spacer, or a square which does not exist
   if (letter === "_") return { type: "blank", spacer: true }
+  // A cell whose letter isn't known yet
+  if (letter === UNFILLED_CELL) return { type: "letter", letter: "", unfilled: true }
   // Pre-v4 Schrödinger square - will be populated with valid letters later
   if (letter === "*") return { type: "schrodinger", validLetters: [], validRebuses: [], validOptions: [] }
   return { type: "letter", letter }

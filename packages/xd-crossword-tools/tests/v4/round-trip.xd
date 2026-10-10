@@ -9,14 +9,14 @@ splitcharacter: |
 
 ## Grid
 
-_TILE
+_TI?E
 _APEX
 _C1NE
 _ODDS
 
 ## Clues
 
-A1. Mosaic piece, see {@the notes | href: https://example.com/tile@} ~ TILE
+A1. Mosaic piece, see {@the notes | href: https://example.com/tile@} ~ TI?E
 A1 ^hint: A {*flat*} thing
 
 A5. Pinnacle {!a peak | src: 'data:image/png;base64,iVBORw0KGgo='; width: 20; display: block!} ~ APEX
@@ -25,7 +25,7 @@ A7. What {\~\} means{\\}in gambling ~ ODDS
 
 D1. Tuesday treat ~ TACO
 D2. Apple tech ~ IPOD ~ IPAD // I|POD I|PAD
-D3. Complement to borrow ~ LEND
+D3. Complement to borrow ~ ?END
 D4. Former intimates ~ EXES
 
 ## Design

@@ -1,4 +1,5 @@
 export { getTile } from "./getTile"
+export { UNFILLED_CELL, spellLetterTile } from "./unfilledCells"
 export { getCluePositionsForBoard } from "./clueNumbersFromBoard"
 export { clueInfosForPosition, tilePositionsForClue } from "./clueFromPosition"
 export { EditorError } from "./EditorError"

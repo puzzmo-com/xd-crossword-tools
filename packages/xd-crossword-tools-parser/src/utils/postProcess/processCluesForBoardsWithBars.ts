@@ -1,3 +1,4 @@
+import { spellLetterTile } from "../unfilledCells"
 import { CrosswordJSON, Tile } from "../../types"
 import { RawClueData, PositionWithTiles } from "../clueNumbersFromBoard"
 
@@ -207,7 +208,7 @@ function isValidWordPosition(
 
     const tile = tiles[row][col]
     if (tile.type !== "letter") return false
-    if (tile.letter.toUpperCase() !== answer[i]) return false
+    if (spellLetterTile(tile).toUpperCase() !== answer[i]) return false
   }
 
   // Check that this word segment is properly bounded by bars

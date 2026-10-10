@@ -194,3 +194,19 @@ describe("migrateXDToV4 with Windows line endings", () => {
     expect(migrateXDToV4(migrated)).toEqual(migrated)
   })
 })
+
+describe("migrateXDToV4 and '?'", () => {
+  it("leaves unfilled cells alone", () => {
+    const xd = `## Metadata\n\ntitle: Draft\n\n## Grid\n\nC?NE\n\n## Clues\n\nA1. Sugar ___ ~ C?NE\n`
+    expect(migrateXDToV4(xd)).toEqual(xd)
+  })
+
+  it("moves a '?' rebus key to an unused character, as '?' is reserved for unfilled cells", () => {
+    const xd = `## Metadata\n\ntitle: Old\nrebus: ?=HEART 2=X?Y\n\n## Grid\n\n?S2\n\n## Clues\n\nA1. Lonely ~ HEARTSX?Y\n`
+    const migrated = migrateXDToV4(xd)
+    expect(migrated).toContain("rebus: 1=HEART 2=X?Y\n")
+    expect(migrated).toContain("\n1S2\n")
+    expect(xdToJSON(migrated).report.warnings).toEqual([])
+    expect(xdToJSON(migrated).tiles[0][0]).toEqual({ type: "rebus", symbol: "1", word: "HEART" })
+  })
+})

@@ -1,5 +1,6 @@
 import type { CrosswordJSON, Tile } from "./types"
-import { xdToJSON } from "./parser/xdToJSON"
+import { getRebuses, xdToJSON } from "./parser/xdToJSON"
+import { spellLetterTile, UNFILLED_CELL } from "./utils/unfilledCells"
 import { addHeadersToImplicitSections, hasImplicitSections } from "./parser/implicitSections"
 import { parseXDown, serializeXDown } from "./parser/xdown"
 import { parseDesignRules } from "./parser/design"
@@ -37,6 +38,7 @@ export function migrateXDToV4(xd: string): string {
   const splitChar = json.meta.splitcharacter
 
   const special = migrateSpecialCells(json, doc)
+  const rebusRename = renameReservedRebusKey(json)
 
   // Metadata
   const metadata = doc.sections.find((s) => s.type === "metadata")
@@ -47,7 +49,11 @@ export function migrateXDToV4(xd: string): string {
 
       const key = match[2].trim().toLowerCase()
       if (key === "special" && special) return []
-      if (key === "rebus") return [line]
+      if (key === "rebus") {
+        if (!rebusRename) return [line]
+        // Only the keys change, '?' inside a value is fine
+        return [line.replace(/(^|[:\s])\?=/g, `$1${rebusRename}=`)]
+      }
       const value = match[3].trimStart()
       const migrated = migrateXDown(value)
       return [migrated === value ? line : `${match[1]}${match[2]}: ${migrated}`]
@@ -58,6 +64,9 @@ export function migrateXDToV4(xd: string): string {
   const grid = doc.sections.find((s) => s.type === "grid")
   if (grid && special) {
     grid.lines = grid.lines.map((line) => line.replace(/[a-z]/g, (c) => c.toUpperCase()))
+  }
+  if (grid && rebusRename) {
+    grid.lines = grid.lines.map((line) => line.split(UNFILLED_CELL).join(rebusRename))
   }
 
   // Clues
@@ -82,6 +91,8 @@ export function migrateXDToV4(xd: string): string {
 
       const parts = readClueLine(trimmed, json, splitChar)
       if (!parts) return [line]
+      // Older answers could spell a rebus with its key, so follow the '?' key's new name
+      if (rebusRename) parts.answers = parts.answers.map((segment) => segment.split(UNFILLED_CELL).join(rebusRename))
 
       const ref = `${parts.dir.toUpperCase()}${parts.num}`
       const body = migrateXDown(parts.body, true)
@@ -236,6 +247,21 @@ const findLastIndex = <T>(arr: T[], fn: (t: T) => boolean) => {
   return -1
 }
 
+// Rebus keys
+
+/**
+ * '?' is reserved for unfilled cells in v4, so a file which used it as a rebus key moves that key to a
+ * character it doesn't use yet. Returns the new key, or undefined when nothing needs to move.
+ */
+function renameReservedRebusKey(json: CrosswordJSON) {
+  const { rebuses, schrodingerRebuses } = getRebuses(json.meta.rebus || "")
+  if (!(UNFILLED_CELL in rebuses) && !(UNFILLED_CELL in schrodingerRebuses)) return undefined
+
+  const used = new Set([...Object.keys(rebuses), ...Object.keys(schrodingerRebuses)])
+  json.tiles.forEach((row) => row.forEach((t) => t.type === "letter" && used.add(t.letter)))
+  return [..."123456789@$%&+!<>"].find((c) => !used.has(c))
+}
+
 // Schrödinger squares
 
 /** The answer spelled out for each Schrödinger variant index, the index lines up across a whole slot */
@@ -250,7 +276,7 @@ function schrodingerVariants(tiles: Tile[]) {
 const spellSlot = (tiles: Tile[], variant: number) =>
   tiles
     .map((t) => {
-      if (t.type === "letter") return t.letter
+      if (t.type === "letter") return spellLetterTile(t)
       if (t.type === "rebus") return t.word
       if (t.type === "schrodinger") return t.validOptions?.[variant] ?? t.validOptions?.[0] ?? ""
       return ""

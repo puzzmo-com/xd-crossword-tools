@@ -132,3 +132,8 @@ Date: 2024-01-01
     expect(reports).toHaveLength(0)
   })
 })
+
+it("matches '?' in an answer to an unfilled cell", () => {
+  const json = xdToJSON(`## Metadata\n\ntitle: Draft\n\n## Grid\n\nC?NE\n\n## Clues\n\nA1. Sugar ___ ~ C?NE\n`)
+  expect(validateClueAnswersMatchGrid(json)).toEqual([])
+})

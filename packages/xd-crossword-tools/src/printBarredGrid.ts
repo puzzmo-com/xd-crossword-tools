@@ -78,7 +78,7 @@ export function printBarredGrid(tiles: Tile[][]): string {
 }
 
 function drawBox(cell: Tile, s: Tile | null, e: Tile | null, se: Tile | null): string {
-  const letter = cell.type === "letter" ? cell.letter : cell.type === "rebus" ? cell.symbol : " "
+  const letter = cell.type === "letter" ? cell.letter || " " : cell.type === "rebus" ? cell.symbol : " "
   const sBars = s ? getBars(s) : { left: false, right: false, top: false, bottom: false }
   const eBars = e ? getBars(e) : { left: false, right: false, top: false, bottom: false }
   const seBars = se ? getBars(se) : { left: false, right: false, top: false, bottom: false }

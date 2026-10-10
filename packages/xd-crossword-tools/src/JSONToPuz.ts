@@ -1,4 +1,4 @@
-import { xdToJSON, type CrosswordJSON } from "xd-crossword-tools-parser"
+import { spellLetterTile, xdToJSON, type CrosswordJSON } from "xd-crossword-tools-parser"
 import { encode, type PuzEncodeInput } from "./vendor/puzjs"
 
 /** The .puz section which holds the original .xd document, so importing the .puz can be lossless */
@@ -11,7 +11,8 @@ export const xdPuzSectionCode = "XDOC"
 export const JSONToPuzInput = (json: CrosswordJSON): PuzEncodeInput => {
   const grid = json.tiles.map((row) =>
     row.map((tile) => {
-      if (tile.type === "letter") return tile.letter
+      // .puz has no unknown letter, the embedded .xd keeps unfilled cells lossless
+      if (tile.type === "letter") return spellLetterTile(tile)
       if (tile.type === "rebus") return tile.word
       if (tile.type === "schrodinger") return tile.validOptions?.[0] ?? tile.validLetters[0] ?? "."
       return "."

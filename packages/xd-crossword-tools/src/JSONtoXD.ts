@@ -1,4 +1,4 @@
-import { serializeDesignRules } from "xd-crossword-tools-parser"
+import { serializeDesignRules, spellLetterTile } from "xd-crossword-tools-parser"
 import type { Clue, CrosswordJSON, Tile } from "xd-crossword-tools-parser"
 
 export function resolveFullClueAnswer(clue: Clue, splitChar: string) {
@@ -38,7 +38,7 @@ export function resolveFullClueAnswer(clue: Clue, splitChar: string) {
         result += rebusCP[i]
       }
     } else if (tile.type === "letter") {
-      result += tile.letter
+      result += spellLetterTile(tile)
     } else if (tile.type === "schrodinger") {
       if (tile.symbol && tile.validRebuses.length > 0) {
         // Rebus-based Schrödinger: find the matching value in the answer
@@ -116,7 +116,7 @@ export const JSONToXD = (json: CrosswordJSON): string => {
         .map((tile: Tile) => {
           switch (tile.type) {
             case "letter":
-              return tile.letter
+              return spellLetterTile(tile)
             case "blank":
               return tile.spacer ? "_" : "."
             case "rebus":

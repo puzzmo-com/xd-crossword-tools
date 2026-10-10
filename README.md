@@ -5560,6 +5560,7 @@ const diff = diffXD(xd1, xd2)
 - A duplicated clue line, which was used as a hint, becomes `^Hint:` metadata
 - The v3 `Special: circle|shaded` field with lowercase grid cells becomes a `## Design` section
 - `## Design` sections lose their `<style>` wrapper and use `.` for unstyled cells
+- A `?` rebus key moves to an unused character, as v4 reserves `?` for unfilled cells
 
 Rebuses and Schrödinger squares are not fully specified in v4 yet, so `Rebus:`, `*` squares and `^alt:` answers are left as they are.
 
@@ -5718,6 +5719,22 @@ Metadata values are parsed the same way into `metaDisplay`, e.g. `json.metaDispl
 Every ASCII punctuation character is reserved as a type character, a `{` followed by anything else is just text. The pre-v4 positional forms (`{@text|url@}`, `{![url|alt|width|height]!}`, `{!![url]!}`, `{#text|light|dark#}`) are still read, with a deprecation warning.
 
 `parseXDown`, `serializeXDown` and `xdownToPlainText` are exported if you want to work with xdown yourself.
+
+#### Unfilled cells
+
+A `?` in the grid is a cell which takes a letter, but whose solution isn't known yet - an unsolved puzzle, or a grid which is still being constructed. It is still part of its across and down words, and answers write it as `?`:
+
+```
+## Grid
+
+C?NE
+
+## Clues
+
+A1. Sugar ___ ~ C?NE
+```
+
+It parses to `{ type: "letter", letter: "", unfilled: true }`, so code which switches on `tile.type` keeps working and renders an empty square. `spellLetterTile(tile)` gives the letter as it's written in an answer (`?` for an unfilled cell).
 
 #### Answers and split characters
 

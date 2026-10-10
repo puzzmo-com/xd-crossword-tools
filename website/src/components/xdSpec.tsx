@@ -174,11 +174,16 @@ A6. Progenitor. ~ ADAM
         <li>
           <code>_</code> means a spacer or non-existing square (usually on the edges), which is not drawn
         </li>
+        <li>
+          <code>?</code> is an unfilled cell: it takes a letter, but its solution isn't known yet (an unsolved puzzle, or a grid still
+          being constructed). Answers write an unfilled cell as <code>?</code> too, e.g. <code>~ C?NE</code>
+        </li>
         <li>Any other character is assumed to be a rebus lookup</li>
       </ul>
 
       <p>
-        Digits, most symbols, and printable unicode characters (if needed) can be used to indicate rebus cells. The <code>Rebus</code> field
+        Digits, most symbols other than <code>#</code>, <code>.</code>, <code>_</code> and <code>?</code>, and printable unicode
+        characters (if needed) can be used to indicate rebus cells. The <code>Rebus</code> field
         provides the translation:
       </p>
 

@@ -113,6 +113,13 @@ describe(JSONToPuz.name, () => {
       expect(puzToXD(Buffer.from(xdToPuz(v4)))).toEqual(v4)
     })
 
+    it("round-trips unfilled cells", () => {
+      const draft = migrateXDToV4(xd).replace("AHAB..CUD.SERIF", "A?AB..CUD.SERIF").replace("~ AHAB\n", "~ A?AB\n")
+      const puz = xdToPuz(draft)
+      expect(puzDecode(toArrayBuffer(puz)).grid[0].slice(0, 4)).toEqual(["A", "?", "A", "B"])
+      expect(puzToXD(Buffer.from(puz))).toEqual(draft)
+    })
+
     it("migrates a pre-v4 document embedded by an older version", () => {
       const preV4 = xd.replace("A5. Food for second chance chewing ~ CUD", "A5. Food for {@second chance|https://example.com@} chewing ~ CUD")
       const imported = puzToXD(Buffer.from(xdToPuz(preV4)))
