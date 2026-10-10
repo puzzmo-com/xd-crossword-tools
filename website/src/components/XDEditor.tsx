@@ -122,14 +122,26 @@ export const XDEditor = (props: {}) => {
           root: [
             [/^(\s{0,3})(#+)((?:[^\\#])+)((?:#+)?)/, ["white", "keyword", "keyword", "keyword"]],
 
+            // xd v4 design rules, e.g. "O { background: circle }" or "A, B { bar-top: true }" - no <style> wrapper
+            [/^\s*\S(\s*,\s*\S)*\s*\{[^}]*\}?\s*$/, "design-rule"],
+            [/^\s*<\/?style>\s*$/, "deprecated"],
+
             [/^A\d*\./, "across-clue"],
             [/^A\d*\. \^.*/, "across-meta"],
 
             [/^D\d*\./, "down-clue"],
             [/^D\d*\. \^.*/, "down-meta"],
 
+            // xdown: {\literal\} passes through untouched, '{\\}' is a line break
+            [/\{\\.*?\\\}/, "xdown-literal"],
+            // xdown attributes, e.g. "{@text | href: https://x.com@}" or "{!alt | src: https://x.png; display: block!}"
+            [/\|\s*(href|src|width|height|display|light|dark)\s*:/, "xdown-attr"],
+            [/;\s*(href|src|width|height|display|light|dark)\s*:/, "xdown-attr"],
+            // xdown span delimiters, any ASCII punctuation is a type character
+            [/\{[!-\/:-@[-`{-~]/, "xdown"],
+            [/[!-\/:-@[-`{-~]\}/, "xdown"],
+
             [/ ~ .*/, "answer"],
-            [/ ~ .*/, "hint"],
             [/^(A|D)(\d*) \^\w*:/, "key"],
             [/^(A|D) \^hint: \[ WIP \]/, "todo"],
             [/<!--/, "comment", "@comment"],
@@ -221,6 +233,11 @@ export const XDEditor = (props: {}) => {
           { token: "key", foreground: "134d28" },
           { token: "todo", foreground: "dc2626" },
           { token: "comment", foreground: "6b7c72" },
+          { token: "xdown", foreground: "7c3aed" },
+          { token: "xdown-attr", foreground: "7c3aed", fontStyle: "italic" },
+          { token: "xdown-literal", foreground: "b45309" },
+          { token: "design-rule", foreground: "1d4ed8" },
+          { token: "deprecated", foreground: "9ca3af", fontStyle: "strikethrough" },
           { token: "keyword.crossword", foreground: "1a1f1c" },
         ],
 

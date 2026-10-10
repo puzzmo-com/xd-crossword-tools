@@ -41,16 +41,15 @@ export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswor
       for (let row = 0; row < rows; row++) {
         initialGrid[row] = []
         for (let col = 0; col < cols; col++) {
-          const tile = tiles[row][col]
-
           // Check if there's existing design position data for this tile
+          // In xd v4 every unstyled cell (blocks included) is marked with '.' in the design grid,
+          // older designs used '#' for blocks, so that gets normalized unless it is a real style
           const existingDesignValue = crosswordJSON.design?.positions?.[row]?.[col]
-          if (existingDesignValue) {
+          const isLegacyBlockMarker = existingDesignValue === "#" && !crosswordJSON.design?.styles?.["#"]
+          if (existingDesignValue && !isLegacyBlockMarker) {
             initialGrid[row][col] = existingDesignValue
-          } else if (tile && (tile.type === "letter" || tile.type === "rebus" || tile.type === "schrodinger")) {
-            initialGrid[row][col] = "."
           } else {
-            initialGrid[row][col] = "#"
+            initialGrid[row][col] = "."
           }
         }
       }
@@ -108,7 +107,7 @@ export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswor
     const style = crosswordJSON?.design?.styles?.[styleKey]
     if (!style) return undefined
     return {
-      color: style["background-light"] || style["background-dark"],
+      color: style["background-light"] || style["background-dark"] || (style["background"] === "shaded" ? "#c8c8c8" : undefined),
       circle: style["background"] === "circle",
     }
   }
@@ -117,11 +116,9 @@ export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswor
     if (!selectedStyle) return
 
     // Blank squares can carry styles too (e.g. colored blocked cells), so
-    // clicking one applies the style. The eraser restores the tile default.
-    const tile = crosswordJSON?.tiles?.[row]?.[col]
-    const isBlank = !tile || tile.type === "blank"
-
-    const newValue = selectedStyle === ERASER_STYLE ? (isBlank ? "#" : ".") : selectedStyle
+    // clicking one applies the style. The eraser restores the tile default,
+    // xd v4 marks every unstyled cell (blocks included) with '.' in the design grid
+    const newValue = selectedStyle === ERASER_STYLE ? "." : selectedStyle
 
     // Update local grid data
     const newGridData = [...gridData]
@@ -336,19 +333,23 @@ export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswor
             }}
           >
             <div className="mb-2">
-              <strong>Basic Styles:</strong>
+              <strong>Basic Styles (xd v4):</strong>
             </div>
-            <div>O &#123; background: circle &#125;</div>
+            <div>O, P &#123; background: circle &#125;</div>
+            <div>S &#123; background: shaded &#125;</div>
+            <div>T &#123; bar-top: true; bar-left: true &#125;</div>
+            <div>I &#123; background-image: url('https://example.com/petal.png'); background-size: 2 2 &#125;</div>
 
             <div className="mb-2 mt-3">
-              <strong>Color Styles:</strong>
+              <strong>Color Styles (Puzzmo extension):</strong>
             </div>
             <div>R &#123; background-light: #FF69B4; background-dark: #C71585 &#125;</div>
             <div>G &#123; background-light: #00FF00; background-dark: #008000 &#125;</div>
             <div>B &#123; background-light: #00FFFF; background-dark: #00008B &#125;</div>
           </div>
           <small className="text-muted d-block mt-2">
-            Define styles in the main editor's Design section, then use the keys here to apply them to tiles.
+            Define styles at the top of the main editor's <code>## Design</code> section (no <code>&lt;style&gt;</code> wrapper is needed
+            in xd v4), then use the keys here to apply them to tiles. Unstyled cells are marked with <code>.</code>
           </small>
         </div>
       </Card.Body>

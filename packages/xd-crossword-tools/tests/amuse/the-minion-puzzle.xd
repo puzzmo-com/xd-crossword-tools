@@ -148,33 +148,31 @@ D87. "why are the women in this moderate-to-severe plaque psoriasis ___ happier 
 
 ## Design
 
-<style>
 A { background-light: #ffb929; background-dark: #ffb929 }
 B { background-light: #ffd55e; background-dark: #ffd55e }
 C { background-light: #b7b7b7; background-dark: #b7b7b7 }
 D { background-light: #d7d7d7; background-dark: #d7d7d7 }
 E { background-light: #8b582f; background-dark: #8b582f }
 F { background-light: #2978a2; background-dark: #2978a2 }
-</style>
 
-####AAAAAAAAAAA####
-###ABBBBBBBBBBBA###
-##ABBBBBBBBBBBBBA##
-#ABBBBBCCCCCBBBBBA#
+....AAAAAAAAAAA....
+...ABBBBBBBBBBBA...
+..ABBBBBBBBBBBBBA..
+.ABBBBBCCCCCBBBBBA.
 ABBBBBCD...CCBBBBBA
 ABBBBCD.....CCBBBBA
 ABBBCD..EEE..CCBBBA
-####CD..E#E..CC####
-####CD..E#E..CC####
+....CD..E.E..CC....
+....CD..E.E..CC....
 ABBBCD..EEE..CCBBBA
 ABBBBCD.....CCBBBBA
 ABBBBBCD...CCBBBBBA
 ABBBBBBCDCCCBBBBBBA
 ABBBBBBBBBBBBBBBBBA
-ABB#BBBBBBBBBBB#BBA
-ABBB#BBBBBBBBB#BBBA
-FBBBB#BBBBBBB#BBBBF
-AFBBBB#######BBBBFA
+ABB.BBBBBBBBBBB.BBA
+ABBB.BBBBBBBBB.BBBA
+FBBBB.BBBBBBB.BBBBF
+AFBBBB.......BBBBFA
 ABFBBBBBBBBBBBBBFBA
 ABBFFFFFFFFFFFFFBBA
 AAAFFFFFFFFFFFFFAAA

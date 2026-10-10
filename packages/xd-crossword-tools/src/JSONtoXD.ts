@@ -1,3 +1,4 @@
+import { serializeDesignRules } from "xd-crossword-tools-parser"
 import type { Clue, CrosswordJSON, Tile } from "xd-crossword-tools-parser"
 
 export function resolveFullClueAnswer(clue: Clue, splitChar: string) {
@@ -94,6 +95,7 @@ export function addSplits(answer: string, splitChar: string, splits?: number[]):
   return withSplits
 }
 
+/** Converts a CrosswordJSON back into an xd v4 file */
 export const JSONToXD = (json: CrosswordJSON): string => {
   let xd = ""
   let splitChar = ""
@@ -116,7 +118,7 @@ export const JSONToXD = (json: CrosswordJSON): string => {
             case "letter":
               return tile.letter
             case "blank":
-              return "."
+              return tile.spacer ? "_" : "."
             case "rebus":
               return tile.symbol
             case "schrodinger":
@@ -132,8 +134,24 @@ export const JSONToXD = (json: CrosswordJSON): string => {
   const getCluesXD = (clues: Clue[], direction: "A" | "D") => {
     return clues
       .map((clue) => {
-        const final = resolveFullClueAnswer(clue, splitChar)
-        let line = `${direction}${clue.number}. ${clue.body} ~ ${final}`
+        const sc = splitChar || "|"
+        const answers = clue.answers?.length ? clue.answers : [{ answer: clue.answer }]
+
+        // Pre-v4 '^alt' answers are kept as metadata, so they aren't repeated on the clue line
+        const altMetadata = Object.entries(clue.metadata || {})
+          .filter(([key]) => /^alt\d*$/.test(key))
+          .map(([_, value]) => String(value).split(sc).join(""))
+        const lineAnswers = answers.filter((a, i) => i === 0 || !altMetadata.includes(a.answer))
+
+        // Split characters go in an end-of-line annotation: '~ OKGO ~ OKAY // OK|GO OK|AY'
+        const withSplits = lineAnswers.map((a, i) =>
+          resolveFullClueAnswer(i === 0 ? clue : { ...clue, answer: a.answer, splits: a.splits, rebusInternalSplits: a.rebusInternalSplits }, sc),
+        )
+        const plain = withSplits.map((a) => a.split(sc).join(""))
+        const annotation = withSplits.filter((a, i) => a !== plain[i])
+        const answerText = plain.join(" ~ ") + (annotation.length ? ` // ${annotation.join(" ")}` : "")
+
+        let line = `${direction}${clue.number}. ${clue.body} ~ ${answerText}`
         if (clue.metadata) {
           let printed = false
           for (const key of Object.keys(clue.metadata)) {
@@ -161,35 +179,14 @@ export const JSONToXD = (json: CrosswordJSON): string => {
 
   if (json.design) {
     xd += `\n\n## Design\n\n`
+    xd += serializeDesignRules(json.design.styles)
+    xd += "\n\n"
 
-    xd += "<style>\n"
-    xd += Object.entries(json.design.styles)
-      .map((key) => {
-        const content = Object.entries(key[1])
-          .map(([key, value]) => `${key}: ${value}`)
-          .join("; ")
-
-        return `${key[0]} { ${content} }`
-      })
-      .join("\n")
-
-    xd += "\n</style>\n\n"
-
-    xd += `${json.design.positions
-      .map((row, rowI) => {
-        let line = ""
-        json.tiles[0].forEach((_, i) => {
-          if (row[i]) {
-            line += row[i]
-          } else {
-            if (json.tiles[rowI][i].type === "blank") {
-              line += "#"
-            } else {
-              line += "."
-            }
-          }
-        })
-        return line
+    // '.' marks an unstyled cell
+    xd += `${json.tiles
+      .map((tileRow, rowI) => {
+        const row = json.design!.positions[rowI] || []
+        return tileRow.map((_, i) => row[i] || ".").join("")
       })
       .join("\n")}\n`
   }

@@ -1,0 +1,44 @@
+## Metadata
+
+Title: Pre-v4 Puzzmo
+Author: Orta
+Special: circle
+
+## Grid
+
+TILe
+APEX
+C*NE
+oDDS
+
+## Clues
+
+<!-- A comment which should be kept -->
+A1. Mosaic piece, see {@here|https://example.com/tile@} ~ TILE
+A5. Pinnacle ~ APEX
+A6. Sugar ____ ~ CONE
+A6 ^alt: CANE
+A7. Chances, in gambling {#red|#f00|#c00#} ~ ODDS
+
+D1. Tuesday treat {!![https://example.com/taco.png|a taco|100]!} ~ TACO
+D2. Apple tech ~ IPOD
+D2 ^alt: IPAD
+D2. Pod with music ~ IPOD
+D3. A ~ B means to borrow ~ LEND
+D4. Former intimates ~ EXES
+D4 ^hint: {@Breakups|https://example.com@}
+
+## Design
+
+<style>
+S { background: shaded }
+</style>
+
+S###
+....
+....
+....
+
+## Notes
+
+Some notes

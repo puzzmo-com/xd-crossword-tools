@@ -1,4 +1,4 @@
-import { xdToJSON } from "./xdparser2"
+import { xdToJSON } from "./xdToJSON"
 
 it("Smallest, legal but totally illogical example", () => {
   const xd = `
@@ -206,6 +206,11 @@ D3. A conscious tree. ~ BOOK
         "across": [
           {
             "answer": "BULB",
+            "answers": [
+              {
+                "answer": "BULB",
+              },
+            ],
             "body": "Gardener's concern.",
             "direction": "across",
             "display": [
@@ -242,6 +247,11 @@ D3. A conscious tree. ~ BOOK
           },
           {
             "answer": "OK",
+            "answers": [
+              {
+                "answer": "OK",
+              },
+            ],
             "body": "A reasonable statement.",
             "direction": "across",
             "display": [
@@ -270,6 +280,11 @@ D3. A conscious tree. ~ BOOK
           },
           {
             "answer": "DESK",
+            "answers": [
+              {
+                "answer": "DESK",
+              },
+            ],
             "body": "The office centerpiece.",
             "direction": "across",
             "display": [
@@ -308,6 +323,11 @@ D3. A conscious tree. ~ BOOK
         "down": [
           {
             "answer": "BOLD",
+            "answers": [
+              {
+                "answer": "BOLD",
+              },
+            ],
             "body": "To _ly go.",
             "direction": "down",
             "display": [
@@ -344,6 +364,11 @@ D3. A conscious tree. ~ BOOK
           },
           {
             "answer": "UK",
+            "answers": [
+              {
+                "answer": "UK",
+              },
+            ],
             "body": "Bigger than britain.",
             "direction": "down",
             "display": [
@@ -372,6 +397,11 @@ D3. A conscious tree. ~ BOOK
           },
           {
             "answer": "BOOK",
+            "answers": [
+              {
+                "answer": "BOOK",
+              },
+            ],
             "body": "A conscious tree.",
             "direction": "down",
             "display": [
@@ -518,15 +548,15 @@ D3. Registering with a restaurant.  ~ BOOK
     })
 
     expect(allClues.map((c) => c.metadata?.hint)).toMatchInlineSnapshot(`
-[
-  "Turned on with a flick.",
-  "All __.",
-  "Fried.",
-  "When you want to make some text stronger.",
-  "A union which left europe.",
-  "Registering with a restaurant. ",
-]
-`)
+      [
+        "Turned on with a flick.",
+        "All __.",
+        "Fried.",
+        "When you want to make some text stronger.",
+        "A union which left europe.",
+        "Registering with a restaurant.",
+      ]
+    `)
   })
 
   it("parses splitCharacter correctly", () => {
@@ -560,6 +590,11 @@ D2. A thing. ~ OBJECT
         "across": [
           {
             "answer": "OK|GO",
+            "answers": [
+              {
+                "answer": "OK|GO",
+              },
+            ],
             "body": "Band with two words.",
             "direction": "across",
             "display": [
@@ -601,6 +636,11 @@ D2. A thing. ~ OBJECT
         "down": [
           {
             "answer": "OH|OH|OH",
+            "answers": [
+              {
+                "answer": "OH|OH|OH",
+              },
+            ],
             "body": "Reverse santa.",
             "direction": "down",
             "display": [
@@ -648,6 +688,11 @@ D2. A thing. ~ OBJECT
           },
           {
             "answer": "OBJECT",
+            "answers": [
+              {
+                "answer": "OBJECT",
+              },
+            ],
             "body": "A thing.",
             "direction": "down",
             "display": [

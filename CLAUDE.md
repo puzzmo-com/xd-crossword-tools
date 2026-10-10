@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-xd-crossword-tools is a TypeScript monorepo for working with crossword puzzles, centered around the `.xd` format - a human-readable text format for crosswords. The project provides parsing, conversion between formats (.puz, .jpz, UClick XML, Amuse JSON), and an interactive web playground.
+xd-crossword-tools is a TypeScript monorepo for working with crossword puzzles, centered around the `.xd` format - a human-readable text format for crosswords. It targets the [xd v4 spec](https://github.com/century-arcade/xdformat/blob/master/doc/xd-format-v4.md); older syntax still parses with deprecation warnings and `migrateXDToV4` upgrades files. The project provides parsing, conversion between formats (.puz, .jpz, UClick XML, Amuse JSON), and an interactive web playground.
 
 ## Monorepo Structure
 
@@ -61,8 +61,9 @@ yarn dev  # Starts on http://localhost:5173
 
 ## Architecture Notes
 
-- The parser (xdparser2.ts) returns comprehensive JSON with pre-computed information for runtime efficiency
+- The parser (`parser/xdToJSON.ts`) returns comprehensive JSON with pre-computed information for runtime efficiency
 - Editor support (cursor positions, linting) is opt-in via the `supportCursorPosition` flag
+- xdown (inline markup) lives in `parser/xdown.ts`, the Design rule parser in `parser/design.ts`, and `migrateXDToV4.ts` upgrades older files
 - Format converters are in `packages/xd-crossword-tools/src/` (e.g., importPuz.ts, exportPuz.ts)
 - Tests use Vitest with extensive snapshot testing for format conversions
 - The project uses tsup for building, outputting both ESM and CJS formats
@@ -101,18 +102,19 @@ D3. AAA's counterpart across the pond ~ RAC
 
 ## Design
 
-<style>O { background: circle }</style>
+O { background: circle }
 
-O..O##O.O#.O..O
-.....#...#.....
+O..O..O.O..O..O
+...............
 ...
 ```
 
-Sections are separated by `## Headers`. Grid uses `.` for black squares, letters for fills. Clues use `A`/`D` prefixes with `~` separating clue from answer.
+Sections are separated by `## Headers`. Grid uses `.` (or `#`) for black squares, letters for fills. Clues use `A`/`D` prefixes, the body runs to the first ` ~ ` and each further ` ~ ` is another answer.
 
 Special features:
 
-- Markup: `{/italic/}`, `{*bold*}`, `{&link|url&}`, `{!image|alt!}` and more
+- xdown markup: `{/italic/}`, `{*bold*}`, `{@link | href: url@}`, `{!alt | src: url!}`, `{\literal\}` and more
+- Rebuses and Schrödinger squares are not fully specified in v4 yet, so keep their existing syntax (`Rebus:`, `*` + `^alt:`)
 
 
 ## Development Tips

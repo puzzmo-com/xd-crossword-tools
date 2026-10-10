@@ -1,4 +1,4 @@
-import { xdToJSON } from "./xdparser2"
+import { xdToJSON } from "./xdToJSON"
 
 describe("errors", () => {
   it("blanks give errors", () => {
@@ -194,29 +194,29 @@ a2. asda
 `
 
   expect(throwsWithError(xd)).toMatchInlineSnapshot(`
-[
-  {
-    "clueNum": 5,
-    "clueType": "A",
-    "length": -1,
-    "message": "This clue does not match either the 'A[num]. [clue] ~ [answer]' for a clue, or 'A[num] ^[hint]: [clue]' for a clue's metadata.",
-    "position": {
-      "col": 0,
-      "index": 5,
-    },
-    "type": "clue_msg",
-  },
-  {
-    "length": -1,
-    "message": "This crossword does not have a working grid",
-    "position": {
-      "col": 0,
-      "index": 2,
-    },
-    "type": "syntax",
-  },
-]
-`)
+    [
+      {
+        "clueNum": 2,
+        "clueType": "A",
+        "length": -1,
+        "message": "This clue does not match either the 'A2. [clue] ~ [answer]' for a clue, or 'A2 ^[key]: [value]' for a clue's metadata.",
+        "position": {
+          "col": 0,
+          "index": 5,
+        },
+        "type": "clue_msg",
+      },
+      {
+        "length": -1,
+        "message": "This crossword does not have a working grid",
+        "position": {
+          "col": 0,
+          "index": 2,
+        },
+        "type": "syntax",
+      },
+    ]
+  `)
 })
 
 const throwsWithError = (xd: string, strict = true) => xdToJSON(xd, strict).report.errors

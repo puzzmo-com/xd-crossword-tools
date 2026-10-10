@@ -1,5 +1,5 @@
 import { expect, it, describe } from "vitest"
-import { xdToJSON } from "./xdparser2"
+import { xdToJSON } from "./xdToJSON"
 
 describe("Schrödinger squares", () => {
   it("parses * as Schrödinger square in grid", () => {

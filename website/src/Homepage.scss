@@ -236,10 +236,15 @@ body,
       flex-shrink: 0;
       transition: background 0.15s ease, border-color 0.15s ease;
 
-      &:hover {
+      &:hover:not(:disabled) {
         background: $primary;
         border-color: $primary;
         color: white;
+      }
+
+      &:disabled {
+        opacity: 0.45;
+        cursor: default;
       }
     }
   }

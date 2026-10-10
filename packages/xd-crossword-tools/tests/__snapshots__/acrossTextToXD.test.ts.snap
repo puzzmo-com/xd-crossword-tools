@@ -70,7 +70,6 @@ exports[`acrossTextToXD > should parse v2 puzzle with MARK flag (circled cells) 
 title: Across Test
 author: madebygare
 copyright: 2026 Puzzmo
-O { background: circle }
 
 ## Grid
 
@@ -98,12 +97,12 @@ This puzzle demonstrates circled cells using the MARK flag.
 
 ## Design
 
-<style>O { background: circle }</style>
+O { background: circle }
 
-#...
+....
 OOOO
 ....
-...#
+....
 "
 `;
 

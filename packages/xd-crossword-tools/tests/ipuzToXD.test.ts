@@ -73,9 +73,7 @@ describe(ipuzToXD.name, () => {
 
       ## Design
 
-      <style>
       O { background: circle }
-      </style>
 
       ...
       .O.

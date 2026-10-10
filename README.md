@@ -1,8 +1,8 @@
 # xd-crossword-tools
 
-[xd](https://github.com/century-arcade/xd/blob/master/doc/xd-format.md) is a text-based crossword format which is easy for humans to read and reason about.
+[xd](https://github.com/century-arcade/xdformat/blob/master/doc/xd-format-v4.md) is a text-based crossword format which is easy for humans to read and reason about.
 
-This repo provides tools for taking different crossword file formats and converting them to xd. Then has a comprehensive xd to JSON function. Mostly conforms to the v2 xd spec, and comes with a few editor-experience extensions for a REPL-like environment. Uses a [vendored](./packages/xd-crossword-tools/src/vendor/) copy of 'puzjs' which was ported to TypeScript.
+This repo provides tools for taking different crossword file formats and converting them to xd. Then has a comprehensive xd to JSON function. Targets the [xd v4 spec](https://github.com/century-arcade/xdformat/blob/master/doc/xd-format-v4.md), and comes with a few editor-experience extensions for a REPL-like environment. Older xd files still parse (with deprecation warnings), and `migrateXDToV4` will [upgrade them](#migrating-to-xd-v4). Uses a [vendored](./packages/xd-crossword-tools/src/vendor/) copy of 'puzjs' which was ported to TypeScript.
 
 Runs and tested in production in node, browsers, React Native and edge runtimes.
 
@@ -23,10 +23,9 @@ Their .puz file turns into this xd:
 ```xd
 ## Metadata
 
-title: Alpha-Bits
-author: Drew Hodson
-copyright: © 2021
-description: N/A
+Title: Alpha-Bits
+Author: Drew Hodson
+Copyright: © 2021
 
 ## Grid
 
@@ -143,23 +142,23 @@ D70. Sonic ___ ~ SEZ
 
 ## Design
 
-<style>O { background: circle }</style>
+O { background: circle }
 
-O..O##O.O#.O..O
-.....#...#.....
-.....#...#.....
-####....#...###
-O..O#.O.O.#O..O
-.......#...#...
-......#........
-##...#O.O#...##
-........#......
-...#...#.......
-O..O#.O.O.#O..O
-###...#....####
-.....#...#.....
-.....#...#.....
-O..O.#O.O##O..O
+O..O..O.O..O..O
+...............
+...............
+...............
+O..O..O.O..O..O
+...............
+...............
+......O.O......
+...............
+...............
+O..O..O.O..O..O
+...............
+...............
+...............
+O..O..O.O..O..O
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -183,6 +182,32 @@ O..O.#O.O##O..O
     "copyright:line": "4",
     "description": "N/A",
     "description:line": "5"
+  },
+  "metaDisplay": {
+    "title": [
+      [
+        "text",
+        "Alpha-Bits"
+      ]
+    ],
+    "author": [
+      [
+        "text",
+        "Drew Hodson"
+      ]
+    ],
+    "copyright": [
+      [
+        "text",
+        "© 2021"
+      ]
+    ],
+    "description": [
+      [
+        "text",
+        "N/A"
+      ]
+    ]
   },
   "tiles": [
     [
@@ -1102,7 +1127,13 @@ O..O.#O.O##O..O
           "body:line": "28",
           "answer:unprocessed": "AHAB"
         },
-        "display": [["text", "Captain of the Pequod"]],
+        "display": [
+          [
+            "text",
+            "Captain of the Pequod"
+          ]
+        ],
+        "plain": "Captain of the Pequod",
         "direction": "across"
       },
       {
@@ -1131,7 +1162,13 @@ O..O.#O.O##O..O
           "body:line": "29",
           "answer:unprocessed": "CUD"
         },
-        "display": [["text", "Food for second chance chewing"]],
+        "display": [
+          [
+            "text",
+            "Food for second chance chewing"
+          ]
+        ],
+        "plain": "Food for second chance chewing",
         "direction": "across"
       },
       {
@@ -1168,7 +1205,13 @@ O..O.#O.O##O..O
           "body:line": "30",
           "answer:unprocessed": "SERIF"
         },
-        "display": [["text", "Font feature"]],
+        "display": [
+          [
+            "text",
+            "Font feature"
+          ]
+        ],
+        "plain": "Font feature",
         "direction": "across"
       },
       {
@@ -1205,7 +1248,13 @@ O..O.#O.O##O..O
           "body:line": "31",
           "answer:unprocessed": "MADAM"
         },
-        "display": [["text", "Palindromic address to a female"]],
+        "display": [
+          [
+            "text",
+            "Palindromic address to a female"
+          ]
+        ],
+        "plain": "Palindromic address to a female",
         "direction": "across"
       },
       {
@@ -1234,7 +1283,13 @@ O..O.#O.O##O..O
           "body:line": "32",
           "answer:unprocessed": "ANY"
         },
-        "display": [["text", "___ Way You Want It"]],
+        "display": [
+          [
+            "text",
+            "___ Way You Want It"
+          ]
+        ],
+        "plain": "___ Way You Want It",
         "direction": "across"
       },
       {
@@ -1271,7 +1326,13 @@ O..O.#O.O##O..O
           "body:line": "33",
           "answer:unprocessed": "ABODE"
         },
-        "display": [["text", "Place often described as humble"]],
+        "display": [
+          [
+            "text",
+            "Place often described as humble"
+          ]
+        ],
+        "plain": "Place often described as humble",
         "direction": "across"
       },
       {
@@ -1308,7 +1369,13 @@ O..O.#O.O##O..O
           "body:line": "34",
           "answer:unprocessed": "PLANE"
         },
-        "display": [["text", "Flat two dimensional surface in geometry"]],
+        "display": [
+          [
+            "text",
+            "Flat two dimensional surface in geometry"
+          ]
+        ],
+        "plain": "Flat two dimensional surface in geometry",
         "direction": "across"
       },
       {
@@ -1337,7 +1404,13 @@ O..O.#O.O##O..O
           "body:line": "35",
           "answer:unprocessed": "DIE"
         },
-        "display": [["text", "Grim homophone of 7D"]],
+        "display": [
+          [
+            "text",
+            "Grim homophone of 7D"
+          ]
+        ],
+        "plain": "Grim homophone of 7D",
         "direction": "across"
       },
       {
@@ -1374,7 +1447,13 @@ O..O.#O.O##O..O
           "body:line": "36",
           "answer:unprocessed": "NOTON"
         },
-        "display": [["text", "Off"]],
+        "display": [
+          [
+            "text",
+            "Off"
+          ]
+        ],
+        "plain": "Off",
         "direction": "across"
       },
       {
@@ -1407,7 +1486,13 @@ O..O.#O.O##O..O
           "body:line": "37",
           "answer:unprocessed": "TODO"
         },
-        "display": [["text", "Heading for some lists"]],
+        "display": [
+          [
+            "text",
+            "Heading for some lists"
+          ]
+        ],
+        "plain": "Heading for some lists",
         "direction": "across"
       },
       {
@@ -1436,7 +1521,13 @@ O..O.#O.O##O..O
           "body:line": "38",
           "answer:unprocessed": "EGO"
         },
-        "display": [["text", "Kanye West is famous for his"]],
+        "display": [
+          [
+            "text",
+            "Kanye West is famous for his"
+          ]
+        ],
+        "plain": "Kanye West is famous for his",
         "direction": "across"
       },
       {
@@ -1469,7 +1560,13 @@ O..O.#O.O##O..O
           "body:line": "39",
           "answer:unprocessed": "GASH"
         },
-        "display": [["text", "Laceration"]],
+        "display": [
+          [
+            "text",
+            "Laceration"
+          ]
+        ],
+        "plain": "Laceration",
         "direction": "across"
       },
       {
@@ -1506,7 +1603,13 @@ O..O.#O.O##O..O
           "body:line": "40",
           "answer:unprocessed": "NINJA"
         },
-        "display": [["text", "Alias of Twitch star Richard Tyler Blevins"]],
+        "display": [
+          [
+            "text",
+            "Alias of Twitch star Richard Tyler Blevins"
+          ]
+        ],
+        "plain": "Alias of Twitch star Richard Tyler Blevins",
         "direction": "across"
       },
       {
@@ -1539,7 +1642,13 @@ O..O.#O.O##O..O
           "body:line": "41",
           "answer:unprocessed": "KEEL"
         },
-        "display": [["text", "Capsize"]],
+        "display": [
+          [
+            "text",
+            "Capsize"
+          ]
+        ],
+        "plain": "Capsize",
         "direction": "across"
       },
       {
@@ -1584,7 +1693,13 @@ O..O.#O.O##O..O
           "body:line": "42",
           "answer:unprocessed": "ARTICLE"
         },
-        "display": [["text", "Piece of clothing or print"]],
+        "display": [
+          [
+            "text",
+            "Piece of clothing or print"
+          ]
+        ],
+        "plain": "Piece of clothing or print",
         "direction": "across"
       },
       {
@@ -1613,7 +1728,13 @@ O..O.#O.O##O..O
           "body:line": "43",
           "answer:unprocessed": "ORU"
         },
-        "display": [["text", "Evangelical school in Tulsa, OK"]],
+        "display": [
+          [
+            "text",
+            "Evangelical school in Tulsa, OK"
+          ]
+        ],
+        "plain": "Evangelical school in Tulsa, OK",
         "direction": "across"
       },
       {
@@ -1642,7 +1763,13 @@ O..O.#O.O##O..O
           "body:line": "44",
           "answer:unprocessed": "DOE"
         },
-        "display": [["text", "___-eyed"]],
+        "display": [
+          [
+            "text",
+            "___-eyed"
+          ]
+        ],
+        "plain": "___-eyed",
         "direction": "across"
       },
       {
@@ -1683,7 +1810,13 @@ O..O.#O.O##O..O
           "body:line": "45",
           "answer:unprocessed": "YEARLY"
         },
-        "display": [["text", "Annual"]],
+        "display": [
+          [
+            "text",
+            "Annual"
+          ]
+        ],
+        "plain": "Annual",
         "direction": "across"
       },
       {
@@ -1732,7 +1865,13 @@ O..O.#O.O##O..O
           "body:line": "46",
           "answer:unprocessed": "MISPRINT"
         },
-        "display": [["text", "The stamp with the upside down airplane is a famous one"]],
+        "display": [
+          [
+            "text",
+            "The stamp with the upside down airplane is a famous one"
+          ]
+        ],
+        "plain": "The stamp with the upside down airplane is a famous one",
         "direction": "across"
       },
       {
@@ -1761,7 +1900,13 @@ O..O.#O.O##O..O
           "body:line": "47",
           "answer:unprocessed": "NEI"
         },
-        "display": [["text", "With 42A and Marcus, a luxury department store chain"]],
+        "display": [
+          [
+            "text",
+            "With 42A and Marcus, a luxury department store chain"
+          ]
+        ],
+        "plain": "With 42A and Marcus, a luxury department store chain",
         "direction": "across"
       },
       {
@@ -1790,7 +1935,13 @@ O..O.#O.O##O..O
           "body:line": "48",
           "answer:unprocessed": "MAN"
         },
-        "display": [["text", "41A continued"]],
+        "display": [
+          [
+            "text",
+            "41A continued"
+          ]
+        ],
+        "plain": "41A continued",
         "direction": "across"
       },
       {
@@ -1819,7 +1970,13 @@ O..O.#O.O##O..O
           "body:line": "49",
           "answer:unprocessed": "SOT"
         },
-        "display": [["text", "Lush"]],
+        "display": [
+          [
+            "text",
+            "Lush"
+          ]
+        ],
+        "plain": "Lush",
         "direction": "across"
       },
       {
@@ -1868,7 +2025,13 @@ O..O.#O.O##O..O
           "body:line": "50",
           "answer:unprocessed": "CALENDAR"
         },
-        "display": [["text", "The Mayan one ended in 2012"]],
+        "display": [
+          [
+            "text",
+            "The Mayan one ended in 2012"
+          ]
+        ],
+        "plain": "The Mayan one ended in 2012",
         "direction": "across"
       },
       {
@@ -1909,7 +2072,13 @@ O..O.#O.O##O..O
           "body:line": "51",
           "answer:unprocessed": "RETIES"
         },
-        "display": [["text", "What a child often does to their shoes"]],
+        "display": [
+          [
+            "text",
+            "What a child often does to their shoes"
+          ]
+        ],
+        "plain": "What a child often does to their shoes",
         "direction": "across"
       },
       {
@@ -1938,7 +2107,13 @@ O..O.#O.O##O..O
           "body:line": "52",
           "answer:unprocessed": "ICE"
         },
-        "display": [["text", "Vanilla ___"]],
+        "display": [
+          [
+            "text",
+            "Vanilla ___"
+          ]
+        ],
+        "plain": "Vanilla ___",
         "direction": "across"
       },
       {
@@ -1967,7 +2142,13 @@ O..O.#O.O##O..O
           "body:line": "53",
           "answer:unprocessed": "TAR"
         },
-        "display": [["text", "Maligned cigarette ingredient"]],
+        "display": [
+          [
+            "text",
+            "Maligned cigarette ingredient"
+          ]
+        ],
+        "plain": "Maligned cigarette ingredient",
         "direction": "across"
       },
       {
@@ -2012,7 +2193,13 @@ O..O.#O.O##O..O
           "body:line": "54",
           "answer:unprocessed": "POTHOLE"
         },
-        "display": [["text", "Frequent cause for a new tire"]],
+        "display": [
+          [
+            "text",
+            "Frequent cause for a new tire"
+          ]
+        ],
+        "plain": "Frequent cause for a new tire",
         "direction": "across"
       },
       {
@@ -2045,7 +2232,13 @@ O..O.#O.O##O..O
           "body:line": "55",
           "answer:unprocessed": "OTEP"
         },
-        "display": [["text", "Los Angeles heavy metal act"]],
+        "display": [
+          [
+            "text",
+            "Los Angeles heavy metal act"
+          ]
+        ],
+        "plain": "Los Angeles heavy metal act",
         "direction": "across"
       },
       {
@@ -2082,7 +2275,13 @@ O..O.#O.O##O..O
           "body:line": "56",
           "answer:unprocessed": "HQTRS"
         },
-        "display": [["text", "Bldgs. such as the Googleplex"]],
+        "display": [
+          [
+            "text",
+            "Bldgs. such as the Googleplex"
+          ]
+        ],
+        "plain": "Bldgs. such as the Googleplex",
         "direction": "across"
       },
       {
@@ -2115,7 +2314,13 @@ O..O.#O.O##O..O
           "body:line": "57",
           "answer:unprocessed": "SNIT"
         },
-        "display": [["text", "A fit of irritation"]],
+        "display": [
+          [
+            "text",
+            "A fit of irritation"
+          ]
+        ],
+        "plain": "A fit of irritation",
         "direction": "across"
       },
       {
@@ -2144,7 +2349,13 @@ O..O.#O.O##O..O
           "body:line": "58",
           "answer:unprocessed": "ALL"
         },
-        "display": [["text", "Lead-in to American or day"]],
+        "display": [
+          [
+            "text",
+            "Lead-in to American or day"
+          ]
+        ],
+        "plain": "Lead-in to American or day",
         "direction": "across"
       },
       {
@@ -2177,7 +2388,13 @@ O..O.#O.O##O..O
           "body:line": "59",
           "answer:unprocessed": "HEAL"
         },
-        "display": [["text", "What Pokémon do at a Pokémon Center"]],
+        "display": [
+          [
+            "text",
+            "What Pokémon do at a Pokémon Center"
+          ]
+        ],
+        "plain": "What Pokémon do at a Pokémon Center",
         "direction": "across"
       },
       {
@@ -2214,7 +2431,13 @@ O..O.#O.O##O..O
           "body:line": "60",
           "answer:unprocessed": "SPIRO"
         },
-        "display": [["text", "Nixon's vice"]],
+        "display": [
+          [
+            "text",
+            "Nixon's vice"
+          ]
+        ],
+        "plain": "Nixon's vice",
         "direction": "across"
       },
       {
@@ -2243,7 +2466,13 @@ O..O.#O.O##O..O
           "body:line": "61",
           "answer:unprocessed": "NET"
         },
-        "display": [["text", "Nothing but ___"]],
+        "display": [
+          [
+            "text",
+            "Nothing but ___"
+          ]
+        ],
+        "plain": "Nothing but ___",
         "direction": "across"
       },
       {
@@ -2280,7 +2509,13 @@ O..O.#O.O##O..O
           "body:line": "62",
           "answer:unprocessed": "ATLAS"
         },
-        "display": [["text", "One with the world on his shoulders"]],
+        "display": [
+          [
+            "text",
+            "One with the world on his shoulders"
+          ]
+        ],
+        "plain": "One with the world on his shoulders",
         "direction": "across"
       },
       {
@@ -2317,7 +2552,13 @@ O..O.#O.O##O..O
           "body:line": "63",
           "answer:unprocessed": "TARTS"
         },
-        "display": [["text", "Filled pastries"]],
+        "display": [
+          [
+            "text",
+            "Filled pastries"
+          ]
+        ],
+        "plain": "Filled pastries",
         "direction": "across"
       },
       {
@@ -2346,7 +2587,13 @@ O..O.#O.O##O..O
           "body:line": "64",
           "answer:unprocessed": "ETA"
         },
-        "display": [["text", "Age, in Milan"]],
+        "display": [
+          [
+            "text",
+            "Age, in Milan"
+          ]
+        ],
+        "plain": "Age, in Milan",
         "direction": "across"
       },
       {
@@ -2383,7 +2630,13 @@ O..O.#O.O##O..O
           "body:line": "65",
           "answer:unprocessed": "DOONE"
         },
-        "display": [["text", "Lorna ___, novel or cookie"]],
+        "display": [
+          [
+            "text",
+            "Lorna ___, novel or cookie"
+          ]
+        ],
+        "plain": "Lorna ___, novel or cookie",
         "direction": "across"
       },
       {
@@ -2420,7 +2673,13 @@ O..O.#O.O##O..O
           "body:line": "66",
           "answer:unprocessed": "UWAVE"
         },
-        "display": [["text", "Electrocardiogram readout feature"]],
+        "display": [
+          [
+            "text",
+            "Electrocardiogram readout feature"
+          ]
+        ],
+        "plain": "Electrocardiogram readout feature",
         "direction": "across"
       },
       {
@@ -2449,7 +2708,13 @@ O..O.#O.O##O..O
           "body:line": "67",
           "answer:unprocessed": "WAX"
         },
-        "display": [["text", "Hip slang for records"]],
+        "display": [
+          [
+            "text",
+            "Hip slang for records"
+          ]
+        ],
+        "plain": "Hip slang for records",
         "direction": "across"
       },
       {
@@ -2482,7 +2747,13 @@ O..O.#O.O##O..O
           "body:line": "68",
           "answer:unprocessed": "YUTZ"
         },
-        "display": [["text", "Yiddish for a foolish person"]],
+        "display": [
+          [
+            "text",
+            "Yiddish for a foolish person"
+          ]
+        ],
+        "plain": "Yiddish for a foolish person",
         "direction": "across"
       }
     ],
@@ -2513,7 +2784,13 @@ O..O.#O.O##O..O
           "body:line": "70",
           "answer:unprocessed": "AMP"
         },
-        "display": [["text", "Pc. of concert gear"]],
+        "display": [
+          [
+            "text",
+            "Pc. of concert gear"
+          ]
+        ],
+        "plain": "Pc. of concert gear",
         "direction": "down"
       },
       {
@@ -2542,7 +2819,13 @@ O..O.#O.O##O..O
           "body:line": "71",
           "answer:unprocessed": "HAL"
         },
-        "display": [["text", "AI antagonist of 2001"]],
+        "display": [
+          [
+            "text",
+            "AI antagonist of 2001"
+          ]
+        ],
+        "plain": "AI antagonist of 2001",
         "direction": "down"
       },
       {
@@ -2571,7 +2854,13 @@ O..O.#O.O##O..O
           "body:line": "72",
           "answer:unprocessed": "ADA"
         },
-        "display": [["text", "Programming pioneer Lovelace"]],
+        "display": [
+          [
+            "text",
+            "Programming pioneer Lovelace"
+          ]
+        ],
+        "plain": "Programming pioneer Lovelace",
         "direction": "down"
       },
       {
@@ -2600,7 +2889,13 @@ O..O.#O.O##O..O
           "body:line": "73",
           "answer:unprocessed": "BAN"
         },
-        "display": [["text", "Prohibit"]],
+        "display": [
+          [
+            "text",
+            "Prohibit"
+          ]
+        ],
+        "plain": "Prohibit",
         "direction": "down"
       },
       {
@@ -2641,7 +2936,13 @@ O..O.#O.O##O..O
           "body:line": "74",
           "answer:unprocessed": "CADDIE"
         },
-        "display": [["text", "Type of person to routinely carry a club"]],
+        "display": [
+          [
+            "text",
+            "Type of person to routinely carry a club"
+          ]
+        ],
+        "plain": "Type of person to routinely carry a club",
         "direction": "down"
       },
       {
@@ -2678,7 +2979,13 @@ O..O.#O.O##O..O
           "body:line": "75",
           "answer:unprocessed": "UNION"
         },
-        "display": [["text", "State of the ___ Address"]],
+        "display": [
+          [
+            "text",
+            "State of the ___ Address"
+          ]
+        ],
+        "plain": "State of the ___ Address",
         "direction": "down"
       },
       {
@@ -2707,7 +3014,13 @@ O..O.#O.O##O..O
           "body:line": "76",
           "answer:unprocessed": "DYE"
         },
-        "display": [["text", "Colorful homophone of 18A"]],
+        "display": [
+          [
+            "text",
+            "Colorful homophone of 18A"
+          ]
+        ],
+        "plain": "Colorful homophone of 18A",
         "direction": "down"
       },
       {
@@ -2740,7 +3053,13 @@ O..O.#O.O##O..O
           "body:line": "77",
           "answer:unprocessed": "SANG"
         },
-        "display": [["text", "Snitched"]],
+        "display": [
+          [
+            "text",
+            "Snitched"
+          ]
+        ],
+        "plain": "Snitched",
         "direction": "down"
       },
       {
@@ -2777,7 +3096,13 @@ O..O.#O.O##O..O
           "body:line": "78",
           "answer:unprocessed": "EBOOK"
         },
-        "display": [["text", "Kindle fare"]],
+        "display": [
+          [
+            "text",
+            "Kindle fare"
+          ]
+        ],
+        "plain": "Kindle fare",
         "direction": "down"
       },
       {
@@ -2806,7 +3131,13 @@ O..O.#O.O##O..O
           "body:line": "79",
           "answer:unprocessed": "ROT"
         },
-        "display": [["text", "Decayed matter"]],
+        "display": [
+          [
+            "text",
+            "Decayed matter"
+          ]
+        ],
+        "plain": "Decayed matter",
         "direction": "down"
       },
       {
@@ -2835,7 +3166,13 @@ O..O.#O.O##O..O
           "body:line": "80",
           "answer:unprocessed": "IDO"
         },
-        "display": [["text", "Type of response you hope to get at the altar"]],
+        "display": [
+          [
+            "text",
+            "Type of response you hope to get at the altar"
+          ]
+        ],
+        "plain": "Type of response you hope to get at the altar",
         "direction": "down"
       },
       {
@@ -2864,7 +3201,13 @@ O..O.#O.O##O..O
           "body:line": "81",
           "answer:unprocessed": "FEN"
         },
-        "display": [["text", "Peat-accumulating wetland"]],
+        "display": [
+          [
+            "text",
+            "Peat-accumulating wetland"
+          ]
+        ],
+        "plain": "Peat-accumulating wetland",
         "direction": "down"
       },
       {
@@ -2893,7 +3236,13 @@ O..O.#O.O##O..O
           "body:line": "82",
           "answer:unprocessed": "MET"
         },
-        "display": [["text", "The ___, NY art museum"]],
+        "display": [
+          [
+            "text",
+            "The ___, NY art museum"
+          ]
+        ],
+        "plain": "The ___, NY art museum",
         "direction": "down"
       },
       {
@@ -2926,7 +3275,13 @@ O..O.#O.O##O..O
           "body:line": "83",
           "answer:unprocessed": "ONLY"
         },
-        "display": [["text", "___Fans"]],
+        "display": [
+          [
+            "text",
+            "___Fans"
+          ]
+        ],
+        "plain": "___Fans",
         "direction": "down"
       },
       {
@@ -2959,7 +3314,13 @@ O..O.#O.O##O..O
           "body:line": "84",
           "answer:unprocessed": "EARS"
         },
-        "display": [["text", "Friends, Romans, countrymen, lend me your..."]],
+        "display": [
+          [
+            "text",
+            "Friends, Romans, countrymen, lend me your..."
+          ]
+        ],
+        "plain": "Friends, Romans, countrymen, lend me your...",
         "direction": "down"
       },
       {
@@ -2988,7 +3349,13 @@ O..O.#O.O##O..O
           "body:line": "85",
           "answer:unprocessed": "GAY"
         },
-        "display": [["text", "\"Friend of Dorothy\""]],
+        "display": [
+          [
+            "text",
+            "\"Friend of Dorothy\""
+          ]
+        ],
+        "plain": "\"Friend of Dorothy\"",
         "direction": "down"
       },
       {
@@ -3017,7 +3384,13 @@ O..O.#O.O##O..O
           "body:line": "86",
           "answer:unprocessed": "ARE"
         },
-        "display": [["text", "We ___ the Champions"]],
+        "display": [
+          [
+            "text",
+            "We ___ the Champions"
+          ]
+        ],
+        "plain": "We ___ the Champions",
         "direction": "down"
       },
       {
@@ -3062,7 +3435,13 @@ O..O.#O.O##O..O
           "body:line": "87",
           "answer:unprocessed": "STANLEE"
         },
-        "display": [["text", "Father of Spider-Man"]],
+        "display": [
+          [
+            "text",
+            "Father of Spider-Man"
+          ]
+        ],
+        "plain": "Father of Spider-Man",
         "direction": "down"
       },
       {
@@ -3099,7 +3478,13 @@ O..O.#O.O##O..O
           "body:line": "88",
           "answer:unprocessed": "HIREE"
         },
-        "display": [["text", "What a certain applicant becomes"]],
+        "display": [
+          [
+            "text",
+            "What a certain applicant becomes"
+          ]
+        ],
+        "plain": "What a certain applicant becomes",
         "direction": "down"
       },
       {
@@ -3132,7 +3517,13 @@ O..O.#O.O##O..O
           "body:line": "89",
           "answer:unprocessed": "JOIN"
         },
-        "display": [["text", "Connect"]],
+        "display": [
+          [
+            "text",
+            "Connect"
+          ]
+        ],
+        "plain": "Connect",
         "direction": "down"
       },
       {
@@ -3177,7 +3568,13 @@ O..O.#O.O##O..O
           "body:line": "90",
           "answer:unprocessed": "EDITION"
         },
-        "display": [["text", "Particular form of a published text"]],
+        "display": [
+          [
+            "text",
+            "Particular form of a published text"
+          ]
+        ],
+        "plain": "Particular form of a published text",
         "direction": "down"
       },
       {
@@ -3206,7 +3603,13 @@ O..O.#O.O##O..O
           "body:line": "91",
           "answer:unprocessed": "EON"
         },
-        "display": [["text", "Suffix at the end of all of Eevee's evolutions"]],
+        "display": [
+          [
+            "text",
+            "Suffix at the end of all of Eevee's evolutions"
+          ]
+        ],
+        "plain": "Suffix at the end of all of Eevee's evolutions",
         "direction": "down"
       },
       {
@@ -3235,7 +3638,13 @@ O..O.#O.O##O..O
           "body:line": "92",
           "answer:unprocessed": "LET"
         },
-        "display": [["text", "Live and ___ Die"]],
+        "display": [
+          [
+            "text",
+            "Live and ___ Die"
+          ]
+        ],
+        "plain": "Live and ___ Die",
         "direction": "down"
       },
       {
@@ -3272,7 +3681,13 @@ O..O.#O.O##O..O
           "body:line": "93",
           "answer:unprocessed": "CLINT"
         },
-        "display": [["text", "Famous Eastwood whose name became a famous Gorillaz song"]],
+        "display": [
+          [
+            "text",
+            "Famous Eastwood whose name became a famous Gorillaz song"
+          ]
+        ],
+        "plain": "Famous Eastwood whose name became a famous Gorillaz song",
         "direction": "down"
       },
       {
@@ -3309,7 +3724,13 @@ O..O.#O.O##O..O
           "body:line": "94",
           "answer:unprocessed": "UPSET"
         },
-        "display": [["text", "Unexpected result in a sporting competition"]],
+        "display": [
+          [
+            "text",
+            "Unexpected result in a sporting competition"
+          ]
+        ],
+        "plain": "Unexpected result in a sporting competition",
         "direction": "down"
       },
       {
@@ -3338,7 +3759,13 @@ O..O.#O.O##O..O
           "body:line": "95",
           "answer:unprocessed": "MAR"
         },
-        "display": [["text", "Disfigure"]],
+        "display": [
+          [
+            "text",
+            "Disfigure"
+          ]
+        ],
+        "plain": "Disfigure",
         "direction": "down"
       },
       {
@@ -3375,7 +3802,13 @@ O..O.#O.O##O..O
           "body:line": "96",
           "answer:unprocessed": "ROTHS"
         },
-        "display": [["text", "David Lee and Tim"]],
+        "display": [
+          [
+            "text",
+            "David Lee and Tim"
+          ]
+        ],
+        "plain": "David Lee and Tim",
         "direction": "down"
       },
       {
@@ -3408,7 +3841,13 @@ O..O.#O.O##O..O
           "body:line": "97",
           "answer:unprocessed": "MARQ"
         },
-        "display": [["text", "Luxury watch collection by Garmin"]],
+        "display": [
+          [
+            "text",
+            "Luxury watch collection by Garmin"
+          ]
+        ],
+        "plain": "Luxury watch collection by Garmin",
         "direction": "down"
       },
       {
@@ -3437,7 +3876,13 @@ O..O.#O.O##O..O
           "body:line": "98",
           "answer:unprocessed": "CIO"
         },
-        "display": [["text", "Top dog in an IT org"]],
+        "display": [
+          [
+            "text",
+            "Top dog in an IT org"
+          ]
+        ],
+        "plain": "Top dog in an IT org",
         "direction": "down"
       },
       {
@@ -3466,7 +3911,13 @@ O..O.#O.O##O..O
           "body:line": "99",
           "answer:unprocessed": "ACT"
         },
-        "display": [["text", "Sister ___"]],
+        "display": [
+          [
+            "text",
+            "Sister ___"
+          ]
+        ],
+        "plain": "Sister ___",
         "direction": "down"
       },
       {
@@ -3499,7 +3950,13 @@ O..O.#O.O##O..O
           "body:line": "100",
           "answer:unprocessed": "DAHL"
         },
-        "display": [["text", "Author Roald"]],
+        "display": [
+          [
+            "text",
+            "Author Roald"
+          ]
+        ],
+        "plain": "Author Roald",
         "direction": "down"
       },
       {
@@ -3532,7 +3989,13 @@ O..O.#O.O##O..O
           "body:line": "101",
           "answer:unprocessed": "ROSA"
         },
-        "display": [["text", "Civil rights activist Parks"]],
+        "display": [
+          [
+            "text",
+            "Civil rights activist Parks"
+          ]
+        ],
+        "plain": "Civil rights activist Parks",
         "direction": "down"
       },
       {
@@ -3561,7 +4024,13 @@ O..O.#O.O##O..O
           "body:line": "102",
           "answer:unprocessed": "ELI"
         },
-        "display": [["text", "An additional name that could be part of 40D's clue"]],
+        "display": [
+          [
+            "text",
+            "An additional name that could be part of 40D's clue"
+          ]
+        ],
+        "plain": "An additional name that could be part of 40D's clue",
         "direction": "down"
       },
       {
@@ -3590,7 +4059,13 @@ O..O.#O.O##O..O
           "body:line": "103",
           "answer:unprocessed": "SET"
         },
-        "display": [["text", "Director's domain"]],
+        "display": [
+          [
+            "text",
+            "Director's domain"
+          ]
+        ],
+        "plain": "Director's domain",
         "direction": "down"
       },
       {
@@ -3631,7 +4106,13 @@ O..O.#O.O##O..O
           "body:line": "104",
           "answer:unprocessed": "PRETAX"
         },
-        "display": [["text", "Type of income to go in a 401k"]],
+        "display": [
+          [
+            "text",
+            "Type of income to go in a 401k"
+          ]
+        ],
+        "plain": "Type of income to go in a 401k",
         "direction": "down"
       },
       {
@@ -3668,7 +4149,13 @@ O..O.#O.O##O..O
           "body:line": "105",
           "answer:unprocessed": "PARTV"
         },
-        "display": [["text", "The Empire Strikes Back, to the Star Wars saga"]],
+        "display": [
+          [
+            "text",
+            "The Empire Strikes Back, to the Star Wars saga"
+          ]
+        ],
+        "plain": "The Empire Strikes Back, to the Star Wars saga",
         "direction": "down"
       },
       {
@@ -3705,7 +4192,13 @@ O..O.#O.O##O..O
           "body:line": "106",
           "answer:unprocessed": "THETA"
         },
-        "display": [["text", "Greek letter following 72A"]],
+        "display": [
+          [
+            "text",
+            "Greek letter following 72A"
+          ]
+        ],
+        "plain": "Greek letter following 72A",
         "direction": "down"
       },
       {
@@ -3738,7 +4231,13 @@ O..O.#O.O##O..O
           "body:line": "107",
           "answer:unprocessed": "LOSE"
         },
-        "display": [["text", "Misplace"]],
+        "display": [
+          [
+            "text",
+            "Misplace"
+          ]
+        ],
+        "plain": "Misplace",
         "direction": "down"
       },
       {
@@ -3767,7 +4266,13 @@ O..O.#O.O##O..O
           "body:line": "108",
           "answer:unprocessed": "LAD"
         },
-        "display": [["text", "Wee boy"]],
+        "display": [
+          [
+            "text",
+            "Wee boy"
+          ]
+        ],
+        "plain": "Wee boy",
         "direction": "down"
       },
       {
@@ -3796,7 +4301,13 @@ O..O.#O.O##O..O
           "body:line": "109",
           "answer:unprocessed": "STU"
         },
-        "display": [["text", "Dad to Tommy Pickles"]],
+        "display": [
+          [
+            "text",
+            "Dad to Tommy Pickles"
+          ]
+        ],
+        "plain": "Dad to Tommy Pickles",
         "direction": "down"
       },
       {
@@ -3825,7 +4336,13 @@ O..O.#O.O##O..O
           "body:line": "110",
           "answer:unprocessed": "PAW"
         },
-        "display": [["text", "The only Patrol I trust"]],
+        "display": [
+          [
+            "text",
+            "The only Patrol I trust"
+          ]
+        ],
+        "plain": "The only Patrol I trust",
         "direction": "down"
       },
       {
@@ -3854,7 +4371,13 @@ O..O.#O.O##O..O
           "body:line": "111",
           "answer:unprocessed": "IRA"
         },
-        "display": [["text", "Smart savings plan, briefly"]],
+        "display": [
+          [
+            "text",
+            "Smart savings plan, briefly"
+          ]
+        ],
+        "plain": "Smart savings plan, briefly",
         "direction": "down"
       },
       {
@@ -3883,7 +4406,13 @@ O..O.#O.O##O..O
           "body:line": "112",
           "answer:unprocessed": "NEW"
         },
-        "display": [["text", "Fresh"]],
+        "display": [
+          [
+            "text",
+            "Fresh"
+          ]
+        ],
+        "plain": "Fresh",
         "direction": "down"
       },
       {
@@ -3912,7 +4441,13 @@ O..O.#O.O##O..O
           "body:line": "113",
           "answer:unprocessed": "TOY"
         },
-        "display": [["text", "Breeds such as Chihuahua or Pomeranian"]],
+        "display": [
+          [
+            "text",
+            "Breeds such as Chihuahua or Pomeranian"
+          ]
+        ],
+        "plain": "Breeds such as Chihuahua or Pomeranian",
         "direction": "down"
       },
       {
@@ -3941,7 +4476,13 @@ O..O.#O.O##O..O
           "body:line": "114",
           "answer:unprocessed": "LOU"
         },
-        "display": [["text", "Bega behind \"Mambo No. 5\""]],
+        "display": [
+          [
+            "text",
+            "Bega behind \"Mambo No. 5\""
+          ]
+        ],
+        "plain": "Bega behind \"Mambo No. 5\"",
         "direction": "down"
       },
       {
@@ -3970,7 +4511,13 @@ O..O.#O.O##O..O
           "body:line": "115",
           "answer:unprocessed": "ANT"
         },
-        "display": [["text", "Aardvark breakfast"]],
+        "display": [
+          [
+            "text",
+            "Aardvark breakfast"
+          ]
+        ],
+        "plain": "Aardvark breakfast",
         "direction": "down"
       },
       {
@@ -3999,17 +4546,34 @@ O..O.#O.O##O..O
           "body:line": "116",
           "answer:unprocessed": "SEZ"
         },
-        "display": [["text", "Sonic ___"]],
+        "display": [
+          [
+            "text",
+            "Sonic ___"
+          ]
+        ],
+        "plain": "Sonic ___",
         "direction": "down"
       }
     ]
   },
   "rebuses": {},
   "notes": "",
+  "unknownSections": {},
   "report": {
     "success": true,
     "errors": [],
-    "warnings": []
+    "warnings": [
+      {
+        "type": "syntax",
+        "position": {
+          "col": 0,
+          "index": 122
+        },
+        "length": -1,
+        "message": "xd v4 design sections do not wrap their style definitions in a <style> tag"
+      }
+    ]
   },
   "editorInfo": {
     "sections": [
@@ -4189,21 +4753,95 @@ O..O.#O.O##O..O
       }
     },
     "positions": [
-      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ],
       [],
       [],
       [],
-      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ],
       [],
       [],
-      [null, null, null, null, null, null, "O", null, "O"],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "O",
+        null,
+        "O"
+      ],
       [],
       [],
-      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"],
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ],
       [],
       [],
       [],
-      ["O", null, null, "O", null, null, "O", null, "O", null, null, "O", null, null, "O"]
+      [
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        "O",
+        null,
+        null,
+        "O",
+        null,
+        null,
+        "O"
+      ]
     ]
   }
 }
@@ -4392,13 +5030,34 @@ import { diffXD } from "xd-crossword-tools"
 const diff = diffXD(xd1, xd2)
 ```
 
+### Migrating to xd v4
+
+`migrateXDToV4(xd)` (exported from both packages) rewrites an xd file written for an earlier version of the spec, or with pre-v4 Puzzmo extensions, into v4 syntax. It works on the text so comments, section order and unknown sections are kept, and running it on a v4 file returns it unchanged.
+
+- Implicit (header-less) sections get `## Headings`
+- Pre-v4 xdown links `{@text|url@}`, images `{![url|alt]!}` / `{!![url]!}` and colours `{#text|light|dark#}` move to the attribute syntax, and text which v4 would read as markup is escaped
+- Clue bodies containing ` ~ ` (pre-v4 bodies ran to the _last_ ` ~ `) get it escaped as `{\~\}`
+- Split characters move out of answers into an end-of-line annotation: `~ OK|GO ~ OK|AY` becomes `~ OKGO ~ OKAY // OK|GO OK|AY`
+- A duplicated clue line, which was used as a hint, becomes `^Hint:` metadata
+- The v3 `Special: circle|shaded` field with lowercase grid cells becomes a `## Design` section
+- `## Design` sections lose their `<style>` wrapper and use `.` for unstyled cells
+
+Rebuses and Schrödinger squares are not fully specified in v4 yet, so `Rebus:`, `*` squares and `^alt:` answers are left as they are.
+
+```ts
+import { migrateXDToV4, xdToJSON } from "xd-crossword-tools"
+
+const v4 = migrateXDToV4(oldXD)
+xdToJSON(v4).report.warnings // no deprecation warnings
+```
+
 ### `xd` Extensions
 
 This lib creates `xd` compatible files, but also extends the format in a way that allows for thinking of `xd` as a human-editor format.
 
 #### Clue Metadata
 
-You can add arbitrary metadata to clues by repeating the clue with a custom suffix:
+You can add arbitrary metadata to clues by repeating the clue reference with a `^Key:` suffix (this is part of the xd spec since v3):
 
 ```
 A1. Gardener's concerns with A2 and D4. ~ BULB
@@ -4421,7 +5080,7 @@ D3. A conscious tree. ~ BOOK
 D3 ^Hint: Registering with a restaurant. ~ BOOK
 ```
 
-Capitalization is ignored, the metadata prefix will always be given as lowercase inside the JSON representation.
+Keys are case-insensitive, they are always lowercase inside the JSON representation and `JSONToXD` writes them lowercase.
 
 #### Schrödinger Squares
 
@@ -4505,70 +5164,83 @@ Date: 2021-03-16
 
 The key is that a line has to start with `<!--` and eventually the same or another line has to **end** with `-->`. **Note:** If you are doing automated transforms, these comments are likely to get lost.
 
-#### Markup in Clues
+#### xdown: markup in clues and metadata
 
-The [xd spec](https://github.com/century-arcade/xd/blob/master/doc/xd-format.md#clues-section-3) defines markup inside a clue as roughly being "markdown sigil's wrapped in `{` and `}`".
-
-We support this format, and will always fill out a key of `markup` which is an array of components. We also support nested tags.
+xd v4 calls its inline markup [xdown](https://github.com/century-arcade/xdformat/blob/master/doc/xd-format-v4.md#xdown-formatting). It is available in clue bodies and metadata values. A span is a `{`, a type character, the content, the same type character again, and a `}`. Spans can nest.
 
 <!-- prettier-ignore -->
 ```md
-A1. {/Captain/}, {*of*}, {_the_}, ship {-pequod-} {@see here|https://mylink.com@} ~ AHAB
+A1. {/Captain/}, {*of*}, {_the_}, ship {-pequod-} {@see here | href: https://mylink.com@} ~ AHAB
 ```
 
-Which will add the optional `"bodyMD"` to the clue:
+Clues always have a `display` array of components (and a `plain` string with the markup removed):
 
 ```json
 {
   "answer": "AHAB",
-  "body": "{/Captain/}, {*of*}, {_the_}, ship {-pequod-} {@see here|https://mylink.com@}",
+  "body": "{/Captain/}, {*of*}, {_the_}, ship {-pequod-} {@see here | href: https://mylink.com@}",
   "display": [
-    ["italics", "Captain"],
+    ["italics", "Captain", [["text", "Captain"]]],
     ["text", ", "],
-    ["bold", "of"],
+    ["bold", "of", [["text", "of"]]],
     ["text", ", "],
-    ["underscore", "the"],
+    ["underscore", "the", [["text", "the"]]],
     ["text", ", ship "],
-    ["strike", "pequod"],
+    ["strike", "pequod", [["text", "pequod"]]],
     ["text", " "],
-    ["link", "see here", "https://mylink.com"]
-  ]
+    ["link", "see here", "https://mylink.com", [["text", "see here"]]]
+  ],
+  "plain": "Captain, of, the, ship pequod [see here](https://mylink.com)"
 }
 ```
+
+Metadata values are parsed the same way into `metaDisplay`, e.g. `json.metaDisplay.title`.
 
 - Italics: `{/`<kbd>words</kbd>`/}`
 - Bold: `{*`<kbd>words</kbd>`*}`
 - Strike through: `{-`<kbd>words</kbd>`-}`
 - Underline: `{_`<kbd>words</kbd>`_}`
-- Link: `{@`<kbd>words</kbd>`|`<kbd>url</kbd>`@}`
-- Image inline: `{!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`|width|height!}`
-- Image block: `{!!`<kbd>url</kbd>`|`<kbd>alt text</kbd>`|width|height!}`
-- Inline colours: `{#`<kbd>text</kbd>`|`<kbd>hex colour light</kbd>|<kbd>hex colour dark</kbd>`#}`
 - Subscript `{~`<kbd>words</kbd>`~}`
 - Superscript `{^`<kbd>words</kbd>`^}`
 - Small caps: `{=`<kbd>words</kbd>`=}`
+- Link: `{@`<kbd>words</kbd>` | href: `<kbd>url</kbd>`@}`
+- Image: `{!`<kbd>alt text</kbd>` | src: `<kbd>url</kbd>`; width: 100; height: 50!}` - add `display: block` to put it on its own line. Quote a value which contains a `;`, like a data URI: `src: 'data:image/png;base64,...'`
+- Literal: `{\`<kbd>text</kbd>`\}` - nothing inside is interpreted, use `{\~\}` for a ` ~ ` in a clue body
+- Line break: `{\\}`
+- Inline colours (a Puzzmo extension, still being discussed for the spec): `{#`<kbd>text</kbd>` | light: `<kbd>colour</kbd>`; dark: `<kbd>colour</kbd>`#}`
 
-There is an exported `xdMarkupProcessor` and `xdMarkupSerializer` which you can use to do your own markup processing if needed.
+Every ASCII punctuation character is reserved as a type character, a `{` followed by anything else is just text. The pre-v4 positional forms (`{@text|url@}`, `{![url|alt|width|height]!}`, `{!![url]!}`, `{#text|light|dark#}`) are still read, with a deprecation warning.
 
-#### Split character
+`parseXDown`, `serializeXDown` and `xdownToPlainText` are exported if you want to work with xdown yourself.
 
-Provide hints for where one word terminates and the next begins in a single solution by declaring `SplitCharacter: {character}` in `Metadata`, and adding the chosen SplitCharacter between words in `Clues`.
+#### Answers and split characters
+
+A clue line can list more than one answer, each after a ` ~ `. Every answer is in `clue.answers`, with `clue.answer` being the first:
+
+```json
+"answers": [{ "answer": "CONE" }, { "answer": "CANE" }]
+```
+
+Provide hints for where one word terminates and the next begins by declaring `SplitCharacter: {character}` in `Metadata`, then adding an annotation to the end of the clue line after a `//`. Each word in the annotation is one of the answers written with the split character, in any order, and answers without splits can be left out. xd v4 only reads the first word of an answer, so this stays spec-compatible:
 
 ```
 ## Metadata
 
-splitcharacter: |
+SplitCharacter: |
 
 ## Clues
 …
-D25. Father of Spider-Man ~ STAN|LEE
+D25. Father of Spider-Man ~ STANLEE // STAN|LEE
+D26. Band ~ OKGO ~ OKAY // OK|GO OK|AY
 ```
 
-The 'answer' given from the parser here will be 'STANLEE', but the indexes for each bar will be noted in the clue.
+The parser gives `STANLEE` as the answer, with the split indexes on each entry in `answers` (and the first answer's on `clue.splits`). Without a `SplitCharacter` declared, `|` is used. An annotation word which doesn't spell one of the answers is an error, as is a ` ~ ` after the `//`.
+
+Putting the split character inside the answer itself (`~ STAN|LEE`) is deprecated: it still works with a warning, and `migrateXDToV4` converts it.
 
 ### Spec-Breaking Differences
 
-We want to highlight that 'Comments', 'Split Characters', 'Schrödinger clues' and some markup extensions are all spec-breaking. E.g. a parser which conforms exactly to the xd spec would likely choke when seeing these features.
+We want to highlight that 'Comments', 'Schrödinger clues' and the colour markup extension are all spec-breaking. E.g. a parser which conforms exactly to the xd spec would likely choke when seeing these features.
 
 ### Aesthetics
 
@@ -4576,14 +5248,12 @@ The xd spec is built for displaying a large corpus of finished Crosswords, we us
 
 - `## Design`
 
-This is our extension to describe the visual aspects of individual cells. The `xd` format uses lowercase letters in the grid to indicate a particular special trait (for example having a circle background.) We are looking at describing a more complex set of visual attributes, and so the puz -> xd parser uses a new section to indicate the design attributes in a manner similar to how rebuses are handled.
+Describes the visual aspects of individual cells. This started as a Puzzmo extension and is part of xd v4, replacing the older lowercase-letters-plus-`Special:` approach. The section starts with style rules, each for a single (case-sensitive) character, then a grid the same size as the puzzle where `.` is an unstyled cell:
 
 ```md
 ## Design
 
-<style>
 O { background: circle }
-</style>
 
 ....###...#....
 ....##....#....
@@ -4604,24 +5274,31 @@ O { background: circle }
 
 CSS Properties supported in style:
 
-- `background`: "circle" - sets a circle in the background
-- `background-light: #[hex]` - sets the tile's background when in light mode
-- `background-dark: #[hex]` - sets the tile's background when in dark mode
-- `bar-top: true` - describes that in a barred crossword the bar is on the left of this tile
-- `bar-left: true` - describes that in a barred crossword the bar is on the top of this tile
+- `background: circle` - a circle in the cell
+- `background: shaded` - a shaded cell
+- `background-image: url('...')` - an image drawn in the cell, prefer a data URI
+- `background-size: N M` - the image spans N cells across and M down, marked on its top-left cell
+- `background-light: #[hex]` - sets the tile's background when in light mode (Puzzmo extension)
+- `background-dark: #[hex]` - sets the tile's background when in dark mode (Puzzmo extension)
+- `bar-top: true` - a bar on the top edge of this tile
+- `bar-left: true` - a bar on the left edge of this tile
 
-For example:
+A grid with bars is treated as a barred crossword, `form: barred` metadata is no longer needed (it's still honoured). Barred grids don't support rebuses or Schrödinger squares. Rules can span lines, list many selectors (`A, B { ... }`), be re-opened, and use quoted values. For example:
 
 <!-- prettier-ignore -->
-```html
-<style>
+```css
 O { background: circle }
 R { background-light: #FF69B4; background-dark: #C71585 }
 G { background-light: #00FF00; background-dark: #008000 }
 B { background-light: #00FFFF; background-dark: #00008B }
-T { bar-top: true }
-</style>
+T, U { bar-top: true }
+U { bar-left: true }
+P { background-image: url('data:image/png;base64,iVBORw0KGgo='); background-size: 2 2 }
 ```
+
+`JSONToXD` writes these rules in a canonical, compact form: properties shared by the same characters are grouped into one rule (`A, B, C { background: circle }`, `A, C { bar-top: true }`), keeping the characters as they are. A hand-written design section can come back laid out differently, but it means the same thing.
+
+Pre-v4 design sections wrapped the rules in a `<style>` tag, which is still read with a deprecation warning.
 
 - `## Start`
 
@@ -4684,10 +5361,15 @@ The `xd-crossword-tools-parser` package exports several utility functions for wo
 | `getWordTilesForCursor`                     | Gets all tile positions that are part of the word at cursor position | `tiles: Tile[][]`, `cursor: Cursor`                                                       | `Position[]`                                           |
 | `getSortedTilesForCursor`                   | Gets word tiles for cursor, sorted with boundary info                | `tiles: Tile[][]`, `cursor: Cursor`                                                       | `{first: Position, last: Position, tiles: Position[]}` |
 | `getCluePositionsForBoard`                  | Analyzes grid to determine all positions where clues start           | `tiles: Tile[][]`                                                                         | `PositionWithTiles[]`                                  |
-| `xdMarkupProcessor`                         | Processes XD markup syntax into structured components                | `input: string`                                                                           | `ClueComponentMarkup[]`                                |
+| `parseXDown`                                | Parses xdown markup into structured components                       | `input: string`, `options?: XDownParseOptions`                                            | `XDownComponent[]`                                     |
+| `serializeXDown`                            | Writes xdown components back out as an xd v4 string                  | `components: XDownComponent[]`                                                            | `string`                                               |
+| `xdownToPlainText`                          | Flattens xdown components to a string without markup                 | `components: XDownComponent[]`                                                            | `string`                                               |
+| `migrateXDToV4`                             | Rewrites an older xd file in xd v4 syntax                            | `xd: string`                                                                              | `string`                                               |
+| `parseDesignRules`                          | Parses the style rules from a `## Design` section                    | `text: string`                                                                            | `{ styles, errors }`                                   |
+| `isBarredGrid`                              | Whether a crossword uses bars rather than blocks                     | `json: CrosswordJSON`                                                                     | `boolean`                                              |
 | `EditorError`                               | Custom error class for XD parsing errors with line numbers           | `message: string`, `line: number`                                                         | `EditorError`                                          |
-| `shouldConvertToExplicitHeaders`            | Checks if XD string needs conversion from v1 to v2 format            | `xd: string`                                                                              | `boolean`                                              |
-| `convertImplicitOrderedXDToExplicitHeaders` | Converts old v1 implicit XD format to new v2 explicit headers        | `xd: string`                                                                              | `string`                                               |
+| `hasImplicitSections`                       | Checks if an xd file uses implicit (header-less) sections            | `xd: string`                                                                              | `boolean`                                              |
+| `addHeadersToImplicitSections`              | Adds `## Headings` to an xd file which uses implicit sections        | `xd: string`                                                                              | `string`                                               |
 | `letterToTile`                              | Converts a single letter string to a Tile object                     | `letter: string`                                                                          | `Tile`                                                 |
 | `stringGridToTiles`                         | Converts a 2D string array to a 2D Tile array                        | `rebuses: Rebuses`, `strArr: string[][]`, `schrodingerRebuses?: Record<string, string[]>` | `Tile[][]`                                             |
 | `replaceWordWithSymbol`                     | Replaces a word in tiles with a rebus symbol                         | `word: string`, `tiles: Tile[]`, `splitChar: string`                                      | `void`                                                 |

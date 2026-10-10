@@ -154,21 +154,19 @@ describe(jpzToXD.name, () => {
 
       ## Design
 
-      <style>
       A { bar-left: true }
-      </style>
 
-      ....#.....#
-      ....#......
+      ...........
+      ...........
       .......A...
-      .....###...
-      ###...#....
-      #....A....#
-      ....#...###
-      ...###.....
+      ...........
+      ...........
+      .....A.....
+      ...........
+      ...........
       ....A......
-      ......#....
-      ##....#....
+      ...........
+      ...........
       "
     `)
   })
@@ -220,11 +218,8 @@ describe(jpzToXD.name, () => {
 
       ## Design
 
-      <style>
-      A { bar-top: true }
-      B { bar-left: true }
-      C { bar-left: true; bar-top: true }
-      </style>
+      A, C { bar-top: true }
+      B, C { bar-left: true }
 
       ........
       ...A.A.C
@@ -318,7 +313,7 @@ describe(jpzToXD.name, () => {
     expect(res).toContain("A1. Bold {*thing*} here ~ AB")
     expect(res).toContain("A2. H{~2~}O is {^super^} cool {-not-} out ~ CD")
     expect(res).toContain("D1. Underline {_this_} word ~ AC")
-    expect(res).toContain("D2. Visit {@our site|https://example.com@} now ~ BD")
+    expect(res).toContain("D2. Visit {@our site | href: https://example.com@} now ~ BD")
   })
 
   it("converts nested inline tags to nested xd markup", () => {
@@ -365,7 +360,7 @@ describe(jpzToXD.name, () => {
 
     const res = jpzToXD(xml)
     expect(res).toContain("A1. A {*{/bold italic/}*} phrase ~ ABC")
-    expect(res).toContain("A2. Click {@{*bold link*}|https://example.com@} here ~ DEF")
+    expect(res).toContain("A2. Click {@{*bold link*} | href: https://example.com@} here ~ DEF")
     expect(res).toContain("A3. Some {_{/underscored italic/}_} text ~ GHI")
     expect(res).toContain("D1. A {*bold with {/nested italic/} inside*} end ~ ADG")
     expect(res).toContain("D2. See {/the {*deep*} nesting/} here ~ BEH")

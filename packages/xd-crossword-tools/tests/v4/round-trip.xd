@@ -1,0 +1,40 @@
+## Metadata
+
+title: {/Round/} Trip
+author: Orta
+date: 2026-10-10
+editor: Not set
+rebus: 1=O 1=A
+splitcharacter: |
+
+## Grid
+
+_TILE
+_APEX
+_C1NE
+_ODDS
+
+## Clues
+
+A1. Mosaic piece, see {@the notes | href: https://example.com/tile@} ~ TILE
+A1 ^hint: A {*flat*} thing
+
+A5. Pinnacle {!a peak | src: 'data:image/png;base64,iVBORw0KGgo='; width: 20; display: block!} ~ APEX
+A6. Sugar ____ ~ CONE ~ CANE
+A7. What {\~\} means{\\}in gambling ~ ODDS
+
+D1. Tuesday treat ~ TACO
+D2. Apple tech ~ IPOD ~ IPAD // I|POD I|PAD
+D3. Complement to borrow ~ LEND
+D4. Former intimates ~ EXES
+
+## Design
+
+O { background: circle }
+P { background-image: url('data:image/png;base64,iVBORw0KGgo='); background-size: 2 2 }
+B { bar-left: true; background: shaded }
+
+.O...
+..P..
+.....
+....O

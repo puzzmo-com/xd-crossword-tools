@@ -1,4 +1,4 @@
-import { xdToJSON } from "./xdparser2"
+import { xdToJSON } from "./xdToJSON"
 
 it("handles double clues", () => {
   const xd = `

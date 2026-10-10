@@ -284,6 +284,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
       number: parseInt(clueNumberStr),
       body: clueText,
       answer: answer,
+      answers: [{ answer }],
       tiles: [],
       direction,
       display: [],
@@ -372,6 +373,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
   }
 
   const result: CrosswordJSON = {
+    metaDisplay: {},
     tiles,
     clues: cluesStructure,
     meta: meta,
@@ -404,7 +406,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
  * - <b>, <strong> → {*text*}
  * - <u> → {_text_}
  * - <s>, <strike>, <del> → {-text-}
- * - <a href="url">text</a> → {@text|url@}
+ * - <a href="url">text</a> → {@text | href: url@}
  * - <span> tags are removed (unwrapped)
  * - Unsupported tags cause an exception
  */
@@ -441,11 +443,11 @@ export function convertHtmlToXdMarkup(html: string | undefined): string {
     // Superscript: <sup> → {^text^}
     { from: /<sup(?:\s[^>]*)?>([^<>]*)<\/sup>/g, to: "{^$1^}" },
 
-    // Links: <a href="url">text</a> → {@text|url@}
-    { from: /<a\s+[^>]*href\s*=\s*["']([^"']*)["'][^>]*>([^<>]*)<\/a>/g, to: "{@$2|$1@}" },
+    // Links: <a href="url">text</a> → {@text | href: url@}
+    { from: /<a\s+[^>]*href\s*=\s*["']([^"']*)["'][^>]*>([^<>]*)<\/a>/g, to: "{@$2 | href: $1@}" },
 
-    // Images: <img src="url" alt="alt" /> → {!url|alt!} (inline image)
-    { from: /<img\s+[^>]*src\s*=\s*["']([^"']*)["'][^>]*(?:alt\s*=\s*["']([^"']*)["'][^>]*)?[^>]*\/?>/g, to: "{!$1|$2!}" },
+    // Images: <img src="url" alt="alt" /> → {!alt | src: url!} (inline image)
+    { from: /<img\s+[^>]*src\s*=\s*["']([^"']*)["'][^>]*(?:alt\s*=\s*["']([^"']*)["'][^>]*)?[^>]*\/?>/g, to: "{!$2 | src: $1!}" },
 
     // Block elements: <div>, <p> → newlines (strip tags but preserve content)
     { from: /<\/?(?:div|p)(?:\s[^>]*)?>/g, to: "\n" },

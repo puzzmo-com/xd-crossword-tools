@@ -1,3 +1,4 @@
+import { readFileSync } from "fs"
 import { addSplits, JSONToXD, resolveFullClueAnswer } from "../src/JSONtoXD"
 import { xdToJSON } from "xd-crossword-tools-parser"
 import type { Clue, SchrodingerTile } from "xd-crossword-tools-parser"
@@ -82,6 +83,7 @@ describe("resolveFullClueAnswer", () => {
     const clue = {
       body: "Not too much!",
       answer: "JUSTASKOSH",
+      answers: [{ answer: "JUSTASKOSH" }],
       number: 14,
       position: { col: 0, index: 0 },
       tiles: [
@@ -110,6 +112,7 @@ describe("resolveFullClueAnswer", () => {
     const clue = {
       body: "Sugar ____",
       answer: "CONE",
+      answers: [{ answer: "CONE" }],
       number: 6,
       position: { col: 0, index: 8 },
       tiles: [{ type: "letter", letter: "C" }, schrodingerTile, { type: "letter", letter: "N" }, { type: "letter", letter: "E" }],
@@ -165,30 +168,30 @@ D2. A thing. ~ OBJECT
     const json = xdToJSON(xd)
     const newXD = JSONToXD(json)
     expect(newXD).toMatchInlineSnapshot(`
-"## Metadata
+      "## Metadata
 
-title: Square
-author: Orta
-date: 2021-03-16
-editor: Orta Therox
-splitcharacter: |
+      title: Square
+      author: Orta
+      date: 2021-03-16
+      editor: Orta Therox
+      splitcharacter: |
 
-## Grid
+      ## Grid
 
-OKGO
-H..B
-O..J
-H..E
-O..C
-H..T
+      OKGO
+      H..B
+      O..J
+      H..E
+      O..C
+      H..T
 
-## Clues
+      ## Clues
 
-A1. Band with two words. ~ OK|GO
+      A1. Band with two words. ~ OKGO // OK|GO
 
-D1. Reverse santa. ~ OH|OH|OH
-D2. A thing. ~ OBJECT"
-`)
+      D1. Reverse santa. ~ OHOHOH // OH|OH|OH
+      D2. A thing. ~ OBJECT"
+    `)
   })
 
   it("handles clue meta lines well", () => {
@@ -212,43 +215,6 @@ DESK
 ## Clues
 
 A1. Gardener's concern. ~ BULB
-A1 ^Hint: Turned on with a flick.
-
-A4. A reasonable statement. ~ OK
-A4 ^Hint: All __.
-
-A5. The office centerpiece. ~ DESK
-A5 ^Hint: Fried.
-
-D1. To _ly go. ~ BOLD
-D1 ^Hint: When you want to make some text stronger.
-
-D2. Bigger than britain. ~ UK
-D2 ^Hint: A union which left europe.
-
-D3. A conscious tree. ~ BOOK
-D3 ^Hint: Registering with a restaurant. `
-
-    const json = xdToJSON(xd)
-    const newXD = JSONToXD(json)
-    expect(newXD).toMatchInlineSnapshot(`
-"## Metadata
-
-title: Square
-author: Orta
-date: 2021-03-16
-editor: Orta Therox
-
-## Grid
-
-BULB
-OK.O
-L..O
-DESK
-
-## Clues
-
-A1. Gardener's concern. ~ BULB
 A1 ^hint: Turned on with a flick.
 
 A4. A reasonable statement. ~ OK
@@ -257,7 +223,6 @@ A4 ^hint: All __.
 A5. The office centerpiece. ~ DESK
 A5 ^hint: Fried.
 
-
 D1. To _ly go. ~ BOLD
 D1 ^hint: When you want to make some text stronger.
 
@@ -265,9 +230,47 @@ D2. Bigger than britain. ~ UK
 D2 ^hint: A union which left europe.
 
 D3. A conscious tree. ~ BOOK
-D3 ^hint: Registering with a restaurant.
-"
-`)
+D3 ^hint: Registering with a restaurant. `
+
+    const json = xdToJSON(xd)
+    const newXD = JSONToXD(json)
+    expect(newXD).toMatchInlineSnapshot(`
+      "## Metadata
+
+      title: Square
+      author: Orta
+      date: 2021-03-16
+      editor: Orta Therox
+
+      ## Grid
+
+      BULB
+      OK.O
+      L..O
+      DESK
+
+      ## Clues
+
+      A1. Gardener's concern. ~ BULB
+      A1 ^hint: Turned on with a flick.
+
+      A4. A reasonable statement. ~ OK
+      A4 ^hint: All __.
+
+      A5. The office centerpiece. ~ DESK
+      A5 ^hint: Fried.
+
+
+      D1. To _ly go. ~ BOLD
+      D1 ^hint: When you want to make some text stronger.
+
+      D2. Bigger than britain. ~ UK
+      D2 ^hint: A union which left europe.
+
+      D3. A conscious tree. ~ BOOK
+      D3 ^hint: Registering with a restaurant.
+      "
+    `)
   })
 
   it("handles design section with more than one element", () => {
@@ -285,11 +288,16 @@ D3 ^hint: Registering with a restaurant.
     }
     const newXD = JSONToXD(json)
     expect(newXD.split("## Design")[1].trim()).toMatchInlineSnapshot(`
-"<style>
-A { background: circle }
-B { background: dot }
-</style>"
-`)
+      "A { background: circle }
+      B { background: dot }
+
+      ....
+      ....
+      ....
+      ....
+      ....
+      ...."
+    `)
   })
 
   it("recreates clues for puzzle with rebus", () => {
@@ -519,7 +527,7 @@ JUS❶OSH
 
 ## Clues
 
-A1. Not too much! ~ JUST|A|SKOSH\n\n`
+A1. Not too much! ~ JUSTASKOSH // JUST|A|SKOSH\n\n`
 
     const json = xdToJSON(puzzle)
     const newXD = JSONToXD(json)
@@ -533,6 +541,7 @@ A1. Not too much! ~ JUST|A|SKOSH\n\n`
     const clue = {
       body: "Mixed example",
       answer: "TWITCHDOTTV",
+      answers: [{ answer: "TWITCHDOTTV" }],
       number: 1,
       position: { col: 0, index: 0 },
       tiles: [
@@ -616,6 +625,7 @@ D1. wbr:3`
     const clue = {
       body: "All internal splits",
       answer: "JUSTASKOSH",
+      answers: [{ answer: "JUSTASKOSH" }],
       number: 1,
       position: { col: 0, index: 0 },
       tiles: [
@@ -659,7 +669,7 @@ DESK
 A1. Gardener's {*concern*}. ~ BULB
 A1 ^hint: Turned on with a {/flick/}.
 
-A4. A {@reasonable|https://example.com@} statement. ~ OK
+A4. A {@reasonable | href: https://example.com@} statement. ~ OK
 A5. The {![https://example.com/desk.png|an office desk]!} centerpiece. ~ DESK
 
 D1. To {_ly_} go. ~ BOLD
@@ -685,5 +695,15 @@ D3. A {#conscious|#0f0|#0a0#} tree. ~ BOOK`
   it("does not affect the xd → JSON → xd roundtrip", () => {
     const json = xdToJSON(markupXD)
     expect(JSONToXD(json)).toEqual(markupXD)
+  })
+})
+
+describe("xd v4", () => {
+  it("round-trips a v4 file through JSON and back", () => {
+    const xd = readFileSync(__dirname + "/v4/round-trip.xd", "utf8")
+    const json = xdToJSON(xd, true)
+    expect(json.report.errors).toEqual([])
+    expect(json.report.warnings).toEqual([])
+    expect(JSONToXD(json)).toEqual(xd.trimEnd() + "\n")
   })
 })

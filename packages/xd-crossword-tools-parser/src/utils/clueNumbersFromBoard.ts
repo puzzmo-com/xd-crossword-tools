@@ -1,6 +1,7 @@
 import type { CrosswordJSON, Tile, Position, Clue } from "../types"
 import { getBarredCluePositions } from "./postProcess/processCluesForBoardsWithBars"
 import { getBlankCluePositions } from "./postProcess/processCluesForBoardsWithBlanks"
+import { designHasBars } from "../parser/design"
 
 export type PositionWithTiles = {
   position: Position
@@ -31,9 +32,10 @@ export const getCluePositionsForBoard = (
   rawClues?: Map<string, RawClueData>,
   crosswordJSON?: CrosswordJSON
 ): PositionWithTiles[] => {
-  // Check if this is a barred grid
-  if (meta?.form === "barred" && rawClues) {
-    return getBarredCluePositions(tiles, rawClues, meta, crosswordJSON)
+  // Check if this is a barred grid, pre-v4 files say so with 'form: barred' - in v4 the bars are enough
+  const isBarred = meta?.form === "barred" || designHasBars(crosswordJSON?.design)
+  if (isBarred && rawClues) {
+    return getBarredCluePositions(tiles, rawClues, meta || {}, crosswordJSON)
   }
 
   return getBlankCluePositions(tiles)

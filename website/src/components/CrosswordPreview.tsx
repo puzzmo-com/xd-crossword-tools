@@ -22,6 +22,9 @@ export const CrosswordBarPreview: React.FC<CrosswordPreviewProps> = ({ crossword
     const x = col * cellSize
     const y = row * cellSize
 
+    // '_' in the grid is a spacer / non-existent square, so nothing gets drawn for it
+    if (tile.type === "blank" && tile.spacer) return null
+
     if (tile.type === "blank") {
       return <rect key={`${row}-${col}`} x={x} y={y} width={cellSize} height={cellSize} fill="#333" />
     }

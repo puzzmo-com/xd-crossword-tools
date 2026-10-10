@@ -1,4 +1,4 @@
-import type { CrosswordJSON } from "xd-crossword-tools"
+import { xdownToPlainText, type CrosswordJSON } from "xd-crossword-tools"
 // @jaredreisinger/react-crossword data format
 export interface CrosswordData {
   across: Record<number, ClueData>
@@ -20,7 +20,8 @@ export function convertToCrosswordFormat(xdJson: CrosswordJSON): CrosswordData {
   for (const clue of xdJson.clues.across) {
     const cleanAnswer = clue.answer.replace(/[^A-Z]/g, "") // Remove non-letter characters
     across[clue.number] = {
-      clue: clue.body,
+      // The preview engine only takes strings, so flatten the xdown markup
+      clue: xdownToPlainText(clue.display),
       answer: cleanAnswer,
       row: clue.position.index,
       col: clue.position.col,
@@ -31,7 +32,8 @@ export function convertToCrosswordFormat(xdJson: CrosswordJSON): CrosswordData {
   for (const clue of xdJson.clues.down) {
     const cleanAnswer = clue.answer.replace(/[^A-Z]/g, "") // Remove non-letter characters
     down[clue.number] = {
-      clue: clue.body,
+      // The preview engine only takes strings, so flatten the xdown markup
+      clue: xdownToPlainText(clue.display),
       answer: cleanAnswer,
       row: clue.position.index,
       col: clue.position.col,

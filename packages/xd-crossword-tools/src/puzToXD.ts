@@ -185,10 +185,10 @@ const generatePuzVisualsInfo = (file: Puz2JSONResult) => {
   if (file.circles.length) {
     styleContent = "O { background: circle }"
     if (file.shades.length) {
-      styleContent += " S { background: shade }"
+      styleContent += " S { background: shaded }"
     }
   } else if (file.shades.length) {
-    styleContent = "S { background: shade }"
+    styleContent = "S { background: shaded }"
   }
 
   if (styleContent.length) {
@@ -203,8 +203,6 @@ const generatePuzVisualsInfo = (file: Puz2JSONResult) => {
           return
         } else if (file.shades.includes(i)) {
           design += "S"
-        } else if (char === ".") {
-          design += "#"
         } else {
           design += "."
         }
@@ -212,7 +210,7 @@ const generatePuzVisualsInfo = (file: Puz2JSONResult) => {
       design += "\n"
     })
     notes.push("## Design\n")
-    notes.push(`<style>${styleContent}</style>\n`)
+    notes.push(`${styleContent}\n`)
     notes.push(design)
   }
 

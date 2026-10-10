@@ -1,7 +1,7 @@
-import { ParseMode } from "./parser/xdparser2"
+import type { ParseMode } from "./parser/xdToJSON"
 
 export type CrosswordJSON = {
-  /** Info to display about the Crossword  */
+  /** Info to display about the Crossword, keys are lowercased because they are case-insensitive in xd  */
   meta: {
     title: string
     author: string
@@ -9,6 +9,12 @@ export type CrosswordJSON = {
     date: string
     splitCharacter?: string
   } & Record<string, string>
+
+  /**
+   * Metadata values can contain xdown markup in xd v4, this is each value from `meta` (keyed the
+   * same way) parsed into components for rendering. Use `xdownToPlainText` for a markup-free version.
+   */
+  metaDisplay: Record<string, XDownComponent[]>
 
   /** 2 dimensional array of tiles */
   tiles: Tile[][]
@@ -32,8 +38,8 @@ export type CrosswordJSON = {
   }
   /** Aesthetics */
   design?: {
-    /** CSS-like selectors */
-    styles: Record<string, any>
+    /** CSS-like rules, keyed by their single character selector, e.g. `{ O: { background: "circle" } }` */
+    styles: Record<string, Record<string, string>>
     /** A sparse array of strings for where the design elements should exist */
     positions: string[][]
   }
@@ -141,6 +147,8 @@ export interface RebusTile {
 
 export interface BlankTile {
   type: "blank"
+  /** Set for '_' in the grid: a spacer or non-existent square (usually on the edges) which should not be drawn */
+  spacer?: true
 }
 
 export interface Position {
@@ -148,27 +156,33 @@ export interface Position {
   index: number
 }
 
-// Inline elements to handle when rendering clues.
-// The `children` field contains parsed inner components and supports nested markup
-// (e.g. {*{/bold italic/}*}). The `text` field retains the raw content string.
-export type ClueComponentMarkup =
+/**
+ * Inline xdown elements to handle when rendering clues and metadata values.
+ * The `children` field contains parsed inner components and supports nested markup
+ * (e.g. {*{/bold italic/}*}). The `text` field retains the raw content string.
+ */
+export type XDownComponent =
   | [type: "text", text: string]
+  | [type: "linebreak"]
   | [type: "img", url: string, alt: string, block: boolean, width?: string, height?: string]
-  | [type: "italics", /** @deprecated  */ text: string, children: ClueComponentMarkup[]]
-  | [type: "bold", /** @deprecated  */ text: string, children: ClueComponentMarkup[]]
-  | [type: "strike", /** @deprecated  */ text: string, children: ClueComponentMarkup[]]
-  | [type: "underscore", /** @deprecated  */ text: string, children: ClueComponentMarkup[]]
-  | [type: "subscript", /** @deprecated  */ text: string, children: ClueComponentMarkup[]]
-  | [type: "superscript", /** @deprecated  */ text: string, children: ClueComponentMarkup[]]
-  | [type: "smallcaps", /** @deprecated  */ text: string, children: ClueComponentMarkup[]]
-  | [type: "link", /** @deprecated  */ text: string, to: string, children: ClueComponentMarkup[]]
-  | [type: "color", /** @deprecated  */ text: string, lightColor: string, darkColor: string, children: ClueComponentMarkup[]]
+  | [type: "italics", /** @deprecated  */ text: string, children: XDownComponent[]]
+  | [type: "bold", /** @deprecated  */ text: string, children: XDownComponent[]]
+  | [type: "strike", /** @deprecated  */ text: string, children: XDownComponent[]]
+  | [type: "underscore", /** @deprecated  */ text: string, children: XDownComponent[]]
+  | [type: "subscript", /** @deprecated  */ text: string, children: XDownComponent[]]
+  | [type: "superscript", /** @deprecated  */ text: string, children: XDownComponent[]]
+  | [type: "smallcaps", /** @deprecated  */ text: string, children: XDownComponent[]]
+  | [type: "link", /** @deprecated  */ text: string, to: string, children: XDownComponent[]]
+  | [type: "color", /** @deprecated  */ text: string, lightColor: string, darkColor: string, children: XDownComponent[]]
+
+/** @deprecated clue markup is called xdown in xd v4, use XDownComponent */
+export type ClueComponentMarkup = XDownComponent
 
 export interface Clue {
   /** The "clue" as a raw string, sans markup processing */
   body: string
-  /** The body as a set of inline markup components, based on the xd spec, you always want to use this for displaying clues to a user */
-  display: ClueComponentMarkup[]
+  /** The body as a set of inline xdown components, you always want to use this for displaying clues to a user */
+  display: XDownComponent[]
   /**
    * The body with all markup flattened into a single string, for consumers which cannot render markup.
    * Images become their alt text in square brackets (`[a sleepy cat]`, or `[image]` when no alt text was
@@ -177,34 +191,49 @@ export interface Clue {
   plain: string
   /** The number, whether it is across or down is handled back at 'clues' */
   number: number
-  /** The string after the "~" - if the clue has a split character than this will not be included */
+  /** The first answer after the " ~ ", without any split characters. The same as `answers[0].answer` */
   answer: string
-  /** Alternative answers for Schrödinger squares (e.g. ["CONE", "CANE"]) */
-  alternativeAnswers?: string[]
+  /**
+   * Every valid answer for the clue, the first is `answer`. Most clues have one, a Schrödinger slot lists each of
+   * its fills: `A1. Sugar ___ ~ CONE ~ CANE`. Includes pre-v4 `^alt:` answers. Rebuses are expanded.
+   */
+  answers: ClueAnswer[]
   /** Filled in metadata giving the location of the first char on the grid */
   position: Position
   /** Tiles that the clue is composed of */
   tiles: Tile[]
   /** Somewhat redundant, but also useful reference to whether this clue is was created when looking at acrosses or downs */
   direction: CursorDirection
-  /** If an answer contains a split character, then this would include the indexes where it was used */
+  /** The splits for the first answer, the same as `answers[0].splits` - see ClueAnswer */
   splits?: number[]
   /** For splits that occur within rebus squares, maps tile index to array of internal split positions */
   rebusInternalSplits?: Record<number, number[]>
   /**
-   * Duplicating a clue and using a meta suffix (e.g. "A23 ^Hint. A shot to the heart" )
-   * would add to { "hint": " A shot to the heart" } to the metadata. This works for any key
+   * Clue metadata lines (e.g. "A23 ^Hint: A shot to the heart") add { "hint": "A shot to the heart" }
+   * to the metadata. This works for any key, and keys are lowercased as they are case-insensitive
    *
    * When either 'hint' or 'revealer' are set, then template string processing is applied
    * resulting in "hint:display" and "revealer:display" which contain processed markup components,
    * alongside "hint:plain" and "revealer:plain" which contain the flattened strings.
    */
   metadata?: Record<string, string> & {
-    "hint:display"?: ClueComponentMarkup[]
-    "revealer:display"?: ClueComponentMarkup[]
+    "hint:display"?: XDownComponent[]
+    "revealer:display"?: XDownComponent[]
     "hint:plain"?: string
     "revealer:plain"?: string
   }
+}
+
+export interface ClueAnswer {
+  /** The answer without any split characters */
+  answer: string
+  /**
+   * Where the answer splits into words, from the end-of-line annotation 'A1. Clue ~ ANSWER // ANS|WER' (or the
+   * deprecated 'A1. Clue ~ ANS|WER'), using the 'SplitCharacter' metadata. Each index is the tile before a split.
+   */
+  splits?: number[]
+  /** For splits that occur within rebus squares, maps tile index to array of internal split positions */
+  rebusInternalSplits?: Record<number, number[]>
 }
 
 export interface Cursor {

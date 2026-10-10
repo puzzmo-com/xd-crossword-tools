@@ -6,12 +6,44 @@
     "editor": "Not set",
     "title:line": "2",
     "author:line": "3",
-    "copyright:": "",
-    "copyright::line": "4",
+    "copyright": "",
+    "copyright:line": "4",
     "description": "N/A",
     "description:line": "5",
     "rebus": "❶=BOSE ❷=SONY",
     "rebus:line": "6"
+  },
+  "metaDisplay": {
+    "title": [
+      [
+        "text",
+        "Speakerboxxx/The Love Below"
+      ]
+    ],
+    "author": [
+      [
+        "text",
+        "Will Nediger"
+      ]
+    ],
+    "copyright": [
+      [
+        "text",
+        ""
+      ]
+    ],
+    "description": [
+      [
+        "text",
+        "N/A"
+      ]
+    ],
+    "rebus": [
+      [
+        "text",
+        "❶=BOSE ❷=SONY"
+      ]
+    ]
   },
   "tiles": [
     [
@@ -909,6 +941,11 @@
       {
         "body": "Sandwiches often made with iceberg",
         "answer": "BLTS",
+        "answers": [
+          {
+            "answer": "BLTS"
+          }
+        ],
         "number": 1,
         "position": {
           "col": 0,
@@ -948,6 +985,11 @@
       {
         "body": "Polymer in pipes",
         "answer": "PVC",
+        "answers": [
+          {
+            "answer": "PVC"
+          }
+        ],
         "number": 5,
         "position": {
           "col": 7,
@@ -983,6 +1025,11 @@
       {
         "body": "Extreme ___ (high-bouncing action sport)",
         "answer": "POGO",
+        "answers": [
+          {
+            "answer": "POGO"
+          }
+        ],
         "number": 8,
         "position": {
           "col": 11,
@@ -1022,6 +1069,11 @@
       {
         "body": "Big name in tomb raiding",
         "answer": "LARA",
+        "answers": [
+          {
+            "answer": "LARA"
+          }
+        ],
         "number": 12,
         "position": {
           "col": 0,
@@ -1061,6 +1113,11 @@
       {
         "body": "\"Time to draw more Bananagrams tiles!\"",
         "answer": "PEEL",
+        "answers": [
+          {
+            "answer": "PEEL"
+          }
+        ],
         "number": 13,
         "position": {
           "col": 6,
@@ -1100,6 +1157,11 @@
       {
         "body": "Faux-French slang for pot",
         "answer": "OUID",
+        "answers": [
+          {
+            "answer": "OUID"
+          }
+        ],
         "number": 14,
         "position": {
           "col": 11,
@@ -1139,6 +1201,11 @@
       {
         "body": "Emotionally honest",
         "answer": "OPEN",
+        "answers": [
+          {
+            "answer": "OPEN"
+          }
+        ],
         "number": 15,
         "position": {
           "col": 0,
@@ -1178,6 +1245,11 @@
       {
         "body": "\"Filthy\" money",
         "answer": "LUCRE",
+        "answers": [
+          {
+            "answer": "LUCRE"
+          }
+        ],
         "number": 16,
         "position": {
           "col": 5,
@@ -1221,6 +1293,11 @@
       {
         "body": "The feminine ___ to write clues referencing memes",
         "answer": "URGE",
+        "answers": [
+          {
+            "answer": "URGE"
+          }
+        ],
         "number": 17,
         "position": {
           "col": 11,
@@ -1260,6 +1337,11 @@
       {
         "body": "\"Black Panther\" star",
         "answer": "CHADWICKBOSEMAN",
+        "answers": [
+          {
+            "answer": "CHADWICKBOSEMAN"
+          }
+        ],
         "number": 18,
         "position": {
           "col": 0,
@@ -1332,6 +1414,11 @@
       {
         "body": "Collection of drums",
         "answer": "KIT",
+        "answers": [
+          {
+            "answer": "KIT"
+          }
+        ],
         "number": 21,
         "position": {
           "col": 0,
@@ -1367,6 +1454,11 @@
       {
         "body": "\"Pariah\" director Dee",
         "answer": "REES",
+        "answers": [
+          {
+            "answer": "REES"
+          }
+        ],
         "number": 22,
         "position": {
           "col": 4,
@@ -1406,6 +1498,11 @@
       {
         "body": "Like small talk",
         "answer": "IDLE",
+        "answers": [
+          {
+            "answer": "IDLE"
+          }
+        ],
         "number": 23,
         "position": {
           "col": 10,
@@ -1445,6 +1542,11 @@
       {
         "body": "Mischievous acknowledgment from across the room",
         "answer": "SLYNOD",
+        "answers": [
+          {
+            "answer": "SLYNOD"
+          }
+        ],
         "number": 26,
         "position": {
           "col": 0,
@@ -1492,6 +1594,11 @@
       {
         "body": "It goes over your head",
         "answer": "AIRSPACE",
+        "answers": [
+          {
+            "answer": "AIRSPACE"
+          }
+        ],
         "number": 28,
         "position": {
           "col": 7,
@@ -1547,6 +1654,11 @@
       {
         "body": "\"Shoo!\"",
         "answer": "OUT",
+        "answers": [
+          {
+            "answer": "OUT"
+          }
+        ],
         "number": 32,
         "position": {
           "col": 2,
@@ -1582,6 +1694,11 @@
       {
         "body": "Comprehensive range",
         "answer": "ATOZ",
+        "answers": [
+          {
+            "answer": "ATOZ"
+          }
+        ],
         "number": 33,
         "position": {
           "col": 6,
@@ -1621,6 +1738,11 @@
       {
         "body": "Shabu-shabu noodles",
         "answer": "UDON",
+        "answers": [
+          {
+            "answer": "UDON"
+          }
+        ],
         "number": 34,
         "position": {
           "col": 11,
@@ -1660,6 +1782,11 @@
       {
         "body": "Father of bacteriology",
         "answer": "PASTEUR",
+        "answers": [
+          {
+            "answer": "PASTEUR"
+          }
+        ],
         "number": 35,
         "position": {
           "col": 0,
@@ -1711,6 +1838,11 @@
       {
         "body": "Like a delinquent sentry, maybe",
         "answer": "NAPPING",
+        "answers": [
+          {
+            "answer": "NAPPING"
+          }
+        ],
         "number": 38,
         "position": {
           "col": 8,
@@ -1762,6 +1894,11 @@
       {
         "body": "Maker of Swift laptops",
         "answer": "ACER",
+        "answers": [
+          {
+            "answer": "ACER"
+          }
+        ],
         "number": 40,
         "position": {
           "col": 0,
@@ -1801,6 +1938,11 @@
       {
         "body": "Scotch samples",
         "answer": "SIPS",
+        "answers": [
+          {
+            "answer": "SIPS"
+          }
+        ],
         "number": 41,
         "position": {
           "col": 5,
@@ -1840,6 +1982,11 @@
       {
         "body": "Animal in that one graphic showing the evolution of humans",
         "answer": "APE",
+        "answers": [
+          {
+            "answer": "APE"
+          }
+        ],
         "number": 43,
         "position": {
           "col": 10,
@@ -1875,6 +2022,11 @@
       {
         "body": "Dressing station",
         "answer": "SALADBAR",
+        "answers": [
+          {
+            "answer": "SALADBAR"
+          }
+        ],
         "number": 44,
         "position": {
           "col": 0,
@@ -1930,6 +2082,11 @@
       {
         "body": "Milano who was also in last week's grid",
         "answer": "ALYSSA",
+        "answers": [
+          {
+            "answer": "ALYSSA"
+          }
+        ],
         "number": 46,
         "position": {
           "col": 9,
@@ -1977,6 +2134,11 @@
       {
         "body": "\"Assuming that's the case...\"",
         "answer": "IFSO",
+        "answers": [
+          {
+            "answer": "IFSO"
+          }
+        ],
         "number": 49,
         "position": {
           "col": 1,
@@ -2016,6 +2178,11 @@
       {
         "body": "___ of Mull",
         "answer": "ISLE",
+        "answers": [
+          {
+            "answer": "ISLE"
+          }
+        ],
         "number": 50,
         "position": {
           "col": 7,
@@ -2055,6 +2222,11 @@
       {
         "body": "Put money into",
         "answer": "FED",
+        "answers": [
+          {
+            "answer": "FED"
+          }
+        ],
         "number": 52,
         "position": {
           "col": 12,
@@ -2090,6 +2262,11 @@
       {
         "body": "\"Something bothering you?\"",
         "answer": "WHATSONYOURMIND",
+        "answers": [
+          {
+            "answer": "WHATSONYOURMIND"
+          }
+        ],
         "number": 53,
         "position": {
           "col": 3,
@@ -2162,6 +2339,11 @@
       {
         "body": "Academic regalia component",
         "answer": "ROBE",
+        "answers": [
+          {
+            "answer": "ROBE"
+          }
+        ],
         "number": 57,
         "position": {
           "col": 0,
@@ -2201,6 +2383,11 @@
       {
         "body": "Seemingly unbridgeable gap",
         "answer": "CHASM",
+        "answers": [
+          {
+            "answer": "CHASM"
+          }
+        ],
         "number": 60,
         "position": {
           "col": 5,
@@ -2244,6 +2431,11 @@
       {
         "body": "Down-under part, Down Under",
         "answer": "ARSE",
+        "answers": [
+          {
+            "answer": "ARSE"
+          }
+        ],
         "number": 61,
         "position": {
           "col": 11,
@@ -2283,6 +2475,11 @@
       {
         "body": "Baby boo-boo",
         "answer": "OWIE",
+        "answers": [
+          {
+            "answer": "OWIE"
+          }
+        ],
         "number": 62,
         "position": {
           "col": 0,
@@ -2322,6 +2519,11 @@
       {
         "body": "Someone you should never meet",
         "answer": "HERO",
+        "answers": [
+          {
+            "answer": "HERO"
+          }
+        ],
         "number": 63,
         "position": {
           "col": 5,
@@ -2361,6 +2563,11 @@
       {
         "body": "App downloader",
         "answer": "USER",
+        "answers": [
+          {
+            "answer": "USER"
+          }
+        ],
         "number": 64,
         "position": {
           "col": 11,
@@ -2400,6 +2607,11 @@
       {
         "body": "Stain on a reputation",
         "answer": "BLOT",
+        "answers": [
+          {
+            "answer": "BLOT"
+          }
+        ],
         "number": 65,
         "position": {
           "col": 0,
@@ -2439,6 +2651,11 @@
       {
         "body": "Terminus",
         "answer": "END",
+        "answers": [
+          {
+            "answer": "END"
+          }
+        ],
         "number": 66,
         "position": {
           "col": 5,
@@ -2474,6 +2691,11 @@
       {
         "body": "\"That's true\"",
         "answer": "ITIS",
+        "answers": [
+          {
+            "answer": "ITIS"
+          }
+        ],
         "number": 67,
         "position": {
           "col": 11,
@@ -2515,6 +2737,11 @@
       {
         "body": "This puzzle has 43 of them",
         "answer": "BLOCKS",
+        "answers": [
+          {
+            "answer": "BLOCKS"
+          }
+        ],
         "number": 1,
         "position": {
           "col": 0,
@@ -2562,6 +2789,11 @@
       {
         "body": "Walt Disney Concert Hall orchestra, casually",
         "answer": "LAPHIL",
+        "answers": [
+          {
+            "answer": "LAPHIL"
+          }
+        ],
         "number": 2,
         "position": {
           "col": 1,
@@ -2609,6 +2841,11 @@
       {
         "body": "Catchphrase for Donna and Tom on \"Parks and Rec\"",
         "answer": "TREATYOSELF",
+        "answers": [
+          {
+            "answer": "TREATYOSELF"
+          }
+        ],
         "number": 3,
         "position": {
           "col": 2,
@@ -2676,6 +2913,11 @@
       {
         "body": "Plentiful substance in 2021's \"Dune\"",
         "answer": "SAND",
+        "answers": [
+          {
+            "answer": "SAND"
+          }
+        ],
         "number": 4,
         "position": {
           "col": 3,
@@ -2715,6 +2957,11 @@
       {
         "body": "Eats like a bird",
         "answer": "PECKSAT",
+        "answers": [
+          {
+            "answer": "PECKSAT"
+          }
+        ],
         "number": 5,
         "position": {
           "col": 7,
@@ -2766,6 +3013,11 @@
       {
         "body": "Talkative",
         "answer": "VERBOSE",
+        "answers": [
+          {
+            "answer": "VERBOSE"
+          }
+        ],
         "number": 6,
         "position": {
           "col": 8,
@@ -2806,6 +3058,11 @@
       {
         "body": "Nickname that omits \"ent\"",
         "answer": "CLEM",
+        "answers": [
+          {
+            "answer": "CLEM"
+          }
+        ],
         "number": 7,
         "position": {
           "col": 9,
@@ -2845,6 +3102,11 @@
       {
         "body": "Classic canine plush toy",
         "answer": "POUNDPUPPY",
+        "answers": [
+          {
+            "answer": "POUNDPUPPY"
+          }
+        ],
         "number": 8,
         "position": {
           "col": 11,
@@ -2908,6 +3170,11 @@
       {
         "body": "\"___ American Cousin\" (\"Other than that, Mrs. Lincoln, did you enjoy the play?\" play)",
         "answer": "OUR",
+        "answers": [
+          {
+            "answer": "OUR"
+          }
+        ],
         "number": 9,
         "position": {
           "col": 12,
@@ -2943,6 +3210,11 @@
       {
         "body": "Part of a tour",
         "answer": "GIG",
+        "answers": [
+          {
+            "answer": "GIG"
+          }
+        ],
         "number": 10,
         "position": {
           "col": 13,
@@ -2978,6 +3250,11 @@
       {
         "body": "\"___ to Freedom\" (2021 ABBA song)",
         "answer": "ODE",
+        "answers": [
+          {
+            "answer": "ODE"
+          }
+        ],
         "number": 11,
         "position": {
           "col": 14,
@@ -3013,6 +3290,11 @@
       {
         "body": "Purplish color",
         "answer": "PUCE",
+        "answers": [
+          {
+            "answer": "PUCE"
+          }
+        ],
         "number": 13,
         "position": {
           "col": 6,
@@ -3052,6 +3334,11 @@
       {
         "body": "Stretched the truth",
         "answer": "LIED",
+        "answers": [
+          {
+            "answer": "LIED"
+          }
+        ],
         "number": 16,
         "position": {
           "col": 5,
@@ -3091,6 +3378,11 @@
       {
         "body": "Did some calligraphy",
         "answer": "WROTE",
+        "answers": [
+          {
+            "answer": "WROTE"
+          }
+        ],
         "number": 19,
         "position": {
           "col": 4,
@@ -3134,6 +3426,11 @@
       {
         "body": "Systems that many Silicon Valley types are obsessed with",
         "answer": "AIS",
+        "answers": [
+          {
+            "answer": "AIS"
+          }
+        ],
         "number": 20,
         "position": {
           "col": 10,
@@ -3169,6 +3466,11 @@
       {
         "body": "Quaint rule of chivalry",
         "answer": "LADIESFIRST",
+        "answers": [
+          {
+            "answer": "LADIESFIRST"
+          }
+        ],
         "number": 24,
         "position": {
           "col": 12,
@@ -3236,6 +3538,11 @@
       {
         "body": "Certain social sci",
         "answer": "ECON",
+        "answers": [
+          {
+            "answer": "ECON"
+          }
+        ],
         "number": 25,
         "position": {
           "col": 13,
@@ -3275,6 +3582,11 @@
       {
         "body": "Splenda alternative",
         "answer": "NUTRASWEET",
+        "answers": [
+          {
+            "answer": "NUTRASWEET"
+          }
+        ],
         "number": 27,
         "position": {
           "col": 3,
@@ -3338,6 +3650,11 @@
       {
         "body": "Particles that get exchanged",
         "answer": "IONS",
+        "answers": [
+          {
+            "answer": "IONS"
+          }
+        ],
         "number": 29,
         "position": {
           "col": 8,
@@ -3377,6 +3694,11 @@
       {
         "body": "Wu-Tang Clan member",
         "answer": "RZA",
+        "answers": [
+          {
+            "answer": "RZA"
+          }
+        ],
         "number": 30,
         "position": {
           "col": 9,
@@ -3412,6 +3734,11 @@
       {
         "body": "An official language of the EU",
         "answer": "ENG",
+        "answers": [
+          {
+            "answer": "ENG"
+          }
+        ],
         "number": 31,
         "position": {
           "col": 14,
@@ -3447,6 +3774,11 @@
       {
         "body": "\"Carmen\" carmen (for this clue you have to know that \"carmen\" is Latin for \"song\" and roll with the random bit of Latin)",
         "answer": "ARIA",
+        "answers": [
+          {
+            "answer": "ARIA"
+          }
+        ],
         "number": 33,
         "position": {
           "col": 6,
@@ -3486,6 +3818,11 @@
       {
         "body": "Faux ___",
         "answer": "PAS",
+        "answers": [
+          {
+            "answer": "PAS"
+          }
+        ],
         "number": 35,
         "position": {
           "col": 0,
@@ -3521,6 +3858,11 @@
       {
         "body": "Berry promoted as a health food",
         "answer": "ACAI",
+        "answers": [
+          {
+            "answer": "ACAI"
+          }
+        ],
         "number": 36,
         "position": {
           "col": 1,
@@ -3560,6 +3902,11 @@
       {
         "body": "Holder of backup files, often",
         "answer": "USB",
+        "answers": [
+          {
+            "answer": "USB"
+          }
+        ],
         "number": 37,
         "position": {
           "col": 5,
@@ -3595,6 +3942,11 @@
       {
         "body": "Not as ruddy",
         "answer": "PALER",
+        "answers": [
+          {
+            "answer": "PALER"
+          }
+        ],
         "number": 39,
         "position": {
           "col": 10,
@@ -3638,6 +3990,11 @@
       {
         "body": "Place for convicts to exercise",
         "answer": "PRISONYARD",
+        "answers": [
+          {
+            "answer": "PRISONYARD"
+          }
+        ],
         "number": 42,
         "position": {
           "col": 7,
@@ -3690,6 +4047,11 @@
       {
         "body": "Facepalming exclamation",
         "answer": "DOH",
+        "answers": [
+          {
+            "answer": "DOH"
+          }
+        ],
         "number": 45,
         "position": {
           "col": 4,
@@ -3725,6 +4087,11 @@
       {
         "body": "Grad",
         "answer": "ALUM",
+        "answers": [
+          {
+            "answer": "ALUM"
+          }
+        ],
         "number": 46,
         "position": {
           "col": 9,
@@ -3764,6 +4131,11 @@
       {
         "body": "Dojo teacher",
         "answer": "SENSEI",
+        "answers": [
+          {
+            "answer": "SENSEI"
+          }
+        ],
         "number": 47,
         "position": {
           "col": 13,
@@ -3811,6 +4183,11 @@
       {
         "body": "Venomous serpents",
         "answer": "ADDERS",
+        "answers": [
+          {
+            "answer": "ADDERS"
+          }
+        ],
         "number": 48,
         "position": {
           "col": 14,
@@ -3858,6 +4235,11 @@
       {
         "body": "Not great, not terrible",
         "answer": "SOSO",
+        "answers": [
+          {
+            "answer": "SOSO"
+          }
+        ],
         "number": 51,
         "position": {
           "col": 8,
@@ -3897,6 +4279,11 @@
       {
         "body": "Unrequited love feeling",
         "answer": "ACHE",
+        "answers": [
+          {
+            "answer": "ACHE"
+          }
+        ],
         "number": 54,
         "position": {
           "col": 5,
@@ -3936,6 +4323,11 @@
       {
         "body": "\"What happened next was...\"",
         "answer": "THEN",
+        "answers": [
+          {
+            "answer": "THEN"
+          }
+        ],
         "number": 55,
         "position": {
           "col": 6,
@@ -3975,6 +4367,11 @@
       {
         "body": "Island whose Big Bog is one of the world's wettest places",
         "answer": "MAUI",
+        "answers": [
+          {
+            "answer": "MAUI"
+          }
+        ],
         "number": 56,
         "position": {
           "col": 11,
@@ -4014,6 +4411,11 @@
       {
         "body": "Way overcharge",
         "answer": "ROB",
+        "answers": [
+          {
+            "answer": "ROB"
+          }
+        ],
         "number": 57,
         "position": {
           "col": 0,
@@ -4049,6 +4451,11 @@
       {
         "body": "\"Guardians of Ga'Hoole\" bird",
         "answer": "OWL",
+        "answers": [
+          {
+            "answer": "OWL"
+          }
+        ],
         "number": 58,
         "position": {
           "col": 1,
@@ -4084,6 +4491,11 @@
       {
         "body": "Link in ___",
         "answer": "BIO",
+        "answers": [
+          {
+            "answer": "BIO"
+          }
+        ],
         "number": 59,
         "position": {
           "col": 2,
@@ -4127,7 +4539,17 @@
   "report": {
     "success": true,
     "errors": [],
-    "warnings": []
+    "warnings": [
+      {
+        "type": "syntax",
+        "position": {
+          "col": 0,
+          "index": 111
+        },
+        "length": -1,
+        "message": "xd v4 design sections do not wrap their style definitions in a <style> tag"
+      }
+    ]
   },
   "editorInfo": {
     "sections": [

@@ -271,6 +271,7 @@ export function ipuzToXD(source: string | object): string {
         body: body.replace(/\n/g, " ").trim() + (enumeration ? ` (${enumeration})` : ""),
         position: { col: position.col, index: position.row },
         answer,
+        answers: [{ answer }],
         direction,
         display: [],
         plain: "",
@@ -319,6 +320,7 @@ export function ipuzToXD(source: string | object): string {
   const notes = [data.notes, data.explanation].filter((n) => typeof n === "string" && n.trim()).join("\n\n")
 
   const crosswordJSON: CrosswordJSON = {
+    metaDisplay: {},
     meta,
     tiles,
     clues,

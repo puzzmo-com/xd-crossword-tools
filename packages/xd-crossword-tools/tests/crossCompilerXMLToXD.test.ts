@@ -153,7 +153,7 @@ describe(crossCompilerXMLToXD.name, () => {
     expect(res).toContain("A1. Writer of the {/Divina Commedia/} ~ AB")
     expect(res).toContain("A2. H{~2~}O fact ~ CD")
     expect(res).toContain("D1. {*Bold*} intro ~ AC")
-    expect(res).toContain("D2. Visit {@our site|https://example.com@} ~ BD")
+    expect(res).toContain("D2. Visit {@our site | href: https://example.com@} ~ BD")
   })
 
   it("treats cells marked type=block as blanks", () => {
@@ -234,9 +234,11 @@ describe(crossCompilerXMLToXD.name, () => {
 
     const res = crossCompilerXMLToXD(xml)
     expect(res).toContain("form: barred")
-    expect(res).toContain("A { bar-left: true }")
-    expect(res).toContain("B { bar-top: true }")
-    expect(res).toContain("C { bar-left: true; bar-top: true }")
+    expect(xdToJSON(res).design?.styles).toEqual({
+      A: { "bar-left": "true" },
+      B: { "bar-top": "true" },
+      C: { "bar-left": "true", "bar-top": "true" },
+    })
   })
 
   it("converts <instructions> into the Notes section", () => {
@@ -311,9 +313,10 @@ describe(crossCompilerXMLToXD.name, () => {
 </crossword-compiler>`
 
     const res = crossCompilerXMLToXD(xml)
-    expect(res).toContain("background: circle")
-    expect(res).toContain("bar-left: true")
-    expect(res).toContain("bar-top: true; background: circle")
+    const styles = Object.values(xdToJSON(res).design?.styles || {})
+    expect(styles).toContainEqual({ background: "circle" })
+    expect(styles).toContainEqual({ "bar-left": "true" })
+    expect(styles).toContainEqual({ "bar-top": "true", background: "circle" })
   })
 
   it("converts solve-state and hint cells into a Start section", () => {
@@ -443,7 +446,7 @@ describe(crossCompilerXMLToXD.name, () => {
 
     const res = crossCompilerXMLToXD(xml)
     expect(res).toContain("splitcharacter: |")
-    expect(res).toContain("A1. Started fresh ~ NEW|UP")
+    expect(res).toContain("A1. Started fresh ~ NEWUP // NEW|UP")
     // format="5" matches the cell count exactly with no separators ⇒ no split
     expect(res).toContain("A2. Plain word ~ ABCDE")
   })
@@ -525,8 +528,8 @@ describe(crossCompilerXMLToXD.name, () => {
     // Words whose <word solution="..."> contains spaces/hyphens are split
     // with `|`, matching the splitcharacter declared in the metadata.
     expect(res).toContain("splitcharacter: |")
-    expect(res).toContain("A4. Kind of 14-Down in your car ~ REAR|VIEW")
-    expect(res).toContain("A15. Richard Avedon or Sarah Moon, e.g. ~ FASHION|PHOTOGRAPHER")
+    expect(res).toContain("A4. Kind of 14-Down in your car ~ REARVIEW // REAR|VIEW")
+    expect(res).toContain("A15. Richard Avedon or Sarah Moon, e.g. ~ FASHIONPHOTOGRAPHER // FASHION|PHOTOGRAPHER")
     expect(res).toContain("D1. Fortitude or spine ~ BACKBONE")
 
     // It should round-trip through the xd parser without errors.

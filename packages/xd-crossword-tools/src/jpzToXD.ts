@@ -1,3 +1,4 @@
+import { parseXDown, serializeXDown } from "xd-crossword-tools-parser"
 import { Clue, CrosswordJSON, Tile } from "xd-crossword-tools-parser"
 import { JSONToXD } from "./JSONtoXD"
 import { XMLParser } from "fast-xml-parser"
@@ -87,11 +88,11 @@ function convertNodesToXDMarkup(nodes: FxpNode[]): string {
     if (tag === "img") {
       const src = attr(node, "src") ?? ""
       const alt = attr(node, "alt") ?? ""
-      result += alt ? `{![${src}|${alt}]!}` : `{![${src}]!}`
+      result += serializeXDown([["img", src, alt, false]])
     } else if (tag === "a") {
       const href = attr(node, "href") ?? ""
       const text = convertNodesToXDMarkup(children)
-      result += `{@${text}|${href}@}`
+      result += serializeXDown([["link", text, href, parseXDown(text)]])
     } else if (tag in tagMap) {
       const { open, close } = tagMap[tag]
       result += `${open}${convertNodesToXDMarkup(children)}${close}`
@@ -292,6 +293,7 @@ export function jpzToXD(xmlString: string): string {
         body: text,
         position: { col: pos.col, index: pos.row },
         answer: answer,
+        answers: [{ answer }],
         direction: direction.toUpperCase() as "across" | "down",
         display: [],
         plain: "",
@@ -352,6 +354,7 @@ export function jpzToXD(xmlString: string): string {
   }
 
   const crosswordJSON: CrosswordJSON = {
+    metaDisplay: {},
     meta,
     tiles,
     clues,

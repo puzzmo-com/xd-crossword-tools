@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useMemo } from "react"
 import { use } from "react"
 import "./Homepage.scss"
 
@@ -16,6 +16,7 @@ import { XDEditor } from "./components/XDEditor"
 import { RootContext } from "./components/RootContext"
 import { XDSpec } from "./components/xdSpec"
 import { DesignEditor } from "./components/DesignEditor"
+import { XDown } from "./components/XDown"
 
 import "monaco-editor/esm/vs/editor/editor.all.js"
 import { DragAndDrop, UploadButton } from "./components/SingleDragAndDrop"
@@ -30,13 +31,28 @@ import { convertToCrosswordFormat } from "./utils/convertToCrosswordFormat"
 import { CrosswordBarPreview } from "./components/CrosswordPreview"
 import { readmeHtml } from "virtual:readme"
 import { Link } from "wouter"
-import { version, JSONToPuz, decodePuzzleMeHTML, amuseToXD, type CrosswordJSON } from "xd-crossword-tools"
+import {
+  version,
+  JSONToPuz,
+  decodePuzzleMeHTML,
+  amuseToXD,
+  isBarredGrid,
+  migrateXDToV4,
+  xdownToPlainText,
+  type CrosswordJSON,
+} from "xd-crossword-tools"
 import { resolvePuzzleMeUrl } from "./utils/resolvePuzzleMeUrl"
 import { compressToEncodedURIComponent } from "lz-string"
 
 // The print page is a static app: the whole puzzle travels lz-string
 // compressed in the URL fragment, so there is no server round-trip.
 const PRINT_PAGE_BASE = "https://print.puzzmo.com"
+
+/** Metadata values are xdown in xd v4, so flatten them for places which only take plain text */
+const plainMeta = (crosswordJSON: CrosswordJSON, key: string) => {
+  const display = crosswordJSON.metaDisplay?.[key]
+  return display ? xdownToPlainText(display) : crosswordJSON.meta[key]
+}
 
 interface PrintOptions {
   includeClues: boolean
@@ -65,8 +81,8 @@ const PrintTab: React.FC<{ xd: string; crosswordJSON: CrosswordJSON }> = ({ xd, 
     const payload = {
       xd,
       options: {
-        title: crosswordJSON.meta.title,
-        authorString: crosswordJSON.meta.author,
+        title: plainMeta(crosswordJSON, "title"),
+        authorString: plainMeta(crosswordJSON, "author"),
         autoprint: true,
         ...options,
       },
@@ -145,6 +161,31 @@ const PrintTab: React.FC<{ xd: string; crosswordJSON: CrosswordJSON }> = ({ xd, 
   )
 }
 
+/** Rewrites the editor's xd into xd v4 syntax, disabled when there is nothing to migrate */
+const MigrateButton = () => {
+  const { xd, setXD } = use(RootContext)
+  const migrated = useMemo(() => {
+    try {
+      return migrateXDToV4(xd)
+    } catch {
+      return xd
+    }
+  }, [xd])
+  const canMigrate = migrated !== xd
+
+  return (
+    <button
+      type="button"
+      className="upload-btn"
+      disabled={!canMigrate}
+      title={canMigrate ? "Rewrite this file using xd v4 syntax" : "This file already uses xd v4 syntax"}
+      onClick={() => setXD(migrated)}
+    >
+      Migrate to v4
+    </button>
+  )
+}
+
 function App() {
   const { xd, crosswordJSON, lastFileContext, setXD, validationReports, cursorInfo } = use(RootContext)
   const [isMobile, setIsMobile] = useState(false)
@@ -206,7 +247,7 @@ function App() {
       const url = URL.createObjectURL(blob)
       const a = document.createElement("a")
       a.href = url
-      a.download = `${crosswordJSON.meta.title || "crossword"}.puz`
+      a.download = `${plainMeta(crosswordJSON, "title") || "crossword"}.puz`
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)
@@ -389,7 +430,7 @@ function App() {
         </Tab>
       )}
 
-      {crosswordJSON && crosswordJSON.meta?.form === "barred" && (
+      {crosswordJSON && isBarredGrid(crosswordJSON) && (
         <Tab eventKey="barsPreview" title="Bars Preview">
           <Card className="modern-card">
             <Card.Body>
@@ -468,7 +509,7 @@ function App() {
                   <div className="mb-3">
                     <h6>Across Clue</h6>
                     <p>
-                      <strong>{cursorInfo.clues.across.number} Across:</strong> {cursorInfo.clues.across.body}
+                      <strong>{cursorInfo.clues.across.number} Across:</strong> <XDown components={cursorInfo.clues.across.display} />
                     </p>
                     {cursorInfo.clues.across.answer && (
                       <p>
@@ -482,7 +523,7 @@ function App() {
                   <div>
                     <h6>Down Clue</h6>
                     <p>
-                      <strong>{cursorInfo.clues.down.number} Down:</strong> {cursorInfo.clues.down.body}
+                      <strong>{cursorInfo.clues.down.number} Down:</strong> <XDown components={cursorInfo.clues.down.display} />
                     </p>
                     {cursorInfo.clues.down.answer && (
                       <p>
@@ -506,7 +547,7 @@ function App() {
                     {cursorInfo.direction === "across" && crosswordJSON.clues.across.find((c) => c.number === cursorInfo.number) && (
                       <div>
                         <p>
-                          <strong>Clue:</strong> {crosswordJSON.clues.across.find((c) => c.number === cursorInfo.number)?.body}
+                          <strong>Clue:</strong> <XDown components={crosswordJSON.clues.across.find((c) => c.number === cursorInfo.number)?.display} />
                         </p>
                         <p>
                           <strong>Answer:</strong> {crosswordJSON.clues.across.find((c) => c.number === cursorInfo.number)?.answer}
@@ -516,7 +557,7 @@ function App() {
                     {cursorInfo.direction === "down" && crosswordJSON.clues.down.find((c) => c.number === cursorInfo.number) && (
                       <div>
                         <p>
-                          <strong>Clue:</strong> {crosswordJSON.clues.down.find((c) => c.number === cursorInfo.number)?.body}
+                          <strong>Clue:</strong> <XDown components={crosswordJSON.clues.down.find((c) => c.number === cursorInfo.number)?.display} />
                         </p>
                         <p>
                           <strong>Answer:</strong> {crosswordJSON.clues.down.find((c) => c.number === cursorInfo.number)?.answer}
@@ -535,6 +576,11 @@ function App() {
                 <p>
                   <strong>Value:</strong> {cursorInfo.value}
                 </p>
+                {crosswordJSON?.metaDisplay?.[cursorInfo.key.trim().toLowerCase()] && (
+                  <p>
+                    <strong>Rendered:</strong> <XDown components={crosswordJSON.metaDisplay[cursorInfo.key.trim().toLowerCase()]} />
+                  </p>
+                )}
               </div>
             ) : null}
 
@@ -571,24 +617,23 @@ function App() {
     const rows = tiles.length // height
     const cols = tiles[0]?.length || 0 // width
 
-    let pattern = `\n\n&lt;style>\n&lt;/style>\n\n`
+    // xd v4 design: style rules first (no <style> wrapper), then the design grid where '.' is an unstyled cell
+    let pattern = `O { background: circle }\n\n`
 
     for (let row = 0; row < rows; row++) {
-      for (let col = 0; col < cols; col++) {
-        const tile = tiles[row][col]
-
-        if (tile && (tile.type === "letter" || tile.type === "rebus" || tile.type === "schrodinger")) {
-          pattern += "."
-        } else {
-          pattern += "#"
-        }
-      }
-      pattern += "\n"
+      pattern += ".".repeat(cols) + "\n"
     }
 
     const outputElement = document.getElementById("design-output")
     if (outputElement) {
-      outputElement.innerHTML = `<div style="color: #495057; font-weight: 500; margin-bottom: 10px;">## Design</div><pre style="margin: 0;">${pattern}</pre>`
+      outputElement.textContent = ""
+      const header = document.createElement("div")
+      header.setAttribute("style", "color: #495057; font-weight: 500; margin-bottom: 10px;")
+      header.textContent = "## Design"
+      const pre = document.createElement("pre")
+      pre.setAttribute("style", "margin: 0;")
+      pre.textContent = pattern
+      outputElement.append(header, pre)
     }
   }
 
@@ -681,6 +726,7 @@ function App() {
                             Import
                           </button>
                           <UploadButton className="upload-btn" />
+                          <MigrateButton />
                         </div>
                       </div>
                       {showImportInput && (
@@ -751,6 +797,7 @@ function App() {
                                 Import
                               </button>
                               <UploadButton className="upload-btn" />
+                              <MigrateButton />
                             </div>
                           </div>
                           {showImportInput && (

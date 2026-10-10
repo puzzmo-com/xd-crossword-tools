@@ -1,8 +1,9 @@
 ## Metadata
 
-title: Alpha-Bits
-author: Drew Hodson
-copyright: © 2021
+Title: Alpha-Bits
+Author: Drew Hodson
+Copyright: © 2021
+Description: N/A
 
 ## Grid
 
@@ -21,7 +22,6 @@ OTEP.HQTRS.SNIT
 SPIRO.NET.ATLAS
 TARTS.ETA.DOONE
 UWAVE.WAX..YUTZ
-
 
 ## Clues
 
@@ -114,25 +114,3 @@ D67. Breeds such as Chihuahua or Pomeranian ~ TOY
 D68. Bega behind "Mambo No. 5" ~ LOU
 D69. Aardvark breakfast ~ ANT
 D70. Sonic ___ ~ SEZ
-
-## Notes
-
-## Design
-
-O { background: circle }
-
-O..O..O.O..O..O
-...............
-...............
-...............
-O..O..O.O..O..O
-...............
-...............
-......O.O......
-...............
-...............
-O..O..O.O..O..O
-...............
-...............
-...............
-O..O..O.O..O..O

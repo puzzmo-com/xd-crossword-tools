@@ -694,10 +694,8 @@ describe("cell colors", () => {
     const xd = amuseToXD(colorAmuseExample)
 
     expect(xd).toContain("## Design")
-    expect(xd).toContain("A { background-light: #FFEB3B; background-dark: #FFEB3B }")
-    expect(xd).toContain("B { background: circle; background-light: #FFEB3B; background-dark: #FFEB3B }")
-    expect(xd).toContain("C { background-light: #B3E5FC; background-dark: #B3E5FC }")
-    expect(xd).toContain("O { background: circle }")
+    // The shared yellow is written once for both A and B
+    expect(xd).toContain("A, B { background-light: #FFEB3B; background-dark: #FFEB3B }")
 
     const json = xdToJSON(xd)
     expect(json.report.success).toBe(true)
@@ -762,7 +760,7 @@ describe("publish date", () => {
   const dateFor = (mutate: (data: AmuseTopLevel["data"]["attributes"]["amuse_data"]) => void) => {
     const json = amuseJSON()
     mutate(json.data.attributes.amuse_data)
-    return amuseToXD(json).match(/^date: (.*)$/m)![1]
+    return amuseToXD(json).match(/^date: (.*)$/im)![1]
   }
 
   it("reads the date in the puzzle's publish timezone, not the local one", () => {

@@ -1,4 +1,4 @@
-import { xdToJSON } from "../xdparser2"
+import { xdToJSON } from "../xdToJSON"
 import { it, expect } from "vitest"
 
 it("generates a barred crossword from the xd", () => {
@@ -23,7 +23,7 @@ it("generates a barred crossword from the xd", () => {
   expect(clue14?.answer).toBe("OLDS")
 })
 
-it("rejects comma-separated selectors in Design section", () => {
+it("supports comma-separated selectors in the Design section", () => {
   const xd = `## Metadata
 
 title: Test Comma Error
@@ -46,19 +46,16 @@ D3. Two letters ~ TG
 
 ## Design
 
-<style>
 A, B { bar-top: true }
-</style>
 
 ...
-AAA
+AAB
 `
 
   const result = xdToJSON(xd, true)
 
-  expect(result.report.success).toBe(false)
-  expect(result.report.errors.length).toBeGreaterThan(0)
-  expect(result.report.errors.some((e) => e.message && e.message.includes("Comma-separated selectors"))).toBe(true)
+  expect(result.report.errors.filter((e) => e.message.includes("selector") || e.message.includes("Comma"))).toEqual([])
+  expect(result.design?.styles).toEqual({ A: { "bar-top": "true" }, B: { "bar-top": "true" } })
 })
 
 it("rejects commas inside style properties in Design section", () => {
@@ -157,3 +154,14 @@ C { bar-left: true; bar-top: true }
 .BA.....
 A.A.A...
 `
+
+it("treats a grid with bars in its design as barred, without needing 'form: barred'", () => {
+  const v4 = xdForBarred.replace(/^form: barred\n/m, "").replace(/<\/?style>\n?/g, "")
+  expect(v4).not.toContain("form:")
+
+  const crosswordJSON = xdToJSON(v4)
+  expect(crosswordJSON.report.errors).toEqual([])
+  expect(crosswordJSON.clues.across.find((c) => c.number === 1)?.answer).toBe("SIGNPOST")
+  expect(crosswordJSON.clues.across.find((c) => c.number === 10)?.tiles.length).toBe(5)
+  expect(crosswordJSON.clues.down.find((c) => c.number === 14)?.answer).toBe("OLDS")
+})

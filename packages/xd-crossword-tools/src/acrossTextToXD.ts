@@ -141,21 +141,18 @@ export function acrossTextToXD(textContent: string): string {
   // Build design section if there are circled cells
   let designSection = ""
   if (circledPositions.size > 0) {
-    meta.push("O { background: circle }")
     let designGrid = ""
     tiles.forEach((row, rowIndex) => {
       row.forEach((tile, colIndex) => {
         if (circledPositions.has(`${rowIndex},${colIndex}`)) {
           designGrid += "O"
-        } else if (tile.type === "blank") {
-          designGrid += "#"
         } else {
           designGrid += "."
         }
       })
       designGrid += "\n"
     })
-    designSection = `\n\n## Design\n\n<style>O { background: circle }</style>\n\n${designGrid}`
+    designSection = `\n\n## Design\n\nO { background: circle }\n\n${designGrid}`
   }
 
   // Build XD string
