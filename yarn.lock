@@ -4334,7 +4334,7 @@ __metadata:
     tsup: "npm:^8.1.0"
     xd-crossword-tools-parser: "workspace:*"
   bin:
-    xd-crossword-tools: ./dist/cli.js
+    xd-crossword-tools: dist/cli.js
   languageName: unknown
   linkType: soft
 

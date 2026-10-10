@@ -5,3 +5,4 @@ tsconfig.json
 index.ts
 *.log
 .vscode
+*.bak
