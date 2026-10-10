@@ -287,3 +287,24 @@ Z { background-light: #f00; background-dark: #900 }`)
     expect(parseDesignRules(serializeDesignRules(styles)).styles).toEqual(styles)
   })
 })
+
+describe("large design sections", () => {
+  it("parses many data URI images quickly", () => {
+    const uri = "data:image/png;base64," + "A".repeat(50_000)
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+    const rules = [...letters].map((c) => `${c} {\n  background-image: url('${uri}');\n  background-size: 1 1\n}`).join("\n")
+    const xd = `## Grid\n\nAB\n\n## Design\n\n${rules}\n\nAB\n`
+
+    const start = performance.now()
+    const json = xdToJSON(xd)
+    expect(performance.now() - start).toBeLessThan(500)
+    expect(Object.keys(json.design!.styles)).toHaveLength(52)
+    expect(json.design!.positions).toEqual([["A", "B"]])
+  })
+
+  it("does not end a rule at a '}' inside a quoted value", () => {
+    const json = xdToJSON(`## Grid\n\nAB\n\n## Design\n\nA {\n  background-image: url('data:x;y}z');\n  bar-top: true\n}\n\nA.\n`)
+    expect(json.design?.styles).toEqual({ A: { "background-image": "url('data:x;y}z')", "bar-top": "true" } })
+    expect(json.design?.positions).toEqual([["A"]])
+  })
+})

@@ -31,6 +31,11 @@ describe("migrateXDToV4", () => {
     await expect(migrateXDToV4(legacy)).toMatchFileSnapshot("./parser/outputs/pre-v4-puzzmo-migrated.xd")
   })
 
+  it("removes comments", () => {
+    expect(legacy).toContain("<!--")
+    expect(migrateXDToV4(legacy)).not.toContain("<!--")
+  })
+
   it("produces a file which parses without any deprecation warnings", () => {
     expect(xdToJSON(legacy).report.warnings.length).toBeGreaterThan(0)
 
@@ -177,5 +182,15 @@ D2. Fourth ~ BD
       "
     `)
     expect(puzzle(xdToJSON(migrated))).toEqual(puzzle(xdToJSON(xd)))
+  })
+})
+
+describe("migrateXDToV4 with Windows line endings", () => {
+  it("keeps '\\r\\n' on every line, including the ones it rewrites", () => {
+    const legacy = fixture("inputs/pre-v4-puzzmo.xd").replace(/\n/g, "\r\n")
+    const migrated = migrateXDToV4(legacy)
+    expect(migrated.replace(/\r\n/g, "")).not.toContain("\n")
+    expect(migrated).toEqual(migrateXDToV4(fixture("inputs/pre-v4-puzzmo.xd")).replace(/\n/g, "\r\n"))
+    expect(migrateXDToV4(migrated)).toEqual(migrated)
   })
 })

@@ -6,7 +6,6 @@
   "scripts": {
     "build": "yarn workspaces foreach -At run build",
     "test": "vitest",
-    "docs": "md-magic",
     "type-check": "yarn workspaces foreach -A run type-check"
   },
   "workspaces": [
@@ -33,7 +32,6 @@
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
-    "markdown-magic": "^2.6.0",
     "tsup": "^8.1.0",
     "typescript": "^5.6.3",
     "vitest": "^3.1.3"

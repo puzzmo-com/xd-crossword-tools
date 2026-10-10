@@ -1,3 +1,4 @@
+import { migrateXDToV4 } from "../migrateXDToV4"
 import { xdToJSON } from "./xdToJSON"
 
 it("Smallest, legal but totally illogical example", () => {
@@ -605,6 +606,7 @@ D2. A thing. ~ OBJECT
             ],
             "metadata": {
               "answer:unprocessed": "OK|GO",
+              "answers:unprocessed": "OK|GO",
               "body:line": "18",
             },
             "number": 1,
@@ -651,6 +653,7 @@ D2. A thing. ~ OBJECT
             ],
             "metadata": {
               "answer:unprocessed": "OH|OH|OH",
+              "answers:unprocessed": "OH|OH|OH",
               "body:line": "20",
             },
             "number": 1,
@@ -703,6 +706,7 @@ D2. A thing. ~ OBJECT
             ],
             "metadata": {
               "answer:unprocessed": "OBJECT",
+              "answers:unprocessed": "OBJECT",
               "body:line": "21",
             },
             "number": 2,
@@ -745,7 +749,7 @@ D2. A thing. ~ OBJECT
 })
 
 describe("comments", () => {
-  it("ignores comments", () => {
+  it("are not supported, migrateXDToV4 removes them", () => {
     const original = `Title: Square
 Author: Orta
 Editor: Orta Therox
@@ -793,7 +797,11 @@ D2. Bigger than britain. ~ UK
 D3. A conscious tree. ~ BOOK
 `
 
-    expect(xdToJSON(original)).toEqual(xdToJSON(comments))
+    // A comment line is just a line, so in the clues it is an error
+    expect(xdToJSON(comments).report.errors.map((e) => e.message)).toContain("This clue doesn't start with A or D: '<!-- A multiline comment'")
+
+    expect(xdToJSON(migrateXDToV4(comments)).clues).toEqual(xdToJSON(original).clues)
+    expect(migrateXDToV4(comments)).not.toContain("<!--")
   })
 })
 

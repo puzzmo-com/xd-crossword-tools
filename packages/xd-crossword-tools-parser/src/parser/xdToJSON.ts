@@ -3,14 +3,13 @@ import type { Tile, CrosswordJSON, XDownComponent, ClueAnswer } from "../types"
 import { addHeadersToImplicitSections, hasImplicitSections } from "./implicitSections"
 import { parseXDown, xdownToPlainText } from "./xdown"
 import { designHasBars, parseDesignRules } from "./design"
-import { indexOutsideQuotes } from "./declarations"
 
 // These are all the sections supported by this parser, xd v4 defines metadata, grid, clues and design
 // - the rest are extensions
 const knownHeaders = ["grid", "clues", "notes", "metadata", "metapuzzle", "start", "design"] as const
 const mustHave = ["grid", "clues", "metadata"] as const
 
-export type ParseMode = (typeof knownHeaders)[number] | "comment" | "unknown"
+export type ParseMode = (typeof knownHeaders)[number] | "unknown"
 
 type RawClue = {
   num: number
@@ -41,7 +40,6 @@ type RawClue = {
  */
 export function xdToJSON(xd: string, strict = false, editorInfo = false): CrosswordJSON {
   let seenSections: string[] = []
-  let preCommentState: ParseMode = "unknown"
   let currentUnknownSectionTitle: string | undefined = undefined
 
   if (xd && hasImplicitSections(xd)) {
@@ -61,7 +59,8 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   const design = {
     headerLine: -1,
     rules: "",
-    insideRule: false,
+    /** Where the rule text so far ends: inside a `{ ... }`, and inside a quoted value */
+    scan: { insideRule: false, quote: undefined as string | undefined },
     grid: [] as string[],
   }
 
@@ -105,7 +104,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     // One warning per kind of problem per line is plenty
     if (json.report.warnings.some((w) => w.message === msg && w.position.index === line)) return
     json.report.warnings.push({
-      type: "syntax",
+      type: "deprecation",
       position: { col: 0, index: line },
       length: -1,
       message: msg,
@@ -123,26 +122,6 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   for (let line = 0; line < lines.length; line++) {
     const content = lines[line]
     const trimmed = content.trim()
-
-    // Start looking for comments first
-    if (trimmed.startsWith("<!--")) {
-      // Fast one-liner comments
-      if (trimmed.endsWith("-->")) continue
-
-      // For multi-line we need to re-start the loop
-      preCommentState = mode
-      mode = "comment"
-      continue
-    }
-
-    // If we're in a multi-line comment then we need to keep
-    // looking through for the end of the comment
-    if (mode === "comment") {
-      if (trimmed.endsWith("-->")) {
-        mode = preCommentState
-      }
-      continue
-    }
 
     if (content.startsWith("## ")) {
       mode = parseModeForString(content, line)
@@ -321,13 +300,14 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
 
         // The design grid starts at the first non-blank line after the last rule's closing '}'
         const ruleTrimmed = ruleLine.trim()
-        if (!design.insideRule && ruleTrimmed && !ruleTrimmed.includes("{")) {
+        if (!design.scan.insideRule && ruleTrimmed && !ruleTrimmed.includes("{")) {
           design.grid.push(trimmed)
           continue
         }
 
         design.rules += ruleLine + "\n"
-        design.insideRule = isInsideRule(design.rules)
+        // Only scan the new line, re-scanning all of the rules each time is slow with large data URIs
+        scanDesignRuleText(ruleLine + "\n", design.scan)
         continue
       }
     }
@@ -359,6 +339,12 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   // v3 xd used lowercase letters in the grid with a 'Special' field for circled or shaded cells,
   // this turns those into a design section
   applyV3SpecialCells(json, rawInput.tiles, (msg) => addDeprecation(msg, getLine(xd.toLowerCase(), "special:") || 0))
+
+  // Every grid row gets a (possibly empty) row of design positions, so 'positions[y][x]' is always safe
+  if (json.design) {
+    const rows = Math.max(rawInput.tiles.length, json.design.positions.length)
+    for (let y = 0; y < rows; y++) if (!json.design.positions[y]) json.design.positions[y] = []
+  }
 
   // We can't reliably set the tiles until we have the rebus info, but we can't guarantee the order
   const { rebuses, schrodingerRebuses } = getRebuses(json.meta.rebus || "")
@@ -497,7 +483,11 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     }
 
 
-    if (editorInfo && clue.metadata) clue.metadata["answer:unprocessed"] = clue.answersText
+    if (editorInfo && clue.metadata) {
+      // The first answer with its split characters (as in 14.x), and everything after the ' ~ ' as written
+      clue.metadata["answer:unprocessed"] = clue.answer
+      clue.metadata["answers:unprocessed"] = clue.answersText
+    }
 
     // Process hint and revealer metadata through xdown
     const processedMetadata: typeof clue.metadata = clue.metadata ? { ...clue.metadata } : {}
@@ -611,17 +601,19 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
  */
 export const isBarredGrid = (json: Pick<CrosswordJSON, "meta" | "design">) => json.meta?.form === "barred" || designHasBars(json.design)
 
-/** Whether the end of some design rule text is inside a `{ ... }` */
-function isInsideRule(rules: string) {
-  let inside = false
-  let i = 0
-  while (i < rules.length) {
-    const next = inside ? indexOutsideQuotes(rules, "}", i) : rules.indexOf("{", i)
-    if (next === -1) break
-    inside = !inside
-    i = next + 1
+/** Moves the design rule scanning state along a chunk of text: is it inside a `{ ... }`, and inside quotes */
+function scanDesignRuleText(text: string, state: { insideRule: boolean; quote: string | undefined }) {
+  for (const char of text) {
+    if (state.quote) {
+      if (char === state.quote) state.quote = undefined
+    } else if (!state.insideRule) {
+      if (char === "{") state.insideRule = true
+    } else if (char === "'" || char === '"') {
+      state.quote = char
+    } else if (char === "}") {
+      state.insideRule = false
+    }
   }
-  return inside
 }
 
 function applyV3SpecialCells(json: CrosswordJSON, grid: string[][], onDeprecated: (msg: string) => void) {

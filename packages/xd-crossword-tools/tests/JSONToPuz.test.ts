@@ -1,5 +1,5 @@
 import { readFileSync } from "fs"
-import { xdToJSON, type CrosswordJSON } from "xd-crossword-tools-parser"
+import { migrateXDToV4, xdToJSON, type CrosswordJSON } from "xd-crossword-tools-parser"
 import { it, expect, describe } from "vitest"
 import { JSONToPuz, xdToPuz } from "../src/JSONToPuz"
 import { puzToXD } from "../src/puzToXD"
@@ -109,7 +109,15 @@ describe(JSONToPuz.name, () => {
       .concat("\n## Start\n\nA..............\n")
 
     it("round-trips the exact document", () => {
-      expect(puzToXD(Buffer.from(xdToPuz(xd)))).toEqual(xd)
+      const v4 = migrateXDToV4(xd)
+      expect(puzToXD(Buffer.from(xdToPuz(v4)))).toEqual(v4)
+    })
+
+    it("migrates a pre-v4 document embedded by an older version", () => {
+      const preV4 = xd.replace("A5. Food for second chance chewing ~ CUD", "A5. Food for {@second chance|https://example.com@} chewing ~ CUD")
+      const imported = puzToXD(Buffer.from(xdToPuz(preV4)))
+      expect(imported).toEqual(migrateXDToV4(preV4))
+      expect(imported).toContain("A5. Food for {@second chance | href: https://example.com@} chewing ~ CUD")
     })
 
     it("still writes a normal .puz around it", () => {

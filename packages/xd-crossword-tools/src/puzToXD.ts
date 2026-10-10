@@ -1,5 +1,5 @@
 import { decode, Puz2JSONResult } from "./vendor/puzjs"
-import { CrosswordJSON, CursorDirection, Tile, xdToJSON } from "xd-crossword-tools-parser"
+import { CrosswordJSON, CursorDirection, Tile, migrateXDToV4, xdToJSON } from "xd-crossword-tools-parser"
 import { JSONToPuzInput } from "./JSONToPuz"
 
 import { getWordTilesForCursor } from "xd-crossword-tools-parser"
@@ -11,7 +11,7 @@ export function puzToXD(buffer: ArrayBuffer) {
   const rebuses = new Map<string, string>()
 
   const file = decode(buffer)
-  if (file.xd && embeddedXDMatchesGrid(file.xd, file.grid)) return file.xd
+  if (file.xd && embeddedXDMatchesGrid(file.xd, file.grid)) return migrateEmbeddedXD(file.xd)
 
   // The notes string gets its own section, as it can be multi-line
   const meta = Object.keys(file.meta)
@@ -74,6 +74,15 @@ ${board}
 ${across}
 
 ${down}${notes.length ? "\n\n## Notes\n\n" + notes.join("\n") : ""}`
+}
+
+/** An .xd embedded by an older version of JSONToPuz may be pre-v4 */
+const migrateEmbeddedXD = (xd: string) => {
+  try {
+    return migrateXDToV4(xd)
+  } catch {
+    return xd
+  }
 }
 
 /**

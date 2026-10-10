@@ -20,7 +20,6 @@ export const editorInfoAtCursor =
 
     switch (section.type) {
       case "design":
-      case "comment":
       case "metapuzzle":
       case "notes":
       case "start":

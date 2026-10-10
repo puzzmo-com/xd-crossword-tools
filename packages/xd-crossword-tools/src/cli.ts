@@ -10,6 +10,7 @@ import { amuseToXD } from "./amuseJSONToXD"
 import { acrossTextToXD } from "./acrossTextToXD"
 import { decodePuzzleMeHTML } from "./puzzleMeDecode"
 import { ipuzToXD } from "./ipuzToXD"
+import { migrateXDToV4 } from "xd-crossword-tools-parser"
 
 const SUPPORTED_EXTENSIONS = [".puz", ".jpz", ".xml", ".json", ".txt", ".ipuz"]
 
@@ -34,7 +35,16 @@ Options:
 Examples:
   xd-crossword-tools puzzle.puz -o ./converted
   xd-crossword-tools *.puz *.jpz -o ./xd-files
-  xd-crossword-tools https://puzzleme.amuselabs.com/pmm/crossword?id=abc -o ./converted`)
+  xd-crossword-tools https://puzzleme.amuselabs.com/pmm/crossword?id=abc -o ./converted
+
+Migrating .xd files to xd v4:
+  xd-crossword-tools migrate <xd-files...> [-o <output-dir>] [--check]
+
+  Rewrites each file in xd v4 syntax. Without -o the files are updated in place,
+  --check only lists the files which need migrating (exiting with 1 if any do).
+
+  xd-crossword-tools migrate puzzles/*.xd
+  xd-crossword-tools migrate puzzles/*.xd --check`)
   process.exit(0)
 }
 
@@ -81,8 +91,70 @@ async function convertURL(url: string): Promise<string> {
   return amuseToXD(amuse)
 }
 
+function migrate(args: string[]) {
+  let outputDir: string | undefined
+  let check = false
+  const inputs: string[] = []
+
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === "-o" || args[i] === "--output") {
+      outputDir = args[++i]
+      if (!outputDir) {
+        console.error("Error: -o requires a directory argument")
+        process.exit(1)
+      }
+    } else if (args[i] === "--check") {
+      check = true
+    } else if (args[i].startsWith("-")) {
+      console.error(`Unknown option: ${args[i]}`)
+      process.exit(1)
+    } else {
+      inputs.push(args[i])
+    }
+  }
+
+  if (inputs.length === 0) {
+    console.error("Error: no .xd files specified")
+    process.exit(1)
+  }
+  if (outputDir) fs.mkdirSync(outputDir, { recursive: true })
+
+  let changed = 0
+  let failed = 0
+  for (const input of inputs) {
+    try {
+      const xd = fs.readFileSync(input, "utf8")
+      const migrated = migrateXDToV4(xd)
+      const outputPath = outputDir ? path.join(outputDir, path.basename(input)) : input
+
+      if (migrated === xd) {
+        if (!check) console.log(`${input}: already v4`)
+        if (!check && outputDir) fs.writeFileSync(outputPath, xd)
+        continue
+      }
+
+      changed++
+      if (check) {
+        console.log(`${input}: needs migrating`)
+      } else {
+        fs.writeFileSync(outputPath, migrated)
+        console.log(`${input} -> ${outputPath}`)
+      }
+    } catch (err: any) {
+      console.error(`Error migrating ${input}: ${err.message}`)
+      failed++
+    }
+  }
+
+  const summary = check ? `${changed} need migrating` : `${changed} migrated`
+  console.log(`\nDone: ${summary}, ${inputs.length - changed - failed} already v4, ${failed} failed`)
+  if (failed > 0 || (check && changed > 0)) process.exit(1)
+}
+
 async function main() {
   const args = process.argv.slice(2)
+
+  if (args[0] === "migrate") return migrate(args.slice(1))
 
   if (args.length === 0 || args.includes("-h") || args.includes("--help")) {
     usage()

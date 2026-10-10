@@ -75,6 +75,10 @@ export const XDEditor = (props: {}) => {
         case "clue_msg":
           severity = monaco.MarkerSeverity.Warning
           break
+        case "deprecation":
+          // Pre-v4 syntax still works, the "Migrate to v4" button updates it
+          severity = monaco.MarkerSeverity.Info
+          break
         default:
           severity = monaco.MarkerSeverity.Info
       }
@@ -144,19 +148,11 @@ export const XDEditor = (props: {}) => {
             [/ ~ .*/, "answer"],
             [/^(A|D)(\d*) \^\w*:/, "key"],
             [/^(A|D) \^hint: \[ WIP \]/, "todo"],
-            [/<!--/, "comment", "@comment"],
-          ],
-          comment: [
-            [/[^<-]+/, "comment.content"],
-            [/-->/, "comment", "@pop"],
-            [/<!--/, "comment.content.invalid"],
-            [/[<-]/, "comment.content"],
           ],
         },
       })
 
       m.languages.setLanguageConfiguration(language, {
-        comments: { lineComment: "//", blockComment: ["<!--", "-->"] },
         brackets: [
           ["{", "}"],
           ["[", "]"],
@@ -232,7 +228,6 @@ export const XDEditor = (props: {}) => {
           { token: "answer", foreground: "1a1f1c" },
           { token: "key", foreground: "134d28" },
           { token: "todo", foreground: "dc2626" },
-          { token: "comment", foreground: "6b7c72" },
           { token: "xdown", foreground: "7c3aed" },
           { token: "xdown-attr", foreground: "7c3aed", fontStyle: "italic" },
           { token: "xdown-literal", foreground: "b45309" },

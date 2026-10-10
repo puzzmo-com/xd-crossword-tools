@@ -8,10 +8,11 @@ import { parseDesignRules } from "./parser/design"
  * Converts an xd file written for earlier versions of the spec (or with pre-v4 Puzzmo extensions)
  * into xd v4 syntax: https://github.com/century-arcade/xdformat/blob/master/doc/xd-format-v4.md
  *
- * This works on the text, so comments, section order, unknown sections and formatting are kept,
+ * This works on the text, so section order, unknown sections and formatting are kept,
  * and a file which is already v4 comes back unchanged. It handles:
  *
  * - Implicit (header-less) sections get `## Headings`
+ * - `<!-- -->` comment lines are removed, xd doesn't support comments
  * - Pre-v4 xdown: `{@text|url@}` links, `{![url|alt]!}` images and `{#text|light|dark#}` colors become
  *   attribute based, and text which v4 would read as markup (`{$`, ` ~ ` in a clue body) is escaped
  * - A clue body which contained ' ~ ' (pre-v4 bodies ran to the last ' ~ ') gets it escaped
@@ -24,7 +25,12 @@ import { parseDesignRules } from "./parser/design"
  * `^alt:` answers are left as they are.
  */
 export function migrateXDToV4(xd: string): string {
+  // Work with '\n' and put Windows line endings back at the end, so rewritten lines match the rest
+  const crlf = xd.includes("\r\n")
+  if (crlf) xd = xd.replace(/\r\n/g, "\n")
+
   if (hasImplicitSections(xd)) xd = addHeadersToImplicitSections(xd)
+  xd = removeComments(xd)
 
   const json = xdToJSON(xd)
   const doc = splitIntoSections(xd)
@@ -36,7 +42,6 @@ export function migrateXDToV4(xd: string): string {
   const metadata = doc.sections.find((s) => s.type === "metadata")
   if (metadata) {
     metadata.lines = metadata.lines.flatMap((line, i) => {
-      if (isComment(metadata, i)) return [line]
       const match = line.match(/^(\s*)([^:]+):(.*)$/)
       if (!match) return [line]
 
@@ -52,7 +57,7 @@ export function migrateXDToV4(xd: string): string {
   // Grid
   const grid = doc.sections.find((s) => s.type === "grid")
   if (grid && special) {
-    grid.lines = grid.lines.map((line, i) => (isComment(grid, i) ? line : line.replace(/[a-z]/g, (c) => c.toUpperCase())))
+    grid.lines = grid.lines.map((line) => line.replace(/[a-z]/g, (c) => c.toUpperCase()))
   }
 
   // Clues
@@ -61,7 +66,7 @@ export function migrateXDToV4(xd: string): string {
     const seen = new Set<string>()
 
     clues.lines = clues.lines.flatMap((line, i) => {
-      if (isComment(clues, i) || !line.trim()) return [line]
+      if (!line.trim()) return [line]
       const indent = line.match(/^\s*/)![0]
       const trimmed = line.trim()
 
@@ -97,7 +102,7 @@ export function migrateXDToV4(xd: string): string {
 
   if (special) {
     if (!design) {
-      design = { type: "design", header: "## Design", lines: [""], comments: new Set() }
+      design = { type: "design", header: "## Design", lines: [""] }
       const notes = doc.sections.findIndex((s) => s.type === "notes")
       if (notes === -1) doc.sections.push(design)
       else doc.sections.splice(notes, 0, design)
@@ -105,7 +110,8 @@ export function migrateXDToV4(xd: string): string {
     addSpecialCellsToDesign(design, special, json)
   }
 
-  return joinSections(doc)
+  const migrated = joinSections(doc)
+  return crlf ? migrated.replace(/\n/g, "\r\n") : migrated
 }
 
 /**
@@ -185,31 +191,19 @@ type Section = {
   /** The header line, undefined for anything before the first header */
   header?: string
   lines: string[]
-  /** Indexes of lines which are inside comments */
-  comments: Set<number>
 }
 
 function splitIntoSections(xd: string) {
-  const sections: Section[] = [{ type: "preamble", lines: [], comments: new Set() }]
-  let inComment = false
+  const sections: Section[] = [{ type: "preamble", lines: [] }]
 
   for (const line of xd.split("\n")) {
-    const trimmed = line.trim()
-    let current = sections[sections.length - 1]
-
-    if (!inComment && line.startsWith("## ")) {
+    if (line.startsWith("## ")) {
       const title = line.slice(3).trim().toLowerCase()
       const type = ["metadata", "grid", "clues", "design", "notes"].find((t) => title.startsWith(t)) || (title === "meta" ? "metadata" : title)
-      sections.push({ type, header: line, lines: [], comments: new Set() })
+      sections.push({ type, header: line, lines: [] })
       continue
     }
-
-    if (inComment || trimmed.startsWith("<!--")) {
-      current.comments.add(current.lines.length)
-      if (trimmed.startsWith("<!--")) inComment = !trimmed.endsWith("-->")
-      else if (trimmed.endsWith("-->")) inComment = false
-    }
-    current.lines.push(line)
+    sections[sections.length - 1].lines.push(line)
   }
 
   return { sections }
@@ -220,7 +214,22 @@ const joinSections = (doc: { sections: Section[] }) =>
     .flatMap((s) => (s.header === undefined ? s.lines : [s.header, ...s.lines]))
     .join("\n")
 
-const isComment = (section: Section, i: number) => section.comments.has(i)
+/**
+ * Pre-v4 Puzzmo xd allowed HTML style comments: a line starting with '<!--' until a line ending with '-->'.
+ * xd has no comments, so those lines are removed.
+ */
+function removeComments(xd: string) {
+  let inComment = false
+  return xd
+    .split("\n")
+    .filter((line) => {
+      const trimmed = line.trim()
+      if (!inComment && !trimmed.startsWith("<!--")) return true
+      inComment = !trimmed.endsWith("-->")
+      return false
+    })
+    .join("\n")
+}
 
 const findLastIndex = <T>(arr: T[], fn: (t: T) => boolean) => {
   for (let i = arr.length - 1; i >= 0; i--) if (fn(arr[i])) return i
@@ -253,7 +262,6 @@ const spellSlot = (tiles: Tile[], variant: number) =>
 function migrateDesignSection(design: Section) {
   const rules = parseDesignRules(
     design.lines
-      .filter((_, i) => !isComment(design, i))
       .join("\n")
       .replace(/<\/?style>/g, "")
       .split("\n")
@@ -264,7 +272,6 @@ function migrateDesignSection(design: Section) {
   let insideRule = false
   let inGrid = false
   design.lines = design.lines.flatMap((line, i) => {
-    if (isComment(design, i)) return [line]
 
     if (!inGrid) {
       if (/<\/?style>/.test(line)) {
@@ -306,7 +313,7 @@ function migrateSpecialCells(json: CrosswordJSON, doc: { sections: Section[] }):
 
   const cells: [number, number][] = []
   grid.lines
-    .filter((l, i) => l.trim() && !isComment(grid, i))
+    .filter((l) => l.trim())
     .forEach((line, y) => [...line.trim()].forEach((c, x) => /^[a-z]$/.test(c) && cells.push([y, x])))
 
   return cells.length ? { kind, cells } : undefined
@@ -317,7 +324,7 @@ function addSpecialCellsToDesign(design: Section, special: SpecialCells, json: C
   const [y0, x0] = special.cells[0]
   const char = json.design?.positions[y0]?.[x0] || (special.kind === "circle" ? "O" : "S")
 
-  const contentIndexes = design.lines.map((l, i) => (l.trim() && !isComment(design, i) ? i : -1)).filter((i) => i !== -1)
+  const contentIndexes = design.lines.map((l, i) => (l.trim() ? i : -1)).filter((i) => i !== -1)
   const gridStart = contentIndexes.find((i) => !design.lines[i].includes("{") && !design.lines[i].includes("}") && !design.lines[i].includes(":"))
 
   const existingRules = parseDesignRules(design.lines.slice(0, gridStart ?? design.lines.length).join("\n")).styles

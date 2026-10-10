@@ -566,12 +566,6 @@ D2 ^alt: IPAD`}
         </pre>
       </div>
 
-      <h3>Extension: Comments</h3>
-
-      <p>
-        A line starting with <code>&lt;!--</code> opens a comment, which runs until a line ending with <code>--&gt;</code>.
-      </p>
-
       <h2>CHANGELOG</h2>
 
       <h3>4.0</h3>

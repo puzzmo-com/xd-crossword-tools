@@ -143,3 +143,34 @@ ${clue}
     expect(json.report.errors.map((e) => e.message)).toEqual(["The ' // ' annotation goes at the end of the line, after all of the answers"])
   })
 })
+
+describe("editor info for answers", () => {
+  it("keeps 'answer:unprocessed' as the first answer with its splits, and the whole text in 'answers:unprocessed'", () => {
+    const xd = `## Metadata\n\nSplitCharacter: |\n\n## Grid\n\nOKGO\n\n## Clues\n\nA1. Band ~ OKGO ~ OKAY // OK|GO OK|AY\n`
+    const json = xdToJSON(xd, false, true)
+    expect(json.clues.across[0].metadata).toMatchObject({
+      "answer:unprocessed": "OK|GO",
+      "answers:unprocessed": "OKGO ~ OKAY // OK|GO OK|AY",
+    })
+  })
+})
+
+describe("deprecations", () => {
+  it("are reported as warnings with their own type", () => {
+    const json = xdToJSON(`## Metadata\n\nSplitCharacter: |\n\n## Grid\n\nOKGO\n\n## Clues\n\nA1. Band ~ OK|GO\n`)
+    expect(json.report.warnings.map((w) => w.type)).toEqual(["deprecation"])
+    expect(json.report.success).toBe(true)
+  })
+})
+
+describe("design positions", () => {
+  it("have a row for every grid row, even when the design grid is shorter", () => {
+    const json = xdToJSON(`## Grid\n\nAB\nCD\nEF\n\n## Design\n\nO { background: circle }\n\nO.\n`)
+    expect(json.design?.positions).toEqual([["O"], [], []])
+  })
+
+  it("have a row for every grid row when made from v3 Special cells", () => {
+    const json = xdToJSON(`## Metadata\n\nSpecial: circle\n\n## Grid\n\nAB\nCD\neF\n\n## Clues\n\nA1. Hi ~ AB\n`)
+    expect(json.design?.positions).toEqual([[], [], ["O"]])
+  })
+})

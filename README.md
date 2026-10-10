@@ -17,15 +17,12 @@ Let's take this free `.puz`: <https://dehodson.github.io/crossword-puzzles/cross
 
 Their .puz file turns into this xd:
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.xd) -->
-<!-- The below code snippet is automatically added from ./tests/output/alpha-bits.xd -->
-
 ```xd
 ## Metadata
 
-Title: Alpha-Bits
-Author: Drew Hodson
-Copyright: © 2021
+title: Alpha-Bits
+author: Drew Hodson
+copyright: © 2021
 
 ## Grid
 
@@ -161,13 +158,9 @@ O..O..O.O..O..O
 O..O..O.O..O..O
 ```
 
-<!-- AUTO-GENERATED-CONTENT:END -->
 
  <details>
           <summary>And then turned into this JSON</summary>
-
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./tests/output/alpha-bits.json) -->
-<!-- The below code snippet is automatically added from ./tests/output/alpha-bits.json -->
 
 ```json
 {
@@ -1100,6 +1093,11 @@ O..O..O.O..O..O
       {
         "body": "Captain of the Pequod",
         "answer": "AHAB",
+        "answers": [
+          {
+            "answer": "AHAB"
+          }
+        ],
         "number": 1,
         "position": {
           "col": 0,
@@ -1125,7 +1123,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "28",
-          "answer:unprocessed": "AHAB"
+          "answer:unprocessed": "AHAB",
+          "answers:unprocessed": "AHAB"
         },
         "display": [
           [
@@ -1139,6 +1138,11 @@ O..O..O.O..O..O
       {
         "body": "Food for second chance chewing",
         "answer": "CUD",
+        "answers": [
+          {
+            "answer": "CUD"
+          }
+        ],
         "number": 5,
         "position": {
           "col": 6,
@@ -1160,7 +1164,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "29",
-          "answer:unprocessed": "CUD"
+          "answer:unprocessed": "CUD",
+          "answers:unprocessed": "CUD"
         },
         "display": [
           [
@@ -1174,6 +1179,11 @@ O..O..O.O..O..O
       {
         "body": "Font feature",
         "answer": "SERIF",
+        "answers": [
+          {
+            "answer": "SERIF"
+          }
+        ],
         "number": 8,
         "position": {
           "col": 10,
@@ -1203,7 +1213,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "30",
-          "answer:unprocessed": "SERIF"
+          "answer:unprocessed": "SERIF",
+          "answers:unprocessed": "SERIF"
         },
         "display": [
           [
@@ -1217,6 +1228,11 @@ O..O..O.O..O..O
       {
         "body": "Palindromic address to a female",
         "answer": "MADAM",
+        "answers": [
+          {
+            "answer": "MADAM"
+          }
+        ],
         "number": 13,
         "position": {
           "col": 0,
@@ -1246,7 +1262,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "31",
-          "answer:unprocessed": "MADAM"
+          "answer:unprocessed": "MADAM",
+          "answers:unprocessed": "MADAM"
         },
         "display": [
           [
@@ -1260,6 +1277,11 @@ O..O..O.O..O..O
       {
         "body": "___ Way You Want It",
         "answer": "ANY",
+        "answers": [
+          {
+            "answer": "ANY"
+          }
+        ],
         "number": 15,
         "position": {
           "col": 6,
@@ -1281,7 +1303,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "32",
-          "answer:unprocessed": "ANY"
+          "answer:unprocessed": "ANY",
+          "answers:unprocessed": "ANY"
         },
         "display": [
           [
@@ -1295,6 +1318,11 @@ O..O..O.O..O..O
       {
         "body": "Place often described as humble",
         "answer": "ABODE",
+        "answers": [
+          {
+            "answer": "ABODE"
+          }
+        ],
         "number": 16,
         "position": {
           "col": 10,
@@ -1324,7 +1352,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "33",
-          "answer:unprocessed": "ABODE"
+          "answer:unprocessed": "ABODE",
+          "answers:unprocessed": "ABODE"
         },
         "display": [
           [
@@ -1338,6 +1367,11 @@ O..O..O.O..O..O
       {
         "body": "Flat two dimensional surface in geometry",
         "answer": "PLANE",
+        "answers": [
+          {
+            "answer": "PLANE"
+          }
+        ],
         "number": 17,
         "position": {
           "col": 0,
@@ -1367,7 +1401,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "34",
-          "answer:unprocessed": "PLANE"
+          "answer:unprocessed": "PLANE",
+          "answers:unprocessed": "PLANE"
         },
         "display": [
           [
@@ -1381,6 +1416,11 @@ O..O..O.O..O..O
       {
         "body": "Grim homophone of 7D",
         "answer": "DIE",
+        "answers": [
+          {
+            "answer": "DIE"
+          }
+        ],
         "number": 18,
         "position": {
           "col": 6,
@@ -1402,7 +1442,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "35",
-          "answer:unprocessed": "DIE"
+          "answer:unprocessed": "DIE",
+          "answers:unprocessed": "DIE"
         },
         "display": [
           [
@@ -1416,6 +1457,11 @@ O..O..O.O..O..O
       {
         "body": "Off",
         "answer": "NOTON",
+        "answers": [
+          {
+            "answer": "NOTON"
+          }
+        ],
         "number": 19,
         "position": {
           "col": 10,
@@ -1445,7 +1491,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "36",
-          "answer:unprocessed": "NOTON"
+          "answer:unprocessed": "NOTON",
+          "answers:unprocessed": "NOTON"
         },
         "display": [
           [
@@ -1459,6 +1506,11 @@ O..O..O.O..O..O
       {
         "body": "Heading for some lists",
         "answer": "TODO",
+        "answers": [
+          {
+            "answer": "TODO"
+          }
+        ],
         "number": 20,
         "position": {
           "col": 4,
@@ -1484,7 +1536,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "37",
-          "answer:unprocessed": "TODO"
+          "answer:unprocessed": "TODO",
+          "answers:unprocessed": "TODO"
         },
         "display": [
           [
@@ -1498,6 +1551,11 @@ O..O..O.O..O..O
       {
         "body": "Kanye West is famous for his",
         "answer": "EGO",
+        "answers": [
+          {
+            "answer": "EGO"
+          }
+        ],
         "number": 22,
         "position": {
           "col": 9,
@@ -1519,7 +1577,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "38",
-          "answer:unprocessed": "EGO"
+          "answer:unprocessed": "EGO",
+          "answers:unprocessed": "EGO"
         },
         "display": [
           [
@@ -1533,6 +1592,11 @@ O..O..O.O..O..O
       {
         "body": "Laceration",
         "answer": "GASH",
+        "answers": [
+          {
+            "answer": "GASH"
+          }
+        ],
         "number": 23,
         "position": {
           "col": 0,
@@ -1558,7 +1622,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "39",
-          "answer:unprocessed": "GASH"
+          "answer:unprocessed": "GASH",
+          "answers:unprocessed": "GASH"
         },
         "display": [
           [
@@ -1572,6 +1637,11 @@ O..O..O.O..O..O
       {
         "body": "Alias of Twitch star Richard Tyler Blevins",
         "answer": "NINJA",
+        "answers": [
+          {
+            "answer": "NINJA"
+          }
+        ],
         "number": 27,
         "position": {
           "col": 5,
@@ -1601,7 +1671,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "40",
-          "answer:unprocessed": "NINJA"
+          "answer:unprocessed": "NINJA",
+          "answers:unprocessed": "NINJA"
         },
         "display": [
           [
@@ -1615,6 +1686,11 @@ O..O..O.O..O..O
       {
         "body": "Capsize",
         "answer": "KEEL",
+        "answers": [
+          {
+            "answer": "KEEL"
+          }
+        ],
         "number": 29,
         "position": {
           "col": 11,
@@ -1640,7 +1716,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "41",
-          "answer:unprocessed": "KEEL"
+          "answer:unprocessed": "KEEL",
+          "answers:unprocessed": "KEEL"
         },
         "display": [
           [
@@ -1654,6 +1731,11 @@ O..O..O.O..O..O
       {
         "body": "Piece of clothing or print",
         "answer": "ARTICLE",
+        "answers": [
+          {
+            "answer": "ARTICLE"
+          }
+        ],
         "number": 33,
         "position": {
           "col": 0,
@@ -1691,7 +1773,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "42",
-          "answer:unprocessed": "ARTICLE"
+          "answer:unprocessed": "ARTICLE",
+          "answers:unprocessed": "ARTICLE"
         },
         "display": [
           [
@@ -1705,6 +1788,11 @@ O..O..O.O..O..O
       {
         "body": "Evangelical school in Tulsa, OK",
         "answer": "ORU",
+        "answers": [
+          {
+            "answer": "ORU"
+          }
+        ],
         "number": 35,
         "position": {
           "col": 8,
@@ -1726,7 +1814,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "43",
-          "answer:unprocessed": "ORU"
+          "answer:unprocessed": "ORU",
+          "answers:unprocessed": "ORU"
         },
         "display": [
           [
@@ -1740,6 +1829,11 @@ O..O..O.O..O..O
       {
         "body": "___-eyed",
         "answer": "DOE",
+        "answers": [
+          {
+            "answer": "DOE"
+          }
+        ],
         "number": 37,
         "position": {
           "col": 12,
@@ -1761,7 +1855,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "44",
-          "answer:unprocessed": "DOE"
+          "answer:unprocessed": "DOE",
+          "answers:unprocessed": "DOE"
         },
         "display": [
           [
@@ -1775,6 +1870,11 @@ O..O..O.O..O..O
       {
         "body": "Annual",
         "answer": "YEARLY",
+        "answers": [
+          {
+            "answer": "YEARLY"
+          }
+        ],
         "number": 38,
         "position": {
           "col": 0,
@@ -1808,7 +1908,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "45",
-          "answer:unprocessed": "YEARLY"
+          "answer:unprocessed": "YEARLY",
+          "answers:unprocessed": "YEARLY"
         },
         "display": [
           [
@@ -1822,6 +1923,11 @@ O..O..O.O..O..O
       {
         "body": "The stamp with the upside down airplane is a famous one",
         "answer": "MISPRINT",
+        "answers": [
+          {
+            "answer": "MISPRINT"
+          }
+        ],
         "number": 39,
         "position": {
           "col": 7,
@@ -1863,7 +1969,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "46",
-          "answer:unprocessed": "MISPRINT"
+          "answer:unprocessed": "MISPRINT",
+          "answers:unprocessed": "MISPRINT"
         },
         "display": [
           [
@@ -1877,6 +1984,11 @@ O..O..O.O..O..O
       {
         "body": "With 42A and Marcus, a luxury department store chain",
         "answer": "NEI",
+        "answers": [
+          {
+            "answer": "NEI"
+          }
+        ],
         "number": 41,
         "position": {
           "col": 2,
@@ -1898,7 +2010,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "47",
-          "answer:unprocessed": "NEI"
+          "answer:unprocessed": "NEI",
+          "answers:unprocessed": "NEI"
         },
         "display": [
           [
@@ -1912,6 +2025,11 @@ O..O..O.O..O..O
       {
         "body": "41A continued",
         "answer": "MAN",
+        "answers": [
+          {
+            "answer": "MAN"
+          }
+        ],
         "number": 42,
         "position": {
           "col": 6,
@@ -1933,7 +2051,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "48",
-          "answer:unprocessed": "MAN"
+          "answer:unprocessed": "MAN",
+          "answers:unprocessed": "MAN"
         },
         "display": [
           [
@@ -1947,6 +2066,11 @@ O..O..O.O..O..O
       {
         "body": "Lush",
         "answer": "SOT",
+        "answers": [
+          {
+            "answer": "SOT"
+          }
+        ],
         "number": 43,
         "position": {
           "col": 10,
@@ -1968,7 +2092,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "49",
-          "answer:unprocessed": "SOT"
+          "answer:unprocessed": "SOT",
+          "answers:unprocessed": "SOT"
         },
         "display": [
           [
@@ -1982,6 +2107,11 @@ O..O..O.O..O..O
       {
         "body": "The Mayan one ended in 2012",
         "answer": "CALENDAR",
+        "answers": [
+          {
+            "answer": "CALENDAR"
+          }
+        ],
         "number": 44,
         "position": {
           "col": 0,
@@ -2023,7 +2153,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "50",
-          "answer:unprocessed": "CALENDAR"
+          "answer:unprocessed": "CALENDAR",
+          "answers:unprocessed": "CALENDAR"
         },
         "display": [
           [
@@ -2037,6 +2168,11 @@ O..O..O.O..O..O
       {
         "body": "What a child often does to their shoes",
         "answer": "RETIES",
+        "answers": [
+          {
+            "answer": "RETIES"
+          }
+        ],
         "number": 47,
         "position": {
           "col": 9,
@@ -2070,7 +2206,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "51",
-          "answer:unprocessed": "RETIES"
+          "answer:unprocessed": "RETIES",
+          "answers:unprocessed": "RETIES"
         },
         "display": [
           [
@@ -2084,6 +2221,11 @@ O..O..O.O..O..O
       {
         "body": "Vanilla ___",
         "answer": "ICE",
+        "answers": [
+          {
+            "answer": "ICE"
+          }
+        ],
         "number": 50,
         "position": {
           "col": 0,
@@ -2105,7 +2247,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "52",
-          "answer:unprocessed": "ICE"
+          "answer:unprocessed": "ICE",
+          "answers:unprocessed": "ICE"
         },
         "display": [
           [
@@ -2119,6 +2262,11 @@ O..O..O.O..O..O
       {
         "body": "Maligned cigarette ingredient",
         "answer": "TAR",
+        "answers": [
+          {
+            "answer": "TAR"
+          }
+        ],
         "number": 51,
         "position": {
           "col": 4,
@@ -2140,7 +2288,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "53",
-          "answer:unprocessed": "TAR"
+          "answer:unprocessed": "TAR",
+          "answers:unprocessed": "TAR"
         },
         "display": [
           [
@@ -2154,6 +2303,11 @@ O..O..O.O..O..O
       {
         "body": "Frequent cause for a new tire",
         "answer": "POTHOLE",
+        "answers": [
+          {
+            "answer": "POTHOLE"
+          }
+        ],
         "number": 52,
         "position": {
           "col": 8,
@@ -2191,7 +2345,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "54",
-          "answer:unprocessed": "POTHOLE"
+          "answer:unprocessed": "POTHOLE",
+          "answers:unprocessed": "POTHOLE"
         },
         "display": [
           [
@@ -2205,6 +2360,11 @@ O..O..O.O..O..O
       {
         "body": "Los Angeles heavy metal act",
         "answer": "OTEP",
+        "answers": [
+          {
+            "answer": "OTEP"
+          }
+        ],
         "number": 53,
         "position": {
           "col": 0,
@@ -2230,7 +2390,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "55",
-          "answer:unprocessed": "OTEP"
+          "answer:unprocessed": "OTEP",
+          "answers:unprocessed": "OTEP"
         },
         "display": [
           [
@@ -2244,6 +2405,11 @@ O..O..O.O..O..O
       {
         "body": "Bldgs. such as the Googleplex",
         "answer": "HQTRS",
+        "answers": [
+          {
+            "answer": "HQTRS"
+          }
+        ],
         "number": 55,
         "position": {
           "col": 5,
@@ -2273,7 +2439,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "56",
-          "answer:unprocessed": "HQTRS"
+          "answer:unprocessed": "HQTRS",
+          "answers:unprocessed": "HQTRS"
         },
         "display": [
           [
@@ -2287,6 +2454,11 @@ O..O..O.O..O..O
       {
         "body": "A fit of irritation",
         "answer": "SNIT",
+        "answers": [
+          {
+            "answer": "SNIT"
+          }
+        ],
         "number": 57,
         "position": {
           "col": 11,
@@ -2312,7 +2484,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "57",
-          "answer:unprocessed": "SNIT"
+          "answer:unprocessed": "SNIT",
+          "answers:unprocessed": "SNIT"
         },
         "display": [
           [
@@ -2326,6 +2499,11 @@ O..O..O.O..O..O
       {
         "body": "Lead-in to American or day",
         "answer": "ALL",
+        "answers": [
+          {
+            "answer": "ALL"
+          }
+        ],
         "number": 58,
         "position": {
           "col": 3,
@@ -2347,7 +2525,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "58",
-          "answer:unprocessed": "ALL"
+          "answer:unprocessed": "ALL",
+          "answers:unprocessed": "ALL"
         },
         "display": [
           [
@@ -2361,6 +2540,11 @@ O..O..O.O..O..O
       {
         "body": "What Pokémon do at a Pokémon Center",
         "answer": "HEAL",
+        "answers": [
+          {
+            "answer": "HEAL"
+          }
+        ],
         "number": 60,
         "position": {
           "col": 7,
@@ -2386,7 +2570,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "59",
-          "answer:unprocessed": "HEAL"
+          "answer:unprocessed": "HEAL",
+          "answers:unprocessed": "HEAL"
         },
         "display": [
           [
@@ -2400,6 +2585,11 @@ O..O..O.O..O..O
       {
         "body": "Nixon's vice",
         "answer": "SPIRO",
+        "answers": [
+          {
+            "answer": "SPIRO"
+          }
+        ],
         "number": 62,
         "position": {
           "col": 0,
@@ -2429,7 +2619,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "60",
-          "answer:unprocessed": "SPIRO"
+          "answer:unprocessed": "SPIRO",
+          "answers:unprocessed": "SPIRO"
         },
         "display": [
           [
@@ -2443,6 +2634,11 @@ O..O..O.O..O..O
       {
         "body": "Nothing but ___",
         "answer": "NET",
+        "answers": [
+          {
+            "answer": "NET"
+          }
+        ],
         "number": 65,
         "position": {
           "col": 6,
@@ -2464,7 +2660,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "61",
-          "answer:unprocessed": "NET"
+          "answer:unprocessed": "NET",
+          "answers:unprocessed": "NET"
         },
         "display": [
           [
@@ -2478,6 +2675,11 @@ O..O..O.O..O..O
       {
         "body": "One with the world on his shoulders",
         "answer": "ATLAS",
+        "answers": [
+          {
+            "answer": "ATLAS"
+          }
+        ],
         "number": 66,
         "position": {
           "col": 10,
@@ -2507,7 +2709,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "62",
-          "answer:unprocessed": "ATLAS"
+          "answer:unprocessed": "ATLAS",
+          "answers:unprocessed": "ATLAS"
         },
         "display": [
           [
@@ -2521,6 +2724,11 @@ O..O..O.O..O..O
       {
         "body": "Filled pastries",
         "answer": "TARTS",
+        "answers": [
+          {
+            "answer": "TARTS"
+          }
+        ],
         "number": 71,
         "position": {
           "col": 0,
@@ -2550,7 +2758,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "63",
-          "answer:unprocessed": "TARTS"
+          "answer:unprocessed": "TARTS",
+          "answers:unprocessed": "TARTS"
         },
         "display": [
           [
@@ -2564,6 +2773,11 @@ O..O..O.O..O..O
       {
         "body": "Age, in Milan",
         "answer": "ETA",
+        "answers": [
+          {
+            "answer": "ETA"
+          }
+        ],
         "number": 72,
         "position": {
           "col": 6,
@@ -2585,7 +2799,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "64",
-          "answer:unprocessed": "ETA"
+          "answer:unprocessed": "ETA",
+          "answers:unprocessed": "ETA"
         },
         "display": [
           [
@@ -2599,6 +2814,11 @@ O..O..O.O..O..O
       {
         "body": "Lorna ___, novel or cookie",
         "answer": "DOONE",
+        "answers": [
+          {
+            "answer": "DOONE"
+          }
+        ],
         "number": 73,
         "position": {
           "col": 10,
@@ -2628,7 +2848,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "65",
-          "answer:unprocessed": "DOONE"
+          "answer:unprocessed": "DOONE",
+          "answers:unprocessed": "DOONE"
         },
         "display": [
           [
@@ -2642,6 +2863,11 @@ O..O..O.O..O..O
       {
         "body": "Electrocardiogram readout feature",
         "answer": "UWAVE",
+        "answers": [
+          {
+            "answer": "UWAVE"
+          }
+        ],
         "number": 74,
         "position": {
           "col": 0,
@@ -2671,7 +2897,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "66",
-          "answer:unprocessed": "UWAVE"
+          "answer:unprocessed": "UWAVE",
+          "answers:unprocessed": "UWAVE"
         },
         "display": [
           [
@@ -2685,6 +2912,11 @@ O..O..O.O..O..O
       {
         "body": "Hip slang for records",
         "answer": "WAX",
+        "answers": [
+          {
+            "answer": "WAX"
+          }
+        ],
         "number": 75,
         "position": {
           "col": 6,
@@ -2706,7 +2938,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "67",
-          "answer:unprocessed": "WAX"
+          "answer:unprocessed": "WAX",
+          "answers:unprocessed": "WAX"
         },
         "display": [
           [
@@ -2720,6 +2953,11 @@ O..O..O.O..O..O
       {
         "body": "Yiddish for a foolish person",
         "answer": "YUTZ",
+        "answers": [
+          {
+            "answer": "YUTZ"
+          }
+        ],
         "number": 76,
         "position": {
           "col": 11,
@@ -2745,7 +2983,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "68",
-          "answer:unprocessed": "YUTZ"
+          "answer:unprocessed": "YUTZ",
+          "answers:unprocessed": "YUTZ"
         },
         "display": [
           [
@@ -2761,6 +3000,11 @@ O..O..O.O..O..O
       {
         "body": "Pc. of concert gear",
         "answer": "AMP",
+        "answers": [
+          {
+            "answer": "AMP"
+          }
+        ],
         "number": 1,
         "position": {
           "col": 0,
@@ -2782,7 +3026,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "70",
-          "answer:unprocessed": "AMP"
+          "answer:unprocessed": "AMP",
+          "answers:unprocessed": "AMP"
         },
         "display": [
           [
@@ -2796,6 +3041,11 @@ O..O..O.O..O..O
       {
         "body": "AI antagonist of 2001",
         "answer": "HAL",
+        "answers": [
+          {
+            "answer": "HAL"
+          }
+        ],
         "number": 2,
         "position": {
           "col": 1,
@@ -2817,7 +3067,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "71",
-          "answer:unprocessed": "HAL"
+          "answer:unprocessed": "HAL",
+          "answers:unprocessed": "HAL"
         },
         "display": [
           [
@@ -2831,6 +3082,11 @@ O..O..O.O..O..O
       {
         "body": "Programming pioneer Lovelace",
         "answer": "ADA",
+        "answers": [
+          {
+            "answer": "ADA"
+          }
+        ],
         "number": 3,
         "position": {
           "col": 2,
@@ -2852,7 +3108,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "72",
-          "answer:unprocessed": "ADA"
+          "answer:unprocessed": "ADA",
+          "answers:unprocessed": "ADA"
         },
         "display": [
           [
@@ -2866,6 +3123,11 @@ O..O..O.O..O..O
       {
         "body": "Prohibit",
         "answer": "BAN",
+        "answers": [
+          {
+            "answer": "BAN"
+          }
+        ],
         "number": 4,
         "position": {
           "col": 3,
@@ -2887,7 +3149,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "73",
-          "answer:unprocessed": "BAN"
+          "answer:unprocessed": "BAN",
+          "answers:unprocessed": "BAN"
         },
         "display": [
           [
@@ -2901,6 +3164,11 @@ O..O..O.O..O..O
       {
         "body": "Type of person to routinely carry a club",
         "answer": "CADDIE",
+        "answers": [
+          {
+            "answer": "CADDIE"
+          }
+        ],
         "number": 5,
         "position": {
           "col": 6,
@@ -2934,7 +3202,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "74",
-          "answer:unprocessed": "CADDIE"
+          "answer:unprocessed": "CADDIE",
+          "answers:unprocessed": "CADDIE"
         },
         "display": [
           [
@@ -2948,6 +3217,11 @@ O..O..O.O..O..O
       {
         "body": "State of the ___ Address",
         "answer": "UNION",
+        "answers": [
+          {
+            "answer": "UNION"
+          }
+        ],
         "number": 6,
         "position": {
           "col": 7,
@@ -2977,7 +3251,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "75",
-          "answer:unprocessed": "UNION"
+          "answer:unprocessed": "UNION",
+          "answers:unprocessed": "UNION"
         },
         "display": [
           [
@@ -2991,6 +3266,11 @@ O..O..O.O..O..O
       {
         "body": "Colorful homophone of 18A",
         "answer": "DYE",
+        "answers": [
+          {
+            "answer": "DYE"
+          }
+        ],
         "number": 7,
         "position": {
           "col": 8,
@@ -3012,7 +3292,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "76",
-          "answer:unprocessed": "DYE"
+          "answer:unprocessed": "DYE",
+          "answers:unprocessed": "DYE"
         },
         "display": [
           [
@@ -3026,6 +3307,11 @@ O..O..O.O..O..O
       {
         "body": "Snitched",
         "answer": "SANG",
+        "answers": [
+          {
+            "answer": "SANG"
+          }
+        ],
         "number": 8,
         "position": {
           "col": 10,
@@ -3051,7 +3337,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "77",
-          "answer:unprocessed": "SANG"
+          "answer:unprocessed": "SANG",
+          "answers:unprocessed": "SANG"
         },
         "display": [
           [
@@ -3065,6 +3352,11 @@ O..O..O.O..O..O
       {
         "body": "Kindle fare",
         "answer": "EBOOK",
+        "answers": [
+          {
+            "answer": "EBOOK"
+          }
+        ],
         "number": 9,
         "position": {
           "col": 11,
@@ -3094,7 +3386,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "78",
-          "answer:unprocessed": "EBOOK"
+          "answer:unprocessed": "EBOOK",
+          "answers:unprocessed": "EBOOK"
         },
         "display": [
           [
@@ -3108,6 +3401,11 @@ O..O..O.O..O..O
       {
         "body": "Decayed matter",
         "answer": "ROT",
+        "answers": [
+          {
+            "answer": "ROT"
+          }
+        ],
         "number": 10,
         "position": {
           "col": 12,
@@ -3129,7 +3427,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "79",
-          "answer:unprocessed": "ROT"
+          "answer:unprocessed": "ROT",
+          "answers:unprocessed": "ROT"
         },
         "display": [
           [
@@ -3143,6 +3442,11 @@ O..O..O.O..O..O
       {
         "body": "Type of response you hope to get at the altar",
         "answer": "IDO",
+        "answers": [
+          {
+            "answer": "IDO"
+          }
+        ],
         "number": 11,
         "position": {
           "col": 13,
@@ -3164,7 +3468,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "80",
-          "answer:unprocessed": "IDO"
+          "answer:unprocessed": "IDO",
+          "answers:unprocessed": "IDO"
         },
         "display": [
           [
@@ -3178,6 +3483,11 @@ O..O..O.O..O..O
       {
         "body": "Peat-accumulating wetland",
         "answer": "FEN",
+        "answers": [
+          {
+            "answer": "FEN"
+          }
+        ],
         "number": 12,
         "position": {
           "col": 14,
@@ -3199,7 +3509,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "81",
-          "answer:unprocessed": "FEN"
+          "answer:unprocessed": "FEN",
+          "answers:unprocessed": "FEN"
         },
         "display": [
           [
@@ -3213,6 +3524,11 @@ O..O..O.O..O..O
       {
         "body": "The ___, NY art museum",
         "answer": "MET",
+        "answers": [
+          {
+            "answer": "MET"
+          }
+        ],
         "number": 14,
         "position": {
           "col": 4,
@@ -3234,7 +3550,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "82",
-          "answer:unprocessed": "MET"
+          "answer:unprocessed": "MET",
+          "answers:unprocessed": "MET"
         },
         "display": [
           [
@@ -3248,6 +3565,11 @@ O..O..O.O..O..O
       {
         "body": "___Fans",
         "answer": "ONLY",
+        "answers": [
+          {
+            "answer": "ONLY"
+          }
+        ],
         "number": 21,
         "position": {
           "col": 5,
@@ -3273,7 +3595,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "83",
-          "answer:unprocessed": "ONLY"
+          "answer:unprocessed": "ONLY",
+          "answers:unprocessed": "ONLY"
         },
         "display": [
           [
@@ -3287,6 +3610,11 @@ O..O..O.O..O..O
       {
         "body": "Friends, Romans, countrymen, lend me your...",
         "answer": "EARS",
+        "answers": [
+          {
+            "answer": "EARS"
+          }
+        ],
         "number": 22,
         "position": {
           "col": 9,
@@ -3312,7 +3640,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "84",
-          "answer:unprocessed": "EARS"
+          "answer:unprocessed": "EARS",
+          "answers:unprocessed": "EARS"
         },
         "display": [
           [
@@ -3326,6 +3655,11 @@ O..O..O.O..O..O
       {
         "body": "\"Friend of Dorothy\"",
         "answer": "GAY",
+        "answers": [
+          {
+            "answer": "GAY"
+          }
+        ],
         "number": 23,
         "position": {
           "col": 0,
@@ -3347,7 +3681,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "85",
-          "answer:unprocessed": "GAY"
+          "answer:unprocessed": "GAY",
+          "answers:unprocessed": "GAY"
         },
         "display": [
           [
@@ -3361,6 +3696,11 @@ O..O..O.O..O..O
       {
         "body": "We ___ the Champions",
         "answer": "ARE",
+        "answers": [
+          {
+            "answer": "ARE"
+          }
+        ],
         "number": 24,
         "position": {
           "col": 1,
@@ -3382,7 +3722,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "86",
-          "answer:unprocessed": "ARE"
+          "answer:unprocessed": "ARE",
+          "answers:unprocessed": "ARE"
         },
         "display": [
           [
@@ -3396,6 +3737,11 @@ O..O..O.O..O..O
       {
         "body": "Father of Spider-Man",
         "answer": "STANLEE",
+        "answers": [
+          {
+            "answer": "STANLEE"
+          }
+        ],
         "number": 25,
         "position": {
           "col": 2,
@@ -3433,7 +3779,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "87",
-          "answer:unprocessed": "STANLEE"
+          "answer:unprocessed": "STANLEE",
+          "answers:unprocessed": "STANLEE"
         },
         "display": [
           [
@@ -3447,6 +3794,11 @@ O..O..O.O..O..O
       {
         "body": "What a certain applicant becomes",
         "answer": "HIREE",
+        "answers": [
+          {
+            "answer": "HIREE"
+          }
+        ],
         "number": 26,
         "position": {
           "col": 3,
@@ -3476,7 +3828,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "88",
-          "answer:unprocessed": "HIREE"
+          "answer:unprocessed": "HIREE",
+          "answers:unprocessed": "HIREE"
         },
         "display": [
           [
@@ -3490,6 +3843,11 @@ O..O..O.O..O..O
       {
         "body": "Connect",
         "answer": "JOIN",
+        "answers": [
+          {
+            "answer": "JOIN"
+          }
+        ],
         "number": 28,
         "position": {
           "col": 8,
@@ -3515,7 +3873,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "89",
-          "answer:unprocessed": "JOIN"
+          "answer:unprocessed": "JOIN",
+          "answers:unprocessed": "JOIN"
         },
         "display": [
           [
@@ -3529,6 +3888,11 @@ O..O..O.O..O..O
       {
         "body": "Particular form of a published text",
         "answer": "EDITION",
+        "answers": [
+          {
+            "answer": "EDITION"
+          }
+        ],
         "number": 30,
         "position": {
           "col": 12,
@@ -3566,7 +3930,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "90",
-          "answer:unprocessed": "EDITION"
+          "answer:unprocessed": "EDITION",
+          "answers:unprocessed": "EDITION"
         },
         "display": [
           [
@@ -3580,6 +3945,11 @@ O..O..O.O..O..O
       {
         "body": "Suffix at the end of all of Eevee's evolutions",
         "answer": "EON",
+        "answers": [
+          {
+            "answer": "EON"
+          }
+        ],
         "number": 31,
         "position": {
           "col": 13,
@@ -3601,7 +3971,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "91",
-          "answer:unprocessed": "EON"
+          "answer:unprocessed": "EON",
+          "answers:unprocessed": "EON"
         },
         "display": [
           [
@@ -3615,6 +3986,11 @@ O..O..O.O..O..O
       {
         "body": "Live and ___ Die",
         "answer": "LET",
+        "answers": [
+          {
+            "answer": "LET"
+          }
+        ],
         "number": 32,
         "position": {
           "col": 14,
@@ -3636,7 +4012,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "92",
-          "answer:unprocessed": "LET"
+          "answer:unprocessed": "LET",
+          "answers:unprocessed": "LET"
         },
         "display": [
           [
@@ -3650,6 +4027,11 @@ O..O..O.O..O..O
       {
         "body": "Famous Eastwood whose name became a famous Gorillaz song",
         "answer": "CLINT",
+        "answers": [
+          {
+            "answer": "CLINT"
+          }
+        ],
         "number": 34,
         "position": {
           "col": 4,
@@ -3679,7 +4061,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "93",
-          "answer:unprocessed": "CLINT"
+          "answer:unprocessed": "CLINT",
+          "answers:unprocessed": "CLINT"
         },
         "display": [
           [
@@ -3693,6 +4076,11 @@ O..O..O.O..O..O
       {
         "body": "Unexpected result in a sporting competition",
         "answer": "UPSET",
+        "answers": [
+          {
+            "answer": "UPSET"
+          }
+        ],
         "number": 36,
         "position": {
           "col": 10,
@@ -3722,7 +4110,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "94",
-          "answer:unprocessed": "UPSET"
+          "answer:unprocessed": "UPSET",
+          "answers:unprocessed": "UPSET"
         },
         "display": [
           [
@@ -3736,6 +4125,11 @@ O..O..O.O..O..O
       {
         "body": "Disfigure",
         "answer": "MAR",
+        "answers": [
+          {
+            "answer": "MAR"
+          }
+        ],
         "number": 39,
         "position": {
           "col": 7,
@@ -3757,7 +4151,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "95",
-          "answer:unprocessed": "MAR"
+          "answer:unprocessed": "MAR",
+          "answers:unprocessed": "MAR"
         },
         "display": [
           [
@@ -3771,6 +4166,11 @@ O..O..O.O..O..O
       {
         "body": "David Lee and Tim",
         "answer": "ROTHS",
+        "answers": [
+          {
+            "answer": "ROTHS"
+          }
+        ],
         "number": 40,
         "position": {
           "col": 11,
@@ -3800,7 +4200,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "96",
-          "answer:unprocessed": "ROTHS"
+          "answer:unprocessed": "ROTHS",
+          "answers:unprocessed": "ROTHS"
         },
         "display": [
           [
@@ -3814,6 +4215,11 @@ O..O..O.O..O..O
       {
         "body": "Luxury watch collection by Garmin",
         "answer": "MARQ",
+        "answers": [
+          {
+            "answer": "MARQ"
+          }
+        ],
         "number": 42,
         "position": {
           "col": 6,
@@ -3839,7 +4245,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "97",
-          "answer:unprocessed": "MARQ"
+          "answer:unprocessed": "MARQ",
+          "answers:unprocessed": "MARQ"
         },
         "display": [
           [
@@ -3853,6 +4260,11 @@ O..O..O.O..O..O
       {
         "body": "Top dog in an IT org",
         "answer": "CIO",
+        "answers": [
+          {
+            "answer": "CIO"
+          }
+        ],
         "number": 44,
         "position": {
           "col": 0,
@@ -3874,7 +4286,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "98",
-          "answer:unprocessed": "CIO"
+          "answer:unprocessed": "CIO",
+          "answers:unprocessed": "CIO"
         },
         "display": [
           [
@@ -3888,6 +4301,11 @@ O..O..O.O..O..O
       {
         "body": "Sister ___",
         "answer": "ACT",
+        "answers": [
+          {
+            "answer": "ACT"
+          }
+        ],
         "number": 45,
         "position": {
           "col": 1,
@@ -3909,7 +4327,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "99",
-          "answer:unprocessed": "ACT"
+          "answer:unprocessed": "ACT",
+          "answers:unprocessed": "ACT"
         },
         "display": [
           [
@@ -3923,6 +4342,11 @@ O..O..O.O..O..O
       {
         "body": "Author Roald",
         "answer": "DAHL",
+        "answers": [
+          {
+            "answer": "DAHL"
+          }
+        ],
         "number": 46,
         "position": {
           "col": 5,
@@ -3948,7 +4372,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "100",
-          "answer:unprocessed": "DAHL"
+          "answer:unprocessed": "DAHL",
+          "answers:unprocessed": "DAHL"
         },
         "display": [
           [
@@ -3962,6 +4387,11 @@ O..O..O.O..O..O
       {
         "body": "Civil rights activist Parks",
         "answer": "ROSA",
+        "answers": [
+          {
+            "answer": "ROSA"
+          }
+        ],
         "number": 47,
         "position": {
           "col": 9,
@@ -3987,7 +4417,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "101",
-          "answer:unprocessed": "ROSA"
+          "answer:unprocessed": "ROSA",
+          "answers:unprocessed": "ROSA"
         },
         "display": [
           [
@@ -4001,6 +4432,11 @@ O..O..O.O..O..O
       {
         "body": "An additional name that could be part of 40D's clue",
         "answer": "ELI",
+        "answers": [
+          {
+            "answer": "ELI"
+          }
+        ],
         "number": 48,
         "position": {
           "col": 13,
@@ -4022,7 +4458,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "102",
-          "answer:unprocessed": "ELI"
+          "answer:unprocessed": "ELI",
+          "answers:unprocessed": "ELI"
         },
         "display": [
           [
@@ -4036,6 +4473,11 @@ O..O..O.O..O..O
       {
         "body": "Director's domain",
         "answer": "SET",
+        "answers": [
+          {
+            "answer": "SET"
+          }
+        ],
         "number": 49,
         "position": {
           "col": 14,
@@ -4057,7 +4499,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "103",
-          "answer:unprocessed": "SET"
+          "answer:unprocessed": "SET",
+          "answers:unprocessed": "SET"
         },
         "display": [
           [
@@ -4071,6 +4514,11 @@ O..O..O.O..O..O
       {
         "body": "Type of income to go in a 401k",
         "answer": "PRETAX",
+        "answers": [
+          {
+            "answer": "PRETAX"
+          }
+        ],
         "number": 52,
         "position": {
           "col": 8,
@@ -4104,7 +4552,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "104",
-          "answer:unprocessed": "PRETAX"
+          "answer:unprocessed": "PRETAX",
+          "answers:unprocessed": "PRETAX"
         },
         "display": [
           [
@@ -4118,6 +4567,11 @@ O..O..O.O..O..O
       {
         "body": "The Empire Strikes Back, to the Star Wars saga",
         "answer": "PARTV",
+        "answers": [
+          {
+            "answer": "PARTV"
+          }
+        ],
         "number": 54,
         "position": {
           "col": 3,
@@ -4147,7 +4601,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "105",
-          "answer:unprocessed": "PARTV"
+          "answer:unprocessed": "PARTV",
+          "answers:unprocessed": "PARTV"
         },
         "display": [
           [
@@ -4161,6 +4616,11 @@ O..O..O.O..O..O
       {
         "body": "Greek letter following 72A",
         "answer": "THETA",
+        "answers": [
+          {
+            "answer": "THETA"
+          }
+        ],
         "number": 56,
         "position": {
           "col": 7,
@@ -4190,7 +4650,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "106",
-          "answer:unprocessed": "THETA"
+          "answer:unprocessed": "THETA",
+          "answers:unprocessed": "THETA"
         },
         "display": [
           [
@@ -4204,6 +4665,11 @@ O..O..O.O..O..O
       {
         "body": "Misplace",
         "answer": "LOSE",
+        "answers": [
+          {
+            "answer": "LOSE"
+          }
+        ],
         "number": 59,
         "position": {
           "col": 4,
@@ -4229,7 +4695,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "107",
-          "answer:unprocessed": "LOSE"
+          "answer:unprocessed": "LOSE",
+          "answers:unprocessed": "LOSE"
         },
         "display": [
           [
@@ -4243,6 +4710,11 @@ O..O..O.O..O..O
       {
         "body": "Wee boy",
         "answer": "LAD",
+        "answers": [
+          {
+            "answer": "LAD"
+          }
+        ],
         "number": 61,
         "position": {
           "col": 10,
@@ -4264,7 +4736,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "108",
-          "answer:unprocessed": "LAD"
+          "answer:unprocessed": "LAD",
+          "answers:unprocessed": "LAD"
         },
         "display": [
           [
@@ -4278,6 +4751,11 @@ O..O..O.O..O..O
       {
         "body": "Dad to Tommy Pickles",
         "answer": "STU",
+        "answers": [
+          {
+            "answer": "STU"
+          }
+        ],
         "number": 62,
         "position": {
           "col": 0,
@@ -4299,7 +4777,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "109",
-          "answer:unprocessed": "STU"
+          "answer:unprocessed": "STU",
+          "answers:unprocessed": "STU"
         },
         "display": [
           [
@@ -4313,6 +4792,11 @@ O..O..O.O..O..O
       {
         "body": "The only Patrol I trust",
         "answer": "PAW",
+        "answers": [
+          {
+            "answer": "PAW"
+          }
+        ],
         "number": 63,
         "position": {
           "col": 1,
@@ -4334,7 +4818,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "110",
-          "answer:unprocessed": "PAW"
+          "answer:unprocessed": "PAW",
+          "answers:unprocessed": "PAW"
         },
         "display": [
           [
@@ -4348,6 +4833,11 @@ O..O..O.O..O..O
       {
         "body": "Smart savings plan, briefly",
         "answer": "IRA",
+        "answers": [
+          {
+            "answer": "IRA"
+          }
+        ],
         "number": 64,
         "position": {
           "col": 2,
@@ -4369,7 +4859,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "111",
-          "answer:unprocessed": "IRA"
+          "answer:unprocessed": "IRA",
+          "answers:unprocessed": "IRA"
         },
         "display": [
           [
@@ -4383,6 +4874,11 @@ O..O..O.O..O..O
       {
         "body": "Fresh",
         "answer": "NEW",
+        "answers": [
+          {
+            "answer": "NEW"
+          }
+        ],
         "number": 65,
         "position": {
           "col": 6,
@@ -4404,7 +4900,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "112",
-          "answer:unprocessed": "NEW"
+          "answer:unprocessed": "NEW",
+          "answers:unprocessed": "NEW"
         },
         "display": [
           [
@@ -4418,6 +4915,11 @@ O..O..O.O..O..O
       {
         "body": "Breeds such as Chihuahua or Pomeranian",
         "answer": "TOY",
+        "answers": [
+          {
+            "answer": "TOY"
+          }
+        ],
         "number": 67,
         "position": {
           "col": 11,
@@ -4439,7 +4941,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "113",
-          "answer:unprocessed": "TOY"
+          "answer:unprocessed": "TOY",
+          "answers:unprocessed": "TOY"
         },
         "display": [
           [
@@ -4453,6 +4956,11 @@ O..O..O.O..O..O
       {
         "body": "Bega behind \"Mambo No. 5\"",
         "answer": "LOU",
+        "answers": [
+          {
+            "answer": "LOU"
+          }
+        ],
         "number": 68,
         "position": {
           "col": 12,
@@ -4474,7 +4982,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "114",
-          "answer:unprocessed": "LOU"
+          "answer:unprocessed": "LOU",
+          "answers:unprocessed": "LOU"
         },
         "display": [
           [
@@ -4488,6 +4997,11 @@ O..O..O.O..O..O
       {
         "body": "Aardvark breakfast",
         "answer": "ANT",
+        "answers": [
+          {
+            "answer": "ANT"
+          }
+        ],
         "number": 69,
         "position": {
           "col": 13,
@@ -4509,7 +5023,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "115",
-          "answer:unprocessed": "ANT"
+          "answer:unprocessed": "ANT",
+          "answers:unprocessed": "ANT"
         },
         "display": [
           [
@@ -4523,6 +5038,11 @@ O..O..O.O..O..O
       {
         "body": "Sonic ___",
         "answer": "SEZ",
+        "answers": [
+          {
+            "answer": "SEZ"
+          }
+        ],
         "number": 70,
         "position": {
           "col": 14,
@@ -4544,7 +5064,8 @@ O..O..O.O..O..O
         ],
         "metadata": {
           "body:line": "116",
-          "answer:unprocessed": "SEZ"
+          "answer:unprocessed": "SEZ",
+          "answers:unprocessed": "SEZ"
         },
         "display": [
           [
@@ -4565,7 +5086,7 @@ O..O..O.O..O..O
     "errors": [],
     "warnings": [
       {
-        "type": "syntax",
+        "type": "deprecation",
         "position": {
           "col": 0,
           "index": 122
@@ -4847,7 +5368,6 @@ O..O..O.O..O..O
 }
 ```
 
-<!-- AUTO-GENERATED-CONTENT:END -->
 
 </details>
 
@@ -4975,15 +5495,13 @@ const xd = acrossTextToXD(acrossText)
 
 ### .xd to .puz
 
-We don't support _all_ of .puz features, but this library can generate a JSON object which can then be used `@confuzzle/writepuz` to generate a .puz file as a buffer which you can write to a file in node, or offer as a download on the web.
+`xdToPuz` writes a .puz file as a `Uint8Array`, which you can write to a file in node or offer as a download on the web. Clues use their plain text (markup removed), and the original .xd is embedded so `puzToXD` can re-import it losslessly. Use `JSONToPuz(json, { xd })` if you already have a `CrosswordJSON`.
 
 ```ts
-import { JSONToPuzJSON } from "xd-crossword-tools"
-import { writepuz } from "@confuzzle/writepuz"
+import { xdToPuz } from "xd-crossword-tools"
 
 const xd = "[...]"
-const writeJSON = JSONToPuzJSON(xd)
-const puzBuffer = writepuz(writeJSON)
+const puz = xdToPuz(xd)
 ```
 
 ### Editor Support
@@ -5032,9 +5550,10 @@ const diff = diffXD(xd1, xd2)
 
 ### Migrating to xd v4
 
-`migrateXDToV4(xd)` (exported from both packages) rewrites an xd file written for an earlier version of the spec, or with pre-v4 Puzzmo extensions, into v4 syntax. It works on the text so comments, section order and unknown sections are kept, and running it on a v4 file returns it unchanged.
+`migrateXDToV4(xd)` (exported from both packages) rewrites an xd file written for an earlier version of the spec, or with pre-v4 Puzzmo extensions, into v4 syntax. It works on the text so section order and unknown sections are kept, and running it on a v4 file returns it unchanged.
 
 - Implicit (header-less) sections get `## Headings`
+- `<!-- -->` comment lines are removed, xd doesn't support comments
 - Pre-v4 xdown links `{@text|url@}`, images `{![url|alt]!}` / `{!![url]!}` and colours `{#text|light|dark#}` move to the attribute syntax, and text which v4 would read as markup is escaped
 - Clue bodies containing ` ~ ` (pre-v4 bodies ran to the _last_ ` ~ `) get it escaped as `{\~\}`
 - Split characters move out of answers into an end-of-line annotation: `~ OK|GO ~ OK|AY` becomes `~ OKGO ~ OKAY // OK|GO OK|AY`
@@ -5047,8 +5566,16 @@ Rebuses and Schrödinger squares are not fully specified in v4 yet, so `Rebus:`,
 ```ts
 import { migrateXDToV4, xdToJSON } from "xd-crossword-tools"
 
+xdToJSON(oldXD).report.warnings // includes `type: "deprecation"` warnings for pre-v4 syntax
 const v4 = migrateXDToV4(oldXD)
 xdToJSON(v4).report.warnings // no deprecation warnings
+```
+
+Or from the command line, which updates the files in place (or writes them to `-o <dir>`), and `--check` lists the files which need migrating:
+
+```sh
+xd-crossword-tools migrate puzzles/*.xd
+xd-crossword-tools migrate puzzles/*.xd --check
 ```
 
 ### `xd` Extensions
@@ -5143,27 +5670,6 @@ A6. Sugar ____ ~ 1NE
 A6 ^alt: 2NE
 ```
 
-#### Markdown/HTML style comments
-
-In markdown you can write `<!--` and `-->` to comment out a section of your code. Our implementation is not _super_ smart:
-
-<!-- prettier-ignore -->
-```html
-## Metadata
-
-<!--  WIP: Maybe it should be called rectangle? -->
-
-Title: Square
-Author: Orta
-Editor: Orta Therox
-
-<!--
-Date: 2021-03-16
--->
-```
-
-The key is that a line has to start with `<!--` and eventually the same or another line has to **end** with `-->`. **Note:** If you are doing automated transforms, these comments are likely to get lost.
-
 #### xdown: markup in clues and metadata
 
 xd v4 calls its inline markup [xdown](https://github.com/century-arcade/xdformat/blob/master/doc/xd-format-v4.md#xdown-formatting). It is available in clue bodies and metadata values. A span is a `{`, a type character, the content, the same type character again, and a `}`. Spans can nest.
@@ -5240,7 +5746,7 @@ Putting the split character inside the answer itself (`~ STAN|LEE`) is deprecate
 
 ### Spec-Breaking Differences
 
-We want to highlight that 'Comments', 'Schrödinger clues' and the colour markup extension are all spec-breaking. E.g. a parser which conforms exactly to the xd spec would likely choke when seeing these features.
+We want to highlight that 'Schrödinger clues' and the colour markup extension are spec-breaking. E.g. a parser which conforms exactly to the xd spec would likely choke when seeing these features.
 
 ### Aesthetics
 
@@ -5340,7 +5846,8 @@ The main `xd-crossword-tools` package provides comprehensive functionality for f
 | `amuseToXD`                    | Converts Amuse JSON format to XD                | `amuseJSON: AmuseTopLevel`                                                 | `string`                                               | Converts Amuse Labs crossword format to XD                                   |
 | `acrossTextToXD`               | Converts Across Text format to XD               | `textContent: string`                                                      | `string`                                               | Supports v1 and v2 formats, handles rebus and circles                        |
 | `JSONToXD`                     | Converts CrosswordJSON back to XD format string | `json: CrosswordJSON`                                                      | `string`                                               | Main function for converting parsed data back to XD                          |
-| `JSONToPuzJSON`                | Converts CrosswordJSON to .puz format JSON      | `json: CrosswordJSON`, `config?: {filled?: boolean}`                       | `any`                                                  | Creates JSON for @confuzzle/writepuz                                         |
+| `xdToPuz`                     | Converts an XD string to a .puz file            | `xd: string`                                                               | `Uint8Array`                                           | Embeds the .xd so `puzToXD` can re-import it losslessly                      |
+| `JSONToPuz`                    | Converts CrosswordJSON to a .puz file           | `json: CrosswordJSON`, `options?: { xd?: string }`                         | `Uint8Array`                                           | Clues use their plain text, pre-filled `## Start` squares are kept           |
 | `puzEncode`                    | Encodes puzzle data to .puz binary format       | `puzzle: Puzzle`                                                           | `Uint8Array`                                           | Low-level binary .puz file encoding                                          |
 | `puzDecode`                    | Decodes .puz binary format to JSON              | `bytes: ArrayBuffer`                                                       | `Puz2JSONResult`                                       | Low-level binary .puz file decoding                                          |
 | `editorInfoAtCursor`           | Gets crossword information at cursor position   | `data: CrosswordJSON`                                                      | `(line: number, index: number) => PositionInfo`        | For editor integrations - requires editorInfo                                |

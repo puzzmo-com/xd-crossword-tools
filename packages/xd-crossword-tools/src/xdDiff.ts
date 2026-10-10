@@ -118,13 +118,13 @@ export const xdDiff = (beforeXD: string, afterXD: string) => {
   function printClue(before: Clue | undefined, after: Clue | undefined, prefix = "A") {
     // Body
     if (!before && after) {
-      const line = `${prefix}${after.number}. ${after.body} ~ ${after.metadata?.["answer:unprocessed"]!}`
+      const line = `${prefix}${after.number}. ${after.body} ~ ${after.metadata?.["answers:unprocessed"] ?? after.metadata?.["answer:unprocessed"]}`
       diff.push({ type: "add", after: line, afterLine: Number(after.metadata?.["body:line"]) })
     } else if (before && !after) {
-      const line = `${prefix}${before.number}. ${before.body} ~ ${before.metadata?.["answer:unprocessed"]!}`
+      const line = `${prefix}${before.number}. ${before.body} ~ ${before.metadata?.["answers:unprocessed"] ?? before.metadata?.["answer:unprocessed"]}`
       diff.push({ type: "remove", before: line, beforeLine: Number(before.metadata?.["body:line"]) })
     } else if (before && after && before.body === after.body) {
-      const line = `${prefix}${before.number}. ${before.body} ~ ${before.metadata?.["answer:unprocessed"]!}`
+      const line = `${prefix}${before.number}. ${before.body} ~ ${before.metadata?.["answers:unprocessed"] ?? before.metadata?.["answer:unprocessed"]}`
       diff.push({
         type: "same",
         content: line,
@@ -132,8 +132,8 @@ export const xdDiff = (beforeXD: string, afterXD: string) => {
         afterLine: Number(after.metadata?.["body:line"]),
       })
     } else if (before && after && before.body !== after.body) {
-      const afterLine = `${prefix}${after.number}. ${after.body} ~ ${after.metadata?.["answer:unprocessed"]!}`
-      const beforeLine = `${prefix}${before.number}. ${before.body} ~ ${before.metadata?.["answer:unprocessed"]!}`
+      const afterLine = `${prefix}${after.number}. ${after.body} ~ ${after.metadata?.["answers:unprocessed"] ?? after.metadata?.["answer:unprocessed"]}`
+      const beforeLine = `${prefix}${before.number}. ${before.body} ~ ${before.metadata?.["answers:unprocessed"] ?? before.metadata?.["answer:unprocessed"]}`
 
       diff.push({
         type: "change",

@@ -67,6 +67,8 @@ export type CrosswordJSON = {
 
 export type Report =
   | { type: "syntax"; position: Position; length: number; message: string }
+  /** Pre-v4 syntax which still parses, `migrateXDToV4` can update the file */
+  | { type: "deprecation"; position: Position; length: number; message: string }
   | {
       type: "clue_msg"
       position: Position
