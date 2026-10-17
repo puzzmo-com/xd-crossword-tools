@@ -728,6 +728,20 @@ export function replaceWordWithSymbol(word: string, tiles: Tile[], splitChar: st
 
 
 /**
+ * How many characters of an answer a tile takes up: one for a letter, the whole word for a rebus,
+ * and for a Schrödinger square whichever of its values the answer spells here. Answers which use
+ * the square's symbol instead of spelling a value out take up a single character.
+ */
+const lengthOfTileInAnswer = (tile: Tile, restOfAnswer: string) => {
+  if (tile.type === "rebus") return [...tile.word].length
+  if (tile.type !== "schrodinger") return 1
+
+  const values = tile.validOptions?.length ? tile.validOptions : [...tile.validRebuses.map((r) => r.letters), ...tile.validLetters]
+  const spelled = values.filter((value) => restOfAnswer.startsWith(value)).sort((a, b) => [...b].length - [...a].length)[0]
+  return spelled ? [...spelled].length : 1
+}
+
+/**
  * Given an answer that might contain splits, and a split character, return
  * an array of all the split locations
  *
@@ -774,23 +788,18 @@ function parseSplitsFromAnswer(
   }
 
   // Map code-point character positions to tile positions and internal indices
+  const answer = characters.filter((char) => char !== splitCharacter).join("")
   let currentCharIndex = 0
-  let currentTileIndex = 0
   const charToTileMap = new Map<number, { tileIndex: number; internalIndex: number }>()
+  const tileLengths: number[] = []
 
-  for (const tile of tiles) {
-    if (tile.type === "rebus") {
-      let internal = 0
-      for (const _ch of [...tile.word]) {
-        charToTileMap.set(currentCharIndex, { tileIndex: currentTileIndex, internalIndex: internal })
-        currentCharIndex++
-        internal++
-      }
-    } else {
-      charToTileMap.set(currentCharIndex, { tileIndex: currentTileIndex, internalIndex: 0 })
+  for (let tileIndex = 0; tileIndex < tiles.length; tileIndex++) {
+    const length = lengthOfTileInAnswer(tiles[tileIndex], answer.slice(currentCharIndex))
+    tileLengths.push(length)
+    for (let internalIndex = 0; internalIndex < length; internalIndex++) {
+      charToTileMap.set(currentCharIndex, { tileIndex, internalIndex })
       currentCharIndex++
     }
-    currentTileIndex++
   }
 
   // Categorize splits: tile boundary vs internal rebus splits
@@ -802,16 +811,11 @@ function parseSplitsFromAnswer(
     if (!mapping) continue
 
     const { tileIndex, internalIndex } = mapping
-    const tile = tiles[tileIndex]
-
-    if (tile.type === "rebus") {
-      const cpLen = [...tile.word].length
-      if (internalIndex < cpLen - 1) {
-        // Internal split within a rebus (by code-point index)
-        if (!rebusInternalSplits[tileIndex]) rebusInternalSplits[tileIndex] = []
-        rebusInternalSplits[tileIndex].push(internalIndex)
-        continue
-      }
+    if (internalIndex < tileLengths[tileIndex] - 1) {
+      // A split inside a multi-letter square, e.g. 'NICE|ONE' where [CEO] is one square
+      if (!rebusInternalSplits[tileIndex]) rebusInternalSplits[tileIndex] = []
+      rebusInternalSplits[tileIndex].push(internalIndex)
+      continue
     }
     // Otherwise, a split at a tile boundary
     tileBoundarySplits.push(tileIndex)

@@ -1,6 +1,26 @@
 import { serializeDesignRules, spellLetterTile } from "xd-crossword-tools-parser"
 import type { Clue, CrosswordJSON, Tile } from "xd-crossword-tools-parser"
 
+/** The letters a tile contributes to an answer, with the rest of the answer used to tell a Schrödinger square's values apart */
+const lettersForTile = (tile: Tile, restOfAnswer: string) => {
+  switch (tile.type) {
+    case "rebus":
+      return tile.word
+    case "letter":
+      return spellLetterTile(tile)
+    case "schrodinger": {
+      const values = tile.validOptions?.length ? tile.validOptions : [...tile.validRebuses.map((r) => r.letters), ...tile.validLetters]
+      const spelled = values.filter((value) => restOfAnswer.startsWith(value)).sort((a, b) => [...b].length - [...a].length)[0]
+      return spelled || [...restOfAnswer][0] || "*"
+    }
+    case "blank":
+      // This shouldn't happen in a clue answer
+      return ""
+    default:
+      throw new Error(`Invalid tile type: ${(tile as any).type}`)
+  }
+}
+
 export function resolveFullClueAnswer(clue: Clue, splitChar: string) {
   // For simple cases (no rebus, no splits, no internal splits), just return the answer directly
   const hasRebus = clue.tiles.some((t) => t.type === "rebus")
@@ -11,70 +31,31 @@ export function resolveFullClueAnswer(clue: Clue, splitChar: string) {
     return clue.answer
   }
 
-  // Build the answer tile by tile, applying internal splits to rebus tiles
+  // Build the answer tile by tile, applying internal splits to multi-letter squares (rebuses, and
+  // Schrödinger squares which this answer fills with a rebus).
   // Work in Unicode code points to avoid surrogate pair issues.
   let result = ""
   const answerCodePoints = [...clue.answer]
   let currentCharIndex = 0
-  
+
   for (let tileIndex = 0; tileIndex < clue.tiles.length; tileIndex++) {
     const tile = clue.tiles[tileIndex]
-    
+
     // Add split before this tile if needed
     if (clue.splits && clue.splits.includes(tileIndex - 1)) {
       result += splitChar
     }
-    
-    if (tile.type === "rebus") {
-      const rebusWord = tile.word
-      const internalSplits = clue.rebusInternalSplits?.[tileIndex] || []
 
-      const rebusCP = [...rebusWord]
-      // Add each code point of the rebus word, with internal splits
-      for (let i = 0; i < rebusCP.length; i++) {
-        if (i > 0 && internalSplits.includes(i - 1)) {
-          result += splitChar
-        }
-        result += rebusCP[i]
+    const letters = [...lettersForTile(tile, answerCodePoints.slice(currentCharIndex).join(""))]
+    const internalSplits = clue.rebusInternalSplits?.[tileIndex] || []
+    for (let i = 0; i < letters.length; i++) {
+      if (i > 0 && internalSplits.includes(i - 1)) {
+        result += splitChar
       }
-    } else if (tile.type === "letter") {
-      result += spellLetterTile(tile)
-    } else if (tile.type === "schrodinger") {
-      if (tile.symbol && tile.validRebuses.length > 0) {
-        // Rebus-based Schrödinger: find the matching value in the answer
-        const remaining = answerCodePoints.slice(currentCharIndex).join("")
-        const matchingRebus = [...tile.validRebuses, ...tile.validLetters.map((l) => ({ letters: l }))].find((r) =>
-          remaining.startsWith(r.letters),
-        )
-        if (matchingRebus) {
-          result += matchingRebus.letters
-        } else {
-          result += answerCodePoints[currentCharIndex] || "*"
-        }
-      } else {
-        // Star-based Schrödinger: single character from answer
-        result += answerCodePoints[currentCharIndex] || "*"
-      }
-    } else if (tile.type === "blank") {
-      // This shouldn't happen in a clue answer
-      result += ""
-    } else {
-      throw new Error(`Invalid tile type: ${(tile as any).type}`)
+      result += letters[i]
     }
 
-    // Update character index (by code points)
-    if (tile.type === "rebus") {
-      currentCharIndex += [...tile.word].length
-    } else if (tile.type === "schrodinger" && tile.symbol && tile.validRebuses.length > 0) {
-      // Rebus-based Schrödinger: advance by the matched value length
-      const remaining = answerCodePoints.slice(currentCharIndex).join("")
-      const matchingRebus = [...tile.validRebuses, ...tile.validLetters.map((l) => ({ letters: l }))].find((r) =>
-        remaining.startsWith(r.letters),
-      )
-      currentCharIndex += matchingRebus ? [...matchingRebus.letters].length : 1
-    } else if (tile.type !== "blank") {
-      currentCharIndex++
-    }
+    currentCharIndex += letters.length
   }
 
   return result
@@ -182,11 +163,12 @@ export const JSONToXD = (json: CrosswordJSON): string => {
     xd += serializeDesignRules(json.design.styles)
     xd += "\n\n"
 
-    // '.' marks an unstyled cell
+    // '.' marks an unstyled cell, and an unstyled black square is echoed as '#' so that the
+    // design grid has the shape of the puzzle to read it against
     xd += `${json.tiles
       .map((tileRow, rowI) => {
         const row = json.design!.positions[rowI] || []
-        return tileRow.map((_, i) => row[i] || ".").join("")
+        return tileRow.map((tile, i) => row[i] || (tile.type === "blank" ? "#" : ".")).join("")
       })
       .join("\n")}\n`
   }

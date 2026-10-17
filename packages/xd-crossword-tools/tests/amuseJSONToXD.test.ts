@@ -297,8 +297,6 @@ describeConditional("amuseJSONToXD", () => {
 
         // Check that design section exists
         expect(result).toContain("## Design")
-        expect(result).toContain("<style>")
-        expect(result).toContain("</style>")
 
         // Check for bar styles
         expect(result).toMatch(/bar-left.*true/m)
@@ -579,11 +577,8 @@ describeConditional("amuseJSONToXD", () => {
         expect("## Design" + xdOutput.split("## Design")[1].split("##")[0]).toMatchInlineSnapshot(`
           "## Design
 
-          <style>
-          A { bar-top: true }
-          B { bar-left: true; bar-top: true }
-          C { bar-left: true }
-          </style>
+          A, B { bar-top: true }
+          B, C { bar-left: true }
 
           ........
           ..A.B.A.
@@ -607,9 +602,7 @@ describeConditional("amuseJSONToXD", () => {
 
         // Check that XD output contains design section
         expect(xdOutput).toContain("## Design")
-        expect(xdOutput).toContain("<style>")
         expect(xdOutput).toContain("O { background: circle }")
-        expect(xdOutput).toContain("</style>")
 
         // The design grid should have O characters for circled cells
         const designSection = xdOutput.split("## Design")[1]

@@ -5559,7 +5559,7 @@ const diff = diffXD(xd1, xd2)
 - Split characters move out of answers into an end-of-line annotation: `~ OK|GO ~ OK|AY` becomes `~ OKGO ~ OKAY // OK|GO OK|AY`
 - A duplicated clue line, which was used as a hint, becomes `^Hint:` metadata
 - The v3 `Special: circle|shaded` field with lowercase grid cells becomes a `## Design` section
-- `## Design` sections lose their `<style>` wrapper and use `.` for unstyled cells
+- `## Design` sections lose their `<style>` wrapper, and use `.` for unstyled cells and `#` for the black squares
 - A `?` rebus key moves to an unused character, as v4 reserves `?` for unfilled cells
 
 Rebuses and Schrödinger squares are not fully specified in v4 yet, so `Rebus:`, `*` squares and `^alt:` answers are left as they are.
@@ -5761,6 +5761,25 @@ The parser gives `STANLEE` as the answer, with the split indexes on each entry i
 
 Putting the split character inside the answer itself (`~ STAN|LEE`) is deprecated: it still works with a warning, and `migrateXDToV4` converts it.
 
+A word can also end inside a square which holds more than one letter. With `Rebus: 1=CEO` and a grid cell of `1`, `A1. Well done! ~ NICEONE // NICE|ONE` breaks the answer inside the rebus, so nothing in the grid sits on the split. Those splits are in `rebusInternalSplits` — a map of the square's tile index in the answer to the positions inside that square — while `splits` holds the ones which fall on a tile boundary. A Schrödinger square works the same way, with each of its fills carrying its own positions:
+
+```
+## Metadata
+
+SplitCharacter: |
+Rebus: 1=KA 1=KE
+
+## Grid
+
+O1Y
+
+## Clues
+
+A1. Fine, or its folksier cousin ~ OKAY ~ OKEY // OK|AY OK|EY
+```
+
+Answers written with a square's symbol instead of spelling its value out (`~ O1Y`) are read a character at a time, so their splits can only land on a tile boundary.
+
 ### Spec-Breaking Differences
 
 We want to highlight that 'Schrödinger clues' and the colour markup extension are spec-breaking. E.g. a parser which conforms exactly to the xd spec would likely choke when seeing these features.
@@ -5771,7 +5790,7 @@ The xd spec is built for displaying a large corpus of finished Crosswords, we us
 
 - `## Design`
 
-Describes the visual aspects of individual cells. This started as a Puzzmo extension and is part of xd v4, replacing the older lowercase-letters-plus-`Special:` approach. The section starts with style rules, each for a single (case-sensitive) character, then a grid the same size as the puzzle where `.` is an unstyled cell:
+Describes the visual aspects of individual cells. This started as a Puzzmo extension and is part of xd v4, replacing the older lowercase-letters-plus-`Special:` approach. The section starts with style rules, each for a single (case-sensitive) character, then a grid the same size as the puzzle where `.` is an unstyled cell and `#` an unstyled black square, which echoes the shape of the grid so the design can be read against it (a character with no style rule is ignored):
 
 ```md
 ## Design

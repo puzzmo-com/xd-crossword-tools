@@ -292,11 +292,11 @@ D3 ^hint: Registering with a restaurant. `
       B { background: dot }
 
       ....
-      ....
-      ....
-      ....
-      ....
-      ...."
+      .##.
+      .##.
+      .##.
+      .##.
+      .##."
     `)
   })
 
@@ -705,5 +705,23 @@ describe("xd v4", () => {
     expect(json.report.errors).toEqual([])
     expect(json.report.warnings).toEqual([])
     expect(JSONToXD(json)).toEqual(xd.trimEnd() + "\n")
+  })
+
+  it("round-trips splits which fall inside a rebus or Schrödinger square", () => {
+    const xd = readFileSync(__dirname + "/v4/splits-in-squares.xd", "utf8")
+    const json = xdToJSON(xd, true)
+    expect(json.report.errors).toEqual([])
+    expect(json.report.warnings).toEqual([])
+
+    // The pipes land inside a square, so they describe where a word ends rather than a tile boundary
+    expect(json.clues.across[0]).toMatchObject({ answer: "NICEONE", rebusInternalSplits: { 2: [1] } })
+    expect(json.clues.across[1].answers).toEqual([
+      { answer: "OKAY", rebusInternalSplits: { 1: [0] } },
+      { answer: "OKEY", rebusInternalSplits: { 1: [0] } },
+    ])
+
+    const roundTripped = JSONToXD(json)
+    expect(roundTripped.trimEnd()).toEqual(xd.trimEnd())
+    expect(xdToJSON(roundTripped, true).clues).toEqual(json.clues)
   })
 })

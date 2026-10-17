@@ -20,7 +20,7 @@ import { parseDesignRules } from "./parser/design"
  * - Split characters move out of answers into an end-of-line annotation: `~ OK|GO ~ OK|AY` becomes `~ OKGO ~ OKAY // OK|GO OK|AY`
  * - A duplicated clue line (used as a hint) becomes `^Hint:` metadata
  * - The v3 `Special: circle|shaded` field and lowercase grid cells become a `## Design` section
- * - `## Design` sections lose their `<style>` wrapper, and use '.' for unstyled cells
+ * - `## Design` sections lose their `<style>` wrapper, and use '.' for an unstyled cell and '#' for a black square
  *
  * Rebuses and Schrödinger squares are not fully specified in v4 yet, so `Rebus:`, `*` squares and
  * `^alt:` answers are left as they are.
@@ -109,7 +109,7 @@ export function migrateXDToV4(xd: string): string {
 
   // Design
   let design = doc.sections.find((s) => s.type === "design")
-  if (design) migrateDesignSection(design)
+  if (design) migrateDesignSection(design, json)
 
   if (special) {
     if (!design) {
@@ -285,7 +285,10 @@ const spellSlot = (tiles: Tile[], variant: number) =>
 
 // Design
 
-function migrateDesignSection(design: Section) {
+/** An unstyled cell is a '.', except a black square which echoes the grid's shape with a '#' */
+const unstyledDesignCell = (tile: Tile | undefined) => (tile?.type === "blank" ? "#" : ".")
+
+function migrateDesignSection(design: Section, json: CrosswordJSON) {
   const rules = parseDesignRules(
     design.lines
       .join("\n")
@@ -297,6 +300,7 @@ function migrateDesignSection(design: Section) {
 
   let insideRule = false
   let inGrid = false
+  let gridRow = 0
   design.lines = design.lines.flatMap((line, i) => {
 
     if (!inGrid) {
@@ -318,9 +322,13 @@ function migrateDesignSection(design: Section) {
     }
 
     if (!line.trim()) return [line]
-    // '.' marks an unstyled cell in v4, pre-v4 files also used '#' and spaces
+    // '.' marks an unstyled cell in v4, pre-v4 files also used '#' and spaces. A black square keeps
+    // its '#' (a style character without a rule is legal v4) so the design echoes the grid's shape.
+    const tiles = json.tiles[gridRow++] || []
     const indent = line.match(/^\s*/)![0]
-    const row = [...line.trim()].map((c) => (!rules[c] && (c === "#" || c === " ") ? "." : c)).join("")
+    const row = [...line.trim()]
+      .map((c, x) => (!rules[c] && (c === "#" || c === " " || c === ".") ? unstyledDesignCell(tiles[x]) : c))
+      .join("")
     return [indent + row]
   })
 
@@ -358,7 +366,7 @@ function addSpecialCellsToDesign(design: Section, special: SpecialCells, json: C
 
   if (gridStart === undefined) {
     // No design grid yet, so make one the size of the puzzle
-    const rows = json.tiles.map((row) => row.map(() => "."))
+    const rows: string[][] = json.tiles.map((row) => row.map(unstyledDesignCell))
     for (const [y, x] of special.cells) if (rows[y]) rows[y][x] = char
     const insertAt = contentIndexes.length ? contentIndexes[contentIndexes.length - 1] + 1 : 1
     const newLines = [...(existingRules[char] ? [] : [rule]), "", ...rows.map((r) => r.join(""))]
@@ -375,8 +383,8 @@ function addSpecialCellsToDesign(design: Section, special: SpecialCells, json: C
     const indent = line.match(/^\s*/)![0]
     const cells = [...line.trim()]
     // A cell can only have one style, so leave any which already have one
-    if (cells[x] === "." || cells[x] === undefined) {
-      while (cells.length < x) cells.push(".")
+    if (cells[x] === "." || cells[x] === "#" || cells[x] === undefined) {
+      while (cells.length < x) cells.push(unstyledDesignCell(json.tiles[y]?.[cells.length]))
       cells[x] = char
     }
     design.lines[lineIndex] = indent + cells.join("")

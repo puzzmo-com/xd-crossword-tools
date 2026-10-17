@@ -142,6 +142,57 @@ ${clue}
     const json = xdToJSON(xd(`A1. Band ~ OKGO // OK|GO ~ OKAY`))
     expect(json.report.errors.map((e) => e.message)).toEqual(["The ' // ' annotation goes at the end of the line, after all of the answers"])
   })
+
+  describe("in squares holding more than one letter", () => {
+    const xd = (rebus: string, grid: string, clue: string) => `## Metadata
+
+SplitCharacter: |
+Rebus: ${rebus}
+
+## Grid
+
+${grid}
+
+## Clues
+
+${clue}
+`
+
+    it("reads a split inside a rebus square as an internal split", () => {
+      const json = xdToJSON(xd("1=CEO", "NI1NE", "A1. Well done! ~ NICEONE // NICE|ONE"))
+      expect(json.report.errors).toEqual([])
+      expect(json.report.warnings).toEqual([])
+      expect(json.clues.across[0].splits).toBeUndefined()
+      expect(json.clues.across[0]).toMatchObject({
+        answer: "NICEONE",
+        rebusInternalSplits: { 2: [1] },
+        answers: [{ answer: "NICEONE", rebusInternalSplits: { 2: [1] } }],
+      })
+    })
+
+    it("reads a split inside a Schrödinger square as an internal split, for each of its fills", () => {
+      const json = xdToJSON(xd("1=KA 1=KE", "O1Y", "A1. Fine, or its folksier cousin ~ OKAY ~ OKEY // OK|AY OK|EY"))
+      expect(json.report.errors).toEqual([])
+      expect(json.clues.across[0].answers).toEqual([
+        { answer: "OKAY", rebusInternalSplits: { 1: [0] } },
+        { answer: "OKEY", rebusInternalSplits: { 1: [0] } },
+      ])
+    })
+
+    it("counts every letter of a Schrödinger square when placing a split after it", () => {
+      const json = xdToJSON(xd("1=COO 1=CFO", "1LCAT", "A1. Hip person ~ COOLCAT ~ CFOLCAT // COOL|CAT CFOL|CAT"))
+      expect(json.report.errors).toEqual([])
+      expect(json.clues.across[0].answers).toEqual([
+        { answer: "COOLCAT", splits: [1] },
+        { answer: "CFOLCAT", splits: [1] },
+      ])
+    })
+
+    it("keeps reading an answer written with the square's symbol a character at a time", () => {
+      const json = xdToJSON(xd("1=KA 1=KE", "O1Y", "A1. Fine ~ O1Y ~ OKAY // O|1Y"))
+      expect(json.clues.across[0]).toMatchObject({ answer: "O1Y", splits: [0] })
+    })
+  })
 })
 
 describe("editor info for answers", () => {
