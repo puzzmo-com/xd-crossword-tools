@@ -466,6 +466,26 @@ describe("pre-v4 syntax", () => {
     expect(deprecations[0]).toContain("{@text | href: url@}")
   })
 
+  it("reads images whose positional parts have no square brackets, which is how they were documented", () => {
+    const deprecations: string[] = []
+    const onDeprecated = (msg: string) => deprecations.push(msg)
+    const url = "https://cdn.puzzmo.com/game-assets/california-bear.svg"
+
+    expect(parseXDown(`{!${url}!}`, { onDeprecated })).toEqual([["img", url, "", false]])
+    expect(parseXDown(`{!${url}|a bear!}`, { onDeprecated })).toEqual([["img", url, "a bear", false]])
+    expect(parseXDown(`{!${url}|a bear|30|40!}`, { onDeprecated })).toEqual([["img", url, "a bear", false, "30", "40"]])
+    expect(parseXDown(`{!!${url}|a bear!}`, { onDeprecated })).toEqual([["img", url, "a bear", true]])
+
+    expect(deprecations).toHaveLength(4)
+    expect(deprecations[0]).toContain("{!alt text | src: url!}")
+  })
+
+  it("converts an image without square brackets to v4", () => {
+    const v4 = (str: string) => serializeXDown(parseXDown(str, { legacy: true }))
+    expect(v4("{!https://example.com/image.png|alt text|300!}")).toBe("{!alt text | src: https://example.com/image.png; width: 300!}")
+    expect(v4("{!!https://example.com/image.png!}")).toBe("{! | src: https://example.com/image.png; display: block!}")
+  })
+
   it("does not deprecate v4 syntax", () => {
     const deprecations: string[] = []
     parseXDown("{@a | href: https://a.com@} {!b | src: https://b.png!} {#c | light: #fff; dark: #000#} {/d/}", {

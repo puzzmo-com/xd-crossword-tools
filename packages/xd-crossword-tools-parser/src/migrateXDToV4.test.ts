@@ -115,6 +115,30 @@ A1. Sugar ____ ~ CONE ~ CANE
     expect(migrateXDToV4(xd)).toEqual(xd)
   })
 
+  it("converts an image written without square brackets, which is how the pre-v4 docs had it", () => {
+    const xd = `## Metadata
+
+Title: Images
+
+## Grid
+
+OKGO
+
+## Clues
+
+A1. {!https://cdn.puzzmo.com/game-assets/california-bear.svg|a bear!} Band ~ OKGO
+`
+    const migrated = migrateXDToV4(xd)
+    expect(migrated).toContain("A1. {!a bear | src: https://cdn.puzzmo.com/game-assets/california-bear.svg!} Band ~ OKGO\n")
+    expect(xdToJSON(migrated).report.warnings).toEqual([])
+    expect(xdToJSON(migrated).clues.across[0].display[0]).toEqual([
+      "img",
+      "https://cdn.puzzmo.com/game-assets/california-bear.svg",
+      "a bear",
+      false,
+    ])
+  })
+
   it("moves split characters out of the answer and into an annotation", () => {
     const xd = `## Metadata
 

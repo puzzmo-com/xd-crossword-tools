@@ -5554,7 +5554,7 @@ const diff = diffXD(xd1, xd2)
 
 - Implicit (header-less) sections get `## Headings`
 - `<!-- -->` comment lines are removed, xd doesn't support comments
-- Pre-v4 xdown links `{@text|url@}`, images `{![url|alt]!}` / `{!![url]!}` and colours `{#text|light|dark#}` move to the attribute syntax, and text which v4 would read as markup is escaped
+- Pre-v4 xdown links `{@text|url@}`, images `{!url|alt!}` / `{!![url]!}` (with or without the square brackets) and colours `{#text|light|dark#}` move to the attribute syntax, and text which v4 would read as markup is escaped
 - Clue bodies containing ` ~ ` (pre-v4 bodies ran to the _last_ ` ~ `) get it escaped as `{\~\}`
 - Split characters move out of answers into an end-of-line annotation: `~ OK|GO ~ OK|AY` becomes `~ OKGO ~ OKAY // OK|GO OK|AY`
 - A duplicated clue line, which was used as a hint, becomes `^Hint:` metadata
@@ -5716,7 +5716,7 @@ Metadata values are parsed the same way into `metaDisplay`, e.g. `json.metaDispl
 - Line break: `{\\}`
 - Inline colours (a Puzzmo extension, still being discussed for the spec): `{#`<kbd>text</kbd>` | light: `<kbd>colour</kbd>`; dark: `<kbd>colour</kbd>`#}`
 
-Every ASCII punctuation character is reserved as a type character, a `{` followed by anything else is just text. The pre-v4 positional forms (`{@text|url@}`, `{![url|alt|width|height]!}`, `{!![url]!}`, `{#text|light|dark#}`) are still read, with a deprecation warning.
+Every ASCII punctuation character is reserved as a type character, a `{` followed by anything else is just text. The pre-v4 positional forms (`{@text|url@}`, `{!url|alt|width|height!}`, `{!!url!}`, `{#text|light|dark#}`) are still read, with a deprecation warning. An image's parts can also be wrapped in square brackets (`{![url|alt]!}`), as older versions of these docs had them both ways, and any `{!...!}` span which uses none of v4's image attributes is read as a pre-v4 one.
 
 `parseXDown`, `serializeXDown` and `xdownToPlainText` are exported if you want to work with xdown yourself.
 

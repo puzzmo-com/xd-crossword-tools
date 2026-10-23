@@ -126,16 +126,21 @@ function buildNode(typeChar: string, content: string, ctx: Ctx): XDownComponent 
     }
 
     case "!": {
-      // Pre-v4: {![url|alt|width|height]!} inline and {!![url|alt]!} block
-      if (/^!?\[[\s\S]*\]$/.test(content)) {
+      // Pre-v4 images were positional - {!url|alt|width|height!} inline, {!!url|alt!} block - and
+      // the parts could also be wrapped in square brackets: {![url|alt]!}. A span which doesn't use
+      // any of v4's attributes is read that way, otherwise a URL would end up as the alt text.
+      const bracketed = /^!?\[[\s\S]*\]$/.test(content)
+      const { text, attributes } = splitAttributes(content, ctx)
+      const attrs = readAttributes(attributes)
+
+      if (bracketed || !imgAttributes.some((key) => key in attrs)) {
         if (!ctx.legacy) deprecated(ctx, `{!${content}!}`, `{!alt text | src: url!}`)
         const block = content.startsWith("!")
-        const [url, alt = "", ...size] = content.slice(block ? 2 : 1, -1).split("|")
+        const positional = bracketed ? content.slice(block ? 2 : 1, -1) : content.slice(block ? 1 : 0)
+        const [url, alt = "", ...size] = positional.split("|")
         return ["img", url, alt, block, ...size.slice(0, 2)] as XDownComponent
       }
 
-      const { text, attributes } = splitAttributes(content, ctx)
-      const attrs = readAttributes(attributes)
       const img: XDownComponent = ["img", attrs.src || "", text, attrs.display === "block"]
       if (attrs.width || attrs.height) img.push(attrs.width || "")
       if (attrs.height) img.push(attrs.height)
@@ -186,6 +191,9 @@ function splitAttributes(content: string, ctx: Ctx) {
 }
 
 const readAttributes = (attributes: string) => Object.fromEntries(parseDeclarations(attributes).declarations) as Record<string, string>
+
+/** The attributes v4 gives an image, any other `{!...!}` span is pre-v4 and positional */
+const imgAttributes = ["src", "width", "height", "display"]
 
 /** Pre-v4 links and colors used positional parts, which won't have any of the v4 attribute names */
 function isLegacyAttributes(attributes: string, knownKeys: string[]) {
