@@ -101,6 +101,17 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     })
   }
 
+  const addSplitEmojiErrors = (content: string, line: number, section: "Grid" | "Start") => {
+    for (const { emoji, col } of multiCodePointEmoji(content)) {
+      json.report.errors.push({
+        type: "syntax",
+        position: { col, index: line },
+        length: emoji.length,
+        message: `'${emoji}' is made of more than one character, so the ${section} would split it across cells. Declare it as a rebus instead, e.g. 'rebus: 1=${emoji}', and use '1' in the Grid and Start`,
+      })
+    }
+  }
+
   const addDeprecation = (msg: string, line: number) => {
     // One warning per kind of problem per line is plenty
     if (json.report.warnings.some((w) => w.message === msg && w.position.index === line)) return
@@ -190,6 +201,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
 
         // One unicode codepoint per cell
         rawInput.tiles.push([...trimmed])
+        if (strict) addSplitEmojiErrors(content, line, "Grid")
         continue
       }
 
@@ -274,6 +286,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
       case "start": {
         if (trimmed === "") continue
         if (!json.start) json.start = []
+        if (strict) addSplitEmojiErrors(content, line, "Start")
         const newLine: string[] = []
         ;[...trimmed].forEach((f, i) => {
           if (f === " ") return
@@ -1035,3 +1048,15 @@ function updateMetaPuzzleForLine(
   return metapuzzle
 }
 
+/** Emoji in a row made of more than one code point, which a per-code-point split would break across cells */
+function multiCodePointEmoji(row: string) {
+  return [...row.matchAll(emojiSequence)].filter((match) => [...match[0]].length > 1).map((match) => ({ emoji: match[0], col: match.index! }))
+}
+
+const emojiPresentation = String.fromCodePoint(0xfe0f)
+const keycap = String.fromCodePoint(0x20e3)
+const zeroWidthJoiner = String.fromCodePoint(0x200d)
+
+// Flags, keycaps, or a pictograph with its presentation selector or skin tone, joined into ZWJ sequences
+const emojiElement = String.raw`(?:\p{Regional_Indicator}{2}|[#*0-9]${emojiPresentation}?${keycap}|\p{Extended_Pictographic}[${emojiPresentation}\p{Emoji_Modifier}]*)`
+const emojiSequence = new RegExp(`${emojiElement}(?:${zeroWidthJoiner}${emojiElement})*`, "gu")
