@@ -93,3 +93,82 @@ ${start}
     expect(xdToJSON(emojiXD("B🏖️LB")).report.errors).toEqual([])
   })
 })
+
+describe("Start matching the solution", () => {
+  const startXD = (grid: string, start: string, rebus = "") => `## Metadata
+
+title: Start
+author: Steve
+${rebus}
+
+## Grid
+
+${grid}
+
+## Clues
+
+A1. Light ~ BULB
+
+## Start
+
+${start}
+`
+
+  const warningsFor = (xd: string) =>
+    xdToJSON(xd, true)
+      .report.warnings.filter((w) => w.type === "syntax")
+      .map(({ message, position, length }) => ({ message, position, length }))
+
+  it("allows Start letters, rebus symbols and rebus words that match the solution", () => {
+    expect(warningsFor(startXD("BULB", ".U.b"))).toEqual([])
+    expect(warningsFor(startXD("B1LB", ".1..", "rebus: 1=🏖️"))).toEqual([])
+    expect(warningsFor(startXD("B1LB", ".🔑..", "rebus: 1=🔑"))).toEqual([])
+  })
+
+  it("warns when Start doesn't match the solution", () => {
+    expect(warningsFor(startXD("B1L#", ".XAZK", "rebus: 1=🏖️"))).toMatchInlineSnapshot(`
+      [
+        {
+          "length": 1,
+          "message": "Start has 'X' where the Grid has the rebus '1' (🏖️)",
+          "position": {
+            "col": 1,
+            "index": 16,
+          },
+        },
+        {
+          "length": 1,
+          "message": "Start has 'A' where the Grid has 'L'",
+          "position": {
+            "col": 2,
+            "index": 16,
+          },
+        },
+        {
+          "length": 1,
+          "message": "Start has 'Z' on a black square",
+          "position": {
+            "col": 3,
+            "index": 16,
+          },
+        },
+        {
+          "length": 1,
+          "message": "Start has 'K' outside the Grid",
+          "position": {
+            "col": 4,
+            "index": 16,
+          },
+        },
+      ]
+    `)
+  })
+
+  it("leaves a Start row with a split emoji to its error", () => {
+    expect(warningsFor(startXD("B1LB", ".🏖️..", "rebus: 1=🏖️"))).toEqual([])
+  })
+
+  it("only warns in strict mode", () => {
+    expect(xdToJSON(startXD("BULB", ".X..")).report.warnings).toEqual([])
+  })
+})

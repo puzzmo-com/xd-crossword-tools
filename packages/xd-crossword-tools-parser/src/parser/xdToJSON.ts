@@ -56,6 +56,9 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     clues: new Map(),
   }
 
+  // Where each Start row came from, to point warnings at the cell once the grid is known
+  const startRows: { line: number; content: string; hasSplitEmoji: boolean }[] = []
+
   // The design section is style rules, then a grid
   const design = {
     headerLine: -1,
@@ -102,7 +105,8 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   }
 
   const addSplitEmojiErrors = (content: string, line: number, section: "Grid" | "Start") => {
-    for (const { emoji, col } of multiCodePointEmoji(content)) {
+    const found = multiCodePointEmoji(content)
+    for (const { emoji, col } of found) {
       json.report.errors.push({
         type: "syntax",
         position: { col, index: line },
@@ -110,6 +114,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
         message: `'${emoji}' is made of more than one character, so the ${section} would split it across cells. Declare it as a rebus instead, e.g. 'rebus: 1=${emoji}', and use '1' in the Grid and Start`,
       })
     }
+    return found.length
   }
 
   const addDeprecation = (msg: string, line: number) => {
@@ -286,7 +291,8 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
       case "start": {
         if (trimmed === "") continue
         if (!json.start) json.start = []
-        if (strict) addSplitEmojiErrors(content, line, "Start")
+        const hasSplitEmoji = strict && addSplitEmojiErrors(content, line, "Start") > 0
+        startRows.push({ line, content, hasSplitEmoji })
         const newLine: string[] = []
         ;[...trimmed].forEach((f, i) => {
           if (f === " ") return
@@ -372,6 +378,23 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     )
   }
   json.tiles = stringGridToTiles(json.rebuses, rawInput.tiles, schrodingerRebuses)
+
+  // A Start cell should hold what the solution has there. Rows with a split emoji already have an error
+  if (strict && json.start) {
+    json.start.forEach((row, y) => {
+      const { line, content, hasSplitEmoji } = startRows[y]
+      if (hasSplitEmoji) return
+
+      row.forEach((value, x) => {
+        const message = startMismatch(value, json.tiles[y]?.[x])
+        if (!message) return
+
+        const leadingSpace = content.length - content.trimStart().length
+        const col = leadingSpace + [...content.trim()].slice(0, x).join("").length
+        json.report.warnings.push({ type: "syntax", position: { col, index: line }, length: value.length, message })
+      })
+    })
+  }
 
   // The process above will make pretty white-spacey answers.
   if (json.metapuzzle) json.metapuzzle.answer = json.metapuzzle.answer.trim()
@@ -1046,6 +1069,20 @@ function updateMetaPuzzleForLine(
   }
 
   return metapuzzle
+}
+
+/** Why a Start value does not match the solution tile under it, or undefined when it does */
+function startMismatch(value: string, tile: Tile | undefined) {
+  if (!tile) return `Start has '${value}' outside the Grid`
+  if (tile.type === "blank") return `Start has '${value}' on a black square`
+  if (tile.type === "letter") {
+    if (tile.unfilled || value.toUpperCase() === tile.letter.toUpperCase()) return
+    return `Start has '${value}' where the Grid has '${tile.letter}'`
+  }
+  if (tile.type === "rebus") {
+    if (value === tile.symbol || value === tile.word) return
+    return `Start has '${value}' where the Grid has the rebus '${tile.symbol}' (${tile.word})`
+  }
 }
 
 /** Emoji in a row made of more than one code point, which a per-code-point split would break across cells */
