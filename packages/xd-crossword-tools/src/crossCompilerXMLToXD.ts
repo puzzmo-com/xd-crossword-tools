@@ -120,7 +120,6 @@ function resolveWord(wordEl: FxpNode): ResolvedWord | undefined {
       : cellsFromRanges(attr(wordEl, "x"), attr(wordEl, "y"))
   if (!cells) return undefined
 
-  // Single cells and diagonals count as across.
   const allSameRow = cells.every((c) => c.row === cells[0].row)
   const allSameCol = cells.every((c) => c.col === cells[0].col)
   const direction: "across" | "down" = allSameCol && !allSameRow ? "down" : "across"
