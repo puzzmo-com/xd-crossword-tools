@@ -110,7 +110,8 @@ const fxpParser = new XMLParser({
   preserveOrder: true,
   ignoreAttributes: false,
   attributeNamePrefix: "",
-  processEntities: false,
+  processEntities: true,
+  htmlEntities: true,
   trimValues: false,
 })
 
