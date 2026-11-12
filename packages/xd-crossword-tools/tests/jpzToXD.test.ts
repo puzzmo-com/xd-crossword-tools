@@ -442,4 +442,39 @@ describe(jpzToXD.name, () => {
     expect(res).toContain("author: Ben & Jerry")
     expect(res).toContain("A1. “Incidentally...” <in texts> ~ AB")
   })
+
+  it("keeps clues with line breaks on one line", () => {
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<crossword-compiler-applet>
+  <rectangular-puzzle>
+    <metadata>
+      <creator>Test</creator>
+      <title>Line break fixture</title>
+    </metadata>
+    <crossword>
+      <grid width="2" height="2">
+        <cell x="1" y="1" number="1" solution="A" />
+        <cell x="2" y="1" number="2" solution="B" />
+        <cell x="1" y="2" number="3" solution="C" />
+        <cell x="2" y="2" solution="D" />
+      </grid>
+      <word id="1" x="1-2" y="1"></word>
+      <word id="2" x="1-2" y="2"></word>
+      <clues>
+        <title><b>Across</b></title>
+        <clue word="1" number="1">Encoded &#13;&#10;break</clue>
+        <clue word="2" number="3">Literal
+          break</clue>
+      </clues>
+      <clues>
+        <title><b>Down</b></title>
+      </clues>
+    </crossword>
+  </rectangular-puzzle>
+</crossword-compiler-applet>`
+
+    const res = jpzToXD(xml)
+    expect(res).toContain("A1. Encoded break ~ AB")
+    expect(res).toContain("A3. Literal break ~ CD")
+  })
 })

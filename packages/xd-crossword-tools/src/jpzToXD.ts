@@ -276,7 +276,10 @@ export function jpzToXD(xmlString: string): string {
 
       // Convert the clue's child nodes (which may contain mixed content
       // like <i>, <b>, etc.) directly to xd markup
-      const text = convertNodesToXDMarkup(clueChildren).trim()
+      // xd clues are one line each
+      const text = convertNodesToXDMarkup(clueChildren)
+        .replace(/\s*[\r\n]+\s*/g, " ")
+        .trim()
 
       const pos = numberPositions[num]
       if (!pos) {
