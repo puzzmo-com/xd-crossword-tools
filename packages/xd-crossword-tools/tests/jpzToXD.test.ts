@@ -1,5 +1,7 @@
 import { readFileSync } from "fs"
 import { jpzToXD } from "../src/jpzToXD"
+import { JSONToXD } from "../src/JSONtoXD"
+import { xdToJSON } from "xd-crossword-tools-parser"
 import { describe, it, expect } from "vitest"
 
 const simpleJpz = readFileSync(__dirname + "/jpz/That's a Bear in a Bee Costume.jpz", "utf8")
@@ -410,6 +412,7 @@ describe(jpzToXD.name, () => {
     expect(res).toContain("A3. Buzzer ~ BEE")
     expect(res).toContain("D1. Taxi ~ CAB")
     expect(res).toContain("D2. Foot digit ~ TOE")
+    expectBodyToRoundTrip(res)
   })
 
   it("decodes XML and numeric character entities", () => {
@@ -441,6 +444,7 @@ describe(jpzToXD.name, () => {
     expect(res).toContain("title: Fax’s forerunner")
     expect(res).toContain("author: Ben & Jerry")
     expect(res).toContain("A1. “Incidentally...” <in texts> ~ AB")
+    expectBodyToRoundTrip(res)
   })
 
   it("keeps clues with line breaks on one line", () => {
@@ -476,5 +480,13 @@ describe(jpzToXD.name, () => {
     const res = jpzToXD(xml)
     expect(res).toContain("A1. Encoded break ~ AB")
     expect(res).toContain("A3. Literal break ~ CD")
+    expectBodyToRoundTrip(res)
   })
 })
+
+/** Asserts xd → AST → xd reproduces everything from the grid on; jpz metadata key order doesn't round-trip yet. */
+function expectBodyToRoundTrip(xd: string) {
+  expect(xd).toContain("## Grid")
+  const body = (doc: string) => doc.slice(doc.indexOf("## Grid"))
+  expect(body(JSONToXD(xdToJSON(xd)))).toBe(body(xd))
+}
