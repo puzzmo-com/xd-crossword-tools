@@ -3,6 +3,7 @@ import { Clue, CrosswordJSON, Tile } from "xd-crossword-tools-parser"
 import { JSONToXD } from "./JSONtoXD"
 import { XMLParser } from "fast-xml-parser"
 import { LetterTile } from "xd-crossword-tools-parser"
+import { cellsFromRanges } from "./utils/cellRanges"
 
 // -- fast-xml-parser preserveOrder helpers --
 // With preserveOrder: true, each node is an object like:
@@ -240,12 +241,14 @@ export function jpzToXD(xmlString: string): string {
   for (const wordEl of wordEls) {
     const wordID = attr(wordEl, "id")!
     const cellsEls = filterChildren(nodeChildren(wordEl), "cells")
+    const cells =
+      cellsEls.length > 0
+        ? cellsEls.map((c) => ({ col: parseInt(attr(c, "x")!, 10) - 1, row: parseInt(attr(c, "y")!, 10) - 1 }))
+        : (cellsFromRanges(attr(wordEl, "x"), attr(wordEl, "y")) ?? [])
     let answer = ""
 
-    for (const cellEl of cellsEls) {
-      const x = parseInt(attr(cellEl, "x")!, 10) - 1
-      const y = parseInt(attr(cellEl, "y")!, 10) - 1
-      const tile = tiles[y][x]
+    for (const { col, row } of cells) {
+      const tile = tiles[row][col]
       if (tile.type === "letter") {
         answer += tile.letter
       }

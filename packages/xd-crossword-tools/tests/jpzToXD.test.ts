@@ -366,4 +366,49 @@ describe(jpzToXD.name, () => {
     expect(res).toContain("D2. See {/the {*deep*} nesting/} here ~ BEH")
     expect(res).toContain("D3. Plain clue ~ CFI")
   })
+
+  it("reads words given as x/y ranges instead of <cells> children", () => {
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<crossword-compiler-applet>
+  <rectangular-puzzle>
+    <metadata>
+      <creator>Test</creator>
+      <title>Range fixture</title>
+    </metadata>
+    <crossword>
+      <grid width="3" height="3">
+        <cell x="1" y="1" number="1" solution="C" />
+        <cell x="2" y="1" solution="A" />
+        <cell x="3" y="1" number="2" solution="T" />
+        <cell x="1" y="2" solution="A" />
+        <cell x="2" y="2" type="block" />
+        <cell x="3" y="2" solution="O" />
+        <cell x="1" y="3" number="3" solution="B" />
+        <cell x="2" y="3" solution="E" />
+        <cell x="3" y="3" solution="E" />
+      </grid>
+      <word id="1" x="1-3" y="1"></word>
+      <word id="2" x="1-3" y="3"></word>
+      <word id="3" x="1" y="1-3"></word>
+      <word id="4" x="3" y="1-3"></word>
+      <clues>
+        <title><b>Across</b></title>
+        <clue word="1" number="1">Feline</clue>
+        <clue word="2" number="3">Buzzer</clue>
+      </clues>
+      <clues>
+        <title><b>Down</b></title>
+        <clue word="3" number="1">Taxi</clue>
+        <clue word="4" number="2">Foot digit</clue>
+      </clues>
+    </crossword>
+  </rectangular-puzzle>
+</crossword-compiler-applet>`
+
+    const res = jpzToXD(xml)
+    expect(res).toContain("A1. Feline ~ CAT")
+    expect(res).toContain("A3. Buzzer ~ BEE")
+    expect(res).toContain("D1. Taxi ~ CAB")
+    expect(res).toContain("D2. Foot digit ~ TOE")
+  })
 })
