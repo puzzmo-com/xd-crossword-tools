@@ -1,5 +1,7 @@
 import { readFileSync } from "fs"
 import { jpzToXD } from "../src/jpzToXD"
+import { JSONToXD } from "../src/JSONtoXD"
+import { xdToJSON } from "xd-crossword-tools-parser"
 import { describe, it, expect } from "vitest"
 
 const simpleJpz = readFileSync(__dirname + "/jpz/That's a Bear in a Bee Costume.jpz", "utf8")
@@ -176,7 +178,7 @@ describe(jpzToXD.name, () => {
     expect(res).toMatchInlineSnapshot(`
       "## Metadata
 
-      title: Beneath The Surface Printer&#039;s Devilry #4 (Midi)
+      title: Beneath The Surface Printer's Devilry #4 (Midi)
       author: Kyle Dolan
       editor: 
       date: 
@@ -209,11 +211,11 @@ describe(jpzToXD.name, () => {
       D2. For puzzle lovers, a good crossword is like brandy (4) ~ INCA
       D3. Loon setting up your user name and password to verify your account... (3,2) ~ GINUP
       D4. ...if you need tech, super. Your email? (7) ~ PORTENT
-      D5. Our catcher isn&#039;t playing today--hermit there to be found (4) ~ SNOW
-      D7. The bouncer didn&#039;t bother. Toss ID--she knew right away it was fake (7) ~ CANTEEN
+      D5. Our catcher isn't playing today--hermit there to be found (4) ~ SNOW
+      D7. The bouncer didn't bother. Toss ID--she knew right away it was fake (7) ~ CANTEEN
       D8. Question: What items of clothing are typically worn by professional billiards players? Ants (7) ~ SWERVES
       D11. A lover offs Will, often use them as conversation starters at parties (5) ~ UNTIE
-      D12. I&#039;ll have a turkey sandwich with Swiss cheese, mats of bacon, and tomatoes (4) ~ YOLO
+      D12. I'll have a turkey sandwich with Swiss cheese, mats of bacon, and tomatoes (4) ~ YOLO
       D14. A cake like daiginjo pairs well with sushi (4) ~ OLDS
 
       ## Design
@@ -366,4 +368,125 @@ describe(jpzToXD.name, () => {
     expect(res).toContain("D2. See {/the {*deep*} nesting/} here ~ BEH")
     expect(res).toContain("D3. Plain clue ~ CFI")
   })
+
+  it("reads words given as x/y ranges instead of <cells> children", () => {
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<crossword-compiler-applet>
+  <rectangular-puzzle>
+    <metadata>
+      <creator>Test</creator>
+      <title>Range fixture</title>
+    </metadata>
+    <crossword>
+      <grid width="3" height="3">
+        <cell x="1" y="1" number="1" solution="C" />
+        <cell x="2" y="1" solution="A" />
+        <cell x="3" y="1" number="2" solution="T" />
+        <cell x="1" y="2" solution="A" />
+        <cell x="2" y="2" type="block" />
+        <cell x="3" y="2" solution="O" />
+        <cell x="1" y="3" number="3" solution="B" />
+        <cell x="2" y="3" solution="E" />
+        <cell x="3" y="3" solution="E" />
+      </grid>
+      <word id="1" x="1-3" y="1"></word>
+      <word id="2" x="1-3" y="3"></word>
+      <word id="3" x="1" y="1-3"></word>
+      <word id="4" x="3" y="1-3"></word>
+      <clues>
+        <title><b>Across</b></title>
+        <clue word="1" number="1">Feline</clue>
+        <clue word="2" number="3">Buzzer</clue>
+      </clues>
+      <clues>
+        <title><b>Down</b></title>
+        <clue word="3" number="1">Taxi</clue>
+        <clue word="4" number="2">Foot digit</clue>
+      </clues>
+    </crossword>
+  </rectangular-puzzle>
+</crossword-compiler-applet>`
+
+    const res = jpzToXD(xml)
+    expect(res).toContain("A1. Feline ~ CAT")
+    expect(res).toContain("A3. Buzzer ~ BEE")
+    expect(res).toContain("D1. Taxi ~ CAB")
+    expect(res).toContain("D2. Foot digit ~ TOE")
+    expectBodyToRoundTrip(res)
+  })
+
+  it("decodes XML and numeric character entities", () => {
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<crossword-compiler-applet>
+  <rectangular-puzzle>
+    <metadata>
+      <creator>Ben &amp; Jerry</creator>
+      <title>Fax&#8217;s forerunner</title>
+    </metadata>
+    <crossword>
+      <grid width="2" height="1">
+        <cell x="1" y="1" number="1" solution="A" />
+        <cell x="2" y="1" solution="B" />
+      </grid>
+      <word id="1" x="1-2" y="1"></word>
+      <clues>
+        <title><b>Across</b></title>
+        <clue word="1" number="1">&#8220;Incidentally...&#8221; &lt;in texts&gt;</clue>
+      </clues>
+      <clues>
+        <title><b>Down</b></title>
+      </clues>
+    </crossword>
+  </rectangular-puzzle>
+</crossword-compiler-applet>`
+
+    const res = jpzToXD(xml)
+    expect(res).toContain("title: Fax’s forerunner")
+    expect(res).toContain("author: Ben & Jerry")
+    expect(res).toContain("A1. “Incidentally...” <in texts> ~ AB")
+    expectBodyToRoundTrip(res)
+  })
+
+  it("keeps clues with line breaks on one line", () => {
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<crossword-compiler-applet>
+  <rectangular-puzzle>
+    <metadata>
+      <creator>Test</creator>
+      <title>Line break fixture</title>
+    </metadata>
+    <crossword>
+      <grid width="2" height="2">
+        <cell x="1" y="1" number="1" solution="A" />
+        <cell x="2" y="1" number="2" solution="B" />
+        <cell x="1" y="2" number="3" solution="C" />
+        <cell x="2" y="2" solution="D" />
+      </grid>
+      <word id="1" x="1-2" y="1"></word>
+      <word id="2" x="1-2" y="2"></word>
+      <clues>
+        <title><b>Across</b></title>
+        <clue word="1" number="1">Encoded &#13;&#10;break</clue>
+        <clue word="2" number="3">Literal
+          break</clue>
+      </clues>
+      <clues>
+        <title><b>Down</b></title>
+      </clues>
+    </crossword>
+  </rectangular-puzzle>
+</crossword-compiler-applet>`
+
+    const res = jpzToXD(xml)
+    expect(res).toContain("A1. Encoded break ~ AB")
+    expect(res).toContain("A3. Literal break ~ CD")
+    expectBodyToRoundTrip(res)
+  })
 })
+
+/** Asserts xd → AST → xd reproduces everything from the grid on; jpz metadata key order doesn't round-trip yet. */
+function expectBodyToRoundTrip(xd: string) {
+  expect(xd).toContain("## Grid")
+  const body = (doc: string) => doc.slice(doc.indexOf("## Grid"))
+  expect(body(JSONToXD(xdToJSON(xd)))).toBe(body(xd))
+}

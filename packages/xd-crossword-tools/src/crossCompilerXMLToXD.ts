@@ -2,6 +2,7 @@ import { parseXDown, serializeXDown } from "xd-crossword-tools-parser"
 import { Clue, CrosswordJSON, Tile } from "xd-crossword-tools-parser"
 import { JSONToXD } from "./JSONtoXD"
 import { XMLParser } from "fast-xml-parser"
+import { CellPosition, cellsFromRanges } from "./utils/cellRanges"
 
 // -- fast-xml-parser preserveOrder helpers (mirrors jpzToXD) --
 type FxpNode = { [key: string]: any }
@@ -93,18 +94,9 @@ function convertNodesToXDMarkup(nodes: FxpNode[]): string {
   return result
 }
 
-/** Parses an attribute like "1-6" or "5" into [start, end] (1-based, inclusive). */
-function parseRange(raw: string | undefined): [number, number] | undefined {
-  if (!raw) return undefined
-  const parts = raw.split("-").map((p) => parseInt(p, 10))
-  if (parts.some((n) => Number.isNaN(n))) return undefined
-  if (parts.length === 1) return [parts[0], parts[0]]
-  return [parts[0], parts[1]]
-}
-
 interface ResolvedWord {
   /** 0-based cell positions (col, row) in order along the word. */
-  cells: Array<{ col: number; row: number }>
+  cells: CellPosition[]
   /** Optional explicit display solution (e.g. "lady chatterleys lover"). */
   solution?: string
   /** Whether the word is flagged as part of a puzzle theme. */
@@ -114,40 +106,24 @@ interface ResolvedWord {
 }
 
 function resolveWord(wordEl: FxpNode): ResolvedWord | undefined {
-  const xRange = parseRange(attr(wordEl, "x"))
-  const yRange = parseRange(attr(wordEl, "y"))
   const solution = attr(wordEl, "solution")
   const isTheme = attr(wordEl, "is-theme") === "true"
 
   // Explicit <cells x= y=/> children take precedence (matches the jpz style usage).
   const cellChildren = filterChildren(nodeChildren(wordEl), "cells")
-  if (cellChildren.length > 0) {
-    const cells = cellChildren.map((c) => ({
-      col: parseInt(attr(c, "x")!, 10) - 1,
-      row: parseInt(attr(c, "y")!, 10) - 1,
-    }))
-    const allSameRow = cells.every((c) => c.row === cells[0].row)
-    const allSameCol = cells.every((c) => c.col === cells[0].col)
-    const direction: "across" | "down" = allSameCol && !allSameRow ? "down" : "across"
-    return { cells, solution, isTheme, direction }
-  }
+  const cells =
+    cellChildren.length > 0
+      ? cellChildren.map((c) => ({
+          col: parseInt(attr(c, "x")!, 10) - 1,
+          row: parseInt(attr(c, "y")!, 10) - 1,
+        }))
+      : cellsFromRanges(attr(wordEl, "x"), attr(wordEl, "y"))
+  if (!cells) return undefined
 
-  if (!xRange || !yRange) return undefined
-
-  const cells: Array<{ col: number; row: number }> = []
-  if (xRange[0] !== xRange[1] && yRange[0] === yRange[1]) {
-    for (let x = xRange[0]; x <= xRange[1]; x++) cells.push({ col: x - 1, row: yRange[0] - 1 })
-    return { cells, solution, isTheme, direction: "across" }
-  }
-  if (yRange[0] !== yRange[1] && xRange[0] === xRange[1]) {
-    for (let y = yRange[0]; y <= yRange[1]; y++) cells.push({ col: xRange[0] - 1, row: y - 1 })
-    return { cells, solution, isTheme, direction: "down" }
-  }
-  // Single cell or diagonal — treat as across by default.
-  for (let x = xRange[0]; x <= xRange[1]; x++) {
-    for (let y = yRange[0]; y <= yRange[1]; y++) cells.push({ col: x - 1, row: y - 1 })
-  }
-  return { cells, solution, isTheme, direction: "across" }
+  const allSameRow = cells.every((c) => c.row === cells[0].row)
+  const allSameCol = cells.every((c) => c.col === cells[0].col)
+  const direction: "across" | "down" = allSameCol && !allSameRow ? "down" : "across"
+  return { cells, solution, isTheme, direction }
 }
 
 /**
