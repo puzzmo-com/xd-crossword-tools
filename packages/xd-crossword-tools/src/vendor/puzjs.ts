@@ -327,7 +327,7 @@ function getRebus(sections: Sections) {
         key = _tokens[0],
         val = _tokens[1]
 
-      sols[parseInt(key.trim(), 10)] = val
+      sols[parseInt(key.trim(), 10)] = val.replace(/\u0000/g, "")
     }
   })
   // dict string format is k1:v1;k2:v2;...;kn:vn;
