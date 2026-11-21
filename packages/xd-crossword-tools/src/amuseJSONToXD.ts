@@ -444,15 +444,19 @@ export function convertHtmlToXdMarkup(html: string | undefined): string {
     // Links: <a href="url">text</a> → {@text|url@}
     { from: /<a\s+[^>]*href\s*=\s*["']([^"']*)["'][^>]*>([^<>]*)<\/a>/g, to: "{@$2|$1@}" },
 
-    // Images: <img src="url" alt="alt" /> → {!url|alt!} (inline image)
-    { from: /<img\s+[^>]*src\s*=\s*["']([^"']*)["'][^>]*(?:alt\s*=\s*["']([^"']*)["'][^>]*)?[^>]*\/?>/g, to: "{!$1|$2!}" },
-
     // Block elements: <div>, <p> → newlines (strip tags but preserve content)
     { from: /<\/?(?:div|p)(?:\s[^>]*)?>/g, to: "\n" },
 
     // Line breaks: <br> → newlines
     { from: /<br\s*\/?>/g, to: "\n" },
   ]
+
+  // Images: <img src="url" alt="alt" /> → {![url|alt]!} (inline image)
+  result = result.replace(/<img\b[^>]*>/g, (tag) => {
+    const src = tag.match(/\bsrc\s*=\s*["']([^"']*)["']/i)?.[1] ?? ""
+    const alt = tag.match(/\balt\s*=\s*["']([^"']*)["']/i)?.[1] ?? ""
+    return alt ? `{![${src}|${alt}]!}` : `{![${src}]!}`
+  })
 
   // Apply conversions
   for (const conversion of conversions) {
