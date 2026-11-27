@@ -78,7 +78,7 @@ export function acrossTextToXD(textContent: string): string {
   )
 
   // Get clue positions from the board
-  const cluePositions = getCluePositionsForBoard(tiles, undefined, undefined)
+  const cluePositions = getCluePositionsForBoard(tiles)
 
   // Build clues
   const acrossClues: string[] = []

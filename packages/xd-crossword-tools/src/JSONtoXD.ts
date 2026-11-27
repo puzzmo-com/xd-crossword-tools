@@ -113,6 +113,19 @@ export const JSONToXD = (json: CrosswordJSON): string => {
     )
     .join("\n")
 
+  // The bars which end entries, from each tile's 'bar-left' and 'bar-top': '|' left, '-' top, '+' both, '#' a block
+  const barRows = json.tiles.map((row) =>
+    row
+      .map((tile) => {
+        if (tile.type === "blank") return "#"
+        const left = tile.design?.includes("bar-left")
+        const top = tile.design?.includes("bar-top")
+        return left && top ? "+" : left ? "|" : top ? "-" : "."
+      })
+      .join(""),
+  )
+  if (barRows.some((row) => /[|+-]/.test(row))) xd += `\n\n## Bars\n\n${barRows.join("\n")}`
+
   const getCluesXD = (clues: Clue[], direction: "A" | "D") => {
     return clues
       .map((clue) => {

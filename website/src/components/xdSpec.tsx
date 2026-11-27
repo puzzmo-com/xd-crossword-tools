@@ -20,7 +20,7 @@ export const XDSpec = () => {
       </p>
 
       <p>
-        This site follows xd v4. Older files still parse, but deprecated syntax shows up as warnings: use the <strong>Migrate to v4</strong>{" "}
+        This site follows xd v4. Older files are read by the v4 rules, and pre-v4 syntax shows up as warnings: use the <strong>Migrate to v4</strong>{" "}
         button above the editor (or <code>migrateXDToV4(xd)</code> from <code>xd-crossword-tools</code> or <code>xd-crossword-migrator</code>) to rewrite a file into v4 syntax.
         The migration adds section headings, converts legacy xdown links/images/colors to the attribute form, drops the{" "}
         <code>&lt;style&gt;</code> wrapper from designs, moves v3 <code>Special:</code> cells into a Design section, and escapes{" "}
@@ -226,6 +226,37 @@ A6. Progenitor. ~ ADAM
         a solve.
       </p>
 
+      <h3>Bars</h3>
+
+      <p>
+        A barred grid ends some of its entries with bars rather than blocks. A <code>## Bars</code> section is a grid of the same size
+        as the puzzle: <code>.</code> for no bar, <code>|</code> for a bar on the cell's left edge, <code>-</code> for one on its top edge
+        and <code>+</code> for both. A block may be written <code>#</code>.
+      </p>
+
+      <div className="example-block">
+        <pre>
+          {`## Grid
+
+AHIS
+MENO
+ATUP
+DOHI
+
+## Bars
+
+..|.
+..|.
+--+-
+..|.`}
+        </pre>
+      </div>
+
+      <p>
+        An entry ends at a bar as it does at a block, and cells are numbered with the bars in place, so the first row holds AH and IS.
+        A bar on the edge of the grid, or between a cell and a block, is ignored.
+      </p>
+
       <h3>Clues</h3>
 
       <p>
@@ -354,16 +385,16 @@ S { background: shaded }
           multi-cell image is only marked at its top-left cell
         </li>
         <li>
-          <code>bar-top: true</code> - a bar on the top edge of the cell
+          <code>border-top: true</code> - a line drawn on the top edge of the cell
         </li>
         <li>
-          <code>bar-left: true</code> - a bar on the left edge of the cell
+          <code>border-left: true</code> - a line drawn on the left edge of the cell
         </li>
       </ul>
 
       <p>
-        A grid whose design uses <code>bar-top</code> or <code>bar-left</code> is a barred grid; no extra metadata is needed.
-        Barred grids don't support rebuses or Schrödinger squares yet.
+        Borders are only drawn. The bars which end entries in a barred grid go in the Bars section, and pre-v4 Puzzmo files which
+        used <code>bar-top</code>/<code>bar-left</code> here (with <code>form: barred</code>) can be migrated.
       </p>
 
       <p>The rule parser handles:</p>
@@ -374,13 +405,13 @@ S { background: shaded }
           <code>background-size: 2 2</code>). Rules may span several lines
         </li>
         <li>
-          Re-opening a character: <code>{`A { background: circle }`}</code> then <code>{`A { bar-top: true }`}</code>
+          Re-opening a character: <code>{`A { background: circle }`}</code> then <code>{`A { border-top: true }`}</code>
         </li>
         <li>
           Many characters at once with a comma: <code>{`A, B { background: circle }`}</code>
         </li>
         <li>
-          Many properties separated by semicolons, with an optional trailing semicolon: <code>{`A { background: circle; bar-top: true; }`}</code>
+          Many properties separated by semicolons, with an optional trailing semicolon: <code>{`A { background: circle; border-top: true; }`}</code>
         </li>
         <li>
           Quoted values, inside which <code>{`}`}</code>, <code>:</code>, <code>;</code> and <code>,</code> are not delimiters
@@ -396,7 +427,7 @@ S { background: shaded }
 
 A, B {
   background: circle;
-  bar-top: true;
+  border-top: true;
 }
 I { background-image: url('https://example.com/petal.png'); background-size: 2 2 }
 
@@ -493,7 +524,8 @@ A3. First line{\\\\}second line ~ BREAK`}
 
       <p>
         The older positional forms (<code>{`{@text|url@}`}</code>, <code>{`{![url|alt]!}`}</code>, <code>{`{!![url]!}`}</code>,{" "}
-        <code>{`{#text|light|dark#}`}</code>) still parse, but report deprecation warnings.
+        <code>{`{#text|light|dark#}`}</code>) are read by the v4 rules, so they have no link, image or colors, and report deprecation
+        warnings. The migration converts them.
       </p>
 
       <h2>Puzzmo extensions</h2>
@@ -555,8 +587,8 @@ D26. Band ~ OKGO ~ OKAY // OK|GO OK|AY`}</pre>
       </div>
 
       <p>
-        Older files put the split character inside the answer (<code>~ STAN|LEE</code>). That still works but is deprecated, and{" "}
-        <code>migrateXDToV4</code> converts it.
+        Older files put the split character inside the answer (<code>~ STAN|LEE</code>). v4 reads that as part of the answer, with a
+        deprecation warning, and <code>migrateXDToV4</code> converts it.
       </p>
 
       <h3>Extension: Colors</h3>
@@ -576,8 +608,9 @@ D26. Band ~ OKGO ~ OKAY // OK|GO OK|AY`}</pre>
       <h3>Extension: Schrödinger squares</h3>
 
       <p>
-        Pre-v4 Puzzmo files mark a Schrödinger square with a <code>*</code> in the grid instead of a rebus key with several options, with the alternative answers given in <code>^alt</code> clue metadata (
-        <code>^alt</code>, <code>^alt2</code>, ...):
+        Pre-v4 Puzzmo files marked a Schrödinger square with a <code>*</code> in the grid instead of a rebus key with several options,
+        with the alternative answers given in <code>^alt</code> clue metadata (<code>^alt</code>, <code>^alt2</code>, ...). The parser now
+        reads the <code>*</code> as a letter and <code>^alt</code> as plain metadata, with warnings, and the migration converts them:
       </p>
 
       <div className="example-block">

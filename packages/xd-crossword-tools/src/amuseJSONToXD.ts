@@ -1,5 +1,5 @@
 import { JSONToXD } from "./JSONtoXD"
-import type { Clue, Position as CluePosition, CrosswordJSON, Report } from "xd-crossword-tools-parser"
+import type { Clue, Position as CluePosition, CrosswordJSON, Report, TileDesignFlags } from "xd-crossword-tools-parser"
 import { serializeRebusRule } from "xd-crossword-tools-parser"
 
 import type { CellInfo, PlacedWord, AmuseTopLevel, PublishTimeZone } from "./amuseJSONToXD.types.d.ts"
@@ -53,9 +53,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
   // Track circled cells, cell colors and bars for design section
   const hasCircledCells = amuseData.cellInfos?.some((cell) => cell.isCircled) || false
   const hasColors = amuseData.cellInfos?.some((cell) => cell.bgColor) || false
-  const hasBars = amuseData.cellInfos?.some((cell) => cell.rightWall || cell.bottomWall) || false
-  if (hasBars) meta.form = "barred"
-  const needsDesign = hasCircledCells || hasBars || hasColors
+  const needsDesign = hasCircledCells || hasColors
 
   let designPositions: string[][] | undefined = undefined
   let designStyles: Record<string, Record<string, string>> = {}
@@ -203,39 +201,12 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
     }
   }
 
-  // Second pass: apply bar designs to tiles and design positions
-  if (hasBars && designPositions) {
-    // Map of sorted bar flag combinations to their assigned style letter
-    const barStyleLetters = new Map<string, string>()
-
-    for (const [cellKey, designFlags] of barDesignMap) {
-      const [yStr, xStr] = cellKey.split("-")
-      const y = parseInt(yStr)
-      const x = parseInt(xStr)
-
-      // Skip if this is a blank tile
-      if (tiles[y][x].type === "blank") continue
-
-      // Create a unique style key for this combination of bars
-      const sortedFlags = Array.from(designFlags).sort()
-      const styleKey = sortedFlags.join("|")
-
-      let styleLetter = barStyleLetters.get(styleKey)
-      if (!styleLetter) {
-        styleLetter = nextDesignLetter()
-        barStyleLetters.set(styleKey, styleLetter)
-
-        const styleObj: Record<string, string> = {}
-        if (sortedFlags.includes("bar-left")) styleObj["bar-left"] = "true"
-        if (sortedFlags.includes("bar-top")) styleObj["bar-top"] = "true"
-        designStyles[styleLetter] = styleObj
-      }
-
-      // Circles and colors take precedence - xd only supports one style per cell
-      if (!designPositions[y][x]) {
-        designPositions[y][x] = styleLetter
-      }
-    }
+  // Second pass: bars go on the tiles, which JSONToXD writes as a '## Bars' section
+  for (const [cellKey, designFlags] of barDesignMap) {
+    const [y, x] = cellKey.split("-").map((n) => parseInt(n))
+    const tile = tiles[y][x]
+    if (tile.type === "blank") continue
+    tile.design = [...designFlags].sort() as TileDesignFlags[]
   }
 
   // Clues

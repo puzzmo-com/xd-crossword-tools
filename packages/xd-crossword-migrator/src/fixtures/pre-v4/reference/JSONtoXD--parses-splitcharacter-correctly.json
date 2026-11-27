@@ -1,0 +1,21 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "O K G O",
+      "H # # B",
+      "O # # J",
+      "H # # E",
+      "O # # C",
+      "H # # T"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["OKGO",[1]]],"display":[["text","Band with two words."]]},
+      {"direction":"down","number":1,"answers":[["OHOHOH",[1,3]]],"display":[["text","Reverse santa."]]},
+      {"direction":"down","number":2,"answers":[["OBJECT",null]],"display":[["text","A thing."]]}
+    ],
+    "notes": ""
+  }
+}

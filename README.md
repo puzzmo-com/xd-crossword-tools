@@ -2,7 +2,7 @@
 
 [xd](https://github.com/century-arcade/xdformat/blob/master/doc/xd-format-v4.md) is a text-based crossword format which is easy for humans to read and reason about.
 
-This repo provides tools for taking different crossword file formats and converting them to xd. Then has a comprehensive xd to JSON function. Targets the [xd v4 spec](https://github.com/century-arcade/xdformat/blob/master/doc/xd-format-v4.md), and comes with a few editor-experience extensions for a REPL-like environment. Older xd files still parse (with deprecation warnings), and `migrateXDToV4` will [upgrade them](#migrating-to-xd-v4). Uses a [vendored](./packages/xd-crossword-tools/src/vendor/) copy of 'puzjs' which was ported to TypeScript.
+This repo provides tools for taking different crossword file formats and converting them to xd. Then has a comprehensive xd to JSON function. Targets the [xd v4 spec](https://github.com/century-arcade/xdformat/blob/master/doc/xd-format-v4.md), and comes with a few editor-experience extensions for a REPL-like environment. The parser only reads v4: older syntax is read by the v4 rules with a deprecation warning, and `migrateXDToV4` from xd-crossword-migrator will [upgrade those files](#migrating-to-xd-v4). Uses a [vendored](./packages/xd-crossword-tools/src/vendor/) copy of 'puzjs' which was ported to TypeScript.
 
 Runs and tested in production in node, browsers, React Native and edge runtimes.
 
@@ -5559,7 +5559,8 @@ It isn't a complete v3 reader: it handles the pre-v4 syntax in Puzzmo's puzzles 
 - Pre-v4 xdown links `{@text|url@}`, images `{!url|alt!}` / `{!![url]!}` (with or without the square brackets) and colours `{#text|light|dark#}` move to the attribute syntax, and text which v4 would read as markup is escaped
 - Clue bodies containing ` ~ ` (pre-v4 bodies ran to the _last_ ` ~ `) get it escaped as `{\~\}`
 - Split characters move out of answers into an end-of-line annotation: `~ OK|GO ~ OK|AY` becomes `~ OKGO ~ OKAY // OK|GO OK|AY`
-- A duplicated clue line, which was used as a hint, becomes `^Hint:` metadata
+- A duplicated clue line which repeats the answer, which pre-v4 Puzzmo used as a hint, becomes `^hint:` metadata. One with answers of its own stays a clue, as v4 lets a slot have a clue per fill
+- Barred grids: the design's `bar-left` and `bar-top` move to a `## Bars` section, and `form: barred` goes
 - The v3 `Special: circle|shaded` field with lowercase grid cells becomes a `## Design` section
 - `## Design` sections lose their `<style>` wrapper, and use `.` for unstyled cells and `#` for the black squares
 - In the `Rebus` field, repeated keys (`1=O 1=A`) become options (`1=O|A`), rules joined with `,` are split up, values v4 can't read are escaped, and a `?` key moves to an unused character, as v4 reserves `?` for unfilled cells
@@ -5618,12 +5619,12 @@ Keys are case-insensitive, they are always lowercase inside the JSON representat
 
 #### Schrödinger Squares
 
-A Schrödinger square is a cell which has more than one correct answer. You declare one by giving a rebus key more than one value in the metadata, then using that symbol in the grid:
+A Schrödinger square is a cell which has more than one correct answer. You declare one by giving a rebus key `|` separated options, the first being the solution, then using that key in the grid:
 
 ```
 ## Metadata
 
-rebus: 1=O 1=A
+rebus: 1=O|A
 
 ## Grid
 
@@ -5636,46 +5637,20 @@ ODDS
 
 A1. Mosaic piece ~ TILE
 A5. Pinnacle ~ APEX
-A6. Sugar ____ ~ CONE
+A6. Sugar ____ ~ CONE ~ CANE
 A7. Chances, in gambling ~ ODDS
 
 D1. Tuesday treat ~ TACO
-D2. Apple tech ~ IPOD
+D2. Apple tech ~ IPOD ~ IPAD
 D3. Complement to borrow ~ LEND
 D4. Former intimates ~ EXES
 ```
 
-Here the `1` cell accepts either `O` or `A`, and clue answers are written using one of the valid options (e.g. `CONE`/`IPOD`). Values can also be multiple letters, making a Schrödinger rebus cell (`rebus: 1=OR 1=AR`), and multi-valued keys can be mixed with regular single-valued rebus keys in the same declaration.
+Here the `1` cell accepts either `O` or `A`, and each clue line lists its slot's fills. Options can be more than one letter (`rebus: 1=OR|AR`), `()` is a cell which is correct when left empty (`rebus: 1=()|H`), and a rule with several keys links cells which change together: `rebus: 12345=CIGAR|PENIS` accepts CIGAR or PENIS, but never CEGIR.
 
-In the JSON, these tiles carry `validOptions`: every value in declaration order, where the array position acts as a variant index. Squares that resolve to the same index belong to the same solution of the puzzle, which lets a checker verify answers with several Schrödinger squares (e.g. an entry reading either `CLINTON` or `BOBDOLE`, never a mix) by comparing one index per square — see the 14.0.0 notes in [CHANGELOG.md](./CHANGELOG.md) for a worked example.
+In the JSON, these tiles carry `validOptions`: every option in order, the first being the solution. A tile from a rule with several keys is `linked`, and linked tiles are solved when they all hold their value from the same position in `validOptions`. `isGridSolved(tiles, entries)` checks a grid this way.
 
-##### Deprecated: `*` grid squares with `^alt` clue metadata
-
-The original syntax — a `"*"` in the grid with the alternatives declared via `alt`, `alt2`, `alt3` (etc) clue metadata — is still parsed, but is deprecated in favour of the rebus-based syntax above:
-
-```
-## Grid
-
-TILE
-APEX
-C*NE
-ODDS
-
-## Clues
-
-A6. Sugar ____ ~ CONE
-A6 ^alt: CANE
-
-D2. Apple tech ~ IPOD
-D2 ^alt: IPAD
-```
-
-For rebuses inside a `*`-style schrödinger use the symbol inside the clue/alt:
-
-```
-A6. Sugar ____ ~ 1NE
-A6 ^alt: 2NE
-```
+Pre-v4 Puzzmo files marked a Schrödinger square with a `*` in the grid, and gave the other answers as `^alt` clue metadata. The parser reads a `*` as a letter and `^alt` as plain metadata, each with a deprecation warning, and `migrateXDToV4` converts them.
 
 #### xdown: markup in clues and metadata
 
@@ -5722,7 +5697,7 @@ Metadata values are parsed the same way into `metaDisplay`, e.g. `json.metaDispl
 - Line break: `{\\}`
 - Inline colours (a Puzzmo extension, still being discussed for the spec): `{#`<kbd>text</kbd>` | light: `<kbd>colour</kbd>`; dark: `<kbd>colour</kbd>`#}`
 
-Every ASCII punctuation character is reserved as a type character, a `{` followed by anything else is just text. The pre-v4 positional forms (`{@text|url@}`, `{!url|alt|width|height!}`, `{!!url!}`, `{#text|light|dark#}`) are still read, with a deprecation warning. An image's parts can also be wrapped in square brackets (`{![url|alt]!}`), as older versions of these docs had them both ways, and any `{!...!}` span which uses none of v4's image attributes is read as a pre-v4 one.
+Every ASCII punctuation character is reserved as a type character, a `{` followed by anything else is just text. The pre-v4 positional forms (`{@text|url@}`, `{!url|alt|width|height!}`, `{!!url!}`, `{![url|alt]!}`, `{#text|light|dark#}`) are read by the v4 rules, so they come out without an href, src or colours, and add a deprecation warning. `migrateXDToV4` converts them.
 
 `parseXDown`, `serializeXDown` and `xdownToPlainText` are exported if you want to work with xdown yourself.
 
@@ -5765,7 +5740,7 @@ D26. Band ~ OKGO ~ OKAY // OK|GO OK|AY
 
 The parser gives `STANLEE` as the answer, with the split indexes on each entry in `answers` (and the first answer's on `clue.splits`). Without a `SplitCharacter` declared, `|` is used. An annotation word which doesn't spell one of the answers is an error, as is a ` ~ ` after the `//`.
 
-Putting the split character inside the answer itself (`~ STAN|LEE`) is deprecated: it still works with a warning, and `migrateXDToV4` converts it.
+Pre-v4 files put the split character inside the answer itself (`~ STAN|LEE`). v4 reads that as an answer with a `|` in it, with a deprecation warning, and `migrateXDToV4` converts it.
 
 A word can also end inside a square which holds more than one letter. With `Rebus: 1=CEO` and a grid cell of `1`, `A1. Well done! ~ NICEONE // NICE|ONE` breaks the answer inside the rebus, so nothing in the grid sits on the split. Those splits are in `rebusInternalSplits` — a map of the square's tile index in the answer to the positions inside that square — while `splits` holds the ones which fall on a tile boundary. A Schrödinger square works the same way, with each of its fills carrying its own positions:
 
@@ -5828,10 +5803,10 @@ CSS Properties supported in style:
 - `background-size: N M` - the image spans N cells across and M down, marked on its top-left cell
 - `background-light: #[hex]` - sets the tile's background when in light mode (Puzzmo extension)
 - `background-dark: #[hex]` - sets the tile's background when in dark mode (Puzzmo extension)
-- `bar-top: true` - a bar on the top edge of this tile
-- `bar-left: true` - a bar on the left edge of this tile
+- `border-top: true` - a line drawn on the top edge of this tile
+- `border-left: true` - a line drawn on the left edge of this tile
 
-A grid with bars is treated as a barred crossword, `form: barred` metadata is no longer needed (it's still honoured). Barred grids don't support rebuses or Schrödinger squares. Rules can span lines, list many selectors (`A, B { ... }`), be re-opened, and use quoted values. For example:
+Borders are only drawn, the bars which end entries in a barred grid go in a [Bars section](#bars). Rules can span lines, list many selectors (`A, B { ... }`), be re-opened, and use quoted values. For example:
 
 <!-- prettier-ignore -->
 ```css
@@ -5839,14 +5814,36 @@ O { background: circle }
 R { background-light: #FF69B4; background-dark: #C71585 }
 G { background-light: #00FF00; background-dark: #008000 }
 B { background-light: #00FFFF; background-dark: #00008B }
-T, U { bar-top: true }
-U { bar-left: true }
+T, U { border-top: true }
+U { border-left: true }
 P { background-image: url('data:image/png;base64,iVBORw0KGgo='); background-size: 2 2 }
 ```
 
-`JSONToXD` writes these rules in a canonical, compact form: properties shared by the same characters are grouped into one rule (`A, B, C { background: circle }`, `A, C { bar-top: true }`), keeping the characters as they are. A hand-written design section can come back laid out differently, but it means the same thing.
+`JSONToXD` writes these rules in a canonical, compact form: properties shared by the same characters are grouped into one rule (`A, B, C { background: circle }`, `A, C { border-top: true }`), keeping the characters as they are. A hand-written design section can come back laid out differently, but it means the same thing.
 
-Pre-v4 design sections wrapped the rules in a `<style>` tag, which is still read with a deprecation warning.
+Pre-v4 design sections wrapped the rules in a `<style>` tag, which v4 doesn't read: the parser warns about it, and `migrateXDToV4` removes it.
+
+#### Bars
+
+A barred grid ends some of its entries with bars rather than blocks. They go in a `## Bars` section, a grid of the same size as the puzzle with `.` for no bar, `|` for a bar on the cell's left edge, `-` for one on its top edge and `+` for both (`#` can echo a block):
+
+```
+## Grid
+
+AHIS
+MENO
+ATUP
+DOHI
+
+## Bars
+
+..|.
+..|.
+--+-
+..|.
+```
+
+Cells are numbered with the bars in place, so a barred grid can hold rebuses like any other. The parser puts the bars on each tile as `design: ["bar-left", "bar-top"]`, and `JSONToXD` writes them back as a Bars section. Pre-v4 Puzzmo files put bars in the design (`bar-top`, `bar-left`) with `form: barred` metadata, which the parser warns about and `migrateXDToV4` converts.
 
 - `## Start`
 

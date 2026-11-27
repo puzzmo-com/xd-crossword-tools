@@ -67,7 +67,7 @@ export type CrosswordJSON = {
 
 export type Report =
   | { type: "syntax"; position: Position; length: number; message: string }
-  /** Pre-v4 syntax which still parses, `migrateXDToV4` from xd-crossword-migrator can update the file */
+  /** Pre-v4 syntax, which is read by the v4 rules and so doesn't mean what it used to. `migrateXDToV4` from xd-crossword-migrator can update the file */
   | { type: "deprecation"; position: Position; length: number; message: string }
   | {
       type: "clue_msg"
@@ -100,6 +100,7 @@ export type Direction = "UP" | "DOWN" | "LEFT" | "RIGHT"
 
 export type Tile = LetterTile | BlankTile | RebusTile | SchrodingerTile
 
+/** The bars on a cell's edges, from the `## Bars` section: they end entries like a block does */
 export type TileDesignFlags = "bar-top" | "bar-left"
 
 export interface LetterTile {
@@ -132,7 +133,6 @@ export interface SchrodingerTile {
    * For squares from the Rebus field (`1=EIGHT|8`) the order is the order of its options. When the
    * square is `linked` (`12345=CIGAR|PENIS`) the position is the option: linked squares are solved
    * when they all hold their value from the same position, so a square in a linked rule can repeat a value.
-   * For pre-v4 `*` squares the order is [primary answer, alt, alt2, ...].
    */
   validOptions?: string[]
   /** The rebus key, when this Schrödinger tile comes from the Rebus field */
@@ -211,7 +211,7 @@ export interface Clue {
   answer: string
   /**
    * Every valid answer for the clue, the first is `answer`. Most clues have one, a Schrödinger slot lists each of
-   * its fills: `A1. Sugar ___ ~ CONE ~ CANE`. Includes pre-v4 `^alt:` answers. Rebuses are expanded.
+   * its fills: `A1. Sugar ___ ~ CONE ~ CANE`. Rebuses are expanded.
    */
   answers: ClueAnswer[]
   /** Filled in metadata giving the location of the first char on the grid */

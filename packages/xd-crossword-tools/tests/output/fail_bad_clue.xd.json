@@ -8,6 +8,38 @@
     "description": "N/A",
     "design": "O={ background: circle }"
   },
+  "metaDisplay": {
+    "title": [
+      [
+        "text",
+        "Alpha-Bits"
+      ]
+    ],
+    "author": [
+      [
+        "text",
+        "Drew Hodson"
+      ]
+    ],
+    "copyright": [
+      [
+        "text",
+        "© 2021"
+      ]
+    ],
+    "description": [
+      [
+        "text",
+        "N/A"
+      ]
+    ],
+    "design": [
+      [
+        "text",
+        "O={ background: circle }"
+      ]
+    ]
+  },
   "tiles": [
     [
       {
@@ -899,6 +931,11 @@
       {
         "body": "Captain of the Pequod",
         "answer": "AHAB",
+        "answers": [
+          {
+            "answer": "AHAB"
+          }
+        ],
         "number": 1,
         "position": {
           "col": 0,
@@ -928,11 +965,17 @@
             "Captain of the Pequod"
           ]
         ],
+        "plain": "Captain of the Pequod",
         "direction": "across"
       },
       {
         "body": "Food for second chance chewing",
         "answer": "CUD",
+        "answers": [
+          {
+            "answer": "CUD"
+          }
+        ],
         "number": 5,
         "position": {
           "col": 6,
@@ -958,11 +1001,17 @@
             "Food for second chance chewing"
           ]
         ],
+        "plain": "Food for second chance chewing",
         "direction": "across"
       },
       {
         "body": "Font feature",
         "answer": "SERIF",
+        "answers": [
+          {
+            "answer": "SERIF"
+          }
+        ],
         "number": 8,
         "position": {
           "col": 10,
@@ -996,11 +1045,17 @@
             "Font feature"
           ]
         ],
+        "plain": "Font feature",
         "direction": "across"
       },
       {
         "body": "___ Way You Want It",
         "answer": "ANY",
+        "answers": [
+          {
+            "answer": "ANY"
+          }
+        ],
         "number": 15,
         "position": {
           "col": 6,
@@ -1026,11 +1081,17 @@
             "___ Way You Want It"
           ]
         ],
+        "plain": "___ Way You Want It",
         "direction": "across"
       },
       {
         "body": "Place often described as humble",
         "answer": "ABODE",
+        "answers": [
+          {
+            "answer": "ABODE"
+          }
+        ],
         "number": 16,
         "position": {
           "col": 10,
@@ -1064,11 +1125,17 @@
             "Place often described as humble"
           ]
         ],
+        "plain": "Place often described as humble",
         "direction": "across"
       },
       {
         "body": "Flat two dimensional surface in geometry",
         "answer": "PLANE",
+        "answers": [
+          {
+            "answer": "PLANE"
+          }
+        ],
         "number": 17,
         "position": {
           "col": 0,
@@ -1102,11 +1169,17 @@
             "Flat two dimensional surface in geometry"
           ]
         ],
+        "plain": "Flat two dimensional surface in geometry",
         "direction": "across"
       },
       {
         "body": "Grim homophone of 7D",
         "answer": "DIE",
+        "answers": [
+          {
+            "answer": "DIE"
+          }
+        ],
         "number": 18,
         "position": {
           "col": 6,
@@ -1132,11 +1205,17 @@
             "Grim homophone of 7D"
           ]
         ],
+        "plain": "Grim homophone of 7D",
         "direction": "across"
       },
       {
         "body": "Off",
         "answer": "NOTON",
+        "answers": [
+          {
+            "answer": "NOTON"
+          }
+        ],
         "number": 19,
         "position": {
           "col": 10,
@@ -1170,11 +1249,17 @@
             "Off"
           ]
         ],
+        "plain": "Off",
         "direction": "across"
       },
       {
         "body": "Heading for some lists",
         "answer": "TODO",
+        "answers": [
+          {
+            "answer": "TODO"
+          }
+        ],
         "number": 20,
         "position": {
           "col": 4,
@@ -1204,11 +1289,17 @@
             "Heading for some lists"
           ]
         ],
+        "plain": "Heading for some lists",
         "direction": "across"
       },
       {
         "body": "Kanye West is famous for his",
         "answer": "EGO",
+        "answers": [
+          {
+            "answer": "EGO"
+          }
+        ],
         "number": 22,
         "position": {
           "col": 9,
@@ -1234,11 +1325,17 @@
             "Kanye West is famous for his"
           ]
         ],
+        "plain": "Kanye West is famous for his",
         "direction": "across"
       },
       {
         "body": "Laceration",
         "answer": "GASH",
+        "answers": [
+          {
+            "answer": "GASH"
+          }
+        ],
         "number": 23,
         "position": {
           "col": 0,
@@ -1268,11 +1365,17 @@
             "Laceration"
           ]
         ],
+        "plain": "Laceration",
         "direction": "across"
       },
       {
         "body": "Alias of Twitch star Richard Tyler Blevins",
         "answer": "NINJA",
+        "answers": [
+          {
+            "answer": "NINJA"
+          }
+        ],
         "number": 27,
         "position": {
           "col": 5,
@@ -1306,11 +1409,17 @@
             "Alias of Twitch star Richard Tyler Blevins"
           ]
         ],
+        "plain": "Alias of Twitch star Richard Tyler Blevins",
         "direction": "across"
       },
       {
         "body": "Capsize",
         "answer": "KEEL",
+        "answers": [
+          {
+            "answer": "KEEL"
+          }
+        ],
         "number": 29,
         "position": {
           "col": 11,
@@ -1340,11 +1449,17 @@
             "Capsize"
           ]
         ],
+        "plain": "Capsize",
         "direction": "across"
       },
       {
         "body": "Piece of clothing or print",
         "answer": "ARTICLE",
+        "answers": [
+          {
+            "answer": "ARTICLE"
+          }
+        ],
         "number": 33,
         "position": {
           "col": 0,
@@ -1386,11 +1501,17 @@
             "Piece of clothing or print"
           ]
         ],
+        "plain": "Piece of clothing or print",
         "direction": "across"
       },
       {
         "body": "Evangelical school in Tulsa, OK",
         "answer": "ORU",
+        "answers": [
+          {
+            "answer": "ORU"
+          }
+        ],
         "number": 35,
         "position": {
           "col": 8,
@@ -1416,11 +1537,17 @@
             "Evangelical school in Tulsa, OK"
           ]
         ],
+        "plain": "Evangelical school in Tulsa, OK",
         "direction": "across"
       },
       {
         "body": "___-eyed",
         "answer": "DOE",
+        "answers": [
+          {
+            "answer": "DOE"
+          }
+        ],
         "number": 37,
         "position": {
           "col": 12,
@@ -1446,11 +1573,17 @@
             "___-eyed"
           ]
         ],
+        "plain": "___-eyed",
         "direction": "across"
       },
       {
         "body": "Annual",
         "answer": "YEARLY",
+        "answers": [
+          {
+            "answer": "YEARLY"
+          }
+        ],
         "number": 38,
         "position": {
           "col": 0,
@@ -1488,11 +1621,17 @@
             "Annual"
           ]
         ],
+        "plain": "Annual",
         "direction": "across"
       },
       {
         "body": "The stamp with the upside down airplane is a famous one",
         "answer": "MISPRINT",
+        "answers": [
+          {
+            "answer": "MISPRINT"
+          }
+        ],
         "number": 39,
         "position": {
           "col": 7,
@@ -1538,11 +1677,17 @@
             "The stamp with the upside down airplane is a famous one"
           ]
         ],
+        "plain": "The stamp with the upside down airplane is a famous one",
         "direction": "across"
       },
       {
         "body": "With 42A and Marcus, a luxury department store chain",
         "answer": "NEI",
+        "answers": [
+          {
+            "answer": "NEI"
+          }
+        ],
         "number": 41,
         "position": {
           "col": 2,
@@ -1568,11 +1713,17 @@
             "With 42A and Marcus, a luxury department store chain"
           ]
         ],
+        "plain": "With 42A and Marcus, a luxury department store chain",
         "direction": "across"
       },
       {
         "body": "41A continued",
         "answer": "MAN",
+        "answers": [
+          {
+            "answer": "MAN"
+          }
+        ],
         "number": 42,
         "position": {
           "col": 6,
@@ -1598,11 +1749,17 @@
             "41A continued"
           ]
         ],
+        "plain": "41A continued",
         "direction": "across"
       },
       {
         "body": "Lush",
         "answer": "SOT",
+        "answers": [
+          {
+            "answer": "SOT"
+          }
+        ],
         "number": 43,
         "position": {
           "col": 10,
@@ -1628,11 +1785,17 @@
             "Lush"
           ]
         ],
+        "plain": "Lush",
         "direction": "across"
       },
       {
         "body": "The Mayan one ended in 2012",
         "answer": "CALENDAR",
+        "answers": [
+          {
+            "answer": "CALENDAR"
+          }
+        ],
         "number": 44,
         "position": {
           "col": 0,
@@ -1678,11 +1841,17 @@
             "The Mayan one ended in 2012"
           ]
         ],
+        "plain": "The Mayan one ended in 2012",
         "direction": "across"
       },
       {
         "body": "What a child often does to their shoes",
         "answer": "RETIES",
+        "answers": [
+          {
+            "answer": "RETIES"
+          }
+        ],
         "number": 47,
         "position": {
           "col": 9,
@@ -1720,11 +1889,17 @@
             "What a child often does to their shoes"
           ]
         ],
+        "plain": "What a child often does to their shoes",
         "direction": "across"
       },
       {
         "body": "Vanilla ___",
         "answer": "ICE",
+        "answers": [
+          {
+            "answer": "ICE"
+          }
+        ],
         "number": 50,
         "position": {
           "col": 0,
@@ -1750,11 +1925,17 @@
             "Vanilla ___"
           ]
         ],
+        "plain": "Vanilla ___",
         "direction": "across"
       },
       {
         "body": "Maligned cigarette ingredient",
         "answer": "TAR",
+        "answers": [
+          {
+            "answer": "TAR"
+          }
+        ],
         "number": 51,
         "position": {
           "col": 4,
@@ -1780,11 +1961,17 @@
             "Maligned cigarette ingredient"
           ]
         ],
+        "plain": "Maligned cigarette ingredient",
         "direction": "across"
       },
       {
         "body": "Frequent cause for a new tire",
         "answer": "POTHOLE",
+        "answers": [
+          {
+            "answer": "POTHOLE"
+          }
+        ],
         "number": 52,
         "position": {
           "col": 8,
@@ -1826,11 +2013,17 @@
             "Frequent cause for a new tire"
           ]
         ],
+        "plain": "Frequent cause for a new tire",
         "direction": "across"
       },
       {
         "body": "Los Angeles heavy metal act",
         "answer": "OTEP",
+        "answers": [
+          {
+            "answer": "OTEP"
+          }
+        ],
         "number": 53,
         "position": {
           "col": 0,
@@ -1860,11 +2053,17 @@
             "Los Angeles heavy metal act"
           ]
         ],
+        "plain": "Los Angeles heavy metal act",
         "direction": "across"
       },
       {
         "body": "Bldgs. such as the Googleplex",
         "answer": "HQTRS",
+        "answers": [
+          {
+            "answer": "HQTRS"
+          }
+        ],
         "number": 55,
         "position": {
           "col": 5,
@@ -1898,11 +2097,17 @@
             "Bldgs. such as the Googleplex"
           ]
         ],
+        "plain": "Bldgs. such as the Googleplex",
         "direction": "across"
       },
       {
         "body": "A fit of irritation",
         "answer": "SNIT",
+        "answers": [
+          {
+            "answer": "SNIT"
+          }
+        ],
         "number": 57,
         "position": {
           "col": 11,
@@ -1932,11 +2137,17 @@
             "A fit of irritation"
           ]
         ],
+        "plain": "A fit of irritation",
         "direction": "across"
       },
       {
         "body": "Lead-in to American or day",
         "answer": "ALL",
+        "answers": [
+          {
+            "answer": "ALL"
+          }
+        ],
         "number": 58,
         "position": {
           "col": 3,
@@ -1962,11 +2173,17 @@
             "Lead-in to American or day"
           ]
         ],
+        "plain": "Lead-in to American or day",
         "direction": "across"
       },
       {
         "body": "What Pokémon do at a Pokémon Center",
         "answer": "HEAL",
+        "answers": [
+          {
+            "answer": "HEAL"
+          }
+        ],
         "number": 60,
         "position": {
           "col": 7,
@@ -1996,11 +2213,17 @@
             "What Pokémon do at a Pokémon Center"
           ]
         ],
+        "plain": "What Pokémon do at a Pokémon Center",
         "direction": "across"
       },
       {
         "body": "Nixon's vice",
         "answer": "SPIRO",
+        "answers": [
+          {
+            "answer": "SPIRO"
+          }
+        ],
         "number": 62,
         "position": {
           "col": 0,
@@ -2034,11 +2257,17 @@
             "Nixon's vice"
           ]
         ],
+        "plain": "Nixon's vice",
         "direction": "across"
       },
       {
         "body": "Nothing but ___",
         "answer": "NET",
+        "answers": [
+          {
+            "answer": "NET"
+          }
+        ],
         "number": 65,
         "position": {
           "col": 6,
@@ -2064,11 +2293,17 @@
             "Nothing but ___"
           ]
         ],
+        "plain": "Nothing but ___",
         "direction": "across"
       },
       {
         "body": "One with the world on his shoulders",
         "answer": "ATLAS",
+        "answers": [
+          {
+            "answer": "ATLAS"
+          }
+        ],
         "number": 66,
         "position": {
           "col": 10,
@@ -2102,11 +2337,17 @@
             "One with the world on his shoulders"
           ]
         ],
+        "plain": "One with the world on his shoulders",
         "direction": "across"
       },
       {
         "body": "Filled pastries",
         "answer": "TARTS",
+        "answers": [
+          {
+            "answer": "TARTS"
+          }
+        ],
         "number": 71,
         "position": {
           "col": 0,
@@ -2140,11 +2381,17 @@
             "Filled pastries"
           ]
         ],
+        "plain": "Filled pastries",
         "direction": "across"
       },
       {
         "body": "Age, in Milan",
         "answer": "ETA",
+        "answers": [
+          {
+            "answer": "ETA"
+          }
+        ],
         "number": 72,
         "position": {
           "col": 6,
@@ -2170,11 +2417,17 @@
             "Age, in Milan"
           ]
         ],
+        "plain": "Age, in Milan",
         "direction": "across"
       },
       {
         "body": "Lorna ___, novel or cookie",
         "answer": "DOONE",
+        "answers": [
+          {
+            "answer": "DOONE"
+          }
+        ],
         "number": 73,
         "position": {
           "col": 10,
@@ -2208,11 +2461,17 @@
             "Lorna ___, novel or cookie"
           ]
         ],
+        "plain": "Lorna ___, novel or cookie",
         "direction": "across"
       },
       {
         "body": "Electrocardiogram readout feature",
         "answer": "UWAVE",
+        "answers": [
+          {
+            "answer": "UWAVE"
+          }
+        ],
         "number": 74,
         "position": {
           "col": 0,
@@ -2246,11 +2505,17 @@
             "Electrocardiogram readout feature"
           ]
         ],
+        "plain": "Electrocardiogram readout feature",
         "direction": "across"
       },
       {
         "body": "Hip slang for records",
         "answer": "WAX",
+        "answers": [
+          {
+            "answer": "WAX"
+          }
+        ],
         "number": 75,
         "position": {
           "col": 6,
@@ -2276,11 +2541,17 @@
             "Hip slang for records"
           ]
         ],
+        "plain": "Hip slang for records",
         "direction": "across"
       },
       {
         "body": "Yiddish for a foolish person",
         "answer": "YUTZ",
+        "answers": [
+          {
+            "answer": "YUTZ"
+          }
+        ],
         "number": 76,
         "position": {
           "col": 11,
@@ -2310,6 +2581,7 @@
             "Yiddish for a foolish person"
           ]
         ],
+        "plain": "Yiddish for a foolish person",
         "direction": "across"
       }
     ],
@@ -2317,6 +2589,11 @@
       {
         "body": "Pc. of concert gear",
         "answer": "AMP",
+        "answers": [
+          {
+            "answer": "AMP"
+          }
+        ],
         "number": 1,
         "position": {
           "col": 0,
@@ -2342,11 +2619,17 @@
             "Pc. of concert gear"
           ]
         ],
+        "plain": "Pc. of concert gear",
         "direction": "down"
       },
       {
         "body": "AI antagonist of 2001",
         "answer": "HAL",
+        "answers": [
+          {
+            "answer": "HAL"
+          }
+        ],
         "number": 2,
         "position": {
           "col": 1,
@@ -2372,11 +2655,17 @@
             "AI antagonist of 2001"
           ]
         ],
+        "plain": "AI antagonist of 2001",
         "direction": "down"
       },
       {
         "body": "Programming pioneer Lovelace",
         "answer": "ADA",
+        "answers": [
+          {
+            "answer": "ADA"
+          }
+        ],
         "number": 3,
         "position": {
           "col": 2,
@@ -2402,11 +2691,17 @@
             "Programming pioneer Lovelace"
           ]
         ],
+        "plain": "Programming pioneer Lovelace",
         "direction": "down"
       },
       {
         "body": "Prohibit",
         "answer": "BAN",
+        "answers": [
+          {
+            "answer": "BAN"
+          }
+        ],
         "number": 4,
         "position": {
           "col": 3,
@@ -2432,11 +2727,17 @@
             "Prohibit"
           ]
         ],
+        "plain": "Prohibit",
         "direction": "down"
       },
       {
         "body": "Type of person to routinely carry a club",
         "answer": "CADDIE",
+        "answers": [
+          {
+            "answer": "CADDIE"
+          }
+        ],
         "number": 5,
         "position": {
           "col": 6,
@@ -2474,11 +2775,17 @@
             "Type of person to routinely carry a club"
           ]
         ],
+        "plain": "Type of person to routinely carry a club",
         "direction": "down"
       },
       {
         "body": "State of the ___ Address",
         "answer": "UNION",
+        "answers": [
+          {
+            "answer": "UNION"
+          }
+        ],
         "number": 6,
         "position": {
           "col": 7,
@@ -2512,11 +2819,17 @@
             "State of the ___ Address"
           ]
         ],
+        "plain": "State of the ___ Address",
         "direction": "down"
       },
       {
         "body": "Colorful homophone of 18A",
         "answer": "DYE",
+        "answers": [
+          {
+            "answer": "DYE"
+          }
+        ],
         "number": 7,
         "position": {
           "col": 8,
@@ -2542,11 +2855,17 @@
             "Colorful homophone of 18A"
           ]
         ],
+        "plain": "Colorful homophone of 18A",
         "direction": "down"
       },
       {
         "body": "Snitched",
         "answer": "SANG",
+        "answers": [
+          {
+            "answer": "SANG"
+          }
+        ],
         "number": 8,
         "position": {
           "col": 10,
@@ -2576,11 +2895,17 @@
             "Snitched"
           ]
         ],
+        "plain": "Snitched",
         "direction": "down"
       },
       {
         "body": "Kindle fare",
         "answer": "EBOOK",
+        "answers": [
+          {
+            "answer": "EBOOK"
+          }
+        ],
         "number": 9,
         "position": {
           "col": 11,
@@ -2614,11 +2939,17 @@
             "Kindle fare"
           ]
         ],
+        "plain": "Kindle fare",
         "direction": "down"
       },
       {
         "body": "Decayed matter",
         "answer": "ROT",
+        "answers": [
+          {
+            "answer": "ROT"
+          }
+        ],
         "number": 10,
         "position": {
           "col": 12,
@@ -2644,11 +2975,17 @@
             "Decayed matter"
           ]
         ],
+        "plain": "Decayed matter",
         "direction": "down"
       },
       {
         "body": "Type of response you hope to get at the altar",
         "answer": "IDO",
+        "answers": [
+          {
+            "answer": "IDO"
+          }
+        ],
         "number": 11,
         "position": {
           "col": 13,
@@ -2674,11 +3011,17 @@
             "Type of response you hope to get at the altar"
           ]
         ],
+        "plain": "Type of response you hope to get at the altar",
         "direction": "down"
       },
       {
         "body": "Peat-accumulating wetland",
         "answer": "FEN",
+        "answers": [
+          {
+            "answer": "FEN"
+          }
+        ],
         "number": 12,
         "position": {
           "col": 14,
@@ -2704,11 +3047,17 @@
             "Peat-accumulating wetland"
           ]
         ],
+        "plain": "Peat-accumulating wetland",
         "direction": "down"
       },
       {
         "body": "The ___, NY art museum",
         "answer": "MET",
+        "answers": [
+          {
+            "answer": "MET"
+          }
+        ],
         "number": 14,
         "position": {
           "col": 4,
@@ -2734,11 +3083,17 @@
             "The ___, NY art museum"
           ]
         ],
+        "plain": "The ___, NY art museum",
         "direction": "down"
       },
       {
         "body": "___Fans",
         "answer": "ONLY",
+        "answers": [
+          {
+            "answer": "ONLY"
+          }
+        ],
         "number": 21,
         "position": {
           "col": 5,
@@ -2768,11 +3123,17 @@
             "___Fans"
           ]
         ],
+        "plain": "___Fans",
         "direction": "down"
       },
       {
         "body": "Friends, Romans, countrymen, lend me your...",
         "answer": "EARS",
+        "answers": [
+          {
+            "answer": "EARS"
+          }
+        ],
         "number": 22,
         "position": {
           "col": 9,
@@ -2802,11 +3163,17 @@
             "Friends, Romans, countrymen, lend me your..."
           ]
         ],
+        "plain": "Friends, Romans, countrymen, lend me your...",
         "direction": "down"
       },
       {
         "body": "\"Friend of Dorothy\"",
         "answer": "GAY",
+        "answers": [
+          {
+            "answer": "GAY"
+          }
+        ],
         "number": 23,
         "position": {
           "col": 0,
@@ -2832,11 +3199,17 @@
             "\"Friend of Dorothy\""
           ]
         ],
+        "plain": "\"Friend of Dorothy\"",
         "direction": "down"
       },
       {
         "body": "We ___ the Champions",
         "answer": "ARE",
+        "answers": [
+          {
+            "answer": "ARE"
+          }
+        ],
         "number": 24,
         "position": {
           "col": 1,
@@ -2862,11 +3235,17 @@
             "We ___ the Champions"
           ]
         ],
+        "plain": "We ___ the Champions",
         "direction": "down"
       },
       {
         "body": "Father of Spider-Man",
         "answer": "STANLEE",
+        "answers": [
+          {
+            "answer": "STANLEE"
+          }
+        ],
         "number": 25,
         "position": {
           "col": 2,
@@ -2908,11 +3287,17 @@
             "Father of Spider-Man"
           ]
         ],
+        "plain": "Father of Spider-Man",
         "direction": "down"
       },
       {
         "body": "What a certain applicant becomes",
         "answer": "HIREE",
+        "answers": [
+          {
+            "answer": "HIREE"
+          }
+        ],
         "number": 26,
         "position": {
           "col": 3,
@@ -2946,11 +3331,17 @@
             "What a certain applicant becomes"
           ]
         ],
+        "plain": "What a certain applicant becomes",
         "direction": "down"
       },
       {
         "body": "Connect",
         "answer": "JOIN",
+        "answers": [
+          {
+            "answer": "JOIN"
+          }
+        ],
         "number": 28,
         "position": {
           "col": 8,
@@ -2980,11 +3371,17 @@
             "Connect"
           ]
         ],
+        "plain": "Connect",
         "direction": "down"
       },
       {
         "body": "Particular form of a published text",
         "answer": "EDITION",
+        "answers": [
+          {
+            "answer": "EDITION"
+          }
+        ],
         "number": 30,
         "position": {
           "col": 12,
@@ -3026,11 +3423,17 @@
             "Particular form of a published text"
           ]
         ],
+        "plain": "Particular form of a published text",
         "direction": "down"
       },
       {
         "body": "Suffix at the end of all of Eevee's evolutions",
         "answer": "EON",
+        "answers": [
+          {
+            "answer": "EON"
+          }
+        ],
         "number": 31,
         "position": {
           "col": 13,
@@ -3056,11 +3459,17 @@
             "Suffix at the end of all of Eevee's evolutions"
           ]
         ],
+        "plain": "Suffix at the end of all of Eevee's evolutions",
         "direction": "down"
       },
       {
         "body": "Live and ___ Die",
         "answer": "LET",
+        "answers": [
+          {
+            "answer": "LET"
+          }
+        ],
         "number": 32,
         "position": {
           "col": 14,
@@ -3086,11 +3495,17 @@
             "Live and ___ Die"
           ]
         ],
+        "plain": "Live and ___ Die",
         "direction": "down"
       },
       {
         "body": "Famous Eastwood whose name became a famous Gorillaz song",
         "answer": "CLINT",
+        "answers": [
+          {
+            "answer": "CLINT"
+          }
+        ],
         "number": 34,
         "position": {
           "col": 4,
@@ -3124,11 +3539,17 @@
             "Famous Eastwood whose name became a famous Gorillaz song"
           ]
         ],
+        "plain": "Famous Eastwood whose name became a famous Gorillaz song",
         "direction": "down"
       },
       {
         "body": "Unexpected result in a sporting competition",
         "answer": "UPSET",
+        "answers": [
+          {
+            "answer": "UPSET"
+          }
+        ],
         "number": 36,
         "position": {
           "col": 10,
@@ -3162,11 +3583,17 @@
             "Unexpected result in a sporting competition"
           ]
         ],
+        "plain": "Unexpected result in a sporting competition",
         "direction": "down"
       },
       {
         "body": "Disfigure",
         "answer": "MAR",
+        "answers": [
+          {
+            "answer": "MAR"
+          }
+        ],
         "number": 39,
         "position": {
           "col": 7,
@@ -3192,11 +3619,17 @@
             "Disfigure"
           ]
         ],
+        "plain": "Disfigure",
         "direction": "down"
       },
       {
         "body": "David Lee and Tim",
         "answer": "ROTHS",
+        "answers": [
+          {
+            "answer": "ROTHS"
+          }
+        ],
         "number": 40,
         "position": {
           "col": 11,
@@ -3230,11 +3663,17 @@
             "David Lee and Tim"
           ]
         ],
+        "plain": "David Lee and Tim",
         "direction": "down"
       },
       {
         "body": "Luxury watch collection by Garmin",
         "answer": "MARQ",
+        "answers": [
+          {
+            "answer": "MARQ"
+          }
+        ],
         "number": 42,
         "position": {
           "col": 6,
@@ -3264,11 +3703,17 @@
             "Luxury watch collection by Garmin"
           ]
         ],
+        "plain": "Luxury watch collection by Garmin",
         "direction": "down"
       },
       {
         "body": "Top dog in an IT org",
         "answer": "CIO",
+        "answers": [
+          {
+            "answer": "CIO"
+          }
+        ],
         "number": 44,
         "position": {
           "col": 0,
@@ -3294,11 +3739,17 @@
             "Top dog in an IT org"
           ]
         ],
+        "plain": "Top dog in an IT org",
         "direction": "down"
       },
       {
         "body": "Sister ___",
         "answer": "ACT",
+        "answers": [
+          {
+            "answer": "ACT"
+          }
+        ],
         "number": 45,
         "position": {
           "col": 1,
@@ -3324,11 +3775,17 @@
             "Sister ___"
           ]
         ],
+        "plain": "Sister ___",
         "direction": "down"
       },
       {
         "body": "Author Roald",
         "answer": "DAHL",
+        "answers": [
+          {
+            "answer": "DAHL"
+          }
+        ],
         "number": 46,
         "position": {
           "col": 5,
@@ -3358,11 +3815,17 @@
             "Author Roald"
           ]
         ],
+        "plain": "Author Roald",
         "direction": "down"
       },
       {
         "body": "Civil rights activist Parks",
         "answer": "ROSA",
+        "answers": [
+          {
+            "answer": "ROSA"
+          }
+        ],
         "number": 47,
         "position": {
           "col": 9,
@@ -3392,11 +3855,17 @@
             "Civil rights activist Parks"
           ]
         ],
+        "plain": "Civil rights activist Parks",
         "direction": "down"
       },
       {
         "body": "An additional name that could be part of 40D's clue",
         "answer": "ELI",
+        "answers": [
+          {
+            "answer": "ELI"
+          }
+        ],
         "number": 48,
         "position": {
           "col": 13,
@@ -3422,11 +3891,17 @@
             "An additional name that could be part of 40D's clue"
           ]
         ],
+        "plain": "An additional name that could be part of 40D's clue",
         "direction": "down"
       },
       {
         "body": "Director's domain",
         "answer": "SET",
+        "answers": [
+          {
+            "answer": "SET"
+          }
+        ],
         "number": 49,
         "position": {
           "col": 14,
@@ -3452,11 +3927,17 @@
             "Director's domain"
           ]
         ],
+        "plain": "Director's domain",
         "direction": "down"
       },
       {
         "body": "Type of income to go in a 401k",
         "answer": "PRETAX",
+        "answers": [
+          {
+            "answer": "PRETAX"
+          }
+        ],
         "number": 52,
         "position": {
           "col": 8,
@@ -3494,11 +3975,17 @@
             "Type of income to go in a 401k"
           ]
         ],
+        "plain": "Type of income to go in a 401k",
         "direction": "down"
       },
       {
         "body": "The Empire Strikes Back, to the Star Wars saga",
         "answer": "PARTV",
+        "answers": [
+          {
+            "answer": "PARTV"
+          }
+        ],
         "number": 54,
         "position": {
           "col": 3,
@@ -3532,11 +4019,17 @@
             "The Empire Strikes Back, to the Star Wars saga"
           ]
         ],
+        "plain": "The Empire Strikes Back, to the Star Wars saga",
         "direction": "down"
       },
       {
         "body": "Greek letter following 72A",
         "answer": "THETA",
+        "answers": [
+          {
+            "answer": "THETA"
+          }
+        ],
         "number": 56,
         "position": {
           "col": 7,
@@ -3570,11 +4063,17 @@
             "Greek letter following 72A"
           ]
         ],
+        "plain": "Greek letter following 72A",
         "direction": "down"
       },
       {
         "body": "Misplace",
         "answer": "LOSE",
+        "answers": [
+          {
+            "answer": "LOSE"
+          }
+        ],
         "number": 59,
         "position": {
           "col": 4,
@@ -3604,11 +4103,17 @@
             "Misplace"
           ]
         ],
+        "plain": "Misplace",
         "direction": "down"
       },
       {
         "body": "Wee boy",
         "answer": "LAD",
+        "answers": [
+          {
+            "answer": "LAD"
+          }
+        ],
         "number": 61,
         "position": {
           "col": 10,
@@ -3634,11 +4139,17 @@
             "Wee boy"
           ]
         ],
+        "plain": "Wee boy",
         "direction": "down"
       },
       {
         "body": "Dad to Tommy Pickles",
         "answer": "STU",
+        "answers": [
+          {
+            "answer": "STU"
+          }
+        ],
         "number": 62,
         "position": {
           "col": 0,
@@ -3664,11 +4175,17 @@
             "Dad to Tommy Pickles"
           ]
         ],
+        "plain": "Dad to Tommy Pickles",
         "direction": "down"
       },
       {
         "body": "The only Patrol I trust",
         "answer": "PAW",
+        "answers": [
+          {
+            "answer": "PAW"
+          }
+        ],
         "number": 63,
         "position": {
           "col": 1,
@@ -3694,11 +4211,17 @@
             "The only Patrol I trust"
           ]
         ],
+        "plain": "The only Patrol I trust",
         "direction": "down"
       },
       {
         "body": "Smart savings plan, briefly",
         "answer": "IRA",
+        "answers": [
+          {
+            "answer": "IRA"
+          }
+        ],
         "number": 64,
         "position": {
           "col": 2,
@@ -3724,11 +4247,17 @@
             "Smart savings plan, briefly"
           ]
         ],
+        "plain": "Smart savings plan, briefly",
         "direction": "down"
       },
       {
         "body": "Fresh",
         "answer": "NEW",
+        "answers": [
+          {
+            "answer": "NEW"
+          }
+        ],
         "number": 65,
         "position": {
           "col": 6,
@@ -3754,11 +4283,17 @@
             "Fresh"
           ]
         ],
+        "plain": "Fresh",
         "direction": "down"
       },
       {
         "body": "Breeds such as Chihuahua or Pomeranian",
         "answer": "TOY",
+        "answers": [
+          {
+            "answer": "TOY"
+          }
+        ],
         "number": 67,
         "position": {
           "col": 11,
@@ -3784,11 +4319,17 @@
             "Breeds such as Chihuahua or Pomeranian"
           ]
         ],
+        "plain": "Breeds such as Chihuahua or Pomeranian",
         "direction": "down"
       },
       {
         "body": "Bega behind \"Mambo No. 5\"",
         "answer": "LOU",
+        "answers": [
+          {
+            "answer": "LOU"
+          }
+        ],
         "number": 68,
         "position": {
           "col": 12,
@@ -3814,11 +4355,17 @@
             "Bega behind \"Mambo No. 5\""
           ]
         ],
+        "plain": "Bega behind \"Mambo No. 5\"",
         "direction": "down"
       },
       {
         "body": "Aardvark breakfast",
         "answer": "ANT",
+        "answers": [
+          {
+            "answer": "ANT"
+          }
+        ],
         "number": 69,
         "position": {
           "col": 13,
@@ -3844,11 +4391,17 @@
             "Aardvark breakfast"
           ]
         ],
+        "plain": "Aardvark breakfast",
         "direction": "down"
       },
       {
         "body": "Sonic ___",
         "answer": "SEZ",
+        "answers": [
+          {
+            "answer": "SEZ"
+          }
+        ],
         "number": 70,
         "position": {
           "col": 14,
@@ -3874,25 +4427,27 @@
             "Sonic ___"
           ]
         ],
+        "plain": "Sonic ___",
         "direction": "down"
       }
     ]
   },
   "rebuses": {},
   "notes": "",
+  "unknownSections": {},
   "report": {
     "success": false,
     "errors": [
       {
         "type": "clue_msg",
         "clueType": "A",
-        "clueNum": 31,
+        "clueNum": 13,
         "position": {
           "col": 0,
           "index": 31
         },
         "length": -1,
-        "message": "This clue does not match either the 'A[num]. [clue] ~ [answer]' for a clue, or 'A[num] ^[hint]: [clue]' for a clue's metadata."
+        "message": "This clue does not match either the 'A13. [clue] ~ [answer]' for a clue, or 'A13 ^[key]: [value]' for a clue's metadata."
       }
     ],
     "warnings": []

@@ -24,8 +24,7 @@ export function puzToXD(buffer: ArrayBuffer) {
   // We need to re-create the clues section, which isn't fully fleshed
   // out in a easy way inside the puz file
   const tileGrid = puzStringGridToTiles(file.grid)
-  // The latter two args are only for barred grid support, which .puz files do not support
-  const boardClues = getCluePositionsForBoard(tileGrid, undefined, undefined)
+  const boardClues = getCluePositionsForBoard(tileGrid)
   const getClues = (clues: Array<null | string>, direction: CursorDirection) =>
     clues
       .map((c, i) => {

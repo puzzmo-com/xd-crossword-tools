@@ -1,0 +1,27 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "# S E E S",
+      "T O R A H",
+      "C L O V E",
+      "H I D E S",
+      "O D E S #"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["SEES",null]],"display":[["img","https://cdn.puzzmo.com/game-assets/california-bear.svg","california bear",false,"50px"],["text"," ____ Candies (South San Francisco-based chocolate brand)"]]},
+      {"direction":"across","number":5,"answers":[["TORAH",null]],"display":[["text","Scroll in a synagogue"]]},
+      {"direction":"across","number":6,"answers":[["CLOVE",null]],"display":[["text","Five-spice powder spice"]]},
+      {"direction":"across","number":7,"answers":[["HIDES",null]],"display":[["text","Takes cover"]]},
+      {"direction":"across","number":8,"answers":[["ODES",null]],"display":[["img","https://cdn.puzzmo.com/game-assets/california-bear.svg","california bear",false,"50px"],["text"," \"___ to Altadena\" (collection including poems by Khadija Anderson and Teresa Mei Chuc)"]]},
+      {"direction":"down","number":1,"answers":[["SOLID",null]],"display":[["text","Not flimsy"]]},
+      {"direction":"down","number":2,"answers":[["ERODE",null]],"display":[["text","Go away gradually"]]},
+      {"direction":"down","number":3,"answers":[["EAVES",null]],"display":[["text","Roof overhangs"]]},
+      {"direction":"down","number":4,"answers":[["SHES",null]],"display":[["text","\"I'll have what ___ having\""]]},
+      {"direction":"down","number":5,"answers":[["TCHO",null]],"display":[["img","https://cdn.puzzmo.com/game-assets/california-bear.svg","california bear",false,"50px"],["text"," Chocolate maker with headquarters in Berkeley"]]}
+    ],
+    "notes": ""
+  }
+}

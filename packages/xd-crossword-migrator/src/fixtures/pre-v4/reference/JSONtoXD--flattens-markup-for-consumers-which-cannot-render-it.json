@@ -1,0 +1,22 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "B U L B",
+      "O K # O",
+      "L # # O",
+      "D E S K"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["BULB",null]],"display":[["text","Gardener's "],["bold","concern",[["text","concern"]]],["text","."]],"hint":[["text","Turned on with a "],["italics","flick",[["text","flick"]]],["text","."]]},
+      {"direction":"across","number":4,"answers":[["OK",null]],"display":[["text","A "],["link","reasonable","https://example.com",[["text","reasonable"]]],["text"," statement."]]},
+      {"direction":"across","number":5,"answers":[["DESK",null]],"display":[["text","The "],["img","https://example.com/desk.png","an office desk",false],["text"," centerpiece."]]},
+      {"direction":"down","number":1,"answers":[["BOLD",null]],"display":[["text","To "],["underscore","ly",[["text","ly"]]],["text"," go."]]},
+      {"direction":"down","number":2,"answers":[["UK",null]],"display":[["text","Bigger than "],["img","https://example.com/flag.png","",false],["text","."]]},
+      {"direction":"down","number":3,"answers":[["BOOK",null]],"display":[["text","A "],["color","conscious","#0f0","#0a0",[["text","conscious"]]],["text"," tree."]]}
+    ],
+    "notes": ""
+  }
+}

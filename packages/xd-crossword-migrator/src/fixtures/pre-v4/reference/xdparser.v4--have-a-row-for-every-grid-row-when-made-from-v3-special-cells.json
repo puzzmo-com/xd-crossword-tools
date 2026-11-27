@@ -1,0 +1,17 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "A B",
+      "C D",
+      "E F"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["AB",null]],"display":[["text","Hi"]]}
+    ],
+    "design": {"2,0":{"background":"circle"}},
+    "notes": ""
+  }
+}

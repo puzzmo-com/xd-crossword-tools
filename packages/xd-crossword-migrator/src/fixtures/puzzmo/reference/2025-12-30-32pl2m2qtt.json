@@ -1,0 +1,26 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "D O G M A N",
+      "A R R I V E",
+      "S C E N E S",
+      "H A Y E S #"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["DOGMAN",[2]]],"display":[["text","Children's comic book character whose sidekick is Cat Kid"]]},
+      {"direction":"across","number":7,"answers":[["ARRIVE",null]],"display":[["text","Make your entrance"]]},
+      {"direction":"across","number":8,"answers":[["SCENES",null]],"display":[["text","Behind the ___"]]},
+      {"direction":"across","number":9,"answers":[["HAYES",null]],"display":[["text","\"Will & Grace\" actor Sean"]]},
+      {"direction":"down","number":1,"answers":[["DASH",null]],"display":[["text","Punctuation mark discussed in the Marcus Olang' "],["link"," blog post","https://marcusolang.substack.com/p/im-kenyan-i-dont-write-like-chatgpt",[["text"," blog post"]]],["text"," \"I'm Kenyan. I Don't Write Like ChatGPT. ChatGPT Writes Like Me.\""]]},
+      {"direction":"down","number":2,"answers":[["ORCA",null]],"display":[["text","Dolphin with the same color scheme as a crossword"]]},
+      {"direction":"down","number":3,"answers":[["GREY",null]],"display":[["text","Overcast sky colour"]]},
+      {"direction":"down","number":4,"answers":[["MINE",null]],"display":[["text","What's ___ is ours, and what's yours is yours"]]},
+      {"direction":"down","number":5,"answers":[["AVES",null]],"display":[["text","Wide streets: Abbr."]]},
+      {"direction":"down","number":6,"answers":[["NES",[0,1]]],"display":[["text","_intendo _ntertainment _ystem"]]}
+    ],
+    "notes": ""
+  }
+}

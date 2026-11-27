@@ -1,5 +1,6 @@
-import { readdirSync, readFileSync } from "fs"
-import { join } from "path"
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs"
+import { createRequire } from "module"
+import { dirname, join } from "path"
 import { describe, it, expect } from "vitest"
 // The parser is only a dev dependency, it checks that the migrated files read as v4
 import { xdToJSON, type CrosswordJSON, type Tile, type XDownComponent } from "xd-crossword-tools-parser"
@@ -62,13 +63,16 @@ const keyedAnswers = (json: CrosswordJSON) =>
 
 /** The parts of a parse which describe the puzzle, rather than how the file was written */
 const puzzle = (json: CrosswordJSON, reread: string[], keyed: Set<string>) => ({
+  // A row of tiles as one string: a letter, '?' unfilled, '#' a block, '_' a spacer, [WORD] a rebus, {A|B} a Schrödinger square
   tiles: json.tiles.map((row) =>
-    row.map((t) => {
-      if (t.type === "schrodinger") return { type: t.type, validOptions: [...(t.validOptions || [])].sort() }
-      if (t.type === "rebus") return { type: t.type, word: t.word }
-      if (t.type === "letter") return { type: t.type, letter: t.letter, unfilled: t.unfilled }
-      return t
-    }),
+    row
+      .map((t) => {
+        if (t.type === "schrodinger") return `{${[...(t.validOptions || [])].sort().join("|")}}`
+        if (t.type === "rebus") return `[${t.word}]`
+        if (t.type === "letter") return t.unfilled ? "?" : t.letter
+        return t.spacer ? "_" : "#"
+      })
+      .join(" "),
   ),
   clues: [...json.clues.across, ...json.clues.down].map((c) => {
     const hint = c.metadata?.["hint:display"]
@@ -95,27 +99,125 @@ const puzzle = (json: CrosswordJSON, reread: string[], keyed: Set<string>) => ({
   notes: json.notes,
 })
 
+/**
+ * Test inputs whose bars don't match their clues: the pre-v4 parser found a barred grid's entries by their answers,
+ * v4 numbers the grid, and these grids don't have the entries their clues are for. They still have to migrate cleanly
+ */
+const inconsistentBars = [
+  "crossCompilerXMLToXD--emits-a-design-section-with-bar-left-and-bar-top-styles.xd",
+  "xdparser.barred--supports-comma-separated-selectors-in-the-design-section.xd",
+]
+
+type Shape = ReturnType<typeof puzzle>
+
+/**
+ * Pre-v4 Puzzmo xd read a slot's second clue as its hint. In v4 a slot can have a clue per fill, so the migrator only
+ * makes a hint of a second clue which repeats the answer, these keep their own answers and stay clues
+ */
+const secondClues: Record<string, string[]> = {
+  "xdparser--handles-automatically-converting-double-clues-to-hint-syntax-when-not-.xd": ["across1", "across5"],
+}
+
+/** Compares only the first clue for those slots, without a hint */
+const withoutSecondClues = (shape: Shape, refs: string[] = []) => ({
+  ...shape,
+  clues: shape.clues
+    .filter((c, i) => !refs.includes(`${c.direction}${c.number}`) || shape.clues.findIndex((o) => o.direction === c.direction && o.number === c.number) === i)
+    .map((c) => (refs.includes(`${c.direction}${c.number}`) ? { ...c, hint: undefined } : c)),
+})
+
+/** The bars on a v4 parse's tiles, from its Bars section */
+const barsOnTiles = (json: CrosswordJSON) =>
+  Object.fromEntries(
+    json.tiles.flatMap((row, y) =>
+      row.flatMap((t, x) => (t.type !== "blank" && t.design?.length ? [[`${y},${x}`, [...t.design].sort().join(" ")]] : [])),
+    ),
+  )
+
+/**
+ * Pre-v4 barred grids had their bars in the design (`bar-left` and `bar-top`), v4 ones in a Bars section. This
+ * compares bars on their own, and the design without them. Bars on a black square don't do anything, so they go.
+ */
+const withBarsApart = (shape: Shape, bars?: Record<string, string>) => {
+  const design: Record<string, Record<string, string>> = {}
+  const designBars: Record<string, string> = {}
+  for (const [cell, style] of Object.entries((shape.design || {}) as Record<string, Record<string, string>>)) {
+    const { "bar-left": left, "bar-top": top, ...rest } = style
+    const [y, x] = cell.split(",").map(Number)
+    const blank = ["#", "_"].includes(shape.tiles[y]?.split(" ")[x])
+    const flags = [left === "true" && "bar-left", top === "true" && "bar-top"].filter(Boolean).sort().join(" ")
+    if (flags && !blank) designBars[cell] = flags
+    if (Object.keys(rest).length) design[cell] = rest
+  }
+  return { ...shape, design: Object.keys(design).length ? design : undefined, bars: bars ?? designBars }
+}
+
+/**
+ * What each original file described, as read by the parser at b179f90, the last which read pre-v4 syntax. These are
+ * in `reference/` next to each fixture because the parser now only reads v4. A new fixture gets one from that parser,
+ * which scripts/build-pre-v4-parser.sh builds, by running this with WRITE_REFERENCES set to where it was built.
+ */
+type Reference = {
+  /** The errors the original had, migrating can fix those but not add any */
+  errors: string[]
+  /** Clues the migrator reads the pre-v4 way, see rereadClues */
+  reread: string[]
+  /** Answers which spelled a rebus with its key, see keyedAnswers */
+  keyed: string[]
+  /** The puzzle, when the original could be read without errors */
+  puzzle: ReturnType<typeof puzzle> | null
+}
+
+/** Reads the original with the pre-v4 parser, and writes what it describes */
+function writeReference(path: string, original: string, after: CrosswordJSON) {
+  const parserPath = process.env.WRITE_REFERENCES
+  if (!parserPath) throw new Error(`${path} is missing, make it with scripts/build-pre-v4-parser.sh and WRITE_REFERENCES=<the parser it built>`)
+
+  const legacy: typeof import("xd-crossword-tools-parser") = createRequire(import.meta.url)(parserPath)
+  const before = legacy.xdToJSON(original)
+  const reread = rereadClues(before, after)
+  const keyed = keyedAnswers(before)
+  const errors = before.report.errors.map((e) => e.message)
+  const reference: Reference = { errors, reread, keyed: [...keyed], puzzle: errors.length ? null : puzzle(before, reread, keyed) }
+  mkdirSync(dirname(path), { recursive: true })
+  writeFileSync(path, formatReference(reference))
+}
+
+/** JSON with a line per grid row and per clue, so a reference stays small and diffs well */
+const formatReference = (reference: Reference) => {
+  const list = (items: unknown[], indent: string) => (items.length ? `[\n${items.map((i) => indent + "  " + JSON.stringify(i)).join(",\n")}\n${indent}]` : "[]")
+  const { puzzle: p, ...rest } = reference
+  const head = Object.entries(rest).map(([k, v]) => `  ${JSON.stringify(k)}: ${JSON.stringify(v)}`)
+  const body = p
+    ? `{\n    "tiles": ${list(p.tiles, "    ")},\n    "clues": ${list(p.clues, "    ")},\n${p.design ? `    "design": ${JSON.stringify(p.design)},\n` : ""}    "notes": ${JSON.stringify(p.notes)}\n  }`
+    : "null"
+  return `{\n${head.join(",\n")},\n  "puzzle": ${body}\n}\n`
+}
+
 describe("migrating fixtures", () => {
   it.each(fixtures)("%s", async ({ dir, name }) => {
     const original = readFileSync(join(dir, name), "utf8")
     const migrated = migrateXDToV4(original)
     await expect(migrated).toMatchFileSnapshot(join(dir, "migrated", name))
 
-    const before = xdToJSON(original)
     const after = xdToJSON(migrated)
+    const referencePath = join(dir, "reference", name.replace(/\.xd$/, ".json"))
+    if (!existsSync(referencePath)) writeReference(referencePath, original, after)
+    const reference: Reference = JSON.parse(readFileSync(referencePath, "utf8"))
 
     // It reads as v4, migrating can fix an error (like a comment the parser now reads as a line) but never adds one
     expect(after.report.warnings.filter((w) => w.type === "deprecation").map((w) => w.message)).toEqual([])
-    const errorsBefore = before.report.errors.map((e) => e.message)
-    expect(after.report.errors.map((e) => e.message).filter((e) => !errorsBefore.includes(e))).toEqual([])
+    if (!inconsistentBars.includes(name)) {
+      expect(after.report.errors.map((e) => e.message).filter((e) => !reference.errors.includes(e))).toEqual([])
+    }
     expect(after.tiles.flat().filter((t) => t.type === "schrodinger" && !t.symbol)).toEqual([])
     for (const clue of [...after.clues.across, ...after.clues.down]) expect(Object.keys(clue.metadata || {}).filter((k) => /^alt\d*$/.test(k))).toEqual([])
 
-    // It's the same puzzle, when the parser can still read the original
-    if (!errorsBefore.length) {
-      const reread = rereadClues(before, after)
-      const keyed = keyedAnswers(before)
-      expect(puzzle(after, reread, keyed)).toEqual(puzzle(before, reread, keyed))
+    // It's the same puzzle as the original was, when it could be read
+    if (reference.puzzle && !inconsistentBars.includes(name)) {
+      const now = JSON.parse(JSON.stringify(puzzle(after, reference.reread, new Set(reference.keyed))))
+      const refs = secondClues[name]
+      expect(withoutSecondClues(withBarsApart(now, barsOnTiles(after)), refs)).toEqual(withoutSecondClues(withBarsApart(reference.puzzle), refs))
     }
 
     // And migrating it again changes nothing

@@ -32,7 +32,7 @@ D4. Former intimates ~ EXES
 
 O { background: circle }
 P { background-image: url('data:image/png;base64,iVBORw0KGgo='); background-size: 2 2 }
-B { bar-left: true; background: shaded }
+B { border-left: true; background: shaded }
 
 #O...
 #.P..

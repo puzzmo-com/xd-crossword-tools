@@ -1,0 +1,27 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "U M P # #",
+      "N O O B #",
+      "I S L A M",
+      "[🌽] H O L E",
+      "# # S M H"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["UMP",null]],"display":[["text","Masked figure at Fenway Park, for short"]]},
+      {"direction":"across","number":4,"answers":[["NOOB",null]],"display":[["text","Beginning gamer"]]},
+      {"direction":"across","number":6,"answers":[["ISLAM",null]],"display":[["text","Religion of the Quran"]]},
+      {"direction":"across","number":8,"answers":[["+HOLE",null]],"display":[["text","Lawn game played with beanbags"]]},
+      {"direction":"across","number":9,"answers":[["SMH",null]],"display":[["text","Texter's equivalent of a facepalm"]]},
+      {"direction":"down","number":1,"answers":[["UNI+",null]],"display":[["text","Mythical creature with a horn"]]},
+      {"direction":"down","number":2,"answers":[["MOSH",null]],"display":[["text","Go really, really hard at a concert"]]},
+      {"direction":"down","number":3,"answers":[["POLOS",null]],"display":[["text","Shirts with poppable collars"]]},
+      {"direction":"down","number":5,"answers":[["BALM",null]],"display":[["text","Soothing salve"]]},
+      {"direction":"down","number":7,"answers":[["MEH",null]],"display":[["text","So-so"]]}
+    ],
+    "notes": ""
+  }
+}

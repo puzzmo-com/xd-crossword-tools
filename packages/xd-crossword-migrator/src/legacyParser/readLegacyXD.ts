@@ -1,5 +1,5 @@
 import { addHeadersToImplicitSections, hasImplicitSections } from "./implicitSections"
-import { type DesignStyles, designHasBars, parseDesignRules } from "./design"
+import { type DesignStyles, parseDesignRules } from "./design"
 import { parseRebusField, type RebusRule } from "./rebus"
 
 /** The grid character for an unfilled cell, which is also how one is written in an answer */
@@ -29,6 +29,10 @@ export interface LegacyPuzzle {
   slots: { across: Map<number, Cell[]>; down: Map<number, Cell[]> }
   /** The design section, with any v3 'Special' cells added to it */
   design?: { styles: DesignStyles; positions: string[][] }
+  /** The bars on each cell's left and top edges: from a v4 '## Bars' section, or pre-v4 'bar-left' and 'bar-top' in the design */
+  bars: (y: number, x: number) => { left: boolean; top: boolean }
+  /** Whether the bars came from a v4 '## Bars' section */
+  hasBarsSection: boolean
 }
 
 /**
@@ -66,8 +70,22 @@ export function readLegacyXD(xd: string): LegacyPuzzle {
     }),
   )
 
-  const barred = meta.form === "barred" || designHasBars(design)
-  return { meta, rebus, grid, tiles, slots: numberSlots(tiles, barred ? design : undefined), design }
+  // A v4 file has a Bars section, a pre-v4 Puzzmo one put its bars in the design
+  const barsSection = sections.find((s) => s.type === "bars")
+  const barRows = (barsSection?.lines || []).map((l) => l.trim()).filter(Boolean).map((l) => [...l])
+  const designBar = (y: number, x: number, side: string) => {
+    const char = design?.positions[y]?.[x]
+    return !!char && design!.styles[char]?.[side] === "true"
+  }
+  const bars = (y: number, x: number) => {
+    if (barsSection) {
+      const char = barRows[y]?.[x]
+      return { left: char === "|" || char === "+", top: char === "-" || char === "+" }
+    }
+    return { left: designBar(y, x, "bar-left"), top: designBar(y, x, "bar-top") }
+  }
+
+  return { meta, rebus, grid, tiles, slots: numberSlots(tiles, bars), design, bars, hasBarsSection: !!barsSection }
 }
 
 /** Splits an xd file into its sections, keeping every line as written */
@@ -77,7 +95,7 @@ export function splitIntoSections(xd: string): Section[] {
   for (const line of xd.split("\n")) {
     if (line.startsWith("## ")) {
       const title = line.slice(3).trim().toLowerCase()
-      const type = ["metadata", "grid", "clues", "design", "notes"].find((t) => title.startsWith(t)) || (title === "meta" ? "metadata" : title)
+      const type = ["metadata", "grid", "clues", "design", "notes", "bars"].find((t) => title.startsWith(t)) || (title === "meta" ? "metadata" : title)
       sections.push({ type, header: line, lines: [] })
       continue
     }
@@ -170,12 +188,9 @@ function applyV3SpecialCells(meta: Record<string, string>, grid: string[][], des
 }
 
 /** Standard crossword numbering, a barred grid also ends words at its bars */
-function numberSlots(tiles: LegacyTile[][], barDesign: LegacyPuzzle["design"]): LegacyPuzzle["slots"] {
+function numberSlots(tiles: LegacyTile[][], bars: LegacyPuzzle["bars"]): LegacyPuzzle["slots"] {
   const open = (y: number, x: number) => !!tiles[y]?.[x] && tiles[y][x].type !== "blank"
-  const bar = (y: number, x: number, side: "bar-left" | "bar-top") => {
-    const char = barDesign?.positions[y]?.[x]
-    return !!char && barDesign!.styles[char]?.[side] === "true"
-  }
+  const bar = (y: number, x: number, side: "bar-left" | "bar-top") => (side === "bar-left" ? bars(y, x).left : bars(y, x).top)
 
   const slots: LegacyPuzzle["slots"] = { across: new Map(), down: new Map() }
   let number = 0

@@ -1,0 +1,6 @@
+{
+  "errors": ["Commas are not allowed inside style rules, use semicolons (;) to separate properties: 'bar-top: true, bar-left: true'"],
+  "reread": [],
+  "keyed": [],
+  "puzzle": null
+}

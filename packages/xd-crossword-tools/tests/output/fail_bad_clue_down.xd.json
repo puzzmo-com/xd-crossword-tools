@@ -5,6 +5,7 @@
     "date": "Not set",
     "editor": "Not set"
   },
+  "metaDisplay": {},
   "tiles": [],
   "clues": {
     "across": [],
@@ -12,6 +13,7 @@
   },
   "rebuses": {},
   "notes": "",
+  "unknownSections": {},
   "report": {
     "success": false,
     "errors": [
@@ -22,7 +24,7 @@
           "index": 115
         },
         "length": -1,
-        "message": "The style tag is missing from this design section"
+        "message": "This design section has no style definitions, it should start with rules like 'O { background: circle }'"
       }
     ],
     "warnings": []

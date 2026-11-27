@@ -1,0 +1,33 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "# # # # C O O",
+      "# # # S L A W",
+      "# # # T O T E",
+      "# # {C|D} {A|O} {G|T} # #",
+      "T E A M # # #",
+      "W A R P # # #",
+      "O R E # # # #"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["COO",null]],"display":[["text","Communicate with a pigeon"]]},
+      {"direction":"across","number":4,"answers":[["SLAW",null]],"display":[["text","Shredded cabbage side dish"]]},
+      {"direction":"across","number":5,"answers":[["TOTE",null]],"display":[["text","Merch item useful for holding other merch items"]]},
+      {"direction":"across","number":6,"answers":[["CAT",null],["DOG",null]],"display":[["text","___ person (identifier based on your pet preference)"]]},
+      {"direction":"across","number":7,"answers":[["TEAM",null]],"display":[["text","Group circled up in a pre-game huddle"]]},
+      {"direction":"across","number":9,"answers":[["WARP",null]],"display":[["text","Get bent, like a wooden tennis racket"]]},
+      {"direction":"across","number":10,"answers":[["ORE",null]],"display":[["text","It's mined for the taking?"]]},
+      {"direction":"down","number":1,"answers":[["CLOG",null],["CLOT",null]],"display":[["text","Block up"]]},
+      {"direction":"down","number":2,"answers":[["OAT",null]],"display":[["text","Food bit that's sometimes steel-cut"]]},
+      {"direction":"down","number":3,"answers":[["OWE",null]],"display":[["text","Be indebted to"]]},
+      {"direction":"down","number":4,"answers":[["STAMP",null],["STOMP",null]],"display":[["text","Really put a foot down"]]},
+      {"direction":"down","number":6,"answers":[["CARE",null],["DARE",null]],"display":[["text","Deem it worthwhile (to)"]]},
+      {"direction":"down","number":7,"answers":[["TWO",null]],"display":[["text","Number of possible answers for 6-Across"]]},
+      {"direction":"down","number":8,"answers":[["EAR",null]],"display":[["text","Spot for some dangly jewelry"]]}
+    ],
+    "notes": ""
+  }
+}

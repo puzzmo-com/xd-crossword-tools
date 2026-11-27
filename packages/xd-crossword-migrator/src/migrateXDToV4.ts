@@ -1,6 +1,6 @@
 import { addHeadersToImplicitSections, hasImplicitSections } from "./legacyParser/implicitSections"
 import { parseXDown, serializeXDown } from "./legacyParser/xdown"
-import { parseDesignRules } from "./legacyParser/design"
+import { type DesignStyles, parseDesignRules, serializeDesignRules } from "./legacyParser/design"
 import { parseRebusField, serializeRebusField, type RebusRule } from "./legacyParser/rebus"
 import {
   type Cell,
@@ -69,6 +69,7 @@ function formatKey(key: string, keyCase: "lowercase" | "titlecase") {
  * - A duplicated clue line (used as a hint) becomes `^Hint:` metadata
  * - The v3 `Special: circle|shaded` field and lowercase grid cells become a `## Design` section
  * - `## Design` sections lose their `<style>` wrapper, and use '.' for an unstyled cell and '#' for a black square
+ * - Barred grids: the design's `bar-left` and `bar-top` move to a `## Bars` section, and `form: barred` goes
  * - The `Rebus` field: repeated keys (`1=O 1=A`) become '|' options (`1=O|A`), rules joined with ',' are split
  *   up, values v4 can't read are escaped, and a `?` key moves to an unused character
  * - Pre-v4 Puzzmo `*` squares get a rebus key whose options come from the answers through them, and `^alt:`
@@ -118,6 +119,8 @@ export function migrateXDToV4(xd: string, options: MigrateOptions = {}): string 
 
       const key = match[2].trim().toLowerCase()
       if (key === "special" && special) return []
+      // v4 barred grids have a Bars section, which this adds when the design had the bars
+      if (key === "form" && match[3].trim().toLowerCase() === "barred") return []
       const value = match[3].trimStart()
       // The key in the chosen case, and a value only gets re-written when it changes
       const keyText = match[2].replace(match[2].trim(), formatKey(match[2].trim(), keyCase))
@@ -153,7 +156,8 @@ export function migrateXDToV4(xd: string, options: MigrateOptions = {}): string 
 
   // Clues
   if (clueSection) {
-    const seen = new Set<string>()
+    // The answers of each slot's first clue, including '^alt' ones
+    const firstAnswers = new Map<string, string[]>()
     const altsMoved = new Set(stars.altLinesMoved)
 
     clueSection.lines = clueSection.lines.flatMap((line, i) => {
@@ -170,9 +174,12 @@ export function migrateXDToV4(xd: string, options: MigrateOptions = {}): string 
 
       const body = migrateXDown(entry.body, true)
 
-      // A second clue for the same slot was the hint
-      if (seen.has(entry.ref)) return [`${entry.indent}${entry.ref} ^${formatKey("hint", keyCase)}: ${body}`]
-      seen.add(entry.ref)
+      // Pre-v4 Puzzmo files used a second clue for a slot, which repeated its answer, as the hint. In v4 a slot can
+      // have a clue per fill, so a second clue with answers of its own stays a clue
+      const answersOf = (answers: string[]) => answers.map((a) => removeSplits(firstWord(a), splitChar))
+      const first = firstAnswers.get(entry.ref)
+      if (first && answersOf(entry.answers).every((a) => first.includes(a))) return [`${entry.indent}${entry.ref} ^${formatKey("hint", keyCase)}: ${body}`]
+      if (!first) firstAnswers.set(entry.ref, answersOf([...entry.answers, ...(stars.altsForRef.get(entry.ref) || [])]))
 
       const tiles = slotTiles(puzzle, entry.ref)
       const spell = (word: string) => spellOutRebusKeys(word, tiles, puzzle, splitChar)
@@ -204,6 +211,10 @@ export function migrateXDToV4(xd: string, options: MigrateOptions = {}): string 
     }
     addSpecialCellsToDesign(design, special, puzzle)
   }
+
+  // Bars: pre-v4 Puzzmo barred grids kept them in the design
+  if (!puzzle.hasBarsSection) addBarsSection(sections, puzzle)
+  if (design && removeBarsFromDesign(design, puzzle)) sections.splice(sections.indexOf(design), 1)
 
   const migrated = joinSections(sections)
   return crlf ? migrated.replace(/\n/g, "\r\n") : migrated
@@ -628,6 +639,69 @@ function migrateDesignSection(design: Section, puzzle: LegacyPuzzle) {
 
   // Tidy up blank lines left behind by a removed <style> line at the very top
   while (design.lines.length > 1 && !design.lines[0].trim() && !design.lines[1].trim()) design.lines.shift()
+}
+
+// Bars
+
+/**
+ * Pre-v4 Puzzmo barred grids put their bars in the design, as `bar-left` and `bar-top`. In v4 the bars which end
+ * entries go in a `## Bars` section after the grid: '|' on a cell's left edge, '-' on its top edge, '+' on both.
+ */
+function addBarsSection(sections: Section[], puzzle: LegacyPuzzle) {
+  const rows = puzzle.tiles.map((row, y) =>
+    row
+      .map((tile, x) => {
+        if (tile.type === "blank") return "#"
+        const { left, top } = puzzle.bars(y, x)
+        return left && top ? "+" : left ? "|" : top ? "-" : "."
+      })
+      .join(""),
+  )
+  if (!rows.some((row) => /[|+-]/.test(row))) return
+
+  const grid = sections.findIndex((s) => s.type === "grid")
+  sections.splice(grid + 1, 0, { type: "bars", header: "## Bars", lines: ["", ...rows, ""] })
+}
+
+/**
+ * Takes `bar-left` and `bar-top` out of the design's rules, as the bars are in the Bars section now. A cell whose
+ * rule only had bars is unstyled. Returns whether nothing is left, so the design section can go.
+ */
+function removeBarsFromDesign(design: Section, puzzle: LegacyPuzzle) {
+  // The rules come first, the grid starts at the first line which isn't part of a rule
+  let insideRule = false
+  let gridStart = design.lines.length
+  for (let i = 0; i < design.lines.length; i++) {
+    const trimmed = design.lines[i].trim()
+    if (!insideRule && trimmed && !trimmed.includes("{")) {
+      gridStart = i
+      break
+    }
+    for (const char of trimmed) {
+      if (char === "{") insideRule = true
+      if (char === "}") insideRule = false
+    }
+  }
+
+  const { styles } = parseDesignRules(design.lines.slice(0, gridStart).join("\n"))
+  if (!Object.values(styles).some((rule) => "bar-left" in rule || "bar-top" in rule)) return false
+
+  const kept: DesignStyles = {}
+  for (const [char, rule] of Object.entries(styles)) {
+    const { "bar-left": _left, "bar-top": _top, ...rest } = rule
+    if (Object.keys(rest).length) kept[char] = rest
+  }
+  if (!Object.keys(kept).length) return true
+
+  let row = 0
+  const grid = design.lines.slice(gridStart).map((line) => {
+    if (!line.trim()) return line
+    const tiles = puzzle.tiles[row++] || []
+    const indent = line.match(/^\s*/)![0]
+    return indent + [...line.trim()].map((c, x) => (styles[c] && !kept[c] ? unstyledDesignCell(tiles[x]) : c)).join("")
+  })
+  design.lines = ["", ...serializeDesignRules(kept).split("\n"), "", ...grid]
+  return false
 }
 
 type SpecialCells = { kind: "circle" | "shaded"; cells: Cell[] }

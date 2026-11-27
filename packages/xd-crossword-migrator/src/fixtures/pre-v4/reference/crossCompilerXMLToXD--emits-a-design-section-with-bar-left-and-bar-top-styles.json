@@ -1,0 +1,6 @@
+{
+  "errors": ["The clue across1 is malformed: Could not find positioning data. In barred crosswords, clue answers must exactly match letter sequences in the grid separated by bars. Check that: (1) your answer \"AB\" appears in the grid, (2) bars correctly separate this word from adjacent letters, and (3) the grid doesn't contain rebuses.","The clue across2 is malformed: Could not find positioning data. In barred crosswords, clue answers must exactly match letter sequences in the grid separated by bars. Check that: (1) your answer \"CD\" appears in the grid, (2) bars correctly separate this word from adjacent letters, and (3) the grid doesn't contain rebuses.","The clue down1 is malformed: Could not find positioning data. In barred crosswords, clue answers must exactly match letter sequences in the grid separated by bars. Check that: (1) your answer \"AC\" appears in the grid, (2) bars correctly separate this word from adjacent letters, and (3) the grid doesn't contain rebuses.","The clue down2 is malformed: Could not find positioning data. In barred crosswords, clue answers must exactly match letter sequences in the grid separated by bars. Check that: (1) your answer \"BD\" appears in the grid, (2) bars correctly separate this word from adjacent letters, and (3) the grid doesn't contain rebuses."],
+  "reread": [],
+  "keyed": [],
+  "puzzle": null
+}

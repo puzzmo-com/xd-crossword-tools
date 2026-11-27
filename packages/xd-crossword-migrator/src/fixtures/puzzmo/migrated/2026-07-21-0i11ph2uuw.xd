@@ -8,7 +8,6 @@ width: 8
 height: 10
 editor: not in data
 set: tny-new-cryptic
-form: barred
 
 ## Grid
 
@@ -22,6 +21,19 @@ OLTNLETA
 AERATORS
 SOULAXES
 TOMBRADY
+
+## Bars
+
+........
+..-.+.-.
+..-...-.
+.|+|||+|
+........
+-......-
+.|||||||
+.-...-..
+.-..|-..
+.-.-.-..
 
 ## Clues
 
@@ -85,24 +97,6 @@ D12 ^revealer: C(O)AST
 
 D13. Impudent shortstop’s penetrating voice (5) ~ SASSY
 D13 ^revealer: SA(SS)Y
-
-
-## Design
-
-A { bar-top: true }
-B { bar-left: true; bar-top: true }
-C { bar-left: true }
-
-........
-..A.B.A.
-..A...A.
-.CBCCCBC
-........
-A......A
-.CCCCCCC
-.A...A..
-.A..CA..
-.A.A.A..
 
 
 ## Pause Message

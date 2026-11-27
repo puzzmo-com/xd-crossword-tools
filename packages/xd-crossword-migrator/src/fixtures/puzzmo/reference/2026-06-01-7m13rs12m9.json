@@ -1,0 +1,27 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "# A P E #",
+      "O L I V E",
+      "M I X E R",
+      "G A I N S",
+      "# S E T #"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["APE",null]],"display":[["text","Banana-loving brute"]]},
+      {"direction":"across","number":4,"answers":[["OLIVE",null]],"display":[["text","Its brine dirties a martini"]]},
+      {"direction":"across","number":6,"answers":[["MIXER",null]],"display":[["text","Useful appliance when making homemade meringue"]]},
+      {"direction":"across","number":7,"answers":[["GAINS",null]],"display":[["text","Gym progress"]]},
+      {"direction":"across","number":8,"answers":[["SET",null]],"display":[["text","What { } denotes in mathematics"]]},
+      {"direction":"down","number":1,"answers":[["ALIAS",null]],"display":[["text","Lorde, for Ella Yelich-O'Connor"]]},
+      {"direction":"down","number":2,"answers":[["PIXIE",null]],"display":[["text","Hairstyle that comes up short?"]]},
+      {"direction":"down","number":3,"answers":[["EVENT",null]],"display":[["text","Reason for a calendar entry"]]},
+      {"direction":"down","number":4,"answers":[["OMG",[0,1]]],"display":[["text","\"i'm shook!\""]]},
+      {"direction":"down","number":5,"answers":[["ERS",[0]]],"display":[["text","Settings for \"The Pitt\" and \"Chicago Med\""]]}
+    ],
+    "notes": ""
+  }
+}

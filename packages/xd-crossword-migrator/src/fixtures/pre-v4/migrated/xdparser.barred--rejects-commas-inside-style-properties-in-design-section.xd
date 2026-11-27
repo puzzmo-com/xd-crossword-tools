@@ -2,7 +2,6 @@
 
 title: Test Comma Error
 author: Test
-form: barred
 
 ## Grid
 
@@ -17,10 +16,3 @@ A4. Canine ~ DOG
 D1. Two letters ~ CD
 D2. Two letters ~ AO
 D3. Two letters ~ TG
-
-## Design
-
-A { bar-top: true, bar-left: true }
-
-...
-AAA

@@ -1,0 +1,20 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "[HEART] A C H E S",
+      "S # [!] # [DIAMOND] S"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["HEARTACHES",null]],"display":[["text","A pain when pairs leave"]],"hint":[["text","Not tummy ache"]]},
+      {"direction":"across","number":5,"answers":[["DIAMONDS",null]],"display":[["text","gem"]]},
+      {"direction":"down","number":1,"answers":[["HEARTS",null]],"display":[["text","A card game"]],"hint":[["text","Not spades."]]},
+      {"direction":"down","number":2,"answers":[["C!",null]],"display":[["text","Look excitedly, abbreviated"]]},
+      {"direction":"down","number":3,"answers":[["EDIAMOND",null]],"display":[["text","e diamonds?"]]},
+      {"direction":"down","number":4,"answers":[["SS",null]],"display":[["text","snake sound"]]}
+    ],
+    "notes": ""
+  }
+}

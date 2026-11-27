@@ -5,7 +5,6 @@ author: Kyle Dolan
 editor: 
 date: 
 copyright: © 2023 Kyle Dolan
-form: barred
 
 ## Grid
 
@@ -17,6 +16,17 @@ EYPTENOR
 RODENTLV
 SLEETIDE
 COUNTESS
+
+## Bars
+
+........
+...-.-.+
+.||..-..
+.....+||
+.+||..-.
+..-...||
+.|-.....
+-.-.-...
 
 ## Clues
 
@@ -39,18 +49,3 @@ D8. Question: What items of clothing are typically worn by professional billiard
 D11. A lover offs Will, often use them as conversation starters at parties (5) ~ UNTIE
 D12. I&#039;ll have a turkey sandwich with Swiss cheese, mats of bacon, and tomatoes (4) ~ YOLO
 D14. A cake like daiginjo pairs well with sushi (4) ~ OLDS
-
-## Design
-
-A { bar-top: true }
-B { bar-left: true }
-C { bar-left: true; bar-top: true }
-
-........
-...A.A.C
-.BB..A..
-.....CBB
-.CBB..A.
-..A...BB
-.BA.....
-A.A.A...

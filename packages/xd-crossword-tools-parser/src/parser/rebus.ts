@@ -18,7 +18,7 @@ export interface RebusFieldParse {
   rules: RebusRule[]
   /** Things which are not valid xd v4, the field is still read as well as it can be */
   errors: string[]
-  /** Pre-v4 syntax which still reads, xd-crossword-migrator can update it */
+  /** Pre-v4 syntax, which is read by the v4 rules and so doesn't mean what it used to. xd-crossword-migrator can update it */
   deprecations: string[]
   /** Rules which couldn't be read at all, as written, so they are not in `rules` */
   unreadable: string[]
@@ -33,8 +33,8 @@ const RESERVED = new Set(["|", ",", "(", ")", "\\"])
  *
  *     Rebus: 1=HEART 2=EIGHT|8 3=()|H 12345=CIGAR|PENIS
  *
- * Pre-v4 fields still read, with deprecations: repeated keys (`1=O 1=A`) become one rule's
- * options, and rules joined with ',' (`1=OIL,2=WATER`) are split up.
+ * Pre-v4 syntax gets a deprecation, and is read as v4: of repeated keys (`1=O 1=A`) only the first
+ * rule counts, and rules joined with ',' (`1=OIL,2=WATER`) can't be read.
  */
 export function parseRebusField(field: string): RebusFieldParse {
   const result: RebusFieldParse = { rules: [], errors: [], deprecations: [], unreadable: [] }
@@ -44,28 +44,30 @@ export function parseRebusField(field: string): RebusFieldParse {
   const ruleForKey = new Map<string, { rule: RebusRule; text: string }>()
   const repeated = new Map<string, string[]>()
 
-  for (const text of splitIntoRuleTexts(field, result)) {
-    const parsed = parseRebusRule(text)
-    let rule: RebusRule
-    if ("error" in parsed) {
-      result.errors.push(parsed.error)
-      // A pre-v4 value was a literal string, so read it as one when it can't be read as v4
-      if (parsed.literal === undefined) {
-        result.unreadable.push(text)
-        continue
-      }
-      rule = { keys: [parsed.key!], options: [[parsed.literal]] }
-    } else {
-      rule = parsed.rule
+  for (const text of field.trim().split(/[ \t]+/)) {
+    // Pre-v4 NYT files joined rules with ',', which v4 reserves
+    const pieces = splitUnescaped(text, ",")
+    if (pieces.length > 1 && pieces.every((p) => /^[^=]+=./u.test(p))) {
+      result.deprecations.push(
+        `Rebus rules are separated by spaces in xd v4, ',' is reserved so '${text}' can't be read: use '${pieces.join(" ")}'. xd-crossword-migrator can convert this file.`,
+      )
+      result.unreadable.push(text)
+      continue
     }
 
+    const parsed = parseRebusRule(text)
+    if ("error" in parsed) {
+      result.errors.push(parsed.error)
+      result.unreadable.push(text)
+      continue
+    }
+
+    const { rule } = parsed
     const [key] = rule.keys
     const existing = rule.keys.length === 1 ? ruleForKey.get(key) : undefined
 
-    // Pre-v4 Schrödinger cells repeated the key once per value: '1=O 1=A'
+    // Pre-v4 Schrödinger cells repeated the key once per value: '1=O 1=A', in v4 only the first counts
     if (existing && existing.rule.keys.length === 1) {
-      const options = existing.rule.options
-      for (const option of rule.options) if (!options.some((o) => o[0] === option[0])) options.push(option)
       if (!repeated.has(key)) repeated.set(key, [existing.text])
       repeated.get(key)!.push(text)
       continue
@@ -83,41 +85,16 @@ export function parseRebusField(field: string): RebusFieldParse {
   }
 
   for (const [key, texts] of repeated) {
-    const { rule } = ruleForKey.get(key)!
+    const merged = texts.map((t) => t.slice(t.indexOf("=") + 1)).join("|")
     result.deprecations.push(
-      `'${texts.join(" ")}' repeats the rebus key '${key}', xd v4 gives a cell's options with '|': '${serializeRebusRule(rule)}'`,
+      `'${texts.join(" ")}' repeats the rebus key '${key}', and xd v4 only reads the first. A cell's options go in one rule: '${key}=${merged}'. xd-crossword-migrator can convert this file.`,
     )
   }
 
   return result
 }
 
-/** Splits the field on whitespace, and splits up pre-v4 rules which were joined with ',' */
-function splitIntoRuleTexts(field: string, result: RebusFieldParse) {
-  const texts: string[] = []
-  for (const token of field.trim().split(/[ \t]+/)) {
-    const pieces = splitUnescaped(token, ",")
-    // Only when every piece is a rule of its own, '1=A,B' is a value with a (reserved) comma in it
-    const joinedRules = pieces.length > 1 && pieces.every((p) => /^[^=]+=./u.test(p))
-    if (!joinedRules) {
-      texts.push(token)
-      continue
-    }
-    result.deprecations.push(`Rebus rules are separated by spaces in xd v4, ',' is reserved: use '${pieces.join(" ")}' instead of '${token}'`)
-    texts.push(...pieces)
-  }
-  return texts
-}
-
-type RuleParse =
-  | { rule: RebusRule }
-  | {
-      error: string
-      /** For a single key rule, the key */
-      key?: string
-      /** For a single key rule, its value as a pre-v4 literal string */
-      literal?: string
-    }
+type RuleParse = { rule: RebusRule } | { error: string }
 
 /** Reads a single rule, like `1=EIGHT|8` or `12=(SC)(EG)|SE|CG` */
 export function parseRebusRule(text: string): RuleParse {
@@ -135,7 +112,7 @@ export function parseRebusRule(text: string): RuleParse {
   if (twice) return { error: `The rebus rule '${text}' declares the key '${twice}' twice` }
 
   const single = keys.length === 1
-  const fail = (error: string): RuleParse => (single ? { error, key: keys[0], literal: value || undefined } : { error })
+  const fail = (error: string): RuleParse => ({ error })
 
   const options: string[][] = []
   for (const optionText of splitUnescaped(value, "|")) {

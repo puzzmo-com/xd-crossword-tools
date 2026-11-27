@@ -1,0 +1,27 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "L U C A S",
+      "G H A N A",
+      "B A N G S",
+      "T U D E S",
+      "# L O L #"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["LUCAS",null]],"display":[["img","https://cdn.puzzmo.com/game-assets/california-bear.svg","california bear",false],["text"," ___ Museum of Narrative Art"]]},
+      {"direction":"across","number":6,"answers":[["GHANA",null]],"display":[["img","https://cdn.puzzmo.com/game-assets/california-bear.svg","california bear",false],["text"," African country whose Fante asafo flags were showcased at UCLA's Fowler Museum"]]},
+      {"direction":"across","number":7,"answers":[["BANGS",null]],"display":[["text","Swoopy hairstyle"]]},
+      {"direction":"across","number":8,"answers":[["TUDES",null]],"display":[["text","Defiant demeanors, informally"]]},
+      {"direction":"across","number":9,"answers":[["LOL",null]],"display":[["text","\"haha\""]]},
+      {"direction":"down","number":1,"answers":[["LGBT",null]],"display":[["text","Pride initials"]]},
+      {"direction":"down","number":2,"answers":[["UHAUL",null]],"display":[["text","Moving day rental"]]},
+      {"direction":"down","number":3,"answers":[["CANDO",null]],"display":[["text","Like an “I’ll find a way” outlook"]]},
+      {"direction":"down","number":4,"answers":[["ANGEL",null]],"display":[["img","https://cdn.puzzmo.com/game-assets/california-bear.svg","california bear",false],["text"," \t___ Island State Park (San Francisco Bay destination)"]]},
+      {"direction":"down","number":5,"answers":[["SASS",null]],"display":[["text","Smart aleck's specialty"]]}
+    ],
+    "notes": ""
+  }
+}

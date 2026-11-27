@@ -1,0 +1,32 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "A Y E # #",
+      "H O L A #",
+      "A G I L E",
+      "# A X I S",
+      "A M I G {A|E|O}",
+      "D A R N #",
+      "O T S # #"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["AYE",null]],"display":[["text","\"___, cap'n!\""]]},
+      {"direction":"across","number":4,"answers":[["HOLA",null]],"display":[["text","With 9-Across, welcome message to you, the solver of este crucigrama"]]},
+      {"direction":"across","number":6,"answers":[["AGILE",null]],"display":[["text","Like great gymnasts"]]},
+      {"direction":"across","number":8,"answers":[["AXIS",null]],"display":[["text","X or Y, in coordinate geometry"]]},
+      {"direction":"across","number":9,"answers":[["AMIGA",null],["AMIGE",null],["AMIGO",null]],"display":[["text","Spanish for \"friend\""]]},
+      {"direction":"across","number":10,"answers":[["DARN",null]],"display":[["text","\"Dagnabbit!\""]]},
+      {"direction":"across","number":11,"answers":[["OTS",[0]]],"display":[["text","Periods before penalty shootouts, for short"]]},
+      {"direction":"down","number":1,"answers":[["AHA",null]],"display":[["text","\"So "],["italics","that's",[["text","that's"]]],["text"," where you've been hiding that chew toy!\""]]},
+      {"direction":"down","number":2,"answers":[["YOGAMAT",[3]]],"display":[["text","Spot for cats, cows, and cobras"]]},
+      {"direction":"down","number":3,"answers":[["ELIXIRS",null]],"display":[["text","Potions that might offer eternal youth (I think I've seen some advertised on Instagram 😒)"]]},
+      {"direction":"down","number":5,"answers":[["ALIGN",null]],"display":[["text","Bring into harmony"]]},
+      {"direction":"down","number":7,"answers":[["ESA",null],["ESE",null],["ESO",null]],"display":[["text","Spanish for \"that\""]]},
+      {"direction":"down","number":9,"answers":[["ADO",null]],"display":[["text","\"Much ___ About Keanu: A Critical Reeves Theory\" (2025 book)"]]}
+    ],
+    "notes": ""
+  }
+}

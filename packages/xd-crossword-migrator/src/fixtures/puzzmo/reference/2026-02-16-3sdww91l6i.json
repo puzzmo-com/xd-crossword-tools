@@ -1,0 +1,34 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "A F A R # P D A # O L D",
+      "J E N E S A I S Q U O I",
+      "A D D # O M G # I R O N"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["AFAR",null]],"display":[["text","An appreciable distance"]]},
+      {"direction":"across","number":5,"answers":[["PDA",[0,1]]],"display":[["text","Early smartphone such as my beloved Treo 650"]]},
+      {"direction":"across","number":8,"answers":[["OLD",null]],"display":[["text","Meaner way to say \"vintage\""]]},
+      {"direction":"across","number":11,"answers":[["JENESAISQUOI",[1,3,7]]],"display":[["text","Quality you can't quite name (and I can never quite spell)"]]},
+      {"direction":"across","number":14,"answers":[["ADD",null]],"display":[["text","Perform arithmetic upon"]]},
+      {"direction":"across","number":15,"answers":[["OMG",[0,1]]],"display":[["text","Commonly texted blasphemy"]]},
+      {"direction":"across","number":16,"answers":[["IRON",null]],"display":[["text","Crucial part of any rust recipe"]]},
+      {"direction":"down","number":1,"answers":[["AJA",null]],"display":[["text","Steely Dan's 1977 opus that kicks off with \"Black Cow\""]]},
+      {"direction":"down","number":2,"answers":[["FED",null]],"display":[["text","Planted, like a story"]]},
+      {"direction":"down","number":3,"answers":[["AND",null]],"display":[["text","\"Alexander ___ the Terrible, Horrible, No Good, Very Bad Day\" (children's book by Judith Viorst)"]]},
+      {"direction":"down","number":4,"answers":[["RE",null]],"display":[["text","Letters that multiply in an email subject line the longer a thread goes"]]},
+      {"direction":"down","number":5,"answers":[["PAM",null]],"display":[["text","Dawn : \"The Office\" (U.K.) :: ___ : \"The Office\" (U.S.)"]]},
+      {"direction":"down","number":6,"answers":[["DIG",null]],"display":[["text","\"The ___\" (archaeological LucasArts adventure game from 1995)"]]},
+      {"direction":"down","number":7,"answers":[["AS",null]],"display":[["text","Simile signal"]]},
+      {"direction":"down","number":8,"answers":[["OUR",null]],"display":[["text","Collectivizing adjective"]]},
+      {"direction":"down","number":9,"answers":[["LOO",null]],"display":[["text","What Dawn from the 5-Down clue would call a toilet"]]},
+      {"direction":"down","number":10,"answers":[["DIN",null]],"display":[["text","Noisy clamor, real hullaballoo, great cacophony"]]},
+      {"direction":"down","number":12,"answers":[["SO",null]],"display":[["text","Conversation restarter after an awkward pause"]]},
+      {"direction":"down","number":13,"answers":[["QI",null]],"display":[["text","Energy unblocked by acupuncture"]]}
+    ],
+    "notes": ""
+  }
+}

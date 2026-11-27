@@ -1,13 +1,11 @@
 import { xdToJSON } from "./xdToJSON"
 import { parseDesignRules, serializeDesignRules } from "./design"
 
-describe("pre-v4 <style> wrapped rules", () => {
+describe("design rules", () => {
 
 it("Multiline works", () => {
   const xd = wrapStyle(`
-<style>
 O { background: circle }
-</style>
 `)
 
   const { design } = xdToJSON(xd, false)
@@ -23,8 +21,7 @@ O { background: circle }
 
 it("Single line works", () => {
   const xd = wrapStyle(`
-  <style>O { background: circle }</style>
-  `)
+  O { background: circle }  `)
 
   const { design } = xdToJSON(xd, false)
   expect(design?.styles).toMatchInlineSnapshot(`
@@ -39,8 +36,7 @@ it("Single line works", () => {
 
 it("handles multiple rules", () => {
   const xd = wrapStyle(`
-    <style>O { background: circle; foreground: hello }</style>
-    `)
+    O { background: circle; foreground: hello }    `)
 
   const { design } = xdToJSON(xd, false)
   expect(design?.styles).toMatchInlineSnapshot(`
@@ -56,9 +52,8 @@ it("handles multiple rules", () => {
 
 it("handles same line rules but different style", () => {
   const xd = wrapStyle(`
-      <style>O { background: circle; foreground: hello }
-      </style>
-      `)
+      O { background: circle; foreground: hello }
+            `)
 
   const { design } = xdToJSON(xd, false)
   expect(design?.styles).toMatchInlineSnapshot(`
@@ -74,10 +69,9 @@ it("handles same line rules but different style", () => {
 
 it("handles same line rules but different style", () => {
   const xd = wrapStyle(`
-        <style>O { background: circle; foreground: hello }
+        O { background: circle; foreground: hello }
         V { background: circle; foreground: hello }
-        </style>
-        `)
+                `)
 
   const { design } = xdToJSON(xd, false)
   expect(design?.styles).toMatchInlineSnapshot(`
@@ -97,8 +91,7 @@ it("handles same line rules but different style", () => {
 
 it("handles dashes fine", () => {
   const xd = wrapStyle(`
-          <style>O { border-right: circle; border-left: dot; }</style>
-          `)
+          O { border-right: circle; border-left: dot; }          `)
 
   const { design } = xdToJSON(xd, false)
   expect(design?.styles).toMatchInlineSnapshot(`
@@ -112,9 +105,11 @@ it("handles dashes fine", () => {
   expect(design?.positions.length).toBeGreaterThan(0)
 })
 
-it("warns that the <style> tag is pre-v4", () => {
-  const { report } = xdToJSON(wrapStyle(`<style>O { background: circle }</style>`), false)
-  expect(report.warnings.map((w) => w.message)).toContain("xd v4 design sections do not wrap their style definitions in a <style> tag")
+it("warns that the <style> tag is pre-v4, and reads it by the v4 rules", () => {
+  const { report, design } = xdToJSON(wrapStyle(`<style>O { background: circle }</style>`), false)
+  expect(report.warnings.map((w) => w.message)).toContainEqual(expect.stringContaining("'<style>' is from pre-v4 Puzzmo xd"))
+  // The tag becomes part of the selector, so there's no 'O' style
+  expect(design?.styles.O).toBeUndefined()
 })
 })
 

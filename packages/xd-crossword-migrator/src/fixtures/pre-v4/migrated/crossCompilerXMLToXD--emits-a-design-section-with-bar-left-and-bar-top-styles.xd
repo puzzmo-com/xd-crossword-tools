@@ -4,12 +4,16 @@ title: Bars
 author: Test
 date: Not set
 editor: Not set
-form: barred
 
 ## Grid
 
 AB
 CD
+
+## Bars
+
+.|
+-+
 
 ## Clues
 
@@ -18,11 +22,3 @@ A2. Bottom row ~ CD
 
 D1. Left col ~ AC
 D2. Right col ~ BD
-
-## Design
-
-A, C { bar-left: true }
-B, C { bar-top: true }
-
-.A
-BC

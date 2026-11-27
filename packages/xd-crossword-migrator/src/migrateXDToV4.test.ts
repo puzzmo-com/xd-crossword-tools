@@ -45,18 +45,6 @@ describe("migrateXDToV4", () => {
     expect(json.report.warnings).toEqual([])
   })
 
-  it("describes the same puzzle as the original", () => {
-    const before = puzzle(xdToJSON(legacy))
-    const after = puzzle(xdToJSON(migrateXDToV4(legacy)))
-
-    // Pre-v4 read D3's body up to the last ' ~ ', v4 reads it as the body "A" with the answers B and LEND
-    const d3 = (p: typeof before) => p.clues.find((c) => c.direction === "down" && c.number === 3)!
-    expect(d3(before)).toMatchObject({ answers: ["B", "LEND"], display: [["text", "A"]] })
-    expect(d3(after)).toMatchObject({ answers: ["LEND"], display: [["text", "A ~ B means to borrow"]] })
-
-    const withoutD3 = (p: typeof before) => ({ ...p, clues: p.clues.filter((c) => c !== d3(p)) })
-    expect(withoutD3(after)).toEqual(withoutD3(before))
-  })
 
   it("leaves a v4 file unchanged", () => {
     // This one uses titlecase keys, by default they are written in lowercase
@@ -115,11 +103,9 @@ D4. Former intimates ~ EXES
 `
     const migrated = migrateXDToV4(xd)
     expect(migrated).toEqual(xd.replace("rebus: 1=O 1=A", "rebus: 1=O|A"))
-    expect(xdToJSON(xd).report.warnings.map((w) => w.message)).toEqual([
-      "'1=O 1=A' repeats the rebus key '1', xd v4 gives a cell's options with '|': '1=O|A'",
-    ])
+    expect(xdToJSON(xd).report.warnings.map((w) => w.type)).toEqual(["deprecation"])
     expect(xdToJSON(migrated).report.warnings).toEqual([])
-    expect(puzzle(xdToJSON(migrated))).toEqual(puzzle(xdToJSON(xd)))
+    expect(xdToJSON(migrated).tiles[2][1]).toMatchObject({ type: "schrodinger", validOptions: ["O", "A"] })
   })
 
   it("splits up rebus rules joined with ',', and escapes values v4 would read differently", () => {
@@ -266,7 +252,9 @@ D2. Fourth ~ BD
       .S
       "
     `)
-    expect(puzzle(xdToJSON(migrated))).toEqual(puzzle(xdToJSON(xd)))
+    const json = xdToJSON(migrated)
+    expect(json.report.warnings).toEqual([])
+    expect(json.design?.positions).toEqual([["S"], [undefined, "S"]])
   })
 })
 

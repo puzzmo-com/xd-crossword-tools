@@ -196,7 +196,7 @@ D2. A thing. ~ OBJECT
 
   it("handles clue meta lines well", () => {
     const xd = `
-## Meta
+## Metadata
 
 Title: Square
 Author: Orta
@@ -670,11 +670,11 @@ A1. Gardener's {*concern*}. ~ BULB
 A1 ^hint: Turned on with a {/flick/}.
 
 A4. A {@reasonable | href: https://example.com@} statement. ~ OK
-A5. The {![https://example.com/desk.png|an office desk]!} centerpiece. ~ DESK
+A5. The {!an office desk | src: https://example.com/desk.png!} centerpiece. ~ DESK
 
 D1. To {_ly_} go. ~ BOLD
-D2. Bigger than {![https://example.com/flag.png]!}. ~ UK
-D3. A {#conscious|#0f0|#0a0#} tree. ~ BOOK`
+D2. Bigger than {! | src: https://example.com/flag.png!}. ~ UK
+D3. A {#conscious | light: #0f0; dark: #0a0#} tree. ~ BOOK`
 
   it("flattens markup for consumers which cannot render it", () => {
     const json = xdToJSON(markupXD)

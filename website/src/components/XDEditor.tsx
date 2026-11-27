@@ -126,7 +126,7 @@ export const XDEditor = (props: {}) => {
           root: [
             [/^(\s{0,3})(#+)((?:[^\\#])+)((?:#+)?)/, ["white", "keyword", "keyword", "keyword"]],
 
-            // xd v4 design rules, e.g. "O { background: circle }" or "A, B { bar-top: true }" - no <style> wrapper
+            // xd v4 design rules, e.g. "O { background: circle }" or "A, B { border-top: true }" - no <style> wrapper
             [/^\s*\S(\s*,\s*\S)*\s*\{[^}]*\}?\s*$/, "design-rule"],
             [/^\s*<\/?style>\s*$/, "deprecated"],
 

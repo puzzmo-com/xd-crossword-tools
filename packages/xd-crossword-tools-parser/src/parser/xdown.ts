@@ -11,22 +11,15 @@ import { parseDeclarations, serializeDeclarations } from "./declarations"
 
 const ASCII_PUNCTUATION = new Set("!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")
 
-/** The type characters which pre-v4 Puzzmo xd understood, anything else after a `{` was text */
-const LEGACY_TYPE_CHARS = new Set(["/", "*", "_", "-", "@", "~", "^", "!", "#", "="])
-
 export interface XDownParseOptions {
   /**
-   * Parse with the pre-v4 rules: only the original type characters open a span, there are no
-   * `{\literal\}` spans, and links, images and colors use positional `|` separated parts.
-   * xd-crossword-migrator has its own copy of this for reading older files.
+   * Called for pre-v4 syntax, like positional links (`{@text|url@}`), which is read by the v4 rules and so
+   * probably doesn't mean what it used to. xd-crossword-migrator can convert it.
    */
-  legacy?: boolean
-  /** Called when a v4 parse encounters pre-v4 syntax which it still understood */
   onDeprecated?: (message: string) => void
 }
 
 interface Ctx {
-  legacy: boolean
   onDeprecated?: (message: string) => void
 }
 
@@ -34,11 +27,11 @@ interface Ctx {
 export function parseXDown(input: string, options: XDownParseOptions = {}): XDownComponent[] {
   if (!input) return [["text", ""]]
   if (!input.includes("{")) return [["text", input]]
-  return parseContent(input, { legacy: !!options.legacy, onDeprecated: options.onDeprecated })
+  return parseContent(input, { onDeprecated: options.onDeprecated })
 }
 
 const opensSpan = (input: string, i: number, ctx: Ctx) =>
-  input[i] === "{" && i + 1 < input.length && (ctx.legacy ? LEGACY_TYPE_CHARS : ASCII_PUNCTUATION).has(input[i + 1])
+  input[i] === "{" && i + 1 < input.length && ASCII_PUNCTUATION.has(input[i + 1])
 
 /** Reads the span which opens at `i`, returning undefined if it is never closed (and so is text) */
 function readSpan(input: string, i: number, ctx: Ctx): { typeChar: string; content: string; end: number } | undefined {
@@ -46,7 +39,7 @@ function readSpan(input: string, i: number, ctx: Ctx): { typeChar: string; conte
   const typeChar = input[i + 1]
 
   // Literals end at the first `\}` and nothing inside them is interpreted
-  if (typeChar === "\\" && !ctx.legacy) {
+  if (typeChar === "\\") {
     const close = input.indexOf("\\}", i + 2)
     if (close === -1) return undefined
     return { typeChar, content: input.slice(i + 2, close), end: close + 2 }
@@ -117,29 +110,19 @@ function buildNode(typeChar: string, content: string, ctx: Ctx): XDownComponent 
 
     case "@": {
       const { text, attributes } = splitAttributes(content, ctx)
-      if (ctx.legacy || isLegacyAttributes(attributes, ["href"])) {
-        if (!ctx.legacy) deprecated(ctx, `{@${content}@}`, `{@text | href: url@}`)
-        return ["link", text, attributes.trim(), parseContent(text, ctx)]
-      }
+      // Pre-v4 links were positional, `{@text|url@}`, which v4 reads as a link without an href
+      if (isLegacyAttributes(attributes, ["href"])) deprecated(ctx, `{@${content}@}`, `{@text | href: url@}`)
       const attrs = readAttributes(attributes)
       return ["link", text, attrs.href || "", parseContent(text, ctx)]
     }
 
     case "!": {
-      // Pre-v4 images were positional - {!url|alt|width|height!} inline, {!!url|alt!} block - and
-      // the parts could also be wrapped in square brackets: {![url|alt]!}. A span which doesn't use
-      // any of v4's attributes is read that way, otherwise a URL would end up as the alt text.
+      // Pre-v4 images were positional - {!url|alt|width|height!} inline, {!!url|alt!} block - and the parts
+      // could be wrapped in square brackets: {![url|alt]!}. v4 reads those as an image without a src
       const bracketed = /^!?\[[\s\S]*\]$/.test(content)
       const { text, attributes } = splitAttributes(content, ctx)
       const attrs = readAttributes(attributes)
-
-      if (bracketed || !imgAttributes.some((key) => key in attrs)) {
-        if (!ctx.legacy) deprecated(ctx, `{!${content}!}`, `{!alt text | src: url!}`)
-        const block = content.startsWith("!")
-        const positional = bracketed ? content.slice(block ? 2 : 1, -1) : content.slice(block ? 1 : 0)
-        const [url, alt = "", ...size] = positional.split("|")
-        return ["img", url, alt, block, ...size.slice(0, 2)] as XDownComponent
-      }
+      if (bracketed || !imgAttributes.some((key) => key in attrs)) deprecated(ctx, `{!${content}!}`, `{!alt text | src: url!}`)
 
       const img: XDownComponent = ["img", attrs.src || "", text, attrs.display === "block"]
       if (attrs.width || attrs.height) img.push(attrs.width || "")
@@ -150,19 +133,12 @@ function buildNode(typeChar: string, content: string, ctx: Ctx): XDownComponent 
     case "#": {
       // Colors are a Puzzmo extension which is still under discussion for the spec
       const { text, attributes } = splitAttributes(content, ctx)
-      if (!ctx.legacy && attributes.trim() && !isLegacyAttributes(attributes, ["light", "dark"])) {
-        const attrs = readAttributes(attributes)
-        return ["color", text, attrs.light || "", attrs.dark || "", parseContent(text, ctx)]
-      }
+      if (!attributes.trim()) return ["text", `{#${content}#}`]
 
-      // Pre-v4: {#text|light|dark#} - pipes here are structural, not nested
-      const parts = content.split("|")
-      if (parts.length === 3) {
-        if (!ctx.legacy) deprecated(ctx, `{#${content}#}`, `{#text | light: color; dark: color#}`)
-        const [legacyText, lightColor, darkColor] = parts
-        return ["color", legacyText, lightColor, darkColor, parseContent(legacyText, ctx)]
-      }
-      return ["text", `{#${content}#}`]
+      // Pre-v4 colors were positional, `{#text|light|dark#}`, which v4 reads as a color without any colors
+      if (isLegacyAttributes(attributes, ["light", "dark"])) deprecated(ctx, `{#${content}#}`, `{#text | light: color; dark: color#}`)
+      const attrs = readAttributes(attributes)
+      return ["color", text, attrs.light || "", attrs.dark || "", parseContent(text, ctx)]
     }
 
     default:
@@ -182,7 +158,7 @@ function splitAttributes(content: string, ctx: Ctx) {
     }
     if (content[i] === "|") {
       // The spec examples put spaces around the pipe, and they're not part of the text
-      const text = ctx.legacy ? content.slice(0, i) : content.slice(0, i).trimEnd()
+      const text = content.slice(0, i).trimEnd()
       return { text, attributes: content.slice(i + 1) }
     }
     i++
@@ -192,7 +168,7 @@ function splitAttributes(content: string, ctx: Ctx) {
 
 const readAttributes = (attributes: string) => Object.fromEntries(parseDeclarations(attributes).declarations) as Record<string, string>
 
-/** The attributes v4 gives an image, any other `{!...!}` span is pre-v4 and positional */
+/** The attributes v4 gives an image, a `{!...!}` span without any of them is probably pre-v4 and positional */
 const imgAttributes = ["src", "width", "height", "display"]
 
 /** Pre-v4 links and colors used positional parts, which won't have any of the v4 attribute names */

@@ -512,51 +512,37 @@ D3 ^Hint: Registering with a restaurant.
 `)
   })
 
-  it("handles automatically converting double clues to hint syntax when not in strict mode", () => {
-    const old = `
-Title: Square
-Author: Orta
-Editor: Orta Therox
-Date: 2021-03-16
+  it("reads more than one clue for a slot as separate clues, which is how xd v4 lists a clue per fill", () => {
+    const xd = `## Metadata
 
+Title: Two clues
 
-BULB
-OK#O
-L##O
-DESK
+## Grid
 
+SAT
+...
 
-A1. Gardener's concern. ~ BULB
-A1. Turned on with a flick. ~ ANSWER
-A4. A reasonable statement. ~ OK
-A4. All __. ~ OK
-A5. The office centerpiece. ~ DESK
-A5. Fried. ~ DESO
+## Clues
 
-D1. To _ly go. ~ BOLD
-D1. When you want to make some text stronger. ~ BOLD
-D2. Bigger than britain. ~ UK
-D2. A union which left europe. ~ UK
-D3. A conscious tree. ~ BOOK
-D3. Registering with a restaurant.  ~ BOOK
-    `
+A1. Took a chair ~ SAT
+A1 ^Hint: Not standing
+A1. Had dinner ~ EAT
+A1 ^Hint: Not hungry
+`
 
-    const { clues } = xdToJSON(old, false)
-    const allClues = [...clues.across, ...clues.down]
-    allClues.forEach((f) => {
-      expect(f.metadata?.hint).toBeTruthy()
-    })
+    for (const strict of [false, true]) {
+      const { clues, report } = xdToJSON(xd, strict)
+      expect(report.errors).toEqual([])
+      expect(report.warnings).toEqual([])
 
-    expect(allClues.map((c) => c.metadata?.hint)).toMatchInlineSnapshot(`
-      [
-        "Turned on with a flick.",
-        "All __.",
-        "Fried.",
-        "When you want to make some text stronger.",
-        "A union which left europe.",
-        "Registering with a restaurant.",
-      ]
-    `)
+      // Each clue keeps its own metadata, which belongs to the closest clue above it with that reference
+      expect(clues.across.map((c) => [c.number, c.body, c.answer, c.metadata?.hint])).toEqual([
+        [1, "Took a chair", "SAT", "Not standing"],
+        [1, "Had dinner", "EAT", "Not hungry"],
+      ])
+      expect(clues.across[1].tiles).toEqual(clues.across[0].tiles)
+      expect(clues.across[1].position).toEqual(clues.across[0].position)
+    }
   })
 
   it("parses splitCharacter correctly", () => {
@@ -837,8 +823,8 @@ splitcharacter: |
 
 ## Clues
 
-A1. Example ~ A|B|CD
-A2. Alphabet ~ A|B|C
+A1. Example ~ ABCD // A|B|CD
+A2. Alphabet ~ ABC // A|B|C
 `
 
   const json = xdToJSON(xd)

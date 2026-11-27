@@ -97,14 +97,3 @@ export function serializeDesignRules(styles: DesignStyles) {
     ...empty.map((selector) => `${selector} {}`),
   ].join("\n")
 }
-
-/** Whether any cell in the design has a bar, which makes this a barred grid */
-export const designHasBars = (design: { styles: DesignStyles; positions: string[][] } | undefined) => {
-  if (!design) return false
-  const barred = new Set(
-    Object.entries(design.styles)
-      .filter(([_, rule]) => rule["bar-top"] === "true" || rule["bar-left"] === "true")
-      .map(([selector]) => selector),
-  )
-  return barred.size > 0 && design.positions.some((row) => row?.some((char) => barred.has(char)))
-}

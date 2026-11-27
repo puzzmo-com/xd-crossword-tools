@@ -1,0 +1,27 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "# # S K I",
+      "# H E E D",
+      "T A R P S",
+      "A L I T #",
+      "O F F # #"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["SKI",null]],"display":[["text","Hit the slopes"]]},
+      {"direction":"across","number":4,"answers":[["HEED",null]],"display":[["text","Obey"]]},
+      {"direction":"across","number":5,"answers":[["TARPS",null]],"display":[["text","Covers for baseball infields"]]},
+      {"direction":"across","number":6,"answers":[["ALIT",null]],"display":[["text","Landed"]]},
+      {"direction":"across","number":7,"answers":[["OFF",null]],"display":[["text","Away from work"]]},
+      {"direction":"down","number":1,"answers":[["SERIF",null]],"display":[["text","Font flourish"]]},
+      {"direction":"down","number":2,"answers":[["KEPT",null]],"display":[["text","Didn't spoil, as a secret"]]},
+      {"direction":"down","number":3,"answers":[["IDS",null]],"display":[["text","Bouncers check them"]]},
+      {"direction":"down","number":4,"answers":[["HALF",null]],"display":[["text","___ marathon"]]},
+      {"direction":"down","number":5,"answers":[["TAO",null]],"display":[["text","Chinese principle"]]}
+    ],
+    "notes": ""
+  }
+}

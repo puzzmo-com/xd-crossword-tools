@@ -1,0 +1,27 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "F O R C E",
+      "O V A L S",
+      "R E D O S",
+      "# N A S A",
+      "# # R E Y"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["FORCE",null]],"display":[["text","Gravitational, electromagnetic, strong, or weak thing"]]},
+      {"direction":"across","number":6,"answers":[["OVALS",null]],"display":[["text","Racetrack shapes"]]},
+      {"direction":"across","number":7,"answers":[["REDOS",null]],"display":[["text","Second chances"]]},
+      {"direction":"across","number":8,"answers":[["NASA",[0,1,2]]],"display":[["text","U.S. federal agency whose insignia is nicknamed the \"meatball\""]]},
+      {"direction":"across","number":9,"answers":[["REY",null]],"display":[["text","Kylo Ren's frenemy"]]},
+      {"direction":"down","number":1,"answers":[["FOR",null]],"display":[["text","Intersection of the {ftw, fwiw} Venn diagram"]]},
+      {"direction":"down","number":2,"answers":[["OVEN",null]],"display":[["text","Toaster ___"]]},
+      {"direction":"down","number":3,"answers":[["RADAR",null]],"display":[["text","Tornado-tracking tool"]]},
+      {"direction":"down","number":4,"answers":[["CLOSE",null]],"display":[["text","In the neighborhood"]]},
+      {"direction":"down","number":5,"answers":[["ESSAY",null]],"display":[["text","Jia Tolentino piece"]]}
+    ],
+    "notes": ""
+  }
+}

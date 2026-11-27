@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-xd-crossword-tools is a TypeScript monorepo for working with crossword puzzles, centered around the `.xd` format - a human-readable text format for crosswords. It targets the [xd v4 spec](https://github.com/century-arcade/xdformat/blob/master/doc/xd-format-v4.md); older syntax still parses with deprecation warnings and `migrateXDToV4` upgrades files. The project provides parsing, conversion between formats (.puz, .jpz, UClick XML, Amuse JSON), and an interactive web playground.
+xd-crossword-tools is a TypeScript monorepo for working with crossword puzzles, centered around the `.xd` format - a human-readable text format for crosswords. It targets the [xd v4 spec](https://github.com/century-arcade/xdformat/blob/master/doc/xd-format-v4.md); the parser only reads v4: pre-v4 syntax is read by the v4 rules with a deprecation warning, and `migrateXDToV4` (in xd-crossword-migrator) upgrades files. The project provides parsing, conversion between formats (.puz, .jpz, UClick XML, Amuse JSON), and an interactive web playground.
 
 ## Monorepo Structure
 
@@ -116,7 +116,7 @@ Sections are separated by `## Headers`. Grid uses `.` (or `#`) for black squares
 Special features:
 
 - xdown markup: `{/italic/}`, `{*bold*}`, `{@link | href: url@}`, `{!alt | src: url!}`, `{\literal\}` and more
-- The v4 `Rebus:` field (`parser/rebus.ts`) gives keys `|`-separated options (`2=EIGHT|8`), `()` for an empty cell, and links cells with multi-key rules (`12345=CIGAR|PENIS`). Pre-v4 repeated keys (`1=O 1=A`) still read with a deprecation. Pre-v4 Puzzmo `*` squares with `^alt:` answers are still read too
+- The v4 `Rebus:` field (`parser/rebus.ts`) gives keys `|`-separated options (`2=EIGHT|8`), `()` for an empty cell, and links cells with multi-key rules (`12345=CIGAR|PENIS`). Barred grids have a `## Bars` section (`|` left, `-` top, `+` both), which the parser puts on tiles as `bar-left`/`bar-top`. Pre-v4 syntax (repeated rebus keys, `*` squares with `^alt:`, design bars, splits inside answers) isn't read, only warned about
 
 
 ## Development Tips

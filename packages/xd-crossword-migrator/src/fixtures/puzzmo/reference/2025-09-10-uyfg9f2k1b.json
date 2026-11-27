@@ -1,0 +1,27 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "# L A S S",
+      "C O L M A",
+      "A U T O S",
+      "L I A R S",
+      "M E R E #"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["LASS",null]],"display":[["text","Girlie"]]},
+      {"direction":"across","number":5,"answers":[["COLMA",null]],"display":[["img","https://cdn.puzzmo.com/game-assets/california-bear.svg","california bear",false,"50px"],["text"," \"It's great to be alive in ___\" (tongue-in-cheek motto for a town whose interred \"population\" vastly exceeds its number of living residents)"]]},
+      {"direction":"across","number":6,"answers":[["AUTOS",null]],"display":[["text","Sedans, coupes, etc."]]},
+      {"direction":"across","number":7,"answers":[["LIARS",null]],"display":[["text","To be honest? They sure won't!"]]},
+      {"direction":"across","number":8,"answers":[["MERE",null]],"display":[["text","___ mortals"]]},
+      {"direction":"down","number":1,"answers":[["LOUIE",null]],"display":[["img","https://cdn.puzzmo.com/game-assets/california-bear.svg","california bear",false,"50px"],["text"," Shrimp ___ (salad with a thousand-island-like dressing)"]]},
+      {"direction":"down","number":2,"answers":[["ALTAR",null]],"display":[["text","Structure such as an ofrenda"]]},
+      {"direction":"down","number":3,"answers":[["SMORE",null]],"display":[["text","Gooey campout treat"]]},
+      {"direction":"down","number":4,"answers":[["SASS",null]],"display":[["text","Playful backtalk"]]},
+      {"direction":"down","number":5,"answers":[["CALM",null]],"display":[["text","Tranquil"]]}
+    ],
+    "notes": ""
+  }
+}

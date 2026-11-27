@@ -56,25 +56,25 @@ describe("parseRebusField", () => {
     expect(errors("1A")).toEqual(["The rebus rule '1A' is missing the '=' between its key and its options"])
   })
 
-  it("reads a single key value it can't read as v4 as a literal string, which is what it was before v4", () => {
-    const { rules, errors } = parseRebusField("1=| 2=A,B")
+  it("leaves out a rule it can't read, rather than guess at it", () => {
+    const { rules, errors, unreadable } = parseRebusField("1=| 2=A,B 3=OK")
     expect(errors).toHaveLength(2)
-    expect(rules).toEqual([
-      { keys: ["1"], options: [["|"]] },
-      { keys: ["2"], options: [["A,B"]] },
-    ])
+    expect(unreadable).toEqual(["1=|", "2=A,B"])
+    expect(rules).toEqual([{ keys: ["3"], options: [["OK"]] }])
   })
 
-  it("still reads repeated keys and ',' separated rules from before v4, with deprecations", () => {
+  it("reads pre-v4 repeated keys and ',' separated rules by the v4 rules, with deprecations", () => {
+    // Only the first rule for a key counts
     expect(read("1=O 1=A 2=XY")).toEqual({
-      rules: ["1=[O]|[A]", "2=[XY]"],
+      rules: ["1=[O]", "2=[XY]"],
       errors: [],
-      deprecations: ["'1=O 1=A' repeats the rebus key '1', xd v4 gives a cell's options with '|': '1=O|A'"],
+      deprecations: ["'1=O 1=A' repeats the rebus key '1', and xd v4 only reads the first. A cell's options go in one rule: '1=O|A'. xd-crossword-migrator can convert this file."],
     })
+    // ',' is reserved, so the rules can't be read
     expect(read("1=OIL,2=WATER")).toEqual({
-      rules: ["1=[OIL]", "2=[WATER]"],
+      rules: [],
       errors: [],
-      deprecations: ["Rebus rules are separated by spaces in xd v4, ',' is reserved: use '1=OIL 2=WATER' instead of '1=OIL,2=WATER'"],
+      deprecations: ["Rebus rules are separated by spaces in xd v4, ',' is reserved so '1=OIL,2=WATER' can't be read: use '1=OIL 2=WATER'. xd-crossword-migrator can convert this file."],
     })
   })
 })
@@ -105,7 +105,7 @@ describe("the Rebus field in xdToJSON", () => {
     const json = xdToJSON(puzzle("1=OIL,2=WATER", "12"))
     expect(json.report.errors).toEqual([])
     expect(json.report.warnings.map((w) => w.type)).toEqual(["deprecation"])
-    expect(json.rebuses).toEqual({ 1: "OIL", 2: "WATER" })
+    expect(json.rebuses).toEqual({})
   })
 })
 
