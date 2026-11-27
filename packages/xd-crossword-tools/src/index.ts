@@ -1,4 +1,5 @@
 export * from "xd-crossword-tools-parser"
+export { migrateXDToV4 } from "xd-crossword-migrator"
 
 export { JSONToXD, resolveFullClueAnswer } from "./JSONtoXD"
 export { puzToXD } from "./puzToXD"

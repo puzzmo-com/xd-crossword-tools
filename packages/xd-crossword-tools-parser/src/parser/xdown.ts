@@ -18,7 +18,7 @@ export interface XDownParseOptions {
   /**
    * Parse with the pre-v4 rules: only the original type characters open a span, there are no
    * `{\literal\}` spans, and links, images and colors use positional `|` separated parts.
-   * This is what `migrateXDToV4` uses to read older files.
+   * xd-crossword-migrator has its own copy of this for reading older files.
    */
   legacy?: boolean
   /** Called when a v4 parse encounters pre-v4 syntax which it still understood */
@@ -203,7 +203,7 @@ function isLegacyAttributes(attributes: string, knownKeys: string[]) {
 }
 
 const deprecated = (ctx: Ctx, found: string, replacement: string) =>
-  ctx.onDeprecated?.(`'${found}' uses pre-v4 xdown syntax, xd v4 uses '${replacement}'. migrateXDToV4 can convert this file.`)
+  ctx.onDeprecated?.(`'${found}' uses pre-v4 xdown syntax, xd v4 uses '${replacement}'. xd-crossword-migrator can convert this file.`)
 
 /**
  * Flatten xdown components into a single string for consumers which cannot render markup.

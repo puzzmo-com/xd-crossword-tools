@@ -1,4 +1,4 @@
-import { Clue, CrosswordJSON, CursorDirection, Tile } from "xd-crossword-tools-parser"
+import { Clue, CrosswordJSON, CursorDirection, Tile, serializeRebusRule } from "xd-crossword-tools-parser"
 import { JSONToXD } from "./JSONtoXD"
 import { makeGetNewRebusSymbol } from "./utils/rebusSymbols"
 
@@ -83,7 +83,7 @@ export function ipuzToXD(source: string | object): string {
   const getNewRebusSymbol = makeGetNewRebusSymbol()
   const rebusSymbols = new Map<string, string>() // word -> symbol
 
-  // Schrödinger squares become a multi-valued rebus key (e.g. "1=O 1=A"), cells
+  // Schrödinger squares become a rebus key with several options (e.g. "1=O|A"), cells
   // with the same set of possible values share a symbol - same as the Amuse importer
   const schrodingerSymbols = new Map<string, string>() // values-key -> symbol
   const schrodingerRebusEntries: string[] = []
@@ -102,7 +102,7 @@ export function ipuzToXD(source: string | object): string {
         if (!symbol) {
           symbol = String(nextSchrodingerSymbol++)
           schrodingerSymbols.set(valuesKey, symbol)
-          for (const value of values) schrodingerRebusEntries.push(`${symbol}=${value}`)
+          schrodingerRebusEntries.push(serializeRebusRule({ keys: [symbol], options: values.map((v) => [v]) }))
         }
         return {
           type: "schrodinger",
@@ -313,7 +313,7 @@ export function ipuzToXD(source: string | object): string {
     if (typeof data[key] === "string" && data[key].trim()) meta[key] = data[key].trim()
   }
   if (hasBars) meta.form = "barred"
-  const rebusEntries = [...rebusSymbols.entries()].map(([word, symbol]) => `${symbol}=${word}`)
+  const rebusEntries = [...rebusSymbols.entries()].map(([word, symbol]) => serializeRebusRule({ keys: [symbol], options: [[word]] }))
   const metaRebus = [...rebusEntries, ...schrodingerRebusEntries].join(" ")
   if (metaRebus) meta.rebus = metaRebus
 

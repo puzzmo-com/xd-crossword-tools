@@ -410,7 +410,7 @@ title: Test Rebus Schrödinger
 author: Test Author
 date: 2025-01-01
 editor: Test
-rebus: 1=O 1=A
+rebus: 1=O|A
 
 ## Grid
 
@@ -446,7 +446,7 @@ title: Multi-letter Schrödinger
 author: Test
 date: 2025-01-01
 editor: Test
-rebus: 1=OR 1=AR
+rebus: 1=OR|AR
 
 ## Grid
 
@@ -481,7 +481,7 @@ title: Mixed Rebuses
 author: Test
 date: 2025-01-01
 editor: Test
-rebus: 1=O 1=A 2=XY
+rebus: 1=O|A 2=XY
 
 ## Grid
 
@@ -506,7 +506,7 @@ D4. Former intimates ~ EXXYS`
     const newXD = JSONToXD(json)
 
     expect(newXD).toContain("C1N2")
-    expect(newXD).toContain("rebus: 1=O 1=A 2=XY")
+    expect(newXD).toContain("rebus: 1=O|A 2=XY")
     expect(newXD).toEqual(puzzle)
   })
 

@@ -1,0 +1,47 @@
+## Metadata
+
+title: Puzzmo Mini Crossword #26
+author: brooke
+date: Not set
+editor: Not set
+copyright: © 2025
+blacksquares: 3
+whitespaces: 17
+acrossclues: 5
+downclues: 4
+width: 4
+height: 5
+size: 4x5
+splitcharacter: |
+feature: A7 D3 D5
+hintlabel: Learn 🤓
+reveallabel: Just tell me 🙄
+maxhintsuntildelay: 100
+rebus: 1=E|K 2=A|Y
+
+## Grid
+
+ESC.
+SAAB
+ELSA
+.S12
+.ASS
+
+## Clues
+
+A1. Key for exiting full screen ~ ESC
+A4. Fashion designer Elie ~ SAAB
+A6. Anna's ice-wielding sister, in "Frozen" ~ ELSA ~ SKY
+A7. Great blue expanse ~ SEA
+A7 ^hint: Two different answers work here, and either leads to a valid solution
+
+A8. Body part represented by 🍑 ~ ASS
+
+D1. Suffix for Japan or Senegal ~ ESE
+D2. Tortilla chip dip ~ SALSA
+
+D3. Some large alcohol purchases ~ CASES ~ CASKS
+D3 ^hint: Two different answers work here, and either leads to a valid solution
+
+D5. Makes a sound like one of the "wolf in sheep's clothing" animals ~ BAAS ~ BAYS
+D5 ^hint: Two different answers work here, and either leads to a valid solution

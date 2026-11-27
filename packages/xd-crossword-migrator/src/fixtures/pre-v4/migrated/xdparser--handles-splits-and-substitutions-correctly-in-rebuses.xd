@@ -1,0 +1,19 @@
+## Metadata
+
+title: Rebus split test
+author: Penelope Rudow
+date: Not set
+editor: Not set
+copyright: © 2021
+description: N/A
+rebus: 0=AB
+splitcharacter: |
+
+## Grid
+
+0CD.ABC
+
+## Clues
+
+A1. Example ~ ABCD // A|B|CD
+A2. Alphabet ~ ABC // A|B|C

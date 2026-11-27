@@ -5550,9 +5550,11 @@ const diff = diffXD(xd1, xd2)
 
 ### Migrating to xd v4
 
-`migrateXDToV4(xd)` (exported from both packages) rewrites an xd file written for an earlier version of the spec, or with pre-v4 Puzzmo extensions, into v4 syntax. It works on the text so section order and unknown sections are kept, and running it on a v4 file returns it unchanged.
+`migrateXDToV4(xd)` rewrites an xd file written for an earlier version of the spec, or with pre-v4 Puzzmo extensions, into v4 syntax. It lives in the `xd-crossword-migrator` package, which has its own reader for the older syntax and doesn't depend on the parser, and `xd-crossword-tools` re-exports it. It works on the text so section order is kept, sections it doesn't know are copied as they are, and running it on a v4 file returns it unchanged.
 
-- Implicit (header-less) sections get `## Headings`
+It isn't a complete v3 reader: it handles the pre-v4 syntax in Puzzmo's puzzles and every pre-v4 file in this repo's tests, which live in [its fixtures](./packages/xd-crossword-migrator/src/fixtures/pre-v4/) along with what they migrate to.
+
+- Implicit (header-less) sections get `## Headings`, and `## Meta` becomes `## Metadata`
 - `<!-- -->` comment lines are removed, xd doesn't support comments
 - Pre-v4 xdown links `{@text|url@}`, images `{!url|alt!}` / `{!![url]!}` (with or without the square brackets) and colours `{#text|light|dark#}` move to the attribute syntax, and text which v4 would read as markup is escaped
 - Clue bodies containing ` ~ ` (pre-v4 bodies ran to the _last_ ` ~ `) get it escaped as `{\~\}`
@@ -5560,12 +5562,15 @@ const diff = diffXD(xd1, xd2)
 - A duplicated clue line, which was used as a hint, becomes `^Hint:` metadata
 - The v3 `Special: circle|shaded` field with lowercase grid cells becomes a `## Design` section
 - `## Design` sections lose their `<style>` wrapper, and use `.` for unstyled cells and `#` for the black squares
-- A `?` rebus key moves to an unused character, as v4 reserves `?` for unfilled cells
+- In the `Rebus` field, repeated keys (`1=O 1=A`) become options (`1=O|A`), rules joined with `,` are split up, values v4 can't read are escaped, and a `?` key moves to an unused character, as v4 reserves `?` for unfilled cells
+- Pre-v4 Puzzmo `*` squares get a rebus key whose options come from the answers through them, and `^alt:` answers move onto the clue line: `C*NE` with `A6 ^alt: CANE` becomes `C1NE` with `Rebus: 1=O|A` and `A6. Sugar ____ ~ CONE ~ CANE`
+- Answers which spelled a rebus with its key (`~ C1NE`) spell it out
+- Metadata field names and clue metadata keys are written in lowercase (`title:`, `A1 ^hint:`), like the rest of these tools write them. Pass `{ keyCase: "titlecase" }` (or `--titlecase` to the CLI) for `Title:` and `A1 ^Hint:`, which the spec suggests
 
-Rebuses and Schrödinger squares are not fully specified in v4 yet, so `Rebus:`, `*` squares and `^alt:` answers are left as they are.
+v3 `/` rebus values (`1=C/P`) are left as they are, as the v3 corpus used `/` for several different things.
 
 ```ts
-import { migrateXDToV4, xdToJSON } from "xd-crossword-tools"
+import { migrateXDToV4, xdToJSON } from "xd-crossword-tools" // or migrateXDToV4 from "xd-crossword-migrator"
 
 xdToJSON(oldXD).report.warnings // includes `type: "deprecation"` warnings for pre-v4 syntax
 const v4 = migrateXDToV4(oldXD)
@@ -5577,6 +5582,7 @@ Or from the command line, which updates the files in place (or writes them to `-
 ```sh
 xd-crossword-tools migrate puzzles/*.xd
 xd-crossword-tools migrate puzzles/*.xd --check
+xd-crossword-tools migrate puzzles/*.xd --titlecase
 ```
 
 ### `xd` Extensions

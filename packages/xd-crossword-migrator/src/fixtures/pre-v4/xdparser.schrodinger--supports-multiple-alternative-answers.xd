@@ -1,0 +1,17 @@
+
+## Metadata
+Title: Multiple Alternatives
+Author: Test
+
+## Grid
+*BC
+DEF
+GHI
+
+## Clues
+A1. First letter ~ ABC
+A1 ^alt: XBC
+A1 ^alt1: YBC
+A1 ^alt2: ZBC
+
+D1. Down clue ~ ADG

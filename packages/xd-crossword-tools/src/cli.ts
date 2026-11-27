@@ -10,7 +10,7 @@ import { amuseToXD } from "./amuseJSONToXD"
 import { acrossTextToXD } from "./acrossTextToXD"
 import { decodePuzzleMeHTML } from "./puzzleMeDecode"
 import { ipuzToXD } from "./ipuzToXD"
-import { migrateXDToV4 } from "xd-crossword-tools-parser"
+import { migrateXDToV4 } from "xd-crossword-migrator"
 
 const SUPPORTED_EXTENSIONS = [".puz", ".jpz", ".xml", ".json", ".txt", ".ipuz"]
 
@@ -38,10 +38,11 @@ Examples:
   xd-crossword-tools https://puzzleme.amuselabs.com/pmm/crossword?id=abc -o ./converted
 
 Migrating .xd files to xd v4:
-  xd-crossword-tools migrate <xd-files...> [-o <output-dir>] [--check]
+  xd-crossword-tools migrate <xd-files...> [-o <output-dir>] [--check] [--titlecase]
 
   Rewrites each file in xd v4 syntax. Without -o the files are updated in place,
   --check only lists the files which need migrating (exiting with 1 if any do).
+  Metadata keys are written in lowercase (title:, ^hint:), --titlecase writes Title:, ^Hint:.
 
   xd-crossword-tools migrate puzzles/*.xd
   xd-crossword-tools migrate puzzles/*.xd --check`)
@@ -94,6 +95,8 @@ async function convertURL(url: string): Promise<string> {
 function migrate(args: string[]) {
   let outputDir: string | undefined
   let check = false
+  // Metadata keys are written in lowercase unless asked for titlecase
+  let keyCase: "lowercase" | "titlecase" = "lowercase"
   const inputs: string[] = []
 
   for (let i = 0; i < args.length; i++) {
@@ -105,6 +108,8 @@ function migrate(args: string[]) {
       }
     } else if (args[i] === "--check") {
       check = true
+    } else if (args[i] === "--titlecase") {
+      keyCase = "titlecase"
     } else if (args[i].startsWith("-")) {
       console.error(`Unknown option: ${args[i]}`)
       process.exit(1)
@@ -124,7 +129,7 @@ function migrate(args: string[]) {
   for (const input of inputs) {
     try {
       const xd = fs.readFileSync(input, "utf8")
-      const migrated = migrateXDToV4(xd)
+      const migrated = migrateXDToV4(xd, { keyCase })
       const outputPath = outputDir ? path.join(outputDir, path.basename(input)) : input
 
       if (migrated === xd) {

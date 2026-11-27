@@ -1,5 +1,6 @@
 import { JSONToXD } from "./JSONtoXD"
 import type { Clue, Position as CluePosition, CrosswordJSON, Report } from "xd-crossword-tools-parser"
+import { serializeRebusRule } from "xd-crossword-tools-parser"
 
 import type { CellInfo, PlacedWord, AmuseTopLevel, PublishTimeZone } from "./amuseJSONToXD.types.d.ts"
 
@@ -85,7 +86,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
   const rebuses: CrosswordJSON["rebuses"] = {}
   let rebusSymbolCharCode = 9424
 
-  // Schrödinger squares are represented as a multi-valued rebus key (e.g. "1=O 1=A"),
+  // Schrödinger squares are represented as a rebus key with several options (e.g. "1=O|A"),
   // cells with the same set of possible values share a symbol
   const schrodingerSymbols = new Map<string, string>()
   const schrodingerRebusEntries: string[] = []
@@ -119,7 +120,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
           if (!symbol) {
             symbol = String(nextSchrodingerSymbol++)
             schrodingerSymbols.set(valuesKey, symbol)
-            for (const value of values) schrodingerRebusEntries.push(`${symbol}=${value}`)
+            schrodingerRebusEntries.push(serializeRebusRule({ keys: [symbol], options: values.map((v) => [v]) }))
           }
 
           tiles[y][x] = {
@@ -366,7 +367,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
   }
 
   // rebus handling
-  const metaRebus = [...Object.entries(rebuses).map(([key, value]) => `${key}=${value}`), ...schrodingerRebusEntries].join(" ")
+  const metaRebus = [...Object.entries(rebuses).map(([key, value]) => serializeRebusRule({ keys: [key], options: [[value]] })), ...schrodingerRebusEntries].join(" ")
 
   if (metaRebus.length) {
     meta.rebus = metaRebus

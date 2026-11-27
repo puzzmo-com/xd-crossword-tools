@@ -1,0 +1,66 @@
+## Metadata
+
+title: Puzzmo Mini Crossword #25
+author: brooke
+date: Not set
+editor: Not set
+copyright: © 2025
+rebus: ❶=AD ❷=AD
+blacksquares: 8
+whitespaces: 22
+acrossclues: 5
+downclues: 6
+width: 6
+height: 5
+size: 6x5
+splitcharacter: |
+feature: A4 A7 A9 D2 D5
+hintlabel: Learn 🤓
+reveallabel: Just tell me 🙄
+maxhintsuntildelay: 100
+
+## Grid
+
+ERR...
+B❶EGG.
+BALLAD
+.RO❷IE
+...ETC
+
+## Clues
+
+A1. Make a mistake ~ ERR
+A4. No-good, rotten type of person ~ BADEGG // BAD|EGG
+A4 ^hint: The circled square must contain two letters, which you can enter by pressing "rebus" or escape to toggle rebus mode
+
+A7. Slow and sentimental song ... and, when parsed as two words, a description for the special squares in this puzzle ~ BALLAD
+A7 ^hint: This revealer's first four letters describe the circles in the grid, and the last two letters are what each circle contains
+
+A9. Concert tour worker ~ ROADIE
+A9 ^hint: The circled square must contain two letters, which you can enter by pressing "rebus" or escape to toggle rebus mode
+
+A10. "... you get the idea" ~ ETC
+
+D1. ___ and flow ~ EBB
+D2. Storm-tracking technology ~ RADAR
+D2 ^hint: The circled square must contain two letters, which you can enter by pressing "rebus" or escape to toggle rebus mode
+
+D3. Quickly move between cities? ~ RELO
+
+D5. Grassy spot in a forest ~ GLADE
+D5 ^hint: The circled square must contain two letters, which you can enter by pressing "rebus" or escape to toggle rebus mode
+
+D6. Way of walking ~ GAIT
+D8. Month with the first Capricorn birthdays: Abbr. ~ DEC
+
+
+## Design
+
+O { background: circle }
+S { background: shade }
+
+...###
+.O...#
+......
+#..O..
+###...

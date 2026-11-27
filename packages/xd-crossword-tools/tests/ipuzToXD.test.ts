@@ -246,7 +246,7 @@ describe(ipuzToXD.name, () => {
     // The bottom-right cell can be either N (TEN/TEN) or NT (TENT/TENT)
     parsed.solution[2][2] = ["N", "NT"]
     const res = ipuzToXD(parsed)
-    expect(res).toContain("rebus: ❶=GO 1=N 1=NT")
+    expect(res).toContain("rebus: ❶=GO 1=N|NT")
     expect(res).toContain("## Grid\n\n❶AT\nAGE\nTE1")
     // Clue answers read as one coherent solution, using each square's first option
     expect(res).toContain("A5. Dime's worth ~ TEN")

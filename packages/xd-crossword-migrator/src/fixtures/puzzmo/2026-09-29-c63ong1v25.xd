@@ -1,0 +1,71 @@
+## Metadata
+
+title: What do you see?
+author: Kelly Nguyen Dickson
+date: Not set
+editor: brooke
+copyright: © 2026
+blacksquares: 30
+whitespaces: 26
+acrossclues: 7
+downclues: 8
+width: 8
+height: 7
+size: 8x7
+splitcharacter: |
+publishdate: 2026-09-29
+
+## Grid
+
+......WE
+....BLOG
+...GOING
+..****..
+TAROT...
+WARP....
+OH......
+
+## Clues
+
+A1. You and I ~ WE
+A3. Website where a crossword constructor can self-publish ~ BLOG
+A5. "I like those Balenciagas, the ones that look like socks / I like ___ to the jeweler, I put rocks all in my watch" (Cardi B lyric) ~ GOING
+A6. "{@ The dress | https://en.wikipedia.org/wiki/The_dress @}" color ~ GOLD
+A6 ^alt: BLUE
+
+A7. Fortune-telling deck ~ TAROT
+A9. What a baking sheet in the oven might do ~ WARP
+A10. The O in OMFG ~ OH
+
+D1. "If I ___ the lottery, I wouldn't tell anyone, but there would be signs" ~ WON
+D2. "Drinking 50 Raw ___s From The World's Biggest Beer Glass" (YouTube video I wish I could unwatch) ~ EGG
+D3. Run ~ BOLT
+D3 ^alt: BOUT
+
+D4. One way to cover something up ~ LID
+D4 ^alt: LIE
+
+D5. Gunky stuff ~ GOOP
+D5 ^alt: GLOP
+
+D6. Chilling sound ~ GRR
+D6 ^alt: BRR
+
+D7. Number of W's in this grid ~ TWO
+D8. "That feels sooo nice" ~ AAH
+
+## Line Breaks
+
+A1. nbsp:7
+A3. nbsp:15,61
+A5. nbsp:2,30,40,45,58,65,69,76,87,101,104,123 wbr:36,57,86,98,115
+A6. nbsp:17,21,25,33 wbr:12
+A9. nbsp:8,18,25,45 wbr:5
+A10. nbsp:3,8
+D1. nbsp:5,13,33,46,65 wbr:23
+D2. nbsp:9,16,78,80,93 wbr:59,74
+D4. nbsp:5
+D5. nbsp:5
+D6. nbsp:8
+D7. nbsp:21 wbr:7
+D8. nbsp:14 wbr:12

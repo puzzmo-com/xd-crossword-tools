@@ -31,7 +31,7 @@ describeConditional("amuseJSONToXD", () => {
       expect(result.tiles[0][0].symbol).toBe("1")
     }
 
-    expect(result.meta.rebus).toBe("1=H 1=J")
+    expect(result.meta.rebus).toBe("1=H|J")
 
     expect(result.clues.down[0]).toHaveProperty("answer")
     expect(result.clues.down[0].answer).toEqual("HELLO")
@@ -43,7 +43,7 @@ describeConditional("amuseJSONToXD", () => {
   it("emits rebus-based schrodinger xd which round-trips through the parser", () => {
     const xd = amuseToXD(schrodingerAmuseExample)
 
-    expect(xd).toContain("rebus: 1=H 1=J")
+    expect(xd).toContain("rebus: 1=H|J")
     expect(xd).toContain("~ HELLO")
     expect(xd).not.toContain("^alt")
 

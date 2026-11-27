@@ -67,7 +67,7 @@ export type CrosswordJSON = {
 
 export type Report =
   | { type: "syntax"; position: Position; length: number; message: string }
-  /** Pre-v4 syntax which still parses, `migrateXDToV4` can update the file */
+  /** Pre-v4 syntax which still parses, `migrateXDToV4` from xd-crossword-migrator can update the file */
   | { type: "deprecation"; position: Position; length: number; message: string }
   | {
       type: "clue_msg"
@@ -126,15 +126,22 @@ export interface SchrodingerTile {
   validRebuses: { letters: string; symbol: string }[]
   /**
    * Every valid value for this square (single letters and multi-letter rebus values
-   * in one ordered list). The position in the array is the variant index: Schrödinger
-   * squares which resolve to the same index belong to the same solution, so checkers
-   * can compare one index instead of special-casing letters vs rebuses. For rebus-based
-   * squares the order matches the declaration order in the `rebus:` metadata, for
-   * `^alt`-based squares it is [primary answer, alt, alt2, ...].
+   * in one ordered list), the first is the solution which is shown when the square is revealed.
+   * An empty string is a square which is correct when left empty (`()` in the Rebus field).
+   *
+   * For squares from the Rebus field (`1=EIGHT|8`) the order is the order of its options. When the
+   * square is `linked` (`12345=CIGAR|PENIS`) the position is the option: linked squares are solved
+   * when they all hold their value from the same position, so a square in a linked rule can repeat a value.
+   * For pre-v4 `*` squares the order is [primary answer, alt, alt2, ...].
    */
   validOptions?: string[]
-  /** Present when this Schrödinger tile originated from a multi-valued rebus key */
+  /** The rebus key, when this Schrödinger tile comes from the Rebus field */
   symbol?: string
+  /**
+   * The keys of the rule this square comes from, when that rule links several keys (`12345=CIGAR|PENIS` is "12345").
+   * Every square with the same `linked` takes its value from the same position in `validOptions`.
+   */
+  linked?: string
   clues?: {
     across?: number
     down?: number
@@ -144,6 +151,7 @@ export interface SchrodingerTile {
 
 export interface RebusTile {
   type: "rebus"
+  /** What goes in the square, an empty string for a square which is correct when left empty (`1=()`) */
   word: string
   symbol: string
   clues?: {

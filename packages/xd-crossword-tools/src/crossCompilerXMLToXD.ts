@@ -1,5 +1,5 @@
 import { parseXDown, serializeXDown } from "xd-crossword-tools-parser"
-import { Clue, CrosswordJSON, Tile } from "xd-crossword-tools-parser"
+import { Clue, CrosswordJSON, Tile, serializeRebusRule } from "xd-crossword-tools-parser"
 import { JSONToXD } from "./JSONtoXD"
 import { XMLParser } from "fast-xml-parser"
 import { CellPosition, cellsFromRanges } from "./utils/cellRanges"
@@ -436,7 +436,7 @@ export function crossCompilerXMLToXD(xmlString: string): string {
   // Rebus map goes through meta.rebus, joined as "0=AB 1=CD".
   if (Object.keys(rebuses).length > 0) {
     meta.rebus = Object.entries(rebuses)
-      .map(([symbol, word]) => `${symbol}=${word}`)
+      .map(([symbol, word]) => serializeRebusRule({ keys: [symbol], options: [[word]] }))
       .join(" ")
   }
 

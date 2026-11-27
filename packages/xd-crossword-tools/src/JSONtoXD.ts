@@ -10,8 +10,9 @@ const lettersForTile = (tile: Tile, restOfAnswer: string) => {
       return spellLetterTile(tile)
     case "schrodinger": {
       const values = tile.validOptions?.length ? tile.validOptions : [...tile.validRebuses.map((r) => r.letters), ...tile.validLetters]
+      // An empty value ('()') always matches, so it is only picked when nothing else does
       const spelled = values.filter((value) => restOfAnswer.startsWith(value)).sort((a, b) => [...b].length - [...a].length)[0]
-      return spelled || [...restOfAnswer][0] || "*"
+      return spelled ?? ([...restOfAnswer][0] || "*")
     }
     case "blank":
       // This shouldn't happen in a clue answer

@@ -255,7 +255,7 @@ D4. Former intimates ~ EXES
 ## Metadata
 Title: Test Schrödinger
 Author: Test Author
-Rebus: 1=O 1=A
+Rebus: 1=O|A
 
 ## Grid
 TILE
@@ -316,7 +316,7 @@ D4. Former intimates ~ EXES
 ## Metadata
 Title: Test Rebus Schrödinger
 Author: Test Author
-Rebus: 1=O 1=A
+Rebus: 1=O|A
 
 ## Grid
 TILE
@@ -352,7 +352,7 @@ D4. Former intimates ~ EXES
 ## Metadata
 Title: Test Rebus Schrödinger
 Author: Test Author
-Rebus: 1=OR 1=AR
+Rebus: 1=OR|AR
 
 ## Grid
 TILE
@@ -391,7 +391,7 @@ D4. Former intimates ~ EXES
 ## Metadata
 Title: Mixed
 Author: Test
-Rebus: 1=O 1=AR
+Rebus: 1=O|AR
 
 ## Grid
 TILE
@@ -427,7 +427,7 @@ D4. Former intimates ~ EXES
 ## Metadata
 Title: Mixed
 Author: Test
-Rebus: 1=O 1=A 2=XY
+Rebus: 1=O|A 2=XY
 
 ## Grid
 TILE
@@ -471,7 +471,7 @@ D4. Former intimates ~ EXXYS
 ## Metadata
 Title: Merge Test
 Author: Test
-Rebus: 1=O 1=A
+Rebus: 1=O|A
 
 ## Grid
 TILE
@@ -512,7 +512,7 @@ describe("validOptions variant indexes", () => {
 ## Metadata
 Title: Ordering
 Author: Test
-Rebus: 1=O 1=AR 1=E
+Rebus: 1=O|AR|E
 
 ## Clues
 A1. Clue ~ CONE
@@ -579,7 +579,7 @@ D4. Former intimates ~ EXES
 ## Metadata
 Title: Two cells one word
 Author: Test
-Rebus: 1=C 1=B 2=T 2=D
+Rebus: 1=C|B 2=T|D
 
 ## Clues
 A1. Pet sound ~ CAT

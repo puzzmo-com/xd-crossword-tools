@@ -1,0 +1,226 @@
+## Metadata
+
+title: Well-Groomed
+author: Reibello
+date: Not set
+editor: Brian Callahan
+copyright: © 2026
+blacksquares: 15
+whitespaces: 84
+acrossclues: 19
+downclues: 17
+width: 9
+height: 11
+size: 9x11
+splitcharacter: |
+originaltitle: Well Groomed
+publishdate: 2026-06-25
+hinteditor: Madeline Kaplan
+emoji: 🪮
+
+## Grid
+
+CHAT.ABCS
+OILY.LUAU
+STEP.MINI
+TUXEDOCAT
+SPA.ANKLE
+...AND...
+.KART.AHI
+DANDELION
+URGE.ERRS
+OMEN.VENT
+SALT.IDEA
+
+## Clues
+
+A1. Casual conversation ~ CHAT
+A1 ^hint: Synonym for "gab" hidden in "eschatology"
+
+A5. Subject of some "Sesame Street" lessons ~ A|B|CS
+A5 ^hint: Preschool basics that anagram to "scab"
+
+A9. Slick ~ OILY
+A9 ^hint: Synonym for "greasy" spelled in the even letters of "jovially"
+
+A10. Hawaiian feast ~ LUAU
+A10 ^hint: Celebration spelled in the odd letters of "Laura Rus"
+
+A11. "That's one small ___ for a man..." (what Armstrong intended to say) ~ STEP
+A11 ^hint: Staircase segment
+
+A12. Like this puzzle, but smaller ~ MINI
+A12 ^hint: Opposite of "maxi" hidden in "condominium"
+
+A13. Feline with a fancy black-and-white coat ~ TUXEDO|CAT
+A13 ^hint: Pet whose first word is a fancy garment worn at black-tie events
+
+A15. Luxury hotel offering ~ SPA
+A15 ^hint: Massage venue hidden in "litmus paper"
+
+A16. It's just over a foot? ~ ANKLE
+A16 ^hint: Lower leg joint hidden in "bank letter"
+
+A17. Word from someone who has another point to make ~ AND
+A17 ^hint: Conjunction symbolized by &
+
+A18. "Mario ___ World" (Switch 2 racing game) ~ KART
+A18 ^hint: Go-___ (amusement park ride part whose missing word is hidden in "Jakarta")
+
+A20. Tuna type ~ AHI
+A20 ^hint: Sushi protein hidden in "megahit"
+
+A23. Floral ingredient in some yellowish wines ~ DANDELION
+A23 ^hint: Weed formed by a homophone for a word meaning "fancy" + a big cat with a mane
+
+A25. Instinctive impulse ~ URGE
+A25 ^hint: Synonym for "suggest strongly" hidden in "hamburger"
+
+A26. Blunders ~ ERRS
+A26 ^hint: Verb meaning "makes a mistake" spelled in the even letters of "deergrass"
+
+A27. Portent ~ OMEN
+A27 ^hint: Prophetic occurrence that anagrams to "Nemo"
+
+A28. Let it all out ~ VENT
+A28 ^hint: Slatted air conditioner part that becomes a camping shelter when its first letter is changed to T
+
+A29. It might get used in a pinch? ~ SALT
+A29 ^hint: Pepper's partner in the kitchen
+
+A30. Creative spark ~ IDEA
+A30 ^hint: Outcome of a brainstorming session
+
+
+D1. Goes for ~ COSTS
+D1 ^hint: Prices paid for things
+
+D2. Reach out to ~ HIT|UP
+D2 ^hint: Synonym for "contact" whose first word is a successful outcome of a softball at-bat: 2 wds.
+
+D3. Amazon assistant ~ ALEXA
+D3 ^hint: Name hidden in "final exam"
+
+D4. Enter a Cross|word answer ~ TYPE
+D4 ^hint: Flavor, variety, or kind
+
+D5. Marzipan flavor ~ ALMOND
+D5 ^hint: Nut that anagrams to "old man"
+
+D6. Group known for their Encores on the road? ~ BUICK
+D6 ^hint: Carmaker that becomes a male deer if its middle letter is removed
+
+D7. Venetian waterway ~ CANAL
+D7 ^hint: Ship's passage formed by anagramming all but the B of "Blanca"
+
+D8. Luxury hotel offering ~ SUITE
+D8 ^hint: Fancy room reservation that anagrams to "etuis"
+
+D14. "The Divine Comedy" author ~ DANTE
+D14 ^hint: Name hidden in "pendant earring"
+
+D17. Passionate ~ ARDENT
+D17 ^hint: Synonym for "zealous" that anagrams to "ranted"
+
+D18. "ohhh nooooo, the consequences of your actions!" principle ~ KARMA
+D18 ^hint: "What goes around comes around" concept hidden in "Star Trek: Armada"
+
+D19. WNBA All-Star and fashion icon Reese ~ ANGEL
+D19 ^hint: Demon's counterpart
+
+D20. Broadcast ~ AIRED
+D20 ^hint: Verb meaning "made public" whose first three letters spell what we breathe
+
+D21. "Taskmaster" creator Alex who serves as Greg's "assistant" ~ HORNE
+D21 ^hint: Surname that anagrams to "heron"
+
+D22. -gram opening ~ INSTA
+D22 ^hint: Photo-sharing app nickname that anagrams to "saint"
+
+D23. Pairs ~ DUOS
+D23 ^hint: Groups of two
+
+D24. First name on a jeans tag ~ LEVI
+D24 ^hint: Denim innovator Strauss whose name anagrams to "vile"
+
+
+## Line Breaks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A5. nbsp:7,10
+A10. nbsp:8
+A11. nbsp:7,17,21,27,63 wbr:36,61
+A12. nbsp:4,21 wbr:18
+A13. nbsp:13 wbr:7,20
+A16. nbsp:9,16 wbr:5
+A17. nbsp:4,21,42 wbr:18,40
+A18. nbsp:6,10,34 wbr:18,26
+A20. nbsp:4
+A23. nbsp:20,35 wbr:18
+A28. nbsp:10
+A29. nbsp:8,17,22
+A30. nbsp:8
+D1. nbsp:4
+D2. nbsp:9
+D4. nbsp:7
+D5. nbsp:8
+D6. nbsp:11,36
+D14. nbsp:19
+D18. nbsp:13,30 wbr:6
+D19. nbsp:30
+D21. nbsp:20,36 wbr:13,26
+D24. nbsp:10,15 wbr:6

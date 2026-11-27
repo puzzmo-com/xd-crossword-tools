@@ -1,0 +1,127 @@
+## Metadata
+
+title: July 18, 2022 - "Eureka" - Rafael Musa, edited by Chris Piuma
+author: Rafael Musa
+date: Not set
+editor: July 18, 2022 - "Eureka" - Rafael Musa,
+copyright: © 2022
+description: N/A
+rebus: 0=SF 1=LA
+blacksquares: 77
+whitespaces: 67
+acrossclues: 12
+downclues: 12
+width: 12
+height: 12
+size: 12x12
+splitcharacter: |
+highlights: A18 D4 D15
+
+## Grid
+
+POSED.......
+TRADE.......
+ATTIC.......
+SOITIS......
+.N0WPIC.....
+..YAHEAR....
+...REGREW...
+....REDDEN..
+.....LIFTOFF
+......B1DDER
+.......GOTTA
+........GOAT
+
+## Clues
+
+A1. Got ready for the 'gram ~ POSED
+A1 ^hint: Prepared to be photographed
+
+A6. Two sheep for a brick, in "Catan" ~ TRADE
+A6 ^hint: Exchange
+
+A7. Space with a vaulted ceiling, often ~ ATTIC
+A7 ^hint: Upstairs storage room
+
+A8. "Ah, yes, indeed" ~ SOITIS // SO|IT|IS
+A8 ^hint: "Looks like you're right about that": 3 wds.
+
+A10. Sext, maybe ~ NSFWPIC // N|S|F|W|PIC
+A10 ^hint: Photo that shouldn't be viewed while on the job: 2 wds., 1 abbr. (Theme answer: This seven-letter answer must fit in a six-letter space. The circled square takes two letters, which you can enter by pressing "rebus" or escape to toggle rebus mode. Those two letters are the abbreviation of a major California city.)
+
+A12. "Capeesh?" ~ YAHEAR // YA|HEAR
+A12 ^hint: "Get what I'm saying?": 2 wds.
+
+A14. Healed, as a newt's limb ~ REGREW
+A14 ^hint: Came back, like weeds or hair
+
+A16. Ripen, as a tomato ~ REDDEN
+A16 ^hint: Become cherry-colored
+
+A18. Finale of a countdown at Cape Canaveral ~ LIFTOFF
+A18 ^hint: Rocket-leaving-the-ground event
+
+A21. When it's full, it's time to go ~ BLADDER
+A21 ^hint: Anatomical sac for liquids or gases (Theme answer: This seven-letter answer must fit in a six-letter space. The circled square takes two letters, which you can enter by pressing "rebus" or escape to toggle rebus mode. Those two letters are the abbreviation of a major California city.)
+
+A22. "___ Catch 'Em All" ~ GOTTA
+A22 ^hint: Have to, informally
+
+A23. Best ever ~ GOAT // G|O|A|T
+A23 ^hint: Acronym for an illustrious athlete that's spelled the same a bleating animal
+
+
+D1. Class action groups, for short? ~ PTAS // P|T|AS
+D1 ^hint: School fundraising organizations: Abbr.
+
+D2. Cena-___ rivalry (WWE feud) ~ ORTON
+D2 ^hint: Name that turns into "or not" when two letters swap positions
+
+D3. Make happy ~ SATISFY
+D3 ^hint: Meet the needs of (Theme answer: This seven-letter answer must fit in a six-letter space. The circled square takes two letters, which you can enter by pressing "rebus" or escape to toggle rebus mode. Those two letters are the abbreviation of a major California city.)
+
+D4. Wikipedia beef ~ EDITWAR // EDIT|WAR
+D4 ^hint: "Battle" between people making changes to a website's text: 2 wds.
+
+D5. Paste into rot13.com, say ~ DECIPHER
+D5 ^hint: Crack the code of
+
+D9. Former "All Things Considered" host Robert ~ SIEGEL
+D9 ^hint: Surname that anagrams to "Gisele"
+
+D11. "Invasion of Privacy" rapper ~ CARDIB // CARDI|B
+D11 ^hint: "Bodak Yellow" artist whose name anagrams to "bardic": 2 wds.
+
+D13. Reason to swipe left ~ REDFLAG // RED|FLAG
+D13 ^hint: Physical or metaphorical warning sign named for a color: 2 wds. (Theme answer: This seven-letter answer must fit in a six-letter space. The circled square takes two letters, which you can enter by pressing "rebus" or escape to toggle rebus mode. Those two letters are the abbreviation of a major California city.)
+
+D15. Odor whose positive notes have been described by one scientist as including almond, fruit, honey, and mushroom ~ WETDOG // WET|DOG
+D15 ^hint: Scent named for a sopping pooch: 2 wds.
+
+D17. Recognize nonverbally ~ NODTO // NOD|TO
+D17 ^hint: Give a silent signal with a chin movement: 2 wds.
+
+D19. Baked ___ pasta (viral 2021 TikTok recipe) ~ FETA
+D19 ^hint: Type of cheese that anagrams to "fate"
+
+D20. ___ party ~ FRAT
+D20 ^hint: Sorority counterpart, for short
+
+
+## Design
+
+O { background: circle } 
+S { background: shade } 
+
+.....#######
+.....#######
+.....#######
+......######
+#.O....#####
+##......####
+###......###
+####......##
+#####.......
+######.O....
+#######.....
+########....

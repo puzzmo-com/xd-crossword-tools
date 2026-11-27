@@ -1,0 +1,30 @@
+## Metadata
+
+title: Square
+author: Orta
+editor: Orta Therox
+date: 2021-03-16
+
+## Grid
+
+BULB
+OK#O
+L##O
+DESK
+
+## Clues
+
+A1. Gardener's concern. ~ BULB
+A1 ^hint: A hint
+A1 ^refs: A4 D2 D3
+A4. A reasonable statement. ~ OK
+A4 ^hint: A hint
+A5. Sit here. ~ DESK
+A5 ^hint:  A hint
+
+D1. To ___ly go. ~ BOLD
+D1 ^hint:  A hint
+D2. Bigger than britain. ~ UK
+D2 ^hint:  A hint
+D3. A conscious tree. ~ BOOK
+D3 ^hint:  A hint

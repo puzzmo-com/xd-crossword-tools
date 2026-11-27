@@ -1,5 +1,6 @@
 import { decode, Puz2JSONResult } from "./vendor/puzjs"
-import { CrosswordJSON, CursorDirection, Tile, migrateXDToV4, xdToJSON } from "xd-crossword-tools-parser"
+import { CrosswordJSON, CursorDirection, Tile, serializeRebusRule, xdToJSON } from "xd-crossword-tools-parser"
+import { migrateXDToV4 } from "xd-crossword-migrator"
 import { JSONToPuzInput } from "./JSONToPuz"
 
 import { getWordTilesForCursor } from "xd-crossword-tools-parser"
@@ -48,7 +49,7 @@ export function puzToXD(buffer: ArrayBuffer) {
   const down = getClues(file.clues.down, "down")
   if (rebuses.size) {
     let entries = ""
-    rebuses.forEach((v, k) => (entries += ` ${k}=${v}`))
+    rebuses.forEach((v, k) => (entries += ` ${serializeRebusRule({ keys: [k], options: [[v]] })}`))
     meta.push("rebus:" + entries)
   }
 

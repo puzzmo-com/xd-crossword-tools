@@ -1,8 +1,9 @@
 import { getCluePositionsForBoard, PositionWithTiles } from "../utils/clueNumbersFromBoard"
-import type { Tile, CrosswordJSON, XDownComponent, ClueAnswer } from "../types"
+import type { Tile, CrosswordJSON, XDownComponent, ClueAnswer, SchrodingerTile } from "../types"
 import { addHeadersToImplicitSections, hasImplicitSections } from "./implicitSections"
 import { parseXDown, xdownToPlainText } from "./xdown"
 import { designHasBars, parseDesignRules } from "./design"
+import { parseRebusField } from "./rebus"
 import { spellLetterTile, UNFILLED_CELL } from "../utils/unfilledCells"
 
 // These are all the sections supported by this parser, xd v4 defines metadata, grid, clues and design
@@ -34,7 +35,7 @@ type RawClue = {
  * a bit of an overkill to ensure that less work is needed inside an app.
  *
  * This parses xd v4, and pre-v4 Puzzmo-flavoured xd is still understood with
- * deprecation warnings in `report.warnings`. Use `migrateXDToV4` to upgrade a file.
+ * deprecation warnings in `report.warnings`. Use `migrateXDToV4` from xd-crossword-migrator to upgrade a file.
  *
  * @param xd the xd string
  * @param strict whether extra exceptions should be thrown with are useful for editor support
@@ -367,17 +368,18 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   }
 
   // We can't reliably set the tiles until we have the rebus info, but we can't guarantee the order
-  const { rebuses, schrodingerRebuses } = getRebuses(json.meta.rebus || "")
+  const { rebuses, schrodingerRebuses, linked, errors: rebusErrors, deprecations: rebusDeprecations } = getRebuses(json.meta.rebus || "")
   json.rebuses = rebuses
+
+  const rebusLine = getLine(xd.toLowerCase(), "rebus:") || 0
+  rebusErrors.forEach((msg) => addSyntaxError(msg, rebusLine))
+  rebusDeprecations.forEach((msg) => addDeprecation(msg, rebusLine))
 
   // '?' is reserved for unfilled cells in v4, but an older file which declared it as a rebus key keeps that meaning
   if (UNFILLED_CELL in rebuses || UNFILLED_CELL in schrodingerRebuses) {
-    addDeprecation(
-      `'?' is reserved for unfilled cells in xd v4 and can't be a rebus key, migrateXDToV4 can move it to another character`,
-      getLine(xd.toLowerCase(), "rebus:") || 0,
-    )
+    addDeprecation(`'?' is reserved for unfilled cells in xd v4 and can't be a rebus key, xd-crossword-migrator can move it to another character`, rebusLine)
   }
-  json.tiles = stringGridToTiles(json.rebuses, rawInput.tiles, schrodingerRebuses)
+  json.tiles = stringGridToTiles(json.rebuses, rawInput.tiles, schrodingerRebuses, linked)
 
   // A Start cell should hold what the solution has there. Rows with a split emoji already have an error
   if (strict && json.start) {
@@ -773,8 +775,9 @@ const lengthOfTileInAnswer = (tile: Tile, restOfAnswer: string) => {
   if (tile.type !== "schrodinger") return 1
 
   const values = tile.validOptions?.length ? tile.validOptions : [...tile.validRebuses.map((r) => r.letters), ...tile.validLetters]
+  // An empty value ('()') always matches, so it is only picked when nothing else does
   const spelled = values.filter((value) => restOfAnswer.startsWith(value)).sort((a, b) => [...b].length - [...a].length)[0]
-  return spelled ? [...spelled].length : 1
+  return spelled !== undefined ? [...spelled].length : 1
 }
 
 /**
@@ -967,6 +970,8 @@ export const stringGridToTiles = (
   rebuses: CrosswordJSON["rebuses"],
   strArr: string[][],
   schrodingerRebuses: Record<string, string[]> = {},
+  /** For keys in a rule which links several keys, the keys of that rule */
+  linked: Record<string, string> = {},
 ): CrosswordJSON["tiles"] => {
   const rebusKeys = Object.keys(rebuses)
   const schrodingerKeys = Object.keys(schrodingerRebuses)
@@ -977,14 +982,18 @@ export const stringGridToTiles = (
         const values = schrodingerRebuses[char]
         const validLetters: string[] = []
         const validRebuses: { letters: string; symbol: string }[] = []
-        for (const value of values) {
+        // A linked square can repeat a value, validOptions keeps those so its positions line up with the rule's options
+        for (const value of new Set(values)) {
+          if (value === "") continue
           if ([...value].length === 1) {
             validLetters.push(value)
           } else {
             validRebuses.push({ letters: value, symbol: char })
           }
         }
-        tiles[rowI].push({ type: "schrodinger", validLetters, validRebuses, validOptions: [...values], symbol: char })
+        const tile: SchrodingerTile = { type: "schrodinger", validLetters, validRebuses, validOptions: [...values], symbol: char }
+        if (linked[char]) tile.linked = linked[char]
+        tiles[rowI].push(tile)
       } else if (rebusKeys.includes(char)) {
         tiles[rowI].push({ type: "rebus", symbol: char, word: rebuses[char] })
       } else {
@@ -1008,32 +1017,33 @@ export const letterToTile = (letter: string): Tile => {
   return { type: "letter", letter }
 }
 
-/** Reads 'Rebus: 1=ONE 2=TWO', a key with many values ('1=O 1=A') is a Schrödinger square */
-export const getRebuses = (str: string): { rebuses: Record<string, string>; schrodingerRebuses: Record<string, string[]> } => {
-  if (!str.includes("=")) return { rebuses: {}, schrodingerRebuses: {} }
-
-  const allValues = new Map<string, string[]>()
-
-  str.split(" ").forEach((substr) => {
-    if (!substr.includes("=")) return
-    const [start, ...rest] = substr.split("=")
-    const value = rest.join("=")
-    if (!allValues.has(start)) allValues.set(start, [])
-    allValues.get(start)!.push(value)
-  })
+/**
+ * Reads 'Rebus: 1=ONE 2=EIGHT|8 345=CIGAR|PENIS' into the keys with a single value, and the keys with several
+ * (Schrödinger squares, and the squares of linked rules). See `parseRebusField` for the syntax.
+ */
+export const getRebuses = (str: string) => {
+  const { rules, errors, deprecations } = parseRebusField(str)
 
   const rebuses: Record<string, string> = {}
   const schrodingerRebuses: Record<string, string[]> = {}
+  /** For each key in a rule with several keys, the keys of that rule */
+  const linked: Record<string, string> = {}
 
-  for (const [key, values] of allValues) {
-    if (values.length === 1) {
-      rebuses[key] = values[0]
-    } else {
-      schrodingerRebuses[key] = values
-    }
+  for (const rule of rules) {
+    rule.keys.forEach((key, i) => {
+      const values = rule.options.map((option) => option[i])
+      if (rule.keys.length > 1) {
+        schrodingerRebuses[key] = values
+        linked[key] = rule.keys.join("")
+      } else if (values.length === 1) {
+        rebuses[key] = values[0]
+      } else {
+        schrodingerRebuses[key] = values
+      }
+    })
   }
 
-  return { rebuses, schrodingerRebuses }
+  return { rebuses, schrodingerRebuses, linked, rules, errors, deprecations }
 }
 
 const toTitleSentence = (strs: string[]) => {

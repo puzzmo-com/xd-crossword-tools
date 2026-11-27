@@ -21,10 +21,12 @@ export const XDSpec = () => {
 
       <p>
         This site follows xd v4. Older files still parse, but deprecated syntax shows up as warnings: use the <strong>Migrate to v4</strong>{" "}
-        button above the editor (or <code>migrateXDToV4(xd)</code> from <code>xd-crossword-tools</code>) to rewrite a file into v4 syntax.
+        button above the editor (or <code>migrateXDToV4(xd)</code> from <code>xd-crossword-tools</code> or <code>xd-crossword-migrator</code>) to rewrite a file into v4 syntax.
         The migration adds section headings, converts legacy xdown links/images/colors to the attribute form, drops the{" "}
         <code>&lt;style&gt;</code> wrapper from designs, moves v3 <code>Special:</code> cells into a Design section, and escapes{" "}
-        <code> ~ </code> inside clue bodies. Rebuses and Schrödinger squares are left untouched.
+        <code> ~ </code> inside clue bodies. In the <code>Rebus</code> field, repeated keys (<code>1=O 1=A</code>) become options (
+        <code>1=O|A</code>) and <code>,</code> separated rules are split up, and Puzzmo's <code>*</code> squares with{" "}
+        <code>^alt</code> answers get rebus keys. v3 <code>/</code> rebus values are left untouched.
       </p>
 
       <h2>Tools</h2>
@@ -178,24 +180,51 @@ A6. Progenitor. ~ ADAM
           <code>?</code> is an unfilled cell: it takes a letter, but its solution isn't known yet (an unsolved puzzle, or a grid still
           being constructed). Answers write an unfilled cell as <code>?</code> too, e.g. <code>~ C?NE</code>
         </li>
-        <li>Any other character is assumed to be a rebus lookup</li>
+        <li>Any other character is a rebus key, declared in the 'Rebus' field</li>
       </ul>
 
-      <p>
-        Digits, most symbols other than <code>#</code>, <code>.</code>, <code>_</code> and <code>?</code>, and printable unicode
-        characters (if needed) can be used to indicate rebus cells. The <code>Rebus</code> field
-        provides the translation:
-      </p>
+      <h3>Rebus</h3>
+
+      <p>The 'Rebus' field gives each rebus key the strings its cells accept, with rules separated by whitespace:</p>
 
       <div className="example-block">
         <pre>Rebus: 1=ONE 2=TWO 3=THREE</pre>
       </div>
 
-      <p>The same key may be assigned more than one value; such a cell accepts any one of its values (a Schrödinger cell):</p>
+      <p>
+        A key can have several options separated by <code>|</code>. The first is the cell's solution, which an app shows when the cell
+        is revealed, and the others are also accepted. They might be different answers (a Schrödinger cell), a reading per direction, or
+        ways of typing one answer:
+      </p>
 
       <div className="example-block">
-        <pre>Rebus: 1=O 1=A</pre>
+        <pre>Rebus: 1=HEART 2=EIGHT|8 3=O|A 4=PH|F</pre>
       </div>
+
+      <p>
+        <code>()</code> is a cell which is correct when left empty, it is still a white cell numbered like any other. Every other
+        character is literal, including <code>/</code> and <code>=</code>, apart from <code>|</code>, <code>,</code>, <code>(</code>,{" "}
+        <code>)</code> and <code>\</code> which are escaped with a <code>\</code>:
+      </p>
+
+      <div className="example-block">
+        <pre>{`Rebus: 1=() 2=()|H 3=/ 4=\\| 5=\\,`}</pre>
+      </div>
+
+      <p>
+        Cells which share a one-key rule each choose among its options on their own. A rule with several keys links every cell marked with
+        any of them: each option has one segment per key (a character, or text in parentheses), and the cells all take their segments
+        from the same option. This accepts CIGAR or PENIS, but never CEGIR:
+      </p>
+
+      <div className="example-block">
+        <pre>{`Rebus: 12345=CIGAR|PENIS 67=(SC)(EG)|SE|CG`}</pre>
+      </div>
+
+      <p>
+        A grid is solved when every letter cell holds its letter and every rule is solved. Answers on clue lines are never used to check
+        a solve.
+      </p>
 
       <h3>Clues</h3>
 
@@ -249,7 +278,7 @@ clue reference`}
 
       <div className="example-block">
         <pre>
-          {`Rebus: 1=O 1=A
+          {`Rebus: 1=O|A
 
 C1NE
 
@@ -547,8 +576,7 @@ D26. Band ~ OKGO ~ OKAY // OK|GO OK|AY`}</pre>
       <h3>Extension: Schrödinger squares</h3>
 
       <p>
-        Besides multi-valued rebus keys (<code>Rebus: 1=O 1=A</code>), which can also hold multiple letters (<code>Rebus: 1=OR 1=AR</code>),
-        a <code>*</code> in the grid marks a Schrödinger square, with the alternative answers given in <code>^alt</code> clue metadata (
+        Pre-v4 Puzzmo files mark a Schrödinger square with a <code>*</code> in the grid instead of a rebus key with several options, with the alternative answers given in <code>^alt</code> clue metadata (
         <code>^alt</code>, <code>^alt2</code>, ...):
       </p>
 
@@ -585,7 +613,17 @@ D2 ^alt: IPAD`}
         <li>A grid cell holds exactly one Unicode codepoint; larger graphemes are rebuses</li>
         <li>Metadata field keys and clue metadata keys are case-insensitive; writers should emit titlecase</li>
         <li>Metadata fields can be xdown formatted</li>
-        <li>A rebus key may be assigned multiple values, declaring a Schrödinger cell</li>
+        <li>
+          [BREAKING] A rebus value is a <code>|</code>-separated list of options, the first being the solution, and <code>()</code> is a
+          cell which is correct when left empty. <code>/</code> has no meaning in it
+        </li>
+        <li>
+          [BREAKING] Rules in the 'Rebus' field are separated only by whitespace, <code>,</code>, <code>(</code> and <code>)</code> are
+          reserved and <code>\</code> escapes
+        </li>
+        <li>
+          Cells which change together are linked by giving their keys to one rule (<code>12345=CIGAR|PENIS</code>)
+        </li>
         <li>
           The <code>## Design</code> section (adopted from Puzzmo's extension, without its <code>&lt;style&gt;</code> wrapper) replaces the
           'Special' field and lowercase special cells

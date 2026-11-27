@@ -19,7 +19,7 @@ ${clues}
 
 describe("xd v4 clue lines", () => {
   it("ends the body at the first ' ~ ', and reads every answer after it", () => {
-    const json = xdToJSON(puzzle(`A6. Sugar ____ ~ CONE ~ CANE`, "Rebus: 1=O 1=A"))
+    const json = xdToJSON(puzzle(`A6. Sugar ____ ~ CONE ~ CANE`, "Rebus: 1=O|A"))
     const a6 = json.clues.across.find((c) => c.number === 6)!
     expect(a6.body).toBe("Sugar ____")
     expect(a6.answer).toBe("CONE")
@@ -129,7 +129,7 @@ ${clue}
   })
 
   it("applies the annotation to every answer on the line, in any order", () => {
-    const json = xdToJSON(xd(`A1. Band ~ OKGO ~ OKAY ~ OOGO // OK|AY OK|GO`, "SplitCharacter: |\nRebus: 1=K 1=O 2=G 2=A 3=O 3=Y"))
+    const json = xdToJSON(xd(`A1. Band ~ OKGO ~ OKAY ~ OOGO // OK|AY OK|GO`, "SplitCharacter: |\nRebus: 1=K|O 2=G|A 3=O|Y"))
     expect(json.clues.across[0].answers).toEqual([
       { answer: "OKGO", splits: [1] },
       { answer: "OKAY", splits: [1] },
@@ -171,7 +171,7 @@ ${clue}
     })
 
     it("reads a split inside a Schrödinger square as an internal split, for each of its fills", () => {
-      const json = xdToJSON(xd("1=KA 1=KE", "O1Y", "A1. Fine, or its folksier cousin ~ OKAY ~ OKEY // OK|AY OK|EY"))
+      const json = xdToJSON(xd("1=KA|KE", "O1Y", "A1. Fine, or its folksier cousin ~ OKAY ~ OKEY // OK|AY OK|EY"))
       expect(json.report.errors).toEqual([])
       expect(json.clues.across[0].answers).toEqual([
         { answer: "OKAY", rebusInternalSplits: { 1: [0] } },
@@ -180,7 +180,7 @@ ${clue}
     })
 
     it("counts every letter of a Schrödinger square when placing a split after it", () => {
-      const json = xdToJSON(xd("1=COO 1=CFO", "1LCAT", "A1. Hip person ~ COOLCAT ~ CFOLCAT // COOL|CAT CFOL|CAT"))
+      const json = xdToJSON(xd("1=COO|CFO", "1LCAT", "A1. Hip person ~ COOLCAT ~ CFOLCAT // COOL|CAT CFOL|CAT"))
       expect(json.report.errors).toEqual([])
       expect(json.clues.across[0].answers).toEqual([
         { answer: "COOLCAT", splits: [1] },
@@ -189,7 +189,7 @@ ${clue}
     })
 
     it("keeps reading an answer written with the square's symbol a character at a time", () => {
-      const json = xdToJSON(xd("1=KA 1=KE", "O1Y", "A1. Fine ~ O1Y ~ OKAY // O|1Y"))
+      const json = xdToJSON(xd("1=KA|KE", "O1Y", "A1. Fine ~ O1Y ~ OKAY // O|1Y"))
       expect(json.clues.across[0]).toMatchObject({ answer: "O1Y", splits: [0] })
     })
   })

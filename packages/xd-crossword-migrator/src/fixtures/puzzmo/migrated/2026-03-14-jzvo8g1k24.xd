@@ -1,0 +1,64 @@
+## Metadata
+
+title: Irrationally Delicious
+author: Rose
+date: Not set
+editor: Not set
+copyright: © 2026
+notes: Happy Pi Day! I initially wanted more theme-related fill here, but I liked that this grid looked pie/circle shaped, and I wanted it to fill cleanly!
+blacksquares: 13
+whitespaces: 36
+acrossclues: 8
+downclues: 8
+width: 7
+height: 7
+size: 7x7
+splitcharacter: |
+
+## Grid
+
+..PAZ..
+.DIGIT.
+NOTEPAD
+ONS.CPR
+MOTTOES
+.ROADS.
+..PIE..
+
+## Clues
+
+A1. Peace, in Spanish ~ PAZ
+A4. One of possibly infinitely many numbers recited on March 14 (beginning with 3, 1, 4, 1, 5...) ~ DIGIT
+A6. Place to scribble down ideas ~ NOTEPAD
+A8. Clip-___ (some ties or earrings) ~ ONS
+A9. Procedure that can be performed to the rhythm of "Staying Alive" ...or "Another One Bites the Dust" ~ CPR // C|P|R
+A10. Sayings on seals ~ MOTTOES
+A12. Thoroughfares through towns ~ ROADS
+A13. Dessert often enjoyed on March 14 ~ PIE
+
+D1. Rest along the way ~ PITSTOP // PIT|STOP
+D2. Word after Bronze or golden ~ AGE
+D3. 5-digit number that starts with 0 in Massachusetts and a 6 in Illinois ~ ZIPCODE // ZIP|CODE
+D4. Person who might receive a gift during a fund drive ~ DONOR
+D5. Makes a recording of ~ TAPES
+D6. Comment, maybe repeated, while eating 13-Across ~ NOM
+D6 ^refs: A13
+D7. MDs and PhDs ~ DRS
+D11. Mai ___ (tiki drink) ~ TAI
+
+## Line Breaks
+
+A1. nbsp:9
+A4. nbsp:3,26,47,75 wbr:57,71
+A6. nbsp:22 wbr:6
+A8. nbsp:22
+A9. nbsp:14,18,31,38,45,93 wbr:10,68
+A10. nbsp:10 wbr:8
+A13. nbsp:21,30 wbr:8
+D1. nbsp:14
+D2. nbsp:20
+D3. nbsp:31,33,53,58 wbr:15,27,51
+D4. nbsp:3,13,19,33
+D6. nbsp:24 wbr:12
+D7. nbsp:6
+D11. nbsp:3,7

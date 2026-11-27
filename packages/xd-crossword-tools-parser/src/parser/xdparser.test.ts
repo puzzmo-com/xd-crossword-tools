@@ -1,4 +1,3 @@
-import { migrateXDToV4 } from "../migrateXDToV4"
 import { xdToJSON } from "./xdToJSON"
 
 it("Smallest, legal but totally illogical example", () => {
@@ -749,7 +748,7 @@ D2. A thing. ~ OBJECT
 })
 
 describe("comments", () => {
-  it("are not supported, migrateXDToV4 removes them", () => {
+  it("are not supported, a comment line is read like any other line", () => {
     const original = `Title: Square
 Author: Orta
 Editor: Orta Therox
@@ -800,8 +799,6 @@ D3. A conscious tree. ~ BOOK
     // A comment line is just a line, so in the clues it is an error
     expect(xdToJSON(comments).report.errors.map((e) => e.message)).toContain("This clue doesn't start with A or D: '<!-- A multiline comment'")
 
-    expect(xdToJSON(migrateXDToV4(comments)).clues).toEqual(xdToJSON(original).clues)
-    expect(migrateXDToV4(comments)).not.toContain("<!--")
   })
 })
 
