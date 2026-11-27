@@ -1,5 +1,5 @@
 import { parseXDown, serializeXDown } from "xd-crossword-tools-parser"
-import { Clue, CrosswordJSON, Tile } from "xd-crossword-tools-parser"
+import { Clue, CrosswordJSON, Tile, TileDesignFlags, serializeRebusRule } from "xd-crossword-tools-parser"
 import { JSONToXD } from "./JSONtoXD"
 import { XMLParser } from "fast-xml-parser"
 import { CellPosition, cellsFromRanges } from "./utils/cellRanges"
@@ -248,7 +248,6 @@ export function crossCompilerXMLToXD(xmlString: string): string {
   // Track decorative cell features so we can render a single Design section.
   type CellDecor = { left?: boolean; top?: boolean; circle?: boolean }
   const cellDecor: { [key: string]: CellDecor } = {}
-  let hasAnyBars = false
   let hasAnyCircle = false
 
   // Pre-filled letters become a sparse Start grid.
@@ -285,12 +284,10 @@ export function crossCompilerXMLToXD(xmlString: string): string {
 
     // Bars
     if (attr(cell, "left-bar") === "true" || attr(cell, "top-bar") === "true") {
-      meta.form = "barred"
       const key = `${y},${x}`
       if (!cellDecor[key]) cellDecor[key] = {}
       if (attr(cell, "left-bar") === "true") cellDecor[key].left = true
       if (attr(cell, "top-bar") === "true") cellDecor[key].top = true
-      hasAnyBars = true
     }
 
     // Circles
@@ -406,37 +403,31 @@ export function crossCompilerXMLToXD(xmlString: string): string {
   clues.across.sort((a, b) => a.number - b.number)
   clues.down.sort((a, b) => a.number - b.number)
 
-  // Build a unified Design section covering bars and circles.
-  let design: CrosswordJSON["design"] | undefined
-  if (hasAnyBars || hasAnyCircle) {
-    const styleMap = new Map<string, string>()
-    const positions: string[][] = Array.from({ length: gridHeight }, () => Array(gridWidth).fill(""))
-    let styleLetterCode = 65 // 'A'
+  // Bars go on the tiles, which JSONToXD writes as a '## Bars' section, and circles go in the design
+  for (const [cellKey, decor] of Object.entries(cellDecor)) {
+    const [y, x] = cellKey.split(",").map(Number)
+    const tile = tiles[y]?.[x]
+    if (!tile || tile.type === "blank" || !(decor.left || decor.top)) continue
+    const flags: TileDesignFlags[] = []
+    if (decor.left) flags.push("bar-left")
+    if (decor.top) flags.push("bar-top")
+    tile.design = flags
+  }
 
+  let design: CrosswordJSON["design"] | undefined
+  if (hasAnyCircle) {
+    const positions: string[][] = Array.from({ length: gridHeight }, () => Array(gridWidth).fill(""))
     for (const [cellKey, decor] of Object.entries(cellDecor)) {
       const [y, x] = cellKey.split(",").map(Number)
-      const styleKey = `${decor.left ? "L" : ""}${decor.top ? "T" : ""}${decor.circle ? "C" : ""}`
-      if (!styleKey) continue
-      if (!styleMap.has(styleKey)) styleMap.set(styleKey, String.fromCharCode(styleLetterCode++))
-      positions[y][x] = styleMap.get(styleKey)!
+      if (decor.circle) positions[y][x] = "O"
     }
-
-    const styles: { [key: string]: { [prop: string]: string } } = {}
-    for (const [styleKey, letter] of styleMap) {
-      const styleObj: { [prop: string]: string } = {}
-      if (styleKey.includes("L")) styleObj["bar-left"] = "true"
-      if (styleKey.includes("T")) styleObj["bar-top"] = "true"
-      if (styleKey.includes("C")) styleObj["background"] = "circle"
-      styles[letter] = styleObj
-    }
-
-    design = { styles, positions }
+    design = { styles: { O: { background: "circle" } }, positions }
   }
 
   // Rebus map goes through meta.rebus, joined as "0=AB 1=CD".
   if (Object.keys(rebuses).length > 0) {
     meta.rebus = Object.entries(rebuses)
-      .map(([symbol, word]) => `${symbol}=${word}`)
+      .map(([symbol, word]) => serializeRebusRule({ keys: [symbol], options: [[word]] }))
       .join(" ")
   }
 

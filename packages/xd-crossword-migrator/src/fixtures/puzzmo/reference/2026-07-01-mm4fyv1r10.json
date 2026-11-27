@@ -1,0 +1,27 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "H E L L A",
+      "G R E E N",
+      "T R E A T",
+      "V E R S E",
+      "# D Y E #"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["HELLA",null]],"display":[["img","https://cdn.puzzmo.com/game-assets/california-bear.svg","california bear",false,"50px"],["text"," Intensifying adverb that originated in the East Bay"]]},
+      {"direction":"across","number":6,"answers":[["GREEN",null]],"display":[["text","Color associated with dispensaries"]]},
+      {"direction":"across","number":7,"answers":[["TREAT",null]],"display":[["img","https://cdn.puzzmo.com/game-assets/california-bear.svg","california bear",false,"50px"],["text"," Black sesame snickerdoodle from Oakland's Bake Sum, for example"]]},
+      {"direction":"across","number":8,"answers":[["VERSE",null]],"display":[["img","https://cdn.puzzmo.com/game-assets/california-bear.svg","california bear",false,"50px"],["text"," \"And I speak to you like the chorus to the ___ / Chop another line like a coda with a curse\" (Third Eye Blind lyric inspired by the San Francisco music scene)"]]},
+      {"direction":"across","number":9,"answers":[["DYE",null]],"display":[["text","Hair coloring"]]},
+      {"direction":"down","number":1,"answers":[["HGTV",null]],"display":[["img","https://cdn.puzzmo.com/game-assets/california-bear.svg","california bear",false,"50px"],["text"," Network whose sixth season of \"Brother vs. Brother\" was set in San Francisco"]]},
+      {"direction":"down","number":2,"answers":[["ERRED",null]],"display":[["img","https://cdn.puzzmo.com/game-assets/california-bear.svg","california bear",false,"50px"],["text"," Said \"the BART,\" say"]]},
+      {"direction":"down","number":3,"answers":[["LEERY",null]],"display":[["text","Suspicious"]]},
+      {"direction":"down","number":4,"answers":[["LEASE",null]],"display":[["text","Renter's document"]]},
+      {"direction":"down","number":5,"answers":[["ANTE",null]],"display":[["img","https://cdn.puzzmo.com/game-assets/california-bear.svg","california bear",false,"50px"],["text"," Pay for a hand at Artichoke Joe's Casino"]]}
+    ],
+    "notes": ""
+  }
+}

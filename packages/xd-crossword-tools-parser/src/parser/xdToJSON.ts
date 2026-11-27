@@ -1,13 +1,14 @@
 import { getCluePositionsForBoard, PositionWithTiles } from "../utils/clueNumbersFromBoard"
-import type { Tile, CrosswordJSON, XDownComponent, ClueAnswer } from "../types"
+import type { Tile, CrosswordJSON, XDownComponent, ClueAnswer, SchrodingerTile, TileDesignFlags } from "../types"
 import { addHeadersToImplicitSections, hasImplicitSections } from "./implicitSections"
 import { parseXDown, xdownToPlainText } from "./xdown"
-import { designHasBars, parseDesignRules } from "./design"
-import { spellLetterTile, UNFILLED_CELL } from "../utils/unfilledCells"
+import { parseDesignRules } from "./design"
+import { parseRebusField } from "./rebus"
+import { UNFILLED_CELL } from "../utils/unfilledCells"
 
-// These are all the sections supported by this parser, xd v4 defines metadata, grid, clues and design
-// - the rest are extensions
-const knownHeaders = ["grid", "clues", "notes", "metadata", "metapuzzle", "start", "design"] as const
+// These are all the sections supported by this parser, xd v4 defines metadata, grid, bars, clues, design and
+// notes - the rest are extensions
+const knownHeaders = ["grid", "clues", "notes", "metadata", "metapuzzle", "start", "design", "bars"] as const
 const mustHave = ["grid", "clues", "metadata"] as const
 
 export type ParseMode = (typeof knownHeaders)[number] | "unknown"
@@ -22,6 +23,8 @@ type RawClue = {
   answers: string[]
   /** The words after the end-of-line ' // ', the answers written with split characters */
   annotation: string[]
+  /** Which of `answers` came from the annotation, and so have split characters */
+  annotated?: Set<number>
   /** Everything after the first ' ~ ', as written */
   answersText: string
   dir: "A" | "D"
@@ -33,8 +36,10 @@ type RawClue = {
  * Converts an xd file into a JSON representation, the JSON aims to be
  * a bit of an overkill to ensure that less work is needed inside an app.
  *
- * This parses xd v4, and pre-v4 Puzzmo-flavoured xd is still understood with
- * deprecation warnings in `report.warnings`. Use `migrateXDToV4` to upgrade a file.
+ * This parses xd v4: https://github.com/century-arcade/xdformat/blob/master/doc/xd-format-v4.md
+ *
+ * Pre-v4 syntax (xd v3, and Puzzmo's xd from before v4) is read by the v4 rules, so it won't mean what it used to,
+ * and it adds a `deprecation` warning to `report.warnings`. `migrateXDToV4` from xd-crossword-migrator upgrades a file.
  *
  * @param xd the xd string
  * @param strict whether extra exceptions should be thrown with are useful for editor support
@@ -50,10 +55,16 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
 
   let rawInput: {
     tiles: string[][]
-    clues: Map<string, RawClue>
+    /** The line each grid row came from */
+    tileLines: number[]
+    /** In file order, a slot can have more than one clue */
+    clues: RawClue[]
+    /** The '## Bars' section, and the lines its rows came from */
+    bars?: { headerLine: number; rows: string[][]; lines: number[] }
   } = {
     tiles: [],
-    clues: new Map(),
+    tileLines: [],
+    clues: [],
   }
 
   // Where each Start row came from, to point warnings at the cell once the grid is known
@@ -160,6 +171,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
       }
 
       if (mode === "design") design.headerLine = line
+      if (mode === "bars") rawInput.bars = { headerLine: line, rows: [], lines: [] }
 
       // Provide enough info for another tool to not need to parse the file
       if (json.editorInfo) {
@@ -206,6 +218,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
 
         // One unicode codepoint per cell
         rawInput.tiles.push([...trimmed])
+        rawInput.tileLines.push(line)
         if (strict) addSplitEmojiErrors(content, line, "Grid")
         continue
       }
@@ -227,30 +240,23 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
           continue
         }
 
-        const key = `${clue.dir}${clue.num}`
-        const existing = rawInput.clues.get(key)
-
         if ("answer" in clue) {
-          if (existing && strict) {
-            const hintVersion = `${clue.dir}${clue.num} ^Hint: ${clue.question}`
-            addSyntaxError(`Duplicate clue detected, if this is for a hint, please convert it to: '${hintVersion}'`, line)
-          } else if (existing) {
-            // Pre-v4 Puzzmo files used a duplicate clue as the hint
-            if (!existing.metadata) existing.metadata = {}
-            existing.metadata["hint"] = clue.question
-            addDeprecation(`A duplicate clue is treated as a hint, use '${clue.dir}${clue.num} ^Hint: ${clue.question}' instead`, line)
-          } else {
-            // @ts-ignore This is fine, the next type expects this
-            if (editorInfo) clue.metadata = { "body:line": line.toString() }
-            rawInput.clues.set(key, clue)
-          }
+          // A slot can have more than one clue, each is its own line: 'D1. Took a chair ~ SAT' and 'D1. Had dinner ~ EAT'
+          // @ts-ignore This is fine, the next type expects this
+          if (editorInfo) clue.metadata = { "body:line": line.toString() }
+          rawInput.clues.push(clue)
         } else {
+          // Clue metadata belongs to the closest clue above it with the same reference
+          const existing = [...rawInput.clues].reverse().find((c) => c.dir === clue.dir && c.num === clue.num)
           if (!existing) {
             addSyntaxError(`Could not find the clue which this hint refers to above in the file`, line)
           } else {
             if (!existing.metadata) existing.metadata = {}
             existing.metadata[clue.metaKey] = clue.metaValue
             if (editorInfo) existing.metadata[clue.metaKey + ":line"] = line.toString()
+            if (/^alt\d*$/.test(clue.metaKey)) {
+              addDeprecation(`'^${clue.metaKey}' answers are from pre-v4 Puzzmo xd, xd v4 lists every answer on the clue line: '${clue.dir}${clue.num}. ... ~ ${existing.answer} ~ ${clue.metaValue}'. xd-crossword-migrator can convert this file.`, line)
+            }
           }
         }
         continue
@@ -304,6 +310,14 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
         continue
       }
 
+      // A grid of '.', '|' (a bar on the cell's left edge), '-' (on its top edge) and '+' (both)
+      case "bars": {
+        if (trimmed === "") continue
+        rawInput.bars!.rows.push([...trimmed])
+        rawInput.bars!.lines.push(line)
+        continue
+      }
+
       // Style definitions, then a grid of style characters
       case "design": {
         // Once we have hit the grid, everything else is grid
@@ -312,10 +326,9 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
           continue
         }
 
-        let ruleLine = content
+        const ruleLine = content
         if (/<\/?style>/.test(ruleLine)) {
-          addDeprecation(`xd v4 design sections do not wrap their style definitions in a <style> tag`, line)
-          ruleLine = ruleLine.replace(/<\/?style>/g, "")
+          addDeprecation(`'<style>' is from pre-v4 Puzzmo xd, xd v4 design sections don't wrap their style rules in a <style> tag. xd-crossword-migrator can convert this file.`, line)
         }
 
         // The design grid starts at the first non-blank line after the last rule's closing '}'
@@ -344,7 +357,7 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
 
     json.design = {
       styles,
-      // A sparse array of style characters, '.' (and the pre-v4 '#') mark unstyled cells
+      // A sparse array of style characters, '.' and '#' (which echoes a black square) are unstyled cells
       positions: design.grid.map((row) => {
         const newLine: string[] = []
         ;[...row].forEach((f, i) => {
@@ -356,9 +369,14 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     }
   }
 
-  // v3 xd used lowercase letters in the grid with a 'Special' field for circled or shaded cells,
-  // this turns those into a design section
-  applyV3SpecialCells(json, rawInput.tiles, (msg) => addDeprecation(msg, getLine(xd.toLowerCase(), "special:") || 0))
+  // v3 xd used lowercase letters in the grid with a 'Special' field for circled or shaded cells
+  const special = json.meta.special?.trim().toLowerCase()
+  if ((special === "circle" || special === "shaded") && rawInput.tiles.some((row) => row.some((c) => /^[a-z]$/.test(c)))) {
+    addDeprecation(
+      `'Special: ${special}' with lowercase grid letters is xd v3 syntax, xd v4 reads those as lowercase letters and puts circles and shading in a '## Design' section. xd-crossword-migrator can convert this file.`,
+      getLine(xd.toLowerCase(), "special:") || 0,
+    )
+  }
 
   // Every grid row gets a (possibly empty) row of design positions, so 'positions[y][x]' is always safe
   if (json.design) {
@@ -367,17 +385,31 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   }
 
   // We can't reliably set the tiles until we have the rebus info, but we can't guarantee the order
-  const { rebuses, schrodingerRebuses } = getRebuses(json.meta.rebus || "")
+  const { rebuses, schrodingerRebuses, linked, errors: rebusErrors, deprecations: rebusDeprecations } = getRebuses(json.meta.rebus || "")
   json.rebuses = rebuses
 
-  // '?' is reserved for unfilled cells in v4, but an older file which declared it as a rebus key keeps that meaning
+  const rebusLine = getLine(xd.toLowerCase(), "rebus:") || 0
+  rebusErrors.forEach((msg) => addSyntaxError(msg, rebusLine))
+  rebusDeprecations.forEach((msg) => addDeprecation(msg, rebusLine))
+
+  // '?' is an unfilled cell in v4, so it can't be a rebus key
   if (UNFILLED_CELL in rebuses || UNFILLED_CELL in schrodingerRebuses) {
+    addDeprecation(`'?' is an unfilled cell in xd v4, so it can't be a rebus key. xd-crossword-migrator can move the key to another character.`, rebusLine)
+    delete rebuses[UNFILLED_CELL]
+    delete schrodingerRebuses[UNFILLED_CELL]
+  }
+  json.tiles = stringGridToTiles(json.rebuses, rawInput.tiles, schrodingerRebuses, linked)
+
+  // Pre-v4 Puzzmo files marked a Schrödinger square with '*', in v4 it is a character like any other
+  const starRow = rawInput.tiles.findIndex((row) => row.includes("*"))
+  if (starRow !== -1 && !("*" in rebuses) && !("*" in schrodingerRebuses)) {
     addDeprecation(
-      `'?' is reserved for unfilled cells in xd v4 and can't be a rebus key, migrateXDToV4 can move it to another character`,
-      getLine(xd.toLowerCase(), "rebus:") || 0,
+      `'*' is a pre-v4 Puzzmo Schrödinger square, xd v4 gives the square a rebus key with its options instead: 'Rebus: 1=O|A'. xd-crossword-migrator can convert this file.`,
+      rawInput.tileLines[starRow],
     )
   }
-  json.tiles = stringGridToTiles(json.rebuses, rawInput.tiles, schrodingerRebuses)
+
+  applyBars()
 
   // A Start cell should hold what the solution has there. Rows with a split emoji already have an error
   if (strict && json.start) {
@@ -400,107 +432,50 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   if (json.metapuzzle) json.metapuzzle.answer = json.metapuzzle.answer.trim()
   json.notes = json.notes.trimEnd()
 
-  const useBarredLogic = isBarredGrid(json)
-
-  // Validate barred crosswords don't use unsupported features
-  if (useBarredLogic) {
-    const hasUnsupportedTiles = json.tiles.some((row) => row.some((tile) => tile.type === "rebus" || tile.type === "schrodinger"))
-
-    if (hasUnsupportedTiles) {
-      const rebusLine = getLine(xd.toLowerCase(), "rebus:")
-      addSyntaxError(
-        `Barred crosswords do not support rebuses or Schrödinger squares. Please remove the 'rebus:' metadata and use only letters and blank tiles in your grid.`,
-        rebusLine || 0,
-      )
-      // Skip clue processing since it will fail anyway
-      return json
-    }
-
-    // Also check if design section is missing
-    if (!json.design) {
-      const formLine = getLine(xd.toLowerCase(), "form:")
-      addSyntaxError(
-        `Barred crosswords require a '## Design' section with bar positions. Add a design section with styles defining bar-left and bar-top properties.`,
-        formLine || 0,
-      )
-      // Skip clue processing since we need the design section
-      return json
-    }
+  // Pre-v4 Puzzmo barred grids said so with 'form: barred', and put their bars in the design section
+  if (json.meta.form?.trim().toLowerCase() === "barred" && !rawInput.bars) {
+    addDeprecation(`'form: barred' is from pre-v4 Puzzmo xd, xd v4 puts the bars of a barred grid in a '## Bars' section. xd-crossword-migrator can convert this file.`, getLine(xd.toLowerCase(), "form:") || 0)
+  }
+  const barStyles = Object.entries(json.design?.styles || {}).filter(([_, rule]) => "bar-top" in rule || "bar-left" in rule)
+  if (barStyles.length) {
+    addDeprecation(
+      `'bar-top' and 'bar-left' are from pre-v4 Puzzmo xd, xd v4 puts the bars which end entries in a '## Bars' section (the design's 'border-top' and 'border-left' are only drawn). xd-crossword-migrator can convert this file.`,
+      design.headerLine,
+    )
   }
 
   // Split characters go in an end-of-line annotation: 'A1. Clue ~ OKGO ~ OKAY // OK|GO OK|AY', each word in it
   // is the answer it spells written with splits. Pre-v4 files put them in the answer itself.
   // A file using annotations without declaring a split character gets '|'
-  const hasSplitAnnotations = [...rawInput.clues.values()].some((c) => c.annotation.length)
+  const hasSplitAnnotations = rawInput.clues.some((c) => c.annotation.length)
   const splitChar = json.meta.splitcharacter || (hasSplitAnnotations ? "|" : undefined)
   const removeSplits = (answer: string) => (splitChar ? answer.split(splitChar).join("") : answer)
 
-  for (const clue of rawInput.clues.values()) {
+  for (const clue of rawInput.clues) {
+    clue.annotated = new Set()
     for (const word of clue.annotation) {
       const index = clue.answers.indexOf(removeSplits(word))
       if (index === -1) {
         addSyntaxError(`'${word}' after the '//' does not spell any of the answers (${clue.answers.join(", ")}) once its split characters are removed`, clue.line)
       } else {
         clue.answers[index] = word
+        clue.annotated.add(index)
       }
     }
 
+    // Pre-v4 answers held their split characters, in v4 those are part of the answer
     const inAnswer = clue.annotation.length ? [] : clue.answers.filter((a) => splitChar && a.includes(splitChar))
     if (inAnswer.length) {
       const line = `~ ${clue.answers.map(removeSplits).join(" ~ ")} // ${inAnswer.join(" ")}`
-      addDeprecation(`Split characters inside the answer are deprecated, use '${line}' instead`, clue.line)
+      addDeprecation(`Split characters inside an answer are pre-v4 Puzzmo xd, in xd v4 they go in an annotation at the end of the line: '${line}'. xd-crossword-migrator can convert this file.`, clue.line)
     }
     clue.answer = clue.answers[0]
   }
 
-  // Update the clues with position info and the right metadata
-  let positions: PositionWithTiles[] | Record<number, PositionWithTiles>
-  try {
-    positions = getCluePositionsForBoard(json.tiles, json.meta, rawInput.clues, json)
-  } catch (error) {
-    // If getCluePositionsForBoard throws an error, add it to the report and return early
-    const errorMessage = error instanceof Error ? error.message : String(error)
-    addSyntaxError(`Error processing barred crossword: ${errorMessage}`, 0)
-    return json
-  }
+  // Update the clues with position info and the right metadata, indexed by clue number
+  const positionsByClueNumber: PositionWithTiles[] = getCluePositionsForBoard(json.tiles)
 
-  // For barred grids, create a proper mapping from clue numbers to positions
-  let positionsByClueNumber: Record<number, PositionWithTiles> = {}
-  if (useBarredLogic && Array.isArray(positions)) {
-    // Build a mapping by matching answer strings exactly
-    const usedPositions = new Set<number>()
-
-    for (const keyClue of rawInput.clues) {
-      const [_, clue] = keyClue
-      const dirKey = clue.dir === "A" ? "across" : "down"
-
-      // Find the position that matches this clue's answer exactly
-      const matchingPositionIndex = (positions as PositionWithTiles[]).findIndex((p, index) => {
-        if (usedPositions.has(index)) return false
-
-        const relevantTiles = dirKey === "across" ? p.tiles.across : p.tiles.down
-        if (!relevantTiles) return false
-
-        const posAnswer = relevantTiles
-          .map((t) => (t.type === "letter" ? spellLetterTile(t) : ""))
-          .join("")
-          .toUpperCase()
-        return posAnswer === clue.answer.toUpperCase()
-      })
-
-      if (matchingPositionIndex !== -1) {
-        positionsByClueNumber[clue.num] = (positions as PositionWithTiles[])[matchingPositionIndex]
-        usedPositions.add(matchingPositionIndex)
-      }
-    }
-  } else {
-    // For normal grids, positions is already indexed by clue number
-    positionsByClueNumber = positions as Record<number, PositionWithTiles>
-  }
-
-  for (const keyClue of rawInput.clues) {
-    const [_, clue] = keyClue
-
+  for (const clue of rawInput.clues) {
     const dirKey = clue.dir === "A" ? "across" : "down"
     const arr = json.clues[dirKey]
     const bail = (reason: string) => {
@@ -509,15 +484,8 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     }
 
     const positionData = positionsByClueNumber[clue.num]
-
     if (!positionData) {
-      if (useBarredLogic) {
-        bail(
-          `Could not find positioning data. In barred crosswords, clue answers must exactly match letter sequences in the grid separated by bars. Check that: (1) your answer "${clue.answer}" appears in the grid, (2) bars correctly separate this word from adjacent letters, and (3) the grid doesn't contain rebuses.`,
-        )
-      } else {
-        bail("Could not find positioning data")
-      }
+      bail("Could not find positioning data")
       continue
     }
 
@@ -547,18 +515,15 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
 
     const hasFields = Object.keys(processedMetadata).length > 0
 
-    // Schrödinger slots can list each valid fill on the clue line, or with '^alt' metadata
-    const legacyAlts = Object.entries(clue.metadata || {})
-      .filter(([key, value]) => /^alt\d*$/.test(key) && typeof value === "string")
-      .map(([_, value]) => value as string)
-
+    // A Schrödinger slot lists each of its fills on the clue line. Only an answer from the annotation has splits
     const answers: ClueAnswer[] = []
-    for (const withSplits of [...clue.answers, ...legacyAlts]) {
-      const answer = removeSplits(withSplits)
-      if (answers.some((a) => a.answer === answer)) continue
-      const { splits, rebusInternalSplits } = parseSplitsFromAnswer(withSplits, splitChar, tiles)
+    clue.answers.forEach((written, i) => {
+      const annotated = clue.annotated?.has(i)
+      const answer = annotated ? removeSplits(written) : written
+      if (answers.some((a) => a.answer === answer)) return
+      const { splits, rebusInternalSplits } = annotated ? parseSplitsFromAnswer(written, splitChar, tiles) : {}
       answers.push({ answer, ...(splits ? { splits } : {}), ...(rebusInternalSplits ? { rebusInternalSplits } : {}) })
-    }
+    })
     const [primary] = answers
 
     arr.push({
@@ -575,13 +540,6 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
       ...(primary.splits ? { splits: primary.splits } : {}),
       ...(primary.rebusInternalSplits ? { rebusInternalSplits: primary.rebusInternalSplits } : {}),
     })
-
-    // Fill in the valid values for any Schrödinger squares in this slot from the alternative answers.
-    // Rebus-declared squares already know their values, so the v4 answer list only fills '*' squares
-    // - the pre-v4 '^alt' metadata could add values to either.
-    const newTiles = arr[arr.length - 1].tiles
-    addSchrodingerValuesFromAnswers(newTiles, [clue.answer, ...legacyAlts].map(removeSplits), json.rebuses, splitChar, () => true)
-    addSchrodingerValuesFromAnswers(newTiles, [clue.answer, ...clue.answers.slice(1)].map(removeSplits), json.rebuses, splitChar, (tile) => !tile.symbol)
   }
 
   // Checks that all of the essential data has been set in a useful way
@@ -608,6 +566,27 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
   json.report.success = json.report.errors.length === 0
   return json
 
+  /** Puts the '## Bars' section's bars on the tiles, as 'bar-left' and 'bar-top' */
+  function applyBars() {
+    if (!rawInput.bars) return
+    const { rows, lines: barLines, headerLine } = rawInput.bars
+    rows.forEach((row, y) => {
+      const unknown = row.find((c) => !"|-+.#".includes(c))
+      if (unknown) addSyntaxError(`'${unknown}' isn't a bar, a Bars section uses '.' for none, '|' for the left edge, '-' for the top edge and '+' for both`, barLines[y])
+
+      row.forEach((char, x) => {
+        const tile = json.tiles[y]?.[x]
+        if (!tile || tile.type === "blank") return
+        const flags: TileDesignFlags[] = char === "|" ? ["bar-left"] : char === "-" ? ["bar-top"] : char === "+" ? ["bar-left", "bar-top"] : []
+        if (!flags.length) return
+        tile.design = [...new Set([...(tile.design || []), ...flags])]
+      })
+    })
+
+    const sameShape = rows.length === json.tiles.length && rows.every((row, y) => row.length === json.tiles[y].length)
+    if (!sameShape) addSyntaxError(`The Bars section should be the same size as the grid, with a character for every cell`, headerLine)
+  }
+
   function parseModeForString(lineText: string, num: number): ParseMode {
     const content = lineText.split("## ").pop()
     if (!content) {
@@ -629,22 +608,20 @@ export function xdToJSON(xd: string, strict = false, editorInfo = false): Crossw
     } else if (title.startsWith("metadata")) {
       return "metadata"
     } else if (title.trim() === "meta") {
-      if (!("vitest" in globalThis))
-        console.log("xd-crossword-tools: Shimmed '### meta' to '### metadata' - this will be removed in the future")
-      return "metadata"
+      addDeprecation(`'## Meta' is from pre-v4 Puzzmo xd, xd v4 calls this section '## Metadata'. xd-crossword-migrator can convert this file.`, num)
+      return "unknown"
     } else if (title.startsWith("design")) {
       return "design"
+    } else if (title.startsWith("bars")) {
+      return "bars"
     }
 
     return "unknown"
   }
 }
 
-/**
- * A barred grid uses bars instead of blocks to separate its answers. Pre-v4 Puzzmo files
- * declared these with 'form: barred', in v4 the bars in the design section are enough.
- */
-export const isBarredGrid = (json: Pick<CrosswordJSON, "meta" | "design">) => json.meta?.form === "barred" || designHasBars(json.design)
+/** A barred grid uses bars (from its '## Bars' section) to end its entries, instead of, or as well as, blocks */
+export const isBarredGrid = (json: Pick<CrosswordJSON, "tiles">) => json.tiles.some((row) => row.some((tile) => tile.type !== "blank" && !!tile.design?.length))
 
 /** Moves the design rule scanning state along a chunk of text: is it inside a `{ ... }`, and inside quotes */
 function scanDesignRuleText(text: string, state: { insideRule: boolean; quote: string | undefined }) {
@@ -657,70 +634,6 @@ function scanDesignRuleText(text: string, state: { insideRule: boolean; quote: s
       state.quote = char
     } else if (char === "}") {
       state.insideRule = false
-    }
-  }
-}
-
-function applyV3SpecialCells(json: CrosswordJSON, grid: string[][], onDeprecated: (msg: string) => void) {
-  const special = json.meta.special?.trim().toLowerCase()
-  if (special !== "circle" && special !== "shaded") return
-
-  const cells: [number, number][] = []
-  grid.forEach((row, y) =>
-    row.forEach((char, x) => {
-      if (/^[a-z]$/.test(char)) cells.push([y, x])
-    }),
-  )
-  if (!cells.length) return
-
-  onDeprecated(`'Special: ${special}' with lowercase grid letters is xd v3 syntax, xd v4 uses a '## Design' section`)
-
-  if (!json.design) json.design = { styles: {}, positions: [] }
-  const styles = json.design.styles
-  const preferred = special === "circle" ? "O" : "S"
-  const existing = Object.entries(styles).find(([_, rule]) => rule.background === special && Object.keys(rule).length === 1)
-  const char =
-    existing?.[0] ?? [preferred, ..."ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"].find((c) => !styles[c])!
-  styles[char] = { background: special }
-
-  for (const [y, x] of cells) {
-    grid[y][x] = grid[y][x].toUpperCase()
-    if (!json.design.positions[y]) json.design.positions[y] = []
-    if (!json.design.positions[y][x]) json.design.positions[y][x] = char
-  }
-}
-
-function addSchrodingerValuesFromAnswers(
-  tiles: Tile[],
-  answers: string[],
-  rebuses: Record<string, string>,
-  splitChar: string | undefined,
-  shouldUpdate: (tile: Extract<Tile, { type: "schrodinger" }>) => boolean,
-) {
-  if (answers.length < 2) return
-
-  // Process each answer to replace rebus words with their symbols
-  const processedAnswers = answers.map((answer) => [...replaceWordWithSymbol(answer, tiles, splitChar || "-")])
-
-  for (let tileIdx = 0; tileIdx < tiles.length; tileIdx++) {
-    const tile = tiles[tileIdx]
-    if (tile.type !== "schrodinger" || !shouldUpdate(tile)) continue
-    if (!tile.validOptions) tile.validOptions = []
-
-    // The answers are ordered [primary, alt, alt2, ...] so pushing in this order
-    // keeps validOptions' position-as-variant-index semantics.
-    for (const processedAnswer of processedAnswers) {
-      if (tileIdx >= processedAnswer.length) continue
-      const char = processedAnswer[tileIdx]
-      if (rebuses[char]) {
-        const exists = tile.validRebuses.some((r) => r.symbol === char && r.letters === rebuses[char])
-        if (!exists) tile.validRebuses.push({ letters: rebuses[char], symbol: char })
-      } else if (!tile.validLetters.includes(char)) {
-        tile.validLetters.push(char)
-      }
-
-      const value = rebuses[char] || char
-      if (!tile.validOptions.includes(value)) tile.validOptions.push(value)
     }
   }
 }
@@ -773,8 +686,9 @@ const lengthOfTileInAnswer = (tile: Tile, restOfAnswer: string) => {
   if (tile.type !== "schrodinger") return 1
 
   const values = tile.validOptions?.length ? tile.validOptions : [...tile.validRebuses.map((r) => r.letters), ...tile.validLetters]
+  // An empty value ('()') always matches, so it is only picked when nothing else does
   const spelled = values.filter((value) => restOfAnswer.startsWith(value)).sort((a, b) => [...b].length - [...a].length)[0]
-  return spelled ? [...spelled].length : 1
+  return spelled !== undefined ? [...spelled].length : 1
 }
 
 /**
@@ -967,6 +881,8 @@ export const stringGridToTiles = (
   rebuses: CrosswordJSON["rebuses"],
   strArr: string[][],
   schrodingerRebuses: Record<string, string[]> = {},
+  /** For keys in a rule which links several keys, the keys of that rule */
+  linked: Record<string, string> = {},
 ): CrosswordJSON["tiles"] => {
   const rebusKeys = Object.keys(rebuses)
   const schrodingerKeys = Object.keys(schrodingerRebuses)
@@ -977,14 +893,18 @@ export const stringGridToTiles = (
         const values = schrodingerRebuses[char]
         const validLetters: string[] = []
         const validRebuses: { letters: string; symbol: string }[] = []
-        for (const value of values) {
+        // A linked square can repeat a value, validOptions keeps those so its positions line up with the rule's options
+        for (const value of new Set(values)) {
+          if (value === "") continue
           if ([...value].length === 1) {
             validLetters.push(value)
           } else {
             validRebuses.push({ letters: value, symbol: char })
           }
         }
-        tiles[rowI].push({ type: "schrodinger", validLetters, validRebuses, validOptions: [...values], symbol: char })
+        const tile: SchrodingerTile = { type: "schrodinger", validLetters, validRebuses, validOptions: [...values], symbol: char }
+        if (linked[char]) tile.linked = linked[char]
+        tiles[rowI].push(tile)
       } else if (rebusKeys.includes(char)) {
         tiles[rowI].push({ type: "rebus", symbol: char, word: rebuses[char] })
       } else {
@@ -1003,37 +923,36 @@ export const letterToTile = (letter: string): Tile => {
   if (letter === "_") return { type: "blank", spacer: true }
   // A cell whose letter isn't known yet
   if (letter === UNFILLED_CELL) return { type: "letter", letter: "", unfilled: true }
-  // Pre-v4 Schrödinger square - will be populated with valid letters later
-  if (letter === "*") return { type: "schrodinger", validLetters: [], validRebuses: [], validOptions: [] }
   return { type: "letter", letter }
 }
 
-/** Reads 'Rebus: 1=ONE 2=TWO', a key with many values ('1=O 1=A') is a Schrödinger square */
-export const getRebuses = (str: string): { rebuses: Record<string, string>; schrodingerRebuses: Record<string, string[]> } => {
-  if (!str.includes("=")) return { rebuses: {}, schrodingerRebuses: {} }
-
-  const allValues = new Map<string, string[]>()
-
-  str.split(" ").forEach((substr) => {
-    if (!substr.includes("=")) return
-    const [start, ...rest] = substr.split("=")
-    const value = rest.join("=")
-    if (!allValues.has(start)) allValues.set(start, [])
-    allValues.get(start)!.push(value)
-  })
+/**
+ * Reads 'Rebus: 1=ONE 2=EIGHT|8 345=CIGAR|PENIS' into the keys with a single value, and the keys with several
+ * (Schrödinger squares, and the squares of linked rules). See `parseRebusField` for the syntax.
+ */
+export const getRebuses = (str: string) => {
+  const { rules, errors, deprecations } = parseRebusField(str)
 
   const rebuses: Record<string, string> = {}
   const schrodingerRebuses: Record<string, string[]> = {}
+  /** For each key in a rule with several keys, the keys of that rule */
+  const linked: Record<string, string> = {}
 
-  for (const [key, values] of allValues) {
-    if (values.length === 1) {
-      rebuses[key] = values[0]
-    } else {
-      schrodingerRebuses[key] = values
-    }
+  for (const rule of rules) {
+    rule.keys.forEach((key, i) => {
+      const values = rule.options.map((option) => option[i])
+      if (rule.keys.length > 1) {
+        schrodingerRebuses[key] = values
+        linked[key] = rule.keys.join("")
+      } else if (values.length === 1) {
+        rebuses[key] = values[0]
+      } else {
+        schrodingerRebuses[key] = values
+      }
+    })
   }
 
-  return { rebuses, schrodingerRebuses }
+  return { rebuses, schrodingerRebuses, linked, rules, errors, deprecations }
 }
 
 const toTitleSentence = (strs: string[]) => {

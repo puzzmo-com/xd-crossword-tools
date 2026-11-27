@@ -1,0 +1,14 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "{A|X|Y} B C"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["ABC",null],["XBC",null],["YBC",null]],"display":[["text","Test clue"]]}
+    ],
+    "notes": ""
+  }
+}

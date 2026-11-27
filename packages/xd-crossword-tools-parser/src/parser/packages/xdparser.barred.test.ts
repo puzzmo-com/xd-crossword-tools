@@ -1,8 +1,11 @@
-import { xdToJSON } from "../xdToJSON"
+import { isBarredGrid, xdToJSON } from "../xdToJSON"
 import { it, expect } from "vitest"
 
 it("generates a barred crossword from the xd", () => {
-  const crosswordJSON = xdToJSON(xdForBarred)
+  const crosswordJSON = xdToJSON(xdForBarred, true)
+  expect(crosswordJSON.report.errors).toEqual([])
+  expect(crosswordJSON.report.warnings).toEqual([])
+  expect(isBarredGrid(crosswordJSON)).toBe(true)
 
   expect(crosswordJSON.clues.across.length).toBe(8)
 
@@ -28,7 +31,6 @@ it("supports comma-separated selectors in the Design section", () => {
 
 title: Test Comma Error
 author: Test
-form: barred
 
 ## Grid
 
@@ -46,7 +48,7 @@ D3. Two letters ~ TG
 
 ## Design
 
-A, B { bar-top: true }
+A, B { border-top: true }
 
 ...
 AAB
@@ -55,7 +57,7 @@ AAB
   const result = xdToJSON(xd, true)
 
   expect(result.report.errors.filter((e) => e.message.includes("selector") || e.message.includes("Comma"))).toEqual([])
-  expect(result.design?.styles).toEqual({ A: { "bar-top": "true" }, B: { "bar-top": "true" } })
+  expect(result.design?.styles).toEqual({ A: { "border-top": "true" }, B: { "border-top": "true" } })
 })
 
 it("rejects commas inside style properties in Design section", () => {
@@ -63,7 +65,6 @@ it("rejects commas inside style properties in Design section", () => {
 
 title: Test Comma Error
 author: Test
-form: barred
 
 ## Grid
 
@@ -81,9 +82,7 @@ D3. Two letters ~ TG
 
 ## Design
 
-<style>
-A { bar-top: true, bar-left: true }
-</style>
+A { border-top: true, border-left: true }
 
 ...
 AAA
@@ -96,6 +95,59 @@ AAA
   expect(result.report.errors.some((e) => e.message && e.message.includes("Commas are not allowed inside style rules"))).toBe(true)
 })
 const xdForBarred = `## Metadata
+
+title: Beneath The Surface Printer&#039;s Devilry #4 (Midi)
+author: Kyle Dolan
+editor: 
+date: 
+copyright: © 2023 Kyle Dolan
+
+## Grid
+
+SIGNPOST
+UNICORNS
+NCNARROW
+DAUNTUWE
+EYPTENOR
+RODENTLV
+SLEETIDE
+COUNTESS
+
+## Clues
+
+A1. For dorm room wall, deer art is a popular choice (8) ~ SIGNPOST
+A6. Playing an investment game in Economics class, was lots offered the market? (7) ~ UNICORN
+A9. As flight can be used to describe principles of classical mechanics (6) ~ NARROW
+A10. The reunion included grandparents, uncle, sans cousins and other extended family (5) ~ DAUNT
+A13. The butcher shop was known for its famous sausages, for which they sold special extra-long buns (5) ~ TENOR
+A15. The oral surgeon who removed my wisdom teeth was a pal. Insurance covered the whole thing! (6) ~ RODENT
+A16. As commander of the flight, in having the most spacious cabin (3,4) ~ LEETIDE
+A17. With the term paper due date approaching, the lazy student tried to buy ad--I say!--off the Internet (8) ~ COUNTESS
+
+D1. The old couple knew each other so well that they had formed a Wordle standing between themselves (7) ~ SUNDERS
+D2. For puzzle lovers, a good crossword is like brandy (4) ~ INCA
+D3. Loon setting up your user name and password to verify your account... (3,2) ~ GINUP
+D4. ...if you need tech, super. Your email? (7) ~ PORTENT
+D5. Our catcher isn&#039;t playing today--hermit there to be found (4) ~ SNOW
+D7. The bouncer didn&#039;t bother. Toss ID--she knew right away it was fake (7) ~ CANTEEN
+D8. Question: What items of clothing are typically worn by professional billiards players? Ants (7) ~ SWERVES
+D11. A lover offs Will, often use them as conversation starters at parties (5) ~ UNTIE
+D12. I&#039;ll have a turkey sandwich with Swiss cheese, mats of bacon, and tomatoes (4) ~ YOLO
+D14. A cake like daiginjo pairs well with sushi (4) ~ OLDS
+
+## Bars
+
+........
+...-.-.+
+.||..-..
+.....+||
+.+||..-.
+..-...||
+.|-.....
+-.-.-...
+`
+
+const preV4XDForBarred = `## Metadata
 
 title: Beneath The Surface Printer&#039;s Devilry #4 (Midi)
 author: Kyle Dolan
@@ -155,13 +207,24 @@ C { bar-left: true; bar-top: true }
 A.A.A...
 `
 
-it("treats a grid with bars in its design as barred, without needing 'form: barred'", () => {
-  const v4 = xdForBarred.replace(/^form: barred\n/m, "").replace(/<\/?style>\n?/g, "")
-  expect(v4).not.toContain("form:")
+it("reads pre-v4 bars in the design, and 'form: barred', as v4 does, with deprecations", () => {
+  const crosswordJSON = xdToJSON(preV4XDForBarred)
+  // The design's bar-top and bar-left don't end entries, so it isn't a barred grid
+  expect(isBarredGrid(crosswordJSON)).toBe(false)
+  expect(crosswordJSON.report.warnings.map((w) => w.message)).toEqual([
+    expect.stringContaining("'<style>' is from pre-v4 Puzzmo xd"),
+    expect.stringContaining("'form: barred' is from pre-v4 Puzzmo xd"),
+  ])
+})
 
-  const crosswordJSON = xdToJSON(v4)
-  expect(crosswordJSON.report.errors).toEqual([])
-  expect(crosswordJSON.clues.across.find((c) => c.number === 1)?.answer).toBe("SIGNPOST")
-  expect(crosswordJSON.clues.across.find((c) => c.number === 10)?.tiles.length).toBe(5)
-  expect(crosswordJSON.clues.down.find((c) => c.number === 14)?.answer).toBe("OLDS")
+it("ignores a bar on the edge of the grid or next to a block, and reports a Bars section of the wrong size", () => {
+  const xd = (bars: string) => `## Metadata\n\ntitle: Bars\n\n## Grid\n\nAB.\nCD.\n\n## Bars\n\n${bars}\n\n## Clues\n\nA1. Pair ~ AB\nA3. Pair ~ CD\n\nD1. Pair ~ AC\nD2. Pair ~ BD\n`
+  const json = xdToJSON(xd("+.|\n|.#"))
+  expect(json.report.errors).toEqual([])
+  expect(json.clues.across.map((c) => c.answer)).toEqual(["AB", "CD"])
+
+  // A bar inside the grid splits entries
+  expect(xdToJSON(xd("...\n.-.")).report.errors.map((e) => e.message)).toContainEqual(expect.stringContaining("The clue down2 is malformed"))
+  expect(xdToJSON(xd("...")).report.errors.map((e) => e.message)).toContainEqual(expect.stringContaining("The Bars section should be the same size as the grid"))
+  expect(xdToJSON(xd("..x\n...")).report.errors.map((e) => e.message)).toContainEqual(expect.stringContaining("'x' isn't a bar"))
 })

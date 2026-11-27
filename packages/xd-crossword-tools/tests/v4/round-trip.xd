@@ -4,7 +4,7 @@ title: {/Round/} Trip
 author: Orta
 date: 2026-10-10
 editor: Not set
-rebus: 1=O 1=A
+rebus: 1=O|A
 splitcharacter: |
 
 ## Grid
@@ -32,7 +32,7 @@ D4. Former intimates ~ EXES
 
 O { background: circle }
 P { background-image: url('data:image/png;base64,iVBORw0KGgo='); background-size: 2 2 }
-B { bar-left: true; background: shaded }
+B { border-left: true; background: shaded }
 
 #O...
 #.P..

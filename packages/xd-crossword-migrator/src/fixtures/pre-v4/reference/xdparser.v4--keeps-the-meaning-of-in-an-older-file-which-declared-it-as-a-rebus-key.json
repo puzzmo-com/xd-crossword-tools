@@ -1,0 +1,14 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "C [O] N E"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["CONE",null]],"display":[["text","Sugar ___"]]}
+    ],
+    "notes": ""
+  }
+}

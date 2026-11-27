@@ -1,0 +1,27 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "# # F A M",
+      "T I L D E",
+      "S H O E S",
+      "P O O L S",
+      "# P R A Y"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["FAM",null]],"display":[["text","People who feel like home, for short"]]},
+      {"direction":"across","number":4,"answers":[["~",null]],"display":[["text",""]]},
+      {"direction":"across","number":6,"answers":[["SHOES",null]],"display":[["text","Foot prisons"]]},
+      {"direction":"across","number":7,"answers":[["POOLS",null]],"display":[["text","Settings for some summer parties"]]},
+      {"direction":"across","number":8,"answers":[["PRAY",null]],"display":[["text","\"I was staring at the sky, just looking for a star / To ___ on, or wish on, or something like that\" (Fiona Apple lyric)"]]},
+      {"direction":"down","number":1,"answers":[["FLOOR",null]],"display":[["text","\"The ___ is lava\" (game I played (and lost) a million times in my living room as a kid)"]]},
+      {"direction":"down","number":2,"answers":[["ADELA",null]],"display":[["text","\"Ain't in LA\" singer"]]},
+      {"direction":"down","number":3,"answers":[["MESSY",null]],"display":[["text","Like some buns and breakups"]]},
+      {"direction":"down","number":4,"answers":[["TSP",null]],"display":[["text","1/192 of a qt."]]},
+      {"direction":"down","number":5,"answers":[["IHOP",[0,1,2]]],"display":[["text","Probably the only establishment where you can get New York cheesecake pancakes at 3 a.m."]]}
+    ],
+    "notes": ""
+  }
+}

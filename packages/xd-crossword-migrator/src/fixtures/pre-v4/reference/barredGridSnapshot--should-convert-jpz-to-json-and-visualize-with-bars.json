@@ -1,0 +1,39 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "S I G N P O S T",
+      "U N I C O R N S",
+      "N C N A R R O W",
+      "D A U N T U W E",
+      "E Y P T E N O R",
+      "R O D E N T L V",
+      "S L E E T I D E",
+      "C O U N T E S S"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["SIGNPOST",null]],"display":[["text","For dorm room wall, deer art is a popular choice (8)"]]},
+      {"direction":"across","number":6,"answers":[["UNICORN",null]],"display":[["text","Playing an investment game in Economics class, was lots offered the market? (7)"]]},
+      {"direction":"across","number":9,"answers":[["NARROW",null]],"display":[["text","As flight can be used to describe principles of classical mechanics (6)"]]},
+      {"direction":"across","number":10,"answers":[["DAUNT",null]],"display":[["text","The reunion included grandparents, uncle, sans cousins and other extended family (5)"]]},
+      {"direction":"across","number":13,"answers":[["TENOR",null]],"display":[["text","The butcher shop was known for its famous sausages, for which they sold special extra-long buns (5)"]]},
+      {"direction":"across","number":15,"answers":[["RODENT",null]],"display":[["text","The oral surgeon who removed my wisdom teeth was a pal. Insurance covered the whole thing! (6)"]]},
+      {"direction":"across","number":16,"answers":[["LEETIDE",null]],"display":[["text","As commander of the flight, in having the most spacious cabin (3,4)"]]},
+      {"direction":"across","number":17,"answers":[["COUNTESS",null]],"display":[["text","With the term paper due date approaching, the lazy student tried to buy ad--I say!--off the Internet (8)"]]},
+      {"direction":"down","number":1,"answers":[["SUNDERS",null]],"display":[["text","The old couple knew each other so well that they had formed a Wordle standing between themselves (7)"]]},
+      {"direction":"down","number":2,"answers":[["INCA",null]],"display":[["text","For puzzle lovers, a good crossword is like brandy (4)"]]},
+      {"direction":"down","number":3,"answers":[["GINUP",null]],"display":[["text","Loon setting up your user name and password to verify your account... (3,2)"]]},
+      {"direction":"down","number":4,"answers":[["PORTENT",null]],"display":[["text","...if you need tech, super. Your email? (7)"]]},
+      {"direction":"down","number":5,"answers":[["SNOW",null]],"display":[["text","Our catcher isn&#039;t playing today--hermit there to be found (4)"]]},
+      {"direction":"down","number":7,"answers":[["CANTEEN",null]],"display":[["text","The bouncer didn&#039;t bother. Toss ID--she knew right away it was fake (7)"]]},
+      {"direction":"down","number":8,"answers":[["SWERVES",null]],"display":[["text","Question: What items of clothing are typically worn by professional billiards players? Ants (7)"]]},
+      {"direction":"down","number":11,"answers":[["UNTIE",null]],"display":[["text","A lover offs Will, often use them as conversation starters at parties (5)"]]},
+      {"direction":"down","number":12,"answers":[["YOLO",null]],"display":[["text","I&#039;ll have a turkey sandwich with Swiss cheese, mats of bacon, and tomatoes (4)"]]},
+      {"direction":"down","number":14,"answers":[["OLDS",null]],"display":[["text","A cake like daiginjo pairs well with sushi (4)"]]}
+    ],
+    "design": {"1,3":{"bar-top":"true"},"1,5":{"bar-top":"true"},"1,7":{"bar-top":"true","bar-left":"true"},"2,1":{"bar-left":"true"},"2,2":{"bar-left":"true"},"2,5":{"bar-top":"true"},"3,5":{"bar-top":"true","bar-left":"true"},"3,6":{"bar-left":"true"},"3,7":{"bar-left":"true"},"4,1":{"bar-top":"true","bar-left":"true"},"4,2":{"bar-left":"true"},"4,3":{"bar-left":"true"},"4,6":{"bar-top":"true"},"5,2":{"bar-top":"true"},"5,6":{"bar-left":"true"},"5,7":{"bar-left":"true"},"6,1":{"bar-left":"true"},"6,2":{"bar-top":"true"},"7,0":{"bar-top":"true"},"7,2":{"bar-top":"true"},"7,4":{"bar-top":"true"}},
+    "notes": ""
+  }
+}

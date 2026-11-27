@@ -1,0 +1,28 @@
+## Metadata
+
+title: Test Comma Error
+author: Test
+form: barred
+
+## Grid
+
+CAT
+DOG
+
+## Clues
+
+A1. Feline ~ CAT
+A4. Canine ~ DOG
+
+D1. Two letters ~ CD
+D2. Two letters ~ AO
+D3. Two letters ~ TG
+
+## Design
+
+<style>
+A { bar-top: true, bar-left: true }
+</style>
+
+...
+AAA

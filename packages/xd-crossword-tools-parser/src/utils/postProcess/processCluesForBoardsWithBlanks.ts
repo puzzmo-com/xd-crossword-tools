@@ -12,6 +12,12 @@ function getPossibleTiles(tiles: CrosswordJSON["tiles"]): boolean[][] {
   return tiles.map((row) => row.map((tile) => tile.type !== "blank"))
 }
 
+/** Whether a cell has a bar on its left or top edge, which ends an entry like a block does */
+const hasBar = (tiles: CrosswordJSON["tiles"], y: number, x: number, flag: "bar-left" | "bar-top") => {
+  const tile = tiles[y]?.[x]
+  return !!tile && tile.type !== "blank" && !!tile.design?.includes(flag)
+}
+
 function acrossCluePositions(spots: boolean[][], tiles: CrosswordJSON["tiles"]): PositionWithTiles[] {
   // Go left to right through the tiles, determining if they are
   // the first character of a potential word
@@ -19,15 +25,15 @@ function acrossCluePositions(spots: boolean[][], tiles: CrosswordJSON["tiles"]):
   spots.forEach((row, y) => {
     row.forEach((spot, x) => {
       if (!spot) return
-      const behind = spots[y][x - 1]
+      const behind = spots[y][x - 1] && !hasBar(tiles, y, x, "bar-left")
       if (!behind) {
         // A word cannot be 1 character long
-        const hasNextHorizontalLetter = Boolean(spots[y][x + 1])
+        const hasNextHorizontalLetter = Boolean(spots[y][x + 1]) && !hasBar(tiles, y, x + 1, "bar-left")
         if (hasNextHorizontalLetter) {
-          // now collect tiles by searching right until we hit a blank
+          // now collect tiles by searching right until we hit a blank or a bar
           let i = x
           const relatedTiles = [] as Tile[]
-          while (spots[y][i]) {
+          while (spots[y][i] && (i === x || !hasBar(tiles, y, i, "bar-left"))) {
             relatedTiles.push(tiles[y][i])
             i++
           }
@@ -48,15 +54,15 @@ function downCluePositions(spots: boolean[][], tiles: CrosswordJSON["tiles"]): P
   spots.forEach((row, y) => {
     row.forEach((spot, x) => {
       if (!spot) return
-      const above = spots[y - 1]?.[x]
+      const above = spots[y - 1]?.[x] && !hasBar(tiles, y, x, "bar-top")
       if (!above) {
         // A word cannot be 1 character long
-        const hasNextVerticalLetter = spots[y + 1]?.[x]
+        const hasNextVerticalLetter = spots[y + 1]?.[x] && !hasBar(tiles, y + 1, x, "bar-top")
         if (hasNextVerticalLetter) {
-          // now collect tiles by searching down until we hit a blank
+          // now collect tiles by searching down until we hit a blank or a bar
           let i = y
           const relatedTiles = [] as Tile[]
-          while (spots[i]?.[x]) {
+          while (spots[i]?.[x] && (i === y || !hasBar(tiles, i, x, "bar-top"))) {
             relatedTiles.push(tiles[i][x])
             i++
           }

@@ -1,0 +1,25 @@
+## Metadata
+
+title: Markup
+author: Orta
+date: 2021-03-16
+editor: Not set
+
+## Grid
+
+BULB
+OK.O
+L..O
+DESK
+
+## Clues
+
+A1. Gardener's {*concern*}. ~ BULB
+A1 ^hint: Turned on with a {/flick/}.
+
+A4. A {@reasonable | href: https://example.com@} statement. ~ OK
+A5. The {![https://example.com/desk.png|an office desk]!} centerpiece. ~ DESK
+
+D1. To {_ly_} go. ~ BOLD
+D2. Bigger than {![https://example.com/flag.png]!}. ~ UK
+D3. A {#conscious|#0f0|#0a0#} tree. ~ BOOK

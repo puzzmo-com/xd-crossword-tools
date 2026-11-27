@@ -1,0 +1,22 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "B U L B",
+      "O K # O",
+      "L # # O",
+      "D E S K"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["BULB",null]],"display":[["text","Gardener's concern."]],"hint":[["text","A hint"]]},
+      {"direction":"across","number":4,"answers":[["OK",null]],"display":[["text","A reasonable statement."]],"hint":[["text","A hint"]]},
+      {"direction":"across","number":5,"answers":[["DESK",null]],"display":[["text","Sit here."]],"hint":[["text","A hint"]]},
+      {"direction":"down","number":1,"answers":[["BOLD",null]],"display":[["text","To ___ly go."]],"hint":[["text","A hint"]]},
+      {"direction":"down","number":2,"answers":[["UK",null]],"display":[["text","Bigger than britain."]],"hint":[["text","A hint"]]},
+      {"direction":"down","number":3,"answers":[["BOOK",null]],"display":[["text","A conscious tree."]],"hint":[["text","A hint"]]}
+    ],
+    "notes": ""
+  }
+}

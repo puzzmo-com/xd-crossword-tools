@@ -1,0 +1,51 @@
+## Metadata
+
+title: tbd
+author: halle
+date: Not set
+editor: brooke
+copyright: © 2026
+blacksquares: 4
+whitespaces: 21
+acrossclues: 5
+downclues: 5
+width: 5
+height: 5
+size: 5x5
+splitcharacter: |
+emoji: 💫
+originaltitle: 601
+
+## Grid
+
+.APE.
+OLIVE
+MIXER
+GAINS
+.SET.
+
+## Clues
+
+A1. Banana-loving brute ~ APE
+A4. Its brine dirties a martini ~ OLIVE
+A6. Useful appliance when making homemade meringue ~ MIXER
+A7. Gym progress ~ GAINS
+A8. What { } denotes in mathematics ~ SET
+
+D1. Lorde, for Ella Yelich-O'Connor ~ ALIAS
+D2. Hairstyle that comes up short? ~ PIXIE
+D3. Reason for a calendar entry ~ EVENT
+D4. "i'm shook!" ~ OMG // O|M|G
+D5. Settings for "The Pitt" and "Chicago Med" ~ ERS // E|RS
+
+## Line Breaks
+
+
+A4. nbsp:19
+A6. wbr:17
+A8. nbsp:22
+D1. nbsp:11 wbr:8
+D2. nbsp:23 wbr:10,21
+D3. nbsp:6,12
+D4. nbsp:4
+D5. nbsp:8,17,36 wbr:24

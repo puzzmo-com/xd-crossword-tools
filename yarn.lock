@@ -4307,6 +4307,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"xd-crossword-migrator@workspace:*, xd-crossword-migrator@workspace:packages/xd-crossword-migrator":
+  version: 0.0.0-use.local
+  resolution: "xd-crossword-migrator@workspace:packages/xd-crossword-migrator"
+  dependencies:
+    tsup: "npm:^8.1.0"
+    xd-crossword-tools-parser: "workspace:*"
+  languageName: unknown
+  linkType: soft
+
 "xd-crossword-monorepo@workspace:.":
   version: 0.0.0-use.local
   resolution: "xd-crossword-monorepo@workspace:."
@@ -4332,6 +4341,7 @@ __metadata:
   dependencies:
     fast-xml-parser: "npm:^5.5.12"
     tsup: "npm:^8.1.0"
+    xd-crossword-migrator: "workspace:*"
     xd-crossword-tools-parser: "workspace:*"
   bin:
     xd-crossword-tools: dist/cli.js

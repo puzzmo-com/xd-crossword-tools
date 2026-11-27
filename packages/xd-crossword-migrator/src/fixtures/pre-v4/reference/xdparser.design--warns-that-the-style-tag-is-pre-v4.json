@@ -1,0 +1,11 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [],
+    "clues": [],
+    "design": {"5,11":{"background":"circle"},"6,11":{"background":"circle"},"7,2":{"background":"circle"},"7,11":{"background":"circle"},"8,2":{"background":"circle"},"8,11":{"background":"circle"},"9,2":{"background":"circle"},"9,11":{"background":"circle"},"10,2":{"background":"circle"},"10,3":{"background":"circle"},"10,12":{"background":"circle"},"11,3":{"background":"circle"},"11,12":{"background":"circle"},"12,3":{"background":"circle"},"12,12":{"background":"circle"},"13,3":{"background":"circle"},"13,12":{"background":"circle"},"14,3":{"background":"circle"},"14,12":{"background":"circle"}},
+    "notes": ""
+  }
+}

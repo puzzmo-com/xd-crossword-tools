@@ -10,8 +10,9 @@ const lettersForTile = (tile: Tile, restOfAnswer: string) => {
       return spellLetterTile(tile)
     case "schrodinger": {
       const values = tile.validOptions?.length ? tile.validOptions : [...tile.validRebuses.map((r) => r.letters), ...tile.validLetters]
+      // An empty value ('()') always matches, so it is only picked when nothing else does
       const spelled = values.filter((value) => restOfAnswer.startsWith(value)).sort((a, b) => [...b].length - [...a].length)[0]
-      return spelled || [...restOfAnswer][0] || "*"
+      return spelled ?? ([...restOfAnswer][0] || "*")
     }
     case "blank":
       // This shouldn't happen in a clue answer
@@ -111,6 +112,19 @@ export const JSONToXD = (json: CrosswordJSON): string => {
         .join("")
     )
     .join("\n")
+
+  // The bars which end entries, from each tile's 'bar-left' and 'bar-top': '|' left, '-' top, '+' both, '#' a block
+  const barRows = json.tiles.map((row) =>
+    row
+      .map((tile) => {
+        if (tile.type === "blank") return "#"
+        const left = tile.design?.includes("bar-left")
+        const top = tile.design?.includes("bar-top")
+        return left && top ? "+" : left ? "|" : top ? "-" : "."
+      })
+      .join(""),
+  )
+  if (barRows.some((row) => /[|+-]/.test(row))) xd += `\n\n## Bars\n\n${barRows.join("\n")}`
 
   const getCluesXD = (clues: Clue[], direction: "A" | "D") => {
     return clues

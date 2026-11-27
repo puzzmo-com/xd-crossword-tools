@@ -1,0 +1,29 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "E R R # # #",
+      "B [AD] E G G #",
+      "B A L L A D",
+      "# R O [AD] I E",
+      "# # # E T C"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["ERR",null]],"display":[["text","Make a mistake"]]},
+      {"direction":"across","number":4,"answers":[["BADEGG",[1]]],"display":[["text","No-good, rotten type of person"]],"hint":[["text","The circled square must contain two letters, which you can enter by pressing \"rebus\" or escape to toggle rebus mode"]]},
+      {"direction":"across","number":7,"answers":[["BALLAD",null]],"display":[["text","Slow and sentimental song ... and, when parsed as two words, a description for the special squares in this puzzle"]],"hint":[["text","This revealer's first four letters describe the circles in the grid, and the last two letters are what each circle contains"]]},
+      {"direction":"across","number":9,"answers":[["ROADIE",null]],"display":[["text","Concert tour worker"]],"hint":[["text","The circled square must contain two letters, which you can enter by pressing \"rebus\" or escape to toggle rebus mode"]]},
+      {"direction":"across","number":10,"answers":[["ETC",null]],"display":[["text","\"... you get the idea\""]]},
+      {"direction":"down","number":1,"answers":[["EBB",null]],"display":[["text","___ and flow"]]},
+      {"direction":"down","number":2,"answers":[["RADAR",null]],"display":[["text","Storm-tracking technology"]],"hint":[["text","The circled square must contain two letters, which you can enter by pressing \"rebus\" or escape to toggle rebus mode"]]},
+      {"direction":"down","number":3,"answers":[["RELO",null]],"display":[["text","Quickly move between cities?"]]},
+      {"direction":"down","number":5,"answers":[["GLADE",null]],"display":[["text","Grassy spot in a forest"]],"hint":[["text","The circled square must contain two letters, which you can enter by pressing \"rebus\" or escape to toggle rebus mode"]]},
+      {"direction":"down","number":6,"answers":[["GAIT",null]],"display":[["text","Way of walking"]]},
+      {"direction":"down","number":8,"answers":[["DEC",null]],"display":[["text","Month with the first Capricorn birthdays: Abbr."]]}
+    ],
+    "design": {"1,1":{"background":"circle"},"3,3":{"background":"circle"}},
+    "notes": ""
+  }
+}

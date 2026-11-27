@@ -1,0 +1,29 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "S H Y # #",
+      "T E E S #",
+      "R / A W W",
+      "U H H U H",
+      "T I N N Y",
+      "S M O G #"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["SHY",null]],"display":[["text","Personality trait conveyed by 🥺👉👈"]]},
+      {"direction":"across","number":4,"answers":[["TEES",null]],"display":[["text","___ up (prepares to swing a golf club, ironically by putting ___ down)"]]},
+      {"direction":"across","number":6,"answers":[["R/AWW",null]],"display":[["text","Subreddit for cute pictures of pets <3"]]},
+      {"direction":"across","number":8,"answers":[["UHHUH",null]],"display":[["text","\"Sure...\""]]},
+      {"direction":"across","number":9,"answers":[["TINNY",null]],"display":[["text","Like music coming from really cheap speakers"]]},
+      {"direction":"across","number":10,"answers":[["SMOG",null]],"display":[["text","Visible pollution in the city"]]},
+      {"direction":"down","number":1,"answers":[["STRUTS",null]],"display":[["text","Confidently walks down the runway ✨"]]},
+      {"direction":"down","number":2,"answers":[["HE/HIM",null]],"display":[["text","What's printed on a pronoun pin for this puzzle's constructor"]]},
+      {"direction":"down","number":3,"answers":[["YEAHNO",null]],"display":[["text","\"Mmm... hard pass\""]]},
+      {"direction":"down","number":5,"answers":[["SWUNG",null]],"display":[["text","Showed off your acrobatic skills on the monkey bars, maybe"]]},
+      {"direction":"down","number":7,"answers":[["WHY",null]],"display":[["text","Left fielder on Who's, What's, and I Don't Know's baseball team"]]}
+    ],
+    "notes": ""
+  }
+}

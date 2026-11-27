@@ -1,0 +1,65 @@
+## Metadata
+
+title: That Funny Feeling
+author: Rob Dubbin
+date: Not set
+editor: Not set
+copyright: © 2026
+blacksquares: 4
+whitespaces: 32
+acrossclues: 7
+downclues: 12
+width: 12
+height: 3
+size: 12x3
+splitcharacter: |
+
+## Grid
+
+AFAR.PDA.OLD
+JENESAISQUOI
+ADD.OMG.IRON
+
+## Clues
+
+A1. An appreciable distance ~ AFAR
+A5. Early smartphone such as my beloved Treo 650 ~ PDA // P|D|A
+A8. Meaner way to say "vintage" ~ OLD
+A11. Quality you can't quite name (and I can never quite spell) ~ JENESAISQUOI // JE|NE|SAIS|QUOI
+A14. Perform arithmetic upon ~ ADD
+A15. Commonly texted blasphemy ~ OMG // O|M|G
+A16. Crucial part of any rust recipe ~ IRON
+
+D1. Steely Dan's 1977 opus that kicks off with "Black Cow" ~ AJA
+D2. Planted, like a story ~ FED
+D3. "Alexander ___ the Terrible, Horrible, No Good, Very Bad Day" (children's book by Judith Viorst) ~ AND
+D4. Letters that multiply in an email subject line the longer a thread goes ~ RE
+D5. Dawn : "The Office" (U.K.) :: ___ : "The Office" (U.S.) ~ PAM
+D6. "The ___" (archaeological LucasArts adventure game from 1995) ~ DIG
+D7. Simile signal ~ AS
+D8. Collectivizing adjective ~ OUR
+D9. What Dawn from the 5-Down clue would call a toilet ~ LOO
+D9 ^refs: D5
+D10. Noisy clamor, real hullaballoo, great cacophony ~ DIN
+D12. Conversation restarter after an awkward pause ~ SO
+D13. Energy unblocked by acupuncture ~ QI
+
+## Line Breaks
+
+A1. nbsp:2
+A5. nbsp:17,33,38
+A8. nbsp:6,17
+A11. nbsp:7,23,33,35,51 wbr:18,29
+A14. nbsp:18
+A16. nbsp:15
+D1. nbsp:50,54,66 wbr:13,40
+D2. nbsp:10
+D3. nbsp:10,18,38,41,52,56,73,88 wbr:62
+D4. nbsp:12,25,30,38,47,58,71 wbr:8,44
+D5. nbsp:4,33,38,46 wbr:13
+D6. nbsp:3,53 wbr:49
+D7. nbsp:6
+D9. nbsp:4,9,34 wbr:22
+D10. nbsp:5 wbr:14
+D12. nbsp:31 wbr:23
+D13. nbsp:16 wbr:7

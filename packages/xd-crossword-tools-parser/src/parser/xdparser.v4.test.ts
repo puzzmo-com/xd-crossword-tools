@@ -19,7 +19,7 @@ ${clues}
 
 describe("xd v4 clue lines", () => {
   it("ends the body at the first ' ~ ', and reads every answer after it", () => {
-    const json = xdToJSON(puzzle(`A6. Sugar ____ ~ CONE ~ CANE`, "Rebus: 1=O 1=A"))
+    const json = xdToJSON(puzzle(`A6. Sugar ____ ~ CONE ~ CANE`, "Rebus: 1=O|A"))
     const a6 = json.clues.across.find((c) => c.number === 6)!
     expect(a6.body).toBe("Sugar ____")
     expect(a6.answer).toBe("CONE")
@@ -78,12 +78,14 @@ describe("xd v4 grids", () => {
     expect(json.clues.across.map((c) => c.answer)).toEqual(["AB", "CD"])
   })
 
-  it("reads v3 'Special' lowercase cells into the design", () => {
+  it("reads v3 'Special' lowercase cells as lowercase letters, with a deprecation", () => {
     const json = xdToJSON(`## Metadata\n\nSpecial: circle\n\n## Grid\n\naB\nCd\n\n## Clues\n\nA1. Hi ~ AB\nA3. Hi ~ CD\n\nD1. Hi ~ AC\nD2. Hi ~ BD`)
-    expect(json.tiles[0][0]).toMatchObject({ type: "letter", letter: "A" })
-    expect(json.design).toEqual({ styles: { O: { background: "circle" } }, positions: [["O"], [undefined, "O"]] })
+    expect(json.tiles[0][0]).toMatchObject({ type: "letter", letter: "a" })
+    expect(json.design).toBeUndefined()
     expect(json.report.errors).toEqual([])
-    expect(json.report.warnings).toHaveLength(1)
+    expect(json.report.warnings.map((w) => w.message)).toEqual([
+      "'Special: circle' with lowercase grid letters is xd v3 syntax, xd v4 reads those as lowercase letters and puts circles and shading in a '## Design' section. xd-crossword-migrator can convert this file.",
+    ])
   })
 })
 
@@ -120,16 +122,17 @@ ${clue}
     ])
   })
 
-  it("still reads splits inside the answer, with a deprecation", () => {
+  it("reads split characters inside a pre-v4 answer as part of the answer, with a deprecation", () => {
     const json = xdToJSON(xd(`A1. Band ~ OK|GO`))
-    expect(json.clues.across[0]).toMatchObject({ answer: "OKGO", splits: [1] })
+    expect(json.clues.across[0].answer).toBe("OK|GO")
+    expect(json.clues.across[0].splits).toBeUndefined()
     expect(json.report.warnings.map((w) => w.message)).toEqual([
-      "Split characters inside the answer are deprecated, use '~ OKGO // OK|GO' instead",
+      "Split characters inside an answer are pre-v4 Puzzmo xd, in xd v4 they go in an annotation at the end of the line: '~ OKGO // OK|GO'. xd-crossword-migrator can convert this file.",
     ])
   })
 
   it("applies the annotation to every answer on the line, in any order", () => {
-    const json = xdToJSON(xd(`A1. Band ~ OKGO ~ OKAY ~ OOGO // OK|AY OK|GO`, "SplitCharacter: |\nRebus: 1=K 1=O 2=G 2=A 3=O 3=Y"))
+    const json = xdToJSON(xd(`A1. Band ~ OKGO ~ OKAY ~ OOGO // OK|AY OK|GO`, "SplitCharacter: |\nRebus: 1=K|O 2=G|A 3=O|Y"))
     expect(json.clues.across[0].answers).toEqual([
       { answer: "OKGO", splits: [1] },
       { answer: "OKAY", splits: [1] },
@@ -171,7 +174,7 @@ ${clue}
     })
 
     it("reads a split inside a Schrödinger square as an internal split, for each of its fills", () => {
-      const json = xdToJSON(xd("1=KA 1=KE", "O1Y", "A1. Fine, or its folksier cousin ~ OKAY ~ OKEY // OK|AY OK|EY"))
+      const json = xdToJSON(xd("1=KA|KE", "O1Y", "A1. Fine, or its folksier cousin ~ OKAY ~ OKEY // OK|AY OK|EY"))
       expect(json.report.errors).toEqual([])
       expect(json.clues.across[0].answers).toEqual([
         { answer: "OKAY", rebusInternalSplits: { 1: [0] } },
@@ -180,7 +183,7 @@ ${clue}
     })
 
     it("counts every letter of a Schrödinger square when placing a split after it", () => {
-      const json = xdToJSON(xd("1=COO 1=CFO", "1LCAT", "A1. Hip person ~ COOLCAT ~ CFOLCAT // COOL|CAT CFOL|CAT"))
+      const json = xdToJSON(xd("1=COO|CFO", "1LCAT", "A1. Hip person ~ COOLCAT ~ CFOLCAT // COOL|CAT CFOL|CAT"))
       expect(json.report.errors).toEqual([])
       expect(json.clues.across[0].answers).toEqual([
         { answer: "COOLCAT", splits: [1] },
@@ -189,7 +192,7 @@ ${clue}
     })
 
     it("keeps reading an answer written with the square's symbol a character at a time", () => {
-      const json = xdToJSON(xd("1=KA 1=KE", "O1Y", "A1. Fine ~ O1Y ~ OKAY // O|1Y"))
+      const json = xdToJSON(xd("1=KA|KE", "O1Y", "A1. Fine ~ O1Y ~ OKAY // O|1Y"))
       expect(json.clues.across[0]).toMatchObject({ answer: "O1Y", splits: [0] })
     })
   })
@@ -220,10 +223,6 @@ describe("design positions", () => {
     expect(json.design?.positions).toEqual([["O"], [], []])
   })
 
-  it("have a row for every grid row when made from v3 Special cells", () => {
-    const json = xdToJSON(`## Metadata\n\nSpecial: circle\n\n## Grid\n\nAB\nCD\neF\n\n## Clues\n\nA1. Hi ~ AB\n`)
-    expect(json.design?.positions).toEqual([[], [], ["O"]])
-  })
 })
 
 describe("unfilled cells", () => {
@@ -239,9 +238,10 @@ describe("unfilled cells", () => {
     expect(json.clues.across[0].tiles).toHaveLength(4)
   })
 
-  it("keeps the meaning of '?' in an older file which declared it as a rebus key, with a deprecation", () => {
+  it("keeps '?' as an unfilled cell when an older file declared it as a rebus key, with a deprecation", () => {
     const json = xdToJSON(xd.replace("title: Draft", "title: Draft\nRebus: ?=O").replace("~ C?NE", "~ CONE"))
-    expect(json.tiles[0][1]).toEqual({ type: "rebus", symbol: "?", word: "O" })
+    expect(json.tiles[0][1]).toEqual({ type: "letter", letter: "", unfilled: true })
+    expect(json.rebuses).toEqual({})
     expect(json.report.warnings.map((w) => w.type)).toEqual(["deprecation"])
   })
 })

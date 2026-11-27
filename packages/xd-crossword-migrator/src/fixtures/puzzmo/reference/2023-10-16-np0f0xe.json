@@ -1,0 +1,51 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "A C E # U S E # # F I S T # #",
+      "N A S # P P V # # I M A C # #",
+      "E S T # C L O W N F I S H # #",
+      "W H A T L I K E I T S H A R D",
+      "# # D R O N E B E E S # L E O",
+      "# # O U S T # # C E E # L A S",
+      "# # S E E S # # E N D # A D A"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["ACE",null]],"display":[["text","All About That ___ (dating app designed for Todd Chavez, in \"BoJack Horseman\")"]],"hint":[["text","Highest poker card in a royal flush"]]},
+      {"direction":"across","number":4,"answers":[["USE",null]],"display":[["text","Get mileage out of"]],"hint":[["text","Practical function"]]},
+      {"direction":"across","number":7,"answers":[["FIST",null]],"display":[["text","Black Panther symbol"]],"hint":[["text","Clenched hand"]]},
+      {"direction":"across","number":11,"answers":[["NAS",null]],"display":[["text","\"y'all love saying we going to hell but get upset when i actually go there lmao\": Lil ___ X"]],"hint":[["text","Name hidden in the phrase \"banana split\""]]},
+      {"direction":"across","number":12,"answers":[["PPV",[0,1]]],"display":[["text","How to watch boxing on TV, often: Abbr."]],"hint":[["text","Single-use TV-watching option found by taking every third letter of \"pet peeves,\" starting with the first \"p\": Abbr."]]},
+      {"direction":"across","number":13,"answers":[["IMAC",null]],"display":[["text","Apple desktop"]],"hint":[["text","Type of Apple computer that anagrams to \"mica\""]]},
+      {"direction":"across","number":14,"answers":[["EST",null]],"display":[["text","Suffix with winning"]],"hint":[["text","Suffix meaning \"most\""]]},
+      {"direction":"across","number":15,"answers":[["CLOWNFISH",null]],"display":[["text","Orange and white swimmer"]],"hint":[["text","Marine animal named for a performer who often has a painted face"]]},
+      {"direction":"across","number":18,"answers":[["WHATLIKEITSHARD",[3,7,10]]],"display":[["text","Iconic Woods comeback"]],"hint":[["text","Elle Woods's response to \"You ... got into Harvard Law?\" in \"Legally Blonde\": 4 wds."]]},
+      {"direction":"across","number":22,"answers":[["DRONEBEES",[4]]],"display":[["text","They have killer sex"]],"hint":[["text","Insects that do no work for their hive except mating with the queen: 2 wds."]]},
+      {"direction":"across","number":23,"answers":[["LEO",null]],"display":[["text","TMNT nickname"]],"hint":[["text","Zodiac sign associated with lions"]]},
+      {"direction":"across","number":24,"answers":[["OUST",null]],"display":[["text","Send packing"]],"hint":[["text","Remove from power"]]},
+      {"direction":"across","number":25,"answers":[["CEE",null]],"display":[["text","\"Girls I Got 'em Locked\" duo Super Lover ___ & Casanova Rud"]],"hint":[["text","Phonetic spelling of the letter between \"bee\" and \"dee\""]]},
+      {"direction":"across","number":26,"answers":[["LAS",null]],"display":[["text","The L in UNLV"]],"hint":[["text","___ Vegas, Nevada"]]},
+      {"direction":"across","number":27,"answers":[["SEES",null]],"display":[["text","Observes in both directions?"]],"hint":[["text","Visualizes"]]},
+      {"direction":"across","number":28,"answers":[["END",null]],"display":[["text","\"The beginning of the ___ of the world\" (Clifton poem)"]],"hint":[["text","Conclusion"]]},
+      {"direction":"across","number":29,"answers":[["ADA",null]],"display":[["text","Lovelace who wrote the first computer program"]],"hint":[["text","First name hidden in the phrase \"spa day\""]]},
+      {"direction":"down","number":1,"answers":[["ANEW",null]],"display":[["text","From the top"]],"hint":[["text","Start ___ (go back to the beginning)"]]},
+      {"direction":"down","number":2,"answers":[["CASH",null]],"display":[["text","Cold, hard stuff"]],"hint":[["text","Paper money"]]},
+      {"direction":"down","number":3,"answers":[["ESTADOS",null]],"display":[["text","California y Nuevo México"]],"hint":[["text","Spanish word for \"states\" that anagrams to \"soda set\""]]},
+      {"direction":"down","number":4,"answers":[["UPCLOSE",[1]]],"display":[["text","Personal companion?"]],"hint":[["text","___ and personal (really in someone's face): 2 wds."]]},
+      {"direction":"down","number":5,"answers":[["SPLINTS",null]],"display":[["text","Shin ___"]],"hint":[["text","Devices for supporting joint stability, such as after a finger injury"]]},
+      {"direction":"down","number":6,"answers":[["EVOKE",null]],"display":[["text","Bring to mind"]],"hint":[["text","Mentally elicit"]]},
+      {"direction":"down","number":7,"answers":[["FIFTEEN",null]],"display":[["text","Quince, in English"]],"hint":[["text","Ten plus five"]]},
+      {"direction":"down","number":8,"answers":[["IMISSED",[0]]],"display":[["text","Comment after rolling a 1 for an attack in D&D"]],"hint":[["text","\"My attempt to score a basket didn't succeed!\": 2 wds."]]},
+      {"direction":"down","number":9,"answers":[["SASH",null]],"display":[["text","One might say \"Groom To Be\""]],"hint":[["text","Band worn shoulder-to-hip"]]},
+      {"direction":"down","number":10,"answers":[["TCHALLA",null]],"display":[["text","Black Panther's name"]],"hint":[["text","Name of Wakanda's fictional king that anagrams to \"chat all\""]]},
+      {"direction":"down","number":16,"answers":[["WEB",null]],"display":[["text","Delicate silk creation"]],"hint":[["text","World Wide ___ (what \"www\" stands for)"]]},
+      {"direction":"down","number":17,"answers":[["NIECE",null]],"display":[["text","Sibling's daughter"]],"hint":[["text","Nephew's sister"]]},
+      {"direction":"down","number":19,"answers":[["TRUE",null]],"display":[["text","Word before blue or north"]],"hint":[["text","Opposite of false"]]},
+      {"direction":"down","number":20,"answers":[["READ",null]],"display":[["text","Curl up with some manga"]],"hint":[["text","Enjoy a book"]]},
+      {"direction":"down","number":21,"answers":[["DOSA",null]],"display":[["text","Breakfast item served with chutney"]],"hint":[["text","Lentil-based crepe relative that anagrams to \"soda\""]]}
+    ],
+    "notes": ""
+  }
+}

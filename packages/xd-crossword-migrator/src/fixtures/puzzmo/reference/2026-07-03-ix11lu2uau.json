@@ -1,0 +1,43 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "S C A B B A R D",
+      "U L N A G L E E",
+      "N A U T I L U S",
+      "U I T S B T B K",
+      "P R A I R I E S",
+      "C O N G A M E S",
+      "O L T N L E T A",
+      "A E R A T O R S",
+      "S O U L A X E S",
+      "T O M B R A D Y"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["SCABBARD",null]],"display":[["text","Sword-bearer’s scab turning dull (8)"]]},
+      {"direction":"across","number":6,"answers":[["ULNA",null]],"display":[["text","Arm bone’s somewhat fanciful name (4)"]]},
+      {"direction":"across","number":7,"answers":[["GLEE",null]],"display":[["text","Single ensign full of exuberance . . . (4)"]]},
+      {"direction":"across","number":8,"answers":[["NAUTILUS",null]],"display":[["text",". . . until U.S.A. destroyed nuclear sub (8)"]]},
+      {"direction":"across","number":11,"answers":[["PRAIRIES",null]],"display":[["text","Is curious about what’s inspired treeless plains (8)"]]},
+      {"direction":"across","number":12,"answers":[["CONGAMES",null]],"display":[["text","Hustles me into line dances (3,5)"]]},
+      {"direction":"across","number":14,"answers":[["AERATORS",null]],"display":[["text","Aquarium accessories are sorta funny (8)"]]},
+      {"direction":"across","number":15,"answers":[["SOUL",null]],"display":[["text","Music genre only acoustic (4)"]]},
+      {"direction":"across","number":16,"answers":[["AXES",null]],"display":[["text","Gets rid of graph lines (4)"]]},
+      {"direction":"across","number":17,"answers":[["TOMBRADY",null]],"display":[["text","Legendary N.F.L. quarterback’s mausoleum ruined yard (3,5)"]]},
+      {"direction":"down","number":1,"answers":[["SUNUP",null]],"display":[["text","Dawn raised humorous remark with us (5)"]]},
+      {"direction":"down","number":2,"answers":[["CLAIROL",null]],"display":[["text","Maker of hair dyes or lilac mixes (7)"]]},
+      {"direction":"down","number":3,"answers":[["BATSIGNAL",null]],"display":[["text","Thrust back into commonplace spotlight above Gotham City (3-6)"]]},
+      {"direction":"down","number":4,"answers":[["ALLTIME",null]],"display":[["text","Unsurpassed team I’ll beat (3-4)"]]},
+      {"direction":"down","number":5,"answers":[["DESKS",null]],"display":[["text","Delaware and Kansas embracing small workstations (5)"]]},
+      {"direction":"down","number":7,"answers":[["GIBRALTAR",null]],"display":[["text","British territory on the Mediterranean put up big Republican shrine (9)"]]},
+      {"direction":"down","number":9,"answers":[["TANTRUM",null]],"display":[["text","Fit last of coconut inside brown rum (7)"]]},
+      {"direction":"down","number":10,"answers":[["BEETRED",null]],"display":[["text","Crimson garden plot houses crooked tree (4,3)"]]},
+      {"direction":"down","number":12,"answers":[["COAST",null]],"display":[["text","Start fishing around globe’s shoreline (5)"]]},
+      {"direction":"down","number":13,"answers":[["SASSY",null]],"display":[["text","Impudent shortstop’s penetrating voice (5)"]]}
+    ],
+    "design": {"1,2":{"bar-top":"true"},"1,4":{"bar-left":"true","bar-top":"true"},"1,6":{"bar-top":"true"},"2,2":{"bar-top":"true"},"2,6":{"bar-top":"true"},"3,1":{"bar-left":"true"},"3,2":{"bar-left":"true","bar-top":"true"},"3,3":{"bar-left":"true"},"3,4":{"bar-left":"true"},"3,5":{"bar-left":"true"},"3,6":{"bar-left":"true","bar-top":"true"},"3,7":{"bar-left":"true"},"5,0":{"bar-top":"true"},"5,7":{"bar-top":"true"},"6,1":{"bar-left":"true"},"6,2":{"bar-left":"true"},"6,3":{"bar-left":"true"},"6,4":{"bar-left":"true"},"6,5":{"bar-left":"true"},"6,6":{"bar-left":"true"},"6,7":{"bar-left":"true"},"7,1":{"bar-top":"true"},"7,5":{"bar-top":"true"},"8,1":{"bar-top":"true"},"8,4":{"bar-left":"true"},"8,5":{"bar-top":"true"},"9,1":{"bar-top":"true"},"9,3":{"bar-top":"true"},"9,5":{"bar-top":"true"}},
+    "notes": ""
+  }
+}

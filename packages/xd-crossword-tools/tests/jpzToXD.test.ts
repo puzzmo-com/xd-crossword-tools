@@ -89,7 +89,6 @@ describe(jpzToXD.name, () => {
       editor: Will Eisenberg
       date: 2023-11-10
       copyright: (c) 2023
-      form: barred
 
       ## Grid
 
@@ -104,6 +103,20 @@ describe(jpzToXD.name, () => {
       WARPCLEANER
       ALTERS.VETO
       ..SPUD.EWAN
+
+      ## Bars
+
+      ....#.....#
+      ....#......
+      .......|...
+      .....###...
+      ###...#....
+      #....|....#
+      ....#...###
+      ...###.....
+      ....|......
+      ......#....
+      ##....#....
 
       ## Clues
 
@@ -152,24 +165,7 @@ describe(jpzToXD.name, () => {
       D31. 1982 cult classic in which Jeff Bridges says, "Greetings, programs" ~ TRON
       D33. Word preceding band or squad ~ PEP
       D34. French wine designation ~ CRU
-      D35. Psychedelic found during April Fool's Day? ~ LSD
-
-      ## Design
-
-      A { bar-left: true }
-
-      ....#.....#
-      ....#......
-      .......A...
-      .....###...
-      ###...#....
-      #....A....#
-      ....#...###
-      ...###.....
-      ....A......
-      ......#....
-      ##....#....
-      "
+      D35. Psychedelic found during April Fool's Day? ~ LSD"
     `)
   })
 
@@ -183,7 +179,6 @@ describe(jpzToXD.name, () => {
       editor: 
       date: 
       copyright: © 2023 Kyle Dolan
-      form: barred
 
       ## Grid
 
@@ -195,6 +190,17 @@ describe(jpzToXD.name, () => {
       RODENTLV
       SLEETIDE
       COUNTESS
+
+      ## Bars
+
+      ........
+      ...-.-.+
+      .||..-..
+      .....+||
+      .+||..-.
+      ..-...||
+      .|-.....
+      -.-.-...
 
       ## Clues
 
@@ -216,22 +222,7 @@ describe(jpzToXD.name, () => {
       D8. Question: What items of clothing are typically worn by professional billiards players? Ants (7) ~ SWERVES
       D11. A lover offs Will, often use them as conversation starters at parties (5) ~ UNTIE
       D12. I'll have a turkey sandwich with Swiss cheese, mats of bacon, and tomatoes (4) ~ YOLO
-      D14. A cake like daiginjo pairs well with sushi (4) ~ OLDS
-
-      ## Design
-
-      A, C { bar-top: true }
-      B, C { bar-left: true }
-
-      ........
-      ...A.A.C
-      .BB..A..
-      .....CBB
-      .CBB..A.
-      ..A...BB
-      .BA.....
-      A.A.A...
-      "
+      D14. A cake like daiginjo pairs well with sushi (4) ~ OLDS"
     `)
   })
 

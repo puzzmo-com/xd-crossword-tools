@@ -1,0 +1,26 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "E S C #",
+      "S A A B",
+      "E L S A",
+      "# S {E|K} {A|Y}",
+      "# A S S"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["ESC",null]],"display":[["text","Key for exiting full screen"]]},
+      {"direction":"across","number":4,"answers":[["SAAB",null]],"display":[["text","Fashion designer Elie"]]},
+      {"direction":"across","number":6,"answers":[["ELSA",null],["SKY",null]],"display":[["text","Anna's ice-wielding sister, in \"Frozen\""]]},
+      {"direction":"across","number":7,"answers":[["SEA",null]],"display":[["text","Great blue expanse"]],"hint":[["text","Two different answers work here, and either leads to a valid solution"]]},
+      {"direction":"across","number":8,"answers":[["ASS",null]],"display":[["text","Body part represented by 🍑"]]},
+      {"direction":"down","number":1,"answers":[["ESE",null]],"display":[["text","Suffix for Japan or Senegal"]]},
+      {"direction":"down","number":2,"answers":[["SALSA",null]],"display":[["text","Tortilla chip dip"]]},
+      {"direction":"down","number":3,"answers":[["CASES",null],["CASKS",null]],"display":[["text","Some large alcohol purchases"]],"hint":[["text","Two different answers work here, and either leads to a valid solution"]]},
+      {"direction":"down","number":5,"answers":[["BAAS",null],["BAYS",null]],"display":[["text","Makes a sound like one of the \"wolf in sheep's clothing\" animals"]],"hint":[["text","Two different answers work here, and either leads to a valid solution"]]}
+    ],
+    "notes": ""
+  }
+}

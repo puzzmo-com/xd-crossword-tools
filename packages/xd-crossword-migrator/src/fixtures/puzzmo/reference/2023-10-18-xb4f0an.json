@@ -1,0 +1,42 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "F O R T N I T E",
+      "I V E E A T E N",
+      "R A I L R O A D",
+      "E L D E R # # #",
+      "# # # P A L E D",
+      "S E D A T I V E",
+      "Z O O T O P I A",
+      "E N T H R A L L"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["FORTNITE",null]],"display":[["text","Concert venue where, in 2021, Ariana Grande released two skins"]],"hint":[["text","Online game whose name sounds like a 14-day unit of time"]]},
+      {"direction":"across","number":9,"answers":[["IVEEATEN",[2]]],"display":[["text","\"My tum-tum is already at capacity\""]],"hint":[["text","\"No need to order any food for me\": 2 wds."]]},
+      {"direction":"across","number":10,"answers":[["RAILROAD",null]],"display":[["text","Force from one plot point to the next"]],"hint":[["text","Any of the four Monopoly board squares that depicts a train"]]},
+      {"direction":"across","number":11,"answers":[["ELDER",null]],"display":[["text","Respected community member"]],"hint":[["text","Age-related adjective that becomes its own synonym if its first letter is swapped to an \"O\""]]},
+      {"direction":"across","number":12,"answers":[["PALED",null]],"display":[["text","Changed tone, in a way"]],"hint":[["text","___ in comparison to (seemed much less serious than)"]]},
+      {"direction":"across","number":16,"answers":[["SEDATIVE",null]],"display":[["text","Like an herbal infusion prepared for a bear in a nightcap, say"]],"hint":[["text","Sleep-inducing substance"]]},
+      {"direction":"across","number":19,"answers":[["ZOOTOPIA",null]],"display":[["text","Movie in which \"a rookie ... cop and a cynical con artist ... must work together to uncover a conspiracy.\" (IMDB plot summary, highly redacted)"]],"hint":[["text","2016 animated film set in a world of anthropomorphized animals"]]},
+      {"direction":"across","number":20,"answers":[["ENTHRALL",null]],"display":[["text","Bedazzle"]],"hint":[["text","Really captivate"]]},
+      {"direction":"down","number":1,"answers":[["FIRE",null]],"display":[["text","\"The ___ Next Time\" (James Baldwin essay collection)"]],"hint":[["text","Word before \"hydrant\" or \"escape\""]]},
+      {"direction":"down","number":2,"answers":[["OVAL",null]],"display":[["text","Eggy, in a way?"]],"hint":[["text","Shape that looks like a squished circle"]]},
+      {"direction":"down","number":3,"answers":[["REID",null]],"display":[["text","Tara who has starred in six Sharknado movies"]],"hint":[["text","Surname hidden in \"Ore-Ida\""]]},
+      {"direction":"down","number":4,"answers":[["TELEPATH",null]],"display":[["text","Eleven, for one"]],"hint":[["text","Person capable of mind-to-mind communication, in science fiction"]]},
+      {"direction":"down","number":5,"answers":[["NARRATOR",null]],"display":[["text","Someone we pretend is telling us a story"]],"hint":[["text","Person voicing a documentary"]]},
+      {"direction":"down","number":6,"answers":[["ITO",null]],"display":[["text","Mangaka Junji"]],"hint":[["text","Spanish diminutive suffix hidden in the phrase \"hit or miss\""]]},
+      {"direction":"down","number":7,"answers":[["TEA",null]],"display":[["text","Picard : ___ :: Janeway : coffee"]],"hint":[["text","Beverage made by steeping"]]},
+      {"direction":"down","number":8,"answers":[["END",null]],"display":[["text","\"The Monster at the ___ of This Book\" (postmodernist classic by Jon Stone and Michael Smollin)"]],"hint":[["text","Beginning's opposite"]]},
+      {"direction":"down","number":13,"answers":[["LIPA",null]],"display":[["text","Pop singer whose first language is Albanian"]],"hint":[["text","Dua ___ (\"Levitating\" singer whose surname anagrams to \"pail\")"]]},
+      {"direction":"down","number":14,"answers":[["EVIL",null]],"display":[["text","Badder than bad"]],"hint":[["text","Appropriate anagram of \"vile\""]]},
+      {"direction":"down","number":15,"answers":[["DEAL",null]],"display":[["text","Contract (perhaps with former Pixies bassist Kim ___)"]],"hint":[["text","Hand out playing cards"]]},
+      {"direction":"down","number":16,"answers":[["SZE",null]],"display":[["text","Sarah ___ (sculptor and installation artist who once represented the US at the Venice Biennale)"]],"hint":[["text","Surname that anagrams to \"sez\""]]},
+      {"direction":"down","number":17,"answers":[["EON",null]],"display":[["text","Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong stretch"]],"hint":[["text","Vast geological time span"]]},
+      {"direction":"down","number":18,"answers":[["DOT",null]],"display":[["text","."]],"hint":[["text","___ the i's and cross the t's"]]}
+    ],
+    "notes": ""
+  }
+}

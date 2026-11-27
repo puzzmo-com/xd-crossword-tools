@@ -1,0 +1,11 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [],
+    "clues": [],
+    "design": {"5,11":{"background":"circle","foreground":"hello"},"6,11":{"background":"circle","foreground":"hello"},"7,2":{"background":"circle","foreground":"hello"},"7,11":{"background":"circle","foreground":"hello"},"8,2":{"background":"circle","foreground":"hello"},"8,11":{"background":"circle","foreground":"hello"},"9,2":{"background":"circle","foreground":"hello"},"9,11":{"background":"circle","foreground":"hello"},"10,2":{"background":"circle","foreground":"hello"},"10,3":{"background":"circle","foreground":"hello"},"10,12":{"background":"circle","foreground":"hello"},"11,3":{"background":"circle","foreground":"hello"},"11,12":{"background":"circle","foreground":"hello"},"12,3":{"background":"circle","foreground":"hello"},"12,12":{"background":"circle","foreground":"hello"},"13,3":{"background":"circle","foreground":"hello"},"13,12":{"background":"circle","foreground":"hello"},"14,3":{"background":"circle","foreground":"hello"},"14,12":{"background":"circle","foreground":"hello"}},
+    "notes": ""
+  }
+}

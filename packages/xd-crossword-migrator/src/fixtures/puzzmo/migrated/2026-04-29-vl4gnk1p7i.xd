@@ -1,0 +1,70 @@
+## Metadata
+
+title: Pick of the Litter
+author: Henry Lin-David
+date: Not set
+editor: brooke
+copyright: © 2026
+blacksquares: 24
+whitespaces: 25
+acrossclues: 7
+downclues: 7
+width: 7
+height: 7
+size: 7x7
+splitcharacter: |
+emoji: 🤔
+publishdate: 2026-04-29
+rebus: 1=C|D 2=A|O 3=T|G
+
+## Grid
+
+....COO
+...SLAW
+...TOTE
+..123..
+TEAM...
+WARP...
+ORE....
+
+## Clues
+
+A1. Communicate with a pigeon ~ COO
+A4. Shredded cabbage side dish ~ SLAW
+A5. Merch item useful for holding other merch items ~ TOTE
+A6. ___ person (identifier based on your pet preference) ~ CAT ~ DOG
+
+A7. Group circled up in a pre-game huddle ~ TEAM
+A9. Get bent, like a wooden tennis racket ~ WARP
+A10. It's mined for the taking? ~ ORE
+
+D1. Block up ~ CLOT ~ CLOG
+
+D2. Food bit that's sometimes steel-cut ~ OAT
+D3. Be indebted to ~ OWE
+D4. Really put a foot down ~ STAMP ~ STOMP
+
+D6. Deem it worthwhile (to) ~ CARE ~ DARE
+
+D7. Number of possible answers for 6-Across ~ TWO
+D7 ^refs: A6
+
+D8. Spot for some dangly jewelry ~ EAR
+
+## Line Breaks
+
+
+A1. nbsp:18
+A4. nbsp:16
+A5. nbsp:5,42 wbr:11,25
+A6. nbsp:27,30 wbr:22
+A7. nbsp:6,13,45,50
+A9. nbsp:3,16,23 wbr:10
+A10. nbsp:10,18 wbr:5
+D1. nbsp:5
+D2. wbr:5
+D3. nbsp:11
+D4. nbsp:6,12
+D6. nbsp:18
+D7. nbsp:30 wbr:7,19
+D8. nbsp:20 wbr:5

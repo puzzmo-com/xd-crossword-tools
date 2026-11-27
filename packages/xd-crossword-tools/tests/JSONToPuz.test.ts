@@ -1,5 +1,6 @@
 import { readFileSync } from "fs"
-import { migrateXDToV4, xdToJSON, type CrosswordJSON } from "xd-crossword-tools-parser"
+import { xdToJSON, type CrosswordJSON } from "xd-crossword-tools-parser"
+import { migrateXDToV4 } from "xd-crossword-migrator"
 import { it, expect, describe } from "vitest"
 import { JSONToPuz, xdToPuz } from "../src/JSONToPuz"
 import { puzToXD } from "../src/puzToXD"

@@ -337,7 +337,7 @@ export const DesignEditor: React.FC<DesignEditorProps> = ({ designData, crosswor
             </div>
             <div>O, P &#123; background: circle &#125;</div>
             <div>S &#123; background: shaded &#125;</div>
-            <div>T &#123; bar-top: true; bar-left: true &#125;</div>
+            <div>T &#123; border-top: true; border-left: true &#125;</div>
             <div>I &#123; background-image: url('https://example.com/petal.png'); background-size: 2 2 &#125;</div>
 
             <div className="mb-2 mt-3">

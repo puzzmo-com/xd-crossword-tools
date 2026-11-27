@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from "fs"
 import { amuseToXD, convertAmuseToCrosswordJSON } from "../src/amuseJSONToXD"
 import { JSONToXD } from "../src/JSONtoXD"
 import type { AmuseTopLevel } from "../src/amuseJSONToXD.types"
-import { xdToJSON } from "xd-crossword-tools-parser"
+import { isBarredGrid, xdToJSON } from "xd-crossword-tools-parser"
 import { beforeAll, describe, expect, it } from "vitest"
 import { colorAmuseExample, rebusAmuseExample, schrodingerAmuseExample } from "./amuse/amuseExamples"
 
@@ -31,7 +31,7 @@ describeConditional("amuseJSONToXD", () => {
       expect(result.tiles[0][0].symbol).toBe("1")
     }
 
-    expect(result.meta.rebus).toBe("1=H 1=J")
+    expect(result.meta.rebus).toBe("1=H|J")
 
     expect(result.clues.down[0]).toHaveProperty("answer")
     expect(result.clues.down[0].answer).toEqual("HELLO")
@@ -43,7 +43,7 @@ describeConditional("amuseJSONToXD", () => {
   it("emits rebus-based schrodinger xd which round-trips through the parser", () => {
     const xd = amuseToXD(schrodingerAmuseExample)
 
-    expect(xd).toContain("rebus: 1=H 1=J")
+    expect(xd).toContain("rebus: 1=H|J")
     expect(xd).toContain("~ HELLO")
     expect(xd).not.toContain("^alt")
 
@@ -292,22 +292,16 @@ describeConditional("amuseJSONToXD", () => {
         expect(result).toMatch(/D\d+\.\s.+\s~\s[A-Z]+/m)
       })
 
-      it("includes design section with bars from real data", () => {
+      it("writes the bars of real data as a Bars section", () => {
         const result = amuseToXD(amuseJSON)
+        expect(result).toContain("## Bars")
+        expect(result).not.toContain("bar-left")
+        expect(result).not.toContain("form:")
 
-        // Check that design section exists
-        expect(result).toContain("## Design")
-
-        // Check for bar styles
-        expect(result).toMatch(/bar-left.*true/m)
-        expect(result).toMatch(/bar-top.*true/m)
-
-        // The design grid should have letter markers for barred cells
-        const designSection = result.split("## Design")[1]
-        expect(designSection).toBeDefined()
-
-        // Should have style definitions
-        expect(designSection).toContain("{ bar-")
+        const json = xdToJSON(result)
+        expect(json.report.errors).toEqual([])
+        expect(json.report.warnings).toEqual([])
+        expect(isBarredGrid(json)).toBe(true)
       })
     })
 
@@ -521,79 +515,24 @@ describeConditional("amuseJSONToXD", () => {
       })
 
       it("converts barred grids correctly", () => {
-        // The real JSON file has bars, so we can use it directly
+        // The real JSON file has bars, which go on the tiles rather than in the design
         const result = convertAmuseToCrosswordJSON(amuseJSON)
+        expect(result.design).toBeUndefined()
 
-        // Check that design section exists (since the real data has bars)
-        expect(result.design).toBeDefined()
-
-        // Check that we have bar styles
-        const styles = result.design?.styles || {}
-        const hasBarLeft = Object.values(styles).some((style) => style["bar-left"] === "true")
-        const hasBarTop = Object.values(styles).some((style) => style["bar-top"] === "true")
-
-        expect(hasBarLeft).toBe(true)
-        expect(hasBarTop).toBe(true)
-
-        // The real data should have multiple bar combinations
-        const styleCount = Object.keys(styles).length
-        expect(styleCount).toBeGreaterThan(1) // Should have at least 2 different styles
-
-        // Check that positions are filled with style letters
-        const positions = result.design?.positions || []
-        expect(positions.length).toBe(10) // Height is 10 in the real data
-        expect(positions[0].length).toBe(8) // Width is 8 in the real data
-
-        // Find cells with bars (non-null, non-undefined positions)
-        let cellsWithBars = 0
-        for (const row of positions) {
-          for (const cell of row) {
-            if (cell && styles[cell]) {
-              cellsWithBars++
-            }
-          }
-        }
-
-        // The real barred grid should have many cells with bars
-        expect(cellsWithBars).toBeGreaterThan(10)
-
-        // Verify that all used letters in positions have corresponding styles
-        const usedLetters = new Set<string>()
-        for (const row of positions) {
-          for (const cell of row) {
-            if (cell) usedLetters.add(cell)
-          }
-        }
-
-        for (const letter of usedLetters) {
-          expect(styles[letter]).toBeDefined()
-        }
+        const flags = result.tiles.flat().flatMap((tile) => (tile.type === "blank" ? [] : tile.design || []))
+        expect(flags).toContain("bar-left")
+        expect(flags).toContain("bar-top")
+        // The real barred grid has many cells with bars
+        expect(result.tiles.flat().filter((tile) => tile.type !== "blank" && tile.design?.length).length).toBeGreaterThan(10)
       })
 
       it("generates a valid xd file from barred cells", () => {
         const xdOutput = amuseToXD(amuseJSON)
 
-        // Check that XD output contains design section
-        expect("## Design" + xdOutput.split("## Design")[1].split("##")[0]).toMatchInlineSnapshot(`
-          "## Design
-
-          A, B { bar-top: true }
-          B, C { bar-left: true }
-
-          ........
-          ..A.B.A.
-          ..A...A.
-          .CBCCCBC
-          ........
-          A......A
-          .CCCCCCC
-          .A...A..
-          .A..CA..
-          .A.A.A..
-
-
-          "
-        `)
+        // '|' is a bar on the cell's left edge, '-' on its top edge and '+' on both
+        expect(xdOutput.split("## Bars\n\n")[1].split("\n\n")[0]).toEqual(
+          ["........", "..-.+.-.", "..-...-.", ".|+|||+|", "........", "-......-", ".|||||||", ".-...-..", ".-..|-..", ".-.-.-.."].join("\n"),
+        )
       })
 
       it("generates correct XD output with circled cells", () => {

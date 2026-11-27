@@ -1,0 +1,25 @@
+Title: Square
+Author: Orta
+Editor: Orta Therox
+Date: 2021-03-16
+
+
+<!-- A comment -->
+BULB
+OK#O
+L##O
+DESK
+
+
+A1. Gardener's concern. ~ BULB
+A4. A reasonable statement. ~ OK
+A5. The office centerpiece. ~ DESK
+
+<!-- A multiline comment
+A1. Gardener's concern. ~ BULB
+A4. A reasonable statement. ~ OK
+A5. The office centerpiece. ~ DESK
+-->
+D1. To _ly go. ~ BOLD
+D2. Bigger than britain. ~ UK
+D3. A conscious tree. ~ BOOK

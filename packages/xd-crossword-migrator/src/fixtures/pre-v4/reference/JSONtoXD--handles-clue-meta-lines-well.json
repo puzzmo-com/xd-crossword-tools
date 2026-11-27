@@ -1,0 +1,22 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "B U L B",
+      "O K # O",
+      "L # # O",
+      "D E S K"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["BULB",null]],"display":[["text","Gardener's concern."]],"hint":[["text","Turned on with a flick."]]},
+      {"direction":"across","number":4,"answers":[["OK",null]],"display":[["text","A reasonable statement."]],"hint":[["text","All __."]]},
+      {"direction":"across","number":5,"answers":[["DESK",null]],"display":[["text","The office centerpiece."]],"hint":[["text","Fried."]]},
+      {"direction":"down","number":1,"answers":[["BOLD",null]],"display":[["text","To _ly go."]],"hint":[["text","When you want to make some text stronger."]]},
+      {"direction":"down","number":2,"answers":[["UK",null]],"display":[["text","Bigger than britain."]],"hint":[["text","A union which left europe."]]},
+      {"direction":"down","number":3,"answers":[["BOOK",null]],"display":[["text","A conscious tree."]],"hint":[["text","Registering with a restaurant."]]}
+    ],
+    "notes": ""
+  }
+}

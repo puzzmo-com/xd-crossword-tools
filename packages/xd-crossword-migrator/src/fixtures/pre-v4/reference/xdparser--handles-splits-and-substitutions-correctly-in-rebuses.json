@@ -1,0 +1,15 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "[AB] C D # A B C"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["ABCD",[0]]],"display":[["text","Example"]]},
+      {"direction":"across","number":2,"answers":[["ABC",[0,1]]],"display":[["text","Alphabet"]]}
+    ],
+    "notes": ""
+  }
+}

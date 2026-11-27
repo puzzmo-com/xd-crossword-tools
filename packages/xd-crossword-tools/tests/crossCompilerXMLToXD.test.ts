@@ -199,7 +199,7 @@ describe(crossCompilerXMLToXD.name, () => {
     expect(res).toContain("D2. Right col ~ BEG")
   })
 
-  it("emits a Design section with bar-left and bar-top styles", () => {
+  it("emits a Bars section for cells with a left or top bar", () => {
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <crossword-compiler>
   <rectangular-puzzle>
@@ -233,12 +233,13 @@ describe(crossCompilerXMLToXD.name, () => {
 </crossword-compiler>`
 
     const res = crossCompilerXMLToXD(xml)
-    expect(res).toContain("form: barred")
-    expect(xdToJSON(res).design?.styles).toEqual({
-      A: { "bar-left": "true" },
-      B: { "bar-top": "true" },
-      C: { "bar-left": "true", "bar-top": "true" },
-    })
+    expect(res).not.toContain("form:")
+    expect(res).not.toContain("## Design")
+    expect(res).toContain("## Bars\n\n.|\n-+\n")
+    expect(xdToJSON(res).tiles.map((row) => row.map((t) => (t.type === "letter" ? t.design : undefined)))).toEqual([
+      [undefined, ["bar-left"]],
+      [["bar-top"], ["bar-left", "bar-top"]],
+    ])
   })
 
   it("converts <instructions> into the Notes section", () => {
@@ -279,7 +280,7 @@ describe(crossCompilerXMLToXD.name, () => {
     expect(res).toContain("## Notes\n\nEach answer is a word that can precede or follow \"fire\".")
   })
 
-  it("emits a Design section combining bars and circles", () => {
+  it("puts circles in the Design section and bars in the Bars section", () => {
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <crossword-compiler>
   <rectangular-puzzle>
@@ -313,10 +314,8 @@ describe(crossCompilerXMLToXD.name, () => {
 </crossword-compiler>`
 
     const res = crossCompilerXMLToXD(xml)
-    const styles = Object.values(xdToJSON(res).design?.styles || {})
-    expect(styles).toContainEqual({ background: "circle" })
-    expect(styles).toContainEqual({ "bar-left": "true" })
-    expect(styles).toContainEqual({ "bar-top": "true", background: "circle" })
+    expect(xdToJSON(res).design).toEqual({ styles: { O: { background: "circle" } }, positions: [["O"], [undefined, "O"]] })
+    expect(res).toContain("## Bars\n\n.|\n.-\n")
   })
 
   it("converts solve-state and hint cells into a Start section", () => {

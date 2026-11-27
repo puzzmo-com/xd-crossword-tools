@@ -12,26 +12,17 @@ it("handles Schrödinger squares", () => {
   expect(xd).toContain("CONE")
   expect(xd).toContain("IPOD")
   
-  // To make it a proper Schrödinger puzzle, we'd need to manually add the metadata
-  const xdWithSchrodinger = xd.replace(
-    "A6. Sugar ____ ~ CONE",
-    "A6. Sugar ____ ~ CONE\nA6 ^alt: CANE"
-  ).replace(
-    "D2. Apple tech ~ IPOD", 
-    "D2. Apple tech ~ IPOD\nD2 ^alt: IPAD"
-  ).replace(
-    "CONE",
-    "C*NE"
-  )
-  
-  // Verify the modified XD parses correctly with Schrödinger squares
+  // To make it a Schrödinger puzzle, the square gets a rebus key with both of its options, and the clues list both answers
+  expect(xd).not.toMatch(/^rebus:/m)
+  const xdWithSchrodinger = xd
+    .replace("## Metadata\n\n", "## Metadata\n\nrebus: 1=O|A\n")
+    .replace("A6. Sugar ____ ~ CONE", "A6. Sugar ____ ~ CONE ~ CANE")
+    .replace("D2. Apple tech ~ IPOD", "D2. Apple tech ~ IPOD ~ IPAD")
+    .replace("CONE", "C1NE")
+
   const json = xdToJSON(xdWithSchrodinger)
-  const schrodingerTile = json.tiles[2][1]
-  expect(schrodingerTile.type).toBe("schrodinger")
-  if (schrodingerTile.type === "schrodinger") {
-    expect(schrodingerTile.validLetters).toContain("O")
-    expect(schrodingerTile.validLetters).toContain("A")
-  }
+  expect(json.report.errors).toEqual([])
+  expect(json.tiles[2][1]).toMatchObject({ type: "schrodinger", validOptions: ["O", "A"] })
 })
 
 it("handles greyd backgrounds", () => {

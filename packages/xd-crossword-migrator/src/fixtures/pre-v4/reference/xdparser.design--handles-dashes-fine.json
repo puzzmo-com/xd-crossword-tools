@@ -1,0 +1,11 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [],
+    "clues": [],
+    "design": {"5,11":{"border-right":"circle","border-left":"dot"},"6,11":{"border-right":"circle","border-left":"dot"},"7,2":{"border-right":"circle","border-left":"dot"},"7,11":{"border-right":"circle","border-left":"dot"},"8,2":{"border-right":"circle","border-left":"dot"},"8,11":{"border-right":"circle","border-left":"dot"},"9,2":{"border-right":"circle","border-left":"dot"},"9,11":{"border-right":"circle","border-left":"dot"},"10,2":{"border-right":"circle","border-left":"dot"},"10,3":{"border-right":"circle","border-left":"dot"},"10,12":{"border-right":"circle","border-left":"dot"},"11,3":{"border-right":"circle","border-left":"dot"},"11,12":{"border-right":"circle","border-left":"dot"},"12,3":{"border-right":"circle","border-left":"dot"},"12,12":{"border-right":"circle","border-left":"dot"},"13,3":{"border-right":"circle","border-left":"dot"},"13,12":{"border-right":"circle","border-left":"dot"},"14,3":{"border-right":"circle","border-left":"dot"},"14,12":{"border-right":"circle","border-left":"dot"}},
+    "notes": ""
+  }
+}

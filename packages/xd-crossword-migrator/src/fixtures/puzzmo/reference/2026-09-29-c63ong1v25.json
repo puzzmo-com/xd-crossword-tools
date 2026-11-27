@@ -1,0 +1,34 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "# # # # # # W E",
+      "# # # # B L O G",
+      "# # # G O I N G",
+      "# # {B|G} {L|O} {L|U} {D|E} # #",
+      "T A R O T # # #",
+      "W A R P # # # #",
+      "O H # # # # # #"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["WE",null]],"display":[["text","You and I"]]},
+      {"direction":"across","number":3,"answers":[["BLOG",null]],"display":[["text","Website where a crossword constructor can self-publish"]]},
+      {"direction":"across","number":5,"answers":[["GOING",null]],"display":[["text","\"I like those Balenciagas, the ones that look like socks / I like ___ to the jeweler, I put rocks all in my watch\" (Cardi B lyric)"]]},
+      {"direction":"across","number":6,"answers":[["BLUE",null],["GOLD",null]],"display":[["text","\""],["link"," The dress","https://en.wikipedia.org/wiki/The_dress",[["text"," The dress"]]],["text","\" color"]]},
+      {"direction":"across","number":7,"answers":[["TAROT",null]],"display":[["text","Fortune-telling deck"]]},
+      {"direction":"across","number":9,"answers":[["WARP",null]],"display":[["text","What a baking sheet in the oven might do"]]},
+      {"direction":"across","number":10,"answers":[["OH",null]],"display":[["text","The O in OMFG"]]},
+      {"direction":"down","number":1,"answers":[["WON",null]],"display":[["text","\"If I ___ the lottery, I wouldn't tell anyone, but there would be signs\""]]},
+      {"direction":"down","number":2,"answers":[["EGG",null]],"display":[["text","\"Drinking 50 Raw ___s From The World's Biggest Beer Glass\" (YouTube video I wish I could unwatch)"]]},
+      {"direction":"down","number":3,"answers":[["BOLT",null],["BOUT",null]],"display":[["text","Run"]]},
+      {"direction":"down","number":4,"answers":[["LID",null],["LIE",null]],"display":[["text","One way to cover something up"]]},
+      {"direction":"down","number":5,"answers":[["GLOP",null],["GOOP",null]],"display":[["text","Gunky stuff"]]},
+      {"direction":"down","number":6,"answers":[["BRR",null],["GRR",null]],"display":[["text","Chilling sound"]]},
+      {"direction":"down","number":7,"answers":[["TWO",null]],"display":[["text","Number of W's in this grid"]]},
+      {"direction":"down","number":8,"answers":[["AAH",null]],"display":[["text","\"That feels sooo nice\""]]}
+    ],
+    "notes": ""
+  }
+}

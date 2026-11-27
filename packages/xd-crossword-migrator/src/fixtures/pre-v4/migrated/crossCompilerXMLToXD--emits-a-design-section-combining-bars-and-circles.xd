@@ -1,0 +1,31 @@
+## Metadata
+
+title: Circles
+author: Test
+date: Not set
+editor: Not set
+
+## Grid
+
+AB
+CD
+
+## Bars
+
+.|
+.-
+
+## Clues
+
+A1. Top ~ AB
+A2. Bottom ~ CD
+
+D1. Left ~ AC
+D2. Right ~ BD
+
+## Design
+
+A, C { background: circle }
+
+A.
+.C

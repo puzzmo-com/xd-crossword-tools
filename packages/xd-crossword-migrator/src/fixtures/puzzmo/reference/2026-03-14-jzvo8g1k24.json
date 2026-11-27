@@ -1,0 +1,35 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "# # P A Z # #",
+      "# D I G I T #",
+      "N O T E P A D",
+      "O N S # C P R",
+      "M O T T O E S",
+      "# R O A D S #",
+      "# # P I E # #"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["PAZ",null]],"display":[["text","Peace, in Spanish"]]},
+      {"direction":"across","number":4,"answers":[["DIGIT",null]],"display":[["text","One of possibly infinitely many numbers recited on March 14 (beginning with 3, 1, 4, 1, 5...)"]]},
+      {"direction":"across","number":6,"answers":[["NOTEPAD",null]],"display":[["text","Place to scribble down ideas"]]},
+      {"direction":"across","number":8,"answers":[["ONS",null]],"display":[["text","Clip-___ (some ties or earrings)"]]},
+      {"direction":"across","number":9,"answers":[["CPR",[0,1]]],"display":[["text","Procedure that can be performed to the rhythm of \"Staying Alive\" ...or \"Another One Bites the Dust\""]]},
+      {"direction":"across","number":10,"answers":[["MOTTOES",null]],"display":[["text","Sayings on seals"]]},
+      {"direction":"across","number":12,"answers":[["ROADS",null]],"display":[["text","Thoroughfares through towns"]]},
+      {"direction":"across","number":13,"answers":[["PIE",null]],"display":[["text","Dessert often enjoyed on March 14"]]},
+      {"direction":"down","number":1,"answers":[["PITSTOP",[2]]],"display":[["text","Rest along the way"]]},
+      {"direction":"down","number":2,"answers":[["AGE",null]],"display":[["text","Word after Bronze or golden"]]},
+      {"direction":"down","number":3,"answers":[["ZIPCODE",[2]]],"display":[["text","5-digit number that starts with 0 in Massachusetts and a 6 in Illinois"]]},
+      {"direction":"down","number":4,"answers":[["DONOR",null]],"display":[["text","Person who might receive a gift during a fund drive"]]},
+      {"direction":"down","number":5,"answers":[["TAPES",null]],"display":[["text","Makes a recording of"]]},
+      {"direction":"down","number":6,"answers":[["NOM",null]],"display":[["text","Comment, maybe repeated, while eating 13-Across"]]},
+      {"direction":"down","number":7,"answers":[["DRS",null]],"display":[["text","MDs and PhDs"]]},
+      {"direction":"down","number":11,"answers":[["TAI",null]],"display":[["text","Mai ___ (tiki drink)"]]}
+    ],
+    "notes": ""
+  }
+}

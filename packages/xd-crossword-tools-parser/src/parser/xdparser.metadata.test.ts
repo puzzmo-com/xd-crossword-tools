@@ -192,7 +192,7 @@ A1 ^Hint: {*Bold*} text with {/italic/} formatting.
 A1 ^Revealer: This clue reveals {_underline_} information.
 
 D1. To _ly go. ~ BOLD
-D1 ^Hint: {@Link text|http://example.com@} and {#colored|ff0000|00ff00#}.
+D1 ^Hint: {@Link text | href: http://example.com@} and {#colored | light: ff0000; dark: 00ff00#}.
 `
 
   const { clues } = xdToJSON(xd)
@@ -264,7 +264,7 @@ D1 ^Hint: {@Link text|http://example.com@} and {#colored|ff0000|00ff00#}.
       },
       {
         "body": "To _ly go.",
-        "hint": "{@Link text|http://example.com@} and {#colored|ff0000|00ff00#}.",
+        "hint": "{@Link text | href: http://example.com@} and {#colored | light: ff0000; dark: 00ff00#}.",
         "hintDisplay": [
           [
             "link",

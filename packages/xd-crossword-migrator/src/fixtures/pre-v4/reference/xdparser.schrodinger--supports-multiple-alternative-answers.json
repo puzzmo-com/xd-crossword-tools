@@ -1,0 +1,17 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "{A|X|Y|Z} B C",
+      "D E F",
+      "G H I"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["ABC",null],["XBC",null],["YBC",null],["ZBC",null]],"display":[["text","First letter"]]},
+      {"direction":"down","number":1,"answers":[["ADG",null]],"display":[["text","Down clue"]]}
+    ],
+    "notes": ""
+  }
+}

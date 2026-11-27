@@ -1,0 +1,50 @@
+## Metadata
+
+title: Let me outtttt
+author: Kelly Nguyen Dickson
+date: Not set
+editor: brooke
+copyright: © 2026
+blacksquares: 3
+whitespaces: 22
+acrossclues: 5
+downclues: 5
+width: 5
+height: 5
+size: 5x5
+splitcharacter: |
+emoji: 👟
+publishdate: 2026-09-22
+
+## Grid
+
+..FAM
+TILDE
+SHOES
+POOLS
+.PRAY
+
+## Clues
+
+A1. People who feel like home, for short ~ FAM
+A4. ~ ~ TILDE
+A6. Foot prisons ~ SHOES
+A7. Settings for some summer parties ~ POOLS
+A8. "I was staring at the sky, just looking for a star / To ___ on, or wish on, or something like that" (Fiona Apple lyric) ~ PRAY
+
+D1. "The ___ is lava" (game I played (and lost) a million times in my living room as a kid) ~ FLOOR
+D2. "Ain't in LA" singer ~ ADELA
+D3. Like some buns and breakups ~ MESSY
+D4. 1/192 of a qt. ~ TSP
+D5. Probably the only establishment where you can get New York cheesecake pancakes at 3 a.m. ~ IHOP // I|H|O|P
+
+## Line Breaks
+
+A1. nbsp:14 wbr:11
+A7. nbsp:7
+A8. nbsp:7,10,14,29
+D1. nbsp:4,8,11,23,37,45,62,72,82 wbr:18,33,44,54,60,78
+D2. nbsp:13
+D3. nbsp:4,18
+D4. nbsp:10
+D5. nbsp:12,37,41,53,81,83 wbr:32

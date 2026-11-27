@@ -1,0 +1,27 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "B A I T #",
+      "A D M I N",
+      "Y E S N O",
+      "[🍁] L E T S",
+      "# E T S Y"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["BAIT",null]],"display":[["text","___ and switch"]]},
+      {"direction":"across","number":5,"answers":[["ADMIN",null]],"display":[["text","Leader of an online forum, for short"]]},
+      {"direction":"across","number":7,"answers":[["YESNO",null]],"display":[["text","Like some binary questions"]]},
+      {"direction":"across","number":8,"answers":[["XLETS",null]],"display":[["text","Informational handouts"]]},
+      {"direction":"across","number":9,"answers":[["ETSY",null]],"display":[["text","Site from which you can order a customized mug listing Boston slang"]]},
+      {"direction":"down","number":1,"answers":[["BAYX",null]],"display":[["text","Source of warming flavor in a stew"]]},
+      {"direction":"down","number":2,"answers":[["ADELE",null]],"display":[["text","\"Rolling in the Deep\" singer"]]},
+      {"direction":"down","number":3,"answers":[["IMSET",null]],"display":[["text","\"Consider me ready!\""]]},
+      {"direction":"down","number":4,"answers":[["TINTS",null]],"display":[["text","Hues"]]},
+      {"direction":"down","number":6,"answers":[["NOSY",null]],"display":[["text","Prone to snooping"]]}
+    ],
+    "notes": ""
+  }
+}

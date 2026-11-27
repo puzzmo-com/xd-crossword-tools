@@ -1,0 +1,6 @@
+{
+  "errors": ["The clue down1 is malformed: Could not find tiles","The clue down2 is malformed: Could not find positioning data. In barred crosswords, clue answers must exactly match letter sequences in the grid separated by bars. Check that: (1) your answer \"AO\" appears in the grid, (2) bars correctly separate this word from adjacent letters, and (3) the grid doesn't contain rebuses.","The clue down3 is malformed: Could not find positioning data. In barred crosswords, clue answers must exactly match letter sequences in the grid separated by bars. Check that: (1) your answer \"TG\" appears in the grid, (2) bars correctly separate this word from adjacent letters, and (3) the grid doesn't contain rebuses."],
+  "reread": [],
+  "keyed": [],
+  "puzzle": null
+}

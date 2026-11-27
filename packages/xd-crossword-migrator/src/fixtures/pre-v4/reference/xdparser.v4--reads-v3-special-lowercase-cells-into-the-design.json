@@ -1,0 +1,19 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "A B",
+      "C D"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["AB",null]],"display":[["text","Hi"]]},
+      {"direction":"across","number":3,"answers":[["CD",null]],"display":[["text","Hi"]]},
+      {"direction":"down","number":1,"answers":[["AC",null]],"display":[["text","Hi"]]},
+      {"direction":"down","number":2,"answers":[["BD",null]],"display":[["text","Hi"]]}
+    ],
+    "design": {"0,0":{"background":"circle"},"1,1":{"background":"circle"}},
+    "notes": ""
+  }
+}

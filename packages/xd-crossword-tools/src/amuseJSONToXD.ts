@@ -1,5 +1,6 @@
 import { JSONToXD } from "./JSONtoXD"
-import type { Clue, Position as CluePosition, CrosswordJSON, Report } from "xd-crossword-tools-parser"
+import type { Clue, Position as CluePosition, CrosswordJSON, Report, TileDesignFlags } from "xd-crossword-tools-parser"
+import { serializeRebusRule } from "xd-crossword-tools-parser"
 
 import type { CellInfo, PlacedWord, AmuseTopLevel, PublishTimeZone } from "./amuseJSONToXD.types.d.ts"
 
@@ -52,9 +53,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
   // Track circled cells, cell colors and bars for design section
   const hasCircledCells = amuseData.cellInfos?.some((cell) => cell.isCircled) || false
   const hasColors = amuseData.cellInfos?.some((cell) => cell.bgColor) || false
-  const hasBars = amuseData.cellInfos?.some((cell) => cell.rightWall || cell.bottomWall) || false
-  if (hasBars) meta.form = "barred"
-  const needsDesign = hasCircledCells || hasBars || hasColors
+  const needsDesign = hasCircledCells || hasColors
 
   let designPositions: string[][] | undefined = undefined
   let designStyles: Record<string, Record<string, string>> = {}
@@ -85,7 +84,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
   const rebuses: CrosswordJSON["rebuses"] = {}
   let rebusSymbolCharCode = 9424
 
-  // Schrödinger squares are represented as a multi-valued rebus key (e.g. "1=O 1=A"),
+  // Schrödinger squares are represented as a rebus key with several options (e.g. "1=O|A"),
   // cells with the same set of possible values share a symbol
   const schrodingerSymbols = new Map<string, string>()
   const schrodingerRebusEntries: string[] = []
@@ -119,7 +118,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
           if (!symbol) {
             symbol = String(nextSchrodingerSymbol++)
             schrodingerSymbols.set(valuesKey, symbol)
-            for (const value of values) schrodingerRebusEntries.push(`${symbol}=${value}`)
+            schrodingerRebusEntries.push(serializeRebusRule({ keys: [symbol], options: values.map((v) => [v]) }))
           }
 
           tiles[y][x] = {
@@ -202,39 +201,12 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
     }
   }
 
-  // Second pass: apply bar designs to tiles and design positions
-  if (hasBars && designPositions) {
-    // Map of sorted bar flag combinations to their assigned style letter
-    const barStyleLetters = new Map<string, string>()
-
-    for (const [cellKey, designFlags] of barDesignMap) {
-      const [yStr, xStr] = cellKey.split("-")
-      const y = parseInt(yStr)
-      const x = parseInt(xStr)
-
-      // Skip if this is a blank tile
-      if (tiles[y][x].type === "blank") continue
-
-      // Create a unique style key for this combination of bars
-      const sortedFlags = Array.from(designFlags).sort()
-      const styleKey = sortedFlags.join("|")
-
-      let styleLetter = barStyleLetters.get(styleKey)
-      if (!styleLetter) {
-        styleLetter = nextDesignLetter()
-        barStyleLetters.set(styleKey, styleLetter)
-
-        const styleObj: Record<string, string> = {}
-        if (sortedFlags.includes("bar-left")) styleObj["bar-left"] = "true"
-        if (sortedFlags.includes("bar-top")) styleObj["bar-top"] = "true"
-        designStyles[styleLetter] = styleObj
-      }
-
-      // Circles and colors take precedence - xd only supports one style per cell
-      if (!designPositions[y][x]) {
-        designPositions[y][x] = styleLetter
-      }
-    }
+  // Second pass: bars go on the tiles, which JSONToXD writes as a '## Bars' section
+  for (const [cellKey, designFlags] of barDesignMap) {
+    const [y, x] = cellKey.split("-").map((n) => parseInt(n))
+    const tile = tiles[y][x]
+    if (tile.type === "blank") continue
+    tile.design = [...designFlags].sort() as TileDesignFlags[]
   }
 
   // Clues
@@ -366,7 +338,7 @@ export function convertAmuseToCrosswordJSON(amuseJson: AmuseTopLevel): Crossword
   }
 
   // rebus handling
-  const metaRebus = [...Object.entries(rebuses).map(([key, value]) => `${key}=${value}`), ...schrodingerRebusEntries].join(" ")
+  const metaRebus = [...Object.entries(rebuses).map(([key, value]) => serializeRebusRule({ keys: [key], options: [[value]] })), ...schrodingerRebusEntries].join(" ")
 
   if (metaRebus.length) {
     meta.rebus = metaRebus

@@ -1,4 +1,4 @@
-import { Clue, CrosswordJSON, CursorDirection, Tile } from "xd-crossword-tools-parser"
+import { Clue, CrosswordJSON, CursorDirection, Tile, serializeRebusRule } from "xd-crossword-tools-parser"
 import { JSONToXD } from "./JSONtoXD"
 import { makeGetNewRebusSymbol } from "./utils/rebusSymbols"
 
@@ -83,7 +83,7 @@ export function ipuzToXD(source: string | object): string {
   const getNewRebusSymbol = makeGetNewRebusSymbol()
   const rebusSymbols = new Map<string, string>() // word -> symbol
 
-  // Schrödinger squares become a multi-valued rebus key (e.g. "1=O 1=A"), cells
+  // Schrödinger squares become a rebus key with several options (e.g. "1=O|A"), cells
   // with the same set of possible values share a symbol - same as the Amuse importer
   const schrodingerSymbols = new Map<string, string>() // values-key -> symbol
   const schrodingerRebusEntries: string[] = []
@@ -102,7 +102,7 @@ export function ipuzToXD(source: string | object): string {
         if (!symbol) {
           symbol = String(nextSchrodingerSymbol++)
           schrodingerSymbols.set(valuesKey, symbol)
-          for (const value of values) schrodingerRebusEntries.push(`${symbol}=${value}`)
+          schrodingerRebusEntries.push(serializeRebusRule({ keys: [symbol], options: values.map((v) => [v]) }))
         }
         return {
           type: "schrodinger",
@@ -144,7 +144,15 @@ export function ipuzToXD(source: string | object): string {
       if (sides.includes("B") && rowI < height - 1) barTop.add(`${rowI + 1},${colI}`)
     })
   )
-  const hasBars = barLeft.size > 0 || barTop.size > 0
+
+  // Bars go on the tiles, which JSONToXD writes as a '## Bars' section
+  for (const [cellsWithBar, flag] of [[barLeft, "bar-left"], [barTop, "bar-top"]] as const) {
+    for (const key of cellsWithBar) {
+      const [row, col] = key.split(",").map(Number)
+      const tile = tiles[row]?.[col]
+      if (tile && tile.type !== "blank") tile.design = [...(tile.design || []), flag]
+    }
+  }
 
   // -- Word positions -------------------------------------------------------------
 
@@ -286,7 +294,7 @@ export function ipuzToXD(source: string | object): string {
 
   // -- Design (circles, shades and bars) -------------------------------------------
 
-  const design = generateDesign(cells, { barLeft, barTop })
+  const design = generateDesign(cells)
 
   // -- Pre-filled cells -------------------------------------------------------------
 
@@ -312,8 +320,7 @@ export function ipuzToXD(source: string | object): string {
   for (const key of extras) {
     if (typeof data[key] === "string" && data[key].trim()) meta[key] = data[key].trim()
   }
-  if (hasBars) meta.form = "barred"
-  const rebusEntries = [...rebusSymbols.entries()].map(([word, symbol]) => `${symbol}=${word}`)
+  const rebusEntries = [...rebusSymbols.entries()].map(([word, symbol]) => serializeRebusRule({ keys: [symbol], options: [[word]] }))
   const metaRebus = [...rebusEntries, ...schrodingerRebusEntries].join(" ")
   if (metaRebus) meta.rebus = metaRebus
 
@@ -357,12 +364,12 @@ function parseIpuzJSON(source: string): Record<string, any> {
 }
 
 /**
- * Builds the xd Design section styles for circled (style.shapebg), shaded
- * (style.highlight / style.color) and barred cells. Each unique combination of
- * flags on a cell gets its own style letter - 'O' for a plain circle and 'S' for
- * a plain shade by convention, then 'A', 'B', ... for anything else.
+ * Builds the xd Design section styles for circled (style.shapebg) and shaded
+ * (style.highlight / style.color) cells. Each unique combination of flags on a
+ * cell gets its own style letter - 'O' for a plain circle and 'S' for a plain
+ * shade by convention, then 'A', 'B', ... for anything else. Bars go in the Bars section.
  */
-function generateDesign(cells: IpuzCellInfo[][], bars: { barLeft: Set<string>; barTop: Set<string> }): CrosswordJSON["design"] {
+function generateDesign(cells: IpuzCellInfo[][]): CrosswordJSON["design"] {
   const height = cells.length
   const width = cells[0]?.length ?? 0
 
@@ -386,11 +393,9 @@ function generateDesign(cells: IpuzCellInfo[][], bars: { barLeft: Set<string>; b
 
       const circle = info.style?.shapebg === "circle"
       const shade = info.style?.highlight === true || typeof info.style?.color === "string"
-      const left = bars.barLeft.has(`${row},${col}`)
-      const top = bars.barTop.has(`${row},${col}`)
-      if (!circle && !shade && !left && !top) continue
+      if (!circle && !shade) continue
 
-      const combo = [circle && "circle", shade && "shade", left && "bar-left", top && "bar-top"].filter(Boolean).join("+")
+      const combo = [circle && "circle", shade && "shade"].filter(Boolean).join("+")
       let letter = comboLetters.get(combo)
       if (!letter) {
         if (combo === "circle" && !usedLetters.has("O")) letter = "O"
@@ -403,8 +408,6 @@ function generateDesign(cells: IpuzCellInfo[][], bars: { barLeft: Set<string>; b
         const style: Record<string, string> = {}
         if (circle) style["background"] = "circle"
         else if (shade) style["background"] = "shade"
-        if (left) style["bar-left"] = "true"
-        if (top) style["bar-top"] = "true"
         styles[letter] = style
       }
       positions[row][col] = letter

@@ -49,7 +49,7 @@ asda asdasda
 
   it("meta needs the colon", () => {
     const xd = `
-## Meta
+## Metadata
 asda asdasda
   `
 
@@ -79,7 +79,7 @@ asda asdasda
 
   it("Throws when you have an unknown subheading", () => {
     const xd = `
-## Meta
+## Metadata
 ## Orta's extension
 ## Notes
 ## Grid
@@ -103,7 +103,7 @@ asda asdasda
 
   it("handles bad meta", () => {
     const xd = `
-## Meta
+## Metadata
 
 this line needs a colon`
 
@@ -134,7 +134,7 @@ this line needs a colon`
 
 it("checks that the grid is set up", () => {
   const xd = `
-## Meta
+## Metadata
 ## Grid
 ## Clues
 `
@@ -156,7 +156,7 @@ it("checks that the grid is set up", () => {
 
 it("checks that all the sections are there", () => {
   const xd = `
-## Meta
+## Metadata
 ## Grid
 `
 
@@ -186,7 +186,7 @@ it("checks that all the sections are there", () => {
 
 it("checks that all the sections are there", () => {
   const xd = `
-## Meta
+## Metadata
 ## Grid
 ## Clues
 

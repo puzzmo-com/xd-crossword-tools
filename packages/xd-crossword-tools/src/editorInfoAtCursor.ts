@@ -19,6 +19,7 @@ export const editorInfoAtCursor =
     if (!section) return noop
 
     switch (section.type) {
+      case "bars":
       case "design":
       case "metapuzzle":
       case "notes":

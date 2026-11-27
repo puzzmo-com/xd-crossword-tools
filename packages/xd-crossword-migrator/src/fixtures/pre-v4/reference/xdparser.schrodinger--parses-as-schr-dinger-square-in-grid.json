@@ -1,0 +1,24 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "T I L E",
+      "A P E X",
+      "C {A|O} N E",
+      "O D D S"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["TILE",null]],"display":[["text","Mosaic piece"]]},
+      {"direction":"across","number":5,"answers":[["APEX",null]],"display":[["text","Pinnacle"]]},
+      {"direction":"across","number":6,"answers":[["CANE",null],["CONE",null]],"display":[["text","Sugar ____"]]},
+      {"direction":"across","number":7,"answers":[["ODDS",null]],"display":[["text","Chances, in gambling"]]},
+      {"direction":"down","number":1,"answers":[["TACO",null]],"display":[["text","Tuesday treat"]]},
+      {"direction":"down","number":2,"answers":[["IPAD",null],["IPOD",null]],"display":[["text","Apple tech"]]},
+      {"direction":"down","number":3,"answers":[["LEND",null]],"display":[["text","Complement to borrow"]]},
+      {"direction":"down","number":4,"answers":[["EXES",null]],"display":[["text","Former intimates"]]}
+    ],
+    "notes": ""
+  }
+}

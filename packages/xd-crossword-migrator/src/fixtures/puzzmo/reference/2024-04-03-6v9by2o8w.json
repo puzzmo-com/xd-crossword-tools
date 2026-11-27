@@ -1,0 +1,49 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "O M W # # # B O G",
+      "N O I R # C U R E",
+      "T O N I # O M A N",
+      "O D D C O U P L E",
+      "# # S H O R T # #",
+      "# A P T P A I R #",
+      "T R E E # G O A L",
+      "V E E R # E U R O",
+      "S A D # # # S E W"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["OMW",[0,1]]],"display":[["text","Texted initialism that Apple products often autocorrect to its full version, complete with an exclamation mark, which is probably more eager-sounding than you intended and also inconvenient to fix because you're busy going somewhere"]],"hint":[["text","Journey update abbreviation that anagrams to a lawn care verb"]]},
+      {"direction":"across","number":4,"answers":[["BOG",null]],"display":[["text","Wetland where cranberries thrive"]],"hint":[["text","Marsh hidden in the name \"Turbo Goth\""]]},
+      {"direction":"across","number":7,"answers":[["NOIR",null]],"display":[["text","Film genre with a French name"]],"hint":[["text","French word for \"black\" that anagrams to \"iron\""]]},
+      {"direction":"across","number":9,"answers":[["CURE",null]],"display":[["text","Remedy"]],"hint":[["text","Eliminate, like an illness"]]},
+      {"direction":"across","number":10,"answers":[["TONI",null]],"display":[["text","\"Song of Solomon\" author Morrison"]],"hint":[["text","First name hidden in the phrase \"bet on it\""]]},
+      {"direction":"across","number":11,"answers":[["OMAN",null]],"display":[["text","Only country that can legally follow Mexico in that game where you have to say something that starts with the last letter of what the previous person said"]],"hint":[["text","West Asian country that becomes a word meaning \"complain\" when its first two letters are swapped"]]},
+      {"direction":"across","number":12,"answers":[["ODDCOUPLE",[2]]],"display":[["text","Title duo comprised of Felix Unger and Oscar Madison"]],"hint":[["text","Term meaning \"unlikely pair\" whose first word can mean \"strange\": 2 wds. (Theme answer: The first word is an opposite of the first word of 15-Across; the second word is a synonym of the second word of 15-Across.)"]]},
+      {"direction":"across","number":14,"answers":[["SHORT",null]],"display":[["text","Brief"]],"hint":[["text","Opposite of long"]]},
+      {"direction":"across","number":15,"answers":[["APTPAIR",[2]]],"display":[["text","Cross|word theme classification that describes 12-Across, but only if the first word of this answer is read as an abbreviation"]],"hint":[["text","Description in many Cross|word editor's notes for a well-matched two-part theme: 2 wds. (Theme answer: The first word is an opposite of the first word of 15-Across; the second word is a synonym of the second word of 15-Across.)"]]},
+      {"direction":"across","number":17,"answers":[["TREE",null]],"display":[["text","Unofficial mascot who \"roots\" for Stanford University"]],"hint":[["text","Plant such as an oak or a maple"]]},
+      {"direction":"across","number":18,"answers":[["GOAL",null]],"display":[["text","Successful shot by Sophia Smith"]],"hint":[["text","Something you want to achieve"]]},
+      {"direction":"across","number":20,"answers":[["VEER",null]],"display":[["text","Turn suddenly"]],"hint":[["text","Synonym for swerve spelled by anagramming the last four letters of \"swerve\""]]},
+      {"direction":"across","number":21,"answers":[["EURO",null]],"display":[["text","Currency that replaced the Latvian lats and the Lithuanian litas"]],"hint":[["text","Prefix related to the continent where Germany is"]]},
+      {"direction":"across","number":22,"answers":[["SAD",null]],"display":[["text","Bummed out"]],"hint":[["text","Unhappy"]]},
+      {"direction":"across","number":23,"answers":[["SEW",null]],"display":[["text","Repair a plushie"]],"hint":[["text","Use a needle and thread"]]},
+      {"direction":"down","number":1,"answers":[["ONTO",null]],"display":[["text","\"You might be ___ something there!\""]],"hint":[["text","Preposition that anagrams to \"toon\""]]},
+      {"direction":"down","number":2,"answers":[["MOOD",null]],"display":[["text","Emotional state"]],"hint":[["text","State of mind whose first three letters spell what a cow says"]]},
+      {"direction":"down","number":3,"answers":[["WINDSPEED",[3]]],"display":[["text","Rate measured by an anemometer"]],"hint":[["text","Weather statistic formed by WI + an anagram of \"depends\": 2 wds."]]},
+      {"direction":"down","number":4,"answers":[["BUMPTIOUS",null]],"display":[["text","Overly self-assertive"]],"hint":[["text","Word meaning \"bold\" that becomes a word meaning \"really tasty\" if its first letter is changed from a \"B\" to \"SCR\""]]},
+      {"direction":"down","number":5,"answers":[["ORAL",null]],"display":[["text","Word before history or tradition"]],"hint":[["text","Mouth-related"]]},
+      {"direction":"down","number":6,"answers":[["GENE",null]],"display":[["text","Basic unit of heredity"]],"hint":[["text","Chromosome part that's a homophone of \"jean\""]]},
+      {"direction":"down","number":8,"answers":[["RICHTER",null]],"display":[["text","Namesake of the logarithmic scale used to measure earthquake strength"]],"hint":[["text","Surname formed by an anagram of \"thrice\" + R"]]},
+      {"direction":"down","number":9,"answers":[["COURAGE",null]],"display":[["text","\"Truth is a letter from ___\": Zora Neale Hurston"]],"hint":[["text","Quality similar to bravery"]]},
+      {"direction":"down","number":13,"answers":[["OOP",null]],"display":[["text","Alley-___"]],"hint":[["text","Surprised sound hidden in the phrase \"gentoo penguin\""]]},
+      {"direction":"down","number":15,"answers":[["AREA",null]],"display":[["text","Neck of the woods"]],"hint":[["text","Region"]]},
+      {"direction":"down","number":16,"answers":[["RARE",null]],"display":[["text","Not at all common"]],"hint":[["text","Synonym for \"hard to find\" that anagrams to front's opposite"]]},
+      {"direction":"down","number":17,"answers":[["TVS",[0]]],"display":[["text","Roku products"]],"hint":[["text","Remote-controlled devices with screens: Abbr."]]},
+      {"direction":"down","number":19,"answers":[["LOW",null]],"display":[["text","Needing to be refilled soon"]],"hint":[["text","Opposite of high"]]}
+    ],
+    "notes": ""
+  }
+}

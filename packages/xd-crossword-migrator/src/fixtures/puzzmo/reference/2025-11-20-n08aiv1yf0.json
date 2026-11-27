@@ -1,0 +1,27 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "G R I F F",
+      "A U D I O",
+      "S N E E R",
+      "# T A R T",
+      "# # L Y E"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["GRIFF",null]],"display":[["text","\"Vertigo\" artist with an "],["link"," amazing \"Apple\" cover","https://youtu.be/VISC5jRXEIA?si=oxwxBoRRBxOCYY9Z",[["text"," amazing \"Apple\" cover"]]]]},
+      {"direction":"across","number":6,"answers":[["AUDIO",null]],"display":[["text","The A of A/V"]]},
+      {"direction":"across","number":7,"answers":[["SNEER",null]],"display":[["text","Smile + grimace"]]},
+      {"direction":"across","number":8,"answers":[["TART",null]],"display":[["text","Like plain cranberries"]]},
+      {"direction":"across","number":9,"answers":[["LYE",null]],"display":[["text","Drain-cleaning substance"]]},
+      {"direction":"down","number":1,"answers":[["GAS",null]],"display":[["text","State of matter more disordered than liquid"]]},
+      {"direction":"down","number":2,"answers":[["RUNT",null]],"display":[["text","Fruit-shaped candy"]]},
+      {"direction":"down","number":3,"answers":[["IDEAL",null]],"display":[["text","Couldn't-be-better"]]},
+      {"direction":"down","number":4,"answers":[["FIERY",null]],"display":[["text","Like 🔥 😈 🔥"]]},
+      {"direction":"down","number":5,"answers":[["FORTE",null]],"display":[["text","Opposite of piano"]]}
+    ],
+    "notes": ""
+  }
+}

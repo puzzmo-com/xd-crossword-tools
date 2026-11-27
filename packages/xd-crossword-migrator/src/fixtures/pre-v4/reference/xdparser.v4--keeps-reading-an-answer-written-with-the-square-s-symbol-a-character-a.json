@@ -1,0 +1,14 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": ["across1:OKAY"],
+  "puzzle": {
+    "tiles": [
+      "O {KA|KE} Y"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["OKAY",null]],"display":[["text","Fine"]]}
+    ],
+    "notes": ""
+  }
+}

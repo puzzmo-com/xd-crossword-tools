@@ -1,0 +1,21 @@
+## Metadata
+
+
+## Grid
+
+AB
+CD
+
+## Clues
+
+A1. Hi ~ AB
+A3. Hi ~ CD
+
+D1. Hi ~ AC
+D2. Hi ~ BD
+## Design
+
+O { background: circle }
+
+O.
+.O

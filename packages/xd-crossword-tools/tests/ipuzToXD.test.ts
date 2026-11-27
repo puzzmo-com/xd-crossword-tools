@@ -205,7 +205,7 @@ describe(ipuzToXD.name, () => {
     expect(res).toContain("A1. Farm animal (4) ~ GOAT")
   })
 
-  it("converts barred grids into form: barred plus a Design section", () => {
+  it("converts barred grids into a Bars section", () => {
     const res = ipuzToXD({
       version: "http://ipuz.org/v2",
       kind: ["http://ipuz.org/crossword#1"],
@@ -233,8 +233,9 @@ describe(ipuzToXD.name, () => {
         ],
       },
     })
-    expect(res).toContain("form: barred")
-    expect(res).toContain("A { bar-left: true; bar-top: true }")
+    expect(res).not.toContain("form:")
+    expect(res).not.toContain("bar-left")
+    expect(res).toContain("## Bars\n\n...\n.+.\n...\n")
     expect(res).toContain("A3. Not even two ~ NE")
     expect(res).toContain("D3. Sodium, on the periodic table ~ NA")
     expect(res).toContain("A1. Flying mammal ~ BAT")
@@ -246,7 +247,7 @@ describe(ipuzToXD.name, () => {
     // The bottom-right cell can be either N (TEN/TEN) or NT (TENT/TENT)
     parsed.solution[2][2] = ["N", "NT"]
     const res = ipuzToXD(parsed)
-    expect(res).toContain("rebus: ❶=GO 1=N 1=NT")
+    expect(res).toContain("rebus: ❶=GO 1=N|NT")
     expect(res).toContain("## Grid\n\n❶AT\nAGE\nTE1")
     // Clue answers read as one coherent solution, using each square's first option
     expect(res).toContain("A5. Dime's worth ~ TEN")

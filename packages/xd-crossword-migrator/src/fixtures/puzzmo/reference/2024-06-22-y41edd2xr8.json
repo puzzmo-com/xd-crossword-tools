@@ -1,0 +1,49 @@
+{
+  "errors": [],
+  "reread": [],
+  "keyed": [],
+  "puzzle": {
+    "tiles": [
+      "P O S E D # # # # # # #",
+      "T R A D E # # # # # # #",
+      "A T T I C # # # # # # #",
+      "S O I T I S # # # # # #",
+      "# N [SF] W P I C # # # # #",
+      "# # Y A H E A R # # # #",
+      "# # # R E G R E W # # #",
+      "# # # # R E D D E N # #",
+      "# # # # # L I F T O F F",
+      "# # # # # # B [LA] D D E R",
+      "# # # # # # # G O T T A",
+      "# # # # # # # # G O A T"
+    ],
+    "clues": [
+      {"direction":"across","number":1,"answers":[["POSED",null]],"display":[["text","Got ready for the 'gram"]],"hint":[["text","Prepared to be photographed"]]},
+      {"direction":"across","number":6,"answers":[["TRADE",null]],"display":[["text","Two sheep for a brick, in \"Catan\""]],"hint":[["text","Exchange"]]},
+      {"direction":"across","number":7,"answers":[["ATTIC",null]],"display":[["text","Space with a vaulted ceiling, often"]],"hint":[["text","Upstairs storage room"]]},
+      {"direction":"across","number":8,"answers":[["SOITIS",[1,3]]],"display":[["text","\"Ah, yes, indeed\""]],"hint":[["text","\"Looks like you're right about that\": 3 wds."]]},
+      {"direction":"across","number":10,"answers":[["NSFWPIC",[0,1,2]]],"display":[["text","Sext, maybe"]],"hint":[["text","Photo that shouldn't be viewed while on the job: 2 wds., 1 abbr. (Theme answer: This seven-letter answer must fit in a six-letter space. The circled square takes two letters, which you can enter by pressing \"rebus\" or escape to toggle rebus mode. Those two letters are the abbreviation of a major California city.)"]]},
+      {"direction":"across","number":12,"answers":[["YAHEAR",[1]]],"display":[["text","\"Capeesh?\""]],"hint":[["text","\"Get what I'm saying?\": 2 wds."]]},
+      {"direction":"across","number":14,"answers":[["REGREW",null]],"display":[["text","Healed, as a newt's limb"]],"hint":[["text","Came back, like weeds or hair"]]},
+      {"direction":"across","number":16,"answers":[["REDDEN",null]],"display":[["text","Ripen, as a tomato"]],"hint":[["text","Become cherry-colored"]]},
+      {"direction":"across","number":18,"answers":[["LIFTOFF",null]],"display":[["text","Finale of a countdown at Cape Canaveral"]],"hint":[["text","Rocket-leaving-the-ground event"]]},
+      {"direction":"across","number":21,"answers":[["BLADDER",null]],"display":[["text","When it's full, it's time to go"]],"hint":[["text","Anatomical sac for liquids or gases (Theme answer: This seven-letter answer must fit in a six-letter space. The circled square takes two letters, which you can enter by pressing \"rebus\" or escape to toggle rebus mode. Those two letters are the abbreviation of a major California city.)"]]},
+      {"direction":"across","number":22,"answers":[["GOTTA",null]],"display":[["text","\"___ Catch 'Em All\""]],"hint":[["text","Have to, informally"]]},
+      {"direction":"across","number":23,"answers":[["GOAT",[0,1,2]]],"display":[["text","Best ever"]],"hint":[["text","Acronym for an illustrious athlete that's spelled the same a bleating animal"]]},
+      {"direction":"down","number":1,"answers":[["PTAS",[0,1]]],"display":[["text","Class action groups, for short?"]],"hint":[["text","School fundraising organizations: Abbr."]]},
+      {"direction":"down","number":2,"answers":[["ORTON",null]],"display":[["text","Cena-___ rivalry (WWE feud)"]],"hint":[["text","Name that turns into \"or not\" when two letters swap positions"]]},
+      {"direction":"down","number":3,"answers":[["SATISFY",null]],"display":[["text","Make happy"]],"hint":[["text","Meet the needs of (Theme answer: This seven-letter answer must fit in a six-letter space. The circled square takes two letters, which you can enter by pressing \"rebus\" or escape to toggle rebus mode. Those two letters are the abbreviation of a major California city.)"]]},
+      {"direction":"down","number":4,"answers":[["EDITWAR",[3]]],"display":[["text","Wikipedia beef"]],"hint":[["text","\"Battle\" between people making changes to a website's text: 2 wds."]]},
+      {"direction":"down","number":5,"answers":[["DECIPHER",null]],"display":[["text","Paste into rot13.com, say"]],"hint":[["text","Crack the code of"]]},
+      {"direction":"down","number":9,"answers":[["SIEGEL",null]],"display":[["text","Former \"All Things Considered\" host Robert"]],"hint":[["text","Surname that anagrams to \"Gisele\""]]},
+      {"direction":"down","number":11,"answers":[["CARDIB",[4]]],"display":[["text","\"Invasion of Privacy\" rapper"]],"hint":[["text","\"Bodak Yellow\" artist whose name anagrams to \"bardic\": 2 wds."]]},
+      {"direction":"down","number":13,"answers":[["REDFLAG",[2]]],"display":[["text","Reason to swipe left"]],"hint":[["text","Physical or metaphorical warning sign named for a color: 2 wds. (Theme answer: This seven-letter answer must fit in a six-letter space. The circled square takes two letters, which you can enter by pressing \"rebus\" or escape to toggle rebus mode. Those two letters are the abbreviation of a major California city.)"]]},
+      {"direction":"down","number":15,"answers":[["WETDOG",[2]]],"display":[["text","Odor whose positive notes have been described by one scientist as including almond, fruit, honey, and mushroom"]],"hint":[["text","Scent named for a sopping pooch: 2 wds."]]},
+      {"direction":"down","number":17,"answers":[["NODTO",[2]]],"display":[["text","Recognize nonverbally"]],"hint":[["text","Give a silent signal with a chin movement: 2 wds."]]},
+      {"direction":"down","number":19,"answers":[["FETA",null]],"display":[["text","Baked ___ pasta (viral 2021 TikTok recipe)"]],"hint":[["text","Type of cheese that anagrams to \"fate\""]]},
+      {"direction":"down","number":20,"answers":[["FRAT",null]],"display":[["text","___ party"]],"hint":[["text","Sorority counterpart, for short"]]}
+    ],
+    "design": {"4,2":{"background":"circle"},"9,7":{"background":"circle"}},
+    "notes": ""
+  }
+}
